@@ -1,3 +1,5 @@
+import { Badge } from './ui/badge'
+
 type ChecklistOption = {
   id: string
   label: string
@@ -24,10 +26,15 @@ export function ChecklistGroups({ groups, selectedValues, onToggle }: ChecklistG
   return (
     <div className="space-y-4.5">
       {groups.map((group) => (
-        <div key={group.id} className="rounded-[1.35rem] border border-slate-800/90 bg-slate-900/72 p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.95)]">
-          <div className="mb-3.5">
+        <div key={group.id} className="rounded-[1.35rem] border border-slate-800/90 bg-slate-900/65 p-4 shadow-[0_14px_30px_-26px_rgba(15,23,42,0.95)]">
+          <div className="mb-3.5 flex items-start justify-between gap-3">
+            <div>
             <h3 className="text-sm font-semibold tracking-tight text-slate-100">{group.label}</h3>
             {group.safetyNote ? <p className="mt-1 text-xs leading-5 text-slate-400">{group.safetyNote}</p> : null}
+            </div>
+            <Badge variant="muted">
+              {group.options.filter((option) => selectedValues.includes(option.noteText || option.label)).length} selected
+            </Badge>
           </div>
           <div className="space-y-2.5">
             {group.options.map((option) => {

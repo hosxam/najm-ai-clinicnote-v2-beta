@@ -7,6 +7,7 @@ import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildMedicalReportDraft } from '../lib/outputBuilders'
+import { Textarea } from '../components/ui/textarea'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 type MedicalReportDraft = {
@@ -211,11 +212,10 @@ export function MedicalReportPage() {
             ].map(([key, label]) => (
               <label key={key} className="block space-y-2.5 text-sm">
                 <span className="field-label">{label}</span>
-                <textarea
+                <Textarea
                   value={values[key] ?? ''}
                   onChange={(event) => setValues((current) => ({ ...current, [key]: event.target.value }))}
                   rows={key === 'reportPurpose' ? 2 : 4}
-                  className="field-textarea"
                   placeholder={`Enter ${label.toLowerCase()}.`}
                 />
               </label>

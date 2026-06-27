@@ -1,3 +1,4 @@
+import { RefreshCcw, Sparkles, Wand2 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChipSelector } from '../components/ChipSelector'
@@ -9,6 +10,10 @@ import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildQuickSoapDraft } from '../lib/outputBuilders'
 import { displayGroupLabel, normalizeDisplayText } from '../lib/labelUtils'
+import { getQuickNoteSuggestedSelections } from '../lib/presetDefaults'
+import { Button } from '../components/ui/button'
+import { Input } from '../components/ui/input'
+import { Textarea } from '../components/ui/textarea'
 import type { WorkflowChipItem, WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
@@ -30,16 +35,17 @@ type QuickNoteDraft = {
 const QUICK_NOTE_STORAGE_KEY = 'quick-note-draft'
 
 function getQuickNoteDefaults(details: WorkflowDetails | null): QuickNoteDraft {
+  const suggested = getQuickNoteSuggestedSelections(details)
   return {
     workflowId: details?.summary.workflowId ?? '',
     duration: '',
     additionalHistory: '',
     assessment: '',
     plan: '',
-    selectedSymptoms: [],
-    selectedNegatives: [],
+    selectedSymptoms: suggested.symptoms,
+    selectedNegatives: suggested.relevantNegatives,
     selectedExam: [],
-    selectedPlanItems: [],
+    selectedPlanItems: suggested.planPhrases,
   }
 }
 
@@ -205,6 +211,20 @@ export function QuickNotePage() {
     setSelectedPlanItems(defaults.selectedPlanItems)
   }
 
+  function applySuggestedDefaults() {
+    const defaults = getQuickNoteDefaults(details)
+    setSelectedSymptoms(defaults.selectedSymptoms)
+    setSelectedNegatives(defaults.selectedNegatives)
+    setSelectedPlanItems(defaults.selectedPlanItems)
+  }
+
+  function clearSelections() {
+    setSelectedSymptoms([])
+    setSelectedNegatives([])
+    setSelectedExam([])
+    setSelectedPlanItems([])
+  }
+
   const chipsByGroup = useMemo(() => {
     const grouped: Record<string, string[]> = {}
     for (const chip of details?.chips?.chips ?? []) {
@@ -228,6 +248,12 @@ export function QuickNotePage() {
       plan,
     })
   }, [details, duration, selectedSymptoms, selectedNegatives, selectedExam, selectedPlanItems, additionalHistory, assessment, plan])
+
+  const suggestedSelections = useMemo(() => getQuickNoteSuggestedSelections(details), [details])
+  const totalSuggestedSelections =
+    suggestedSelections.symptoms.length +
+    suggestedSelections.relevantNegatives.length +
+    suggestedSelections.planPhrases.length
 
   return (
     <div className="space-y-6 lg:space-y-7">
@@ -284,7 +310,7 @@ export function QuickNotePage() {
               title={details.summary.title}
               description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
               actions={
-                <Link to={`/encounter/${details.summary.workflowId}`} className="text-sm text-cyan-300">
+                <Link to={`/encounter/${details.summary.workflowId}`} className="text-sm font-medium text-cyan-300">
                   Open detailed encounter
                 </Link>
               }
@@ -292,19 +318,17 @@ export function QuickNotePage() {
               <div className="grid gap-4 md:grid-cols-2">
                 <label className="space-y-2.5 text-sm">
                   <span className="field-label">Duration</span>
-                  <input
+                  <Input
                     value={duration}
                     onChange={(event) => setDuration(event.target.value)}
-                    className="field-input"
                     placeholder="e.g. 3 days"
                   />
                 </label>
                 <label className="space-y-2.5 text-sm">
                   <span className="field-label">Clinician impression</span>
-                  <input
+                  <Input
                     value={assessment}
                     onChange={(event) => setAssessment(event.target.value)}
-                    className="field-input"
                     placeholder="Enter clinician-stated impression only"
                   />
                 </label>
@@ -312,54 +336,87 @@ export function QuickNotePage() {
 
               <label className="mt-5 block space-y-2.5 text-sm">
                 <span className="field-label">Additional history</span>
-                <textarea
+                <Textarea
                   value={additionalHistory}
                   onChange={(event) => setAdditionalHistory(event.target.value)}
                   rows={4}
-                  className="field-textarea"
                   placeholder="Add any clinician-confirmed history details."
                 />
               </label>
 
               <label className="mt-5 block space-y-2.5 text-sm">
                 <span className="field-label">Clinician plan</span>
-                <textarea
+                <Textarea
                   value={plan}
                   onChange={(event) => setPlan(event.target.value)}
                   rows={4}
-                  className="field-textarea"
                   placeholder="Enter only the clinician-stated plan."
                 />
               </label>
             </SectionCard>
 
-            <SectionCard title="Suggested findings" description="Use workflow-specific selections to speed up documentation.">
+            <SectionCard
+              title="Suggested findings"
+              description="Preset defaults are applied only for safer chip groups. Examination remains manual to avoid contradiction-prone defaults."
+              actions={
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={applySuggestedDefaults}
+                    disabled={!totalSuggestedSelections}
+                  >
+                    <Wand2 className="h-4 w-4" />
+                    Use suggested defaults
+                  </Button>
+                  <Button variant="secondary" size="sm" onClick={clearSelections}>
+                    <RefreshCcw className="h-4 w-4" />
+                    Clear selections
+                  </Button>
+                </div>
+              }
+            >
               <div className="space-y-6">
                 <ChipSelector
                   label={displayGroupLabel('symptoms')}
                   items={chipsByGroup.symptoms ?? []}
                   selectedItems={selectedSymptoms}
+                  description="Workflow-specific symptoms or history points suggested from speed presets."
                   onToggle={(value) => setSelectedSymptoms((current) => toggleValue(current, value))}
                 />
                 <ChipSelector
                   label={displayGroupLabel('relevant_negatives')}
                   items={chipsByGroup.relevant_negatives ?? []}
                   selectedItems={selectedNegatives}
+                  description="Important negatives suggested from existing preset metadata."
                   onToggle={(value) => setSelectedNegatives((current) => toggleValue(current, value))}
                 />
                 <ChipSelector
                   label={displayGroupLabel('exam_findings')}
                   items={chipsByGroup.exam_findings ?? []}
                   selectedItems={selectedExam}
+                  description="Left manual in Quick Note because imported presets do not include contradiction-safe exam rules."
                   onToggle={(value) => setSelectedExam((current) => toggleValue(current, value))}
                 />
                 <ChipSelector
                   label={displayGroupLabel('plan_phrases')}
                   items={chipsByGroup.plan_phrases ?? []}
                   selectedItems={selectedPlanItems}
+                  description="Documentation-only plan phrases suggested from existing presets."
                   onToggle={(value) => setSelectedPlanItems((current) => toggleValue(current, value))}
                 />
               </div>
+              {totalSuggestedSelections ? (
+                <div className="mt-5 rounded-[1.2rem] border border-slate-800/90 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
+                  <div className="flex items-center gap-2 font-medium text-slate-200">
+                    <Sparkles className="h-4 w-4 text-cyan-300" />
+                    {totalSuggestedSelections} suggested chip defaults available for this workflow
+                  </div>
+                  <div className="mt-1.5">
+                    These suggestions come from imported speed presets only. Review and remove any item the clinician did not state or assess.
+                  </div>
+                </div>
+              ) : null}
             </SectionCard>
           </div>
 

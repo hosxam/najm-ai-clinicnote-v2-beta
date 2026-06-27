@@ -10,6 +10,8 @@ import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildDetailedOutputs } from '../lib/outputBuilders'
 import { cleanPlaceholderLabel, displayGroupLabel, normalizeDisplayText, normalizeDocumentationText } from '../lib/labelUtils'
+import { Input } from '../components/ui/input'
+import { Textarea } from '../components/ui/textarea'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
@@ -342,17 +344,19 @@ export function DetailedEncounterPage() {
               title={`${details.summary.title} encounter`}
               description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
             >
+              <div className="mb-5 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
+                Detailed Encounter stays manual by default in this build. Suggested presets are intentionally not auto-applied here because the broader structured sections need more contradiction-safe rules.
+              </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {historyFields.map((field) => (
                   <label key={field.id} className="space-y-2.5 text-sm">
                     <span className="field-label">{field.label}</span>
-                    <input
+                    <Input
                       value={historyValues[field.id] ?? ''}
                       onChange={(event) =>
                         setHistoryValues((current) => ({ ...current, [field.id]: event.target.value }))
                       }
                       placeholder={field.placeholder}
-                      className="field-input"
                     />
                   </label>
                 ))}
@@ -425,21 +429,19 @@ export function DetailedEncounterPage() {
               <div className="space-y-4">
                 <label className="block space-y-2.5 text-sm">
                   <span className="field-label">Clinician impression</span>
-                  <textarea
+                  <Textarea
                     value={assessment}
                     onChange={(event) => setAssessment(event.target.value)}
                     rows={3}
-                    className="field-textarea"
                     placeholder="Enter clinician-stated impression only."
                   />
                 </label>
                 <label className="block space-y-2.5 text-sm">
                   <span className="field-label">Clinician plan</span>
-                  <textarea
+                  <Textarea
                     value={plan}
                     onChange={(event) => setPlan(event.target.value)}
                     rows={4}
-                    className="field-textarea"
                     placeholder="Enter clinician-stated plan only."
                   />
                 </label>
@@ -470,21 +472,19 @@ export function DetailedEncounterPage() {
               <div className="space-y-4">
                 <label className="block space-y-2.5 text-sm">
                   <span className="field-label">Referral reason</span>
-                  <textarea
+                  <Textarea
                     value={referralReason}
                     onChange={(event) => setReferralReason(event.target.value)}
                     rows={3}
-                    className="field-textarea"
                     placeholder="Enter only if the clinician requested a referral letter."
                   />
                 </label>
                 <label className="block space-y-2.5 text-sm">
                   <span className="field-label">Patient instructions</span>
-                  <textarea
+                  <Textarea
                     value={patientInstructions}
                     onChange={(event) => setPatientInstructions(event.target.value)}
                     rows={3}
-                    className="field-textarea"
                     placeholder="Only enter explicit clinician-stated patient instructions."
                   />
                 </label>

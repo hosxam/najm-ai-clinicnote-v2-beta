@@ -6,12 +6,23 @@
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   background: #020617;
-  color: #e2e8f0;
+  color: #e5e7eb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+  --background: #020617;
+  --background-elevated: rgba(15, 23, 42, 0.76);
+  --background-panel: rgba(2, 6, 23, 0.88);
+  --foreground: #f8fafc;
+  --muted: #94a3b8;
+  --muted-foreground: #cbd5e1;
+  --border: rgba(51, 65, 85, 0.82);
+  --border-strong: rgba(71, 85, 105, 0.92);
+  --accent: #22d3ee;
+  --accent-soft: rgba(34, 211, 238, 0.12);
+  --warning: #fbbf24;
 }
 
 * {
@@ -27,9 +38,9 @@ body,
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 28%),
-    radial-gradient(circle at right top, rgba(59, 130, 246, 0.08), transparent 22%),
-    linear-gradient(180deg, #020617 0%, #0b1220 46%, #111827 100%);
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 24%),
+    radial-gradient(circle at right top, rgba(34, 211, 238, 0.05), transparent 18%),
+    linear-gradient(180deg, #020617 0%, #070d19 42%, #0f172a 100%);
 }
 
 body.printing {
@@ -68,7 +79,9 @@ select:focus-visible,
 button:focus-visible,
 a:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.18),
+    0 0 0 4px rgba(34, 211, 238, 0.12);
 }
 
 textarea {
@@ -100,10 +113,10 @@ textarea {
 
 .field-label {
   display: block;
-  color: rgb(203 213 225);
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  color: rgb(226 232 240);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .field-input,
@@ -111,23 +124,24 @@ textarea {
 .field-select {
   width: 100%;
   border-radius: 1rem;
-  border: 1px solid rgba(51, 65, 85, 0.9);
-  background: rgba(2, 6, 23, 0.82);
+  border: 1px solid var(--border);
+  background: var(--background-panel);
   color: white;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.02),
-    0 1px 1px rgba(2, 6, 23, 0.3);
+    0 1px 1px rgba(2, 6, 23, 0.25);
 }
 
 .field-input,
 .field-select {
-  min-height: 3rem;
-  padding: 0.8rem 0.95rem;
+  min-height: 3.1rem;
+  padding: 0.84rem 1rem;
 }
 
 .field-textarea {
-  padding: 0.9rem 0.95rem;
-  line-height: 1.6;
+  min-height: 7rem;
+  padding: 0.95rem 1rem;
+  line-height: 1.65;
 }
 
 .field-input::placeholder,
@@ -138,14 +152,14 @@ textarea {
 .field-input:hover,
 .field-textarea:hover,
 .field-select:hover {
-  border-color: rgba(71, 85, 105, 0.95);
+  border-color: var(--border-strong);
 }
 
 .field-input:focus,
 .field-textarea:focus,
 .field-select:focus {
-  border-color: rgba(34, 211, 238, 0.7);
-  background: rgba(2, 6, 23, 0.94);
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(2, 6, 23, 0.96);
 }
 
 .eyebrow {
@@ -153,14 +167,21 @@ textarea {
   align-items: center;
   gap: 0.35rem;
   border-radius: 999px;
-  border: 1px solid rgba(34, 211, 238, 0.24);
-  background: rgba(34, 211, 238, 0.08);
-  padding: 0.35rem 0.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(15, 23, 42, 0.72);
+  padding: 0.42rem 0.82rem;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgb(165 243 252);
+  color: rgb(203 213 225);
+}
+
+.surface-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 @media print {

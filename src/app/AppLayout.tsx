@@ -1,4 +1,4 @@
-import { FileText, HeartPulse, Home, MessageSquare, ShieldAlert, Stethoscope } from 'lucide-react'
+import { FileText, HeartPulse, Home, MessageSquare, ShieldAlert, Sparkles, Stethoscope } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { SafetyBanner } from '../components/SafetyBanner'
 
@@ -16,19 +16,20 @@ export function AppLayout() {
     <div className="min-h-screen">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
         <header
-          className="mb-6 rounded-[2rem] border border-slate-800/90 bg-slate-950/75 p-5 shadow-[0_24px_80px_-32px_rgba(2,6,23,0.85)] backdrop-blur-sm sm:p-6 lg:p-7"
+          className="surface-grid mb-6 rounded-[2rem] border border-slate-800/90 bg-slate-950/80 p-5 shadow-[0_24px_80px_-32px_rgba(2,6,23,0.85)] backdrop-blur-sm sm:p-6 lg:p-7"
           data-no-print="true"
         >
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-3">
               <div className="eyebrow">
-                Najm ClinicNote V2 MVP
+                <Sparkles className="h-3.5 w-3.5" />
+                Najm ClinicNote V2 beta
               </div>
               <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.6rem]">
-                What are you documenting today?
+                Clinical documentation drafts, kept simple and review-first.
               </h1>
               <p className="max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-                Choose a workflow, enter clinician-confirmed findings, and generate a clinician-review draft without exposing the old technical modes.
+                Search a workflow, capture only clinician-confirmed findings, and generate a readable draft for review. This testing build stays documentation-focused and keeps excluded workflows hidden.
               </p>
             </div>
             <div className="max-w-xl lg:pt-1">
@@ -46,7 +47,7 @@ export function AppLayout() {
                   className={({ isActive }) =>
                     `inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition ${
                       isActive
-                        ? 'border-cyan-400/70 bg-cyan-400/14 text-cyan-100 shadow-[0_10px_30px_-18px_rgba(34,211,238,0.9)]'
+                        ? 'border-cyan-400/60 bg-cyan-300/12 text-cyan-100 shadow-[0_10px_30px_-18px_rgba(34,211,238,0.75)]'
                         : 'border-slate-700/90 bg-slate-900/80 text-slate-300 hover:border-slate-500 hover:bg-slate-900 hover:text-white'
                     }`
                   }

@@ -1,35 +1,45 @@
+import { CheckCircle2 } from 'lucide-react'
+import { Badge } from './ui/badge'
+import { Button } from './ui/button'
+
 type ChipSelectorProps = {
   label: string
   items: string[]
   selectedItems: string[]
   onToggle: (item: string) => void
+  description?: string
 }
 
-export function ChipSelector({ label, items, selectedItems, onToggle }: ChipSelectorProps) {
+export function ChipSelector({ label, items, selectedItems, onToggle, description }: ChipSelectorProps) {
   if (!items.length) return null
 
   return (
     <div className="space-y-3.5">
       <div className="flex items-center justify-between gap-3">
-        <h3 className="text-sm font-semibold tracking-tight text-slate-100">{label}</h3>
-        <span className="text-xs text-slate-400">{selectedItems.length} selected</span>
+        <div className="space-y-1">
+          <h3 className="text-sm font-semibold tracking-tight text-slate-100">{label}</h3>
+          {description ? <p className="text-xs leading-5 text-slate-400">{description}</p> : null}
+        </div>
+        <Badge variant={selectedItems.length ? 'accent' : 'muted'}>{selectedItems.length} selected</Badge>
       </div>
       <div className="flex flex-wrap gap-2.5">
         {items.map((item) => {
           const active = selectedItems.includes(item)
           return (
-            <button
+            <Button
               key={item}
-              type="button"
               onClick={() => onToggle(item)}
-              className={`rounded-full border px-3.5 py-2 text-sm transition ${
+              variant={active ? 'primary' : 'secondary'}
+              size="sm"
+              className={`justify-start ${
                 active
-                  ? 'border-cyan-400/70 bg-cyan-400/16 text-cyan-100 shadow-[0_8px_24px_-18px_rgba(34,211,238,0.95)]'
-                  : 'border-slate-700/90 bg-slate-900/90 text-slate-300 hover:border-slate-500 hover:bg-slate-900 hover:text-white'
+                  ? 'pr-3 text-left'
+                  : 'text-left text-slate-200'
               }`}
             >
+              {active ? <CheckCircle2 className="h-4 w-4" /> : null}
               {item}
-            </button>
+            </Button>
           )
         })}
       </div>
