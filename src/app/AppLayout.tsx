@@ -14,26 +14,29 @@ const navItems = [
 export function AppLayout() {
   return (
     <div className="min-h-screen">
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
-        <header className="mb-6 rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-2xl shadow-slate-950/40" data-no-print="true">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="space-y-2">
-              <div className="inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-200">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+        <header
+          className="mb-6 rounded-[2rem] border border-slate-800/90 bg-slate-950/75 p-5 shadow-[0_24px_80px_-32px_rgba(2,6,23,0.85)] backdrop-blur-sm sm:p-6 lg:p-7"
+          data-no-print="true"
+        >
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+            <div className="space-y-3">
+              <div className="eyebrow">
                 Najm ClinicNote V2 MVP
               </div>
-              <h1 className="text-3xl font-semibold text-white sm:text-4xl">
+              <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.6rem]">
                 What are you documenting today?
               </h1>
-              <p className="max-w-3xl text-sm text-slate-300 sm:text-base">
+              <p className="max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
                 Choose a workflow, enter clinician-confirmed findings, and generate a clinician-review draft without exposing the old technical modes.
               </p>
             </div>
-            <div className="max-w-lg">
+            <div className="max-w-xl lg:pt-1">
               <SafetyBanner />
             </div>
           </div>
 
-          <nav className="mt-5 flex flex-wrap gap-2">
+          <nav className="mt-6 flex flex-wrap gap-2.5">
             {navItems.map((item) => {
               const Icon = item.icon
               return (
@@ -41,10 +44,10 @@ export function AppLayout() {
                   key={item.to}
                   to={item.to}
                   className={({ isActive }) =>
-                    `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
+                    `inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition ${
                       isActive
-                        ? 'border-cyan-400 bg-cyan-400/15 text-cyan-100'
-                        : 'border-slate-700 bg-slate-900/80 text-slate-300 hover:border-slate-500 hover:text-white'
+                        ? 'border-cyan-400/70 bg-cyan-400/14 text-cyan-100 shadow-[0_10px_30px_-18px_rgba(34,211,238,0.9)]'
+                        : 'border-slate-700/90 bg-slate-900/80 text-slate-300 hover:border-slate-500 hover:bg-slate-900 hover:text-white'
                     }`
                   }
                 >
@@ -60,7 +63,10 @@ export function AppLayout() {
           <Outlet />
         </main>
 
-        <footer className="mt-8 rounded-3xl border border-slate-800 bg-slate-950/70 px-5 py-4 text-sm text-slate-400" data-no-print="true">
+        <footer
+          className="mt-8 rounded-[1.75rem] border border-slate-800/90 bg-slate-950/70 px-5 py-4 text-sm leading-6 text-slate-400 shadow-[0_20px_60px_-36px_rgba(2,6,23,0.8)]"
+          data-no-print="true"
+        >
           Najm ClinicNote V2 is a documentation drafting tool. It is not clinical decision support. Outputs require clinician review. No workflows in this V2 MVP are clinically approved or clinically tested.
         </footer>
       </div>

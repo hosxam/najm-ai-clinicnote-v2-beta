@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
 * {
@@ -26,8 +27,9 @@ body,
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(14, 165, 233, 0.14), transparent 30%),
-    linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 28%),
+    radial-gradient(circle at right top, rgba(59, 130, 246, 0.08), transparent 22%),
+    linear-gradient(180deg, #020617 0%, #0b1220 46%, #111827 100%);
 }
 
 body.printing {
@@ -46,8 +48,119 @@ select {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+}
+
+textarea {
+  resize: vertical;
+}
+
 ::selection {
   background: rgba(45, 212, 191, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid rgba(15, 23, 42, 0.65);
+  background: rgba(100, 116, 139, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.72);
+}
+
+.field-label {
+  display: block;
+  color: rgb(203 213 225);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.field-input,
+.field-textarea,
+.field-select {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  background: rgba(2, 6, 23, 0.82);
+  color: white;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    0 1px 1px rgba(2, 6, 23, 0.3);
+}
+
+.field-input,
+.field-select {
+  min-height: 3rem;
+  padding: 0.8rem 0.95rem;
+}
+
+.field-textarea {
+  padding: 0.9rem 0.95rem;
+  line-height: 1.6;
+}
+
+.field-input::placeholder,
+.field-textarea::placeholder {
+  color: rgb(100 116 139);
+}
+
+.field-input:hover,
+.field-textarea:hover,
+.field-select:hover {
+  border-color: rgba(71, 85, 105, 0.95);
+}
+
+.field-input:focus,
+.field-textarea:focus,
+.field-select:focus {
+  border-color: rgba(34, 211, 238, 0.7);
+  background: rgba(2, 6, 23, 0.94);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 211, 238, 0.24);
+  background: rgba(34, 211, 238, 0.08);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(165 243 252);
 }
 
 @media print {

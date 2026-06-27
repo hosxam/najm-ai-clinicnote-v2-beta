@@ -283,7 +283,7 @@ export function DetailedEncounterPage() {
   }, [details])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:space-y-7">
       <SectionCard
         title="Detailed Encounter"
         description="Structured encounter drafting with workflow-specific prompts for history, examination, investigations, assessment, and plan."
@@ -331,7 +331,7 @@ export function DetailedEncounterPage() {
       ) : null}
 
       {details ? (
-        <div className="grid gap-6 xl:grid-cols-[1.12fr_0.88fr]">
+        <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.12fr_0.88fr]">
           <div className="space-y-6">
             <SectionCard
               title={`${details.summary.title} encounter`}
@@ -339,15 +339,15 @@ export function DetailedEncounterPage() {
             >
               <div className="grid gap-4 md:grid-cols-2">
                 {historyFields.map((field) => (
-                  <label key={field.id} className="space-y-2 text-sm">
-                    <span className="text-slate-300">{field.label}</span>
+                  <label key={field.id} className="space-y-2.5 text-sm">
+                    <span className="field-label">{field.label}</span>
                     <input
                       value={historyValues[field.id] ?? ''}
                       onChange={(event) =>
                         setHistoryValues((current) => ({ ...current, [field.id]: event.target.value }))
                       }
                       placeholder={field.placeholder}
-                      className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                      className="field-input"
                     />
                   </label>
                 ))}
@@ -412,23 +412,23 @@ export function DetailedEncounterPage() {
 
             <SectionCard title="Assessment and plan">
               <div className="space-y-4">
-                <label className="block space-y-2 text-sm">
-                  <span className="text-slate-300">Clinician impression</span>
+                <label className="block space-y-2.5 text-sm">
+                  <span className="field-label">Clinician impression</span>
                   <textarea
                     value={assessment}
                     onChange={(event) => setAssessment(event.target.value)}
                     rows={3}
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                    className="field-textarea"
                     placeholder="Enter clinician-stated impression only."
                   />
                 </label>
-                <label className="block space-y-2 text-sm">
-                  <span className="text-slate-300">Clinician plan</span>
+                <label className="block space-y-2.5 text-sm">
+                  <span className="field-label">Clinician plan</span>
                   <textarea
                     value={plan}
                     onChange={(event) => setPlan(event.target.value)}
                     rows={4}
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                    className="field-textarea"
                     placeholder="Enter clinician-stated plan only."
                   />
                 </label>
@@ -454,23 +454,23 @@ export function DetailedEncounterPage() {
 
             <SectionCard title="Optional outputs">
               <div className="space-y-4">
-                <label className="block space-y-2 text-sm">
-                  <span className="text-slate-300">Referral reason</span>
+                <label className="block space-y-2.5 text-sm">
+                  <span className="field-label">Referral reason</span>
                   <textarea
                     value={referralReason}
                     onChange={(event) => setReferralReason(event.target.value)}
                     rows={3}
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                    className="field-textarea"
                     placeholder="Enter only if the clinician requested a referral letter."
                   />
                 </label>
-                <label className="block space-y-2 text-sm">
-                  <span className="text-slate-300">Patient instructions</span>
+                <label className="block space-y-2.5 text-sm">
+                  <span className="field-label">Patient instructions</span>
                   <textarea
                     value={patientInstructions}
                     onChange={(event) => setPatientInstructions(event.target.value)}
                     rows={3}
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                    className="field-textarea"
                     placeholder="Only enter explicit clinician-stated patient instructions."
                   />
                 </label>

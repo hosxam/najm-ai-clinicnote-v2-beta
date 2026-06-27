@@ -149,7 +149,7 @@ export function MedicalReportPage() {
   }
 
   return (
-    <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+    <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="space-y-6">
         <SectionCard
           title="Medical Report / Letter"
@@ -200,7 +200,7 @@ export function MedicalReportPage() {
           title={details ? `Draft a report for ${details.summary.title}` : 'Draft a medical report'}
           description="Use clinician-stated information only."
         >
-          <div className="space-y-4">
+          <div className="space-y-4.5">
             {[
               ['reportPurpose', 'Purpose of report'],
               ['summary', 'Clinical summary'],
@@ -209,13 +209,13 @@ export function MedicalReportPage() {
               ['plan', 'Clinician plan'],
               ['requestedAction', 'Requested action'],
             ].map(([key, label]) => (
-              <label key={key} className="block space-y-2 text-sm">
-                <span className="text-slate-300">{label}</span>
+              <label key={key} className="block space-y-2.5 text-sm">
+                <span className="field-label">{label}</span>
                 <textarea
                   value={values[key] ?? ''}
                   onChange={(event) => setValues((current) => ({ ...current, [key]: event.target.value }))}
                   rows={key === 'reportPurpose' ? 2 : 4}
-                  className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                  className="field-textarea"
                   placeholder={`Enter ${label.toLowerCase()}.`}
                 />
               </label>

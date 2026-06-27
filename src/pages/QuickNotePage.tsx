@@ -230,7 +230,7 @@ export function QuickNotePage() {
   }, [details, duration, selectedSymptoms, selectedNegatives, selectedExam, selectedPlanItems, additionalHistory, assessment, plan])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 lg:space-y-7">
       <SectionCard
         title="Quick Note"
         description="Fast OPD documentation for a selected workflow. Choose only what the clinician actually assessed or discussed."
@@ -278,7 +278,7 @@ export function QuickNotePage() {
       ) : null}
 
       {details ? (
-        <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <SectionCard
               title={details.summary.title}
@@ -290,44 +290,44 @@ export function QuickNotePage() {
               }
             >
               <div className="grid gap-4 md:grid-cols-2">
-                <label className="space-y-2 text-sm">
-                  <span className="text-slate-300">Duration</span>
+                <label className="space-y-2.5 text-sm">
+                  <span className="field-label">Duration</span>
                   <input
                     value={duration}
                     onChange={(event) => setDuration(event.target.value)}
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                    className="field-input"
                     placeholder="e.g. 3 days"
                   />
                 </label>
-                <label className="space-y-2 text-sm">
-                  <span className="text-slate-300">Clinician impression</span>
+                <label className="space-y-2.5 text-sm">
+                  <span className="field-label">Clinician impression</span>
                   <input
                     value={assessment}
                     onChange={(event) => setAssessment(event.target.value)}
-                    className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                    className="field-input"
                     placeholder="Enter clinician-stated impression only"
                   />
                 </label>
               </div>
 
-              <label className="mt-4 block space-y-2 text-sm">
-                <span className="text-slate-300">Additional history</span>
+              <label className="mt-5 block space-y-2.5 text-sm">
+                <span className="field-label">Additional history</span>
                 <textarea
                   value={additionalHistory}
                   onChange={(event) => setAdditionalHistory(event.target.value)}
                   rows={4}
-                  className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                  className="field-textarea"
                   placeholder="Add any clinician-confirmed history details."
                 />
               </label>
 
-              <label className="mt-4 block space-y-2 text-sm">
-                <span className="text-slate-300">Clinician plan</span>
+              <label className="mt-5 block space-y-2.5 text-sm">
+                <span className="field-label">Clinician plan</span>
                 <textarea
                   value={plan}
                   onChange={(event) => setPlan(event.target.value)}
                   rows={4}
-                  className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-white"
+                  className="field-textarea"
                   placeholder="Enter only the clinician-stated plan."
                 />
               </label>
