@@ -8,7 +8,7 @@ import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildQuickSoapDraft } from '../lib/outputBuilders'
-import { displayGroupLabel } from '../lib/labelUtils'
+import { displayGroupLabel, normalizeDisplayText } from '../lib/labelUtils'
 import type { WorkflowChipItem, WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
@@ -32,14 +32,14 @@ const QUICK_NOTE_STORAGE_KEY = 'quick-note-draft'
 function getQuickNoteDefaults(details: WorkflowDetails | null): QuickNoteDraft {
   return {
     workflowId: details?.summary.workflowId ?? '',
-    duration: details?.preset?.default_duration_options?.[0] ?? '',
+    duration: '',
     additionalHistory: '',
     assessment: '',
     plan: '',
-    selectedSymptoms: details?.preset?.prechecked_symptoms ?? [],
-    selectedNegatives: details?.preset?.prechecked_relevant_negatives ?? [],
-    selectedExam: details?.preset?.prechecked_exam_findings ?? [],
-    selectedPlanItems: details?.preset?.prechecked_plan_phrases ?? [],
+    selectedSymptoms: [],
+    selectedNegatives: [],
+    selectedExam: [],
+    selectedPlanItems: [],
   }
 }
 
@@ -282,7 +282,7 @@ export function QuickNotePage() {
           <div className="space-y-6">
             <SectionCard
               title={details.summary.title}
-              description={`${details.summary.specialty} · ${details.summary.diagnosis}`}
+              description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
               actions={
                 <Link to={`/encounter/${details.summary.workflowId}`} className="text-sm text-cyan-300">
                   Open detailed encounter

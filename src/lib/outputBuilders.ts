@@ -1,4 +1,4 @@
-import { cleanPlaceholderLabel } from './labelUtils'
+import { cleanPlaceholderLabel, normalizeDisplayText } from './labelUtils'
 import type { WorkflowDetails } from '../types/clinicnote'
 
 type QuickNoteInput = {
@@ -74,7 +74,7 @@ export function buildDetailedOutputs(input: DetailedEncounterInput) {
 
   const soap = `SOAP NOTE\n\nSUBJECTIVE\n${subjective}\n\nOBJECTIVE\n${objective}\n\nASSESSMENT\n${assessment}\n\nPLAN\n${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
 
-  const emr = `SHORT EMR NOTE\n\nWorkflow: ${input.workflow.summary.title}\nSpecialty: ${input.workflow.summary.specialty}\n\nHistory: ${subjective}\nExamination: ${objective}\nImpression: ${assessment}\nPlan: ${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+  const emr = `SHORT EMR NOTE\n\nWorkflow: ${input.workflow.summary.title}\nSpecialty: ${normalizeDisplayText(input.workflow.summary.specialty)}\n\nHistory: ${subjective}\nExamination: ${objective}\nImpression: ${assessment}\nPlan: ${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
 
   const referral = input.referralReason.trim()
     ? `REFERRAL LETTER\n\nReason for referral: ${input.referralReason.trim()}\nRelevant history: ${subjective}\nRelevant examination: ${objective}\nClinician impression: ${assessment}\nCurrent clinician plan: ${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
@@ -90,7 +90,7 @@ export function buildDetailedOutputs(input: DetailedEncounterInput) {
 export function buildMedicalReportDraft(workflow: WorkflowDetails | null, values: Record<string, string>) {
   const reportSections = [
     values.reportPurpose ? `Purpose: ${values.reportPurpose}` : '',
-    workflow ? `Workflow: ${workflow.summary.title} (${workflow.summary.specialty})` : '',
+    workflow ? `Workflow: ${workflow.summary.title} (${normalizeDisplayText(workflow.summary.specialty)})` : '',
     values.summary ? `Clinical summary: ${values.summary}` : '',
     values.findings ? `Findings: ${values.findings}` : '',
     values.assessment ? `Clinician impression: ${values.assessment}` : 'Clinician impression not documented.',

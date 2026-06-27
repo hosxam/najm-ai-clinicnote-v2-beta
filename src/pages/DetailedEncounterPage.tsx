@@ -9,11 +9,16 @@ import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildDetailedOutputs } from '../lib/outputBuilders'
-import { cleanPlaceholderLabel, displayGroupLabel } from '../lib/labelUtils'
+import { cleanPlaceholderLabel, displayGroupLabel, normalizeDisplayText, normalizeDocumentationText } from '../lib/labelUtils'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value]
+}
+
+function getDisplayWarning(label: string, warning?: string) {
+  if (!warning) return undefined
+  return label.toLowerCase().includes(warning.toLowerCase()) ? undefined : warning
 }
 
 type DetailedEncounterDraft = {
@@ -335,7 +340,7 @@ export function DetailedEncounterPage() {
           <div className="space-y-6">
             <SectionCard
               title={`${details.summary.title} encounter`}
-              description={`${details.summary.specialty} · ${details.summary.diagnosis}`}
+              description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
             >
               <div className="grid gap-4 md:grid-cols-2">
                 {historyFields.map((field) => (
@@ -380,8 +385,11 @@ export function DetailedEncounterPage() {
                     safetyNote: group.safety_note,
                     options: group.prompts.map((prompt) => ({
                       id: prompt.prompt_id,
-                      label: prompt.prompt_text,
-                      warning: prompt.warning,
+                      label: normalizeDocumentationText(prompt.prompt_text),
+                      warning: getDisplayWarning(
+                        normalizeDocumentationText(prompt.prompt_text),
+                        prompt.warning ? normalizeDocumentationText(prompt.warning) : undefined,
+                      ),
                     })),
                   })) ?? []
                 }
@@ -399,9 +407,12 @@ export function DetailedEncounterPage() {
                     safetyNote: undefined,
                     options: group.options.map((option) => ({
                       id: option.option_id,
-                      label: option.option_text,
-                      noteText: option.note_text || option.option_text,
-                      warning: option.safety_note,
+                      label: normalizeDocumentationText(option.option_text),
+                      noteText: normalizeDocumentationText(option.note_text || option.option_text),
+                      warning: getDisplayWarning(
+                        normalizeDocumentationText(option.option_text),
+                        option.safety_note ? normalizeDocumentationText(option.safety_note) : undefined,
+                      ),
                     })),
                   })) ?? []
                 }
@@ -438,13 +449,16 @@ export function DetailedEncounterPage() {
                       id: group.group_id,
                       label: group.group_label,
                       safetyNote: undefined,
-                      options: group.options.map((option) => ({
-                        id: option.option_id,
-                        label: option.option_text,
-                        noteText: option.note_text || option.option_text,
-                        warning: option.safety_note,
-                      })),
-                    })) ?? []
+                    options: group.options.map((option) => ({
+                      id: option.option_id,
+                      label: normalizeDocumentationText(option.option_text),
+                      noteText: normalizeDocumentationText(option.note_text || option.option_text),
+                      warning: getDisplayWarning(
+                        normalizeDocumentationText(option.option_text),
+                        option.safety_note ? normalizeDocumentationText(option.safety_note) : undefined,
+                      ),
+                    })),
+                  })) ?? []
                   }
                   selectedValues={selectedPlanItems}
                   onToggle={(value) => setSelectedPlanItems((current) => toggleValue(current, value))}

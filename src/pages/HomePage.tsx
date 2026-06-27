@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { SectionCard } from '../components/SectionCard'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
+import { normalizeDisplayText } from '../lib/labelUtils'
 import { getRecentWorkflowIds } from '../lib/localDrafts'
 import type { WorkflowSummary } from '../types/clinicnote'
 
@@ -89,7 +90,7 @@ export function HomePage() {
             {commonWorkflows.map((workflow) => (
               <div key={workflow.workflowId} className="rounded-[1.5rem] border border-slate-800/90 bg-slate-900/72 p-4 shadow-[0_16px_30px_-28px_rgba(15,23,42,0.9)]">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
-                  {workflow.specialty}
+                  {normalizeDisplayText(workflow.specialty)}
                 </div>
                 <div className="mt-2 text-lg font-semibold tracking-tight text-white">{workflow.title}</div>
                 <div className="mt-1 text-sm leading-6 text-slate-400">{workflow.diagnosis}</div>
@@ -122,7 +123,7 @@ export function HomePage() {
                 <div key={workflow.workflowId} className="rounded-[1.5rem] border border-slate-800/90 bg-slate-900/72 p-4 shadow-[0_16px_30px_-28px_rgba(15,23,42,0.9)]">
                   <div className="flex flex-wrap items-center gap-2.5">
                     <div className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
-                      {workflow.specialty}
+                      {normalizeDisplayText(workflow.specialty)}
                     </div>
                     <div className="rounded-full border border-slate-700 bg-slate-950 px-2.5 py-1 text-[11px] text-slate-400">
                       {workflow.workflowId}

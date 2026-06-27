@@ -1,4 +1,5 @@
 import { Search } from 'lucide-react'
+import { normalizeDisplayText } from '../lib/labelUtils'
 import type { WorkflowSummary } from '../types/clinicnote'
 
 type WorkflowChooserProps = {
@@ -52,7 +53,7 @@ export function WorkflowChooser({
           <option value="all">All specialties</option>
           {specialties.map((item) => (
             <option key={item} value={item}>
-              {item}
+              {normalizeDisplayText(item)}
             </option>
           ))}
         </select>
@@ -86,7 +87,7 @@ export function WorkflowChooser({
           >
             <div className="flex flex-wrap items-center gap-2.5">
               <span className="rounded-full border border-cyan-400/25 bg-cyan-400/8 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-200">
-                {workflow.specialty}
+                {normalizeDisplayText(workflow.specialty)}
               </span>
               <span className="rounded-full border border-slate-700/90 bg-slate-900/90 px-2.5 py-1 text-[11px] text-slate-400">
                 {workflow.workflowId}

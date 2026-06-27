@@ -35,3 +35,49 @@ export function dedupeStrings(values: string[]) {
     ).values(),
   )
 }
+
+const exactDisplayReplacements: Array<[string | RegExp, string]> = [
+  [/Women�s/g, "Women's"],
+]
+
+function applyDisplayReplacements(value: string) {
+  return exactDisplayReplacements.reduce((current, [pattern, replacement]) => current.replace(pattern, replacement), value)
+}
+
+export function normalizeDisplayText(value: string) {
+  if (!value) return value
+
+  return applyDisplayReplacements(value)
+    .replace(/\s+/g, ' ')
+    .replace(/\.\.+/g, '.')
+    .trim()
+}
+
+const redundantSentences = new Set(['documented', 'reviewed'])
+
+export function normalizeDocumentationText(value: string) {
+  const normalized = normalizeDisplayText(value)
+  if (!normalized) return normalized
+
+  const sentences = normalized
+    .split('.')
+    .map((item) => item.trim())
+    .filter(Boolean)
+
+  if (sentences.length <= 1) return normalized
+
+  const deduped: string[] = []
+  const seen = new Set<string>()
+
+  for (const sentence of sentences) {
+    const key = sentence.toLowerCase()
+    if (redundantSentences.has(key)) continue
+    if (seen.has(key)) continue
+    seen.add(key)
+    deduped.push(sentence)
+  }
+
+  if (!deduped.length) return normalized
+
+  return `${deduped.join('. ')}.`
+}
