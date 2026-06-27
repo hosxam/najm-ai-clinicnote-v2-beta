@@ -1,15 +1,30 @@
 import { useEffect, useState } from 'react'
 import { SectionCard } from '../components/SectionCard'
+import { StateNotice } from '../components/StateNotice'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import type { WorkflowSummary } from '../types/clinicnote'
 
 export function SafetyPage() {
   const [excluded, setExcluded] = useState<WorkflowSummary[]>([])
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    clinicnoteDataAdapter.loadCatalog(true).then((catalog) => {
-      setExcluded(catalog.filter((workflow) => workflow.exclusion))
-    })
+    clinicnoteDataAdapter
+      .loadCatalog(true)
+      .then((catalog) => {
+        setExcluded(catalog.filter((workflow) => workflow.exclusion))
+        setError(null)
+        setLoading(false)
+      })
+      .catch((caughtError: unknown) => {
+        setError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : 'The exclusion list could not be loaded.',
+        )
+        setLoading(false)
+      })
   }, [])
 
   return (
@@ -31,15 +46,21 @@ export function SafetyPage() {
         title="Excluded workflows"
         description="The existing limited-testing exclusions remain hidden from search and blocked by direct access."
       >
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {excluded.map((workflow) => (
-            <div key={workflow.workflowId} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
-              <div className="text-sm font-semibold text-white">{workflow.workflowId}</div>
-              <div className="mt-1 text-sm text-slate-400">{workflow.title}</div>
-              <div className="mt-2 text-xs text-amber-200">{workflow.exclusion?.exclusion_reason}</div>
-            </div>
-          ))}
-        </div>
+        {loading ? <p className="text-sm text-slate-400">Loading exclusion list...</p> : null}
+        {error ? (
+          <StateNotice title="Exclusion list unavailable" description={error} tone="error" />
+        ) : null}
+        {!loading && !error ? (
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {excluded.map((workflow) => (
+              <div key={workflow.workflowId} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+                <div className="text-sm font-semibold text-white">{workflow.workflowId}</div>
+                <div className="mt-1 text-sm text-slate-400">{workflow.title}</div>
+                <div className="mt-2 text-xs text-amber-200">{workflow.exclusion?.exclusion_reason}</div>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </SectionCard>
 
       <SectionCard

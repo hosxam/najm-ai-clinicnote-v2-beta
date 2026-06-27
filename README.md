@@ -20,6 +20,8 @@ npm run validate:data
 npm run dev
 ```
 
+Then open the local Vite URL shown in the terminal.
+
 ## Production-style build
 
 ```bash
@@ -35,3 +37,17 @@ npm run build
 ## Safety
 
 Najm ClinicNote is a documentation drafting tool. It is **not** clinical decision support. Outputs require clinician review.
+
+## Current testing status
+
+- MVP polish pass completed for doctor-facing limited testing
+- Home search, Quick Note, Detailed Encounter, Medical Report, Feedback, and Safety / About pages are available
+- Local draft persistence is browser-only
+- Copy, print, reset, and clear-saved-draft actions are available on generated outputs
+- Excluded workflows remain hidden or blocked
+
+## Testing reminder
+
+- Do not enter patient identifiers
+- Use mock or anonymized cases only
+- No workflows in this repo are clinically approved or clinically tested

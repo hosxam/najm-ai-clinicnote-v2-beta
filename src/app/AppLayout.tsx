@@ -15,7 +15,7 @@ export function AppLayout() {
   return (
     <div className="min-h-screen">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
-        <header className="mb-6 rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-2xl shadow-slate-950/40">
+        <header className="mb-6 rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-2xl shadow-slate-950/40" data-no-print="true">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <div className="inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-200">
@@ -60,7 +60,7 @@ export function AppLayout() {
           <Outlet />
         </main>
 
-        <footer className="mt-8 rounded-3xl border border-slate-800 bg-slate-950/70 px-5 py-4 text-sm text-slate-400">
+        <footer className="mt-8 rounded-3xl border border-slate-800 bg-slate-950/70 px-5 py-4 text-sm text-slate-400" data-no-print="true">
           Najm ClinicNote V2 is a documentation drafting tool. It is not clinical decision support. Outputs require clinician review. No workflows in this V2 MVP are clinically approved or clinically tested.
         </footer>
       </div>

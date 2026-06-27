@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { SectionCard } from '../components/SectionCard'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
+import { getRecentWorkflowIds } from '../lib/localDrafts'
 import type { WorkflowSummary } from '../types/clinicnote'
 
 export function HomePage() {
@@ -11,9 +12,11 @@ export function HomePage() {
   const [catalog, setCatalog] = useState<WorkflowSummary[]>([])
   const [specialties, setSpecialties] = useState<string[]>([])
   const [commonWorkflows, setCommonWorkflows] = useState<WorkflowSummary[]>([])
+  const [recentWorkflows, setRecentWorkflows] = useState<WorkflowSummary[]>([])
   const [search, setSearch] = useState('')
   const [specialty, setSpecialty] = useState('all')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     let active = true
@@ -21,13 +24,27 @@ export function HomePage() {
       clinicnoteDataAdapter.loadCatalog(),
       clinicnoteDataAdapter.loadSpecialties(),
       clinicnoteDataAdapter.getCommonWorkflows(),
-    ]).then(([loadedCatalog, loadedSpecialties, loadedCommon]) => {
-      if (!active) return
-      setCatalog(loadedCatalog)
-      setSpecialties(loadedSpecialties)
-      setCommonWorkflows(loadedCommon)
-      setLoading(false)
-    })
+    ])
+      .then(([loadedCatalog, loadedSpecialties, loadedCommon]) => {
+        if (!active) return
+        setCatalog(loadedCatalog)
+        setSpecialties(loadedSpecialties)
+        setCommonWorkflows(loadedCommon)
+        const recentIds = getRecentWorkflowIds()
+        const byId = new Map(loadedCatalog.map((workflow) => [workflow.workflowId, workflow]))
+        setRecentWorkflows(recentIds.map((id) => byId.get(id)).filter(Boolean) as WorkflowSummary[])
+        setError(null)
+        setLoading(false)
+      })
+      .catch((caughtError: unknown) => {
+        if (!active) return
+        setError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : 'Workflow data could not be loaded. Please refresh the page or confirm the data files are present.',
+        )
+        setLoading(false)
+      })
     return () => {
       active = false
     }
@@ -54,6 +71,9 @@ export function HomePage() {
           specialties={specialties}
           workflows={filtered.slice(0, 18)}
           loading={loading}
+          error={error}
+          emptyTitle="No workflows match that search yet"
+          emptyDescription="Try a broader symptom, diagnosis, or workflow term. You can also switch back to all specialties."
           onSearchChange={setSearch}
           onSpecialtyChange={setSpecialty}
           onSelect={(workflowId) => navigate(`/quick-note/${workflowId}`)}
@@ -90,6 +110,48 @@ export function HomePage() {
               </div>
             ))}
           </div>
+        </SectionCard>
+
+        <SectionCard
+          title="Recently used on this device"
+          description="Helpful for repeat testing. Saved locally in your browser only."
+        >
+          {recentWorkflows.length ? (
+            <div className="space-y-3">
+              {recentWorkflows.map((workflow) => (
+                <div key={workflow.workflowId} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                      {workflow.specialty}
+                    </div>
+                    <div className="rounded-full border border-slate-700 bg-slate-950 px-2 py-1 text-[11px] text-slate-400">
+                      {workflow.workflowId}
+                    </div>
+                  </div>
+                  <div className="mt-2 text-base font-semibold text-white">{workflow.title}</div>
+                  <div className="mt-1 text-sm text-slate-400">{workflow.diagnosis}</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Link
+                      to={`/quick-note/${workflow.workflowId}`}
+                      className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-2 text-sm text-cyan-100"
+                    >
+                      Quick Note <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      to={`/encounter/${workflow.workflowId}`}
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200"
+                    >
+                      Detailed Encounter
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-slate-400">
+              No recent workflows yet. Open a workflow once and it will appear here on this device.
+            </p>
+          )}
         </SectionCard>
 
         <SectionCard

@@ -17,11 +17,25 @@ const requiredFiles = [
   'public/config/limited_testing_exclusions.json',
 ]
 
+const requiredSourceFiles = [
+  'src/pages/QuickNotePage.tsx',
+  'src/pages/DetailedEncounterPage.tsx',
+  'src/pages/MedicalReportPage.tsx',
+  'src/app/router.tsx',
+]
+
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(root, file)))
+const missingSource = requiredSourceFiles.filter((file) => !fs.existsSync(path.join(root, file)))
 
 if (missing.length) {
   console.error('Missing required files:')
   for (const file of missing) console.error(`- ${file}`)
+  process.exit(1)
+}
+
+if (missingSource.length) {
+  console.error('Missing required source files:')
+  for (const file of missingSource) console.error(`- ${file}`)
   process.exit(1)
 }
 
@@ -35,6 +49,7 @@ const exclusions = JSON.parse(
 const workflowArray = Array.isArray(workflows) ? workflows : Object.values(workflows)
 const exclusionIds = new Set((exclusions.exclusions ?? []).map((item) => item.workflow_id))
 const visibleCount = workflowArray.filter((item) => !exclusionIds.has(item.workflow_id)).length
+const routerSource = fs.readFileSync(path.join(root, 'src/app/router.tsx'), 'utf8')
 
 if (workflowArray.length !== 1500) {
   console.error(`Expected 1500 workflows, found ${workflowArray.length}`)
@@ -51,6 +66,11 @@ if (visibleCount !== 1488) {
   process.exit(1)
 }
 
+if (!routerSource.includes("path: 'quick-note'") || !routerSource.includes("path: 'encounter'")) {
+  console.error('Expected Quick Note and Detailed Encounter routes were not found in src/app/router.tsx')
+  process.exit(1)
+}
+
 console.log(
   JSON.stringify(
     {
@@ -58,6 +78,8 @@ console.log(
       excludedWorkflowCount: exclusionIds.size,
       visibleWorkflowCount: visibleCount,
       requiredFilesChecked: requiredFiles.length,
+      requiredSourceFilesChecked: requiredSourceFiles.length,
+      routeSmokeCheckPassed: true,
       validationPassed: true,
     },
     null,

@@ -1,15 +1,46 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChipSelector } from '../components/ChipSelector'
+import { OutputPanel } from '../components/OutputPanel'
 import { SectionCard } from '../components/SectionCard'
+import { StateNotice } from '../components/StateNotice'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
+import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildQuickSoapDraft } from '../lib/outputBuilders'
 import { displayGroupLabel } from '../lib/labelUtils'
 import type { WorkflowChipItem, WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value]
+}
+
+type QuickNoteDraft = {
+  workflowId: string
+  duration: string
+  additionalHistory: string
+  assessment: string
+  plan: string
+  selectedSymptoms: string[]
+  selectedNegatives: string[]
+  selectedExam: string[]
+  selectedPlanItems: string[]
+}
+
+const QUICK_NOTE_STORAGE_KEY = 'quick-note-draft'
+
+function getQuickNoteDefaults(details: WorkflowDetails | null): QuickNoteDraft {
+  return {
+    workflowId: details?.summary.workflowId ?? '',
+    duration: details?.preset?.default_duration_options?.[0] ?? '',
+    additionalHistory: '',
+    assessment: '',
+    plan: '',
+    selectedSymptoms: details?.preset?.prechecked_symptoms ?? [],
+    selectedNegatives: details?.preset?.prechecked_relevant_negatives ?? [],
+    selectedExam: details?.preset?.prechecked_exam_findings ?? [],
+    selectedPlanItems: details?.preset?.prechecked_plan_phrases ?? [],
+  }
 }
 
 export function QuickNotePage() {
@@ -22,6 +53,7 @@ export function QuickNotePage() {
   const [details, setDetails] = useState<WorkflowDetails | null>(null)
   const [loading, setLoading] = useState(true)
   const [blockedMessage, setBlockedMessage] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const [duration, setDuration] = useState('')
   const [additionalHistory, setAdditionalHistory] = useState('')
   const [assessment, setAssessment] = useState('')
@@ -32,15 +64,31 @@ export function QuickNotePage() {
   const [selectedPlanItems, setSelectedPlanItems] = useState<string[]>([])
 
   useEffect(() => {
-    clinicnoteDataAdapter.loadCatalog().then(setCatalog)
-    clinicnoteDataAdapter.loadSpecialties().then(setSpecialties)
+    Promise.all([clinicnoteDataAdapter.loadCatalog(), clinicnoteDataAdapter.loadSpecialties()])
+      .then(([loadedCatalog, loadedSpecialties]) => {
+        setCatalog(loadedCatalog)
+        setSpecialties(loadedSpecialties)
+      })
+      .catch((caughtError: unknown) => {
+        setError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : 'Workflow data could not be loaded. Please refresh the page and try again.',
+        )
+      })
   }, [])
 
   useEffect(() => {
     let active = true
     if (!workflowId) {
+      const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
+      if (savedDraft?.workflowId) {
+        navigate(`/quick-note/${savedDraft.workflowId}`, { replace: true })
+        return
+      }
       setDetails(null)
       setBlockedMessage(null)
+      setError(null)
       setLoading(false)
       return
     }
@@ -60,21 +108,66 @@ export function QuickNotePage() {
 
       setBlockedMessage(null)
       setDetails(loadedDetails)
-      setDuration(loadedDetails?.preset?.default_duration_options?.[0] ?? '')
-      setSelectedSymptoms(loadedDetails?.preset?.prechecked_symptoms ?? [])
-      setSelectedNegatives(loadedDetails?.preset?.prechecked_relevant_negatives ?? [])
-      setSelectedExam(loadedDetails?.preset?.prechecked_exam_findings ?? [])
-      setSelectedPlanItems(loadedDetails?.preset?.prechecked_plan_phrases ?? [])
-      setAssessment('')
-      setPlan('')
-      setAdditionalHistory('')
+      const defaults = getQuickNoteDefaults(loadedDetails)
+      const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
+      const restoredDraft =
+        savedDraft && savedDraft.workflowId === workflowId
+          ? { ...defaults, ...savedDraft, workflowId }
+          : defaults
+
+      setDuration(restoredDraft.duration)
+      setSelectedSymptoms(restoredDraft.selectedSymptoms)
+      setSelectedNegatives(restoredDraft.selectedNegatives)
+      setSelectedExam(restoredDraft.selectedExam)
+      setSelectedPlanItems(restoredDraft.selectedPlanItems)
+      setAssessment(restoredDraft.assessment)
+      setPlan(restoredDraft.plan)
+      setAdditionalHistory(restoredDraft.additionalHistory)
+      setError(null)
+      pushRecentWorkflow(workflowId)
+      setLoading(false)
+    }).catch((caughtError: unknown) => {
+      if (!active) return
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : 'This workflow could not be loaded. Please try another workflow.',
+      )
       setLoading(false)
     })
 
     return () => {
       active = false
     }
-  }, [workflowId])
+  }, [navigate, workflowId])
+
+  useEffect(() => {
+    if (!workflowId || blockedMessage || !details) return
+
+    saveLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY, {
+      workflowId,
+      duration,
+      additionalHistory,
+      assessment,
+      plan,
+      selectedSymptoms,
+      selectedNegatives,
+      selectedExam,
+      selectedPlanItems,
+    })
+  }, [
+    workflowId,
+    blockedMessage,
+    details,
+    duration,
+    additionalHistory,
+    assessment,
+    plan,
+    selectedSymptoms,
+    selectedNegatives,
+    selectedExam,
+    selectedPlanItems,
+  ])
 
   const filtered = useMemo(() => {
     const lowered = search.trim().toLowerCase()
@@ -84,6 +177,33 @@ export function QuickNotePage() {
       return matchesQuery && matchesSpecialty
     })
   }, [catalog, search, specialty])
+
+  function resetCurrentDraft() {
+    if (!window.confirm('Reset the current Quick Note draft for this workflow?')) return
+    const defaults = getQuickNoteDefaults(details)
+    setDuration(defaults.duration)
+    setAdditionalHistory(defaults.additionalHistory)
+    setAssessment(defaults.assessment)
+    setPlan(defaults.plan)
+    setSelectedSymptoms(defaults.selectedSymptoms)
+    setSelectedNegatives(defaults.selectedNegatives)
+    setSelectedExam(defaults.selectedExam)
+    setSelectedPlanItems(defaults.selectedPlanItems)
+  }
+
+  function clearSavedDraft() {
+    if (!window.confirm('Clear the saved Quick Note draft from this browser?')) return
+    clearLocalDraft(QUICK_NOTE_STORAGE_KEY)
+    const defaults = getQuickNoteDefaults(details)
+    setDuration(defaults.duration)
+    setAdditionalHistory(defaults.additionalHistory)
+    setAssessment(defaults.assessment)
+    setPlan(defaults.plan)
+    setSelectedSymptoms(defaults.selectedSymptoms)
+    setSelectedNegatives(defaults.selectedNegatives)
+    setSelectedExam(defaults.selectedExam)
+    setSelectedPlanItems(defaults.selectedPlanItems)
+  }
 
   const chipsByGroup = useMemo(() => {
     const grouped: Record<string, string[]> = {}
@@ -121,16 +241,39 @@ export function QuickNotePage() {
           specialties={specialties}
           workflows={filtered.slice(0, 12)}
           loading={loading && !workflowId}
+          error={!workflowId ? error : null}
           selectedWorkflowId={workflowId}
+          emptyTitle="No quick-note workflows match that search"
+          emptyDescription="Try a broader term or switch to all specialties."
           onSearchChange={setSearch}
           onSpecialtyChange={setSpecialty}
           onSelect={(id) => navigate(`/quick-note/${id}`)}
         />
       </SectionCard>
 
+      <StateNotice
+        title="Local draft only"
+        description="Draft selections are saved in this browser for convenience. Do not enter patient identifiers."
+        tone="warning"
+      />
+
       {blockedMessage ? (
         <SectionCard title="Workflow blocked">
           <p className="text-sm text-amber-200">{blockedMessage}</p>
+        </SectionCard>
+      ) : null}
+
+      {!workflowId && !loading ? (
+        <SectionCard title="Choose a workflow first">
+          <p className="text-sm text-slate-300">
+            Start from the search above, or return to the home page to pick a common workflow for limited testing.
+          </p>
+        </SectionCard>
+      ) : null}
+
+      {error && workflowId ? (
+        <SectionCard title="Workflow load problem">
+          <p className="text-sm text-rose-200">{error}</p>
         </SectionCard>
       ) : null}
 
@@ -220,15 +363,17 @@ export function QuickNotePage() {
             </SectionCard>
           </div>
 
-          <SectionCard title="Output" description="Quick Note generates a SOAP draft only.">
-            <pre className="min-h-[28rem] whitespace-pre-wrap rounded-2xl border border-slate-800 bg-slate-950 p-4 text-sm leading-6 text-slate-200">
-              {output}
-            </pre>
-          </SectionCard>
+          <OutputPanel
+            title="Output"
+            description="Quick Note generates a SOAP draft only."
+            tabs={[{ key: 'soap', label: 'SOAP note', content: output }]}
+            onResetDraft={resetCurrentDraft}
+            onClearSavedDraft={clearSavedDraft}
+          />
         </div>
       ) : workflowId && loading ? (
         <SectionCard title="Loading workflow">
-          <p className="text-sm text-slate-400">Preparing the workflow-specific quick note view…</p>
+          <p className="text-sm text-slate-400">Preparing the workflow-specific quick note view...</p>
         </SectionCard>
       ) : null}
     </div>

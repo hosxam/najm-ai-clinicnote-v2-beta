@@ -2,15 +2,52 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ChecklistGroups } from '../components/ChecklistGroups'
 import { ChipSelector } from '../components/ChipSelector'
+import { OutputPanel } from '../components/OutputPanel'
 import { SectionCard } from '../components/SectionCard'
+import { StateNotice } from '../components/StateNotice'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
+import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildDetailedOutputs } from '../lib/outputBuilders'
 import { cleanPlaceholderLabel, displayGroupLabel } from '../lib/labelUtils'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
   return list.includes(value) ? list.filter((item) => item !== value) : [...list, value]
+}
+
+type DetailedEncounterDraft = {
+  workflowId: string
+  historyValues: Record<string, string>
+  selectedSymptoms: string[]
+  selectedNegatives: string[]
+  selectedExamPrompts: string[]
+  selectedInvestigations: string[]
+  assessment: string
+  plan: string
+  selectedPlanItems: string[]
+  referralReason: string
+  patientInstructions: string
+  activeTab: 'soap' | 'emr' | 'referral' | 'instructions'
+}
+
+const DETAILED_ENCOUNTER_STORAGE_KEY = 'detailed-encounter-draft'
+
+function getDetailedEncounterDefaults(details: WorkflowDetails | null): DetailedEncounterDraft {
+  return {
+    workflowId: details?.summary.workflowId ?? '',
+    historyValues: {},
+    selectedSymptoms: [],
+    selectedNegatives: [],
+    selectedExamPrompts: [],
+    selectedInvestigations: [],
+    assessment: '',
+    plan: '',
+    selectedPlanItems: [],
+    referralReason: '',
+    patientInstructions: '',
+    activeTab: 'soap',
+  }
 }
 
 export function DetailedEncounterPage() {
@@ -23,6 +60,7 @@ export function DetailedEncounterPage() {
   const [details, setDetails] = useState<WorkflowDetails | null>(null)
   const [loading, setLoading] = useState(true)
   const [blockedMessage, setBlockedMessage] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const [historyValues, setHistoryValues] = useState<Record<string, string>>({})
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([])
   const [selectedNegatives, setSelectedNegatives] = useState<string[]>([])
@@ -36,15 +74,31 @@ export function DetailedEncounterPage() {
   const [activeTab, setActiveTab] = useState<'soap' | 'emr' | 'referral' | 'instructions'>('soap')
 
   useEffect(() => {
-    clinicnoteDataAdapter.loadCatalog().then(setCatalog)
-    clinicnoteDataAdapter.loadSpecialties().then(setSpecialties)
+    Promise.all([clinicnoteDataAdapter.loadCatalog(), clinicnoteDataAdapter.loadSpecialties()])
+      .then(([loadedCatalog, loadedSpecialties]) => {
+        setCatalog(loadedCatalog)
+        setSpecialties(loadedSpecialties)
+      })
+      .catch((caughtError: unknown) => {
+        setError(
+          caughtError instanceof Error
+            ? caughtError.message
+            : 'Workflow data could not be loaded. Please refresh the page and try again.',
+        )
+      })
   }, [])
 
   useEffect(() => {
     let active = true
     if (!workflowId) {
+      const savedDraft = loadLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY)
+      if (savedDraft?.workflowId) {
+        navigate(`/encounter/${savedDraft.workflowId}`, { replace: true })
+        return
+      }
       setDetails(null)
       setBlockedMessage(null)
+      setError(null)
       setLoading(false)
       return
     }
@@ -62,22 +116,74 @@ export function DetailedEncounterPage() {
       }
       setBlockedMessage(null)
       setDetails(loadedDetails)
-      setHistoryValues({})
-      setSelectedSymptoms([])
-      setSelectedNegatives([])
-      setSelectedExamPrompts([])
-      setSelectedInvestigations([])
-      setAssessment('')
-      setPlan('')
-      setSelectedPlanItems([])
-      setReferralReason('')
-      setPatientInstructions('')
+      const defaults = getDetailedEncounterDefaults(loadedDetails)
+      const savedDraft = loadLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY)
+      const restoredDraft =
+        savedDraft && savedDraft.workflowId === workflowId
+          ? { ...defaults, ...savedDraft, workflowId }
+          : defaults
+
+      setHistoryValues(restoredDraft.historyValues)
+      setSelectedSymptoms(restoredDraft.selectedSymptoms)
+      setSelectedNegatives(restoredDraft.selectedNegatives)
+      setSelectedExamPrompts(restoredDraft.selectedExamPrompts)
+      setSelectedInvestigations(restoredDraft.selectedInvestigations)
+      setAssessment(restoredDraft.assessment)
+      setPlan(restoredDraft.plan)
+      setSelectedPlanItems(restoredDraft.selectedPlanItems)
+      setReferralReason(restoredDraft.referralReason)
+      setPatientInstructions(restoredDraft.patientInstructions)
+      setActiveTab(restoredDraft.activeTab)
+      setError(null)
+      pushRecentWorkflow(workflowId)
+      setLoading(false)
+    }).catch((caughtError: unknown) => {
+      if (!active) return
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : 'This workflow could not be loaded. Please try another workflow.',
+      )
       setLoading(false)
     })
     return () => {
       active = false
     }
-  }, [workflowId])
+  }, [navigate, workflowId])
+
+  useEffect(() => {
+    if (!workflowId || blockedMessage || !details) return
+
+    saveLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY, {
+      workflowId,
+      historyValues,
+      selectedSymptoms,
+      selectedNegatives,
+      selectedExamPrompts,
+      selectedInvestigations,
+      assessment,
+      plan,
+      selectedPlanItems,
+      referralReason,
+      patientInstructions,
+      activeTab,
+    })
+  }, [
+    workflowId,
+    blockedMessage,
+    details,
+    historyValues,
+    selectedSymptoms,
+    selectedNegatives,
+    selectedExamPrompts,
+    selectedInvestigations,
+    assessment,
+    plan,
+    selectedPlanItems,
+    referralReason,
+    patientInstructions,
+    activeTab,
+  ])
 
   const filtered = useMemo(() => {
     const lowered = search.trim().toLowerCase()
@@ -87,6 +193,39 @@ export function DetailedEncounterPage() {
       return matchesQuery && matchesSpecialty
     })
   }, [catalog, search, specialty])
+
+  function resetCurrentDraft() {
+    if (!window.confirm('Reset the current detailed encounter draft for this workflow?')) return
+    const defaults = getDetailedEncounterDefaults(details)
+    setHistoryValues(defaults.historyValues)
+    setSelectedSymptoms(defaults.selectedSymptoms)
+    setSelectedNegatives(defaults.selectedNegatives)
+    setSelectedExamPrompts(defaults.selectedExamPrompts)
+    setSelectedInvestigations(defaults.selectedInvestigations)
+    setAssessment(defaults.assessment)
+    setPlan(defaults.plan)
+    setSelectedPlanItems(defaults.selectedPlanItems)
+    setReferralReason(defaults.referralReason)
+    setPatientInstructions(defaults.patientInstructions)
+    setActiveTab(defaults.activeTab)
+  }
+
+  function clearSavedDraft() {
+    if (!window.confirm('Clear the saved detailed encounter draft from this browser?')) return
+    clearLocalDraft(DETAILED_ENCOUNTER_STORAGE_KEY)
+    const defaults = getDetailedEncounterDefaults(details)
+    setHistoryValues(defaults.historyValues)
+    setSelectedSymptoms(defaults.selectedSymptoms)
+    setSelectedNegatives(defaults.selectedNegatives)
+    setSelectedExamPrompts(defaults.selectedExamPrompts)
+    setSelectedInvestigations(defaults.selectedInvestigations)
+    setAssessment(defaults.assessment)
+    setPlan(defaults.plan)
+    setSelectedPlanItems(defaults.selectedPlanItems)
+    setReferralReason(defaults.referralReason)
+    setPatientInstructions(defaults.patientInstructions)
+    setActiveTab(defaults.activeTab)
+  }
 
   const chipGroups = useMemo(() => {
     const grouped: Record<string, string[]> = {}
@@ -155,16 +294,39 @@ export function DetailedEncounterPage() {
           specialties={specialties}
           workflows={filtered.slice(0, 12)}
           loading={loading && !workflowId}
+          error={!workflowId ? error : null}
           selectedWorkflowId={workflowId}
+          emptyTitle="No detailed-encounter workflows match that search"
+          emptyDescription="Try a broader term or switch to all specialties."
           onSearchChange={setSearch}
           onSpecialtyChange={setSpecialty}
           onSelect={(id) => navigate(`/encounter/${id}`)}
         />
       </SectionCard>
 
+      <StateNotice
+        title="Local draft only"
+        description="Detailed Encounter saves locally in this browser only. Do not enter patient identifiers."
+        tone="warning"
+      />
+
       {blockedMessage ? (
         <SectionCard title="Workflow blocked">
           <p className="text-sm text-amber-200">{blockedMessage}</p>
+        </SectionCard>
+      ) : null}
+
+      {!workflowId && !loading ? (
+        <SectionCard title="Choose a workflow first">
+          <p className="text-sm text-slate-300">
+            Search above to start a structured encounter, or begin from the home page with a common workflow.
+          </p>
+        </SectionCard>
+      ) : null}
+
+      {error && workflowId ? (
+        <SectionCard title="Workflow load problem">
+          <p className="text-sm text-rose-200">{error}</p>
         </SectionCard>
       ) : null}
 
@@ -316,42 +478,23 @@ export function DetailedEncounterPage() {
             </SectionCard>
           </div>
 
-          <SectionCard title="Output">
-            <div className="mb-4 flex flex-wrap gap-2">
-              {[
-                ['soap', 'SOAP note'],
-                ['emr', 'EMR note'],
-                ['referral', 'Referral letter'],
-                ['instructions', 'Patient instructions'],
-              ].map(([value, label]) => (
-                <button
-                  key={value}
-                  type="button"
-                  onClick={() => setActiveTab(value as typeof activeTab)}
-                  className={`rounded-full border px-3 py-2 text-sm ${
-                    activeTab === value
-                      ? 'border-cyan-400 bg-cyan-400/15 text-cyan-100'
-                      : 'border-slate-700 bg-slate-950 text-slate-300'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            <pre className="min-h-[32rem] whitespace-pre-wrap rounded-2xl border border-slate-800 bg-slate-950 p-4 text-sm leading-6 text-slate-200">
-              {activeTab === 'soap'
-                ? output.soap
-                : activeTab === 'emr'
-                  ? output.emr
-                  : activeTab === 'referral'
-                    ? output.referral
-                    : output.patientInstructions}
-            </pre>
-          </SectionCard>
+          <OutputPanel
+            title="Output"
+            tabs={[
+              { key: 'soap', label: 'SOAP note', content: output.soap },
+              { key: 'emr', label: 'EMR note', content: output.emr },
+              { key: 'referral', label: 'Referral letter', content: output.referral },
+              { key: 'instructions', label: 'Patient instructions', content: output.patientInstructions },
+            ]}
+            activeKey={activeTab}
+            onActiveKeyChange={(key) => setActiveTab(key as typeof activeTab)}
+            onResetDraft={resetCurrentDraft}
+            onClearSavedDraft={clearSavedDraft}
+          />
         </div>
       ) : workflowId && loading ? (
         <SectionCard title="Loading workflow">
-          <p className="text-sm text-slate-400">Preparing the structured encounter editor…</p>
+          <p className="text-sm text-slate-400">Preparing the structured encounter editor...</p>
         </SectionCard>
       ) : null}
     </div>
