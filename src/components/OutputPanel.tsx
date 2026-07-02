@@ -1,6 +1,5 @@
 import { Check, Clipboard, Printer, RotateCcw, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Alert } from './ui/alert'
 import { Button } from './ui/button'
 import { Tabs } from './ui/tabs'
 
@@ -110,10 +109,6 @@ export function OutputPanel({
           className="mb-4"
         />
       ) : null}
-
-      <Alert tone="warning" className="mb-3 text-xs font-medium leading-5" data-no-print="true">
-        Limited testing build. Do not enter patient identifiers. Outputs remain clinician-review drafts only.
-      </Alert>
 
       <div className="mb-3 flex items-center justify-between gap-3 text-xs uppercase tracking-[0.18em] text-slate-500" data-no-print="true">
         <span>Generated preview</span>

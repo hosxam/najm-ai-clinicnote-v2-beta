@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { OutputPanel } from '../components/OutputPanel'
 import { SectionCard } from '../components/SectionCard'
-import { StateNotice } from '../components/StateNotice'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
@@ -154,17 +153,20 @@ export function MedicalReportPage() {
     <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="space-y-6">
         <section className="grid gap-6">
-          <div className="rounded-[1.9rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_28px_80px_-40px_rgba(2,6,23,0.95)]">
+          <div className="rounded-[1.6rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_24px_60px_-36px_rgba(2,6,23,0.95)]">
             <div className="flex items-center gap-3">
               <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] border border-sky-400/20 bg-sky-300/10 text-sky-100">
                 <FileText className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-xl font-semibold tracking-tight text-white">Medical Report / Letter</div>
+                <div className="text-xl font-semibold tracking-tight text-white">Reports</div>
                 <p className="mt-1 text-sm leading-6 text-slate-400">
                   Draft a simple clinician-review report or letter using workflow context and clinician-entered details.
                 </p>
               </div>
+            </div>
+            <div className="mt-4 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-sm leading-6 text-slate-400">
+              Saved only in this browser. Use clinician-stated information only.
             </div>
           </div>
           <SectionCard
@@ -186,12 +188,6 @@ export function MedicalReportPage() {
             />
           </SectionCard>
         </section>
-
-        <StateNotice
-          title="Local draft only"
-          description="Medical report entries are saved only in this browser. Do not enter patient identifiers."
-          tone="warning"
-        />
 
         {blockedMessage ? (
           <SectionCard title="Workflow blocked">
@@ -248,7 +244,7 @@ export function MedicalReportPage() {
 
       <div className="xl:sticky xl:top-6">
         <OutputPanel
-          title="Output"
+          title="Draft"
           tabs={[{ key: 'report', label: 'Medical report', content: output }]}
           onResetDraft={resetCurrentDraft}
           onClearSavedDraft={clearSavedDraft}

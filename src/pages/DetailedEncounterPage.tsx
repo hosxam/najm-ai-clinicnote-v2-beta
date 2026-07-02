@@ -1,16 +1,16 @@
 import { HeartPulse } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChecklistGroups } from '../components/ChecklistGroups'
 import { ChipSelector } from '../components/ChipSelector'
 import { OutputPanel } from '../components/OutputPanel'
 import { SectionCard } from '../components/SectionCard'
-import { StateNotice } from '../components/StateNotice'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildDetailedOutputs } from '../lib/outputBuilders'
-import { cleanPlaceholderLabel, displayGroupLabel, normalizeDisplayText, normalizeDocumentationText } from '../lib/labelUtils'
+import { cleanPlaceholderLabel, normalizeDisplayText, normalizeDocumentationText } from '../lib/labelUtils'
+import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Textarea } from '../components/ui/textarea'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
@@ -292,26 +292,26 @@ export function DetailedEncounterPage() {
 
   return (
     <div className="space-y-6 lg:space-y-7">
-      <section className="grid gap-6 xl:grid-cols-[1.02fr_0.98fr]">
-        <div className="rounded-[1.9rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_28px_80px_-40px_rgba(2,6,23,0.95)]">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] border border-sky-400/20 bg-sky-300/10 text-sky-100">
-              <HeartPulse className="h-5 w-5" />
-            </div>
-            <div>
-              <div className="text-xl font-semibold tracking-tight text-white">Detailed Encounter</div>
-              <p className="mt-1 text-sm leading-6 text-slate-400">
-                Structured workflow drafting for longer encounters and fuller documentation capture.
-              </p>
-            </div>
+      <section className="grid gap-6 xl:grid-cols-[0.86fr_1.14fr]">
+        <SectionCard
+          title="Detailed note"
+          description="Use this only when the case needs more structure than Quick Note."
+          actions={
+            workflowId ? (
+              <Button asChild variant="ghost" size="sm">
+                <Link to={`/quick-note/${workflowId}`}>Back to Quick Note</Link>
+              </Button>
+            ) : undefined
+          }
+        >
+          <div className="flex items-start gap-3 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-sm leading-6 text-slate-300">
+            <HeartPulse className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" />
+            Detailed note stays manual by design. It is intentionally more structured and should feel secondary to Quick Note.
           </div>
-          <div className="mt-5 rounded-[1.3rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-sm leading-6 text-slate-300">
-            Detailed Encounter stays manual in this build. It is intentionally more structured and conservative than Quick Note.
-          </div>
-        </div>
+        </SectionCard>
         <SectionCard
           title="Choose workflow"
-          description="Search for a workflow to open the structured encounter editor."
+          description="Search for a workflow to open the structured editor."
         >
           <WorkflowChooser
             search={search}
@@ -329,12 +329,6 @@ export function DetailedEncounterPage() {
           />
         </SectionCard>
       </section>
-
-      <StateNotice
-        title="Local draft only"
-        description="Detailed Encounter saves locally in this browser only. Do not enter patient identifiers."
-        tone="warning"
-      />
 
       {blockedMessage ? (
         <SectionCard title="Workflow blocked">
@@ -360,15 +354,15 @@ export function DetailedEncounterPage() {
         <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.12fr_0.88fr]">
           <div className="space-y-6">
             <SectionCard
-              title={`${details.summary.title} encounter`}
+              title={`${details.summary.title} detailed note`}
               description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
             >
               <div className="mb-5 flex flex-wrap items-center gap-2">
                 <div className="workflow-meta">{details.summary.workflowId}</div>
-                <div className="workflow-meta">Manual-only detailed drafting</div>
+                <div className="workflow-meta">Manual detailed drafting</div>
               </div>
               <div className="mb-5 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
-                Detailed Encounter stays manual by default in this build. Suggested presets are intentionally not auto-applied here because the broader structured sections need more contradiction-safe rules.
+                Suggested defaults are intentionally not auto-applied here. Use this page when you need more structure and more manual control.
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {historyFields.map((field) => (
@@ -386,16 +380,16 @@ export function DetailedEncounterPage() {
               </div>
             </SectionCard>
 
-            <SectionCard title="Symptoms / History prompts">
+            <SectionCard title="Symptoms and negatives">
               <div className="space-y-6">
                 <ChipSelector
-                  label={displayGroupLabel('symptoms')}
+                  label="Symptoms"
                   items={chipGroups.symptoms ?? []}
                   selectedItems={selectedSymptoms}
                   onToggle={(value) => setSelectedSymptoms((current) => toggleValue(current, value))}
                 />
                 <ChipSelector
-                  label={displayGroupLabel('relevant_negatives')}
+                  label="Negatives"
                   items={chipGroups.relevant_negatives ?? []}
                   selectedItems={selectedNegatives}
                   onToggle={(value) => setSelectedNegatives((current) => toggleValue(current, value))}
@@ -517,7 +511,7 @@ export function DetailedEncounterPage() {
 
           <div className="xl:sticky xl:top-6">
             <OutputPanel
-              title="Output"
+              title="Draft"
               tabs={[
                 { key: 'soap', label: 'SOAP note', content: output.soap },
                 { key: 'emr', label: 'EMR note', content: output.emr },

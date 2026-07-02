@@ -1,4 +1,4 @@
-import { ArrowRight, Search, Sparkles, Stethoscope } from 'lucide-react'
+import { ArrowRight, Search, Sparkles } from 'lucide-react'
 import { normalizeDisplayText } from '../lib/labelUtils'
 import { Badge } from './ui/badge'
 import { Input } from './ui/input'
@@ -88,44 +88,26 @@ export function WorkflowChooser({
             key={workflow.workflowId}
             type="button"
             onClick={() => onSelect(workflow.workflowId)}
-            className={`group relative overflow-hidden rounded-[1.7rem] border p-4 text-left transition duration-200 ${
+            className={`group rounded-[1.35rem] border p-4 text-left transition duration-200 ${
               selectedWorkflowId === workflow.workflowId
-                ? 'border-sky-400/60 bg-slate-950 shadow-[0_24px_58px_-30px_rgba(56,189,248,0.45)]'
-                : 'border-slate-800/95 bg-slate-950/58 hover:-translate-y-1 hover:border-slate-600 hover:bg-slate-900/96 hover:shadow-[0_26px_50px_-32px_rgba(15,23,42,1)]'
+                ? 'border-sky-400/60 bg-slate-950 shadow-[0_18px_40px_-28px_rgba(56,189,248,0.35)]'
+                : 'border-slate-800/95 bg-slate-950/58 hover:border-slate-600 hover:bg-slate-900/96 hover:shadow-[0_18px_34px_-28px_rgba(15,23,42,1)]'
             }`}
           >
-            <div
-              className={`absolute inset-x-0 top-0 h-px ${
-                selectedWorkflowId === workflow.workflowId ? 'bg-sky-300/70' : 'bg-slate-700/40'
-              }`}
-            />
-            <div className="absolute right-4 top-4 rounded-full border border-slate-700/80 bg-slate-950/88 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 transition group-hover:text-slate-300">
-              {selectedWorkflowId === workflow.workflowId ? 'Selected' : 'Open'}
-            </div>
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex min-w-0 flex-wrap items-center gap-2.5">
+            <div className="flex min-w-0 flex-wrap items-center gap-2.5">
                 <Badge variant="accent" className="uppercase tracking-[0.14em]">
                   {normalizeDisplayText(workflow.specialty)}
                 </Badge>
                 <Badge variant="muted">{workflow.workflowId}</Badge>
-              </div>
-              <div className="rounded-2xl border border-slate-800/90 bg-slate-900/75 p-2 text-slate-400 transition group-hover:border-slate-700 group-hover:text-slate-200">
-                <Stethoscope className="h-4 w-4" />
-              </div>
             </div>
-            <div className="mt-6 text-lg font-semibold leading-6 tracking-tight text-white text-wrap-pretty">{workflow.title}</div>
+            <div className="mt-3 text-base font-semibold leading-6 tracking-tight text-white text-wrap-pretty">{workflow.title}</div>
             <div className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-400">{workflow.diagnosis}</div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {workflow.aliases.slice(0, 3).map((alias) => (
-                <span key={alias} className="rounded-full border border-slate-700/80 bg-slate-900/95 px-2.5 py-1 text-xs text-slate-300 group-hover:border-slate-600">
-                  {alias}
-                </span>
-              ))}
-            </div>
-            <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-800/80 pt-4">
-              <div className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">Workflow available</div>
+            <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-800/80 pt-3">
+              <div className="text-xs text-slate-500">
+                {selectedWorkflowId === workflow.workflowId ? 'Selected for drafting' : 'Open for drafting'}
+              </div>
               <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-300 transition group-hover:text-sky-100">
-                Open workflow <ArrowRight className="h-3.5 w-3.5" />
+                Open <ArrowRight className="h-3.5 w-3.5" />
               </div>
             </div>
           </button>
