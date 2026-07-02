@@ -37,7 +37,7 @@ export function WorkflowChooser({
 }: WorkflowChooserProps) {
   return (
     <div className="space-y-5">
-      <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_230px]">
+      <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_240px]">
         <label className="relative block">
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
           <Input
@@ -61,7 +61,11 @@ export function WorkflowChooser({
         </select>
       </div>
 
-      {loading ? <p className="text-sm text-slate-400">Loading workflow catalog…</p> : null}
+      {loading ? (
+        <div className="rounded-[1.35rem] border border-slate-800/80 bg-slate-950/55 px-4 py-3 text-sm text-slate-400">
+          Loading workflow catalog…
+        </div>
+      ) : null}
       {error ? (
         <div className="rounded-2xl border border-rose-400/40 bg-rose-300/10 p-4 text-sm text-rose-100">
           {error}
@@ -84,12 +88,17 @@ export function WorkflowChooser({
             key={workflow.workflowId}
             type="button"
             onClick={() => onSelect(workflow.workflowId)}
-            className={`group rounded-[1.65rem] border p-4 text-left transition duration-200 ${
+            className={`group relative overflow-hidden rounded-[1.65rem] border p-4 text-left transition duration-200 ${
               selectedWorkflowId === workflow.workflowId
-                ? 'border-cyan-400/60 bg-cyan-300/10 shadow-[0_22px_48px_-28px_rgba(34,211,238,0.55)]'
-                : 'border-slate-800/95 bg-slate-950/58 hover:-translate-y-0.5 hover:border-slate-600 hover:bg-slate-900/95 hover:shadow-[0_20px_40px_-32px_rgba(15,23,42,1)]'
+                ? 'border-sky-400/55 bg-sky-300/10 shadow-[0_22px_48px_-28px_rgba(56,189,248,0.45)]'
+                : 'border-slate-800/95 bg-slate-950/58 hover:-translate-y-0.5 hover:border-slate-600 hover:bg-slate-900/92 hover:shadow-[0_20px_40px_-32px_rgba(15,23,42,1)]'
             }`}
           >
+            <div
+              className={`absolute inset-x-0 top-0 h-px ${
+                selectedWorkflowId === workflow.workflowId ? 'bg-sky-300/70' : 'bg-slate-700/40'
+              }`}
+            />
             <div className="flex items-start justify-between gap-4">
               <div className="flex min-w-0 flex-wrap items-center gap-2.5">
                 <Badge variant="accent" className="uppercase tracking-[0.14em]">
@@ -97,11 +106,11 @@ export function WorkflowChooser({
                 </Badge>
                 <Badge variant="muted">{workflow.workflowId}</Badge>
               </div>
-              <div className="rounded-xl border border-slate-800/90 bg-slate-900/80 p-2 text-slate-400 transition group-hover:border-slate-700 group-hover:text-slate-200">
+              <div className="rounded-2xl border border-slate-800/90 bg-slate-900/75 p-2 text-slate-400 transition group-hover:border-slate-700 group-hover:text-slate-200">
                 <Stethoscope className="h-4 w-4" />
               </div>
             </div>
-            <div className="mt-3 text-lg font-semibold leading-6 tracking-tight text-white">{workflow.title}</div>
+            <div className="mt-3 text-lg font-semibold leading-6 tracking-tight text-white text-wrap-pretty">{workflow.title}</div>
             <div className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-400">{workflow.diagnosis}</div>
             <div className="mt-4 flex flex-wrap gap-2">
               {workflow.aliases.slice(0, 3).map((alias) => (
@@ -110,7 +119,7 @@ export function WorkflowChooser({
                 </span>
               ))}
             </div>
-            <div className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-slate-400 transition group-hover:text-cyan-100">
+            <div className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-slate-400 transition group-hover:text-sky-100">
               Open workflow <ArrowRight className="h-3.5 w-3.5" />
             </div>
           </button>

@@ -63,7 +63,7 @@ export function SafetyPage() {
                   </Badge>
                   <div className="text-sm font-semibold tracking-tight text-white">{workflow.workflowId}</div>
                 </div>
-                <div className="mt-1.5 text-sm leading-6 text-slate-400">{workflow.title}</div>
+                <div className="mt-1.5 text-sm leading-6 text-slate-400 text-wrap-pretty">{workflow.title}</div>
                 <div className="mt-3 text-xs leading-5 text-amber-200">{workflow.exclusion?.exclusion_reason}</div>
               </div>
             ))}
@@ -76,9 +76,9 @@ export function SafetyPage() {
         description="This repo is a clean redesign using the existing 1,500-workflow dataset from the staged legacy import branch."
       >
         <div className="flex items-start gap-3 rounded-[1.3rem] border border-slate-800/90 bg-slate-900/55 px-4 py-4 text-sm leading-6 text-slate-300">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" />
           <p>
-          V2 focuses on a simple doctor-first flow: choose a workflow, enter clinician-confirmed findings, and generate a clinician-review draft. It intentionally avoids exposing older technical modes or schema terms to normal users.
+            V2 focuses on a simple doctor-first flow: choose a workflow, enter clinician-confirmed findings, and generate a clinician-review draft. It intentionally avoids exposing older technical modes or schema terms to normal users.
           </p>
         </div>
       </SectionCard>

@@ -71,14 +71,14 @@ export function HomePage() {
         <div className="mb-5 grid gap-3 rounded-[1.5rem] border border-slate-800/90 bg-slate-900/50 p-4 sm:grid-cols-3">
           <div className="rounded-[1.25rem] border border-slate-800/80 bg-slate-950/78 p-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-white">
-              <Search className="h-4 w-4 text-cyan-300" />
+              <Search className="h-4 w-4 text-sky-300" />
               Start with workflow search
             </div>
             <p className="mt-2 text-sm leading-6 text-slate-400">Use common symptoms, diagnoses, or workflow IDs to jump in quickly.</p>
           </div>
           <div className="rounded-[1.25rem] border border-slate-800/80 bg-slate-950/78 p-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-white">
-              <Sparkles className="h-4 w-4 text-cyan-300" />
+              <Sparkles className="h-4 w-4 text-sky-300" />
               Keep testing practical
             </div>
             <p className="mt-2 text-sm leading-6 text-slate-400">Use low-risk mock cases first and focus on readability, safety, and workflow fit.</p>
@@ -120,17 +120,17 @@ export function HomePage() {
                   </Badge>
                   <Badge variant="muted">{workflow.workflowId}</Badge>
                 </div>
-                <div className="mt-2 text-lg font-semibold tracking-tight text-white">{workflow.title}</div>
+                <div className="mt-2 text-lg font-semibold tracking-tight text-white text-wrap-pretty">{workflow.title}</div>
                 <div className="mt-1 text-sm leading-6 text-slate-400">{workflow.diagnosis}</div>
                 <div className="mt-4 flex flex-wrap gap-2.5">
                   <Button asChild variant="primary" size="sm">
                     <Link to={`/quick-note/${workflow.workflowId}`}>
-                    Quick Note <ArrowRight className="h-4 w-4" />
+                      Quick Note <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
                   <Button asChild variant="secondary" size="sm">
                     <Link to={`/encounter/${workflow.workflowId}`}>
-                    Detailed Encounter
+                      Detailed Encounter
                     </Link>
                   </Button>
                 </div>
@@ -156,7 +156,7 @@ export function HomePage() {
                       {workflow.workflowId}
                     </div>
                   </div>
-                  <div className="mt-2 text-lg font-semibold tracking-tight text-white">{workflow.title}</div>
+                  <div className="mt-2 text-lg font-semibold tracking-tight text-white text-wrap-pretty">{workflow.title}</div>
                   <div className="mt-1 text-sm leading-6 text-slate-400">{workflow.diagnosis}</div>
                   <div className="mt-4 flex flex-wrap gap-2.5">
                     <Button asChild variant="primary" size="sm">

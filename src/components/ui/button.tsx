@@ -12,9 +12,9 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'border border-cyan-400/35 bg-cyan-300/12 text-cyan-50 shadow-[0_14px_34px_-24px_rgba(34,211,238,0.85)] hover:border-cyan-300/55 hover:bg-cyan-300/18',
+    'border border-sky-400/35 bg-sky-300/14 text-sky-50 shadow-[0_18px_38px_-26px_rgba(56,189,248,0.7)] hover:border-sky-300/55 hover:bg-sky-300/20',
   secondary:
-    'border border-slate-700/90 bg-slate-900/90 text-slate-100 hover:border-slate-500 hover:bg-slate-900',
+    'border border-slate-700/90 bg-slate-900/88 text-slate-100 hover:border-slate-500 hover:bg-slate-900/98',
   ghost:
     'border border-transparent bg-transparent text-slate-300 hover:border-slate-700/80 hover:bg-slate-900/70 hover:text-white',
   warning:
@@ -30,7 +30,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'secondary', size = 'md', type = 'button', asChild = false, children, ...props }, ref) => {
     const classes = cn(
-      'inline-flex items-center justify-center gap-2 rounded-full font-medium transition duration-200 disabled:cursor-not-allowed disabled:opacity-60',
+      'inline-flex items-center justify-center gap-2 rounded-2xl font-medium transition duration-200 disabled:cursor-not-allowed disabled:opacity-60',
       variantClasses[variant],
       sizeClasses[size],
       className,

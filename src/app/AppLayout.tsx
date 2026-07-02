@@ -14,30 +14,38 @@ const navItems = [
 export function AppLayout() {
   return (
     <div className="min-h-screen">
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+      <div className="mx-auto flex min-h-screen max-w-[90rem] flex-col px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
         <header
-          className="surface-grid mb-6 rounded-[2rem] border border-slate-800/90 bg-slate-950/80 p-5 shadow-[0_24px_80px_-32px_rgba(2,6,23,0.85)] backdrop-blur-sm sm:p-6 lg:p-7"
+          className="surface-grid mb-6 rounded-[2rem] border border-slate-800/90 bg-slate-950/82 p-5 shadow-[0_24px_80px_-32px_rgba(2,6,23,0.85)] backdrop-blur-sm sm:p-6 lg:p-7"
           data-no-print="true"
         >
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-            <div className="space-y-3">
-              <div className="eyebrow">
-                <Sparkles className="h-3.5 w-3.5" />
-                Najm ClinicNote V2 beta
+          <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
+            <div className="min-w-0 space-y-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="eyebrow">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Najm ClinicNote V2 beta
+                </div>
+                <div className="workflow-meta">
+                  <Stethoscope className="h-3.5 w-3.5" />
+                  1,500 workflows loaded
+                </div>
               </div>
-              <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.6rem]">
-                Clinical documentation drafts, kept simple and review-first.
-              </h1>
-              <p className="max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-                Search a workflow, capture only clinician-confirmed findings, and generate a readable draft for review. This testing build stays documentation-focused and keeps excluded workflows hidden.
-              </p>
+              <div className="space-y-3">
+                <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.7rem]">
+                  Clinical documentation drafts, designed for calm review.
+                </h1>
+                <p className="max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
+                  Search a workflow, capture only clinician-confirmed findings, and generate a readable draft for review. This testing build stays documentation-focused and keeps excluded workflows hidden.
+                </p>
+              </div>
             </div>
-            <div className="max-w-xl lg:pt-1">
+            <div className="max-w-xl xl:pt-1">
               <SafetyBanner />
             </div>
           </div>
 
-          <nav className="mt-6 flex flex-wrap gap-2.5">
+          <nav className="mt-6 flex gap-2.5 overflow-x-auto pb-1 workflow-chip-scroll">
             {navItems.map((item) => {
               const Icon = item.icon
               return (
@@ -45,9 +53,9 @@ export function AppLayout() {
                   key={item.to}
                   to={item.to}
                   className={({ isActive }) =>
-                    `inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition ${
+                    `inline-flex shrink-0 items-center gap-2 rounded-2xl border px-4 py-2.5 text-sm font-medium transition ${
                       isActive
-                        ? 'border-cyan-400/60 bg-cyan-300/12 text-cyan-100 shadow-[0_10px_30px_-18px_rgba(34,211,238,0.75)]'
+                        ? 'border-sky-400/55 bg-sky-300/12 text-sky-100 shadow-[0_10px_30px_-18px_rgba(56,189,248,0.75)]'
                         : 'border-slate-700/90 bg-slate-900/80 text-slate-300 hover:border-slate-500 hover:bg-slate-900 hover:text-white'
                     }`
                   }

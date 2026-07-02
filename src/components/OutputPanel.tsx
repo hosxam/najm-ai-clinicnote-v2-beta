@@ -48,8 +48,9 @@ export function OutputPanel({
 
   return (
     <div className="rounded-[1.9rem] border border-slate-800/90 bg-slate-950/78 p-5 shadow-[0_24px_70px_-36px_rgba(2,6,23,0.9)] sm:p-6">
-      <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between" data-no-print="true">
-        <div>
+      <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between" data-no-print="true">
+        <div className="space-y-2">
+          <div className="eyebrow text-slate-300">Review-first draft</div>
           <h2 className="text-xl font-semibold tracking-tight text-white">{title}</h2>
           {description ? <p className="mt-1.5 text-sm leading-6 text-slate-400">{description}</p> : null}
         </div>
@@ -107,7 +108,12 @@ export function OutputPanel({
         Limited testing build. Do not enter patient identifiers. Outputs remain clinician-review drafts only.
       </Alert>
 
-      <pre className="print-surface min-h-[28rem] whitespace-pre-wrap rounded-[1.35rem] border border-slate-800/90 bg-slate-950/96 p-5 text-sm leading-7 text-slate-100">
+      <div className="mb-3 flex items-center justify-between gap-3 text-xs uppercase tracking-[0.18em] text-slate-500" data-no-print="true">
+        <span>Generated preview</span>
+        <span>{currentTab?.label ?? 'Output'}</span>
+      </div>
+
+      <pre className="print-surface output-prose min-h-[28rem] whitespace-pre-wrap rounded-[1.35rem] border border-slate-800/90 bg-slate-950/96 p-5 text-sm text-slate-100">
         {currentTab?.content ?? 'No output yet.'}
       </pre>
     </div>

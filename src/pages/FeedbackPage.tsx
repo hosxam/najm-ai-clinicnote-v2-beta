@@ -10,7 +10,7 @@ export function FeedbackPage() {
       >
         <div className="space-y-4 text-sm leading-6 text-slate-300">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-700/90 bg-slate-900/90 px-3 py-1.5 text-xs font-medium text-slate-200">
-            <ClipboardCheck className="h-3.5 w-3.5 text-cyan-300" />
+            <ClipboardCheck className="h-3.5 w-3.5 text-sky-300" />
             One feedback entry per workflow and mode
           </div>
           <p>Record one feedback entry per workflow and mode tested.</p>

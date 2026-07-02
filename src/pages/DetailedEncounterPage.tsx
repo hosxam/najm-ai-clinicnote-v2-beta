@@ -344,6 +344,10 @@ export function DetailedEncounterPage() {
               title={`${details.summary.title} encounter`}
               description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
             >
+              <div className="mb-5 flex flex-wrap items-center gap-2">
+                <div className="workflow-meta">{details.summary.workflowId}</div>
+                <div className="workflow-meta">Manual-only detailed drafting</div>
+              </div>
               <div className="mb-5 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
                 Detailed Encounter stays manual by default in this build. Suggested presets are intentionally not auto-applied here because the broader structured sections need more contradiction-safe rules.
               </div>

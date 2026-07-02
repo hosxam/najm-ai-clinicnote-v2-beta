@@ -201,6 +201,12 @@ export function MedicalReportPage() {
           title={details ? `Draft a report for ${details.summary.title}` : 'Draft a medical report'}
           description="Use clinician-stated information only."
         >
+          {details ? (
+            <div className="mb-5 flex flex-wrap items-center gap-2">
+              <div className="workflow-meta">{details.summary.workflowId}</div>
+              <div className="workflow-meta">Documentation-only report drafting</div>
+            </div>
+          ) : null}
           <div className="space-y-4.5">
             {[
               ['reportPurpose', 'Purpose of report'],

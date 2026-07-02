@@ -310,11 +310,16 @@ export function QuickNotePage() {
               title={details.summary.title}
               description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
               actions={
-                <Link to={`/encounter/${details.summary.workflowId}`} className="text-sm font-medium text-cyan-300">
+                <Link to={`/encounter/${details.summary.workflowId}`} className="text-sm font-medium text-sky-300">
                   Open detailed encounter
                 </Link>
               }
             >
+              <div className="mb-5 flex flex-wrap items-center gap-2">
+                <div className="workflow-meta">{details.summary.workflowId}</div>
+                <div className="workflow-meta">Quick Note workflow</div>
+                <div className="workflow-meta">Review before copying into notes</div>
+              </div>
               <div className="grid gap-4 md:grid-cols-2">
                 <label className="space-y-2.5 text-sm">
                   <span className="field-label">Duration</span>
@@ -381,6 +386,7 @@ export function QuickNotePage() {
                   label={displayGroupLabel('symptoms')}
                   items={chipsByGroup.symptoms ?? []}
                   selectedItems={selectedSymptoms}
+                  suggestedItems={suggestedSelections.symptoms}
                   description="Workflow-specific symptoms or history points suggested from speed presets."
                   onToggle={(value) => setSelectedSymptoms((current) => toggleValue(current, value))}
                 />
@@ -388,6 +394,7 @@ export function QuickNotePage() {
                   label={displayGroupLabel('relevant_negatives')}
                   items={chipsByGroup.relevant_negatives ?? []}
                   selectedItems={selectedNegatives}
+                  suggestedItems={suggestedSelections.relevantNegatives}
                   description="Important negatives suggested from existing preset metadata."
                   onToggle={(value) => setSelectedNegatives((current) => toggleValue(current, value))}
                 />
@@ -402,6 +409,7 @@ export function QuickNotePage() {
                   label={displayGroupLabel('plan_phrases')}
                   items={chipsByGroup.plan_phrases ?? []}
                   selectedItems={selectedPlanItems}
+                  suggestedItems={suggestedSelections.planPhrases}
                   description="Documentation-only plan phrases suggested from existing presets."
                   onToggle={(value) => setSelectedPlanItems((current) => toggleValue(current, value))}
                 />
@@ -409,7 +417,7 @@ export function QuickNotePage() {
               {totalSuggestedSelections ? (
                 <div className="mt-5 rounded-[1.2rem] border border-slate-800/90 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
                   <div className="flex items-center gap-2 font-medium text-slate-200">
-                    <Sparkles className="h-4 w-4 text-cyan-300" />
+                    <Sparkles className="h-4 w-4 text-sky-300" />
                     {totalSuggestedSelections} suggested chip defaults available for this workflow
                   </div>
                   <div className="mt-1.5">

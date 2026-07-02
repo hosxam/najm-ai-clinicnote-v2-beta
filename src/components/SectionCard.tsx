@@ -9,13 +9,13 @@ type SectionCardProps = PropsWithChildren<{
 
 export function SectionCard({ title, description, actions, children }: SectionCardProps) {
   return (
-    <Card className="p-5 sm:p-6">
+    <Card className="p-5 sm:p-6 lg:p-6">
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <CardHeader className="min-w-0 gap-1.5">
-          <CardTitle>{title}</CardTitle>
-          {description ? <CardDescription className="max-w-3xl">{description}</CardDescription> : null}
+        <CardHeader className="min-w-0 gap-2">
+          <CardTitle className="text-wrap-pretty">{title}</CardTitle>
+          {description ? <CardDescription className="max-w-3xl text-wrap-pretty">{description}</CardDescription> : null}
         </CardHeader>
-        {actions ? <div className="shrink-0">{actions}</div> : null}
+        {actions ? <div className="shrink-0 self-start">{actions}</div> : null}
       </div>
       {children}
     </Card>

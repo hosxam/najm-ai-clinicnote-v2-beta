@@ -15,7 +15,7 @@ export function Alert({
   children,
 }: PropsWithChildren<{ className?: string; tone?: AlertTone }>) {
   return (
-    <div className={cn('rounded-[1.2rem] border px-4 py-3', toneClasses[tone], className)}>
+    <div className={cn('rounded-[1.25rem] border px-4 py-3 shadow-[0_16px_34px_-28px_rgba(2,6,23,0.95)]', toneClasses[tone], className)}>
       {children}
     </div>
   )
