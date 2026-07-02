@@ -18,6 +18,7 @@ type OutputPanelProps = {
   onActiveKeyChange?: (key: string) => void
   onResetDraft?: () => void
   onClearSavedDraft?: () => void
+  className?: string
 }
 
 export function OutputPanel({
@@ -28,6 +29,7 @@ export function OutputPanel({
   onActiveKeyChange,
   onResetDraft,
   onClearSavedDraft,
+  className,
 }: OutputPanelProps) {
   const [copied, setCopied] = useState(false)
   const firstKey = tabs[0]?.key ?? 'output'
@@ -47,15 +49,20 @@ export function OutputPanel({
   }
 
   return (
-    <div className="rounded-[1.9rem] border border-slate-800/90 bg-slate-950/78 p-5 shadow-[0_24px_70px_-36px_rgba(2,6,23,0.9)] sm:p-6">
+    <div className={`rounded-[1.95rem] border border-slate-800/90 bg-slate-950/82 p-5 shadow-[0_28px_80px_-38px_rgba(2,6,23,0.9)] sm:p-6 ${className ?? ''}`}>
       <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between" data-no-print="true">
         <div className="space-y-2">
-          <div className="eyebrow text-slate-300">Review-first draft</div>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="eyebrow text-slate-300">Review-first draft</div>
+            <div className="rounded-full border border-amber-400/25 bg-amber-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-amber-100">
+              Clinician review required
+            </div>
+          </div>
           <h2 className="text-xl font-semibold tracking-tight text-white">{title}</h2>
           {description ? <p className="mt-1.5 text-sm leading-6 text-slate-400">{description}</p> : null}
         </div>
 
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap gap-2.5 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/52 p-2">
           <Button
             onClick={handleCopy}
             variant="primary"
@@ -113,9 +120,15 @@ export function OutputPanel({
         <span>{currentTab?.label ?? 'Output'}</span>
       </div>
 
-      <pre className="print-surface output-prose min-h-[28rem] whitespace-pre-wrap rounded-[1.35rem] border border-slate-800/90 bg-slate-950/96 p-5 text-sm text-slate-100">
-        {currentTab?.content ?? 'No output yet.'}
-      </pre>
+      <div className="print-surface rounded-[1.5rem] border border-slate-800/90 bg-[linear-gradient(180deg,rgba(15,23,42,0.94),rgba(2,6,23,0.98))] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+        <div className="mb-3 flex items-center justify-between rounded-[1rem] border border-slate-800/80 bg-slate-950/70 px-3.5 py-2 text-xs font-medium text-slate-400">
+          <span>Clinical draft surface</span>
+          <span>Review before export</span>
+        </div>
+        <pre className="output-prose min-h-[28rem] whitespace-pre-wrap rounded-[1.2rem] bg-slate-950/50 p-5 text-sm text-slate-100">
+          {currentTab?.content ?? 'No output yet.'}
+        </pre>
+      </div>
     </div>
   )
 }

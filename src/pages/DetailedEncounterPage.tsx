@@ -1,3 +1,4 @@
+import { HeartPulse } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ChecklistGroups } from '../components/ChecklistGroups'
@@ -291,25 +292,43 @@ export function DetailedEncounterPage() {
 
   return (
     <div className="space-y-6 lg:space-y-7">
-      <SectionCard
-        title="Detailed Encounter"
-        description="Structured encounter drafting with workflow-specific prompts for history, examination, investigations, assessment, and plan."
-      >
-        <WorkflowChooser
-          search={search}
-          specialty={specialty}
-          specialties={specialties}
-          workflows={filtered.slice(0, 12)}
-          loading={loading && !workflowId}
-          error={!workflowId ? error : null}
-          selectedWorkflowId={workflowId}
-          emptyTitle="No detailed-encounter workflows match that search"
-          emptyDescription="Try a broader term or switch to all specialties."
-          onSearchChange={setSearch}
-          onSpecialtyChange={setSpecialty}
-          onSelect={(id) => navigate(`/encounter/${id}`)}
-        />
-      </SectionCard>
+      <section className="grid gap-6 xl:grid-cols-[1.02fr_0.98fr]">
+        <div className="rounded-[1.9rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_28px_80px_-40px_rgba(2,6,23,0.95)]">
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] border border-sky-400/20 bg-sky-300/10 text-sky-100">
+              <HeartPulse className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-xl font-semibold tracking-tight text-white">Detailed Encounter</div>
+              <p className="mt-1 text-sm leading-6 text-slate-400">
+                Structured workflow drafting for longer encounters and fuller documentation capture.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 rounded-[1.3rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-sm leading-6 text-slate-300">
+            Detailed Encounter stays manual in this build. It is intentionally more structured and conservative than Quick Note.
+          </div>
+        </div>
+        <SectionCard
+          title="Choose workflow"
+          description="Search for a workflow to open the structured encounter editor."
+        >
+          <WorkflowChooser
+            search={search}
+            specialty={specialty}
+            specialties={specialties}
+            workflows={filtered.slice(0, 9)}
+            loading={loading && !workflowId}
+            error={!workflowId ? error : null}
+            selectedWorkflowId={workflowId}
+            emptyTitle="No detailed-encounter workflows match that search"
+            emptyDescription="Try a broader term or switch to all specialties."
+            onSearchChange={setSearch}
+            onSpecialtyChange={setSpecialty}
+            onSelect={(id) => navigate(`/encounter/${id}`)}
+          />
+        </SectionCard>
+      </section>
 
       <StateNotice
         title="Local draft only"
@@ -496,19 +515,21 @@ export function DetailedEncounterPage() {
             </SectionCard>
           </div>
 
-          <OutputPanel
-            title="Output"
-            tabs={[
-              { key: 'soap', label: 'SOAP note', content: output.soap },
-              { key: 'emr', label: 'EMR note', content: output.emr },
-              { key: 'referral', label: 'Referral letter', content: output.referral },
-              { key: 'instructions', label: 'Patient instructions', content: output.patientInstructions },
-            ]}
-            activeKey={activeTab}
-            onActiveKeyChange={(key) => setActiveTab(key as typeof activeTab)}
-            onResetDraft={resetCurrentDraft}
-            onClearSavedDraft={clearSavedDraft}
-          />
+          <div className="xl:sticky xl:top-6">
+            <OutputPanel
+              title="Output"
+              tabs={[
+                { key: 'soap', label: 'SOAP note', content: output.soap },
+                { key: 'emr', label: 'EMR note', content: output.emr },
+                { key: 'referral', label: 'Referral letter', content: output.referral },
+                { key: 'instructions', label: 'Patient instructions', content: output.patientInstructions },
+              ]}
+              activeKey={activeTab}
+              onActiveKeyChange={(key) => setActiveTab(key as typeof activeTab)}
+              onResetDraft={resetCurrentDraft}
+              onClearSavedDraft={clearSavedDraft}
+            />
+          </div>
         </div>
       ) : workflowId && loading ? (
         <SectionCard title="Loading workflow">

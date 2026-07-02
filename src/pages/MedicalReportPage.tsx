@@ -1,3 +1,4 @@
+import { FileText } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { OutputPanel } from '../components/OutputPanel'
@@ -152,24 +153,39 @@ export function MedicalReportPage() {
   return (
     <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="space-y-6">
-        <SectionCard
-          title="Medical Report / Letter"
-          description="Simple structured medical report drafting. No autonomous recommendations are added."
-        >
-          <WorkflowChooser
-            search={search}
-            specialty={specialty}
-            specialties={specialties}
-            workflows={filtered.slice(0, 12)}
-            error={!workflowId ? error : null}
-            selectedWorkflowId={workflowId}
-            emptyTitle="No report workflows match that search"
-            emptyDescription="Try a broader term or switch to all specialties."
-            onSearchChange={setSearch}
-            onSpecialtyChange={setSpecialty}
-            onSelect={(id) => navigate(`/report/${id}`)}
-          />
-        </SectionCard>
+        <section className="grid gap-6">
+          <div className="rounded-[1.9rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_28px_80px_-40px_rgba(2,6,23,0.95)]">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] border border-sky-400/20 bg-sky-300/10 text-sky-100">
+                <FileText className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-xl font-semibold tracking-tight text-white">Medical Report / Letter</div>
+                <p className="mt-1 text-sm leading-6 text-slate-400">
+                  Draft a simple clinician-review report or letter using workflow context and clinician-entered details.
+                </p>
+              </div>
+            </div>
+          </div>
+          <SectionCard
+            title="Choose workflow"
+            description="Search and select a workflow before drafting a report."
+          >
+            <WorkflowChooser
+              search={search}
+              specialty={specialty}
+              specialties={specialties}
+              workflows={filtered.slice(0, 9)}
+              error={!workflowId ? error : null}
+              selectedWorkflowId={workflowId}
+              emptyTitle="No report workflows match that search"
+              emptyDescription="Try a broader term or switch to all specialties."
+              onSearchChange={setSearch}
+              onSpecialtyChange={setSpecialty}
+              onSelect={(id) => navigate(`/report/${id}`)}
+            />
+          </SectionCard>
+        </section>
 
         <StateNotice
           title="Local draft only"
@@ -230,12 +246,14 @@ export function MedicalReportPage() {
         </SectionCard>
       </div>
 
-      <OutputPanel
-        title="Output"
-        tabs={[{ key: 'report', label: 'Medical report', content: output }]}
-        onResetDraft={resetCurrentDraft}
-        onClearSavedDraft={clearSavedDraft}
-      />
+      <div className="xl:sticky xl:top-6">
+        <OutputPanel
+          title="Output"
+          tabs={[{ key: 'report', label: 'Medical report', content: output }]}
+          onResetDraft={resetCurrentDraft}
+          onClearSavedDraft={clearSavedDraft}
+        />
+      </div>
     </div>
   )
 }

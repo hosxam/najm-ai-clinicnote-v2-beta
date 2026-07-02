@@ -41,9 +41,9 @@ body,
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 20%),
-    radial-gradient(circle at top right, rgba(34, 211, 238, 0.04), transparent 18%),
-    linear-gradient(180deg, #020617 0%, #050b16 38%, #0f172a 100%);
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 20%),
+    radial-gradient(circle at right top, rgba(14, 165, 233, 0.06), transparent 16%),
+    linear-gradient(180deg, #020617 0%, #06101d 30%, #0f172a 100%);
 }
 
 body.printing {
@@ -199,6 +199,10 @@ textarea {
   box-shadow: var(--shadow-raised);
 }
 
+.hero-divider {
+  border-top: 1px solid rgba(51, 65, 85, 0.7);
+}
+
 .text-wrap-pretty {
   text-wrap: pretty;
 }
@@ -222,6 +226,16 @@ textarea {
 .output-prose {
   color: rgb(226 232 240);
   line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .eyebrow {
+    letter-spacing: 0.14em;
+  }
+
+  .workflow-meta {
+    font-size: 0.68rem;
+  }
 }
 
 @media print {

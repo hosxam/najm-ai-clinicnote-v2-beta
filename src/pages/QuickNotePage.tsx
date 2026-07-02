@@ -257,25 +257,57 @@ export function QuickNotePage() {
 
   return (
     <div className="space-y-6 lg:space-y-7">
-      <SectionCard
-        title="Quick Note"
-        description="Fast OPD documentation for a selected workflow. Choose only what the clinician actually assessed or discussed."
-      >
-        <WorkflowChooser
-          search={search}
-          specialty={specialty}
-          specialties={specialties}
-          workflows={filtered.slice(0, 12)}
-          loading={loading && !workflowId}
-          error={!workflowId ? error : null}
-          selectedWorkflowId={workflowId}
-          emptyTitle="No quick-note workflows match that search"
-          emptyDescription="Try a broader term or switch to all specialties."
-          onSearchChange={setSearch}
-          onSpecialtyChange={setSpecialty}
-          onSelect={(id) => navigate(`/quick-note/${id}`)}
-        />
-      </SectionCard>
+      <section className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+        <div className="rounded-[2rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_28px_90px_-42px_rgba(2,6,23,0.95)] sm:p-7">
+          <div className="eyebrow">
+            <Sparkles className="h-3.5 w-3.5" />
+            Primary drafting workflow
+          </div>
+          <h1 className="mt-5 max-w-3xl text-3xl font-semibold tracking-tight text-white text-wrap-pretty sm:text-4xl lg:text-[3rem] lg:leading-[1.04]">
+            Quick Note is the fastest path from workflow selection to a clinician-review SOAP draft.
+          </h1>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
+            Suggested defaults are loaded from the existing workflow preset for safer chip groups only. Examination remains manual so the draft stays clinically reviewable and contradiction-safe.
+          </p>
+          <div className="mt-7 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-[1.35rem] border border-slate-800/90 bg-slate-900/72 p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Suggested groups</div>
+              <div className="mt-2 text-2xl font-semibold text-white">3</div>
+              <div className="mt-1 text-sm text-slate-400">Symptoms, negatives, plan phrases</div>
+            </div>
+            <div className="rounded-[1.35rem] border border-slate-800/90 bg-slate-900/72 p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Manual group</div>
+              <div className="mt-2 text-2xl font-semibold text-white">1</div>
+              <div className="mt-1 text-sm text-slate-400">Exam findings stay manual</div>
+            </div>
+            <div className="rounded-[1.35rem] border border-amber-400/18 bg-amber-300/8 p-4">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-200/80">Reminder</div>
+              <div className="mt-2 text-2xl font-semibold text-white">Local</div>
+              <div className="mt-1 text-sm text-amber-50/80">Drafts persist only in this browser</div>
+            </div>
+          </div>
+        </div>
+
+        <SectionCard
+          title="Choose workflow"
+          description="Search and select a workflow before drafting. Excluded workflows remain hidden."
+        >
+          <WorkflowChooser
+            search={search}
+            specialty={specialty}
+            specialties={specialties}
+            workflows={filtered.slice(0, 9)}
+            loading={loading && !workflowId}
+            error={!workflowId ? error : null}
+            selectedWorkflowId={workflowId}
+            emptyTitle="No quick-note workflows match that search"
+            emptyDescription="Try a broader term or switch to all specialties."
+            onSearchChange={setSearch}
+            onSpecialtyChange={setSpecialty}
+            onSelect={(id) => navigate(`/quick-note/${id}`)}
+          />
+        </SectionCard>
+      </section>
 
       <StateNotice
         title="Local draft only"
@@ -304,65 +336,52 @@ export function QuickNotePage() {
       ) : null}
 
       {details ? (
-        <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.08fr_0.92fr]">
           <div className="space-y-6">
-            <SectionCard
-              title={details.summary.title}
-              description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
-              actions={
-                <Link to={`/encounter/${details.summary.workflowId}`} className="text-sm font-medium text-sky-300">
+            <div className="rounded-[1.95rem] border border-slate-800/90 bg-slate-950/82 p-6 shadow-[0_30px_90px_-42px_rgba(2,6,23,0.96)] sm:p-7">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="workflow-meta">{details.summary.workflowId}</div>
+                    <div className="workflow-meta">Quick Note workflow</div>
+                    <div className="workflow-meta">{normalizeDisplayText(details.summary.specialty)}</div>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-semibold tracking-tight text-white text-wrap-pretty sm:text-[2rem]">
+                      {details.summary.title}
+                    </h2>
+                    <p className="mt-2 text-sm leading-7 text-slate-400">
+                      {details.summary.diagnosis}
+                    </p>
+                  </div>
+                </div>
+                <Link to={`/encounter/${details.summary.workflowId}`} className="inline-flex items-center gap-2 rounded-2xl border border-slate-700/90 bg-slate-900/80 px-4 py-2.5 text-sm font-medium text-sky-100 transition hover:border-slate-500 hover:bg-slate-900">
                   Open detailed encounter
                 </Link>
-              }
-            >
-              <div className="mb-5 flex flex-wrap items-center gap-2">
-                <div className="workflow-meta">{details.summary.workflowId}</div>
-                <div className="workflow-meta">Quick Note workflow</div>
-                <div className="workflow-meta">Review before copying into notes</div>
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                <label className="space-y-2.5 text-sm">
-                  <span className="field-label">Duration</span>
-                  <Input
-                    value={duration}
-                    onChange={(event) => setDuration(event.target.value)}
-                    placeholder="e.g. 3 days"
-                  />
-                </label>
-                <label className="space-y-2.5 text-sm">
-                  <span className="field-label">Clinician impression</span>
-                  <Input
-                    value={assessment}
-                    onChange={(event) => setAssessment(event.target.value)}
-                    placeholder="Enter clinician-stated impression only"
-                  />
-                </label>
               </div>
 
-              <label className="mt-5 block space-y-2.5 text-sm">
-                <span className="field-label">Additional history</span>
-                <Textarea
-                  value={additionalHistory}
-                  onChange={(event) => setAdditionalHistory(event.target.value)}
-                  rows={4}
-                  placeholder="Add any clinician-confirmed history details."
-                />
-              </label>
-
-              <label className="mt-5 block space-y-2.5 text-sm">
-                <span className="field-label">Clinician plan</span>
-                <Textarea
-                  value={plan}
-                  onChange={(event) => setPlan(event.target.value)}
-                  rows={4}
-                  placeholder="Enter only the clinician-stated plan."
-                />
-              </label>
-            </SectionCard>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-[1.3rem] border border-slate-800/85 bg-slate-900/60 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Suggested defaults</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">{totalSuggestedSelections}</div>
+                  <div className="mt-1 text-sm text-slate-400">Loaded from workflow preset</div>
+                </div>
+                <div className="rounded-[1.3rem] border border-slate-800/85 bg-slate-900/60 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Manual exam</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">{chipsByGroup.exam_findings?.length ?? 0}</div>
+                  <div className="mt-1 text-sm text-slate-400">Exam findings remain manual</div>
+                </div>
+                <div className="rounded-[1.3rem] border border-amber-400/18 bg-amber-300/8 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-200/80">Review status</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">Draft</div>
+                  <div className="mt-1 text-sm text-amber-50/80">Review before export or copy</div>
+                </div>
+              </div>
+            </div>
 
             <SectionCard
-              title="Suggested findings"
-              description="Preset defaults are applied only for safer chip groups. Examination remains manual to avoid contradiction-prone defaults."
+              title="Suggested defaults and selected findings"
+              description="Suggested defaults loaded from workflow preset. Review every selected item before generating output."
               actions={
                 <div className="flex flex-wrap gap-2">
                   <Button
@@ -381,6 +400,9 @@ export function QuickNotePage() {
                 </div>
               }
             >
+              <div className="mb-5 rounded-[1.3rem] border border-sky-400/16 bg-sky-300/8 px-4 py-3 text-sm leading-6 text-sky-50/90">
+                Suggested defaults are loaded from workflow preset data for symptoms, important negatives, and documentation-only plan phrases. Exam findings remain manual by design.
+              </div>
               <div className="space-y-6">
                 <ChipSelector
                   label={displayGroupLabel('symptoms')}
@@ -426,15 +448,61 @@ export function QuickNotePage() {
                 </div>
               ) : null}
             </SectionCard>
+
+            <SectionCard
+              title="Clinician free-text fields"
+              description="Use free-text only for clinician-confirmed details that should appear in the draft."
+            >
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="space-y-2.5 text-sm">
+                  <span className="field-label">Duration</span>
+                  <Input
+                    value={duration}
+                    onChange={(event) => setDuration(event.target.value)}
+                    placeholder="e.g. 3 days"
+                  />
+                </label>
+                <label className="space-y-2.5 text-sm">
+                  <span className="field-label">Clinician impression</span>
+                  <Input
+                    value={assessment}
+                    onChange={(event) => setAssessment(event.target.value)}
+                    placeholder="Enter clinician-stated impression only"
+                  />
+                </label>
+              </div>
+
+              <label className="mt-5 block space-y-2.5 text-sm">
+                <span className="field-label">Additional history</span>
+                <Textarea
+                  value={additionalHistory}
+                  onChange={(event) => setAdditionalHistory(event.target.value)}
+                  rows={4}
+                  placeholder="Add any clinician-confirmed history details."
+                />
+              </label>
+
+              <label className="mt-5 block space-y-2.5 text-sm">
+                <span className="field-label">Clinician plan</span>
+                <Textarea
+                  value={plan}
+                  onChange={(event) => setPlan(event.target.value)}
+                  rows={4}
+                  placeholder="Enter only the clinician-stated plan."
+                />
+              </label>
+            </SectionCard>
           </div>
 
-          <OutputPanel
-            title="Output"
-            description="Quick Note generates a SOAP draft only."
-            tabs={[{ key: 'soap', label: 'SOAP note', content: output }]}
-            onResetDraft={resetCurrentDraft}
-            onClearSavedDraft={clearSavedDraft}
-          />
+          <div className="xl:sticky xl:top-6">
+            <OutputPanel
+              title="Output"
+              description="Quick Note generates a SOAP draft only."
+              tabs={[{ key: 'soap', label: 'SOAP note', content: output }]}
+              onResetDraft={resetCurrentDraft}
+              onClearSavedDraft={clearSavedDraft}
+            />
+          </div>
         </div>
       ) : workflowId && loading ? (
         <SectionCard title="Loading workflow">
