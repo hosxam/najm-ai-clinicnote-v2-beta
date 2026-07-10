@@ -1,18 +1,19 @@
-import { HeartPulse } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { ArrowLeft, ArrowRight, ClipboardList, FileSearch2, FlaskConical, ListChecks, Stethoscope } from 'lucide-react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChecklistGroups } from '../components/ChecklistGroups'
 import { ChipSelector } from '../components/ChipSelector'
+import { DocumentationSection } from '../components/DocumentationSection'
 import { OutputPanel } from '../components/OutputPanel'
-import { SectionCard } from '../components/SectionCard'
-import { WorkflowChooser } from '../components/WorkflowChooser'
-import { clinicnoteDataAdapter } from '../lib/dataAdapter'
-import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
-import { buildDetailedOutputs } from '../lib/outputBuilders'
-import { cleanPlaceholderLabel, normalizeDisplayText, normalizeDocumentationText } from '../lib/labelUtils'
+import { SelectedWorkflowBar } from '../components/SelectedWorkflowBar'
+import { WorkflowCommand } from '../components/WorkflowCommand'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Textarea } from '../components/ui/textarea'
+import { clinicnoteDataAdapter } from '../lib/dataAdapter'
+import { cleanPlaceholderLabel, normalizeDocumentationText } from '../lib/labelUtils'
+import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
+import { buildDetailedOutputs } from '../lib/outputBuilders'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
@@ -23,6 +24,21 @@ function getDisplayWarning(label: string, warning?: string) {
   if (!warning) return undefined
   return label.toLowerCase().includes(warning.toLowerCase()) ? undefined : warning
 }
+
+type DetailedSectionKey = 'history' | 'examination' | 'investigations' | 'impression' | 'plan'
+
+const detailedSections: Array<{
+  key: DetailedSectionKey
+  label: string
+  shortLabel: string
+  icon: typeof ClipboardList
+}> = [
+  { key: 'history', label: 'History', shortLabel: 'History', icon: ClipboardList },
+  { key: 'examination', label: 'Examination', shortLabel: 'Exam', icon: Stethoscope },
+  { key: 'investigations', label: 'Investigations', shortLabel: 'Tests', icon: FlaskConical },
+  { key: 'impression', label: 'Impression', shortLabel: 'Impression', icon: FileSearch2 },
+  { key: 'plan', label: 'Plan & outputs', shortLabel: 'Plan', icon: ListChecks },
+]
 
 type DetailedEncounterDraft = {
   workflowId: string
@@ -80,6 +96,9 @@ export function DetailedEncounterPage() {
   const [referralReason, setReferralReason] = useState('')
   const [patientInstructions, setPatientInstructions] = useState('')
   const [activeTab, setActiveTab] = useState<'soap' | 'emr' | 'referral' | 'instructions'>('soap')
+  const [activeSection, setActiveSection] = useState<DetailedSectionKey>('history')
+  const [showWorkflowChooser, setShowWorkflowChooser] = useState(!workflowId)
+  const outputRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     Promise.all([clinicnoteDataAdapter.loadCatalog(), clinicnoteDataAdapter.loadSpecialties()])
@@ -108,8 +127,10 @@ export function DetailedEncounterPage() {
       setBlockedMessage(null)
       setError(null)
       setLoading(false)
+      setShowWorkflowChooser(true)
       return
     }
+
     setLoading(true)
     Promise.all([
       clinicnoteDataAdapter.getWorkflowSummaryById(workflowId, true),
@@ -122,8 +143,10 @@ export function DetailedEncounterPage() {
         setLoading(false)
         return
       }
+
       setBlockedMessage(null)
       setDetails(loadedDetails)
+      setShowWorkflowChooser(false)
       const defaults = getDetailedEncounterDefaults(loadedDetails)
       const savedDraft = loadLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY)
       const restoredDraft =
@@ -142,6 +165,7 @@ export function DetailedEncounterPage() {
       setReferralReason(restoredDraft.referralReason)
       setPatientInstructions(restoredDraft.patientInstructions)
       setActiveTab(restoredDraft.activeTab)
+      setActiveSection('history')
       setError(null)
       pushRecentWorkflow(workflowId)
       setLoading(false)
@@ -154,6 +178,7 @@ export function DetailedEncounterPage() {
       )
       setLoading(false)
     })
+
     return () => {
       active = false
     }
@@ -176,22 +201,7 @@ export function DetailedEncounterPage() {
       patientInstructions,
       activeTab,
     })
-  }, [
-    workflowId,
-    blockedMessage,
-    details,
-    historyValues,
-    selectedSymptoms,
-    selectedNegatives,
-    selectedExamPrompts,
-    selectedInvestigations,
-    assessment,
-    plan,
-    selectedPlanItems,
-    referralReason,
-    patientInstructions,
-    activeTab,
-  ])
+  }, [workflowId, blockedMessage, details, historyValues, selectedSymptoms, selectedNegatives, selectedExamPrompts, selectedInvestigations, assessment, plan, selectedPlanItems, referralReason, patientInstructions, activeTab])
 
   const filtered = useMemo(() => {
     const lowered = search.trim().toLowerCase()
@@ -216,6 +226,7 @@ export function DetailedEncounterPage() {
     setReferralReason(defaults.referralReason)
     setPatientInstructions(defaults.patientInstructions)
     setActiveTab(defaults.activeTab)
+    setActiveSection('history')
   }
 
   function clearSavedDraft() {
@@ -233,6 +244,7 @@ export function DetailedEncounterPage() {
     setReferralReason(defaults.referralReason)
     setPatientInstructions(defaults.patientInstructions)
     setActiveTab(defaults.activeTab)
+    setActiveSection('history')
   }
 
   const chipGroups = useMemo(() => {
@@ -244,14 +256,7 @@ export function DetailedEncounterPage() {
   }, [details])
 
   const output = useMemo(() => {
-    if (!details) {
-      return {
-        soap: '',
-        emr: '',
-        referral: '',
-        patientInstructions: '',
-      }
-    }
+    if (!details) return { soap: '', emr: '', referral: '', patientInstructions: '' }
     return buildDetailedOutputs({
       workflow: details,
       historyValues,
@@ -269,20 +274,16 @@ export function DetailedEncounterPage() {
 
   const historyFields = useMemo(() => {
     if (!details) return []
-
     const layoutFields =
       details.specialtyLayout?.sections
         .slice(0, 3)
-        .flatMap((section) =>
-          section.fields.slice(0, 2).map((field) => ({
-            id: field.field_id,
-            label: field.prompt,
-            placeholder: field.placeholder ?? '',
-          })),
-        ) ?? []
+        .flatMap((section) => section.fields.slice(0, 2).map((field) => ({
+          id: field.field_id,
+          label: field.prompt,
+          placeholder: field.placeholder ?? '',
+        }))) ?? []
 
     if (layoutFields.length) return layoutFields
-
     return (details.historyDraft?.editable_placeholders ?? []).map((placeholder) => ({
       id: placeholder,
       label: cleanPlaceholderLabel(placeholder),
@@ -290,233 +291,233 @@ export function DetailedEncounterPage() {
     }))
   }, [details])
 
+  const activeSectionIndex = detailedSections.findIndex((section) => section.key === activeSection)
+  const previousSection = detailedSections[activeSectionIndex - 1]
+  const nextSection = detailedSections[activeSectionIndex + 1]
+
   return (
-    <div className="space-y-6 lg:space-y-7">
-      <section className="grid gap-6 xl:grid-cols-[0.86fr_1.14fr]">
-        <SectionCard
-          title="Detailed note"
-          description="Use this only when the case needs more structure than Quick Note."
-          actions={
-            workflowId ? (
-              <Button asChild variant="ghost" size="sm">
-                <Link to={`/quick-note/${workflowId}`}>Back to Quick Note</Link>
-              </Button>
-            ) : undefined
-          }
-        >
-          <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700">
-            <HeartPulse className="mt-0.5 h-4 w-4 shrink-0 text-cyan-800" />
-            Detailed note stays manual by design. It is intentionally more structured and should feel secondary to Quick Note.
+    <div className="space-y-5">
+      {details ? (
+        <SelectedWorkflowBar
+          workflow={details.summary}
+          modeLabel="Detailed Note"
+          helperText="Manual section-by-section drafting with a persistent review pane."
+          onChangeWorkflow={() => setShowWorkflowChooser((current) => !current)}
+        />
+      ) : (
+        <div className="page-title-row">
+          <div>
+            <div className="page-kicker"><ClipboardList className="h-4 w-4" /> Detailed Note</div>
+            <h1 className="page-title">Choose a workflow for structured drafting</h1>
+            <p className="page-description">Use this secondary mode when an encounter needs more manual documentation structure.</p>
           </div>
-        </SectionCard>
-        <SectionCard
-          title="Choose workflow"
-          description="Search for a workflow to open the structured editor."
-        >
-          <WorkflowChooser
+          <Button asChild variant="ghost" size="sm"><Link to="/quick-note">Back to Quick Note</Link></Button>
+        </div>
+      )}
+
+      {showWorkflowChooser || !details ? (
+        <section className="command-drawer">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <h2 className="text-base font-semibold text-slate-950">{details ? 'Change workflow' : 'Select workflow'}</h2>
+              <p className="mt-1 text-xs text-slate-500">Search for a workflow to open the structured editor.</p>
+            </div>
+            {details ? <Button variant="ghost" size="sm" onClick={() => setShowWorkflowChooser(false)}>Close</Button> : null}
+          </div>
+          <WorkflowCommand
             search={search}
             specialty={specialty}
             specialties={specialties}
-            workflows={filtered.slice(0, 9)}
+            workflows={filtered}
             loading={loading && !workflowId}
             error={!workflowId ? error : null}
             selectedWorkflowId={workflowId}
-            emptyTitle="No detailed-encounter workflows match that search"
-            emptyDescription="Try a broader term or switch to all specialties."
+            compact
             onSearchChange={setSearch}
             onSpecialtyChange={setSpecialty}
-            onSelect={(id) => navigate(`/encounter/${id}`)}
+            onSelect={(id) => {
+              setShowWorkflowChooser(false)
+              navigate(`/encounter/${id}`)
+            }}
           />
-        </SectionCard>
-      </section>
-
-      {blockedMessage ? (
-        <SectionCard title="Workflow blocked">
-          <p className="text-sm text-amber-800">{blockedMessage}</p>
-        </SectionCard>
+        </section>
       ) : null}
 
-      {!workflowId && !loading ? (
-        <SectionCard title="Choose a workflow first">
-          <p className="text-sm text-slate-700">
-            Search above to start a structured encounter, or begin from the home page with a common workflow.
-          </p>
-        </SectionCard>
-      ) : null}
-
-      {error && workflowId ? (
-        <SectionCard title="Workflow load problem">
-          <p className="text-sm text-rose-800">{error}</p>
-        </SectionCard>
-      ) : null}
+      {blockedMessage ? <div className="state-panel state-panel-warning">{blockedMessage}</div> : null}
+      {error && workflowId ? <div className="state-panel state-panel-error">{error}</div> : null}
 
       {details ? (
-        <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.12fr_0.88fr]">
-          <div className="space-y-6">
-            <SectionCard
-              title={`${details.summary.title} detailed note`}
-              description={`${normalizeDisplayText(details.summary.specialty)} · ${details.summary.diagnosis}`}
-            >
-              <div className="mb-5 flex flex-wrap items-center gap-2">
-                <div className="workflow-meta">{details.summary.workflowId}</div>
-                <div className="workflow-meta">Manual detailed drafting</div>
+        <div className="detailed-workspace-grid">
+          <div className="structured-editor">
+            <div className="structured-editor-header">
+              <div>
+                <div className="text-sm font-semibold text-slate-950">Structured encounter</div>
+                <p className="mt-1 text-xs leading-5 text-slate-500">Defaults stay manual in Detailed Note. Focus on one section at a time.</p>
               </div>
-              <div className="mb-5 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
-                Suggested defaults are intentionally not auto-applied here. Use this page when you need more structure and more manual control.
-              </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {historyFields.map((field) => (
-                  <label key={field.id} className="space-y-2.5 text-sm">
-                    <span className="field-label">{field.label}</span>
-                    <Input
-                      value={historyValues[field.id] ?? ''}
-                      onChange={(event) =>
-                        setHistoryValues((current) => ({ ...current, [field.id]: event.target.value }))
-                      }
-                      placeholder={field.placeholder}
+              <Button asChild variant="ghost" size="sm"><Link to={`/quick-note/${details.summary.workflowId}`}>Switch to Quick Note</Link></Button>
+            </div>
+
+            <div className="structured-editor-body">
+              <nav className="section-rail" aria-label="Detailed note sections">
+                {detailedSections.map((section, index) => {
+                  const Icon = section.icon
+                  const active = section.key === activeSection
+                  return (
+                    <button
+                      key={section.key}
+                      type="button"
+                      onClick={() => setActiveSection(section.key)}
+                      className={`section-rail-item ${active ? 'section-rail-item-active' : ''}`}
+                    >
+                      <span className="section-rail-index">{index + 1}</span>
+                      <Icon className="h-4 w-4" />
+                      <span className="hidden lg:inline">{section.label}</span>
+                      <span className="lg:hidden">{section.shortLabel}</span>
+                    </button>
+                  )
+                })}
+              </nav>
+
+              <div className="min-w-0 p-4 sm:p-6 lg:p-7">
+                {activeSection === 'history' ? (
+                  <div className="space-y-7">
+                    <DocumentationSection title="History" description="Enter explicit history details and select only documented symptoms or negatives.">
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {historyFields.map((field) => (
+                          <label key={field.id} className="space-y-2 text-sm">
+                            <span className="field-label">{field.label}</span>
+                            <Input
+                              value={historyValues[field.id] ?? ''}
+                              onChange={(event) => setHistoryValues((current) => ({ ...current, [field.id]: event.target.value }))}
+                              placeholder={field.placeholder}
+                            />
+                          </label>
+                        ))}
+                      </div>
+                    </DocumentationSection>
+                    <div className="grid gap-6 xl:grid-cols-2">
+                      <ChipSelector label="Symptoms" items={chipGroups.symptoms ?? []} selectedItems={selectedSymptoms} onToggle={(value) => setSelectedSymptoms((current) => toggleValue(current, value))} variant="plain" />
+                      <ChipSelector label="Relevant negatives" items={chipGroups.relevant_negatives ?? []} selectedItems={selectedNegatives} onToggle={(value) => setSelectedNegatives((current) => toggleValue(current, value))} variant="plain" />
+                    </div>
+                  </div>
+                ) : null}
+
+                {activeSection === 'examination' ? (
+                  <DocumentationSection title="Examination" description="Select only examination findings explicitly assessed and documented.">
+                    <ChecklistGroups
+                      variant="plain"
+                      groups={details.examDetails?.exam_groups.map((group) => ({
+                        id: group.group_id,
+                        label: group.group_label,
+                        safetyNote: group.safety_note,
+                        options: group.prompts.map((prompt) => ({
+                          id: prompt.prompt_id,
+                          label: normalizeDocumentationText(prompt.prompt_text),
+                          warning: getDisplayWarning(normalizeDocumentationText(prompt.prompt_text), prompt.warning ? normalizeDocumentationText(prompt.warning) : undefined),
+                        })),
+                      })) ?? []}
+                      selectedValues={selectedExamPrompts}
+                      onToggle={(value) => setSelectedExamPrompts((current) => toggleValue(current, value))}
                     />
-                  </label>
-                ))}
+                  </DocumentationSection>
+                ) : null}
+
+                {activeSection === 'investigations' ? (
+                  <DocumentationSection title="Investigations" description="Record investigations only when reviewed, ordered, or discussed by the clinician.">
+                    <ChecklistGroups
+                      variant="plain"
+                      groups={details.investigationDetails?.investigation_groups.map((group) => ({
+                        id: group.group_id,
+                        label: group.group_label,
+                        options: group.options.map((option) => ({
+                          id: option.option_id,
+                          label: normalizeDocumentationText(option.option_text),
+                          noteText: normalizeDocumentationText(option.note_text || option.option_text),
+                          warning: getDisplayWarning(normalizeDocumentationText(option.option_text), option.safety_note ? normalizeDocumentationText(option.safety_note) : undefined),
+                        })),
+                      })) ?? []}
+                      selectedValues={selectedInvestigations}
+                      onToggle={(value) => setSelectedInvestigations((current) => toggleValue(current, value))}
+                    />
+                  </DocumentationSection>
+                ) : null}
+
+                {activeSection === 'impression' ? (
+                  <DocumentationSection title="Clinician impression" description="Do not infer or add a diagnosis. Enter only the clinician-stated impression.">
+                    <label className="block space-y-2 text-sm">
+                      <span className="field-label">Assessment / impression</span>
+                      <Textarea value={assessment} onChange={(event) => setAssessment(event.target.value)} rows={8} placeholder="Clinician-stated impression only." />
+                    </label>
+                  </DocumentationSection>
+                ) : null}
+
+                {activeSection === 'plan' ? (
+                  <div className="space-y-7">
+                    <DocumentationSection title="Plan" description="Use only clinician-stated plan text and clinician-selected documentation options.">
+                      <label className="block space-y-2 text-sm">
+                        <span className="field-label">Clinician plan</span>
+                        <Textarea value={plan} onChange={(event) => setPlan(event.target.value)} rows={5} placeholder="Clinician-stated plan only." />
+                      </label>
+                      <div className="mt-6">
+                        <ChecklistGroups
+                          variant="plain"
+                          groups={details.planDetails?.plan_option_groups.map((group) => ({
+                            id: group.group_id,
+                            label: group.group_label,
+                            options: group.options.map((option) => ({
+                              id: option.option_id,
+                              label: normalizeDocumentationText(option.option_text),
+                              noteText: normalizeDocumentationText(option.note_text || option.option_text),
+                              warning: getDisplayWarning(normalizeDocumentationText(option.option_text), option.safety_note ? normalizeDocumentationText(option.safety_note) : undefined),
+                            })),
+                          })) ?? []}
+                          selectedValues={selectedPlanItems}
+                          onToggle={(value) => setSelectedPlanItems((current) => toggleValue(current, value))}
+                        />
+                      </div>
+                    </DocumentationSection>
+                    <DocumentationSection title="Optional outputs" description="Complete only when explicitly requested and stated by the clinician.">
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <label className="space-y-2 text-sm">
+                          <span className="field-label">Referral reason</span>
+                          <Textarea value={referralReason} onChange={(event) => setReferralReason(event.target.value)} rows={4} placeholder="Clinician-stated referral reason only." />
+                        </label>
+                        <label className="space-y-2 text-sm">
+                          <span className="field-label">Patient instructions</span>
+                          <Textarea value={patientInstructions} onChange={(event) => setPatientInstructions(event.target.value)} rows={4} placeholder="Clinician-stated instructions only." />
+                        </label>
+                      </div>
+                    </DocumentationSection>
+                  </div>
+                ) : null}
+
+                <div className="mt-8 flex items-center justify-between gap-3 border-t border-slate-200 pt-5">
+                  <Button variant="ghost" size="sm" disabled={!previousSection} onClick={() => previousSection && setActiveSection(previousSection.key)}>
+                    <ArrowLeft className="h-4 w-4" /> Previous
+                  </Button>
+                  {nextSection ? (
+                    <Button variant="primary" size="sm" onClick={() => setActiveSection(nextSection.key)}>
+                      Next: {nextSection.shortLabel} <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  ) : (
+                    <Button variant="primary" size="sm" onClick={() => outputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
+                      Review draft <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
               </div>
-            </SectionCard>
-
-            <SectionCard title="Symptoms and negatives">
-              <div className="space-y-6">
-                <ChipSelector
-                  label="Symptoms"
-                  items={chipGroups.symptoms ?? []}
-                  selectedItems={selectedSymptoms}
-                  onToggle={(value) => setSelectedSymptoms((current) => toggleValue(current, value))}
-                />
-                <ChipSelector
-                  label="Negatives"
-                  items={chipGroups.relevant_negatives ?? []}
-                  selectedItems={selectedNegatives}
-                  onToggle={(value) => setSelectedNegatives((current) => toggleValue(current, value))}
-                />
-              </div>
-            </SectionCard>
-
-            <SectionCard title="Examination">
-              <ChecklistGroups
-                groups={
-                  details.examDetails?.exam_groups.map((group) => ({
-                    id: group.group_id,
-                    label: group.group_label,
-                    safetyNote: group.safety_note,
-                    options: group.prompts.map((prompt) => ({
-                      id: prompt.prompt_id,
-                      label: normalizeDocumentationText(prompt.prompt_text),
-                      warning: getDisplayWarning(
-                        normalizeDocumentationText(prompt.prompt_text),
-                        prompt.warning ? normalizeDocumentationText(prompt.warning) : undefined,
-                      ),
-                    })),
-                  })) ?? []
-                }
-                selectedValues={selectedExamPrompts}
-                onToggle={(value) => setSelectedExamPrompts((current) => toggleValue(current, value))}
-              />
-            </SectionCard>
-
-            <SectionCard title="Investigations">
-              <ChecklistGroups
-                groups={
-                  details.investigationDetails?.investigation_groups.map((group) => ({
-                    id: group.group_id,
-                    label: group.group_label,
-                    safetyNote: undefined,
-                    options: group.options.map((option) => ({
-                      id: option.option_id,
-                      label: normalizeDocumentationText(option.option_text),
-                      noteText: normalizeDocumentationText(option.note_text || option.option_text),
-                      warning: getDisplayWarning(
-                        normalizeDocumentationText(option.option_text),
-                        option.safety_note ? normalizeDocumentationText(option.safety_note) : undefined,
-                      ),
-                    })),
-                  })) ?? []
-                }
-                selectedValues={selectedInvestigations}
-                onToggle={(value) => setSelectedInvestigations((current) => toggleValue(current, value))}
-              />
-            </SectionCard>
-
-            <SectionCard title="Assessment and plan">
-              <div className="space-y-4">
-                <label className="block space-y-2.5 text-sm">
-                  <span className="field-label">Clinician impression</span>
-                  <Textarea
-                    value={assessment}
-                    onChange={(event) => setAssessment(event.target.value)}
-                    rows={3}
-                    placeholder="Enter clinician-stated impression only."
-                  />
-                </label>
-                <label className="block space-y-2.5 text-sm">
-                  <span className="field-label">Clinician plan</span>
-                  <Textarea
-                    value={plan}
-                    onChange={(event) => setPlan(event.target.value)}
-                    rows={4}
-                    placeholder="Enter clinician-stated plan only."
-                  />
-                </label>
-                <ChecklistGroups
-                  groups={
-                    details.planDetails?.plan_option_groups.map((group) => ({
-                      id: group.group_id,
-                      label: group.group_label,
-                      safetyNote: undefined,
-                    options: group.options.map((option) => ({
-                      id: option.option_id,
-                      label: normalizeDocumentationText(option.option_text),
-                      noteText: normalizeDocumentationText(option.note_text || option.option_text),
-                      warning: getDisplayWarning(
-                        normalizeDocumentationText(option.option_text),
-                        option.safety_note ? normalizeDocumentationText(option.safety_note) : undefined,
-                      ),
-                    })),
-                  })) ?? []
-                  }
-                  selectedValues={selectedPlanItems}
-                  onToggle={(value) => setSelectedPlanItems((current) => toggleValue(current, value))}
-                />
-              </div>
-            </SectionCard>
-
-            <SectionCard title="Optional outputs">
-              <div className="space-y-4">
-                <label className="block space-y-2.5 text-sm">
-                  <span className="field-label">Referral reason</span>
-                  <Textarea
-                    value={referralReason}
-                    onChange={(event) => setReferralReason(event.target.value)}
-                    rows={3}
-                    placeholder="Enter only if the clinician requested a referral letter."
-                  />
-                </label>
-                <label className="block space-y-2.5 text-sm">
-                  <span className="field-label">Patient instructions</span>
-                  <Textarea
-                    value={patientInstructions}
-                    onChange={(event) => setPatientInstructions(event.target.value)}
-                    rows={3}
-                    placeholder="Only enter explicit clinician-stated patient instructions."
-                  />
-                </label>
-              </div>
-            </SectionCard>
+            </div>
           </div>
 
-          <div className="xl:sticky xl:top-6">
+          <div ref={outputRef} className="min-w-0 xl:sticky xl:top-20 xl:self-start">
             <OutputPanel
-              title="Draft"
+              title="Detailed draft"
+              description="Live review of the structured documentation entered across each step."
               tabs={[
-                { key: 'soap', label: 'SOAP note', content: output.soap },
-                { key: 'emr', label: 'EMR note', content: output.emr },
-                { key: 'referral', label: 'Referral letter', content: output.referral },
-                { key: 'instructions', label: 'Patient instructions', content: output.patientInstructions },
+                { key: 'soap', label: 'SOAP', content: output.soap },
+                { key: 'emr', label: 'EMR', content: output.emr },
+                { key: 'referral', label: 'Referral', content: output.referral },
+                { key: 'instructions', label: 'Instructions', content: output.patientInstructions },
               ]}
               activeKey={activeTab}
               onActiveKeyChange={(key) => setActiveTab(key as typeof activeTab)}
@@ -526,9 +527,7 @@ export function DetailedEncounterPage() {
           </div>
         </div>
       ) : workflowId && loading ? (
-        <SectionCard title="Loading workflow">
-          <p className="text-sm text-slate-600">Preparing the structured encounter editor...</p>
-        </SectionCard>
+        <div className="state-panel">Preparing the structured encounter workspace…</div>
       ) : null}
     </div>
   )

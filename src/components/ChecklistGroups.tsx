@@ -1,4 +1,5 @@
 import { Badge } from './ui/badge'
+import { cn } from '../lib/cn'
 
 type ChecklistOption = {
   id: string
@@ -18,18 +19,19 @@ type ChecklistGroupsProps = {
   groups: ChecklistGroup[]
   selectedValues: string[]
   onToggle: (value: string) => void
+  variant?: 'panel' | 'plain'
 }
 
-export function ChecklistGroups({ groups, selectedValues, onToggle }: ChecklistGroupsProps) {
+export function ChecklistGroups({ groups, selectedValues, onToggle, variant = 'panel' }: ChecklistGroupsProps) {
   if (!groups.length) return <p className="text-sm text-slate-500">No workflow-specific prompts available.</p>
 
   return (
     <div className="space-y-4.5">
       {groups.map((group) => (
-        <div key={group.id} className="rounded-[1.05rem] border border-slate-200 bg-slate-50/70 p-4">
+        <div key={group.id} className={cn(variant === 'panel' ? 'rounded-xl border border-slate-200 bg-slate-50/70 p-4' : 'border-b border-slate-200 pb-5 last:border-0 last:pb-0')}>
           <div className="mb-3.5 flex items-start justify-between gap-3">
             <div>
-              <h3 className="text-sm font-semibold tracking-tight text-slate-100">{group.label}</h3>
+              <h3 className="text-sm font-semibold tracking-tight text-slate-950">{group.label}</h3>
               {group.safetyNote ? <p className="mt-1 text-xs leading-5 text-slate-600">{group.safetyNote}</p> : null}
             </div>
             <Badge variant="muted">

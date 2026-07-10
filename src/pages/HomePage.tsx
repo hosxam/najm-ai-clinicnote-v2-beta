@@ -1,13 +1,14 @@
-import { ArrowRight, Clock3, FilePlus2, FileText, Layers3, ShieldAlert } from 'lucide-react'
+import { ArrowRight, Clock3, FilePlus2, FileText, Layers3, Search, ShieldCheck } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { SectionCard } from '../components/SectionCard'
-import { WorkflowChooser } from '../components/WorkflowChooser'
-import { clinicnoteDataAdapter } from '../lib/dataAdapter'
-import { normalizeDisplayText } from '../lib/labelUtils'
-import { getRecentWorkflowIds } from '../lib/localDrafts'
-import { Badge } from '../components/ui/badge'
+import { DocumentationModeCard } from '../components/DocumentationModeCard'
+import { RecentWorkflowItem } from '../components/RecentWorkflowItem'
+import { SafetyBanner } from '../components/SafetyBanner'
+import { TestingStatusStrip } from '../components/TestingStatusStrip'
+import { WorkflowCommand } from '../components/WorkflowCommand'
 import { Button } from '../components/ui/button'
+import { clinicnoteDataAdapter } from '../lib/dataAdapter'
+import { getRecentWorkflowIds } from '../lib/localDrafts'
 import type { WorkflowSummary } from '../types/clinicnote'
 
 export function HomePage() {
@@ -65,174 +66,105 @@ export function HomePage() {
     })
   }, [catalog, search, specialty])
 
+  const commandWorkflows = search.trim() || specialty !== 'all' ? filtered : commonWorkflows
   const visibleWorkflowCount = catalog.length
   const excludedWorkflowCount = Math.max(totalWorkflowCount - visibleWorkflowCount, 0)
   const firstSuggestedWorkflow = filtered[0] ?? recentWorkflows[0] ?? commonWorkflows[0]
+  const quickNoteTarget = firstSuggestedWorkflow ? `/quick-note/${firstSuggestedWorkflow.workflowId}` : '/quick-note'
+  const detailedTarget = firstSuggestedWorkflow ? `/encounter/${firstSuggestedWorkflow.workflowId}` : '/encounter'
+  const compactWorkflows = recentWorkflows.length ? recentWorkflows.slice(0, 4) : commonWorkflows.slice(0, 4)
 
   return (
-    <div className="space-y-6">
-      <section className="overflow-hidden rounded-[1.4rem] border border-slate-200 bg-white shadow-[0_26px_70px_-44px_rgba(15,23,42,0.35)]">
-        <div className="grid gap-6 border-b border-slate-200 px-5 py-6 sm:px-7 lg:grid-cols-[1fr_auto] lg:items-end lg:px-8 lg:py-8">
-          <div className="max-w-3xl">
-            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-800">Clinical documentation workspace</div>
-            <h1 className="mt-3 text-3xl font-semibold tracking-[-0.035em] text-slate-950 sm:text-4xl">
-              What are you documenting?
-            </h1>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
-              Find the right workflow, review its suggested defaults, and create a clinician-review note.
-            </p>
+    <div className="space-y-8 sm:space-y-10">
+      <section className="grid gap-6 border-b border-slate-200 pb-7 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-end lg:pb-8">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-cyan-800">
+            <Search className="h-3.5 w-3.5" />
+            Document start
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center text-xs">
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-              <div className="font-semibold text-slate-950">{totalWorkflowCount.toLocaleString()}</div>
-              <div className="mt-0.5 text-slate-500">workflows</div>
-            </div>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-              <div className="font-semibold text-slate-950">{visibleWorkflowCount.toLocaleString()}</div>
-              <div className="mt-0.5 text-slate-500">available</div>
-            </div>
-            <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2.5">
-              <div className="font-semibold text-amber-900">{excludedWorkflowCount.toLocaleString()}</div>
-              <div className="mt-0.5 text-amber-700">excluded</div>
-            </div>
+          <h1 className="mt-3 max-w-2xl text-3xl font-semibold tracking-[-0.045em] text-slate-950 sm:text-4xl lg:text-[2.8rem] lg:leading-[1.08]">
+            Start with the clinical workflow, not a blank page.
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            Search a presentation, choose the right documentation mode, and review a structured clinician draft.
+          </p>
+        </div>
+        <SafetyBanner />
+      </section>
+
+      <section aria-labelledby="workflow-search-heading">
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 id="workflow-search-heading" className="text-lg font-semibold tracking-[-0.02em] text-slate-950">
+              Find a workflow
+            </h2>
+            <p className="mt-1 text-sm text-slate-500">Search symptoms, diagnoses, or workflow names.</p>
+          </div>
+          <span className="text-xs font-medium text-slate-400">{visibleWorkflowCount.toLocaleString()} available for limited testing</span>
+        </div>
+        <WorkflowCommand
+          search={search}
+          specialty={specialty}
+          specialties={specialties}
+          workflows={commandWorkflows}
+          loading={loading}
+          error={error}
+          resultLimit={search.trim() || specialty !== 'all' ? 5 : 1}
+          onSearchChange={setSearch}
+          onSpecialtyChange={setSpecialty}
+          onSelect={(workflowId) => navigate(`/quick-note/${workflowId}`)}
+        />
+      </section>
+
+      <section aria-labelledby="mode-heading">
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <h2 id="mode-heading" className="text-lg font-semibold tracking-[-0.02em] text-slate-950">Choose documentation depth</h2>
+            <p className="mt-1 text-sm text-slate-500">Quick Note is the recommended starting point for beta testing.</p>
+          </div>
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+            <Link to="/report"><FileText className="h-4 w-4" /> Open reports</Link>
+          </Button>
+        </div>
+        <div className="grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
+          <DocumentationModeCard
+            title="Quick Note"
+            description="Review suggested workflow defaults, add clinician-confirmed details, and generate a focused SOAP draft."
+            to={quickNoteTarget}
+            icon={FilePlus2}
+            primary
+            label="Recommended"
+          />
+          <DocumentationModeCard
+            title="Detailed Note"
+            description="Use a guided section-by-section editor when the encounter needs more structure."
+            to={detailedTarget}
+            icon={Layers3}
+            label="Manual"
+          />
+        </div>
+        <Link to="/report" className="mt-3 flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 transition hover:border-slate-300 hover:text-slate-950 sm:hidden">
+          <span className="inline-flex items-center gap-2"><FileText className="h-4 w-4 text-cyan-800" /> Medical reports and letters</span>
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </section>
+
+      <section aria-labelledby="recent-heading">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <div>
+            <h2 id="recent-heading" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-950">
+              {recentWorkflows.length ? <Clock3 className="h-4 w-4 text-cyan-800" /> : <ShieldCheck className="h-4 w-4 text-cyan-800" />}
+              {recentWorkflows.length ? 'Recent on this device' : 'Common low-risk starts'}
+            </h2>
+            <p className="mt-1 text-xs text-slate-500">Compact shortcuts; drafts remain local to this browser.</p>
           </div>
         </div>
-
-        <div className="px-5 py-6 sm:px-7 lg:px-8">
-          <WorkflowChooser
-            search={search}
-            specialty={specialty}
-            specialties={specialties}
-            workflows={filtered.slice(0, 9)}
-            loading={loading}
-            error={error}
-            title="Search symptom, diagnosis, or workflow"
-            emptyTitle="No workflows match that search"
-            emptyDescription="Try a broader symptom, diagnosis, or workflow term."
-            onSearchChange={setSearch}
-            onSpecialtyChange={setSpecialty}
-            onSelect={(workflowId) => navigate(`/quick-note/${workflowId}`)}
-          />
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <Link
-              to={firstSuggestedWorkflow ? `/quick-note/${firstSuggestedWorkflow.workflowId}` : '/quick-note'}
-              className="group flex items-center gap-3 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-cyan-950 transition hover:border-cyan-300 hover:bg-cyan-100/70"
-            >
-              <FilePlus2 className="h-5 w-5 text-cyan-800" />
-              <div className="min-w-0 flex-1"><div className="font-semibold">Quick Note</div><div className="text-xs text-cyan-800/75">Fastest path</div></div>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to={firstSuggestedWorkflow ? `/encounter/${firstSuggestedWorkflow.workflowId}` : '/encounter'}
-              className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              <Layers3 className="h-5 w-5 text-slate-600" />
-              <div className="min-w-0 flex-1"><div className="font-semibold">Detailed note</div><div className="text-xs text-slate-500">More structure</div></div>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/report"
-              className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 transition hover:border-slate-300 hover:bg-slate-50"
-            >
-              <FileText className="h-5 w-5 text-slate-600" />
-              <div className="min-w-0 flex-1"><div className="font-semibold">Reports</div><div className="text-xs text-slate-500">Letters and reports</div></div>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900">
-            <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
-            Use mock or anonymized cases only. Every generated note remains a clinician-review draft.
-          </div>
+        <div className="workflow-chip-scroll -mx-1 flex gap-3 overflow-x-auto px-1 pb-2">
+          {compactWorkflows.map((workflow) => <RecentWorkflowItem key={workflow.workflowId} workflow={workflow} />)}
         </div>
       </section>
 
-      <div className="grid gap-6 xl:grid-cols-[1.18fr_0.82fr]">
-        <SectionCard
-          title="Common workflows"
-          description="Start from a common low-risk documentation flow."
-        >
-          <div className="grid gap-3 lg:grid-cols-2">
-            {commonWorkflows.map((workflow) => (
-              <div key={workflow.workflowId} className="rounded-xl border border-slate-200 bg-slate-50/60 p-4 transition hover:border-slate-300 hover:bg-white">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="accent" className="uppercase tracking-[0.14em]">
-                    {normalizeDisplayText(workflow.specialty)}
-                  </Badge>
-                  <Badge variant="muted">{workflow.workflowId}</Badge>
-                </div>
-                <div className="mt-3 text-lg font-semibold tracking-tight text-slate-950 text-wrap-pretty">{workflow.title}</div>
-                <div className="mt-1 text-sm leading-6 text-slate-600">{workflow.diagnosis}</div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <Button asChild variant="primary" size="sm">
-                    <Link to={`/quick-note/${workflow.workflowId}`}>
-                      Start Quick Note <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="ghost" size="sm">
-                    <Link to={`/encounter/${workflow.workflowId}`}>
-                      Detailed note
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </SectionCard>
-
-        <div className="space-y-6">
-          <SectionCard
-            title="Recent on this device"
-            description="Saved locally in this browser only."
-          >
-            {recentWorkflows.length ? (
-              <div className="space-y-3">
-                {recentWorkflows.map((workflow) => (
-                  <div key={workflow.workflowId} className="rounded-xl border border-slate-200 bg-slate-50/60 p-4">
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-800">
-                        <Clock3 className="h-3.5 w-3.5" />
-                        {normalizeDisplayText(workflow.specialty)}
-                      </div>
-                      <div className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-500">
-                        {workflow.workflowId}
-                      </div>
-                    </div>
-                    <div className="mt-2 text-lg font-semibold tracking-tight text-slate-950 text-wrap-pretty">{workflow.title}</div>
-                    <div className="mt-1 text-sm leading-6 text-slate-600">{workflow.diagnosis}</div>
-                    <div className="mt-4 flex flex-wrap gap-2.5">
-                      <Button asChild variant="primary" size="sm">
-                        <Link to={`/quick-note/${workflow.workflowId}`}>
-                          Start Quick Note <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-slate-600">
-                No recent workflows yet. Open a workflow once and it will appear here on this device.
-              </p>
-            )}
-          </SectionCard>
-
-          <SectionCard title="Need more structure later?" description="Quick Note is the default. Detailed note is there when the case needs more structure.">
-            <div className="space-y-3 text-sm leading-6 text-slate-700">
-              <p>Start with Quick Note for most testing. Use Detailed note only when you need fuller structure.</p>
-              <div className="flex flex-wrap gap-2">
-                <Button asChild variant="secondary" size="sm">
-                  <Link to="/encounter">Open Detailed note</Link>
-                </Button>
-                <Button asChild variant="ghost" size="sm">
-                  <Link to="/report">Open Reports</Link>
-                </Button>
-              </div>
-            </div>
-          </SectionCard>
-        </div>
-      </div>
+      <TestingStatusStrip totalWorkflowCount={totalWorkflowCount} excludedWorkflowCount={excludedWorkflowCount} />
     </div>
   )
 }
