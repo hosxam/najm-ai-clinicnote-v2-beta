@@ -7,6 +7,8 @@ import '@fontsource/inter/700.css'
 import './index.css'
 import App from './App.tsx'
 
+console.info('Najm ClinicNote build 19218a6-concept-b')
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

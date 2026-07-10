@@ -83,10 +83,13 @@ export function AppLayout() {
         </main>
 
         <footer
-          className="mt-8 border-t border-slate-200 px-2 py-5 text-xs leading-5 text-slate-500 sm:text-sm"
+          className="mt-8 flex flex-col gap-2 border-t border-slate-200 px-2 py-5 text-xs leading-5 text-slate-500 sm:flex-row sm:items-start sm:justify-between sm:text-sm"
           data-no-print="true"
         >
-          Najm ClinicNote is a documentation drafting tool, not clinical decision support. Outputs require clinician review. No workflows are clinically approved or clinically tested.
+          <span className="max-w-5xl">
+            Najm ClinicNote is a documentation drafting tool, not clinical decision support. Outputs require clinician review. No workflows are clinically approved or clinically tested.
+          </span>
+          <span className="shrink-0 font-mono text-[11px] text-slate-400">Beta build: 19218a6-concept-b</span>
         </footer>
       </div>
     </div>
