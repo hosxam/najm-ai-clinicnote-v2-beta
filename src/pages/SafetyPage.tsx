@@ -35,7 +35,7 @@ export function SafetyPage() {
         title="Safety"
         description="This V2 MVP keeps the doctor-facing language simple while preserving the source safety rules."
       >
-        <ul className="list-disc space-y-2.5 pl-5 text-sm leading-6 text-slate-300">
+        <ul className="list-disc space-y-2.5 pl-5 text-sm leading-6 text-slate-700">
           <li>Najm ClinicNote is a documentation drafting tool, not clinical decision support.</li>
           <li>Do not add diagnosis suggestions, treatment suggestions, or medication doses automatically.</li>
           <li>Do not infer missing findings.</li>
@@ -48,23 +48,23 @@ export function SafetyPage() {
         title="Excluded workflows"
         description="The existing limited-testing exclusions remain hidden from search and blocked by direct access."
       >
-        {loading ? <p className="text-sm text-slate-400">Loading exclusion list...</p> : null}
+        {loading ? <p className="text-sm text-slate-600">Loading exclusion list...</p> : null}
         {error ? (
           <StateNotice title="Exclusion list unavailable" description={error} tone="error" />
         ) : null}
         {!loading && !error ? (
           <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
             {excluded.map((workflow) => (
-              <div key={workflow.workflowId} className="rounded-[1.45rem] border border-slate-800/90 bg-slate-900/72 p-4 shadow-[0_16px_30px_-28px_rgba(15,23,42,0.9)]">
+              <div key={workflow.workflowId} className="rounded-xl border border-slate-200 bg-slate-50/70 p-4">
                 <div className="flex items-center gap-2.5">
                   <Badge variant="warning">
                     <EyeOff className="mr-1 h-3.5 w-3.5" />
                     Excluded
                   </Badge>
-                  <div className="text-sm font-semibold tracking-tight text-white">{workflow.workflowId}</div>
+                  <div className="text-sm font-semibold tracking-tight text-slate-950">{workflow.workflowId}</div>
                 </div>
-                <div className="mt-1.5 text-sm leading-6 text-slate-400 text-wrap-pretty">{workflow.title}</div>
-                <div className="mt-3 text-xs leading-5 text-amber-200">{workflow.exclusion?.exclusion_reason}</div>
+                <div className="mt-1.5 text-sm leading-6 text-slate-600 text-wrap-pretty">{workflow.title}</div>
+                <div className="mt-3 text-xs leading-5 text-amber-800">{workflow.exclusion?.exclusion_reason}</div>
               </div>
             ))}
           </div>
@@ -75,8 +75,8 @@ export function SafetyPage() {
         title="About this V2 MVP"
         description="This repo is a clean redesign using the existing 1,500-workflow dataset from the staged legacy import branch."
       >
-        <div className="flex items-start gap-3 rounded-[1.3rem] border border-slate-800/90 bg-slate-900/55 px-4 py-4 text-sm leading-6 text-slate-300">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" />
+        <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm leading-6 text-slate-700">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-cyan-800" />
           <p>
             V2 focuses on a simple doctor-first flow: choose a workflow, enter clinician-confirmed findings, and generate a clinician-review draft. It intentionally avoids exposing older technical modes or schema terms to normal users.
           </p>

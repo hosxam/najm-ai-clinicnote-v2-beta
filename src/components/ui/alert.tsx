@@ -4,9 +4,9 @@ import { cn } from '../../lib/cn'
 type AlertTone = 'default' | 'warning' | 'error'
 
 const toneClasses: Record<AlertTone, string> = {
-  default: 'border-slate-700/80 bg-slate-900/72 text-slate-200',
-  warning: 'border-amber-400/25 bg-amber-300/10 text-amber-100',
-  error: 'border-rose-400/30 bg-rose-300/10 text-rose-100',
+  default: 'border-slate-200 bg-slate-50 text-slate-700',
+  warning: 'border-amber-200 bg-amber-50 text-amber-800',
+  error: 'border-rose-200 bg-rose-50 text-rose-800',
 }
 
 export function Alert({

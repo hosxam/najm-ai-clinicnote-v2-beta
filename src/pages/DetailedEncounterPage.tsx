@@ -304,8 +304,8 @@ export function DetailedEncounterPage() {
             ) : undefined
           }
         >
-          <div className="flex items-start gap-3 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-sm leading-6 text-slate-300">
-            <HeartPulse className="mt-0.5 h-4 w-4 shrink-0 text-sky-300" />
+          <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700">
+            <HeartPulse className="mt-0.5 h-4 w-4 shrink-0 text-cyan-800" />
             Detailed note stays manual by design. It is intentionally more structured and should feel secondary to Quick Note.
           </div>
         </SectionCard>
@@ -332,13 +332,13 @@ export function DetailedEncounterPage() {
 
       {blockedMessage ? (
         <SectionCard title="Workflow blocked">
-          <p className="text-sm text-amber-200">{blockedMessage}</p>
+          <p className="text-sm text-amber-800">{blockedMessage}</p>
         </SectionCard>
       ) : null}
 
       {!workflowId && !loading ? (
         <SectionCard title="Choose a workflow first">
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-slate-700">
             Search above to start a structured encounter, or begin from the home page with a common workflow.
           </p>
         </SectionCard>
@@ -346,7 +346,7 @@ export function DetailedEncounterPage() {
 
       {error && workflowId ? (
         <SectionCard title="Workflow load problem">
-          <p className="text-sm text-rose-200">{error}</p>
+          <p className="text-sm text-rose-800">{error}</p>
         </SectionCard>
       ) : null}
 
@@ -361,7 +361,7 @@ export function DetailedEncounterPage() {
                 <div className="workflow-meta">{details.summary.workflowId}</div>
                 <div className="workflow-meta">Manual detailed drafting</div>
               </div>
-              <div className="mb-5 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
+              <div className="mb-5 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
                 Suggested defaults are intentionally not auto-applied here. Use this page when you need more structure and more manual control.
               </div>
               <div className="grid gap-4 md:grid-cols-2">
@@ -527,7 +527,7 @@ export function DetailedEncounterPage() {
         </div>
       ) : workflowId && loading ? (
         <SectionCard title="Loading workflow">
-          <p className="text-sm text-slate-400">Preparing the structured encounter editor...</p>
+          <p className="text-sm text-slate-600">Preparing the structured encounter editor...</p>
         </SectionCard>
       ) : null}
     </div>

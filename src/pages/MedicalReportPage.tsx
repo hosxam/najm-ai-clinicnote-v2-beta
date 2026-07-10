@@ -153,19 +153,19 @@ export function MedicalReportPage() {
     <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.05fr_0.95fr]">
       <div className="space-y-6">
         <section className="grid gap-6">
-          <div className="rounded-[1.6rem] border border-slate-800/90 bg-slate-950/84 p-6 shadow-[0_24px_60px_-36px_rgba(2,6,23,0.95)]">
+          <div className="rounded-[1.35rem] border border-slate-200 bg-white p-6 shadow-[0_20px_55px_-40px_rgba(15,23,42,0.3)]">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] border border-sky-400/20 bg-sky-300/10 text-sky-100">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-800 text-white">
                 <FileText className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-xl font-semibold tracking-tight text-white">Reports</div>
-                <p className="mt-1 text-sm leading-6 text-slate-400">
+                <div className="text-xl font-semibold tracking-tight text-slate-950">Reports</div>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
                   Draft a simple clinician-review report or letter using workflow context and clinician-entered details.
                 </p>
               </div>
             </div>
-            <div className="mt-4 rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-sm leading-6 text-slate-400">
+            <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
               Saved only in this browser. Use clinician-stated information only.
             </div>
           </div>
@@ -191,13 +191,13 @@ export function MedicalReportPage() {
 
         {blockedMessage ? (
           <SectionCard title="Workflow blocked">
-            <p className="text-sm text-amber-200">{blockedMessage}</p>
+            <p className="text-sm text-amber-800">{blockedMessage}</p>
           </SectionCard>
         ) : null}
 
         {!workflowId ? (
           <SectionCard title="Choose a workflow first">
-            <p className="text-sm text-slate-300">
+            <p className="text-sm text-slate-700">
               Select a workflow to draft a simple clinician-review report or letter.
             </p>
           </SectionCard>
@@ -205,7 +205,7 @@ export function MedicalReportPage() {
 
         {error && workflowId ? (
           <SectionCard title="Workflow load problem">
-            <p className="text-sm text-rose-200">{error}</p>
+            <p className="text-sm text-rose-800">{error}</p>
           </SectionCard>
         ) : null}
 

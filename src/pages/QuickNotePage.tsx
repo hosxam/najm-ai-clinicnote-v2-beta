@@ -1,4 +1,4 @@
-import { ArrowRight, RefreshCcw, Wand2 } from 'lucide-react'
+import { ArrowRight, FilePlus2, RefreshCcw, Search, Wand2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChipSelector } from '../components/ChipSelector'
@@ -67,6 +67,7 @@ export function QuickNotePage() {
   const [selectedNegatives, setSelectedNegatives] = useState<string[]>([])
   const [selectedExam, setSelectedExam] = useState<string[]>([])
   const [selectedPlanItems, setSelectedPlanItems] = useState<string[]>([])
+  const [showWorkflowChooser, setShowWorkflowChooser] = useState(!workflowId)
   const outputRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -96,6 +97,7 @@ export function QuickNotePage() {
       setBlockedMessage(null)
       setError(null)
       setLoading(false)
+      setShowWorkflowChooser(true)
       return
     }
 
@@ -114,6 +116,7 @@ export function QuickNotePage() {
 
       setBlockedMessage(null)
       setDetails(loadedDetails)
+      setShowWorkflowChooser(false)
       const defaults = getQuickNoteDefaults(loadedDetails)
       const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
       const restoredDraft =
@@ -261,29 +264,45 @@ export function QuickNotePage() {
 
   return (
     <div className="space-y-6">
-      <section className="grid gap-6 xl:grid-cols-[0.88fr_1.12fr]">
-        <SectionCard
-          title="Document"
-          description="Quick Note is the fastest way to create a clinician-review draft."
-          actions={
-            details ? (
-              <Button asChild variant="ghost" size="sm">
-                <Link to={`/encounter/${details.summary.workflowId}`}>
-                  Need more structure? Detailed note
-                </Link>
-              </Button>
-            ) : undefined
-          }
-        >
-          <div className="space-y-3 text-sm leading-6 text-slate-300">
-            <p>Search what you are documenting, review the suggested defaults, and generate a quick draft.</p>
-            <div className="rounded-[1.2rem] border border-slate-800/80 bg-slate-900/55 px-4 py-3 text-slate-400">
-              Drafts are saved only in this browser. Do not enter patient identifiers.
+      <section className="rounded-[1.35rem] border border-slate-200 bg-white p-5 shadow-[0_20px_55px_-40px_rgba(15,23,42,0.3)] sm:p-6">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex min-w-0 items-start gap-3.5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-800 text-white">
+              <FilePlus2 className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-800">Document</div>
+              <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-950">Quick Note</h1>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                Review workflow defaults, add clinician-confirmed details, then review the draft.
+              </p>
             </div>
           </div>
-        </SectionCard>
+          <div className="flex flex-wrap gap-2">
+            {details ? (
+              <Button variant="secondary" size="sm" onClick={() => setShowWorkflowChooser((current) => !current)}>
+                <Search className="h-4 w-4" />
+                {showWorkflowChooser ? 'Hide workflow search' : 'Change workflow'}
+              </Button>
+            ) : null}
+            {details ? (
+              <Button asChild variant="ghost" size="sm">
+                <Link to={`/encounter/${details.summary.workflowId}`}>Open detailed note</Link>
+              </Button>
+            ) : null}
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-slate-200 pt-4 text-xs text-slate-500">
+          <span>Saved locally in this browser</span>
+          <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+          <span>Do not enter patient identifiers</span>
+          <span className="hidden h-1 w-1 rounded-full bg-slate-300 sm:block" />
+          <span>Clinician review required</span>
+        </div>
+      </section>
 
-        <SectionCard title="Choose workflow" description="Search and select a workflow to start drafting.">
+      {showWorkflowChooser || !details ? (
+        <SectionCard title="Choose workflow" description="Search by symptom, diagnosis, or workflow name.">
           <WorkflowChooser
             search={search}
             specialty={specialty}
@@ -297,20 +316,23 @@ export function QuickNotePage() {
             emptyDescription="Try a broader term or switch to all specialties."
             onSearchChange={setSearch}
             onSpecialtyChange={setSpecialty}
-            onSelect={(id) => navigate(`/quick-note/${id}`)}
+            onSelect={(id) => {
+              setShowWorkflowChooser(false)
+              navigate(`/quick-note/${id}`)
+            }}
           />
         </SectionCard>
-      </section>
+      ) : null}
 
       {blockedMessage ? (
         <SectionCard title="Workflow blocked">
-          <p className="text-sm text-amber-200">{blockedMessage}</p>
+          <p className="text-sm text-amber-800">{blockedMessage}</p>
         </SectionCard>
       ) : null}
 
       {!workflowId && !loading ? (
         <SectionCard title="Choose a workflow first">
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-slate-700">
             Start from the search above, or return to the home page to pick a common workflow for limited testing.
           </p>
         </SectionCard>
@@ -318,14 +340,14 @@ export function QuickNotePage() {
 
       {error && workflowId ? (
         <SectionCard title="Workflow load problem">
-          <p className="text-sm text-rose-200">{error}</p>
+          <p className="text-sm text-rose-800">{error}</p>
         </SectionCard>
       ) : null}
 
       {details ? (
         <div className="grid gap-6 lg:gap-7 xl:grid-cols-[1.08fr_0.92fr]">
           <div className="space-y-6">
-            <div className="rounded-[1.5rem] border border-slate-800/90 bg-slate-950/82 p-5 shadow-[0_20px_60px_-38px_rgba(2,6,23,0.96)] sm:p-6">
+            <div className="rounded-[1.35rem] border border-slate-200 bg-white p-5 shadow-[0_20px_55px_-40px_rgba(15,23,42,0.3)] sm:p-6">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="space-y-4">
                   <div className="flex flex-wrap items-center gap-2">
@@ -334,10 +356,10 @@ export function QuickNotePage() {
                     <div className="workflow-meta">{normalizeDisplayText(details.summary.specialty)}</div>
                   </div>
                   <div>
-                    <h2 className="text-2xl font-semibold tracking-tight text-white text-wrap-pretty">
+                    <h2 className="text-2xl font-semibold tracking-tight text-slate-950 text-wrap-pretty">
                       {details.summary.title}
                     </h2>
-                    <p className="mt-2 text-sm leading-6 text-slate-400">{details.summary.diagnosis}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{details.summary.diagnosis}</p>
                   </div>
                 </div>
                 <Button asChild variant="ghost" size="sm">
@@ -345,7 +367,7 @@ export function QuickNotePage() {
                 </Button>
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-2 text-sm text-slate-400">
+              <div className="mt-5 flex flex-wrap gap-2 text-sm text-slate-600">
                 <span className="workflow-meta">{totalSuggestedSelections} suggested defaults</span>
                 <span className="workflow-meta">{chipsByGroup.exam_findings?.length ?? 0} exam options stay manual</span>
                 <span className="workflow-meta">Clinician review draft</span>
@@ -373,8 +395,8 @@ export function QuickNotePage() {
                 </div>
               }
             >
-              <div className="mb-5 rounded-[1.2rem] border border-sky-400/16 bg-sky-300/8 px-4 py-3 text-sm leading-6 text-sky-50/90">
-                Suggested defaults loaded from workflow preset. Exam findings stay manual by design.
+              <div className="mb-5 rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm leading-6 text-cyan-900">
+                Suggested defaults are loaded from this workflow preset. Exam findings remain manual.
               </div>
               <div className="space-y-6">
                 <ChipSelector
@@ -410,8 +432,8 @@ export function QuickNotePage() {
                 />
               </div>
               {totalSuggestedSelections ? (
-                <div className="mt-5 rounded-[1.2rem] border border-slate-800/90 bg-slate-900/55 px-4 py-3 text-xs leading-5 text-slate-400">
-                  <div className="flex items-center gap-2 font-medium text-slate-200">
+                <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-5 text-slate-600">
+                  <div className="flex items-center gap-2 font-medium text-slate-800">
                     {totalSuggestedSelections} suggested chip defaults available for this workflow
                   </div>
                   <div className="mt-1.5">
@@ -490,7 +512,7 @@ export function QuickNotePage() {
         </div>
       ) : workflowId && loading ? (
         <SectionCard title="Loading workflow">
-          <p className="text-sm text-slate-400">Preparing the workflow-specific quick note view...</p>
+          <p className="text-sm text-slate-600">Preparing the workflow-specific quick note view...</p>
         </SectionCard>
       ) : null}
     </div>

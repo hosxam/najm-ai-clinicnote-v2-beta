@@ -1,4 +1,4 @@
-import { ArrowRight, Search, Sparkles } from 'lucide-react'
+import { ArrowRight, FileSearch2, Search } from 'lucide-react'
 import { normalizeDisplayText } from '../lib/labelUtils'
 import { Badge } from './ui/badge'
 import { Input } from './ui/input'
@@ -39,7 +39,7 @@ export function WorkflowChooser({
     <div className="space-y-5">
       <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_240px]">
         <label className="relative block">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+          <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <Input
             value={search}
             onChange={(event) => onSearchChange(event.target.value)}
@@ -62,23 +62,23 @@ export function WorkflowChooser({
       </div>
 
       {loading ? (
-        <div className="rounded-[1.35rem] border border-slate-800/80 bg-slate-950/55 px-4 py-3 text-sm text-slate-400">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
           Loading workflow catalog…
         </div>
       ) : null}
       {error ? (
-        <div className="rounded-2xl border border-rose-400/40 bg-rose-300/10 p-4 text-sm text-rose-100">
+        <div className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
           {error}
         </div>
       ) : null}
 
       {!loading && !error && workflows.length === 0 ? (
-        <div className="rounded-[1.6rem] border border-slate-800/90 bg-slate-950/50 px-5 py-8 text-center">
-          <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-800/90 bg-slate-900/90">
-            <Sparkles className="h-5 w-5 text-slate-400" />
+        <div className="rounded-[1.2rem] border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center">
+          <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white">
+            <FileSearch2 className="h-5 w-5 text-slate-500" />
           </div>
-          <div className="text-base font-semibold tracking-tight text-white">{emptyTitle}</div>
-          <div className="mt-2 text-sm leading-6 text-slate-400">{emptyDescription}</div>
+          <div className="text-base font-semibold tracking-tight text-slate-950">{emptyTitle}</div>
+          <div className="mt-2 text-sm leading-6 text-slate-600">{emptyDescription}</div>
         </div>
       ) : null}
 
@@ -88,10 +88,10 @@ export function WorkflowChooser({
             key={workflow.workflowId}
             type="button"
             onClick={() => onSelect(workflow.workflowId)}
-            className={`group rounded-[1.35rem] border p-4 text-left transition duration-200 ${
+            className={`group rounded-[1.05rem] border p-4 text-left transition duration-200 ${
               selectedWorkflowId === workflow.workflowId
-                ? 'border-sky-400/60 bg-slate-950 shadow-[0_18px_40px_-28px_rgba(56,189,248,0.35)]'
-                : 'border-slate-800/95 bg-slate-950/58 hover:border-slate-600 hover:bg-slate-900/96 hover:shadow-[0_18px_34px_-28px_rgba(15,23,42,1)]'
+                ? 'border-cyan-400 bg-cyan-50/70 shadow-[0_14px_32px_-24px_rgba(14,116,144,0.42)]'
+                : 'border-slate-200 bg-white hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_18px_38px_-30px_rgba(15,23,42,0.32)]'
             }`}
           >
             <div className="flex min-w-0 flex-wrap items-center gap-2.5">
@@ -100,13 +100,13 @@ export function WorkflowChooser({
                 </Badge>
                 <Badge variant="muted">{workflow.workflowId}</Badge>
             </div>
-            <div className="mt-3 text-base font-semibold leading-6 tracking-tight text-white text-wrap-pretty">{workflow.title}</div>
-            <div className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-400">{workflow.diagnosis}</div>
-            <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-800/80 pt-3">
+            <div className="mt-3 text-base font-semibold leading-6 tracking-tight text-slate-950 text-wrap-pretty">{workflow.title}</div>
+            <div className="mt-1.5 line-clamp-2 text-sm leading-6 text-slate-600">{workflow.diagnosis}</div>
+            <div className="mt-4 flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
               <div className="text-xs text-slate-500">
                 {selectedWorkflowId === workflow.workflowId ? 'Selected for drafting' : 'Open for drafting'}
               </div>
-              <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-300 transition group-hover:text-sky-100">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-800 transition group-hover:text-cyan-950">
                 Open <ArrowRight className="h-3.5 w-3.5" />
               </div>
             </div>

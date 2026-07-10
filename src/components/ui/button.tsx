@@ -12,13 +12,13 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'border border-sky-400/35 bg-sky-300/14 text-sky-50 shadow-[0_18px_38px_-26px_rgba(56,189,248,0.7)] hover:border-sky-300/55 hover:bg-sky-300/20',
+    'border border-cyan-800 bg-cyan-800 text-white shadow-[0_14px_30px_-20px_rgba(14,116,144,0.7)] hover:border-cyan-900 hover:bg-cyan-900',
   secondary:
-    'border border-slate-700/90 bg-slate-900/88 text-slate-100 hover:border-slate-500 hover:bg-slate-900/98',
+    'border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50',
   ghost:
-    'border border-transparent bg-transparent text-slate-300 hover:border-slate-700/80 hover:bg-slate-900/70 hover:text-white',
+    'border border-transparent bg-transparent text-slate-600 hover:border-slate-200 hover:bg-slate-100 hover:text-slate-950',
   warning:
-    'border border-amber-400/30 bg-amber-300/10 text-amber-100 hover:border-amber-300/50 hover:bg-amber-300/14',
+    'border border-amber-200 bg-amber-50 text-amber-800 hover:border-amber-300 hover:bg-amber-100',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -30,7 +30,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'secondary', size = 'md', type = 'button', asChild = false, children, ...props }, ref) => {
     const classes = cn(
-      'inline-flex items-center justify-center gap-2 rounded-2xl font-medium transition duration-200 disabled:cursor-not-allowed disabled:opacity-60',
+      'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition duration-200 disabled:cursor-not-allowed disabled:opacity-60',
       variantClasses[variant],
       sizeClasses[size],
       className,
