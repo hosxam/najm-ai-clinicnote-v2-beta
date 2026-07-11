@@ -6,14 +6,24 @@
     "gp-cough",
     "gp-sore-throat",
     "gp-headache",
-    "gp-dizziness"
+    "gp-dizziness",
+    "gp-fatigue",
+    "gp-abdominal-pain",
+    "gp-nausea",
+    "gp-diarrhea",
+    "gp-constipation",
+    "gp-chest-pain",
+    "gp-palpitations",
+    "gp-shortness-of-breath",
+    "gp-hypertension-followup",
+    "gp-diabetes-followup"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "gp-fatigue",
-  "exact_interruption_reason": "Exact-source review for 1,500 workflows exceeds this bounded execution window. Work stopped after the initial UAE six-document queue to avoid replacing missing research with keyword or generic mappings.",
+  "next_workflow_id": "gp-thyroid-followup",
+  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0006–0015 so evidence hashes and lightweight audits can be verified before continuing at gp-thyroid-followup. The remaining 1,485 workflows require exact-document review and cannot be replaced with generic or keyword-derived mappings.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow gp-fatigue",
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow gp-thyroid-followup",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"

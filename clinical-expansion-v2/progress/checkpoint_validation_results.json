@@ -2,58 +2,123 @@
   "checkpoint_date": "2026-07-11",
   "status": "INTERRUPTED_RESTARTABLE",
   "technical_commands": [
-    { "command": "npm run validate:data", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run test:safety", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run lint", "status": "PASS_WITH_PREEXISTING_IMPECCABLE_WARNINGS", "exit_code": 0 },
-    { "command": "npm run build", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run validate:source-evidence", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run validate:item-provenance", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run audit:no-generic-templates", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run audit:source-recency", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run audit:clinical-item-diff", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run audit:research-claims", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run test:all-workflows", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run test:output-safety", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run test:exclusions", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run verify:source-evidence-hashes", "status": "PASS", "exit_code": 0 },
-    { "command": "npm run verify:clinical-data-reproducibility", "status": "PASS", "exit_code": 0 }
+    {
+      "command": "npm run validate:data",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:safety",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run lint",
+      "status": "PASS_WITH_PREEXISTING_IMPECCABLE_WARNINGS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run validate:source-evidence",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run validate:item-provenance",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run audit:no-generic-templates",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run audit:source-recency",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run audit:clinical-item-diff",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run audit:research-claims",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:all-workflows",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:output-safety",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run test:exclusions",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run verify:source-evidence-hashes",
+      "status": "PASS",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run verify:clinical-data-reproducibility",
+      "status": "PASS",
+      "exit_code": 0
+    }
   ],
   "clinical_blocker_commands": [
     {
       "command": "npm run audit:exact-source-coverage",
       "status": "BLOCKED",
       "exit_code": 1,
-      "reason": "All 1,500 workflows still lack complete exact-source coverage; 5 are partial and 1,495 are research_interrupted."
+      "reason": "1500 workflow(s) still lack complete exact-source coverage; 15 are partial and 1485 remain research_interrupted."
     },
     {
       "command": "npm run audit:uae-applicability",
       "status": "BLOCKED",
       "exit_code": 1,
-      "reason": "The first 5 researched workflows use exact DHA telehealth sources but have broader population or setting scope."
+      "reason": "15 researched workflows retain population, setting, or jurisdiction applicability gaps."
     },
     {
       "command": "npm run audit:unsupported-legacy-content",
       "status": "BLOCKED",
       "exit_code": 1,
-      "reason": "83,303 exact legacy-preservation items still lack exact section mapping and qualified clinician review."
+      "reason": "82716 exact legacy-preservation items still lack exact section mapping and qualified clinician review."
     }
   ],
   "counts": {
     "workflow_overlays": 1500,
     "research_records": 1500,
-    "research_completed_workflows": 5,
+    "research_completed_workflows": 15,
     "fully_complete_workflows": 0,
     "exact_workflow_source_verified": 0,
-    "partial_exact_source_verified": 5,
-    "research_interrupted": 1495,
-    "uae_official_sources": 6,
-    "exact_sections_reviewed": 22,
+    "partial_exact_source_verified": 15,
+    "research_interrupted": 1485,
+    "uae_official_sources": 15,
+    "exact_sections_reviewed": 71,
     "source_derived_items": 0,
     "legacy_exact_items": 83303,
-    "unsupported_legacy_items": 83303,
+    "unsupported_legacy_items": 82716,
     "generic_generated_items": 0,
     "active_exclusions": 12,
-    "proposed_exclusions": 0
+    "proposed_exclusions": 0,
+    "source_supported_legacy_items": 587,
+    "no_authoritative_source_found": 0,
+    "conflicting_authoritative_sources": 0,
+    "source_access_failed": 0,
+    "international_official_sources": 1
   },
   "clinical_data_mergeable": false,
   "technical_infrastructure_mergeable_after_review": true,
