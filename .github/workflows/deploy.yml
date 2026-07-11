@@ -37,6 +37,36 @@ jobs:
       - name: Validate data
         run: npm run validate:data
 
+      - name: Validate expanded schema
+        run: npm run validate:expanded-schema
+
+      - name: Audit guideline provenance
+        run: npm run audit:guideline-provenance
+
+      - name: Audit workflow risk
+        run: npm run audit:workflow-risk
+
+      - name: Audit contradictions
+        run: npm run audit:contradictions
+
+      - name: Audit medication safety
+        run: npm run audit:medication-safety
+
+      - name: Test core safety
+        run: npm run test:safety
+
+      - name: Test all workflows
+        run: npm run test:all-workflows
+
+      - name: Test output safety
+        run: npm run test:output-safety
+
+      - name: Test exclusions
+        run: npm run test:exclusions
+
+      - name: Lint
+        run: npm run lint
+
       - name: Build app
         run: npm run build
         env:

@@ -1,4 +1,21 @@
-export type ClinicalWorkflow = {
+export type WorkflowGovernanceMetadata = {
+  risk_tier?: string
+  review_priority?: string
+  source_status?: string
+  automated_qa_status?: string
+  clinical_review_status?: string
+  limited_testing_status?: string
+  public_release_status?: string
+}
+
+export type WorkflowReviewMetadata = WorkflowGovernanceMetadata & {
+  workflow_id: string
+  source_mapping_status?: string
+  source_recency_status?: string
+  primary_source_ids?: string[]
+}
+
+export type ClinicalWorkflow = WorkflowGovernanceMetadata & {
   workflow_id: string
   specialty_id: string
   chief_complaint: string
@@ -17,6 +34,26 @@ export type ClinicalWorkflow = {
     prompt: string
   }>
   min_sections?: string[]
+  review_required?: boolean
+  intended_use?: string | string[]
+  not_for?: string | string[]
+  red_flag_prompts?: string[]
+  risk_category?: string
+  safety_notes?: string[]
+  source_phase1?: {
+    batch_id?: string
+    distinct_purpose?: string
+    duplicate_check_notes?: string
+    nearest_existing_workflow_if_any?: string
+    reason_for_inclusion?: string
+  }
+  icd_metadata?: {
+    icd_code?: string | null
+    icd_label?: string | null
+    icd_source?: string | null
+    icd_system?: string | null
+    icd_verified?: boolean
+  }
 }
 
 export type DiagnosisIndexEntry = {
@@ -65,6 +102,10 @@ export type HistoryDraft = {
   editable_placeholders?: string[]
   linked_autofill_groups?: string[]
   optional_full_history_sections?: string[]
+  placeholder_policy?: string
+  scribe_clean_history_template?: string
+  source_history_draft?: string
+  review_required?: boolean
   safety_note?: string
 }
 
@@ -88,6 +129,8 @@ export type ExamDetails = {
   workflow_id: string
   workflow_display_name: string
   exam_groups: ExamGroup[]
+  named_tests?: string[]
+  review_required?: boolean
   safety_note?: string
 }
 
@@ -110,6 +153,8 @@ export type InvestigationDetails = {
   workflow_id: string
   workflow_display_name: string
   investigation_groups: InvestigationGroup[]
+  review_required?: boolean
+  source_status?: string
   safety_note?: string
 }
 
@@ -132,6 +177,8 @@ export type PlanDetails = {
   workflow_id: string
   workflow_display_name: string
   plan_option_groups: PlanGroup[]
+  review_required?: boolean
+  source_status?: string
   safety_note?: string
 }
 
@@ -141,6 +188,11 @@ export type MedicationOption = {
   note_text?: string
   option_type?: string
   warning?: string
+  clinician_confirmation_required?: boolean
+  dosing_included?: boolean
+  medication_related?: boolean
+  source_id?: string
+  source_status?: string
 }
 
 export type MedicationGroup = {
@@ -156,6 +208,8 @@ export type MedicationDetails = {
   workflow_display_name: string
   specialty?: string
   option_groups: MedicationGroup[]
+  review_required?: boolean
+  source_status?: string
   safety_note?: string
 }
 
@@ -179,6 +233,7 @@ export type SpecialtyLayoutSection = {
 export type SpecialtyLayout = {
   specialty_id: string
   display_name: string
+  icon?: string
   sections: SpecialtyLayoutSection[]
 }
 
@@ -197,11 +252,13 @@ export type WorkflowSummary = {
   aliases: string[]
   searchText: string
   exclusion?: LimitedTestingExclusion
+  reviewMetadata?: WorkflowReviewMetadata
 }
 
 export type WorkflowDetails = {
   summary: WorkflowSummary
   clinical: ClinicalWorkflow
+  reviewMetadata: WorkflowReviewMetadata | null
   chips: WorkflowChipCollection | null
   preset: SpeedPreset | null
   historyDraft: HistoryDraft | null

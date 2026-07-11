@@ -1,0 +1,2178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:najm-clinicnote:schema:expanded-workflow:1.0.0",
+  "title": "Najm ClinicNote Expanded Workflow",
+  "description": "Canonical schema for one clinician-controlled documentation workflow. Content is unconfirmed documentation scaffolding, not diagnosis, treatment, prescribing, or patient-specific advice.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "identity",
+    "scope",
+    "presenting_complaint",
+    "associated_history",
+    "background_history",
+    "womens_health",
+    "paediatrics",
+    "geriatrics",
+    "psychiatry",
+    "ideas_concerns_expectations",
+    "examination",
+    "investigations",
+    "assessment",
+    "plan",
+    "safety",
+    "guideline_provenance",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflow_id",
+        "display_name",
+        "specialty_id",
+        "specialty_display_name",
+        "presentation",
+        "clinician_diagnosis_label",
+        "aliases",
+        "related_workflow_ids",
+        "duplicate_group_id",
+        "current_exclusion_status"
+      ],
+      "properties": {
+        "workflow_id": {
+          "$ref": "#/$defs/workflowId"
+        },
+        "display_name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "specialty_id": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "specialty_display_name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "presentation": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "clinician_diagnosis_label": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "aliases": {
+          "$ref": "#/$defs/stringList"
+        },
+        "related_workflow_ids": {
+          "$ref": "#/$defs/workflowIdList"
+        },
+        "duplicate_group_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/identifier"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current_exclusion_status": {
+          "enum": [
+            "not_excluded",
+            "excluded_requires_doctor_review",
+            "excluded_remove_or_redesign_recommended",
+            "additional_exclusion_proposed"
+          ]
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "intended_setting",
+        "target_population",
+        "age_min_months",
+        "age_max_years",
+        "sex_applicability",
+        "pregnancy_applicability",
+        "postpartum_applicability",
+        "immunocompromised_applicability",
+        "inclusion_notes",
+        "exclusion_notes",
+        "workflow_limitations",
+        "special_population_notes"
+      ],
+      "properties": {
+        "intended_setting": {
+          "$ref": "#/$defs/stringList"
+        },
+        "target_population": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "age_min_months": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "age_max_years": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sex_applicability": {
+          "enum": [
+            "all",
+            "female_only",
+            "male_only",
+            "condition_specific",
+            "not_established"
+          ]
+        },
+        "pregnancy_applicability": {
+          "$ref": "#/$defs/applicabilityStatus"
+        },
+        "postpartum_applicability": {
+          "$ref": "#/$defs/applicabilityStatus"
+        },
+        "immunocompromised_applicability": {
+          "$ref": "#/$defs/applicabilityStatus"
+        },
+        "inclusion_notes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "exclusion_notes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "workflow_limitations": {
+          "$ref": "#/$defs/stringList"
+        },
+        "special_population_notes": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "presenting_complaint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chief_complaint",
+        "onset_prompts",
+        "duration_prompts",
+        "progression_prompts",
+        "severity_prompts",
+        "symptom_characterisation_prompts",
+        "location_prompts",
+        "radiation_prompts",
+        "timing_prompts",
+        "aggravating_factors",
+        "relieving_factors",
+        "previous_episode_prompts",
+        "impact_on_function_prompts"
+      ],
+      "properties": {
+        "chief_complaint": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "onset_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "duration_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "progression_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "severity_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "symptom_characterisation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "location_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "radiation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "timing_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "aggravating_factors": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "relieving_factors": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "previous_episode_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "impact_on_function_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "associated_history": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "associated_symptom_prompts",
+        "relevant_negative_prompts",
+        "red_flag_screening_prompts",
+        "risk_factor_prompts",
+        "exposure_prompts",
+        "travel_prompts",
+        "infectious_contact_prompts",
+        "trauma_prompts",
+        "procedure_prompts",
+        "occupational_prompts",
+        "sexual_health_prompts",
+        "substance_use_prompts"
+      ],
+      "properties": {
+        "associated_symptom_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "relevant_negative_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "red_flag_screening_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "risk_factor_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "exposure_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "travel_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "infectious_contact_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "trauma_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "procedure_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "occupational_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "sexual_health_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "substance_use_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "background_history": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "past_medical_history_prompts",
+        "past_surgical_history_prompts",
+        "medication_history_prompts",
+        "medication_adherence_prompts",
+        "anticoagulant_or_antiplatelet_prompts",
+        "allergy_prompts",
+        "adverse_reaction_prompts",
+        "vaccination_prompts",
+        "family_history_prompts",
+        "social_history_prompts",
+        "functional_status_prompts",
+        "frailty_prompts",
+        "baseline_cognition_prompts"
+      ],
+      "properties": {
+        "past_medical_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "past_surgical_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "medication_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "medication_adherence_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "anticoagulant_or_antiplatelet_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "allergy_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "adverse_reaction_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "vaccination_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "family_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "social_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "functional_status_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "frailty_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "baseline_cognition_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "womens_health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "last_menstrual_period_prompts",
+        "pregnancy_possibility_prompts",
+        "gestational_age_prompts",
+        "contraception_prompts",
+        "menstrual_history_prompts",
+        "obstetric_history_prompts",
+        "gynaecological_history_prompts",
+        "fertility_prompts",
+        "postpartum_prompts",
+        "breastfeeding_prompts",
+        "fetal_movement_prompts",
+        "bleeding_prompts",
+        "rhesus_status_documentation_prompt",
+        "safeguarding_and_consent_prompts"
+      ],
+      "properties": {
+        "last_menstrual_period_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "pregnancy_possibility_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "gestational_age_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "contraception_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "menstrual_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "obstetric_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "gynaecological_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "fertility_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "postpartum_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "breastfeeding_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "fetal_movement_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "bleeding_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "rhesus_status_documentation_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "safeguarding_and_consent_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "paediatrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "age_specific_presentation_prompts",
+        "birth_history_prompts",
+        "gestational_age_at_birth_prompts",
+        "neonatal_history_prompts",
+        "growth_prompts",
+        "developmental_prompts",
+        "feeding_prompts",
+        "hydration_prompts",
+        "urine_output_prompts",
+        "stool_prompts",
+        "immunisation_prompts",
+        "school_or_nursery_prompts",
+        "caregiver_concern_prompts",
+        "safeguarding_prompts",
+        "weight_documentation_prompt",
+        "paediatric_vital_sign_prompts",
+        "age_specific_red_flags"
+      ],
+      "properties": {
+        "age_specific_presentation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "birth_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "gestational_age_at_birth_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "neonatal_history_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "growth_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "developmental_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "feeding_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "hydration_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "urine_output_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "stool_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "immunisation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "school_or_nursery_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "caregiver_concern_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "safeguarding_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "weight_documentation_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "paediatric_vital_sign_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "age_specific_red_flags": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "geriatrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_function",
+        "mobility",
+        "falls",
+        "frailty",
+        "cognition",
+        "delirium",
+        "polypharmacy",
+        "medication_changes",
+        "living_arrangements",
+        "caregiver_support",
+        "advance_care_planning",
+        "capacity_prompts",
+        "goals_of_care"
+      ],
+      "properties": {
+        "baseline_function": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "mobility": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "falls": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "frailty": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "cognition": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "delirium": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "polypharmacy": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "medication_changes": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "living_arrangements": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "caregiver_support": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "advance_care_planning": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "capacity_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "goals_of_care": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "psychiatry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "presenting_symptoms",
+        "duration",
+        "functional_effect",
+        "biological_symptoms",
+        "substance_use",
+        "psychotic_symptom_prompts",
+        "manic_symptom_prompts",
+        "anxiety_symptom_prompts",
+        "mood_symptom_prompts",
+        "trauma_prompts",
+        "risk_to_self_prompt",
+        "risk_to_others_prompt",
+        "vulnerability_prompt",
+        "safeguarding_prompt",
+        "capacity_prompt",
+        "mental_state_examination_groups",
+        "collateral_history_prompt",
+        "risk_assessment_mode"
+      ],
+      "properties": {
+        "presenting_symptoms": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "duration": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "functional_effect": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "biological_symptoms": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "substance_use": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "psychotic_symptom_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "manic_symptom_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "anxiety_symptom_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "mood_symptom_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "trauma_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "risk_to_self_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "risk_to_others_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "vulnerability_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "safeguarding_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "capacity_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "mental_state_examination_groups": {
+          "$ref": "#/$defs/documentationGroupList"
+        },
+        "collateral_history_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "risk_assessment_mode": {
+          "const": "clinician_entered_only"
+        }
+      }
+    },
+    "ideas_concerns_expectations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "patient_ideas",
+        "patient_concerns",
+        "patient_expectations",
+        "understanding",
+        "shared_decision_making_documentation"
+      ],
+      "properties": {
+        "patient_ideas": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "patient_concerns": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "patient_expectations": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "understanding": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "shared_decision_making_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "examination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "general_appearance_prompts",
+        "vital_sign_prompts",
+        "hydration_prompts",
+        "pain_score_documentation_prompt",
+        "focused_examination_groups",
+        "system_specific_examination_prompts",
+        "neurovascular_prompts",
+        "laterality_prompts",
+        "functional_examination_prompts",
+        "gait_prompts",
+        "skin_examination_prompts",
+        "mental_state_examination_prompts",
+        "chaperone_prompt",
+        "consent_prompt",
+        "examination_limitations",
+        "examination_not_performed_reason_prompt"
+      ],
+      "properties": {
+        "general_appearance_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "vital_sign_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "hydration_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "pain_score_documentation_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "focused_examination_groups": {
+          "$ref": "#/$defs/documentationGroupList"
+        },
+        "system_specific_examination_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "neurovascular_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "laterality_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "functional_examination_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "gait_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "skin_examination_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "mental_state_examination_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "chaperone_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "consent_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "examination_limitations": {
+          "$ref": "#/$defs/stringList"
+        },
+        "examination_not_performed_reason_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "investigations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bedside_test_documentation_options",
+        "laboratory_test_documentation_options",
+        "imaging_documentation_options",
+        "functional_test_documentation_options",
+        "microbiology_documentation_options",
+        "pathology_documentation_options",
+        "specialist_test_documentation_options",
+        "test_status_terms",
+        "result_review_prompts",
+        "comparison_with_previous_prompt",
+        "pending_result_prompt",
+        "investigation_limitation_notes"
+      ],
+      "properties": {
+        "bedside_test_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "laboratory_test_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "imaging_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "functional_test_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "microbiology_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "pathology_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "specialist_test_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "test_status_terms": {
+          "$ref": "#/$defs/testStatusTerms"
+        },
+        "result_review_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "comparison_with_previous_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "pending_result_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "investigation_limitation_notes": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clinician_impression_field",
+        "clinician_differential_field",
+        "working_diagnosis_field",
+        "diagnostic_uncertainty_field",
+        "severity_documentation_field",
+        "classification_documentation_field",
+        "clinical_score_documentation_field",
+        "score_components_if_documented",
+        "risk_documentation_field"
+      ],
+      "properties": {
+        "clinician_impression_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "clinician_differential_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "working_diagnosis_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "diagnostic_uncertainty_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "severity_documentation_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "classification_documentation_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "clinical_score_documentation_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "score_components_if_documented": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "risk_documentation_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clinician_plan_field",
+        "treatment_documentation_categories",
+        "medication_name_documentation_field",
+        "medication_change_documentation_field",
+        "medication_reconciliation_prompt",
+        "non_pharmacological_documentation_options",
+        "procedure_documentation_options",
+        "investigation_plan_documentation",
+        "referral_reason_field",
+        "referral_destination_field",
+        "escalation_documentation",
+        "admission_documentation",
+        "discharge_documentation",
+        "follow_up_interval_documentation",
+        "monitoring_documentation",
+        "return_precaution_documentation",
+        "shared_decision_making_documentation",
+        "patient_preference_documentation",
+        "clinician_entered_patient_instructions",
+        "work_or_school_note_documentation",
+        "fitness_or_restriction_documentation"
+      ],
+      "properties": {
+        "clinician_plan_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "treatment_documentation_categories": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "medication_name_documentation_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "medication_change_documentation_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "medication_reconciliation_prompt": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "non_pharmacological_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "procedure_documentation_options": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "investigation_plan_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "referral_reason_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "referral_destination_field": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "escalation_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "admission_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "discharge_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "follow_up_interval_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "monitoring_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "return_precaution_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "shared_decision_making_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "patient_preference_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "clinician_entered_patient_instructions": {
+          "$ref": "#/$defs/optionalClinicianEntryFieldList"
+        },
+        "work_or_school_note_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "fitness_or_restriction_documentation": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "red_flag_prompts",
+        "time_critical_feature_prompts",
+        "urgent_assessment_documentation_prompts",
+        "escalation_documentation_prompts",
+        "contraindication_prompts",
+        "medication_safety_prompts",
+        "allergy_safety_prompts",
+        "pregnancy_safety_prompts",
+        "safeguarding_prompts",
+        "capacity_prompts",
+        "consent_prompts",
+        "chaperone_prompts",
+        "safety_net_documentation_prompts",
+        "high_risk_notes",
+        "limitations"
+      ],
+      "properties": {
+        "red_flag_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "time_critical_feature_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "urgent_assessment_documentation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "escalation_documentation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "contraindication_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "medication_safety_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "allergy_safety_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "pregnancy_safety_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "safeguarding_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "capacity_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "consent_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "chaperone_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "safety_net_documentation_prompts": {
+          "$ref": "#/$defs/documentationItemList"
+        },
+        "high_risk_notes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "limitations": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "guideline_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_source_ids",
+        "supporting_source_ids",
+        "jurisdiction_priority",
+        "source_mapping_status",
+        "source_recency_status",
+        "conflicting_guidance",
+        "local_adaptation_notes",
+        "relevant_guideline_sections",
+        "evidence_strength_if_explicit",
+        "evidence_certainty_if_explicit",
+        "source_search_date",
+        "next_source_review_due"
+      ],
+      "properties": {
+        "primary_source_ids": {
+          "$ref": "#/$defs/identifierList"
+        },
+        "supporting_source_ids": {
+          "$ref": "#/$defs/identifierList"
+        },
+        "jurisdiction_priority": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "uae_federal",
+              "uae_emirate",
+              "international_public_health",
+              "national_guideline_organisation",
+              "specialty_society",
+              "formal_expert_consensus"
+            ]
+          }
+        },
+        "source_mapping_status": {
+          "enum": [
+            "not_started",
+            "in_progress",
+            "mapped",
+            "mapped_with_gaps",
+            "source_gap",
+            "conflict_requires_clinician_review"
+          ]
+        },
+        "source_recency_status": {
+          "enum": [
+            "not_assessed",
+            "current_verified",
+            "uncertain",
+            "stale",
+            "superseded"
+          ]
+        },
+        "conflicting_guidance": {
+          "$ref": "#/$defs/guidanceConflictList"
+        },
+        "local_adaptation_notes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "relevant_guideline_sections": {
+          "$ref": "#/$defs/guidelineSectionList"
+        },
+        "evidence_strength_if_explicit": {
+          "$ref": "#/$defs/evidenceStatementList"
+        },
+        "evidence_certainty_if_explicit": {
+          "$ref": "#/$defs/evidenceStatementList"
+        },
+        "source_search_date": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "next_source_review_due": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "risk_tier",
+        "review_priority",
+        "expansion_status",
+        "source_status",
+        "automated_qa_status",
+        "clinical_review_status",
+        "limited_testing_status",
+        "public_release_status",
+        "unresolved_issues",
+        "change_log"
+      ],
+      "properties": {
+        "risk_tier": {
+          "enum": [
+            "tier_1",
+            "tier_2",
+            "tier_3",
+            "tier_4",
+            "tier_5"
+          ]
+        },
+        "review_priority": {
+          "enum": [
+            "standard",
+            "elevated",
+            "high",
+            "highest"
+          ]
+        },
+        "expansion_status": {
+          "enum": [
+            "not_started",
+            "expansion_started",
+            "expanded",
+            "remediation_required",
+            "remediated"
+          ]
+        },
+        "source_status": {
+          "enum": [
+            "not_started",
+            "source_search_started",
+            "source_mapped",
+            "source_mapped_with_gaps",
+            "source_gap",
+            "conflict_requires_clinician_review"
+          ]
+        },
+        "automated_qa_status": {
+          "enum": [
+            "not_run",
+            "in_progress",
+            "failed",
+            "passed_with_p2_p3",
+            "automated_qa_passed"
+          ]
+        },
+        "clinical_review_status": {
+          "const": "clinical_review_required"
+        },
+        "limited_testing_status": {
+          "enum": [
+            "not_assessed",
+            "excluded_from_limited_testing",
+            "excluded_pending_source_review",
+            "excluded_pending_clinical_review",
+            "excluded_pending_source_and_clinical_review"
+          ]
+        },
+        "public_release_status": {
+          "const": "not_for_public_release"
+        },
+        "unresolved_issues": {
+          "$ref": "#/$defs/unresolvedIssueList"
+        },
+        "change_log": {
+          "$ref": "#/$defs/changeLogList"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "const": "not_started"
+              }
+            },
+            "required": [
+              "source_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guideline_provenance": {
+            "properties": {
+              "primary_source_ids": {
+                "maxItems": 0
+              },
+              "supporting_source_ids": {
+                "maxItems": 0
+              },
+              "source_mapping_status": {
+                "const": "not_started"
+              },
+              "source_recency_status": {
+                "const": "not_assessed"
+              },
+              "conflicting_guidance": {
+                "maxItems": 0
+              },
+              "relevant_guideline_sections": {
+                "maxItems": 0
+              },
+              "evidence_strength_if_explicit": {
+                "maxItems": 0
+              },
+              "evidence_certainty_if_explicit": {
+                "maxItems": 0
+              },
+              "source_search_date": {
+                "type": "null"
+              },
+              "next_source_review_due": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "const": "source_search_started"
+              }
+            },
+            "required": [
+              "source_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guideline_provenance": {
+            "properties": {
+              "source_mapping_status": {
+                "const": "in_progress"
+              },
+              "source_recency_status": {
+                "const": "not_assessed"
+              },
+              "source_search_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "next_source_review_due": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "const": "source_gap"
+              }
+            },
+            "required": [
+              "source_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guideline_provenance": {
+            "properties": {
+              "primary_source_ids": {
+                "maxItems": 0
+              },
+              "supporting_source_ids": {
+                "maxItems": 0
+              },
+              "conflicting_guidance": {
+                "maxItems": 0
+              },
+              "relevant_guideline_sections": {
+                "maxItems": 0
+              },
+              "evidence_strength_if_explicit": {
+                "maxItems": 0
+              },
+              "evidence_certainty_if_explicit": {
+                "maxItems": 0
+              },
+              "source_mapping_status": {
+                "const": "source_gap"
+              },
+              "source_search_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "next_source_review_due": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "governance": {
+            "properties": {
+              "limited_testing_status": {
+                "enum": [
+                  "excluded_from_limited_testing",
+                  "excluded_pending_source_review",
+                  "excluded_pending_source_and_clinical_review"
+                ]
+              },
+              "unresolved_issues": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "const": "source_gap"
+                    }
+                  },
+                  "required": [
+                    "category"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "const": "source_mapped"
+              }
+            },
+            "required": [
+              "source_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guideline_provenance": {
+            "properties": {
+              "primary_source_ids": {
+                "minItems": 1
+              },
+              "jurisdiction_priority": {
+                "minItems": 1
+              },
+              "relevant_guideline_sections": {
+                "minItems": 1
+              },
+              "source_mapping_status": {
+                "const": "mapped"
+              },
+              "source_recency_status": {
+                "enum": [
+                  "current_verified",
+                  "uncertain",
+                  "stale",
+                  "superseded"
+                ]
+              },
+              "source_search_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "next_source_review_due": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "const": "source_mapped_with_gaps"
+              }
+            },
+            "required": [
+              "source_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guideline_provenance": {
+            "properties": {
+              "primary_source_ids": {
+                "minItems": 1
+              },
+              "jurisdiction_priority": {
+                "minItems": 1
+              },
+              "relevant_guideline_sections": {
+                "minItems": 1
+              },
+              "source_mapping_status": {
+                "const": "mapped_with_gaps"
+              },
+              "source_recency_status": {
+                "enum": [
+                  "current_verified",
+                  "uncertain",
+                  "stale",
+                  "superseded"
+                ]
+              },
+              "source_search_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "next_source_review_due": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "governance": {
+            "properties": {
+              "limited_testing_status": {
+                "enum": [
+                  "excluded_from_limited_testing",
+                  "excluded_pending_source_review",
+                  "excluded_pending_source_and_clinical_review"
+                ]
+              },
+              "unresolved_issues": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "const": "source_gap"
+                    }
+                  },
+                  "required": [
+                    "category"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "const": "conflict_requires_clinician_review"
+              }
+            },
+            "required": [
+              "source_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guideline_provenance": {
+            "properties": {
+              "primary_source_ids": {
+                "minItems": 1
+              },
+              "jurisdiction_priority": {
+                "minItems": 1
+              },
+              "source_mapping_status": {
+                "const": "conflict_requires_clinician_review"
+              },
+              "source_recency_status": {
+                "enum": [
+                  "current_verified",
+                  "uncertain",
+                  "stale",
+                  "superseded"
+                ]
+              },
+              "conflicting_guidance": {
+                "minItems": 1
+              },
+              "relevant_guideline_sections": {
+                "minItems": 1
+              },
+              "source_search_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "next_source_review_due": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "governance": {
+            "properties": {
+              "limited_testing_status": {
+                "enum": [
+                  "excluded_from_limited_testing",
+                  "excluded_pending_clinical_review",
+                  "excluded_pending_source_and_clinical_review"
+                ]
+              },
+              "unresolved_issues": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "const": "clinical_conflict"
+                    }
+                  },
+                  "required": [
+                    "category"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "current_exclusion_status": {
+                "enum": [
+                  "excluded_requires_doctor_review",
+                  "excluded_remove_or_redesign_recommended"
+                ]
+              }
+            },
+            "required": [
+              "current_exclusion_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "limited_testing_status": {
+                "const": "excluded_from_limited_testing"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "properties": {
+              "current_exclusion_status": {
+                "const": "additional_exclusion_proposed"
+              }
+            },
+            "required": [
+              "current_exclusion_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "limited_testing_status": {
+                "enum": [
+                  "excluded_pending_clinical_review",
+                  "excluded_pending_source_and_clinical_review"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "risk_tier": {
+                "enum": [
+                  "tier_4",
+                  "tier_5"
+                ]
+              }
+            },
+            "required": [
+              "risk_tier"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "limited_testing_status": {
+                "enum": [
+                  "excluded_from_limited_testing",
+                  "excluded_pending_source_review",
+                  "excluded_pending_clinical_review",
+                  "excluded_pending_source_and_clinical_review"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "expansion_status": {
+                "enum": [
+                  "expanded",
+                  "remediation_required",
+                  "remediated"
+                ]
+              }
+            },
+            "required": [
+              "expansion_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "source_status": {
+                "enum": [
+                  "source_mapped",
+                  "source_mapped_with_gaps",
+                  "source_gap",
+                  "conflict_requires_clinician_review"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "automated_qa_status": {
+                "const": "automated_qa_passed"
+              }
+            },
+            "required": [
+              "automated_qa_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "expansion_status": {
+                "enum": [
+                  "expanded",
+                  "remediated"
+                ]
+              },
+              "unresolved_issues": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "automated_qa_status": {
+                "const": "passed_with_p2_p3"
+              }
+            },
+            "required": [
+              "automated_qa_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "expansion_status": {
+                "enum": [
+                  "expanded",
+                  "remediation_required",
+                  "remediated"
+                ]
+              },
+              "unresolved_issues": {
+                "not": {
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "severity": {
+                        "enum": [
+                          "p0",
+                          "p1"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "severity"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "workflowId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    },
+    "identifierList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/identifier"
+      }
+    },
+    "workflowIdList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/workflowId"
+      }
+    },
+    "applicabilityStatus": {
+      "enum": [
+        "applicable",
+        "not_applicable",
+        "requires_specific_review",
+        "not_established"
+      ]
+    },
+    "documentationItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "text",
+        "source_ids",
+        "clinician_confirmation_required",
+        "default_selected"
+      ],
+      "properties": {
+        "item_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/identifierList"
+        },
+        "clinician_confirmation_required": {
+          "const": true
+        },
+        "default_selected": {
+          "const": false
+        },
+        "legacy_item_ids": {
+          "$ref": "#/$defs/identifierList"
+        },
+        "tags": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "documentationItemList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/documentationItem"
+      }
+    },
+    "documentationGroup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "group_id",
+        "label",
+        "items"
+      ],
+      "properties": {
+        "group_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/documentationItem"
+          }
+        }
+      }
+    },
+    "documentationGroupList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/documentationGroup"
+      }
+    },
+    "clinicianEntryField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field_id",
+        "label",
+        "input_type",
+        "source_ids",
+        "clinician_entry_required",
+        "auto_populate",
+        "calculation_mode"
+      ],
+      "properties": {
+        "field_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "input_type": {
+          "enum": [
+            "free_text",
+            "short_text",
+            "number",
+            "date",
+            "datetime",
+            "single_select",
+            "multi_select",
+            "boolean",
+            "score_components"
+          ]
+        },
+        "source_ids": {
+          "$ref": "#/$defs/identifierList"
+        },
+        "clinician_entry_required": {
+          "const": true
+        },
+        "auto_populate": {
+          "const": false
+        },
+        "calculation_mode": {
+          "enum": [
+            "none",
+            "clinician_entered_result_only"
+          ]
+        },
+        "helper_text": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "options": {
+          "$ref": "#/$defs/documentationItemList"
+        }
+      }
+    },
+    "optionalClinicianEntryFieldList": {
+      "type": "array",
+      "maxItems": 1,
+      "items": {
+        "$ref": "#/$defs/clinicianEntryField"
+      }
+    },
+    "testStatusTerms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "ordered",
+          "performed",
+          "reviewed",
+          "pending"
+        ]
+      }
+    },
+    "guidancePosition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "position_summary"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "position_summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "guidanceConflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conflict_id",
+        "topic",
+        "positions",
+        "resolution_status"
+      ],
+      "properties": {
+        "conflict_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "topic": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "positions": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/guidancePosition"
+          }
+        },
+        "resolution_status": {
+          "const": "unresolved_clinician_review_required"
+        }
+      }
+    },
+    "guidanceConflictList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/guidanceConflict"
+      }
+    },
+    "guidelineSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "sections",
+        "applicability_note"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "applicability_note": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "guidelineSectionList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/guidelineSection"
+      }
+    },
+    "evidenceStatement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "statement"
+      ],
+      "properties": {
+        "source_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "statement": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "evidenceStatementList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/evidenceStatement"
+      }
+    },
+    "unresolvedIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue_id",
+        "category",
+        "severity",
+        "summary",
+        "status",
+        "source_ids"
+      ],
+      "properties": {
+        "issue_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "category": {
+          "enum": [
+            "schema",
+            "source_provenance",
+            "source_recency",
+            "source_gap",
+            "clinical_conflict",
+            "content_completeness",
+            "safety",
+            "internal_consistency",
+            "contradiction",
+            "quality",
+            "application",
+            "duplicate_or_overlap",
+            "other"
+          ]
+        },
+        "severity": {
+          "enum": [
+            "ungraded",
+            "p0",
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "remediation_required",
+            "accepted_for_clinician_review",
+            "excluded_pending_review"
+          ]
+        },
+        "source_ids": {
+          "$ref": "#/$defs/identifierList"
+        }
+      }
+    },
+    "unresolvedIssueList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/unresolvedIssue"
+      }
+    },
+    "changeLogEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "changed_at",
+        "change_type",
+        "summary",
+        "actor_type",
+        "actor_id",
+        "source_ids"
+      ],
+      "properties": {
+        "changed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "change_type": {
+          "enum": [
+            "inventory_import",
+            "source_mapping",
+            "content_expansion",
+            "automated_remediation",
+            "manual_edit",
+            "schema_migration",
+            "other"
+          ]
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "actor_type": {
+          "enum": [
+            "automation",
+            "research_agent",
+            "maintainer",
+            "qualified_clinical_reviewer"
+          ]
+        },
+        "actor_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/identifier"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_ids": {
+          "$ref": "#/$defs/identifierList"
+        }
+      }
+    },
+    "changeLogList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/changeLogEntry"
+      }
+    }
+  }
+}

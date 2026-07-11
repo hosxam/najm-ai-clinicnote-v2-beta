@@ -1,1130 +1,1130 @@
 [
   {
-    "workflow_id": "gp-fever-urti",
-    "workflow_display_name": "GP Fever / URTI",
-    "specialty": "General Medicine / GP",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each selected item. No treatment recommendations.",
     "option_groups": [
       {
+        "display_order": 1,
         "group_id": "gp_fever_urti_counseling",
         "group_label": "Counseling and advice",
-        "display_order": 1,
-        "safety_note": "Select only items the clinician discussed with the patient.",
         "options": [
           {
-            "option_id": "gp_fever_urti_supportive_advice",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Supportive care advice documented if discussed.",
-            "note_text": "Supportive care advised.",
+            "medication_related": false,
+            "note_text": "Supportive care advice documented if discussed.",
+            "option_id": "gp_fever_urti_supportive_advice",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "gp_fever_urti_hydration",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Hydration advice documented if discussed.",
-            "note_text": "Hydration advised.",
+            "medication_related": false,
+            "note_text": "Hydration advice documented if discussed.",
+            "option_id": "gp_fever_urti_hydration",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "gp_fever_urti_rest",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Rest advice documented if discussed.",
-            "note_text": "Rest advised.",
+            "medication_related": false,
+            "note_text": "Rest advice documented if discussed.",
+            "option_id": "gp_fever_urti_rest",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "gp_fever_urti_salt_gargle",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Salt water gargle/rinse advice documented if discussed.",
-            "note_text": "Salt water gargle/rinse advised.",
+            "medication_related": false,
+            "note_text": "Salt water gargle/rinse advice documented if discussed.",
+            "option_id": "gp_fever_urti_salt_gargle",
             "option_type": "patient_instruction_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 2,
         "group_id": "gp_fever_urti_medication",
         "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if the clinician decided. Does not specify agent, dose, or regimen.",
         "options": [
           {
-            "option_id": "gp_fever_urti_antipyretic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antipyretic plan documented if decided by clinician.",
-            "note_text": "Antipyretic planned.",
+            "medication_related": true,
+            "note_text": "Antipyretic plan documented if decided by clinician.",
+            "option_id": "gp_fever_urti_antipyretic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication agent, dose, and frequency must be entered by the clinician if needed."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           },
           {
-            "option_id": "gp_fever_urti_antibiotic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antibiotic plan documented if decided by clinician.",
-            "note_text": "Antibiotic planned.",
+            "medication_related": true,
+            "note_text": "Antibiotic plan documented if decided by clinician.",
+            "option_id": "gp_fever_urti_antibiotic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Antibiotic agent, dose, duration, and indication must be entered by the clinician if prescribed."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 3,
         "group_id": "gp_fever_urti_safety",
         "group_label": "Safety netting",
-        "display_order": 3,
-        "safety_note": "Document only what was discussed with the patient.",
         "options": [
           {
-            "option_id": "gp_fever_urti_return_precautions",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Return precautions documented if discussed.",
-            "note_text": "Return precautions discussed.",
+            "medication_related": false,
+            "note_text": "Return precautions documented if discussed.",
+            "option_id": "gp_fever_urti_return_precautions",
             "option_type": "safety_netting",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 4,
         "group_id": "gp_fever_urti_follow_up",
         "group_label": "Follow-up",
-        "display_order": 4,
-        "safety_note": "Document follow-up only if arranged by the clinician.",
         "options": [
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 3 days if not improving documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 3 days if not improving documented if clinician decided.",
             "option_id": "gp_fever_urti_follow_up_3d",
-            "label": "Follow-up in 3 days if not improving.",
-            "note_text": "Follow-up in 3 days if not improving.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Sooner if symptoms worsen documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Sooner if symptoms worsen documented if clinician decided.",
             "option_id": "gp_fever_urti_follow_up_sooner",
-            "label": "Sooner if symptoms worsen.",
-            "note_text": "Sooner if symptoms worsen.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "General Medicine / GP",
+    "workflow_display_name": "GP Fever / URTI",
+    "workflow_id": "gp-fever-urti"
   },
   {
-    "workflow_id": "gp-cough",
-    "workflow_display_name": "GP Cough",
-    "specialty": "General Medicine / GP",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each selected item.",
     "option_groups": [
       {
+        "display_order": 1,
         "group_id": "gp_cough_counseling",
         "group_label": "Counseling and advice",
-        "display_order": 1,
-        "safety_note": "Select only items discussed with the patient.",
         "options": [
           {
-            "option_id": "gp_cough_supportive",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Supportive care advice documented if discussed.",
-            "note_text": "Supportive care advised.",
+            "medication_related": false,
+            "note_text": "Supportive care advice documented if discussed.",
+            "option_id": "gp_cough_supportive",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "gp_cough_hydration",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Hydration advice documented if discussed.",
-            "note_text": "Hydration advised.",
+            "medication_related": false,
+            "note_text": "Hydration advice documented if discussed.",
+            "option_id": "gp_cough_hydration",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 2,
         "group_id": "gp_cough_medication",
         "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if the clinician decided. Does not specify agent, dose, or regimen.",
         "options": [
           {
-            "option_id": "gp_cough_antibiotic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antibiotic plan documented if decided by clinician.",
-            "note_text": "Antibiotic planned.",
+            "medication_related": true,
+            "note_text": "Antibiotic plan documented if decided by clinician.",
+            "option_id": "gp_cough_antibiotic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Antibiotic agent, dose, duration, and indication must be entered by the clinician if prescribed."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           },
           {
-            "option_id": "gp_cough_symptomatic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Symptomatic medication plan documented if decided by clinician.",
-            "note_text": "Symptomatic medication planned.",
+            "medication_related": true,
+            "note_text": "Symptomatic medication plan documented if decided by clinician.",
+            "option_id": "gp_cough_symptomatic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication agent, dose, and frequency must be entered by the clinician if needed."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 3,
         "group_id": "gp_cough_safety",
         "group_label": "Safety netting",
-        "display_order": 3,
-        "safety_note": "Document only what was discussed.",
         "options": [
           {
-            "option_id": "gp_cough_return_precautions",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Return precautions documented if discussed.",
-            "note_text": "Return precautions discussed.",
+            "medication_related": false,
+            "note_text": "Return precautions documented if discussed.",
+            "option_id": "gp_cough_return_precautions",
             "option_type": "safety_netting",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 4,
         "group_id": "gp_cough_follow_up",
         "group_label": "Follow-up",
-        "display_order": 4,
-        "safety_note": "Document follow-up only if arranged.",
         "options": [
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 1 week if not improving documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 1 week if not improving documented if clinician decided.",
             "option_id": "gp_cough_follow_up_1w",
-            "label": "Follow-up in 1 week if not improving.",
-            "note_text": "Follow-up in 1 week if not improving.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up PRN if symptoms persist or worsen documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up PRN if symptoms persist or worsen documented if clinician decided.",
             "option_id": "gp_cough_follow_up_prn",
-            "label": "Follow-up PRN if symptoms persist or worsen.",
-            "note_text": "Follow-up PRN if symptoms persist or worsen.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "General Medicine / GP",
+    "workflow_display_name": "GP Cough",
+    "workflow_id": "gp-cough"
   },
   {
-    "workflow_id": "gp-diabetes-followup",
-    "workflow_display_name": "GP Diabetes Follow-up",
-    "specialty": "General Medicine / GP",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
     "option_groups": [
       {
-        "group_id": "gp_diabetes_counseling",
-        "group_label": "Counseling and lifestyle",
         "display_order": 1,
-        "safety_note": "Select only items discussed.",
-        "options": [
-          {
-            "option_id": "gp_diabetes_lifestyle",
-            "label": "Lifestyle advice documented if discussed.",
-            "note_text": "Lifestyle advice discussed.",
-            "option_type": "lifestyle_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "gp_diabetes_medication",
-        "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if discussed or adjusted by the clinician. No agent, dose, or regimen specified.",
-        "options": [
-          {
-            "option_id": "gp_diabetes_med_adherence",
-            "label": "Medication adherence discussed documented if discussed.",
-            "note_text": "Medication adherence discussed.",
-            "option_type": "medication_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication changes must be entered by the clinician."
-          },
-          {
-            "option_id": "gp_diabetes_med_adjustment",
-            "label": "Medication adjustment documented if decided by clinician.",
-            "note_text": "Medication adjustment planned.",
-            "option_type": "medication_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication changes must be entered by the clinician."
-          },
-          {
-            "option_id": "gp_diabetes_med_side_effects",
-            "label": "Medication side effects reviewed if discussed.",
-            "note_text": "Medication side effects reviewed.",
-            "option_type": "medication_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Clinician-entered only."
-          }
-        ]
-      },
-      {
-        "group_id": "gp_diabetes_monitoring",
-        "group_label": "Monitoring",
-        "display_order": 3,
-        "safety_note": "Document monitoring plan only if arranged.",
-        "options": [
-          {
-            "option_id": "gp_diabetes_glucose_monitoring",
-            "label": "Glucose monitoring plan documented if discussed.",
-            "note_text": "Glucose monitoring plan discussed.",
-            "option_type": "monitoring_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "gp_diabetes_referral",
-        "group_label": "Referral",
-        "display_order": 4,
-        "safety_note": "Document only if referral arranged.",
-        "options": [
-          {
-            "option_id": "gp_diabetes_referral",
-            "label": "Referral documented if arranged by clinician.",
-            "note_text": "Referral arranged.",
-            "option_type": "referral_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "gp_diabetes_follow_up",
-        "group_label": "Follow-up",
-        "display_order": 5,
-        "safety_note": "Document follow-up only if arranged.",
-        "options": [
-          {
-            "option_id": "gp_diabetes_follow_up_3m",
-            "label": "Follow-up in 3 months.",
-            "note_text": "Follow-up in 3 months.",
-            "option_type": "follow_up",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "workflow_id": "gp-hypertension-followup",
-    "workflow_display_name": "GP Hypertension Follow-up",
-    "specialty": "General Medicine / GP",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
-    "option_groups": [
-      {
-        "group_id": "gp_htn_lifestyle",
-        "group_label": "Lifestyle",
-        "display_order": 1,
-        "safety_note": "Select only items discussed.",
-        "options": [
-          {
-            "option_id": "gp_htn_lifestyle_advice",
-            "label": "Lifestyle advice documented if discussed.",
-            "note_text": "Lifestyle advice discussed.",
-            "option_type": "lifestyle_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "gp_htn_medication",
-        "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if medication was discussed or adjusted. No agent, dose, or regimen specified.",
-        "options": [
-          {
-            "option_id": "gp_htn_med_review",
-            "label": "Antihypertensive medication review documented if discussed.",
-            "note_text": "Antihypertensive medication review documented.",
-            "option_type": "medication_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication changes must be entered by the clinician."
-          },
-          {
-            "option_id": "gp_htn_med_adjustment",
-            "label": "Antihypertensive adjustment documented if decided by clinician.",
-            "note_text": "Antihypertensive adjustment planned.",
-            "option_type": "medication_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication changes must be entered by the clinician."
-          }
-        ]
-      },
-      {
-        "group_id": "gp_htn_monitoring",
-        "group_label": "Monitoring",
-        "display_order": 3,
-        "safety_note": "Document monitoring plan only if arranged.",
-        "options": [
-          {
-            "option_id": "gp_htn_bp_monitoring",
-            "label": "Blood pressure monitoring plan documented if discussed.",
-            "note_text": "Blood pressure monitoring plan discussed.",
-            "option_type": "monitoring_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "gp_htn_follow_up",
-        "group_label": "Follow-up",
-        "display_order": 4,
-        "safety_note": "Document follow-up only if arranged.",
-        "options": [
-          {
-            "option_id": "gp_htn_follow_up_3m",
-            "label": "Follow-up in 3 months.",
-            "note_text": "Follow-up in 3 months.",
-            "option_type": "follow_up",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "workflow_id": "gp-abdominal-pain",
-    "workflow_display_name": "GP Abdominal Pain",
-    "specialty": "General Medicine / GP",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
-    "option_groups": [
-      {
         "group_id": "gp_abd_counseling",
         "group_label": "Counseling and advice",
-        "display_order": 1,
-        "safety_note": "Select only items discussed.",
         "options": [
           {
-            "option_id": "gp_abd_supportive",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Supportive care advice documented if discussed.",
-            "note_text": "Supportive care advised.",
+            "medication_related": false,
+            "note_text": "Supportive care advice documented if discussed.",
+            "option_id": "gp_abd_supportive",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "gp_abd_hydration",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Hydration advice documented if discussed.",
-            "note_text": "Hydration advised.",
+            "medication_related": false,
+            "note_text": "Hydration advice documented if discussed.",
+            "option_id": "gp_abd_hydration",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "gp_abd_diet",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Dietary advice documented if discussed.",
-            "note_text": "Dietary advice discussed.",
+            "medication_related": false,
+            "note_text": "Dietary advice documented if discussed.",
+            "option_id": "gp_abd_diet",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 2,
         "group_id": "gp_abd_medication",
         "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if decided by clinician. No agent, dose, or regimen.",
         "options": [
           {
-            "option_id": "gp_abd_analgesia",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Analgesia plan documented if decided by clinician.",
-            "note_text": "Analgesia planned.",
+            "medication_related": true,
+            "note_text": "Analgesia plan documented if decided by clinician.",
+            "option_id": "gp_abd_analgesia",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication agent, dose, and frequency must be entered by the clinician."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           },
           {
-            "option_id": "gp_abd_antibiotic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antibiotic plan documented if decided by clinician.",
-            "note_text": "Antibiotic planned.",
+            "medication_related": true,
+            "note_text": "Antibiotic plan documented if decided by clinician.",
+            "option_id": "gp_abd_antibiotic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Antibiotic agent, dose, duration, and indication must be entered by the clinician."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 3,
         "group_id": "gp_abd_safety",
         "group_label": "Safety netting",
-        "display_order": 3,
-        "safety_note": "Document only what was discussed.",
         "options": [
           {
-            "option_id": "gp_abd_return_precautions",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Return precautions documented if discussed.",
-            "note_text": "Return precautions discussed.",
+            "medication_related": false,
+            "note_text": "Return precautions documented if discussed.",
+            "option_id": "gp_abd_return_precautions",
             "option_type": "safety_netting",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "General Medicine / GP",
+    "workflow_display_name": "GP Abdominal Pain",
+    "workflow_id": "gp-abdominal-pain"
   },
   {
-    "workflow_id": "msk-low-back-pain",
-    "workflow_display_name": "MSK Low Back Pain",
-    "specialty": "Orthopedics / MSK",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
     "option_groups": [
       {
-        "group_id": "msk_lbp_advice",
-        "group_label": "Activity and counseling",
         "display_order": 1,
-        "safety_note": "Select only items discussed.",
+        "group_id": "gp_htn_lifestyle",
+        "group_label": "Lifestyle",
         "options": [
           {
-            "option_id": "msk_lbp_activity",
-            "label": "Activity modification documented if discussed.",
-            "note_text": "Activity modification discussed.",
-            "option_type": "counseling",
-            "source_id": "",
-            "source_status": "unverified",
             "clinician_confirmation_required": true,
-            "medication_related": false,
             "dosing_included": false,
+            "label": "Lifestyle advice documented if discussed.",
+            "medication_related": false,
+            "note_text": "Lifestyle advice documented if discussed.",
+            "option_id": "gp_htn_lifestyle_advice",
+            "option_type": "lifestyle_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
-        "group_id": "msk_lbp_medication",
-        "group_label": "Medication-related documentation",
         "display_order": 2,
-        "safety_note": "Select only if decided by clinician. No agent, dose, or regimen.",
+        "group_id": "gp_htn_medication",
+        "group_label": "Medication-related documentation",
         "options": [
           {
-            "option_id": "msk_lbp_analgesia",
-            "label": "Analgesia plan documented if decided by clinician.",
-            "note_text": "Analgesia planned.",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Antihypertensive medication review documented if discussed.",
+            "medication_related": true,
+            "note_text": "Antihypertensive medication review documented if discussed.",
+            "option_id": "gp_htn_med_review",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication agent, dose, and frequency must be entered by the clinician."
-          }
-        ]
-      },
-      {
-        "group_id": "msk_lbp_referral",
-        "group_label": "Referral",
-        "display_order": 3,
-        "safety_note": "Document only if referral arranged.",
-        "options": [
-          {
-            "option_id": "msk_lbp_physio",
-            "label": "Physiotherapy referral documented if arranged.",
-            "note_text": "Physiotherapy referral arranged.",
-            "option_type": "referral_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "msk_lbp_safety",
-        "group_label": "Safety netting",
-        "display_order": 4,
-        "safety_note": "Document only what was discussed.",
-        "options": [
-          {
-            "option_id": "msk_lbp_red_flags",
-            "label": "Red flags explained documented if discussed.",
-            "note_text": "Red flags explained.",
-            "option_type": "safety_netting",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "msk_lbp_follow_up",
-        "group_label": "Follow-up",
-        "display_order": 5,
-        "safety_note": "Document follow-up only if arranged.",
-        "options": [
-          {
-            "option_id": "msk_lbp_follow_up_2w",
-            "label": "Follow-up in 2 weeks if not improving.",
-            "note_text": "Follow-up in 2 weeks if not improving.",
-            "option_type": "follow_up",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "workflow_id": "msk-knee-pain",
-    "workflow_display_name": "MSK Knee Pain",
-    "specialty": "Orthopedics / MSK",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
-    "option_groups": [
-      {
-        "group_id": "msk_knee_advice",
-        "group_label": "Activity and counseling",
-        "display_order": 1,
-        "safety_note": "Select only items discussed.",
-        "options": [
-          {
-            "option_id": "msk_knee_activity",
-            "label": "Activity modification documented if discussed.",
-            "note_text": "Activity modification discussed.",
-            "option_type": "counseling",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
-          }
-        ]
-      },
-      {
-        "group_id": "msk_knee_medication",
-        "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if decided by clinician. No agent, dose, or regimen.",
-        "options": [
-          {
-            "option_id": "msk_knee_analgesia",
-            "label": "Analgesia plan documented if decided by clinician.",
-            "note_text": "Analgesia planned.",
-            "option_type": "medication_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication agent, dose, and frequency must be entered by the clinician."
-          }
-        ]
-      },
-      {
-        "group_id": "msk_knee_referral",
-        "group_label": "Referral and imaging",
-        "display_order": 3,
-        "safety_note": "Document only if arranged.",
-        "options": [
-          {
-            "option_id": "msk_knee_physio",
-            "label": "Physiotherapy referral documented if arranged.",
-            "note_text": "Physiotherapy referral arranged.",
-            "option_type": "referral_documentation",
-            "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
-            "warning": ""
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           },
           {
-            "option_id": "msk_knee_imaging",
-            "label": "Imaging discussed or documented if decided by clinician.",
-            "note_text": "Imaging discussed.",
-            "option_type": "investigation_documentation",
-            "source_id": "",
-            "source_status": "unverified",
             "clinician_confirmation_required": true,
-            "medication_related": false,
             "dosing_included": false,
-            "warning": ""
+            "label": "Antihypertensive adjustment documented if decided by clinician.",
+            "medication_related": true,
+            "note_text": "Antihypertensive adjustment documented if decided by clinician.",
+            "option_id": "gp_htn_med_adjustment",
+            "option_type": "medication_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
-        "group_id": "msk_knee_follow_up",
-        "group_label": "Follow-up",
-        "display_order": 4,
-        "safety_note": "Document follow-up only if arranged.",
+        "display_order": 3,
+        "group_id": "gp_htn_monitoring",
+        "group_label": "Monitoring",
         "options": [
           {
-            "option_id": "msk_knee_follow_up_4w",
-            "label": "Follow-up in 4 weeks if not improving.",
-            "note_text": "Follow-up in 4 weeks if not improving.",
-            "option_type": "follow_up",
-            "source_id": "",
-            "source_status": "unverified",
             "clinician_confirmation_required": true,
-            "medication_related": false,
             "dosing_included": false,
+            "label": "Blood pressure monitoring plan documented if discussed.",
+            "medication_related": false,
+            "note_text": "Blood pressure monitoring plan documented if discussed.",
+            "option_id": "gp_htn_bp_monitoring",
+            "option_type": "monitoring_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 4,
+        "group_id": "gp_htn_follow_up",
+        "group_label": "Follow-up",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 3 months documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 3 months documented if clinician decided.",
+            "option_id": "gp_htn_follow_up_3m",
+            "option_type": "follow_up",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "General Medicine / GP",
+    "workflow_display_name": "GP Hypertension Follow-up",
+    "workflow_id": "gp-hypertension-followup"
   },
   {
-    "workflow_id": "peds-fever",
-    "workflow_display_name": "Pediatric Fever",
-    "specialty": "Pediatrics",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
     "option_groups": [
       {
+        "display_order": 1,
+        "group_id": "gp_diabetes_counseling",
+        "group_label": "Counseling and lifestyle",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Lifestyle advice documented if discussed.",
+            "medication_related": false,
+            "note_text": "Lifestyle advice documented if discussed.",
+            "option_id": "gp_diabetes_lifestyle",
+            "option_type": "lifestyle_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 2,
+        "group_id": "gp_diabetes_medication",
+        "group_label": "Medication-related documentation",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Medication adherence discussed documented if discussed.",
+            "medication_related": true,
+            "note_text": "Medication adherence discussed documented if discussed.",
+            "option_id": "gp_diabetes_med_adherence",
+            "option_type": "medication_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
+          },
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Medication adjustment documented if decided by clinician.",
+            "medication_related": true,
+            "note_text": "Medication adjustment documented if decided by clinician.",
+            "option_id": "gp_diabetes_med_adjustment",
+            "option_type": "medication_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
+          },
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Medication side effects reviewed if discussed.",
+            "medication_related": true,
+            "note_text": "Medication side effects reviewed if discussed.",
+            "option_id": "gp_diabetes_med_side_effects",
+            "option_type": "medication_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 3,
+        "group_id": "gp_diabetes_monitoring",
+        "group_label": "Monitoring",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Glucose monitoring plan documented if discussed.",
+            "medication_related": false,
+            "note_text": "Glucose monitoring plan documented if discussed.",
+            "option_id": "gp_diabetes_glucose_monitoring",
+            "option_type": "monitoring_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 4,
+        "group_id": "gp_diabetes_referral",
+        "group_label": "Referral",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Referral documented if arranged by clinician.",
+            "medication_related": false,
+            "note_text": "Referral documented if arranged by clinician.",
+            "option_id": "gp_diabetes_referral",
+            "option_type": "referral_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 5,
+        "group_id": "gp_diabetes_follow_up",
+        "group_label": "Follow-up",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 3 months documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 3 months documented if clinician decided.",
+            "option_id": "gp_diabetes_follow_up_3m",
+            "option_type": "follow_up",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      }
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "General Medicine / GP",
+    "workflow_display_name": "GP Diabetes Follow-up",
+    "workflow_id": "gp-diabetes-followup"
+  },
+  {
+    "option_groups": [
+      {
+        "display_order": 1,
         "group_id": "peds_fever_advice",
         "group_label": "Parent / guardian advice",
-        "display_order": 1,
-        "safety_note": "Select only items discussed with parent/guardian.",
         "options": [
           {
-            "option_id": "peds_fever_parent_advice",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Parent or guardian advice documented if discussed.",
-            "note_text": "Parent or guardian advice discussed.",
+            "medication_related": false,
+            "note_text": "Parent or guardian advice documented if discussed.",
+            "option_id": "peds_fever_parent_advice",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "peds_fever_hydration_feeding",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Hydration and feeding advice documented if discussed.",
-            "note_text": "Hydration and feeding advised.",
+            "medication_related": false,
+            "note_text": "Hydration and feeding advice documented if discussed.",
+            "option_id": "peds_fever_hydration_feeding",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 2,
         "group_id": "peds_fever_medication",
         "group_label": "Medication-related documentation",
-        "display_order": 2,
-        "safety_note": "Select only if decided by clinician. No agent, dose, or regimen. Weight-based dosing must be entered by clinician.",
         "options": [
           {
-            "option_id": "peds_fever_antipyretic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antipyretic plan documented if decided by clinician.",
-            "note_text": "Antipyretic planned.",
+            "medication_related": true,
+            "note_text": "Antipyretic plan documented if decided by clinician.",
+            "option_id": "peds_fever_antipyretic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Weight-based dosing must be entered by the clinician. Agent and dose not specified."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           },
           {
-            "option_id": "peds_fever_antibiotic",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antibiotic plan documented if decided by clinician.",
-            "note_text": "Antibiotic planned.",
+            "medication_related": true,
+            "note_text": "Antibiotic plan documented if decided by clinician.",
+            "option_id": "peds_fever_antibiotic",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Antibiotic agent, dose, duration, and indication must be entered by the clinician."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 3,
         "group_id": "peds_fever_safety",
         "group_label": "Safety netting",
-        "display_order": 3,
-        "safety_note": "Document only what was discussed with parent/guardian.",
         "options": [
           {
-            "option_id": "peds_fever_return_precautions",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Return precautions documented if discussed.",
-            "note_text": "Return precautions discussed.",
+            "medication_related": false,
+            "note_text": "Return precautions documented if discussed.",
+            "option_id": "peds_fever_return_precautions",
             "option_type": "safety_netting",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 4,
         "group_id": "peds_fever_follow_up",
         "group_label": "Follow-up",
-        "display_order": 4,
-        "safety_note": "Document follow-up only if arranged.",
         "options": [
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 2 days if not improving documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 2 days if not improving documented if clinician decided.",
             "option_id": "peds_fever_follow_up_2d",
-            "label": "Follow-up in 2 days if not improving.",
-            "note_text": "Follow-up in 2 days if not improving.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Sooner if symptoms worsen documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Sooner if symptoms worsen documented if clinician decided.",
             "option_id": "peds_fever_follow_up_sooner",
-            "label": "Sooner if symptoms worsen.",
-            "note_text": "Sooner if symptoms worsen.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "Pediatrics",
+    "workflow_display_name": "Pediatric Fever",
+    "workflow_id": "peds-fever"
   },
   {
-    "workflow_id": "peds-cough",
-    "workflow_display_name": "Pediatric Cough",
-    "specialty": "Pediatrics",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
     "option_groups": [
       {
+        "display_order": 1,
         "group_id": "peds_cough_advice",
         "group_label": "Parent / guardian advice",
-        "display_order": 1,
-        "safety_note": "Select only items discussed with parent/guardian.",
         "options": [
           {
-            "option_id": "peds_cough_parent_advice",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Parent or guardian advice documented if discussed.",
-            "note_text": "Parent or guardian advice discussed.",
+            "medication_related": false,
+            "note_text": "Parent or guardian advice documented if discussed.",
+            "option_id": "peds_cough_parent_advice",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           },
           {
-            "option_id": "peds_cough_hydration",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Hydration advice documented if discussed.",
-            "note_text": "Hydration advised.",
+            "medication_related": false,
+            "note_text": "Hydration advice documented if discussed.",
+            "option_id": "peds_cough_hydration",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 2,
         "group_id": "peds_cough_safety",
         "group_label": "Safety netting",
-        "display_order": 2,
-        "safety_note": "Document only what was discussed.",
         "options": [
           {
-            "option_id": "peds_cough_return_precautions",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Return precautions documented if discussed.",
-            "note_text": "Return precautions discussed.",
+            "medication_related": false,
+            "note_text": "Return precautions documented if discussed.",
+            "option_id": "peds_cough_return_precautions",
             "option_type": "safety_netting",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 3,
         "group_id": "peds_cough_follow_up",
         "group_label": "Follow-up",
-        "display_order": 3,
-        "safety_note": "Document follow-up only if arranged.",
         "options": [
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 1 week if not improving documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 1 week if not improving documented if clinician decided.",
             "option_id": "peds_cough_follow_up_1w",
-            "label": "Follow-up in 1 week if not improving.",
-            "note_text": "Follow-up in 1 week if not improving.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "Pediatrics",
+    "workflow_display_name": "Pediatric Cough",
+    "workflow_id": "peds-cough"
   },
   {
-    "workflow_id": "obgyn-antenatal-followup",
-    "workflow_display_name": "OB/GYN Antenatal Follow-up",
-    "specialty": "OB/GYN",
-    "source_status": "unverified",
-    "review_required": true,
-    "safety_note": "Documentation options only. Clinician confirms each item.",
     "option_groups": [
       {
+        "display_order": 1,
         "group_id": "obgyn_antenatal_counseling",
         "group_label": "Counseling",
-        "display_order": 1,
-        "safety_note": "Select only items discussed with the patient.",
         "options": [
           {
-            "option_id": "obgyn_antenatal_counseling",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Antenatal counseling documented if discussed.",
-            "note_text": "Antenatal counseling discussed.",
+            "medication_related": false,
+            "note_text": "Antenatal counseling documented if discussed.",
+            "option_id": "obgyn_antenatal_counseling",
             "option_type": "counseling",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 2,
         "group_id": "obgyn_antenatal_medication",
         "group_label": "Medication and supplements",
-        "display_order": 2,
-        "safety_note": "Select only if decided by clinician. No agent, dose, or regimen.",
         "options": [
           {
-            "option_id": "obgyn_antenatal_med_supplement",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Medication or supplement plan documented if decided by clinician.",
-            "note_text": "Medication or supplement planned.",
+            "medication_related": true,
+            "note_text": "Medication or supplement plan documented if decided by clinician.",
+            "option_id": "obgyn_antenatal_med_supplement",
             "option_type": "medication_documentation",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": true,
-            "dosing_included": false,
-            "warning": "Medication and supplement details must be entered by the clinician."
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 3,
         "group_id": "obgyn_antenatal_safety",
         "group_label": "Safety netting",
-        "display_order": 3,
-        "safety_note": "Document only what was discussed.",
         "options": [
           {
-            "option_id": "obgyn_antenatal_warning",
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
             "label": "Warning symptoms documented if discussed.",
-            "note_text": "Warning symptoms discussed.",
+            "medication_related": false,
+            "note_text": "Warning symptoms documented if discussed.",
+            "option_id": "obgyn_antenatal_warning",
             "option_type": "safety_netting",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       },
       {
+        "display_order": 4,
         "group_id": "obgyn_antenatal_follow_up",
         "group_label": "Follow-up",
-        "display_order": 4,
-        "safety_note": "Document follow-up only if arranged.",
         "options": [
           {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 4 weeks documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 4 weeks documented if clinician decided.",
             "option_id": "obgyn_antenatal_follow_up_4w",
-            "label": "Follow-up in 4 weeks.",
-            "note_text": "Follow-up in 4 weeks.",
             "option_type": "follow_up",
             "source_id": "",
-            "source_status": "unverified",
-            "clinician_confirmation_required": true,
-            "medication_related": false,
-            "dosing_included": false,
+            "source_status": "internal_legacy_draft",
             "warning": ""
           }
-        ]
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
       }
-    ]
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "OB/GYN",
+    "workflow_display_name": "OB/GYN Antenatal Follow-up",
+    "workflow_id": "obgyn-antenatal-followup"
+  },
+  {
+    "option_groups": [
+      {
+        "display_order": 1,
+        "group_id": "msk_lbp_advice",
+        "group_label": "Activity and counseling",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Activity modification documented if discussed.",
+            "medication_related": false,
+            "note_text": "Activity modification documented if discussed.",
+            "option_id": "msk_lbp_activity",
+            "option_type": "counseling",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 2,
+        "group_id": "msk_lbp_medication",
+        "group_label": "Medication-related documentation",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Analgesia plan documented if decided by clinician.",
+            "medication_related": true,
+            "note_text": "Analgesia plan documented if decided by clinician.",
+            "option_id": "msk_lbp_analgesia",
+            "option_type": "medication_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 3,
+        "group_id": "msk_lbp_referral",
+        "group_label": "Referral",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Physiotherapy referral documented if arranged.",
+            "medication_related": false,
+            "note_text": "Physiotherapy referral documented if arranged.",
+            "option_id": "msk_lbp_physio",
+            "option_type": "referral_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 4,
+        "group_id": "msk_lbp_safety",
+        "group_label": "Safety netting",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Red flags explained documented if discussed.",
+            "medication_related": false,
+            "note_text": "Red flags explained documented if discussed.",
+            "option_id": "msk_lbp_red_flags",
+            "option_type": "safety_netting",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 5,
+        "group_id": "msk_lbp_follow_up",
+        "group_label": "Follow-up",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 2 weeks if not improving documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 2 weeks if not improving documented if clinician decided.",
+            "option_id": "msk_lbp_follow_up_2w",
+            "option_type": "follow_up",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      }
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "Orthopedics / MSK",
+    "workflow_display_name": "MSK Low Back Pain",
+    "workflow_id": "msk-low-back-pain"
+  },
+  {
+    "option_groups": [
+      {
+        "display_order": 1,
+        "group_id": "msk_knee_advice",
+        "group_label": "Activity and counseling",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Activity modification documented if discussed.",
+            "medication_related": false,
+            "note_text": "Activity modification documented if discussed.",
+            "option_id": "msk_knee_activity",
+            "option_type": "counseling",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 2,
+        "group_id": "msk_knee_medication",
+        "group_label": "Medication-related documentation",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Analgesia plan documented if decided by clinician.",
+            "medication_related": true,
+            "note_text": "Analgesia plan documented if decided by clinician.",
+            "option_id": "msk_knee_analgesia",
+            "option_type": "medication_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": "Medicine name and regimen must be entered independently by the clinician; this option supplies no dose, frequency, or duration."
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 3,
+        "group_id": "msk_knee_referral",
+        "group_label": "Referral and imaging",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Physiotherapy referral documented if arranged.",
+            "medication_related": false,
+            "note_text": "Physiotherapy referral documented if arranged.",
+            "option_id": "msk_knee_physio",
+            "option_type": "referral_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          },
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Imaging discussed or documented if decided by clinician.",
+            "medication_related": false,
+            "note_text": "Imaging discussed or documented if decided by clinician.",
+            "option_id": "msk_knee_imaging",
+            "option_type": "investigation_documentation",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      },
+      {
+        "display_order": 4,
+        "group_id": "msk_knee_follow_up",
+        "group_label": "Follow-up",
+        "options": [
+          {
+            "clinician_confirmation_required": true,
+            "dosing_included": false,
+            "label": "Follow-up in 4 weeks if not improving documented if clinician decided.",
+            "medication_related": false,
+            "note_text": "Follow-up in 4 weeks if not improving documented if clinician decided.",
+            "option_id": "msk_knee_follow_up_4w",
+            "option_type": "follow_up",
+            "source_id": "",
+            "source_status": "internal_legacy_draft",
+            "warning": ""
+          }
+        ],
+        "safety_note": "Select only content explicitly documented by the clinician."
+      }
+    ],
+    "review_required": true,
+    "safety_note": "Medication documentation only. The clinician must enter any medicine and regimen independently.",
+    "source_status": "internal_legacy_draft",
+    "specialty": "Orthopedics / MSK",
+    "workflow_display_name": "MSK Knee Pain",
+    "workflow_id": "msk-knee-pain"
   }
 ]

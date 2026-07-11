@@ -29,7 +29,8 @@ type DetailedEncounterInput = {
 
 type NoteSections = {
   subjective: string
-  objective: string
+  examination: string
+  investigations: string
   assessment: string
   plan: string
 }
@@ -44,16 +45,63 @@ function bulletJoin(values: string[]) {
   return values.map((value) => value.trim()).filter(Boolean).join('; ')
 }
 
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function cleanLeadingLabels(value: string, labels: string[]) {
+  const normalizedLabels = labels
+    .map((label) => label.replace(/:\s*$/, '').trim())
+    .filter(Boolean)
+    .sort((left, right) => right.length - left.length)
+
+  if (!normalizedLabels.length) return value.trim()
+
+  const labelPattern = normalizedLabels.map(escapeRegExp).join('|')
+  return value
+    .trim()
+    .replace(new RegExp(`^(?:(?:${labelPattern})\\s*:\\s*)+`, 'i'), '')
+    .trim()
+}
+
+function labeledLine(label: string, value: string, aliases: string[] = []) {
+  const normalizedLabel = label.replace(/:\s*$/, '').trim()
+  const content = cleanLeadingLabels(value, [normalizedLabel, ...aliases])
+  if (!content) return ''
+  return normalizedLabel ? `${normalizedLabel}: ${content}` : content
+}
+
+function labeledListLine(label: string, values: string[], aliases: string[] = []) {
+  const content = bulletJoin(values.map((value) => cleanLeadingLabels(value, [label, ...aliases])))
+  return content ? labeledLine(label, content, aliases) : ''
+}
+
+function buildObjectiveText(sections: NoteSections) {
+  return lineJoin([
+    sections.examination ? labeledLine('Examination', sections.examination, ['Relevant examination']) : '',
+    sections.investigations
+      ? labeledLine('Investigations reviewed', sections.investigations, ['Investigations'])
+      : '',
+  ])
+}
+
 function hasMeaningfulSections(sections: NoteSections) {
-  return Boolean(sections.subjective || sections.objective || sections.assessment || sections.plan)
+  return Boolean(
+    sections.subjective
+      || sections.examination
+      || sections.investigations
+      || sections.assessment
+      || sections.plan,
+  )
 }
 
 function buildSoapDraft(sections: NoteSections) {
   if (!hasMeaningfulSections(sections)) return ''
 
+  const objective = buildObjectiveText(sections)
   const parts = ['SOAP NOTE']
   if (sections.subjective) parts.push(`SUBJECTIVE\n${sections.subjective}`)
-  if (sections.objective) parts.push(`OBJECTIVE\n${sections.objective}`)
+  if (objective) parts.push(`OBJECTIVE\n${objective}`)
   if (sections.assessment) parts.push(`ASSESSMENT\n${sections.assessment}`)
   if (sections.plan) parts.push(`PLAN\n${sections.plan}`)
   parts.push(draftReviewFooter)
@@ -63,12 +111,13 @@ function buildSoapDraft(sections: NoteSections) {
 function buildEmrDraft(workflow: WorkflowDetails, sections: NoteSections) {
   if (!hasMeaningfulSections(sections)) return ''
 
+  const objective = buildObjectiveText(sections)
   const parts = [
     'SHORT EMR NOTE',
     `Workflow: ${workflow.summary.title}\nSpecialty: ${normalizeDisplayText(workflow.summary.specialty)}`,
   ]
-  if (sections.subjective) parts.push(`History: ${sections.subjective}`)
-  if (sections.objective) parts.push(`Examination: ${sections.objective}`)
+  if (sections.subjective) parts.push(`HISTORY\n${sections.subjective}`)
+  if (objective) parts.push(objective)
   if (sections.assessment) parts.push(`Impression: ${sections.assessment}`)
   if (sections.plan) parts.push(`Plan: ${sections.plan}`)
   parts.push(draftReviewFooter)
@@ -77,18 +126,23 @@ function buildEmrDraft(workflow: WorkflowDetails, sections: NoteSections) {
 
 function getQuickNoteSections(input: QuickNoteInput): NoteSections {
   const subjective = lineJoin([
-    input.duration ? `Duration: ${input.duration}` : '',
-    input.selectedSymptoms.length ? `Symptoms: ${bulletJoin(input.selectedSymptoms)}` : '',
-    input.selectedNegatives.length ? `Important negatives: ${bulletJoin(input.selectedNegatives)}` : '',
-    input.additionalHistory,
+    labeledLine('Duration', input.duration),
+    labeledListLine('Symptoms', input.selectedSymptoms),
+    labeledListLine('Important negatives', input.selectedNegatives),
+    cleanLeadingLabels(input.additionalHistory, ['History', 'Relevant history']),
   ])
 
-  const objective = input.selectedExam.length ? `Examination: ${bulletJoin(input.selectedExam)}` : ''
+  const examination = bulletJoin(
+    input.selectedExam.map((value) => cleanLeadingLabels(value, ['Examination', 'Relevant examination'])),
+  )
+  const investigations = ''
+  const assessment = cleanLeadingLabels(input.assessment, ['Assessment', 'Impression', 'Clinician impression'])
+  const plan = bulletJoin(
+    [input.plan, ...input.selectedPlanItems]
+      .map((value) => cleanLeadingLabels(value, ['Plan', 'Clinician plan', 'Current clinician plan'])),
+  )
 
-  const assessment = input.assessment.trim()
-  const plan = bulletJoin([input.plan, ...input.selectedPlanItems])
-
-  return { subjective, objective, assessment, plan }
+  return { subjective, examination, investigations, assessment, plan }
 }
 
 export function buildQuickOutputs(input: QuickNoteInput) {
@@ -107,38 +161,49 @@ export function buildQuickSoapDraft(input: QuickNoteInput) {
 export function buildDetailedOutputs(input: DetailedEncounterInput) {
   const historyLines = Object.entries(input.historyValues)
     .filter(([, value]) => value.trim())
-    .map(([key, value]) => `${cleanPlaceholderLabel(key)}: ${value.trim()}`)
+    .map(([key, value]) => labeledLine(cleanPlaceholderLabel(key), value))
 
   const subjective = lineJoin([
     ...historyLines,
-    input.selectedSymptoms.length ? `Symptoms: ${bulletJoin(input.selectedSymptoms)}` : '',
-    input.selectedNegatives.length ? `Important negatives: ${bulletJoin(input.selectedNegatives)}` : '',
+    labeledListLine('Symptoms', input.selectedSymptoms),
+    labeledListLine('Important negatives', input.selectedNegatives),
   ])
 
-  const objective = lineJoin([
-    input.selectedExamPrompts.length ? `Examination: ${bulletJoin(input.selectedExamPrompts)}` : '',
-    input.selectedInvestigations.length ? `Investigations reviewed: ${bulletJoin(input.selectedInvestigations)}` : '',
-  ])
+  const examination = bulletJoin(
+    input.selectedExamPrompts
+      .map((value) => cleanLeadingLabels(value, ['Examination', 'Relevant examination'])),
+  )
+  const investigations = bulletJoin(
+    input.selectedInvestigations
+      .map((value) => cleanLeadingLabels(value, ['Investigations reviewed', 'Investigations'])),
+  )
+  const assessment = cleanLeadingLabels(input.assessment, ['Assessment', 'Impression', 'Clinician impression'])
+  const plan = bulletJoin(
+    [input.plan, ...input.selectedPlanItems]
+      .map((value) => cleanLeadingLabels(value, ['Plan', 'Clinician plan', 'Current clinician plan'])),
+  )
 
-  const assessment = input.assessment.trim()
-  const plan = bulletJoin([input.plan, ...input.selectedPlanItems])
-
-  const sections = { subjective, objective, assessment, plan }
+  const sections = { subjective, examination, investigations, assessment, plan }
   const soap = buildSoapDraft(sections)
   const emr = buildEmrDraft(input.workflow, sections)
 
-  const referralParts = input.referralReason.trim()
-    ? ['REFERRAL LETTER', `Reason for referral: ${input.referralReason.trim()}`]
+  const referralReason = cleanLeadingLabels(input.referralReason, ['Reason for referral', 'Referral reason'])
+  const referralParts = referralReason
+    ? ['REFERRAL LETTER', `Reason for referral: ${referralReason}`]
     : []
-  if (referralParts.length && subjective) referralParts.push(`Relevant history: ${subjective}`)
-  if (referralParts.length && objective) referralParts.push(`Relevant examination: ${objective}`)
+  if (referralParts.length && subjective) referralParts.push(`RELEVANT HISTORY\n${subjective}`)
+  if (referralParts.length && examination) referralParts.push(`Relevant examination: ${examination}`)
+  if (referralParts.length && investigations) {
+    referralParts.push(`Investigations reviewed: ${investigations}`)
+  }
   if (referralParts.length && assessment) referralParts.push(`Clinician impression: ${assessment}`)
   if (referralParts.length && plan) referralParts.push(`Current clinician plan: ${plan}`)
   if (referralParts.length) referralParts.push(draftReviewFooter)
   const referral = referralParts.join('\n\n')
 
-  const patientInstructions = input.patientInstructions.trim()
-    ? `PATIENT INSTRUCTIONS\n\n${input.patientInstructions.trim()}\n\n${draftReviewFooter}`
+  const instructionText = cleanLeadingLabels(input.patientInstructions, ['Patient instructions', 'Instructions'])
+  const patientInstructions = instructionText
+    ? `PATIENT INSTRUCTIONS\n\n${instructionText}\n\n${draftReviewFooter}`
     : ''
 
   return {

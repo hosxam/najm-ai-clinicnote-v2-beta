@@ -1,0 +1,59 @@
+{
+  "audit_date": "2026-07-11",
+  "audit_stage": "first_pass",
+  "clinical_approval_claimed": false,
+  "clinical_review_status": "clinical_review_required",
+  "display_name": "Anorectal pain documentation",
+  "findings": [
+    {
+      "category": "application",
+      "code": "PRECONFIRMED_PRECHECKED_INVESTIGATIONS",
+      "finding_id": "surg-anorectal-pain-documentation-preconfirmed-prechecked-investigations",
+      "path": "application_projection.speed_preset.prechecked_investigations",
+      "remediable": true,
+      "severity": "P0",
+      "status": "open",
+      "summary": "prechecked_investigations contains content that can enter the draft before individual clinician confirmation."
+    },
+    {
+      "category": "application",
+      "code": "PRECONFIRMED_PRECHECKED_PLAN_PHRASES",
+      "finding_id": "surg-anorectal-pain-documentation-preconfirmed-prechecked-plan-phrases",
+      "path": "application_projection.speed_preset.prechecked_plan_phrases",
+      "remediable": true,
+      "severity": "P0",
+      "status": "open",
+      "summary": "prechecked_plan_phrases contains content that can enter the draft before individual clinician confirmation."
+    },
+    {
+      "category": "application",
+      "code": "PRECONFIRMED_PRECHECKED_SYMPTOMS",
+      "finding_id": "surg-anorectal-pain-documentation-preconfirmed-prechecked-symptoms",
+      "path": "application_projection.speed_preset.prechecked_symptoms",
+      "remediable": true,
+      "severity": "P0",
+      "status": "open",
+      "summary": "prechecked_symptoms contains content that can enter the draft before individual clinician confirmation."
+    },
+    {
+      "category": "quality",
+      "code": "GENERIC_PROMPT_DENSITY",
+      "finding_id": "surg-anorectal-pain-documentation-generic-prompt-density",
+      "path": "canonical",
+      "remediable": false,
+      "severity": "P2",
+      "status": "open",
+      "summary": "42 prompts use generic “relevant to … if assessed” wording; condition-specific clinical review is required."
+    }
+  ],
+  "risk_tier": "tier_4",
+  "severity_counts": {
+    "P0": 3,
+    "P2": 1
+  },
+  "source_gap": true,
+  "source_status": "source_gap",
+  "specialty": "General Surgery",
+  "verdict": "failed",
+  "workflow_id": "surg-anorectal-pain-documentation"
+}

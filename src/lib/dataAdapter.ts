@@ -11,6 +11,7 @@ import type {
   SpeedPreset,
   WorkflowChipCollection,
   WorkflowDetails,
+  WorkflowReviewMetadata,
   WorkflowSummary,
 } from '../types/clinicnote'
 import { dedupeStrings } from './labelUtils'
@@ -18,6 +19,7 @@ import { publicPath } from './publicPath'
 import { COMMON_WORKFLOW_IDS } from './commonWorkflows'
 
 const jsonCache = new Map<string, Promise<unknown>>()
+const optionalJsonCache = new Map<string, Promise<unknown | null>>()
 
 function loadJson<T>(relativePath: string): Promise<T> {
   if (!jsonCache.has(relativePath)) {
@@ -30,6 +32,21 @@ function loadJson<T>(relativePath: string): Promise<T> {
     jsonCache.set(relativePath, request)
   }
   return jsonCache.get(relativePath) as Promise<T>
+}
+
+function loadOptionalJson<T>(relativePath: string): Promise<T | null> {
+  if (!optionalJsonCache.has(relativePath)) {
+    const request = fetch(publicPath(relativePath)).then(async (response) => {
+      if (response.status === 404) return null
+      if (!response.ok) {
+        throw new Error(`Failed to load ${relativePath}: ${response.status}`)
+      }
+      if (!response.headers.get('content-type')?.includes('json')) return null
+      return response.json() as Promise<T>
+    })
+    optionalJsonCache.set(relativePath, request)
+  }
+  return optionalJsonCache.get(relativePath) as Promise<T | null>
 }
 
 function valuesArray<T>(input: unknown): T[] {
@@ -47,21 +64,26 @@ type CoreCache = {
   summaries: WorkflowSummary[]
   specialties: string[]
   workflowById: Map<string, ClinicalWorkflow>
+  reviewMetadataById: Map<string, WorkflowReviewMetadata>
 }
 
 let coreCachePromise: Promise<CoreCache> | null = null
 
 async function buildCoreCache(): Promise<CoreCache> {
-  const [workflowPayload, diagnosisPayload, exclusionPayload] = await Promise.all([
+  const [workflowPayload, diagnosisPayload, exclusionPayload, reviewMetadataPayload] = await Promise.all([
     loadJson<unknown>('data/clinical_workflows.json'),
     loadJson<{ entries?: DiagnosisIndexEntry[] }>('data/diagnosis_index.json'),
     loadJson<{ exclusions?: LimitedTestingExclusion[] }>('config/limited_testing_exclusions.json'),
+    loadOptionalJson<unknown>('data/workflow_review_metadata.json'),
   ])
 
   const workflows = valuesArray<ClinicalWorkflow>(workflowPayload)
   const diagnosisEntries = diagnosisPayload.entries ?? []
   const exclusions = exclusionPayload.exclusions ?? []
   const workflowById = new Map(workflows.map((workflow) => [workflow.workflow_id, workflow]))
+  const reviewMetadataById = new Map(
+    valuesArray<WorkflowReviewMetadata>(reviewMetadataPayload).map((metadata) => [metadata.workflow_id, metadata]),
+  )
   const exclusionMap = new Map(exclusions.map((item) => [item.workflow_id, item]))
   const aliasMap = new Map<string, string[]>()
 
@@ -98,12 +120,13 @@ async function buildCoreCache(): Promise<CoreCache> {
       aliases,
       searchText: searchParts.toLowerCase(),
       exclusion: exclusionMap.get(workflow.workflow_id),
+      reviewMetadata: reviewMetadataById.get(workflow.workflow_id),
     }
   })
 
   const specialties = Array.from(new Set(summaries.map((summary) => summary.specialty))).sort()
 
-  return { workflows, diagnosisEntries, exclusions, summaries, specialties, workflowById }
+  return { workflows, diagnosisEntries, exclusions, summaries, specialties, workflowById, reviewMetadataById }
 }
 
 function getCoreCache() {
@@ -200,6 +223,7 @@ export const clinicnoteDataAdapter = {
           return {
             summary,
             clinical,
+            reviewMetadata: core.reviewMetadataById.get(workflowId) ?? null,
             chips: findByWorkflowId<WorkflowChipCollection>(chipsPayload, workflowId),
             preset: findByWorkflowId<SpeedPreset>(presetsPayload, workflowId),
             historyDraft: findByWorkflowId<HistoryDraft>(historyPayload, workflowId),
@@ -207,7 +231,9 @@ export const clinicnoteDataAdapter = {
             investigationDetails: findByWorkflowId<InvestigationDetails>(investigationPayload, workflowId),
             planDetails: findByWorkflowId<PlanDetails>(planPayload, workflowId),
             medicationDetails: findByWorkflowId<MedicationDetails>(medicationPayload, workflowId),
-            specialtyLayout: findBySpecialtyId<SpecialtyLayout>(layoutPayload, clinical.specialty_id),
+            specialtyLayout:
+              findBySpecialtyId<SpecialtyLayout>(layoutPayload, clinical.history_layout_id)
+              ?? findBySpecialtyId<SpecialtyLayout>(layoutPayload, clinical.specialty_id),
           } satisfies WorkflowDetails
         })(),
       )
