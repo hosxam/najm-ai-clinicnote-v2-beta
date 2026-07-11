@@ -186,9 +186,29 @@ function researchClaimsCheck() {
   const ledgerById = new Map(ledger.map((row) => [row.workflow_id, row]))
   for (const record of research) {
     const claimsResearch = record.research_completed_at !== null
-    if (claimsResearch) {
+    const exactSourceStatus = ['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record.source_status)
+    if (claimsResearch && exactSourceStatus) {
       assert(record.exact_documents_opened.length > 0, `${record.workflow_id}: completed research has no exact document.`, errors)
       assert(record.exact_sections_reviewed.length > 0, `${record.workflow_id}: completed research has no exact section.`, errors)
+    }
+    if (claimsResearch && record.source_status === 'no_authoritative_source_found') {
+      assert(record.search_queries_used.length > 0, `${record.workflow_id}: no-source result has no recorded search queries.`, errors)
+      assert(record.candidate_sources_rejected.length > 0, `${record.workflow_id}: no-source result has no rejected candidates.`, errors)
+      assert(record.rejection_reasons.length > 0, `${record.workflow_id}: no-source result has no rejection reasons.`, errors)
+      assert(record.exact_documents_opened.length === 0, `${record.workflow_id}: no-source result claims an exact document.`, errors)
+      assert(record.exact_sections_reviewed.length === 0, `${record.workflow_id}: no-source result claims an exact section.`, errors)
+      assert(record.evidence_items.length === 0, `${record.workflow_id}: no-source result contains evidence items.`, errors)
+      assert(record.unresolved_source_gaps.length > 0, `${record.workflow_id}: no-source result has no unresolved source gap.`, errors)
+    }
+    if (claimsResearch && record.source_status === 'conflicting_authoritative_sources') {
+      assert(record.exact_documents_opened.length > 1, `${record.workflow_id}: conflicting-source result must record at least two exact documents.`, errors)
+      assert(record.exact_sections_reviewed.length > 1, `${record.workflow_id}: conflicting-source result must record the reviewed sections.`, errors)
+      assert(record.unresolved_source_gaps.length > 0, `${record.workflow_id}: conflicting-source result has no unresolved conflict.`, errors)
+    }
+    if (claimsResearch && record.source_status === 'source_access_failed') {
+      assert(record.search_queries_used.length > 0, `${record.workflow_id}: source-access failure has no recorded search queries.`, errors)
+      assert(record.rejection_reasons.length > 0, `${record.workflow_id}: source-access failure has no recorded access reason.`, errors)
+      assert(record.unresolved_source_gaps.length > 0, `${record.workflow_id}: source-access failure has no unresolved source gap.`, errors)
     }
     assert(!['source_family_only', 'registry_screened', 'keyword_mapped'].includes(record.source_status), `${record.workflow_id}: prohibited research status.`, errors)
     const ledgerRow = ledgerById.get(record.workflow_id)
