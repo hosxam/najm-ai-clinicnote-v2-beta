@@ -26,14 +26,24 @@
     "peds-rash",
     "peds-poor-feeding",
     "peds-ear-pain",
-    "peds-abdominal-pain"
+    "peds-abdominal-pain",
+    "peds-routine-followup",
+    "peds-vaccination",
+    "peds-growth-concern",
+    "peds-development-concern",
+    "peds-school-note",
+    "obgyn-antenatal-followup",
+    "obgyn-pelvic-pain",
+    "obgyn-irregular-bleeding",
+    "obgyn-vaginal-discharge",
+    "obgyn-contraception"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "peds-routine-followup",
-  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0016–0025 so item-level evidence hashes and lightweight audits can be verified before continuing at peds-routine-followup. The remaining workflows require exact-document review and cannot be replaced with generic or keyword-derived mappings.",
+  "next_workflow_id": "obgyn-dysmenorrhea",
+  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0026–0035 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is obgyn-dysmenorrhea.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow peds-routine-followup",
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow obgyn-dysmenorrhea",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"

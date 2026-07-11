@@ -3,27 +3,579 @@
   "workflow_id": "obgyn-antenatal-followup",
   "presentation": "Antenatal follow-up",
   "specialty": "OB/GYN",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:doh.gov.ae antenatal care standard routine pregnancy follow-up Abu Dhabi",
+    "site:dha.gov.ae antenatal care guideline Dubai",
+    "site:ehs.gov.ae antenatal care UAE",
+    "site:nice.org.uk antenatal care NG201 recommendations"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "dec4360014359c2ddc657c2edcf79bcee7e04e17b5bd44640b1612c739f2aea1"
+  "official_pages_opened": [
+    "https://www.doh.gov.ae/-/media/53DDEF165163450481481DE46FCA653C.ashx",
+    "https://www.nice.org.uk/guidance/ng201/chapter/Recommendations"
+  ],
+  "exact_documents_opened": [
+    "doh-antenatal-care-standard-v1-2024"
+  ],
+  "exact_sections_reviewed": [
+    "doh-antenatal-v1-scope-routine-care",
+    "doh-antenatal-v1-routine-schedule",
+    "doh-antenatal-v1-high-risk-criteria"
+  ],
+  "candidate_sources_rejected": [
+    "DHA Standards for Obstetric and Neonatal Services",
+    "EHS primary-care pregnancy service announcement",
+    "NICE NG201 as primary source"
+  ],
+  "rejection_reasons": [
+    "The DHA document is primarily a facility-service standard and was not as exact for visit content as the DoH antenatal standard.",
+    "The EHS page is a service announcement rather than a detailed clinical standard.",
+    "NICE NG201 was reviewed but the current UAE DoH standard was selected as the primary exact source."
+  ],
+  "selected_primary_sources": [
+    "doh-antenatal-care-standard-v1-2024"
+  ],
+  "selected_supporting_sources": [],
+  "population_applicability": "Direct for routine antenatal care, but high-risk and complication-specific management is outside the mapped baseline scope.",
+  "setting_applicability": "Partial: source applies to DoH-licensed Abu Dhabi antenatal services; the baseline is setting-agnostic.",
+  "UAE_applicability": "Verified for DoH-licensed antenatal providers in Abu Dhabi, United Arab Emirates; broader UAE application is not asserted.",
+  "recency_verification": "Official V1 standard published July 2024, effective June 2024, opened on 2026-07-11, and due for revision July 2027.",
+  "superseded_check": "No newer official DoH antenatal-care standard was identified on 2026-07-11.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "obgyn-antenatal-followup--doh-antenatal-v1-scope-routine-care",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "Directly supports routine antenatal identity, gestational context, history, risk reassessment, counselling, patient concerns, care-plan, record, follow-up, and clinician referral documentation.",
+      "paraphrased_evidence_summary": "Defines routine antenatal documentation, risk review at every visit, history and record review, patient concerns, shared decisions, counselling, care plans, and high-risk referral boundaries.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "obgyn-antenatal-followup--doh-antenatal-v1-routine-schedule",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "Directly supports mapped weight, blood pressure, urine dipstick, fetal movement, fetal heart, fundal height, laboratory, ultrasound, OGTT, counselling, and gestation-linked follow-up fields.",
+      "paraphrased_evidence_summary": "Specifies gestation-linked weight, blood pressure, urine dipstick, fetal heart, fundal height, fetal movement, laboratory, ultrasound, glucose-screening, counselling, and follow-up documentation.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "obgyn-antenatal-followup--doh-antenatal-v1-high-risk-criteria",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-high-risk-criteria",
+      "direct_relationship": "Supports escalation only as clinician-assessed high-risk referral documentation.",
+      "paraphrased_evidence_summary": "Defines conditions that require additional obstetric review and preserves escalation as a clinician decision rather than an automatic workflow output.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "The baseline includes symptom and red-flag fields not all stated in the reviewed routine sections.",
+    "High-risk and complication-specific management remains outside this mapping.",
+    "Medication or supplement decisions and fixed clinical interpretations remain unsupported.",
+    "Qualified clinician review has not been completed."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "cb7d6a5ba04409272cb56b8bf4d9af75539ace7d2d864a465525073a913e70ef",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "obgyn-antenatal-followup--workflow-presentation--chief-complaint",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--legacy-diagnosis-label--diagnosis",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-1",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-2",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-3",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-4",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-5",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-6",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-7",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-8",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-9",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-10",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-11",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-12",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-13",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-14",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-15",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--matching-alias--alias-16",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s1",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s2",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-plan-phrases--obgyn-antenatal-followup-p45",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-plan-phrases--obgyn-antenatal-followup-p47",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-plan-phrases--obgyn-antenatal-followup-p49",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--plan-documentation-option--1-1-obgyn-antenatal-counseling",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--plan-documentation-option--4-1-obgyn-antenatal-referral",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--plan-documentation-option--5-1-obgyn-antenatal-follow-up",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--medication-documentation-option--1-1-obgyn-antenatal-counseling",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-scope-routine-care",
+      "direct_relationship": "The exact DoH standard supports these routine antenatal and pregnancy-follow-up terms and clinician-documented care fields."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s3",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r16",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e23",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e24",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e25",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e26",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r33",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r37",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-investigations--obgyn-antenatal-followup-i39",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-investigations--obgyn-antenatal-followup-i40",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-investigations--obgyn-antenatal-followup-i41",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-investigations--obgyn-antenatal-followup-i42",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-investigations--obgyn-antenatal-followup-i43",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-plan-phrases--obgyn-antenatal-followup-p46",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-plan-phrases--obgyn-antenatal-followup-p48",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-plan-phrases--obgyn-antenatal-followup-p50",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-follow-up--obgyn-antenatal-followup-f51",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-follow-up--obgyn-antenatal-followup-f52",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--chip-follow-up--obgyn-antenatal-followup-f53",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-investigations--prechecked-investigations-3",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-follow-up--prechecked-follow-up-1",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--preset-prechecked-follow-up--prechecked-follow-up-2",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--history-draft--default-history-draft",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--examination-prompt--blood-pressure",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--examination-prompt--weight",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--examination-prompt--fundal-height",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--examination-prompt--fetal-heart",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--examination-prompt--fetal-movement",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--examination-prompt--urine-dipstick",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--investigation-documentation-option--1-1-urine-dip-reviewed",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--investigation-documentation-option--1-2-bp-trend-reviewed",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--investigation-documentation-option--2-1-antenatal-labs-reviewed",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--investigation-documentation-option--2-2-glucose-screening-reviewed",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--investigation-documentation-option--3-1-ultrasound-reviewed",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--plan-documentation-option--1-2-obgyn-antenatal-warning-symptoms",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--plan-documentation-option--3-1-obgyn-antenatal-investigations",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--medication-documentation-option--3-1-obgyn-antenatal-warning",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    },
+    {
+      "item_id": "obgyn-antenatal-followup--medication-documentation-option--4-1-obgyn-antenatal-follow-up-4w",
+      "source_id": "doh-antenatal-care-standard-v1-2024",
+      "source_section_id": "doh-antenatal-v1-routine-schedule",
+      "direct_relationship": "The exact gestation-linked schedule supports these fetal-movement, measurement, investigation, counselling, and follow-up items only when assessed, reviewed, or discussed."
+    }
+  ],
+  "supported_legacy_item_count": 74,
+  "unsupported_legacy_item_count": 43,
+  "unsupported_legacy_item_ids": [
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s4",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s5",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s6",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s7",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s8",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s9",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s10",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s11",
+    "obgyn-antenatal-followup--chip-symptoms--obgyn-antenatal-followup-s12",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r13",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r14",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r15",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r17",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r18",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r19",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r20",
+    "obgyn-antenatal-followup--chip-relevant-negatives--obgyn-antenatal-followup-r21",
+    "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e22",
+    "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e27",
+    "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e28",
+    "obgyn-antenatal-followup--chip-exam-findings--obgyn-antenatal-followup-e29",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r30",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r31",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r32",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r34",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r35",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r36",
+    "obgyn-antenatal-followup--chip-red-flags--obgyn-antenatal-followup-r38",
+    "obgyn-antenatal-followup--chip-investigations--obgyn-antenatal-followup-i44",
+    "obgyn-antenatal-followup--preset-default-duration-options--default-duration-options-1",
+    "obgyn-antenatal-followup--preset-default-duration-options--default-duration-options-2",
+    "obgyn-antenatal-followup--preset-default-duration-options--default-duration-options-3",
+    "obgyn-antenatal-followup--preset-default-duration-options--default-duration-options-4",
+    "obgyn-antenatal-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+    "obgyn-antenatal-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+    "obgyn-antenatal-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+    "obgyn-antenatal-followup--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+    "obgyn-antenatal-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+    "obgyn-antenatal-followup--examination-prompt--heart-rate",
+    "obgyn-antenatal-followup--examination-prompt--lower-limb-edema",
+    "obgyn-antenatal-followup--examination-prompt--abdominal-exam",
+    "obgyn-antenatal-followup--plan-documentation-option--2-1-obgyn-antenatal-medication",
+    "obgyn-antenatal-followup--medication-documentation-option--2-1-obgyn-antenatal-med-supplement"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
