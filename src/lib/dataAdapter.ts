@@ -15,6 +15,7 @@ import type {
 } from '../types/clinicnote'
 import { dedupeStrings } from './labelUtils'
 import { publicPath } from './publicPath'
+import { COMMON_WORKFLOW_IDS } from './commonWorkflows'
 
 const jsonCache = new Map<string, Promise<unknown>>()
 
@@ -120,19 +121,6 @@ function findBySpecialtyId<T extends { specialty_id: string }>(payload: unknown,
 
 const detailCache = new Map<string, Promise<WorkflowDetails | null>>()
 
-const commonWorkflowIds = [
-  'gp-fever-urti',
-  'gp-abdominal-pain',
-  'gp-chest-pain',
-  'gp-viral-illness',
-  'gp-cold',
-  'msk-low-back-pain',
-  'msk-knee-pain',
-  'peds-fever',
-  'uro-dysuria-uti-symptoms',
-  'gp-diabetes-followup',
-]
-
 export const clinicnoteDataAdapter = {
   async loadCatalog(includeExcluded = false) {
     const core = await getCoreCache()
@@ -149,7 +137,7 @@ export const clinicnoteDataAdapter = {
   async getCommonWorkflows() {
     const catalog = await this.loadCatalog(false)
     const byId = new Map(catalog.map((item) => [item.workflowId, item]))
-    return commonWorkflowIds.map((id) => byId.get(id)).filter(Boolean) as WorkflowSummary[]
+    return COMMON_WORKFLOW_IDS.map((id) => byId.get(id)).filter(Boolean) as WorkflowSummary[]
   },
 
   async searchWorkflows(query: string, specialty = 'all', includeExcluded = false) {

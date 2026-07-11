@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { ProductHeader } from '../components/ProductHeader'
+import { buildMarker } from '../lib/buildInfo'
 
 export function AppLayout() {
   return (
@@ -15,7 +16,7 @@ export function AppLayout() {
           <span>
             Documentation drafting only. Not clinical decision support. Review every output before use.
           </span>
-          <span className="shrink-0 font-mono text-[10px] text-slate-400">Beta build: 19218a6-concept-b</span>
+          <span className="shrink-0 font-mono text-[10px] text-slate-400">Beta build: {buildMarker}</span>
         </div>
       </footer>
     </div>

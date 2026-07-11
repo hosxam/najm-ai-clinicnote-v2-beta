@@ -7,6 +7,8 @@ type OutputTab = {
   key: string
   label: string
   content: string
+  hasMeaningfulContent?: boolean
+  emptyPrompt?: string
 }
 
 type OutputPanelProps = {
@@ -36,6 +38,7 @@ export function OutputPanel({
   const firstKey = tabs[0]?.key ?? 'output'
   const currentKey = activeKey ?? firstKey
   const currentTab = tabs.find((tab) => tab.key === currentKey) ?? tabs[0]
+  const canExport = currentTab?.hasMeaningfulContent ?? Boolean(currentTab?.content.trim())
 
   useEffect(() => {
     if (copyStatus === 'idle') return
@@ -44,7 +47,7 @@ export function OutputPanel({
   }, [copyStatus])
 
   async function handleCopy() {
-    if (!currentTab?.content) return
+    if (!currentTab?.content || !canExport) return
     try {
       await navigator.clipboard.writeText(currentTab.content)
       setCopyStatus('success')
@@ -53,7 +56,7 @@ export function OutputPanel({
     }
   }
 
-  const outputLines = (currentTab?.content ?? 'No output yet.').split('\n')
+  const outputLines = currentTab?.content ? currentTab.content.split('\n') : []
 
   return (
     <div className={`draft-review-pane ${className ?? ''}`}>
@@ -72,11 +75,11 @@ export function OutputPanel({
             {description ? <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p> : null}
           </div>
           <div className="flex shrink-0 flex-wrap gap-1.5">
-            <Button onClick={handleCopy} variant="primary" size="sm" data-copy-status={copyStatus}>
+            <Button onClick={handleCopy} variant="primary" size="sm" data-copy-status={copyStatus} disabled={!canExport}>
               {copyStatus === 'success' ? <Check className="h-4 w-4" /> : copyStatus === 'error' ? <AlertTriangle className="h-4 w-4" /> : <Clipboard className="h-4 w-4" />}
               {copyStatus === 'success' ? 'Copied' : copyStatus === 'error' ? 'Copy failed' : 'Copy'}
             </Button>
-            <Button onClick={() => window.print()} variant="secondary" size="sm"><Printer className="h-4 w-4" /> Print</Button>
+            <Button onClick={() => window.print()} variant="secondary" size="sm" disabled={!canExport}><Printer className="h-4 w-4" /> Print</Button>
           </div>
         </div>
 
@@ -90,6 +93,12 @@ export function OutputPanel({
 
         {tabs.length > 1 ? (
           <Tabs items={tabs.map((tab) => ({ key: tab.key, label: tab.label }))} value={currentKey} onChange={onActiveKeyChange} className="mt-4" />
+        ) : null}
+
+        {!canExport ? (
+          <div className="mt-3 rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-2 text-xs leading-5 text-cyan-900">
+            {currentTab?.emptyPrompt ?? 'Add clinician-confirmed content or confirm relevant selections before copying or printing.'}
+          </div>
         ) : null}
       </div>
 

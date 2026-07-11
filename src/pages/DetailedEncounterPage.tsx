@@ -255,7 +255,17 @@ export function DetailedEncounterPage() {
   }, [details])
 
   const output = useMemo(() => {
-    if (!details) return { soap: '', emr: '', referral: '', patientInstructions: '' }
+    if (!details) {
+      return {
+        soap: '',
+        emr: '',
+        referral: '',
+        patientInstructions: '',
+        hasMeaningfulContent: false,
+        hasReferralContent: false,
+        hasPatientInstructionsContent: false,
+      }
+    }
     return buildDetailedOutputs({
       workflow: details,
       historyValues,
@@ -513,10 +523,34 @@ export function DetailedEncounterPage() {
               title="Detailed draft"
               description="Live review of the structured documentation entered across each step."
               tabs={[
-                { key: 'soap', label: 'SOAP', content: output.soap },
-                { key: 'emr', label: 'EMR', content: output.emr },
-                { key: 'referral', label: 'Referral', content: output.referral },
-                { key: 'instructions', label: 'Instructions', content: output.patientInstructions },
+                {
+                  key: 'soap',
+                  label: 'SOAP',
+                  content: output.soap,
+                  hasMeaningfulContent: output.hasMeaningfulContent,
+                  emptyPrompt: 'Enter clinician-confirmed encounter details before copying or printing a SOAP draft.',
+                },
+                {
+                  key: 'emr',
+                  label: 'EMR',
+                  content: output.emr,
+                  hasMeaningfulContent: output.hasMeaningfulContent,
+                  emptyPrompt: 'Enter clinician-confirmed encounter details before copying or printing an EMR draft.',
+                },
+                {
+                  key: 'referral',
+                  label: 'Referral',
+                  content: output.referral,
+                  hasMeaningfulContent: output.hasReferralContent,
+                  emptyPrompt: 'Enter a clinician-stated referral reason before preparing a referral draft.',
+                },
+                {
+                  key: 'instructions',
+                  label: 'Instructions',
+                  content: output.patientInstructions,
+                  hasMeaningfulContent: output.hasPatientInstructionsContent,
+                  emptyPrompt: 'Enter explicit clinician-stated patient instructions before preparing this draft.',
+                },
               ]}
               activeKey={activeTab}
               onActiveKeyChange={(key) => setActiveTab(key as typeof activeTab)}

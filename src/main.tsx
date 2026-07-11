@@ -6,8 +6,9 @@ import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import './index.css'
 import App from './App.tsx'
+import { buildMarker } from './lib/buildInfo'
 
-console.info('Najm ClinicNote build 19218a6-concept-b')
+console.info(`Najm ClinicNote build ${buildMarker}`)
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

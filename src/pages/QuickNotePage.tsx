@@ -13,6 +13,12 @@ import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildQuickOutputs } from '../lib/outputBuilders'
 import { getQuickNoteSuggestedSelections } from '../lib/presetDefaults'
+import {
+  confirmSuggestedQuickNoteSelections,
+  createUnconfirmedQuickNoteSelections,
+  QUICK_NOTE_CONFIRMATION_MODEL_VERSION,
+  restoreConfirmedQuickNoteSelections,
+} from '../lib/quickNoteConfirmation'
 import type { WorkflowChipItem, WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
 function toggleValue(list: string[], value: string) {
@@ -21,6 +27,7 @@ function toggleValue(list: string[], value: string) {
 
 type QuickNoteDraft = {
   workflowId: string
+  confirmationModelVersion: typeof QUICK_NOTE_CONFIRMATION_MODEL_VERSION
   duration: string
   additionalHistory: string
   assessment: string
@@ -34,17 +41,14 @@ type QuickNoteDraft = {
 const QUICK_NOTE_STORAGE_KEY = 'quick-note-draft'
 
 function getQuickNoteDefaults(details: WorkflowDetails | null): QuickNoteDraft {
-  const suggested = getQuickNoteSuggestedSelections(details)
   return {
     workflowId: details?.summary.workflowId ?? '',
+    confirmationModelVersion: QUICK_NOTE_CONFIRMATION_MODEL_VERSION,
     duration: '',
     additionalHistory: '',
     assessment: '',
     plan: '',
-    selectedSymptoms: suggested.symptoms,
-    selectedNegatives: suggested.relevantNegatives,
-    selectedExam: [],
-    selectedPlanItems: suggested.planPhrases,
+    ...createUnconfirmedQuickNoteSelections(),
   }
 }
 
@@ -120,9 +124,16 @@ export function QuickNotePage() {
       setShowWorkflowChooser(false)
       const defaults = getQuickNoteDefaults(loadedDetails)
       const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
+      const restoredSelections = restoreConfirmedQuickNoteSelections(savedDraft)
       const restoredDraft =
         savedDraft && savedDraft.workflowId === workflowId
-          ? { ...defaults, ...savedDraft, workflowId }
+          ? {
+              ...defaults,
+              ...savedDraft,
+              ...restoredSelections,
+              workflowId,
+              confirmationModelVersion: QUICK_NOTE_CONFIRMATION_MODEL_VERSION,
+            }
           : defaults
 
       setDuration(restoredDraft.duration)
@@ -156,6 +167,7 @@ export function QuickNotePage() {
 
     saveLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY, {
       workflowId,
+      confirmationModelVersion: QUICK_NOTE_CONFIRMATION_MODEL_VERSION,
       duration,
       additionalHistory,
       assessment,
@@ -177,7 +189,7 @@ export function QuickNotePage() {
   }, [catalog, search, specialty])
 
   function resetCurrentDraft() {
-    if (!window.confirm('Reset the current Quick Note draft for this workflow?')) return
+    if (!window.confirm('Reset this Quick Note draft? Suggestions will remain visible but unconfirmed.')) return
     const defaults = getQuickNoteDefaults(details)
     setDuration(defaults.duration)
     setAdditionalHistory(defaults.additionalHistory)
@@ -190,7 +202,7 @@ export function QuickNotePage() {
   }
 
   function clearEnteredContent() {
-    if (!window.confirm('Clear entered content and restore the workflow defaults? Autosave will continue.')) return
+    if (!window.confirm('Clear entered content and confirmed selections? Suggestions will remain visible but unconfirmed. Autosave will continue.')) return
     const defaults = getQuickNoteDefaults(details)
     setDuration(defaults.duration)
     setAdditionalHistory(defaults.additionalHistory)
@@ -202,11 +214,19 @@ export function QuickNotePage() {
     setSelectedPlanItems(defaults.selectedPlanItems)
   }
 
-  function applySuggestedDefaults() {
-    const defaults = getQuickNoteDefaults(details)
-    setSelectedSymptoms(defaults.selectedSymptoms)
-    setSelectedNegatives(defaults.selectedNegatives)
-    setSelectedPlanItems(defaults.selectedPlanItems)
+  function confirmSuggestedItems() {
+    const confirmed = confirmSuggestedQuickNoteSelections(
+      {
+        selectedSymptoms,
+        selectedNegatives,
+        selectedExam,
+        selectedPlanItems,
+      },
+      suggestedSelections,
+    )
+    setSelectedSymptoms(confirmed.selectedSymptoms)
+    setSelectedNegatives(confirmed.selectedNegatives)
+    setSelectedPlanItems(confirmed.selectedPlanItems)
   }
 
   function clearSelections() {
@@ -226,7 +246,7 @@ export function QuickNotePage() {
   }, [details])
 
   const output = useMemo(() => {
-    if (!details) return { soap: '', emr: '' }
+    if (!details) return { soap: '', emr: '', hasMeaningfulContent: false }
     return buildQuickOutputs({
       workflow: details,
       duration,
@@ -252,17 +272,33 @@ export function QuickNotePage() {
   }
 
   const quickTabs = [
-    { key: 'soap', label: 'SOAP', content: output.soap },
-    { key: 'emr', label: 'EMR', content: output.emr },
+    {
+      key: 'soap',
+      label: 'SOAP',
+      content: output.soap,
+      hasMeaningfulContent: output.hasMeaningfulContent,
+      emptyPrompt: 'Confirm suggested items, select individual chips, or enter clinician-confirmed details to review a SOAP draft.',
+    },
+    {
+      key: 'emr',
+      label: 'EMR',
+      content: output.emr,
+      hasMeaningfulContent: output.hasMeaningfulContent,
+      emptyPrompt: 'Confirm suggested items, select individual chips, or enter clinician-confirmed details to review an EMR draft.',
+    },
     {
       key: 'referral',
       label: 'Referral',
-      content: 'Referral drafting is not available in Quick Note. Open Detailed Note and enter a clinician-stated referral reason.',
+      content: '',
+      hasMeaningfulContent: false,
+      emptyPrompt: 'Referral drafting is unavailable in Quick Note. Open Detailed Note and enter a clinician-stated referral reason.',
     },
     {
       key: 'instructions',
       label: 'Instructions',
-      content: 'Patient-instruction drafting is not available in Quick Note. Open Detailed Note and enter clinician-stated instructions.',
+      content: '',
+      hasMeaningfulContent: false,
+      emptyPrompt: 'Patient-instruction drafting is unavailable in Quick Note. Open Detailed Note and enter clinician-stated instructions.',
     },
   ]
 
@@ -272,7 +308,7 @@ export function QuickNotePage() {
         <SelectedWorkflowBar
           workflow={details.summary}
           modeLabel="Quick Note"
-          helperText="Suggested defaults are preselected. Remove anything you did not assess."
+          helperText="Suggested items are highlighted but stay out of the draft until you confirm them."
           suggestedCount={totalSuggestedSelections}
           onChangeWorkflow={() => setShowWorkflowChooser((current) => !current)}
         />
@@ -328,8 +364,8 @@ export function QuickNotePage() {
                 <p className="mt-1 text-xs leading-5 text-slate-500">The clinician-review draft updates live and is saved locally. Do not enter patient identifiers.</p>
               </div>
               <div className="flex flex-wrap gap-2">
-                <Button variant="secondary" size="sm" onClick={applySuggestedDefaults} disabled={!totalSuggestedSelections}>
-                  <Wand2 className="h-4 w-4" /> Use defaults
+                <Button variant="secondary" size="sm" onClick={confirmSuggestedItems} disabled={!totalSuggestedSelections}>
+                  <Wand2 className="h-4 w-4" /> Confirm suggested items
                 </Button>
                 <Button variant="ghost" size="sm" onClick={clearSelections}>
                   <RefreshCcw className="h-4 w-4" /> Clear selections
@@ -338,7 +374,7 @@ export function QuickNotePage() {
             </div>
 
             <div className="rounded-lg border border-cyan-200 bg-cyan-50 px-3.5 py-2.5 text-xs leading-5 text-cyan-900">
-              Suggested defaults are preselected. Remove anything you did not assess. Examination choices stay manual.
+              Suggested items are highlighted but unconfirmed. Confirm only what was assessed; examination choices always stay manual.
             </div>
 
             <DocumentationSection title="Patient context" description="Add only context explicitly documented in this encounter.">

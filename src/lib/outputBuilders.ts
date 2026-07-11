@@ -1,5 +1,5 @@
-import { cleanPlaceholderLabel, normalizeDisplayText } from './labelUtils'
-import type { WorkflowDetails } from '../types/clinicnote'
+import { cleanPlaceholderLabel, normalizeDisplayText } from './labelUtils.ts'
+import type { WorkflowDetails } from '../types/clinicnote.ts'
 
 type QuickNoteInput = {
   workflow: WorkflowDetails
@@ -34,6 +34,8 @@ type NoteSections = {
   plan: string
 }
 
+const draftReviewFooter = 'Draft generated from clinician-entered information. Review and approve before use.'
+
 function lineJoin(values: string[]) {
   return values.map((value) => value.trim()).filter(Boolean).join('\n')
 }
@@ -42,12 +44,35 @@ function bulletJoin(values: string[]) {
   return values.map((value) => value.trim()).filter(Boolean).join('; ')
 }
 
+function hasMeaningfulSections(sections: NoteSections) {
+  return Boolean(sections.subjective || sections.objective || sections.assessment || sections.plan)
+}
+
 function buildSoapDraft(sections: NoteSections) {
-  return `SOAP NOTE\n\nSUBJECTIVE\n${sections.subjective}\n\nOBJECTIVE\n${sections.objective}\n\nASSESSMENT\n${sections.assessment}\n\nPLAN\n${sections.plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+  if (!hasMeaningfulSections(sections)) return ''
+
+  const parts = ['SOAP NOTE']
+  if (sections.subjective) parts.push(`SUBJECTIVE\n${sections.subjective}`)
+  if (sections.objective) parts.push(`OBJECTIVE\n${sections.objective}`)
+  if (sections.assessment) parts.push(`ASSESSMENT\n${sections.assessment}`)
+  if (sections.plan) parts.push(`PLAN\n${sections.plan}`)
+  parts.push(draftReviewFooter)
+  return parts.join('\n\n')
 }
 
 function buildEmrDraft(workflow: WorkflowDetails, sections: NoteSections) {
-  return `SHORT EMR NOTE\n\nWorkflow: ${workflow.summary.title}\nSpecialty: ${normalizeDisplayText(workflow.summary.specialty)}\n\nHistory: ${sections.subjective}\nExamination: ${sections.objective}\nImpression: ${sections.assessment}\nPlan: ${sections.plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+  if (!hasMeaningfulSections(sections)) return ''
+
+  const parts = [
+    'SHORT EMR NOTE',
+    `Workflow: ${workflow.summary.title}\nSpecialty: ${normalizeDisplayText(workflow.summary.specialty)}`,
+  ]
+  if (sections.subjective) parts.push(`History: ${sections.subjective}`)
+  if (sections.objective) parts.push(`Examination: ${sections.objective}`)
+  if (sections.assessment) parts.push(`Impression: ${sections.assessment}`)
+  if (sections.plan) parts.push(`Plan: ${sections.plan}`)
+  parts.push(draftReviewFooter)
+  return parts.join('\n\n')
 }
 
 function getQuickNoteSections(input: QuickNoteInput): NoteSections {
@@ -56,14 +81,12 @@ function getQuickNoteSections(input: QuickNoteInput): NoteSections {
     input.selectedSymptoms.length ? `Symptoms: ${bulletJoin(input.selectedSymptoms)}` : '',
     input.selectedNegatives.length ? `Important negatives: ${bulletJoin(input.selectedNegatives)}` : '',
     input.additionalHistory,
-  ]) || 'History not documented.'
-
-  const objective = lineJoin([
-    input.selectedExam.length ? `Examination: ${bulletJoin(input.selectedExam)}` : 'Examination not documented.',
   ])
 
-  const assessment = input.assessment.trim() || 'Clinician impression not documented.'
-  const plan = bulletJoin([input.plan, ...input.selectedPlanItems]) || 'Clinician plan not documented.'
+  const objective = input.selectedExam.length ? `Examination: ${bulletJoin(input.selectedExam)}` : ''
+
+  const assessment = input.assessment.trim()
+  const plan = bulletJoin([input.plan, ...input.selectedPlanItems])
 
   return { subjective, objective, assessment, plan }
 }
@@ -73,6 +96,7 @@ export function buildQuickOutputs(input: QuickNoteInput) {
   return {
     soap: buildSoapDraft(sections),
     emr: buildEmrDraft(input.workflow, sections),
+    hasMeaningfulContent: hasMeaningfulSections(sections),
   }
 }
 
@@ -89,41 +113,58 @@ export function buildDetailedOutputs(input: DetailedEncounterInput) {
     ...historyLines,
     input.selectedSymptoms.length ? `Symptoms: ${bulletJoin(input.selectedSymptoms)}` : '',
     input.selectedNegatives.length ? `Important negatives: ${bulletJoin(input.selectedNegatives)}` : '',
-  ]) || 'History not documented.'
+  ])
 
   const objective = lineJoin([
-    input.selectedExamPrompts.length ? `Examination: ${bulletJoin(input.selectedExamPrompts)}` : 'Examination not documented.',
+    input.selectedExamPrompts.length ? `Examination: ${bulletJoin(input.selectedExamPrompts)}` : '',
     input.selectedInvestigations.length ? `Investigations reviewed: ${bulletJoin(input.selectedInvestigations)}` : '',
-  ]) || 'Objective findings not documented.'
+  ])
 
-  const assessment = input.assessment.trim() || 'Clinician impression not documented.'
-  const plan = bulletJoin([input.plan, ...input.selectedPlanItems]) || 'Clinician plan not documented.'
+  const assessment = input.assessment.trim()
+  const plan = bulletJoin([input.plan, ...input.selectedPlanItems])
 
   const sections = { subjective, objective, assessment, plan }
   const soap = buildSoapDraft(sections)
   const emr = buildEmrDraft(input.workflow, sections)
 
-  const referral = input.referralReason.trim()
-    ? `REFERRAL LETTER\n\nReason for referral: ${input.referralReason.trim()}\nRelevant history: ${subjective}\nRelevant examination: ${objective}\nClinician impression: ${assessment}\nCurrent clinician plan: ${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
-    : 'Referral letter not documented. Enter a clinician-stated referral reason to generate this draft.'
+  const referralParts = input.referralReason.trim()
+    ? ['REFERRAL LETTER', `Reason for referral: ${input.referralReason.trim()}`]
+    : []
+  if (referralParts.length && subjective) referralParts.push(`Relevant history: ${subjective}`)
+  if (referralParts.length && objective) referralParts.push(`Relevant examination: ${objective}`)
+  if (referralParts.length && assessment) referralParts.push(`Clinician impression: ${assessment}`)
+  if (referralParts.length && plan) referralParts.push(`Current clinician plan: ${plan}`)
+  if (referralParts.length) referralParts.push(draftReviewFooter)
+  const referral = referralParts.join('\n\n')
 
   const patientInstructions = input.patientInstructions.trim()
-    ? `PATIENT INSTRUCTIONS\n\n${input.patientInstructions.trim()}\n\nDraft generated from clinician-entered information. Review and approve before use.`
-    : 'Patient instructions not documented. Enter clinician-stated instructions if you need this output.'
+    ? `PATIENT INSTRUCTIONS\n\n${input.patientInstructions.trim()}\n\n${draftReviewFooter}`
+    : ''
 
-  return { soap, emr, referral, patientInstructions }
+  return {
+    soap,
+    emr,
+    referral,
+    patientInstructions,
+    hasMeaningfulContent: hasMeaningfulSections(sections),
+    hasReferralContent: Boolean(referral),
+    hasPatientInstructionsContent: Boolean(patientInstructions),
+  }
 }
 
 export function buildMedicalReportDraft(workflow: WorkflowDetails | null, values: Record<string, string>) {
+  const hasEnteredContent = Object.values(values).some((value) => value.trim())
+  if (!hasEnteredContent) return ''
+
   const reportSections = [
     values.reportPurpose ? `Purpose: ${values.reportPurpose}` : '',
     workflow ? `Workflow: ${workflow.summary.title} (${normalizeDisplayText(workflow.summary.specialty)})` : '',
     values.summary ? `Clinical summary: ${values.summary}` : '',
     values.findings ? `Findings: ${values.findings}` : '',
-    values.assessment ? `Clinician impression: ${values.assessment}` : 'Clinician impression not documented.',
-    values.plan ? `Clinician plan: ${values.plan}` : 'Clinician plan not documented.',
+    values.assessment ? `Clinician impression: ${values.assessment}` : '',
+    values.plan ? `Clinician plan: ${values.plan}` : '',
     values.requestedAction ? `Requested action: ${values.requestedAction}` : '',
   ].filter(Boolean)
 
-  return `MEDICAL REPORT / LETTER DRAFT\n\n${reportSections.join('\n\n')}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+  return `MEDICAL REPORT / LETTER DRAFT\n\n${reportSections.join('\n\n')}\n\n${draftReviewFooter}`
 }

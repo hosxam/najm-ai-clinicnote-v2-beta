@@ -5,7 +5,7 @@ import { OutputPanel } from '../components/OutputPanel'
 import { SectionCard } from '../components/SectionCard'
 import { WorkflowChooser } from '../components/WorkflowChooser'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
-import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
+import { loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildMedicalReportDraft } from '../lib/outputBuilders'
 import { Textarea } from '../components/ui/textarea'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
@@ -136,9 +136,8 @@ export function MedicalReportPage() {
     })
   }
 
-  function clearSavedDraft() {
-    if (!window.confirm('Clear the saved medical report draft from this browser?')) return
-    clearLocalDraft(MEDICAL_REPORT_STORAGE_KEY)
+  function clearEnteredContent() {
+    if (!window.confirm('Clear entered report content? Autosave will continue with the empty visible draft.')) return
     setValues({
       reportPurpose: '',
       summary: '',
@@ -245,10 +244,18 @@ export function MedicalReportPage() {
       <div className="xl:sticky xl:top-6">
         <OutputPanel
           title="Draft"
-          tabs={[{ key: 'report', label: 'Medical report', content: output }]}
+          tabs={[
+            {
+              key: 'report',
+              label: 'Medical report',
+              content: output,
+              hasMeaningfulContent: Boolean(output),
+              emptyPrompt: 'Enter clinician-confirmed report content before copying or printing.',
+            },
+          ]}
           onResetDraft={resetCurrentDraft}
-          onClearContent={clearSavedDraft}
-          clearContentLabel="Clear saved draft"
+          onClearContent={clearEnteredContent}
+          clearContentLabel="Clear entered content"
         />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { ArrowRight, Clock3, FilePlus2, FileText, Layers3, Search, ShieldCheck } from 'lucide-react'
+import { ArrowRight, FilePlus2, FileText, Layers3, Search, ShieldCheck } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { DocumentationModeCard } from '../components/DocumentationModeCard'
@@ -9,6 +9,7 @@ import { WorkflowCommand } from '../components/WorkflowCommand'
 import { Button } from '../components/ui/button'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { getRecentWorkflowIds } from '../lib/localDrafts'
+import { selectHomeModeWorkflow } from '../lib/workflowSelection'
 import type { WorkflowSummary } from '../types/clinicnote'
 
 export function HomePage() {
@@ -69,10 +70,17 @@ export function HomePage() {
   const commandWorkflows = search.trim() || specialty !== 'all' ? filtered : commonWorkflows
   const visibleWorkflowCount = catalog.length
   const excludedWorkflowCount = Math.max(totalWorkflowCount - visibleWorkflowCount, 0)
-  const firstSuggestedWorkflow = filtered[0] ?? recentWorkflows[0] ?? commonWorkflows[0]
-  const quickNoteTarget = firstSuggestedWorkflow ? `/quick-note/${firstSuggestedWorkflow.workflowId}` : '/quick-note'
-  const detailedTarget = firstSuggestedWorkflow ? `/encounter/${firstSuggestedWorkflow.workflowId}` : '/encounter'
-  const compactWorkflows = recentWorkflows.length ? recentWorkflows.slice(0, 4) : commonWorkflows.slice(0, 4)
+  const hasActiveFilter = Boolean(search.trim()) || specialty !== 'all'
+  const selectedModeWorkflow = selectHomeModeWorkflow({
+    hasActiveFilter,
+    matchingWorkflows: filtered,
+    commonWorkflows,
+    recentWorkflows,
+  })
+  const modeSelectionBlocked = hasActiveFilter && !selectedModeWorkflow
+  const quickNoteTarget = selectedModeWorkflow ? `/quick-note/${selectedModeWorkflow.workflowId}` : '/quick-note'
+  const detailedTarget = selectedModeWorkflow ? `/encounter/${selectedModeWorkflow.workflowId}` : '/encounter'
+  const compactWorkflows = commonWorkflows.slice(0, 5)
 
   return (
     <div className="space-y-8 sm:space-y-10">
@@ -134,6 +142,7 @@ export function HomePage() {
             icon={FilePlus2}
             primary
             label="Recommended"
+            disabled={modeSelectionBlocked}
           />
           <DocumentationModeCard
             title="Detailed Note"
@@ -141,22 +150,28 @@ export function HomePage() {
             to={detailedTarget}
             icon={Layers3}
             label="Manual"
+            disabled={modeSelectionBlocked}
           />
         </div>
+        {modeSelectionBlocked ? (
+          <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-900">
+            Choose a matching workflow first.
+          </p>
+        ) : null}
         <Link to="/report" className="mt-3 flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 transition hover:border-slate-300 hover:text-slate-950 sm:hidden">
           <span className="inline-flex items-center gap-2"><FileText className="h-4 w-4 text-cyan-800" /> Medical reports and letters</span>
           <ArrowRight className="h-4 w-4" />
         </Link>
       </section>
 
-      <section aria-labelledby="recent-heading">
+      <section aria-labelledby="common-workflows-heading">
         <div className="mb-3 flex items-center justify-between gap-3">
           <div>
-            <h2 id="recent-heading" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-950">
-              {recentWorkflows.length ? <Clock3 className="h-4 w-4 text-cyan-800" /> : <ShieldCheck className="h-4 w-4 text-cyan-800" />}
-              {recentWorkflows.length ? 'Recent on this device' : 'Common low-risk starts'}
+            <h2 id="common-workflows-heading" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-950">
+              <ShieldCheck className="h-4 w-4 text-cyan-800" />
+              Common documentation workflows
             </h2>
-            <p className="mt-1 text-xs text-slate-500">Compact shortcuts; drafts remain local to this browser.</p>
+            <p className="mt-1 text-xs text-slate-500">Curated documentation shortcuts; drafts remain local to this browser.</p>
           </div>
         </div>
         <div className="workflow-chip-scroll -mx-1 flex gap-3 overflow-x-auto px-1 pb-2">
