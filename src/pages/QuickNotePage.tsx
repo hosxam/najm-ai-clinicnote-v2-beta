@@ -10,8 +10,8 @@ import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Textarea } from '../components/ui/textarea'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
-import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
-import { buildQuickSoapDraft } from '../lib/outputBuilders'
+import { loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
+import { buildQuickOutputs } from '../lib/outputBuilders'
 import { getQuickNoteSuggestedSelections } from '../lib/presetDefaults'
 import type { WorkflowChipItem, WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
@@ -189,9 +189,8 @@ export function QuickNotePage() {
     setSelectedPlanItems(defaults.selectedPlanItems)
   }
 
-  function clearSavedDraft() {
-    if (!window.confirm('Clear the saved Quick Note draft from this browser?')) return
-    clearLocalDraft(QUICK_NOTE_STORAGE_KEY)
+  function clearEnteredContent() {
+    if (!window.confirm('Clear entered content and restore the workflow defaults? Autosave will continue.')) return
     const defaults = getQuickNoteDefaults(details)
     setDuration(defaults.duration)
     setAdditionalHistory(defaults.additionalHistory)
@@ -227,8 +226,8 @@ export function QuickNotePage() {
   }, [details])
 
   const output = useMemo(() => {
-    if (!details) return ''
-    return buildQuickSoapDraft({
+    if (!details) return { soap: '', emr: '' }
+    return buildQuickOutputs({
       workflow: details,
       duration,
       selectedSymptoms,
@@ -247,23 +246,23 @@ export function QuickNotePage() {
     suggestedSelections.relevantNegatives.length +
     suggestedSelections.planPhrases.length
 
-  function handleGenerateNote() {
+  function handleReviewNote() {
     setActiveOutputKey('soap')
     outputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const quickTabs = [
-    { key: 'soap', label: 'SOAP', content: output },
-    { key: 'emr', label: 'EMR', content: output },
+    { key: 'soap', label: 'SOAP', content: output.soap },
+    { key: 'emr', label: 'EMR', content: output.emr },
     {
       key: 'referral',
       label: 'Referral',
-      content: 'Referral draft is not generated in Quick Note. Open Detailed Note and enter a clinician-stated referral reason.',
+      content: 'Referral drafting is not available in Quick Note. Open Detailed Note and enter a clinician-stated referral reason.',
     },
     {
       key: 'instructions',
       label: 'Instructions',
-      content: 'Patient instructions are not generated in Quick Note. Open Detailed Note and enter clinician-stated instructions.',
+      content: 'Patient-instruction drafting is not available in Quick Note. Open Detailed Note and enter clinician-stated instructions.',
     },
   ]
 
@@ -326,7 +325,7 @@ export function QuickNotePage() {
                 <div className="inline-flex items-center gap-2 text-sm font-semibold text-slate-950">
                   <Sparkles className="h-4 w-4 text-cyan-800" /> Guided input
                 </div>
-                <p className="mt-1 text-xs leading-5 text-slate-500">Saved locally on this device. Do not enter patient identifiers.</p>
+                <p className="mt-1 text-xs leading-5 text-slate-500">The clinician-review draft updates live and is saved locally. Do not enter patient identifiers.</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button variant="secondary" size="sm" onClick={applySuggestedDefaults} disabled={!totalSuggestedSelections}>
@@ -419,11 +418,11 @@ export function QuickNotePage() {
             <div className="guided-workspace-footer">
               <div className="flex flex-wrap gap-1.5">
                 <Button variant="ghost" size="sm" onClick={resetCurrentDraft}><RotateCcw className="h-4 w-4" /> Reset</Button>
-                <Button variant="warning" size="sm" onClick={clearSavedDraft}>Clear saved draft</Button>
+                <Button variant="warning" size="sm" onClick={clearEnteredContent}>Clear entered content</Button>
                 <Button asChild variant="ghost" size="sm"><Link to={`/encounter/${details.summary.workflowId}`}>Detailed Note</Link></Button>
               </div>
-              <Button variant="primary" size="lg" onClick={handleGenerateNote}>
-                Generate note <ArrowRight className="h-4 w-4" />
+              <Button variant="primary" size="lg" onClick={handleReviewNote}>
+                Review note <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
           </div>

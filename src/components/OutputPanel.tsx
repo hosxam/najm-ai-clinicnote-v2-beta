@@ -1,4 +1,4 @@
-import { Check, Clipboard, FileCheck2, Printer, RotateCcw, Trash2 } from 'lucide-react'
+import { AlertTriangle, Check, Clipboard, FileCheck2, Printer, RotateCcw, Trash2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from './ui/button'
 import { Tabs } from './ui/tabs'
@@ -16,7 +16,8 @@ type OutputPanelProps = {
   activeKey?: string
   onActiveKeyChange?: (key: string) => void
   onResetDraft?: () => void
-  onClearSavedDraft?: () => void
+  onClearContent?: () => void
+  clearContentLabel?: string
   className?: string
 }
 
@@ -27,24 +28,29 @@ export function OutputPanel({
   activeKey,
   onActiveKeyChange,
   onResetDraft,
-  onClearSavedDraft,
+  onClearContent,
+  clearContentLabel = 'Clear entered content',
   className,
 }: OutputPanelProps) {
-  const [copied, setCopied] = useState(false)
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const firstKey = tabs[0]?.key ?? 'output'
   const currentKey = activeKey ?? firstKey
   const currentTab = tabs.find((tab) => tab.key === currentKey) ?? tabs[0]
 
   useEffect(() => {
-    if (!copied) return
-    const timer = window.setTimeout(() => setCopied(false), 1800)
+    if (copyStatus === 'idle') return
+    const timer = window.setTimeout(() => setCopyStatus('idle'), copyStatus === 'error' ? 4500 : 1800)
     return () => window.clearTimeout(timer)
-  }, [copied])
+  }, [copyStatus])
 
   async function handleCopy() {
     if (!currentTab?.content) return
-    await navigator.clipboard.writeText(currentTab.content)
-    setCopied(true)
+    try {
+      await navigator.clipboard.writeText(currentTab.content)
+      setCopyStatus('success')
+    } catch {
+      setCopyStatus('error')
+    }
   }
 
   const outputLines = (currentTab?.content ?? 'No output yet.').split('\n')
@@ -66,12 +72,20 @@ export function OutputPanel({
             {description ? <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p> : null}
           </div>
           <div className="flex shrink-0 flex-wrap gap-1.5">
-            <Button onClick={handleCopy} variant="primary" size="sm">
-              {copied ? <Check className="h-4 w-4" /> : <Clipboard className="h-4 w-4" />}
-              {copied ? 'Copied' : 'Copy'}
+            <Button onClick={handleCopy} variant="primary" size="sm" data-copy-status={copyStatus}>
+              {copyStatus === 'success' ? <Check className="h-4 w-4" /> : copyStatus === 'error' ? <AlertTriangle className="h-4 w-4" /> : <Clipboard className="h-4 w-4" />}
+              {copyStatus === 'success' ? 'Copied' : copyStatus === 'error' ? 'Copy failed' : 'Copy'}
             </Button>
             <Button onClick={() => window.print()} variant="secondary" size="sm"><Printer className="h-4 w-4" /> Print</Button>
           </div>
+        </div>
+
+        <div aria-live="polite" role="status">
+          {copyStatus === 'error' ? (
+            <div className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-medium text-rose-800">
+              Copy failed — select the text manually.
+            </div>
+          ) : null}
         </div>
 
         {tabs.length > 1 ? (
@@ -97,10 +111,10 @@ export function OutputPanel({
         </article>
       </div>
 
-      {onResetDraft || onClearSavedDraft ? (
+      {onResetDraft || onClearContent ? (
         <div className="flex flex-wrap gap-1.5 border-t border-slate-200 px-4 py-3 sm:px-5" data-no-print="true">
           {onResetDraft ? <Button onClick={onResetDraft} variant="ghost" size="sm"><RotateCcw className="h-4 w-4" /> Reset draft</Button> : null}
-          {onClearSavedDraft ? <Button onClick={onClearSavedDraft} variant="warning" size="sm"><Trash2 className="h-4 w-4" /> Clear saved</Button> : null}
+          {onClearContent ? <Button onClick={onClearContent} variant="warning" size="sm"><Trash2 className="h-4 w-4" /> {clearContentLabel}</Button> : null}
         </div>
       ) : null}
     </div>

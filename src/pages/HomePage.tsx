@@ -129,7 +129,7 @@ export function HomePage() {
         <div className="grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
           <DocumentationModeCard
             title="Quick Note"
-            description="Review suggested workflow defaults, add clinician-confirmed details, and generate a focused SOAP draft."
+            description="Review suggested workflow defaults, add clinician-confirmed details, and review a focused live SOAP draft."
             to={quickNoteTarget}
             icon={FilePlus2}
             primary

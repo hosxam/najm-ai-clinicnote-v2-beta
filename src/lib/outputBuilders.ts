@@ -27,6 +27,13 @@ type DetailedEncounterInput = {
   patientInstructions: string
 }
 
+type NoteSections = {
+  subjective: string
+  objective: string
+  assessment: string
+  plan: string
+}
+
 function lineJoin(values: string[]) {
   return values.map((value) => value.trim()).filter(Boolean).join('\n')
 }
@@ -35,22 +42,42 @@ function bulletJoin(values: string[]) {
   return values.map((value) => value.trim()).filter(Boolean).join('; ')
 }
 
-export function buildQuickSoapDraft(input: QuickNoteInput) {
-  const subjective = [
+function buildSoapDraft(sections: NoteSections) {
+  return `SOAP NOTE\n\nSUBJECTIVE\n${sections.subjective}\n\nOBJECTIVE\n${sections.objective}\n\nASSESSMENT\n${sections.assessment}\n\nPLAN\n${sections.plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+}
+
+function buildEmrDraft(workflow: WorkflowDetails, sections: NoteSections) {
+  return `SHORT EMR NOTE\n\nWorkflow: ${workflow.summary.title}\nSpecialty: ${normalizeDisplayText(workflow.summary.specialty)}\n\nHistory: ${sections.subjective}\nExamination: ${sections.objective}\nImpression: ${sections.assessment}\nPlan: ${sections.plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+}
+
+function getQuickNoteSections(input: QuickNoteInput): NoteSections {
+  const subjective = lineJoin([
     input.duration ? `Duration: ${input.duration}` : '',
     input.selectedSymptoms.length ? `Symptoms: ${bulletJoin(input.selectedSymptoms)}` : '',
     input.selectedNegatives.length ? `Important negatives: ${bulletJoin(input.selectedNegatives)}` : '',
     input.additionalHistory,
-  ]
+  ]) || 'History not documented.'
 
-  const objective = [
+  const objective = lineJoin([
     input.selectedExam.length ? `Examination: ${bulletJoin(input.selectedExam)}` : 'Examination not documented.',
-  ]
+  ])
 
   const assessment = input.assessment.trim() || 'Clinician impression not documented.'
   const plan = bulletJoin([input.plan, ...input.selectedPlanItems]) || 'Clinician plan not documented.'
 
-  return `SOAP NOTE\n\nSUBJECTIVE\n${lineJoin(subjective) || 'History not documented.'}\n\nOBJECTIVE\n${lineJoin(objective)}\n\nASSESSMENT\n${assessment}\n\nPLAN\n${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+  return { subjective, objective, assessment, plan }
+}
+
+export function buildQuickOutputs(input: QuickNoteInput) {
+  const sections = getQuickNoteSections(input)
+  return {
+    soap: buildSoapDraft(sections),
+    emr: buildEmrDraft(input.workflow, sections),
+  }
+}
+
+export function buildQuickSoapDraft(input: QuickNoteInput) {
+  return buildQuickOutputs(input).soap
 }
 
 export function buildDetailedOutputs(input: DetailedEncounterInput) {
@@ -72,9 +99,9 @@ export function buildDetailedOutputs(input: DetailedEncounterInput) {
   const assessment = input.assessment.trim() || 'Clinician impression not documented.'
   const plan = bulletJoin([input.plan, ...input.selectedPlanItems]) || 'Clinician plan not documented.'
 
-  const soap = `SOAP NOTE\n\nSUBJECTIVE\n${subjective}\n\nOBJECTIVE\n${objective}\n\nASSESSMENT\n${assessment}\n\nPLAN\n${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
-
-  const emr = `SHORT EMR NOTE\n\nWorkflow: ${input.workflow.summary.title}\nSpecialty: ${normalizeDisplayText(input.workflow.summary.specialty)}\n\nHistory: ${subjective}\nExamination: ${objective}\nImpression: ${assessment}\nPlan: ${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`
+  const sections = { subjective, objective, assessment, plan }
+  const soap = buildSoapDraft(sections)
+  const emr = buildEmrDraft(input.workflow, sections)
 
   const referral = input.referralReason.trim()
     ? `REFERRAL LETTER\n\nReason for referral: ${input.referralReason.trim()}\nRelevant history: ${subjective}\nRelevant examination: ${objective}\nClinician impression: ${assessment}\nCurrent clinician plan: ${plan}\n\nDraft generated from clinician-entered information. Review and approve before use.`

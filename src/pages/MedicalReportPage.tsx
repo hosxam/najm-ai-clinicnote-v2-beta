@@ -247,7 +247,8 @@ export function MedicalReportPage() {
           title="Draft"
           tabs={[{ key: 'report', label: 'Medical report', content: output }]}
           onResetDraft={resetCurrentDraft}
-          onClearSavedDraft={clearSavedDraft}
+          onClearContent={clearSavedDraft}
+          clearContentLabel="Clear saved draft"
         />
       </div>
     </div>

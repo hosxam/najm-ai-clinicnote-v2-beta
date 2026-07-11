@@ -12,7 +12,7 @@ import { Input } from '../components/ui/input'
 import { Textarea } from '../components/ui/textarea'
 import { clinicnoteDataAdapter } from '../lib/dataAdapter'
 import { cleanPlaceholderLabel, normalizeDocumentationText } from '../lib/labelUtils'
-import { clearLocalDraft, loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
+import { loadLocalDraft, pushRecentWorkflow, saveLocalDraft } from '../lib/localDrafts'
 import { buildDetailedOutputs } from '../lib/outputBuilders'
 import type { WorkflowDetails, WorkflowSummary } from '../types/clinicnote'
 
@@ -229,9 +229,8 @@ export function DetailedEncounterPage() {
     setActiveSection('history')
   }
 
-  function clearSavedDraft() {
-    if (!window.confirm('Clear the saved detailed encounter draft from this browser?')) return
-    clearLocalDraft(DETAILED_ENCOUNTER_STORAGE_KEY)
+  function clearEnteredContent() {
+    if (!window.confirm('Clear entered content from this detailed encounter? Autosave will continue with an empty draft.')) return
     const defaults = getDetailedEncounterDefaults(details)
     setHistoryValues(defaults.historyValues)
     setSelectedSymptoms(defaults.selectedSymptoms)
@@ -522,7 +521,8 @@ export function DetailedEncounterPage() {
               activeKey={activeTab}
               onActiveKeyChange={(key) => setActiveTab(key as typeof activeTab)}
               onResetDraft={resetCurrentDraft}
-              onClearSavedDraft={clearSavedDraft}
+              onClearContent={clearEnteredContent}
+              clearContentLabel="Clear entered content"
             />
           </div>
         </div>
