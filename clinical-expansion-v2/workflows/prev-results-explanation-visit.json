@@ -1,0 +1,1050 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "prev-results-explanation-visit",
+  "presentation": "Results explanation visit",
+  "specialty": "Preventive care / screening / counseling / administrative documentation",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 1189,
+    "clinical_workflow": {
+      "workflow_id": "prev-results-explanation-visit",
+      "specialty_id": "Preventive care / screening / counseling / administrative documentation",
+      "chief_complaint": "Results explanation visit",
+      "chief_complaint_aliases": [
+        "Results explanation visit",
+        "Results explanation visit documentation"
+      ],
+      "diagnosis": "Results explanation visit",
+      "diagnosis_aliases": [
+        "Results explanation visit documentation",
+        "Results explanation visit"
+      ],
+      "history_layout_id": "Preventive care / screening / counseling / administrative documentation",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": null,
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "symptoms",
+          "order": 1,
+          "prompt": "Select history details"
+        },
+        {
+          "group": "exam_findings",
+          "order": 2,
+          "prompt": "Select examination documentation"
+        },
+        {
+          "group": "red_flags",
+          "order": 3,
+          "prompt": "Document red flag prompts only"
+        },
+        {
+          "group": "investigations",
+          "order": 4,
+          "prompt": "Document investigations already performed/ordered"
+        },
+        {
+          "group": "plan_phrases",
+          "order": 5,
+          "prompt": "Select clinician-documented plan items"
+        }
+      ],
+      "min_sections": [
+        "hpi",
+        "examination_focused"
+      ],
+      "intended_use": "Clinician-controlled documentation scaffold for results explanation visit.",
+      "not_for": "Not for autonomous diagnosis, treatment selection, dosing, disposition, admission/discharge, procedural, imaging, referral, or emergency management decisions.",
+      "risk_category": "low",
+      "review_required": true,
+      "source_phase1": {
+        "batch_id": "phase1-batch-037",
+        "reason_for_inclusion": "Common Preventive care / screening / counseling / administrative documentation documentation scenario suitable as clinician-controlled note scaffolding rather than autonomous clinical advice.",
+        "distinct_purpose": "Distinct results-review workflow focused on documenting clinician review/discussion of results related to results explanation visit.",
+        "duplicate_check_notes": "Cleaned Phase 1 candidate. Exact ID is unique within this revised index and must be checked against existing_workflow_ids.json and alias inventory before import; no close baseline workflow assigned in this cleaned index.",
+        "nearest_existing_workflow_if_any": ""
+      },
+      "safety_notes": [
+        "Clinician-review draft content only.",
+        "No autonomous diagnosis or treatment recommendation is intended.",
+        "Red flags are documentation prompts only."
+      ],
+      "red_flag_prompts": [
+        "severe or rapidly worsening symptoms documented if assessed",
+        "abnormal vital signs documented if measured",
+        "new neurological, cardiorespiratory, or systemic concern documented if assessed",
+        "clinician concern requiring escalation documented if present"
+      ],
+      "source_status": "draft_generated_for_review"
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "prev-results-explanation-visit--workflow-presentation--chief-complaint",
+        "text": "Results explanation visit",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "prev-results-explanation-visit.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--legacy-diagnosis-label--diagnosis",
+        "text": "Results explanation visit",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "prev-results-explanation-visit.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "prev-results-explanation-visit--matching-alias--alias-1",
+        "text": "Results explanation visit",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "prev-results-explanation-visit.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--matching-alias--alias-2",
+        "text": "Results explanation visit documentation",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "prev-results-explanation-visit.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-1-results-explanation-visit-reason-for-result-review-documente",
+        "text": "Results explanation visit reason for result review documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-2-result-source-date-documented-if-available",
+        "text": "result source/date documented if available",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-3-onset-duration-documented-if-discussed",
+        "text": "onset/duration documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-4-severity-impact-on-function-documented-if-discussed",
+        "text": "severity/impact on function documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-5-associated-symptoms-reviewed-if-relevant",
+        "text": "associated symptoms reviewed if relevant",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-6-relevant-negatives-documented-if-assessed",
+        "text": "relevant negatives documented if assessed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-symptoms--prev-results-explanation-visit-symptoms-1-7-patient-concerns-or-goals-documented-if-discussed",
+        "text": "patient concerns or goals documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-exam-findings--prev-results-explanation-visit-exam-findings-2-1-vitals-if-measured-documented-only-if-assessed",
+        "text": "Vitals if measured documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-exam-findings--prev-results-explanation-visit-exam-findings-2-2-administrative-eligibility-details-documented-only-if-assess",
+        "text": "Administrative/eligibility details documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-exam-findings--prev-results-explanation-visit-exam-findings-2-3-counseling-discussion-documentation-documented-only-if-asses",
+        "text": "Counseling discussion documentation documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-exam-findings--prev-results-explanation-visit-exam-findings-2-4-documentation-completeness-check-documented-only-if-assessed",
+        "text": "Documentation completeness check documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-red-flags--prev-results-explanation-visit-red-flags-3-1-severe-or-rapidly-worsening-symptoms-documented-if-assessed",
+        "text": "severe or rapidly worsening symptoms documented if assessed",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-red-flags--prev-results-explanation-visit-red-flags-3-2-abnormal-vital-signs-documented-if-measured",
+        "text": "abnormal vital signs documented if measured",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-red-flags--prev-results-explanation-visit-red-flags-3-3-new-neurological-cardiorespiratory-or-systemic-concern-docum",
+        "text": "new neurological, cardiorespiratory, or systemic concern documented if assessed",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-red-flags--prev-results-explanation-visit-red-flags-3-4-clinician-concern-requiring-escalation-documented-if-present",
+        "text": "clinician concern requiring escalation documented if present",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-investigations--prev-results-explanation-visit-investigations-4-1-screening-eligibility-or-form-requirements-documented",
+        "text": "Screening eligibility or form requirements documented",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-investigations--prev-results-explanation-visit-investigations-4-2-existing-records-reviewed-if-available",
+        "text": "Existing records reviewed if available",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-investigations--prev-results-explanation-visit-investigations-4-3-results-or-certificates-documented-if-already-completed",
+        "text": "Results or certificates documented if already completed",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-plan-phrases--prev-results-explanation-visit-plan-phrases-5-1-clinician-entered-plan-documented",
+        "text": "clinician-entered plan documented",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-plan-phrases--prev-results-explanation-visit-plan-phrases-5-2-safety-netting-documented-if-discussed-by-clinician",
+        "text": "safety-netting documented if discussed by clinician",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-plan-phrases--prev-results-explanation-visit-plan-phrases-5-3-follow-up-documented-if-arranged-by-clinician",
+        "text": "follow-up documented if arranged by clinician",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[20]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--chip-plan-phrases--prev-results-explanation-visit-plan-phrases-5-4-patient-questions-documented-if-discussed",
+        "text": "patient questions documented if discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "prev-results-explanation-visit.chips[21]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "prev-results-explanation-visit--preset-default-duration-options--default-duration-options-1",
+        "text": "10 min",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "Results explanation visit reason for result review documented",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "result source/date documented if available",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "onset/duration documented if discussed",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "Vitals if measured documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+        "text": "Administrative/eligibility details documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_exam_findings[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+        "text": "Counseling discussion documentation documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_exam_findings[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-investigations--prechecked-investigations-1",
+        "text": "Screening eligibility or form requirements documented",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_investigations[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-investigations--prechecked-investigations-2",
+        "text": "Existing records reviewed if available",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_investigations[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-investigations--prechecked-investigations-3",
+        "text": "Results or certificates documented if already completed",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_investigations[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "clinician-entered plan documented",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "safety-netting documented if discussed by clinician",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "follow-up documented if arranged by clinician",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "prev-results-explanation-visit.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "prev-results-explanation-visit--history-draft--default-history-draft",
+        "text": "Results explanation visit. [Reason for review]. [Result source/date]. [Clinician interpretation documented]. [Patient questions/concerns]. [Clinician-entered plan if discussed]. [Additional history].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "prev-results-explanation-visit.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "prev-results-explanation-visit--examination-prompt--vitals-if-measured-documented",
+        "text": "Documented if assessed or measured. Vitals if measured documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "prev-results-explanation-visit.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--examination-prompt--administrative-eligibility-details-documented",
+        "text": "Documented if assessed or measured. Administrative/eligibility details documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "prev-results-explanation-visit.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--examination-prompt--counseling-discussion-documentation-documented",
+        "text": "Documented if assessed or measured. Counseling discussion documentation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "prev-results-explanation-visit.exam_groups[2].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--examination-prompt--documentation-completeness-check-documented",
+        "text": "Documented if assessed or measured. Documentation completeness check documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "prev-results-explanation-visit.exam_groups[3].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "prev-results-explanation-visit--investigation-documentation-option--1-1-screening-eligibility-or-form-requirements-documented",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Screening eligibility or form requirements documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Screening eligibility or form requirements documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "prev-results-explanation-visit.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--investigation-documentation-option--1-2-existing-records-reviewed-if-available",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Existing records reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Existing records reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "prev-results-explanation-visit.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--investigation-documentation-option--1-3-results-or-certificates-documented-if-already-completed",
+        "text": "Reviewed if relevant. Reviewed. Results or certificates documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Results or certificates documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "prev-results-explanation-visit.investigation_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "prev-results-explanation-visit--plan-documentation-option--1-1-prev-results-explanation-visit-clinician-plan",
+        "text": "Clinician-entered plan documented.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Clinician-entered plan documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "prev-results-explanation-visit.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--plan-documentation-option--1-2-prev-results-explanation-visit-safety-netting",
+        "text": "Safety-netting documented if discussed by clinician.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Safety-netting documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "prev-results-explanation-visit.plan_option_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--plan-documentation-option--1-3-prev-results-explanation-visit-follow-up",
+        "text": "Follow-up documented if arranged by clinician.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "prev-results-explanation-visit.plan_option_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "prev-results-explanation-visit--plan-documentation-option--1-4-prev-results-explanation-visit-patient-questions",
+        "text": "Patient questions or counseling discussion documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Patient questions or counseling discussion documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "prev-results-explanation-visit.plan_option_groups[0].options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": []
+  },
+  "content_origin_counts": {
+    "legacy_exact": 51,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 51,
+  "original_preselected_item_count": 12,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "4e8341cf36c84e579d6170b7ff60bc1edb6efeb0d4f71811304e12615d6f394f"
+}

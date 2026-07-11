@@ -1,0 +1,1801 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "ophth-eye-pain",
+  "presentation": "Eye pain",
+  "specialty": "Ophthalmology",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 69,
+    "clinical_workflow": {
+      "workflow_id": "ophth-eye-pain",
+      "specialty_id": "Ophthalmology",
+      "chief_complaint": "Eye pain",
+      "chief_complaint_aliases": [],
+      "diagnosis": "Keratitis / corneal abrasion",
+      "diagnosis_aliases": [],
+      "history_layout_id": "Ophthalmology",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": null,
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "symptoms",
+          "order": 1,
+          "prompt": "Select symptoms present"
+        },
+        {
+          "group": "relevant_negatives",
+          "order": 2,
+          "prompt": "Select negatives ruled out"
+        },
+        {
+          "group": "exam_findings",
+          "order": 3,
+          "prompt": "Select examination findings"
+        },
+        {
+          "group": "red_flags",
+          "order": 4,
+          "prompt": "Red flags discussed with patient"
+        },
+        {
+          "group": "plan_phrases",
+          "order": 5,
+          "prompt": "Select plan items"
+        },
+        {
+          "group": "follow_up",
+          "order": 6,
+          "prompt": "Follow-up interval"
+        }
+      ],
+      "min_sections": [
+        "hpi",
+        "pain_redness",
+        "examination"
+      ]
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "ophth-eye-pain--workflow-presentation--chief-complaint",
+        "text": "Eye pain",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "ophth-eye-pain.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--legacy-diagnosis-label--diagnosis",
+        "text": "Keratitis / corneal abrasion",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "ophth-eye-pain.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-1",
+        "text": "Eye pain",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-2",
+        "text": "painful eye",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-3",
+        "text": "eye ache",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-4",
+        "text": "sharp eye pain",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-5",
+        "text": "foreign body sensation",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-6",
+        "text": "Keratitis / Corneal abrasion",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-7",
+        "text": "keratitis",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-8",
+        "text": "corneal abrasion",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-9",
+        "text": "ocular pain",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-10",
+        "text": "Sharp eye pain",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-11",
+        "text": "Photophobia",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-12",
+        "text": "light sensitivity",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--matching-alias--alias-13",
+        "text": "painful to light",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "ophth-eye-pain.aliases[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s1",
+        "text": "eye pain",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s2",
+        "text": "severe eye pain",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s3",
+        "text": "foreign body sensation",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s4",
+        "text": "photophobia",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s5",
+        "text": "redness",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s6",
+        "text": "blurred vision",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s7",
+        "text": "headache",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s8",
+        "text": "nausea or vomiting",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s9",
+        "text": "trauma history",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s10",
+        "text": "contact lens use documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s11",
+        "text": "duration documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-symptoms--ophth-eye-pain-s12",
+        "text": "discharge",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-relevant-negatives--ophth-eye-pain-n13",
+        "text": "no vision change reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-relevant-negatives--ophth-eye-pain-n14",
+        "text": "no trauma reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-relevant-negatives--ophth-eye-pain-n15",
+        "text": "no chemical exposure reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-relevant-negatives--ophth-eye-pain-n16",
+        "text": "no contact lens use reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-relevant-negatives--ophth-eye-pain-n17",
+        "text": "no photophobia reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-relevant-negatives--ophth-eye-pain-n18",
+        "text": "no headache reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-exam-findings--ophth-eye-pain-e19",
+        "text": "visual acuity documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-exam-findings--ophth-eye-pain-e20",
+        "text": "pupil findings documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-exam-findings--ophth-eye-pain-e21",
+        "text": "conjunctival injection documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[20]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-exam-findings--ophth-eye-pain-e22",
+        "text": "corneal appearance documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[21]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-exam-findings--ophth-eye-pain-e23",
+        "text": "eye movement documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[22]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-exam-findings--ophth-eye-pain-e24",
+        "text": "intraocular pressure documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[23]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r25",
+        "text": "severe eye pain",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[24]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r26",
+        "text": "reduced vision",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[25]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r27",
+        "text": "photophobia",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[26]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r28",
+        "text": "abnormal pupil",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[27]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r29",
+        "text": "headache with nausea or vomiting",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[28]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r30",
+        "text": "trauma",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[29]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r31",
+        "text": "chemical exposure",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[30]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-red-flags--ophth-eye-pain-r32",
+        "text": "contact lens use with eye pain",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[31]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-plan-phrases--ophth-eye-pain-p33",
+        "text": "management plan discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[32]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-plan-phrases--ophth-eye-pain-p34",
+        "text": "eye care advice discussed as per clinician plan",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[33]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-plan-phrases--ophth-eye-pain-p35",
+        "text": "return precautions discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[34]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-plan-phrases--ophth-eye-pain-p36",
+        "text": "patient questions addressed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[35]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-follow-up--ophth-eye-pain-f37",
+        "text": "1-2 days if not improving",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[36]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-follow-up--ophth-eye-pain-f38",
+        "text": "sooner if worsening",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[37]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--chip-follow-up--ophth-eye-pain-f39",
+        "text": "sooner if vision change or severe pain",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "ophth-eye-pain.chips[38]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "ophth-eye-pain--preset-default-duration-options--default-duration-options-1",
+        "text": "today",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-default-duration-options--default-duration-options-2",
+        "text": "1-3 days",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.default_duration_options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-default-duration-options--default-duration-options-3",
+        "text": "3-7 days",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.default_duration_options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-default-duration-options--default-duration-options-4",
+        "text": "more than 1 week",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.default_duration_options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "eye pain",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "foreign body sensation",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "photophobia",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+        "text": "no vision change reported",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_relevant_negatives[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+        "text": "no trauma reported",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_relevant_negatives[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+        "text": "no chemical exposure reported",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_relevant_negatives[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "visual acuity documented if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+        "text": "pupil findings documented if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_exam_findings[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+        "text": "conjunctival injection documented if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_exam_findings[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "management plan discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "return precautions discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "patient questions addressed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-follow-up--prechecked-follow-up-1",
+        "text": "1-2 days if not improving",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_follow_up[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--preset-prechecked-follow-up--prechecked-follow-up-2",
+        "text": "sooner if worsening",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "ophth-eye-pain.prechecked_follow_up[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "ophth-eye-pain--history-draft--default-history-draft",
+        "text": "Patient seen with eye pain for [duration]. Laterality: [laterality]. Severity: [pain_severity_context]. Vision change: [vision_change_context]. Redness/photophobia: [redness_or_photophobia_context]. Trauma/foreign body: [trauma_or_foreign_body_context]. Contact lens: [contact_lens_context]. Headache/nausea: [headache_or_nausea_context]. [Relevant negatives reviewed]. [Additional history].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "ophth-eye-pain.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--visual-acuity-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Visual acuity documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--external-eye-ophth-eye-pain",
+        "text": "Documented if assessed or measured. External eye examination documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--eyelids-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Eyelids documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[1].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--conjunctiva-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Conjunctiva documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[1].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--discharge-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Discharge documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[1].prompts[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--corneal-appearance-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Corneal appearance documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[2].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--fluorescein-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Fluorescein staining documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[2].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--pupils-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Pupils documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[3].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--eye-movements-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Eye movements documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[4].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--red-reflex-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Red reflex documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[5].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--fundoscopy-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Fundoscopy documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[5].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--examination-prompt--visual-fields-ophth-eye-pain",
+        "text": "Documented if assessed or measured. Visual fields documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "ophth-eye-pain.exam_groups[5].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "ophth-eye-pain--investigation-documentation-option--1-1-acuity-ophth-eye-pain",
+        "text": "Reviewed if relevant. Reviewed. Visual acuity documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Visual acuity documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "ophth-eye-pain.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--investigation-documentation-option--1-2-fluorescein-ophth-eye-pain",
+        "text": "Reviewed if relevant. Reviewed. Fluorescein staining documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Fluorescein staining documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "ophth-eye-pain.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--investigation-documentation-option--1-3-iop-ophth-eye-pain",
+        "text": "Reviewed if relevant. Reviewed. Intraocular pressure documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Intraocular pressure documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "ophth-eye-pain.investigation_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--investigation-documentation-option--2-1-prev-ophth-eye-pain",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Previous records reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Previous records reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "ophth-eye-pain.investigation_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "ophth-eye-pain--plan-documentation-option--1-1-eye-ophth-eye-pain",
+        "text": "Eye care advice documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Eye care advice discussed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "ophth-eye-pain.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--plan-documentation-option--2-1-med-ophth-eye-pain",
+        "text": "Medication plan documented if clinician decided.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Medication planned.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "ophth-eye-pain.plan_option_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--plan-documentation-option--3-1-return-ophth-eye-pain",
+        "text": "Return precautions documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Return precautions discussed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "ophth-eye-pain.plan_option_groups[2].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--plan-documentation-option--4-1-ref-ophth-eye-pain",
+        "text": "Referral documented if clinician arranged.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Referral arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "ophth-eye-pain.plan_option_groups[3].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "ophth-eye-pain--plan-documentation-option--5-1-fup-ophth-eye-pain",
+        "text": "Follow-up documented if arranged.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "ophth-eye-pain.plan_option_groups[4].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": []
+  },
+  "content_origin_counts": {
+    "legacy_exact": 94,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 94,
+  "original_preselected_item_count": 14,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "40f3b2771255508afe438bb82cfddca135da15d0f3c3d0bfff4f3274f2395b8f"
+}

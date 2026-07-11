@@ -1,0 +1,1722 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "urgent-wound-care-laceration",
+  "presentation": "Wound care / laceration",
+  "specialty": "Emergency / Urgent Care",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 81,
+    "clinical_workflow": {
+      "workflow_id": "urgent-wound-care-laceration",
+      "specialty_id": "Emergency / Urgent Care",
+      "chief_complaint": "Wound care / laceration",
+      "chief_complaint_aliases": [],
+      "diagnosis": "Wound documentation",
+      "diagnosis_aliases": [],
+      "history_layout_id": "General Medicine / GP",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": "unverified",
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "symptoms",
+          "order": 1,
+          "prompt": "Select symptoms present"
+        },
+        {
+          "group": "exam_findings",
+          "order": 2,
+          "prompt": "Select examination findings"
+        },
+        {
+          "group": "red_flags",
+          "order": 3,
+          "prompt": "Red flags discussed with patient"
+        },
+        {
+          "group": "plan_phrases",
+          "order": 4,
+          "prompt": "Select plan items"
+        },
+        {
+          "group": "follow_up",
+          "order": 5,
+          "prompt": "Follow-up interval"
+        }
+      ],
+      "min_sections": [
+        "hpi"
+      ]
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "urgent-wound-care-laceration--workflow-presentation--chief-complaint",
+        "text": "Wound care / laceration",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "urgent-wound-care-laceration.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--legacy-diagnosis-label--diagnosis",
+        "text": "Wound documentation",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "urgent-wound-care-laceration.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-1",
+        "text": "Wound care / laceration",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-2",
+        "text": "wound",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-3",
+        "text": "laceration",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-4",
+        "text": "cut wound",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-5",
+        "text": "suture review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-6",
+        "text": "wound care",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-7",
+        "text": "Laceration",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-8",
+        "text": "cut",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-9",
+        "text": "skin tear",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-10",
+        "text": "Wound / laceration",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-11",
+        "text": "Wound documentation",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-12",
+        "text": "wound documentation",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--matching-alias--alias-13",
+        "text": "laceration review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "urgent-wound-care-laceration.aliases[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-1",
+        "text": "wound",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-relevant-negatives--urgent-wound-care-laceration-relevant-negatives-1",
+        "text": "no neurovascular compromise",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-1",
+        "text": "wound size documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-red-flags--urgent-wound-care-laceration-red-flags-1",
+        "text": "neurovascular compromise",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-investigations--urgent-wound-care-laceration-investigations-1",
+        "text": "X-ray reviewed if ordered",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-1",
+        "text": "wound care advice documented if discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-follow-up--urgent-wound-care-laceration-follow-up-1",
+        "text": "wound check in 3-5 days",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-2",
+        "text": "laceration",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-relevant-negatives--urgent-wound-care-laceration-relevant-negatives-2",
+        "text": "no tendon injury suspected",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-2",
+        "text": "wound depth documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-red-flags--urgent-wound-care-laceration-red-flags-2",
+        "text": "tendon involvement",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-investigations--urgent-wound-care-laceration-investigations-2",
+        "text": "imaging reviewed if available",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-2",
+        "text": "wound closure documented if performed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-follow-up--urgent-wound-care-laceration-follow-up-2",
+        "text": "suture removal documented if arranged",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-3",
+        "text": "cut wound",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-relevant-negatives--urgent-wound-care-laceration-relevant-negatives-3",
+        "text": "no foreign body suspected",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-3",
+        "text": "wound edges documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-red-flags--urgent-wound-care-laceration-red-flags-3",
+        "text": "deep structure involvement",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-investigations--urgent-wound-care-laceration-investigations-3",
+        "text": "foreign body series reviewed if ordered",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-3",
+        "text": "dressing documented if applied",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-follow-up--urgent-wound-care-laceration-follow-up-3",
+        "text": "return sooner if signs of infection",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[20]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-4",
+        "text": "wound location documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[21]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-relevant-negatives--urgent-wound-care-laceration-relevant-negatives-4",
+        "text": "no active bleeding",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[22]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-4",
+        "text": "contamination documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[23]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-red-flags--urgent-wound-care-laceration-red-flags-4",
+        "text": "retained foreign body",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[24]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-4",
+        "text": "closure or suture plan documented if clinician decided",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[25]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-follow-up--urgent-wound-care-laceration-follow-up-4",
+        "text": "follow-up PRN",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[26]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-5",
+        "text": "bleeding documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[27]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-relevant-negatives--urgent-wound-care-laceration-relevant-negatives-5",
+        "text": "no wound infection signs",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[28]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-5",
+        "text": "foreign body concern documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[29]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-red-flags--urgent-wound-care-laceration-red-flags-5",
+        "text": "infection signs",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[30]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-5",
+        "text": "tetanus prophylaxis documented if given",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[31]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-6",
+        "text": "mechanism documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[32]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-6",
+        "text": "tetanus status reviewed if relevant",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[33]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-6",
+        "text": "analgesia plan documented if clinician decided",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[34]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-symptoms--urgent-wound-care-laceration-symptoms-7",
+        "text": "time of injury documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[35]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-exam-findings--urgent-wound-care-laceration-exam-findings-7",
+        "text": "neurovascular status documented if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[36]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-7",
+        "text": "antibiotic plan documented if clinician decided",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[37]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-8",
+        "text": "return precautions documented if discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "urgent-wound-care-laceration.chips[38]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "urgent-wound-care-laceration--preset-default-duration-options--default-duration-options-1",
+        "text": "today",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-default-duration-options--default-duration-options-2",
+        "text": "1-3 days",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.default_duration_options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-default-duration-options--default-duration-options-3",
+        "text": "3-7 days",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.default_duration_options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-default-duration-options--default-duration-options-4",
+        "text": "more than 1 week",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.default_duration_options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "wound",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "laceration",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "cut wound",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+        "text": "no neurovascular compromise",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_relevant_negatives[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+        "text": "no tendon injury suspected",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_relevant_negatives[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+        "text": "no foreign body suspected",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_relevant_negatives[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "wound size documented if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+        "text": "wound depth documented if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_exam_findings[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+        "text": "wound edges documented if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_exam_findings[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-investigations--prechecked-investigations-1",
+        "text": "X-ray reviewed if ordered",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_investigations[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-investigations--prechecked-investigations-2",
+        "text": "imaging reviewed if available",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_investigations[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-investigations--prechecked-investigations-3",
+        "text": "foreign body series reviewed if ordered",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_investigations[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "wound care advice documented if discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "wound closure documented if performed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "dressing documented if applied",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-follow-up--prechecked-follow-up-1",
+        "text": "wound check in 3-5 days",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_follow_up[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--preset-prechecked-follow-up--prechecked-follow-up-2",
+        "text": "suture removal documented if arranged",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "urgent-wound-care-laceration.prechecked_follow_up[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "urgent-wound-care-laceration--history-draft--default-history-draft",
+        "text": "Patient seen with wound at [wound_location] from [mechanism]. Time of injury: [mechanism]. Wound described as [wound_description]. Contamination context: [contamination_context]. Tetanus status: [tetanus_status]. [Relevant negatives reviewed]. [Additional context].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "urgent-wound-care-laceration.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "urgent-wound-care-laceration--examination-prompt--wound-location-urgent-wound-care-laceration",
+        "text": "Documented if assessed or measured. Wound location documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "urgent-wound-care-laceration.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--examination-prompt--wound-size-depth-urgent-wound-care-laceration",
+        "text": "Documented if assessed or measured. Wound size and depth documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "urgent-wound-care-laceration.exam_groups[0].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--examination-prompt--bleeding-urgent-wound-care-laceration",
+        "text": "Documented if assessed or measured. Bleeding documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "urgent-wound-care-laceration.exam_groups[0].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--examination-prompt--contamination-urgent-wound-care-laceration",
+        "text": "Documented if assessed or measured. Contamination or foreign body concern documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "urgent-wound-care-laceration.exam_groups[0].prompts[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--examination-prompt--neurovascular-urgent-wound-care-laceration",
+        "text": "Documented if assessed or measured. Neurovascular status documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "urgent-wound-care-laceration.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--examination-prompt--surrounding-skin-urgent-wound-care-laceration",
+        "text": "Documented if assessed or measured. Surrounding skin documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "urgent-wound-care-laceration.exam_groups[1].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "urgent-wound-care-laceration--investigation-documentation-option--1-1-xr-urgent-wound-care-laceration",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered X-ray reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "X-ray reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "urgent-wound-care-laceration.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--investigation-documentation-option--1-2-fb-urgent-wound-care-laceration",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Foreign body series reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Foreign body series reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "urgent-wound-care-laceration.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--investigation-documentation-option--2-1-prev-urgent-wound-care-laceration",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Previous records reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Previous records reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "urgent-wound-care-laceration.investigation_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "urgent-wound-care-laceration--plan-documentation-option--1-1-wound-advice-urgent-wound-care-laceration",
+        "text": "Wound care advice documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Wound care advice discussed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "urgent-wound-care-laceration.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--plan-documentation-option--1-2-dressing-urgent-wound-care-laceration",
+        "text": "Dressing documented if applied.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Dressing applied.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "urgent-wound-care-laceration.plan_option_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--plan-documentation-option--2-1-tetanus-urgent-wound-care-laceration",
+        "text": "Tetanus prophylaxis documented if given.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Tetanus prophylaxis given.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "urgent-wound-care-laceration.plan_option_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--plan-documentation-option--2-2-abx-urgent-wound-care-laceration",
+        "text": "Antibiotic plan documented if clinician decided.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Antibiotic planned.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "urgent-wound-care-laceration.plan_option_groups[1].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "urgent-wound-care-laceration--plan-documentation-option--3-1-wound-check-urgent-wound-care-laceration",
+        "text": "Wound check in 3-5 days. documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Wound check in 3-5 days.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "urgent-wound-care-laceration.plan_option_groups[2].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": []
+  },
+  "content_origin_counts": {
+    "legacy_exact": 90,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 90,
+  "original_preselected_item_count": 17,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "8bf218fc1111913f8a224cc1e6f02e7ae482e91f64d953876c027aadfec8c063"
+}

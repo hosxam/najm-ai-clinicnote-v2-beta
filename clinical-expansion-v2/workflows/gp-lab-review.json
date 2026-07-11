@@ -1,0 +1,1212 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "gp-lab-review",
+  "presentation": "Lab review",
+  "specialty": "General Medicine / GP",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 155,
+    "clinical_workflow": {
+      "workflow_id": "gp-lab-review",
+      "specialty_id": "General Medicine / GP",
+      "chief_complaint": "Lab review",
+      "chief_complaint_aliases": [
+        "results review",
+        "blood test review",
+        "test review",
+        "lab results review"
+      ],
+      "diagnosis": "Laboratory result review",
+      "diagnosis_aliases": [
+        "lab result review",
+        "results review",
+        "blood test review"
+      ],
+      "history_layout_id": "General Medicine / GP",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": null,
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "plan_phrases",
+          "order": 1,
+          "prompt": "Select plan items"
+        },
+        {
+          "group": "follow_up",
+          "order": 2,
+          "prompt": "Follow-up interval"
+        }
+      ],
+      "min_sections": [
+        "hpi"
+      ]
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "gp-lab-review--workflow-presentation--chief-complaint",
+        "text": "Lab review",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "gp-lab-review.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--legacy-diagnosis-label--diagnosis",
+        "text": "Laboratory result review",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "gp-lab-review.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-1",
+        "text": "results review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-2",
+        "text": "blood test review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-3",
+        "text": "test review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-4",
+        "text": "lab results review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-5",
+        "text": "lab result review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-6",
+        "text": "Lab review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--matching-alias--alias-7",
+        "text": "Laboratory result review",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "gp-lab-review.aliases[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "gp-lab-review--chip-symptoms--gp-lab-review-s1",
+        "text": "reason for testing",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-symptoms--gp-lab-review-s2",
+        "text": "current symptoms",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-symptoms--gp-lab-review-s3",
+        "text": "medication changes since labs",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-exam-findings--gp-lab-review-e4",
+        "text": "vitals reviewed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-red-flags--gp-lab-review-r5",
+        "text": "abnormal critical results",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-red-flags--gp-lab-review-r6",
+        "text": "significantly abnormal results",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-red-flags--gp-lab-review-r7",
+        "text": "trend worsening",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-red-flags--gp-lab-review-r8",
+        "text": "results requiring urgent action",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-investigations--gp-lab-review-i9",
+        "text": "labs reviewed",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-investigations--gp-lab-review-i10",
+        "text": "abnormal results discussed",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-investigations--gp-lab-review-i11",
+        "text": "comparison with previous results",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-investigations--gp-lab-review-i12",
+        "text": "pending results noted",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p13",
+        "text": "results explained to patient",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p14",
+        "text": "patient concerns discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p15",
+        "text": "further investigations ordered",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p16",
+        "text": "clinician interpretation documented",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p17",
+        "text": "follow-up for results",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p18",
+        "text": "referral arranged if needed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-plan-phrases--gp-lab-review-p19",
+        "text": "return precautions discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-follow-up--gp-lab-review-f20",
+        "text": "as per results",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--chip-follow-up--gp-lab-review-f21",
+        "text": "sooner if abnormal",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "gp-lab-review.chips[20]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "gp-lab-review--preset-default-duration-options--default-duration-options-1",
+        "text": "routine visit",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-default-duration-options--default-duration-options-2",
+        "text": "recent follow-up",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.default_duration_options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-default-duration-options--default-duration-options-3",
+        "text": "1-3 months",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.default_duration_options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-default-duration-options--default-duration-options-4",
+        "text": "3-6 months",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.default_duration_options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "reason for testing",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "current symptoms",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "medication changes since labs",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "vitals reviewed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-investigations--prechecked-investigations-1",
+        "text": "labs reviewed",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_investigations[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-investigations--prechecked-investigations-2",
+        "text": "abnormal results discussed",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_investigations[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-investigations--prechecked-investigations-3",
+        "text": "comparison with previous results",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_investigations[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "results explained to patient",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "patient concerns discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "further investigations ordered",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-follow-up--prechecked-follow-up-1",
+        "text": "as per results",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_follow_up[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "gp-lab-review--preset-prechecked-follow-up--prechecked-follow-up-2",
+        "text": "sooner if abnormal",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "gp-lab-review.prechecked_follow_up[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "gp-lab-review--history-draft--default-history-draft",
+        "text": "Lab review. Result type: [result_type]. Reason: [reason_for_testing]. Abnormality: [abnormality_context]. Previous comparison: [comparison_previous_results]. Patient concerns: [patient_concerns]. Follow-up: [followup_context]. [Additional history].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "gp-lab-review.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "gp-lab-review--examination-prompt--temperature-gp-lab-review",
+        "text": "Documented if assessed or measured. Temperature documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--heart-rate-gp-lab-review",
+        "text": "Documented if assessed or measured. Heart rate documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[0].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--respiratory-rate-gp-lab-review",
+        "text": "Documented if assessed or measured. Respiratory rate documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[0].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--oxygen-saturation-gp-lab-review",
+        "text": "Documented if assessed or measured. Oxygen saturation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[0].prompts[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--blood-pressure-gp-lab-review",
+        "text": "Documented if assessed or measured. Blood pressure documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[0].prompts[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--weight-bmi-gp-lab-review",
+        "text": "Documented if assessed or measured. Weight and BMI documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[0].prompts[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--general-appearance-gp-lab-review",
+        "text": "Documented if assessed or measured. General appearance documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--examination-prompt--hydration-status-gp-lab-review",
+        "text": "Documented if assessed or measured. Hydration status documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "gp-lab-review.exam_groups[1].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "gp-lab-review--investigation-documentation-option--1-1-results-gp-lab-review",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Results reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Results reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "gp-lab-review.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--investigation-documentation-option--1-2-prev-gp-lab-review",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Previous results compared if available.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Previous results compared.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "gp-lab-review.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--investigation-documentation-option--1-3-fup-gp-lab-review",
+        "text": "Reviewed if relevant. Reviewed. Follow-up testing documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up testing arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "gp-lab-review.investigation_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "gp-lab-review--plan-documentation-option--1-1-explain-gp-lab-review",
+        "text": "Results explained or documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Results explained.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "gp-lab-review.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--plan-documentation-option--2-1-fup-gp-lab-review",
+        "text": "Follow-up testing documented if arranged.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up testing arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "gp-lab-review.plan_option_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--plan-documentation-option--3-1-ref-gp-lab-review",
+        "text": "Referral documented if clinician decided.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Referral arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "gp-lab-review.plan_option_groups[2].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "gp-lab-review--plan-documentation-option--4-1-fup-gp-lab-review",
+        "text": "Follow-up documented if arranged.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "gp-lab-review.plan_option_groups[3].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": []
+  },
+  "content_origin_counts": {
+    "legacy_exact": 62,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 62,
+  "original_preselected_item_count": 12,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "0c49bfcf008f1b3742ce9326bb1c5590305065543e2e077650356086ba9fbbd0"
+}

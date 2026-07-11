@@ -1,0 +1,2070 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "peds-cough",
+  "presentation": "Cough / cold",
+  "specialty": "Pediatrics",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 19,
+    "clinical_workflow": {
+      "workflow_id": "peds-cough",
+      "specialty_id": "Pediatrics",
+      "chief_complaint": "Cough / cold",
+      "chief_complaint_aliases": [],
+      "diagnosis": "URTI / bronchiolitis",
+      "diagnosis_aliases": [],
+      "history_layout_id": "Pediatrics",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": null,
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "symptoms",
+          "order": 1,
+          "prompt": "Select symptoms present"
+        },
+        {
+          "group": "relevant_negatives",
+          "order": 2,
+          "prompt": "Select negatives ruled out"
+        },
+        {
+          "group": "exam_findings",
+          "order": 3,
+          "prompt": "Select examination findings"
+        },
+        {
+          "group": "red_flags",
+          "order": 4,
+          "prompt": "Red flags discussed with patient"
+        },
+        {
+          "group": "plan_phrases",
+          "order": 5,
+          "prompt": "Select plan items"
+        },
+        {
+          "group": "follow_up",
+          "order": 6,
+          "prompt": "Follow-up interval"
+        }
+      ],
+      "min_sections": [
+        "hpi"
+      ]
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "peds-cough--workflow-presentation--chief-complaint",
+        "text": "Cough / cold",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "peds-cough.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--legacy-diagnosis-label--diagnosis",
+        "text": "URTI / bronchiolitis",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "peds-cough.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "peds-cough--matching-alias--alias-1",
+        "text": "Pediatric cough / cold",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-2",
+        "text": "child cough",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-3",
+        "text": "baby cold",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-4",
+        "text": "child runny nose",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-5",
+        "text": "infant congestion",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-6",
+        "text": "URTI / Bronchiolitis",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-7",
+        "text": "paediatric URTI",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-8",
+        "text": "bronchiolitis",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-9",
+        "text": "croup",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-10",
+        "text": "Child runny nose",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-11",
+        "text": "baby congestion",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-12",
+        "text": "infant cold",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-13",
+        "text": "child nasal discharge",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-14",
+        "text": "Baby chesty",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-15",
+        "text": "infant cough",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-16",
+        "text": "baby coughing",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--matching-alias--alias-17",
+        "text": "child congested",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "peds-cough.aliases[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s1",
+        "text": "cough",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s2",
+        "text": "runny nose",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s3",
+        "text": "nasal congestion",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s4",
+        "text": "fever",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s5",
+        "text": "sore throat",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s6",
+        "text": "wheeze",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s7",
+        "text": "reduced feeding",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s8",
+        "text": "sleep disturbance",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s9",
+        "text": "cough duration",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-symptoms--peds-cough-s10",
+        "text": "dry vs productive cough",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n11",
+        "text": "no respiratory distress",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n12",
+        "text": "no cyanosis",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n13",
+        "text": "no poor feeding reported",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n14",
+        "text": "no fever",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n15",
+        "text": "no wheeze",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n16",
+        "text": "no ear pain",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-relevant-negatives--peds-cough-n17",
+        "text": "no choking episode",
+        "item_type": "chip_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e18",
+        "text": "chest clear if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e19",
+        "text": "wheeze heard if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e20",
+        "text": "no chest recession",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e21",
+        "text": "no nasal flaring",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[20]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e22",
+        "text": "afebrile",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[21]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e23",
+        "text": "febrile",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[22]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e24",
+        "text": "child alert",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[23]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-exam-findings--peds-cough-e25",
+        "text": "throat examined if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[24]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-red-flags--peds-cough-r26",
+        "text": "respiratory distress",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[25]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-red-flags--peds-cough-r27",
+        "text": "persistent fever",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[26]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-red-flags--peds-cough-r28",
+        "text": "poor feeding",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[27]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-red-flags--peds-cough-r29",
+        "text": "cyanosis",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[28]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-red-flags--peds-cough-r30",
+        "text": "lethargy",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[29]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-red-flags--peds-cough-r31",
+        "text": "age under 6 months with cough",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[30]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-investigations--peds-cough-i32",
+        "text": "O2 sats checked if assessed",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[31]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-investigations--peds-cough-i33",
+        "text": "CXR ordered if indicated per clinician",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[32]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-plan-phrases--peds-cough-p34",
+        "text": "supportive care discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[33]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-plan-phrases--peds-cough-p35",
+        "text": "nasal saline drops discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[34]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-plan-phrases--peds-cough-p36",
+        "text": "hydration advice discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[35]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-plan-phrases--peds-cough-p37",
+        "text": "return precautions discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[36]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-plan-phrases--peds-cough-p38",
+        "text": "parent/guardian advice discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[37]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-follow-up--peds-cough-f39",
+        "text": "2-3 days if not improving",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[38]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--chip-follow-up--peds-cough-f40",
+        "text": "sooner if worsening",
+        "item_type": "chip_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "peds-cough.chips[39]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "peds-cough--preset-default-duration-options--default-duration-options-1",
+        "text": "today",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-default-duration-options--default-duration-options-2",
+        "text": "1-3 days",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.default_duration_options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-default-duration-options--default-duration-options-3",
+        "text": "3-7 days",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.default_duration_options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-default-duration-options--default-duration-options-4",
+        "text": "more than 1 week",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.default_duration_options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "cough",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "runny nose",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "nasal congestion",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+        "text": "no respiratory distress",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_relevant_negatives[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+        "text": "no cyanosis",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_relevant_negatives[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+        "text": "no poor feeding reported",
+        "item_type": "preset_prechecked_relevant_negatives",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_relevant_negatives[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "chest clear if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+        "text": "wheeze heard if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_exam_findings[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+        "text": "no chest recession",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_exam_findings[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-investigations--prechecked-investigations-1",
+        "text": "O2 sats checked if assessed",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_investigations[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-investigations--prechecked-investigations-2",
+        "text": "CXR ordered if indicated per clinician",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_investigations[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "supportive care discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "nasal saline drops discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "hydration advice discussed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-follow-up--prechecked-follow-up-1",
+        "text": "2-3 days if not improving",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_follow_up[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "peds-cough--preset-prechecked-follow-up--prechecked-follow-up-2",
+        "text": "sooner if worsening",
+        "item_type": "preset_prechecked_follow_up",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "peds-cough.prechecked_follow_up[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "peds-cough--history-draft--default-history-draft",
+        "text": "Parent/guardian reports cough for [duration]. Cough described as [cough_character]. Fever: [fever_context]. Breathing: [breathing_context]. Feeding/activity: [feeding_activity_context]. Parent concern: [parent_guardian_concern]. [Relevant negatives reviewed]. [Additional history].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "peds-cough.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "peds-cough--examination-prompt--general-appearance-activity-peds-cough",
+        "text": "Documented if assessed or measured. General appearance and activity level documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--hydration-peds-peds-cough",
+        "text": "Documented if assessed or measured. Hydration status documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[0].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--capillary-refill-peds-cough",
+        "text": "Documented if assessed or measured. Capillary refill documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[0].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--urine-output-context-peds-cough",
+        "text": "Documented if assessed or measured. Urine output context documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[0].prompts[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--parent-report-context-peds-cough",
+        "text": "Documented if assessed or measured. Parent or guardian report context documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[0].prompts[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--temperature-peds-cough",
+        "text": "Documented if assessed or measured. Temperature documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--heart-rate-peds-cough",
+        "text": "Documented if assessed or measured. Heart rate documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[1].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--respiratory-rate-peds-cough",
+        "text": "Documented if assessed or measured. Respiratory rate documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[1].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--oxygen-saturation-peds-cough",
+        "text": "Documented if assessed or measured. Oxygen saturation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[1].prompts[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--oropharyngeal-peds-cough",
+        "text": "Documented if assessed or measured. Oropharyngeal examination documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[2].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--tonsillar-peds-cough",
+        "text": "Documented if assessed or measured. Tonsillar appearance documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[2].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--cervical-lymph-peds-cough",
+        "text": "Documented if assessed or measured. Cervical lymphadenopathy documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[2].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--otoscopy-peds-cough",
+        "text": "Documented if assessed or measured. Otoscopy documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[2].prompts[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--nasal-examination-peds-cough",
+        "text": "Documented if assessed or measured. Nasal examination documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[2].prompts[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--respiratory-effort-peds-cough",
+        "text": "Documented if assessed or measured. Respiratory effort documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[3].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--chest-auscultation-peds-cough",
+        "text": "Documented if assessed or measured. Chest auscultation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[3].prompts[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--examination-prompt--chest-wall-peds-cough",
+        "text": "Documented if assessed or measured. Chest wall examination documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "peds-cough.exam_groups[3].prompts[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "peds-cough--investigation-documentation-option--1-1-o2-peds-cough",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Oxygen saturation recorded.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Blood pressure recorded.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "peds-cough.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--investigation-documentation-option--1-2-cxr-peds-cough",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Chest imaging reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Chest imaging reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "peds-cough.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--investigation-documentation-option--2-1-temp-peds-cough",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Temperature recorded.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Blood pressure recorded.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "peds-cough.investigation_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--investigation-documentation-option--2-2-rr-peds-cough",
+        "text": "Reviewed if relevant. Reviewed. Respiratory rate documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Respiratory rate documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "peds-cough.investigation_groups[1].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "peds-cough--plan-documentation-option--1-1-supportive-peds-cough",
+        "text": "Supportive care advice documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Supportive care advised.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "peds-cough.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--plan-documentation-option--1-2-breathing-redflags-peds-cough",
+        "text": "Breathing red flags documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Breathing red flags discussed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "peds-cough.plan_option_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--plan-documentation-option--1-3-med-peds-cough",
+        "text": "Medication plan documented if clinician decided.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Medication planned.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "peds-cough.plan_option_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--plan-documentation-option--1-4-fup-peds-cough",
+        "text": "Follow-up documented if arranged.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up arranged.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "peds-cough.plan_option_groups[0].options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": [
+      {
+        "item_id": "peds-cough--medication-documentation-option--1-1-peds-cough-parent-advice",
+        "text": "Parent or guardian advice documented if discussed.",
+        "item_type": "medication_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Parent or guardian advice discussed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_medication_options.json",
+          "source_path": "peds-cough.option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--medication-documentation-option--1-2-peds-cough-hydration",
+        "text": "Hydration advice documented if discussed.",
+        "item_type": "medication_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Hydration advised.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_medication_options.json",
+          "source_path": "peds-cough.option_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--medication-documentation-option--2-1-peds-cough-return-precautions",
+        "text": "Return precautions documented if discussed.",
+        "item_type": "medication_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Return precautions discussed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_medication_options.json",
+          "source_path": "peds-cough.option_groups[1].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "peds-cough--medication-documentation-option--3-1-peds-cough-follow-up-1w",
+        "text": "Follow-up in 1 week if not improving.",
+        "item_type": "medication_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up in 1 week if not improving.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_medication_options.json",
+          "source_path": "peds-cough.option_groups[2].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ]
+  },
+  "content_origin_counts": {
+    "legacy_exact": 109,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 109,
+  "original_preselected_item_count": 16,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "8e60849110662ba30e1fc7b0d64f59468e5c6ba13e7eab0e834ea17fa4cf7fa9"
+}

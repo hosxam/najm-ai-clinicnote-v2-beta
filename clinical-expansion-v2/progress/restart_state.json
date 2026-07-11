@@ -1,0 +1,21 @@
+{
+  "status": "INTERRUPTED_RESTARTABLE",
+  "saved_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_workflow_ids": [
+    "gp-fever-urti",
+    "gp-cough",
+    "gp-sore-throat",
+    "gp-headache",
+    "gp-dizziness"
+  ],
+  "completed_workflow_ids": [],
+  "next_workflow_id": "gp-fatigue",
+  "exact_interruption_reason": "Exact-source review for 1,500 workflows exceeds this bounded execution window. Work stopped after the initial UAE six-document queue to avoid replacing missing research with keyword or generic mappings.",
+  "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
+  "resume_commands": [
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow gp-fatigue",
+    "npm run validate:source-evidence",
+    "npm run validate:item-provenance",
+    "npm run audit:research-claims"
+  ]
+}

@@ -1,0 +1,1013 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "derm-skin-cancer-surveillance",
+  "presentation": "Skin cancer surveillance",
+  "specialty": "Dermatology",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 364,
+    "clinical_workflow": {
+      "workflow_id": "derm-skin-cancer-surveillance",
+      "specialty_id": "Dermatology",
+      "chief_complaint": "Skin cancer surveillance",
+      "chief_complaint_aliases": [
+        "Skin cancer surveillance",
+        "Skin cancer surveillance documentation"
+      ],
+      "diagnosis": "Skin cancer surveillance",
+      "diagnosis_aliases": [
+        "Skin cancer surveillance documentation",
+        "Skin cancer surveillance"
+      ],
+      "history_layout_id": "Dermatology",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": null,
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "symptoms",
+          "order": 1,
+          "prompt": "Select history details"
+        },
+        {
+          "group": "exam_findings",
+          "order": 2,
+          "prompt": "Select examination documentation"
+        },
+        {
+          "group": "red_flags",
+          "order": 3,
+          "prompt": "Document red flag prompts only"
+        },
+        {
+          "group": "investigations",
+          "order": 4,
+          "prompt": "Document investigations already performed/ordered"
+        },
+        {
+          "group": "plan_phrases",
+          "order": 5,
+          "prompt": "Select clinician-documented plan items"
+        }
+      ],
+      "min_sections": [
+        "hpi",
+        "examination_focused"
+      ],
+      "intended_use": "Clinician-controlled documentation scaffold for skin cancer surveillance.",
+      "not_for": "Not for autonomous diagnosis, treatment selection, dosing, disposition, admission/discharge, procedural, imaging, referral, or emergency management decisions.",
+      "risk_category": "medium",
+      "review_required": true,
+      "source_phase1": {
+        "batch_id": "phase1-batch-040",
+        "reason_for_inclusion": "Common Dermatology documentation scenario suitable as clinician-controlled note scaffolding rather than autonomous clinical advice.",
+        "distinct_purpose": "Distinct documentation workflow for clinician-selected details around skin cancer surveillance.",
+        "duplicate_check_notes": "Cleaned Phase 1 candidate. Exact ID is unique within this revised index and must be checked against existing_workflow_ids.json and alias inventory before import; no close baseline workflow assigned in this cleaned index.",
+        "nearest_existing_workflow_if_any": ""
+      },
+      "safety_notes": [
+        "Clinician-review draft content only.",
+        "No autonomous diagnosis or treatment recommendation is intended.",
+        "Red flags are documentation prompts only."
+      ],
+      "red_flag_prompts": [
+        "rapid spread, mucosal involvement, or systemic symptoms documented if assessed",
+        "secondary infection signs documented if assessed",
+        "severe pain or immunocompromise documented if relevant"
+      ],
+      "source_status": "draft_generated_for_review"
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--workflow-presentation--chief-complaint",
+        "text": "Skin cancer surveillance",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "derm-skin-cancer-surveillance.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--legacy-diagnosis-label--diagnosis",
+        "text": "Skin cancer surveillance",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "derm-skin-cancer-surveillance.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--matching-alias--alias-1",
+        "text": "Skin cancer surveillance",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "derm-skin-cancer-surveillance.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--matching-alias--alias-2",
+        "text": "Skin cancer surveillance documentation",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "derm-skin-cancer-surveillance.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-symptoms--derm-skin-cancer-surveillance-symptoms-1-1-skin-cancer-surveillance-context-documented",
+        "text": "Skin cancer surveillance context documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-symptoms--derm-skin-cancer-surveillance-symptoms-1-2-onset-duration-documented-if-discussed",
+        "text": "onset/duration documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-symptoms--derm-skin-cancer-surveillance-symptoms-1-3-severity-impact-on-function-documented-if-discussed",
+        "text": "severity/impact on function documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-symptoms--derm-skin-cancer-surveillance-symptoms-1-4-associated-symptoms-reviewed-if-relevant",
+        "text": "associated symptoms reviewed if relevant",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-symptoms--derm-skin-cancer-surveillance-symptoms-1-5-relevant-negatives-documented-if-assessed",
+        "text": "relevant negatives documented if assessed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-symptoms--derm-skin-cancer-surveillance-symptoms-1-6-patient-concerns-or-goals-documented-if-discussed",
+        "text": "patient concerns or goals documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-exam-findings--derm-skin-cancer-surveillance-exam-findings-2-1-skin-inspection-documented-only-if-assessed",
+        "text": "Skin inspection documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-exam-findings--derm-skin-cancer-surveillance-exam-findings-2-2-lesion-rash-distribution-documented-only-if-assessed",
+        "text": "Lesion/rash distribution documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-exam-findings--derm-skin-cancer-surveillance-exam-findings-2-3-mucosal-secondary-infection-check-documented-only-if-assesse",
+        "text": "Mucosal/secondary infection check documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-exam-findings--derm-skin-cancer-surveillance-exam-findings-2-4-general-appearance-documented-only-if-assessed",
+        "text": "General appearance documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-red-flags--derm-skin-cancer-surveillance-red-flags-3-1-rapid-spread-mucosal-involvement-or-systemic-symptoms-docume",
+        "text": "rapid spread, mucosal involvement, or systemic symptoms documented if assessed",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-red-flags--derm-skin-cancer-surveillance-red-flags-3-2-secondary-infection-signs-documented-if-assessed",
+        "text": "secondary infection signs documented if assessed",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-red-flags--derm-skin-cancer-surveillance-red-flags-3-3-severe-pain-or-immunocompromise-documented-if-relevant",
+        "text": "severe pain or immunocompromise documented if relevant",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-investigations--derm-skin-cancer-surveillance-investigations-4-1-clinical-photographs-reviewed-if-available-and-consented",
+        "text": "Clinical photographs reviewed if available and consented",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-investigations--derm-skin-cancer-surveillance-investigations-4-2-previous-dermatology-records-reviewed-if-available",
+        "text": "Previous dermatology records reviewed if available",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-investigations--derm-skin-cancer-surveillance-investigations-4-3-laboratory-or-pathology-results-reviewed-if-already-availabl",
+        "text": "Laboratory or pathology results reviewed if already available",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-plan-phrases--derm-skin-cancer-surveillance-plan-phrases-5-1-clinician-entered-plan-documented",
+        "text": "clinician-entered plan documented",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-plan-phrases--derm-skin-cancer-surveillance-plan-phrases-5-2-safety-netting-documented-if-discussed-by-clinician",
+        "text": "safety-netting documented if discussed by clinician",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-plan-phrases--derm-skin-cancer-surveillance-plan-phrases-5-3-follow-up-documented-if-arranged-by-clinician",
+        "text": "follow-up documented if arranged by clinician",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--chip-plan-phrases--derm-skin-cancer-surveillance-plan-phrases-5-4-patient-questions-documented-if-discussed",
+        "text": "patient questions documented if discussed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "derm-skin-cancer-surveillance.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-default-duration-options--default-duration-options-1",
+        "text": "10 min",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "Skin cancer surveillance context documented",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "onset/duration documented if discussed",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "severity/impact on function documented if discussed",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "Skin inspection documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+        "text": "Lesion/rash distribution documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_exam_findings[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+        "text": "Mucosal/secondary infection check documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_exam_findings[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-investigations--prechecked-investigations-1",
+        "text": "Clinical photographs reviewed if available and consented",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_investigations[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-investigations--prechecked-investigations-2",
+        "text": "Previous dermatology records reviewed if available",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_investigations[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-investigations--prechecked-investigations-3",
+        "text": "Laboratory or pathology results reviewed if already available",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_investigations[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "clinician-entered plan documented",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "safety-netting documented if discussed by clinician",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "follow-up documented if arranged by clinician",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "derm-skin-cancer-surveillance.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--history-draft--default-history-draft",
+        "text": "Patient presents for skin cancer surveillance documentation. [Onset/duration]. [Symptom context]. [Associated symptoms reviewed]. [Relevant negatives]. [Patient concerns/goals]. [Additional history].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "derm-skin-cancer-surveillance.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--examination-prompt--skin-inspection-documented",
+        "text": "Documented if assessed or measured. Skin inspection documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "derm-skin-cancer-surveillance.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--examination-prompt--lesion-rash-distribution-documented",
+        "text": "Documented if assessed or measured. Lesion/rash distribution documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "derm-skin-cancer-surveillance.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--examination-prompt--mucosal-secondary-infection-check-documented",
+        "text": "Documented if assessed or measured. Mucosal/secondary infection check documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "derm-skin-cancer-surveillance.exam_groups[2].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--examination-prompt--general-appearance-documented",
+        "text": "Documented if assessed or measured. General appearance documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "derm-skin-cancer-surveillance.exam_groups[3].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--investigation-documentation-option--1-1-clinical-photographs-reviewed-if-available-and-consented",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Clinical photographs reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Clinical photographs reviewed and consented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "derm-skin-cancer-surveillance.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--investigation-documentation-option--1-2-previous-dermatology-records-reviewed-if-available",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Previous dermatology records reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Previous dermatology records reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "derm-skin-cancer-surveillance.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--investigation-documentation-option--1-3-laboratory-or-pathology-results-reviewed-if-already-availabl",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Laboratory or pathology results reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Laboratory or pathology results reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "derm-skin-cancer-surveillance.investigation_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "derm-skin-cancer-surveillance--plan-documentation-option--1-1-derm-skin-cancer-surveillance-clinician-plan",
+        "text": "Clinician-entered plan documented.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Clinician-entered plan documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "derm-skin-cancer-surveillance.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--plan-documentation-option--1-2-derm-skin-cancer-surveillance-safety-netting",
+        "text": "Safety-netting documented if discussed by clinician.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Safety-netting documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "derm-skin-cancer-surveillance.plan_option_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--plan-documentation-option--1-3-derm-skin-cancer-surveillance-follow-up",
+        "text": "Follow-up documented if arranged by clinician.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Follow-up documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "derm-skin-cancer-surveillance.plan_option_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "derm-skin-cancer-surveillance--plan-documentation-option--1-4-derm-skin-cancer-surveillance-patient-questions",
+        "text": "Patient questions or counseling discussion documented if discussed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Patient questions or counseling discussion documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "derm-skin-cancer-surveillance.plan_option_groups[0].options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": []
+  },
+  "content_origin_counts": {
+    "legacy_exact": 49,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 49,
+  "original_preselected_item_count": 12,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "d7c3ad0d90f0abefffd198d83610a4c3fbba42e6a185d5b53aa77e920c19a2bf"
+}

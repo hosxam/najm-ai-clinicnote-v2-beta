@@ -207,7 +207,9 @@ export const clinicnoteDataAdapter = {
             investigationDetails: findByWorkflowId<InvestigationDetails>(investigationPayload, workflowId),
             planDetails: findByWorkflowId<PlanDetails>(planPayload, workflowId),
             medicationDetails: findByWorkflowId<MedicationDetails>(medicationPayload, workflowId),
-            specialtyLayout: findBySpecialtyId<SpecialtyLayout>(layoutPayload, clinical.specialty_id),
+            specialtyLayout:
+              findBySpecialtyId<SpecialtyLayout>(layoutPayload, clinical.history_layout_id)
+              ?? findBySpecialtyId<SpecialtyLayout>(layoutPayload, clinical.specialty_id),
           } satisfies WorkflowDetails
         })(),
       )

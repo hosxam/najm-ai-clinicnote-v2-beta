@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm.local/schemas/source-first-research-v2.json",
+  "title": "Najm exact source evidence record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workflow_id",
+    "presentation",
+    "specialty",
+    "progress_state",
+    "research_started_at",
+    "research_completed_at",
+    "search_queries_used",
+    "official_pages_opened",
+    "exact_documents_opened",
+    "exact_sections_reviewed",
+    "candidate_sources_rejected",
+    "rejection_reasons",
+    "selected_primary_sources",
+    "selected_supporting_sources",
+    "population_applicability",
+    "setting_applicability",
+    "UAE_applicability",
+    "recency_verification",
+    "superseded_check",
+    "evidence_items",
+    "source_status",
+    "unresolved_source_gaps",
+    "researcher_type",
+    "evidence_hash"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0.0" },
+    "workflow_id": { "type": "string", "minLength": 1 },
+    "source_status": {
+      "enum": [
+        "exact_workflow_source_verified",
+        "partial_exact_source_verified",
+        "no_authoritative_source_found",
+        "conflicting_authoritative_sources",
+        "source_access_failed",
+        "research_interrupted"
+      ]
+    },
+    "exact_documents_opened": { "type": "array", "items": { "type": "string" } },
+    "exact_sections_reviewed": { "type": "array", "items": { "type": "string" } },
+    "evidence_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

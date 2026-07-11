@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm.local/schemas/source-first-workflow-v2.json",
+  "title": "Najm source-first workflow overlay",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workflow_id",
+    "presentation",
+    "specialty",
+    "baseline",
+    "research_status",
+    "clinical_review_required",
+    "content_sections",
+    "content_origin_counts",
+    "content_hash"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0.0" },
+    "workflow_id": { "type": "string", "minLength": 1 },
+    "presentation": { "type": "string", "minLength": 1 },
+    "specialty": { "type": "string", "minLength": 1 },
+    "clinical_review_required": { "const": true },
+    "active_clinical_approval": { "const": false },
+    "application_generation_eligible": { "const": false },
+    "content_sections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/clinicalItem" }
+      }
+    },
+    "content_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "$defs": {
+    "clinicalItem": {
+      "type": "object",
+      "required": [
+        "item_id",
+        "text",
+        "item_type",
+        "origin",
+        "source_ids",
+        "source_section_ids",
+        "clinician_confirmation_required",
+        "default_selected",
+        "clinical_review_status"
+      ],
+      "properties": {
+        "item_id": { "type": "string", "minLength": 1 },
+        "text": { "type": "string" },
+        "item_type": { "type": "string", "minLength": 1 },
+        "origin": {
+          "enum": [
+            "legacy_exact",
+            "legacy_cleaned",
+            "source_derived",
+            "clinician_authored",
+            "administrative_nonclinical"
+          ]
+        },
+        "source_ids": { "type": "array", "items": { "type": "string" } },
+        "source_section_ids": { "type": "array", "items": { "type": "string" } },
+        "clinician_confirmation_required": { "const": true },
+        "default_selected": { "const": false },
+        "clinical_review_status": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

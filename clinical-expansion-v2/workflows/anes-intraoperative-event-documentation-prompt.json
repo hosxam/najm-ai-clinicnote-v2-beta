@@ -1,0 +1,1070 @@
+{
+  "schema_version": "2.0.0",
+  "workflow_id": "anes-intraoperative-event-documentation-prompt",
+  "presentation": "Intraoperative event documentation prompt",
+  "specialty": "Anesthesia / Perioperative Medicine",
+  "baseline": {
+    "commit": "95758951d46510f34548b5520510c5d9d59f017f",
+    "source_workflow_index": 199,
+    "clinical_workflow": {
+      "workflow_id": "anes-intraoperative-event-documentation-prompt",
+      "specialty_id": "Anesthesia / Perioperative Medicine",
+      "chief_complaint": "Intraoperative event documentation prompt",
+      "chief_complaint_aliases": [
+        "Intraoperative event documentation prompt",
+        "intraoperative event note prompt"
+      ],
+      "diagnosis": "Intraoperative event documentation prompt",
+      "diagnosis_aliases": [
+        "Intraoperative event documentation prompt documentation",
+        "Intraoperative event documentation prompt",
+        "intraoperative event note prompt"
+      ],
+      "history_layout_id": "Anesthesia / Perioperative Medicine",
+      "filters": {
+        "age_min_months": null,
+        "age_max_years": null,
+        "sex": null
+      },
+      "icd_metadata": {
+        "icd_system": null,
+        "icd_code": null,
+        "icd_label": null,
+        "icd_verified": false,
+        "icd_source": null
+      },
+      "chip_groups": [
+        {
+          "group": "symptoms",
+          "order": 1,
+          "prompt": "Select history details"
+        },
+        {
+          "group": "exam_findings",
+          "order": 2,
+          "prompt": "Select examination documentation"
+        },
+        {
+          "group": "red_flags",
+          "order": 3,
+          "prompt": "Document red flag prompts only"
+        },
+        {
+          "group": "investigations",
+          "order": 4,
+          "prompt": "Document investigations already performed/ordered"
+        },
+        {
+          "group": "plan_phrases",
+          "order": 5,
+          "prompt": "Select clinician-documented plan items"
+        }
+      ],
+      "min_sections": [
+        "hpi",
+        "examination_focused"
+      ],
+      "intended_use": "Clinician-controlled documentation scaffold for intraoperative event documentation prompt.",
+      "not_for": "Not for autonomous diagnosis, treatment selection, dosing, disposition, admission/discharge, procedural, imaging, referral, or emergency management decisions.",
+      "risk_category": "high",
+      "review_required": true,
+      "source_phase1": {
+        "batch_id": "phase1-batch-052",
+        "reason_for_inclusion": "Common Anesthesia / Perioperative Medicine documentation scenario included for structured clinician-controlled notes; safety labels are conservative because it must not generate management advice.",
+        "distinct_purpose": "Distinct high-caution documentation workflow for clinician-stated assessment and plans around intraoperative event documentation prompt, without generating management advice.",
+        "duplicate_check_notes": "Cleaned Phase 1 candidate. Exact ID is unique within this revised index and must be checked against existing_workflow_ids.json and alias inventory before import; no close baseline workflow assigned in this cleaned index.",
+        "nearest_existing_workflow_if_any": ""
+      },
+      "safety_notes": [
+        "Clinician-review draft content only.",
+        "No autonomous diagnosis or treatment recommendation is intended.",
+        "Red flags are documentation prompts only.",
+        "High-risk specialty/workflow: documentation scaffolding only; requires conservative medical review before use.",
+        "Marked not_suitable_yet pending Hossam medical review and technical gating."
+      ],
+      "red_flag_prompts": [
+        "airway, aspiration, allergy, bleeding, or cardiorespiratory risk documented if assessed",
+        "consent/risk discussion documented only if completed by clinician",
+        "perioperative concern documented without management advice"
+      ],
+      "source_status": "draft_generated_for_review"
+    },
+    "public_data_unchanged": true
+  },
+  "research_status": "research_interrupted",
+  "legacy_item_classification_complete": true,
+  "workflow_processed": false,
+  "application_generation_eligible": false,
+  "clinical_review_required": true,
+  "active_clinical_approval": false,
+  "content_sections": {
+    "workflow_identity": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--workflow-presentation--chief-complaint",
+        "text": "Intraoperative event documentation prompt",
+        "item_type": "workflow_presentation",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chief_complaint",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--legacy-diagnosis-label--diagnosis",
+        "text": "Intraoperative event documentation prompt",
+        "item_type": "legacy_diagnosis_label",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/clinical_workflows.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.diagnosis",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "aliases_and_matching_terms": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--matching-alias--alias-1",
+        "text": "Intraoperative event documentation prompt",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.aliases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--matching-alias--alias-2",
+        "text": "intraoperative event note prompt",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.aliases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--matching-alias--alias-3",
+        "text": "Intraoperative event documentation prompt documentation",
+        "item_type": "matching_alias",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/diagnosis_index.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.aliases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "chips": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-1-intraoperative-event-documentation-prompt-context-documented",
+        "text": "Intraoperative event documentation prompt context documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-2-onset-duration-documented-if-discussed",
+        "text": "onset/duration documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-3-severity-impact-on-function-documented-if-discussed",
+        "text": "severity/impact on function documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-4-associated-symptoms-reviewed-if-relevant",
+        "text": "associated symptoms reviewed if relevant",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-5-relevant-negatives-documented-if-assessed",
+        "text": "relevant negatives documented if assessed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[4]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-6-patient-concerns-or-goals-documented-if-discussed",
+        "text": "patient concerns or goals documented if discussed",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[5]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-7-clinician-led-risk-context-documented",
+        "text": "clinician-led risk context documented",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[6]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-symptoms--anes-intraoperative-event-documentation-prompt-symptoms-1-8-scope-limited-to-documentation-scaffolding",
+        "text": "scope limited to documentation scaffolding",
+        "item_type": "chip_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[7]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-exam-findings--anes-intraoperative-event-documentation-prompt-exam-findings-2-1-pre-perioperative-assessment-documentation-documented-only-i",
+        "text": "Pre/perioperative assessment documentation documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[8]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-exam-findings--anes-intraoperative-event-documentation-prompt-exam-findings-2-2-airway-assessment-documentation-if-assessed-documented-only",
+        "text": "Airway assessment documentation if assessed documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[9]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-exam-findings--anes-intraoperative-event-documentation-prompt-exam-findings-2-3-cardiorespiratory-assessment-documentation-documented-only-i",
+        "text": "Cardiorespiratory assessment documentation documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[10]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-exam-findings--anes-intraoperative-event-documentation-prompt-exam-findings-2-4-risk-discussion-documentation-documented-only-if-assessed",
+        "text": "Risk discussion documentation documented only if assessed",
+        "item_type": "chip_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[11]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-red-flags--anes-intraoperative-event-documentation-prompt-red-flags-3-1-airway-aspiration-allergy-bleeding-or-cardiorespiratory-risk",
+        "text": "airway, aspiration, allergy, bleeding, or cardiorespiratory risk documented if assessed",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[12]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-red-flags--anes-intraoperative-event-documentation-prompt-red-flags-3-2-consent-risk-discussion-documented-only-if-completed-by-clin",
+        "text": "consent/risk discussion documented only if completed by clinician",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[13]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-red-flags--anes-intraoperative-event-documentation-prompt-red-flags-3-3-perioperative-concern-documented-without-management-advice",
+        "text": "perioperative concern documented without management advice",
+        "item_type": "chip_red_flags",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[14]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-investigations--anes-intraoperative-event-documentation-prompt-investigations-4-1-preoperative-assessment-results-documented-if-reviewed",
+        "text": "Preoperative assessment results documented if reviewed",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[15]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-investigations--anes-intraoperative-event-documentation-prompt-investigations-4-2-existing-investigations-documented-if-reviewed-by-clinician",
+        "text": "Existing investigations documented if reviewed by clinician",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[16]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-investigations--anes-intraoperative-event-documentation-prompt-investigations-4-3-consent-risk-discussion-documentation-reviewed-if-available",
+        "text": "Consent/risk discussion documentation reviewed if available",
+        "item_type": "chip_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[17]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-plan-phrases--anes-intraoperative-event-documentation-prompt-plan-phrases-5-1-clinician-entered-documentation-plan-recorded",
+        "text": "clinician-entered documentation plan recorded",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[18]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-plan-phrases--anes-intraoperative-event-documentation-prompt-plan-phrases-5-2-senior-specialist-discussion-documented-if-already-performed",
+        "text": "senior/specialist discussion documented if already performed",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[19]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-plan-phrases--anes-intraoperative-event-documentation-prompt-plan-phrases-5-3-risk-consent-discussion-documented-if-clinician-completed-it",
+        "text": "risk/consent discussion documented if clinician completed it",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[20]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--chip-plan-phrases--anes-intraoperative-event-documentation-prompt-plan-phrases-5-4-handover-or-follow-up-documentation-recorded-if-arranged-by",
+        "text": "handover or follow-up documentation recorded if arranged by clinician",
+        "item_type": "chip_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/workflow_chips.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.chips[21]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "speed_preset": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-default-duration-options--default-duration-options-1",
+        "text": "10 min",
+        "item_type": "preset_default_duration_options",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.default_duration_options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-symptoms--prechecked-symptoms-1",
+        "text": "Intraoperative event documentation prompt context documented",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_symptoms[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-symptoms--prechecked-symptoms-2",
+        "text": "onset/duration documented if discussed",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_symptoms[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-symptoms--prechecked-symptoms-3",
+        "text": "severity/impact on function documented if discussed",
+        "item_type": "preset_prechecked_symptoms",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_symptoms[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+        "text": "Pre/perioperative assessment documentation documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_exam_findings[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+        "text": "Airway assessment documentation if assessed documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_exam_findings[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+        "text": "Cardiorespiratory assessment documentation documented only if assessed",
+        "item_type": "preset_prechecked_exam_findings",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_exam_findings[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-investigations--prechecked-investigations-1",
+        "text": "Preoperative assessment results documented if reviewed",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_investigations[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-investigations--prechecked-investigations-2",
+        "text": "Existing investigations documented if reviewed by clinician",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_investigations[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-investigations--prechecked-investigations-3",
+        "text": "Consent/risk discussion documentation reviewed if available",
+        "item_type": "preset_prechecked_investigations",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_investigations[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+        "text": "clinician-entered documentation plan recorded",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_plan_phrases[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+        "text": "senior/specialist discussion documented if already performed",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_plan_phrases[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+        "text": "risk/consent discussion documented if clinician completed it",
+        "item_type": "preset_prechecked_plan_phrases",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/speed_presets.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.prechecked_plan_phrases[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": true
+        }
+      }
+    ],
+    "history_draft": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--history-draft--default-history-draft",
+        "text": "Patient presents for intraoperative event documentation prompt documentation. [Onset/duration]. [Symptom context]. [Associated symptoms reviewed]. [Relevant negatives]. [Patient concerns/goals]. [Additional history].",
+        "item_type": "history_draft",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_history_drafts.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.default_history_draft",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "exam_prompts": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--examination-prompt--pre-perioperative-assessment-documentati-documented",
+        "text": "Documented if assessed or measured. Pre/perioperative assessment documentation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.exam_groups[0].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--examination-prompt--airway-assessment-documentation-if-asses-documented",
+        "text": "Documented if assessed or measured. Airway assessment documentation if assessed documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.exam_groups[1].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--examination-prompt--cardiorespiratory-assessment-documentati-documented",
+        "text": "Documented if assessed or measured. Cardiorespiratory assessment documentation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.exam_groups[2].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--examination-prompt--risk-discussion-documentation-documented",
+        "text": "Documented if assessed or measured. Risk discussion documentation documented.",
+        "item_type": "examination_prompt",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": null,
+        "legacy_provenance": {
+          "source_file": "public/data/v4_workflow_exam_details.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.exam_groups[3].prompts[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "investigation_options": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--investigation-documentation-option--1-1-preoperative-assessment-results-documented-if-reviewed",
+        "text": "Reviewed if relevant. Reviewed. Preoperative assessment results documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Preoperative assessment results documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.investigation_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--investigation-documentation-option--1-2-existing-investigations-documented-if-reviewed-by-clinician",
+        "text": "Reviewed if relevant. Reviewed. Existing investigations documented.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Existing investigations documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.investigation_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--investigation-documentation-option--1-3-consent-risk-discussion-documentation-reviewed-if-available",
+        "text": "Reviewed if relevant. Reviewed. Clinician-entered Consent/risk discussion documentation reviewed.",
+        "item_type": "investigation_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Consent/risk discussion documentation reviewed.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_investigation_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.investigation_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "plan_options": [
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--plan-documentation-option--1-1-anes-intraoperative-event-documentation-prompt-clinician-documentation-plan",
+        "text": "Clinician-entered documentation plan recorded.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Clinician-entered documentation plan recorded.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.plan_option_groups[0].options[0]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--plan-documentation-option--1-2-anes-intraoperative-event-documentation-prompt-risk-discussion",
+        "text": "Risk/consent discussion documented if completed by clinician.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Risk/consent discussion documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.plan_option_groups[0].options[1]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--plan-documentation-option--1-3-anes-intraoperative-event-documentation-prompt-handover-or-followup",
+        "text": "Clinician-entered Handover or follow-up documentation recorded.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Handover or follow-up documentation recorded.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.plan_option_groups[0].options[2]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      },
+      {
+        "item_id": "anes-intraoperative-event-documentation-prompt--plan-documentation-option--1-4-anes-intraoperative-event-documentation-prompt-senior-or-specialist-discussion",
+        "text": "Senior/specialist discussion documented if already performed.",
+        "item_type": "plan_documentation_option",
+        "origin": "legacy_exact",
+        "source_ids": [],
+        "source_section_ids": [],
+        "clinician_confirmation_required": true,
+        "default_selected": false,
+        "clinical_review_status": "unsupported_legacy_review_required",
+        "output_text": "Senior/specialist discussion documented.",
+        "legacy_provenance": {
+          "source_file": "public/data/v4_plan_options.json",
+          "source_path": "anes-intraoperative-event-documentation-prompt.plan_option_groups[0].options[3]",
+          "exact_text_preserved": true,
+          "original_default_selected": false
+        }
+      }
+    ],
+    "medication_options": []
+  },
+  "content_origin_counts": {
+    "legacy_exact": 52,
+    "legacy_cleaned": 0,
+    "source_derived": 0,
+    "clinician_authored": 0,
+    "administrative_nonclinical": 0
+  },
+  "unsupported_legacy_item_count": 52,
+  "original_preselected_item_count": 12,
+  "source_derived_item_count": 0,
+  "clinical_blockers": [
+    "Exact authoritative workflow research has not been completed.",
+    "Qualified clinician review has not been completed."
+  ],
+  "content_hash": "f6d374e0c68912008f3ef2f01248e476f5989457cb8356783849d60ea85bc25e"
+}
