@@ -56,14 +56,24 @@
     "msk-sports-injury",
     "ent-ear-pain",
     "ent-hearing-complaint",
-    "ent-tinnitus"
+    "ent-tinnitus",
+    "ent-dizziness-vertigo",
+    "ent-nasal-congestion",
+    "ent-sinus-symptoms",
+    "ent-sore-throat",
+    "ent-voice-complaint",
+    "derm-rash",
+    "derm-acne",
+    "derm-eczema",
+    "derm-fungal-infection",
+    "derm-urticaria"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "ent-dizziness-vertigo",
-  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0046–0055 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is ent-dizziness-vertigo.",
+  "next_workflow_id": "derm-wound-review",
+  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0056–0065 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is derm-wound-review.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow ent-dizziness-vertigo",
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow derm-wound-review",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"
