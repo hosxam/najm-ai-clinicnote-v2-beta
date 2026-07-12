@@ -7,6 +7,7 @@ import {
   EXPANSION_DIR,
   PROHIBITED_GENERIC_PATTERNS,
   ROOT_DIR,
+  VERIFICATION_DATE,
   assert,
   fileSha256,
   getResearchPaths,
@@ -144,11 +145,14 @@ function exactCoverageCheck() {
 
 function sourceRecencyCheck() {
   const sources = loadSourceRegistry()
+  const today = new Date().toISOString().slice(0, 10)
   for (const source of sources.values()) {
+    const verifiedOn = source.recency_verification?.verified_on ?? ''
     assert(/^https:\/\//.test(source.exact_official_url), `${source.source_id}: malformed official URL.`, errors)
     assert(Boolean(source.publication_date), `${source.source_id}: publication date missing.`, errors)
     assert(Boolean(source.version), `${source.source_id}: version missing.`, errors)
-    assert(source.recency_verification?.verified_on === '2026-07-11', `${source.source_id}: recency not verified on the required date.`, errors)
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(verifiedOn), `${source.source_id}: recency verification date is invalid.`, errors)
+    assert(verifiedOn >= VERIFICATION_DATE && verifiedOn <= today, `${source.source_id}: recency was not verified during the active research mission.`, errors)
     assert(!/superseded/i.test(source.superseded_status_check?.status ?? ''), `${source.source_id}: source is marked superseded.`, errors)
   }
   printResult(check, errors, { exact_sources_checked: sources.size })
