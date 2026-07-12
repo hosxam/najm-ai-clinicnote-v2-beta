@@ -46,14 +46,24 @@
     "msk-neck-pain",
     "msk-knee-pain",
     "msk-shoulder-pain",
-    "msk-hip-pain"
+    "msk-hip-pain",
+    "msk-ankle-pain",
+    "msk-wrist-hand-pain",
+    "msk-acute-sprain",
+    "msk-fracture-followup",
+    "msk-post-op-followup",
+    "msk-osteoarthritis-followup",
+    "msk-sports-injury",
+    "ent-ear-pain",
+    "ent-hearing-complaint",
+    "ent-tinnitus"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "msk-ankle-pain",
-  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0036–0045 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is msk-ankle-pain.",
+  "next_workflow_id": "ent-dizziness-vertigo",
+  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0046–0055 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is ent-dizziness-vertigo.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow msk-ankle-pain",
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow ent-dizziness-vertigo",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"
