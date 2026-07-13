@@ -133,8 +133,7 @@ export function recoverToCheckpoint({ resetToCheckpoint, assertClean, nextWorkfl
 }
 
 function run(command, args, { allowFailure = false, capture = false } = {}) {
-  const executable = process.platform === 'win32' && command === 'npm' ? 'npm.cmd' : command
-  const result = spawnSync(executable, args, {
+  const result = spawnSync(command, args, {
     cwd: ROOT_DIR,
     encoding: 'utf8',
     stdio: capture ? 'pipe' : 'inherit',
@@ -151,8 +150,27 @@ function git(args, options) {
   return run('git', args, options)
 }
 
+export function resolveNpmInvocation(script, {
+  npmExecPath = process.env.npm_execpath,
+  nodeExecPath = process.execPath,
+  platform = process.platform,
+  comSpec = process.env.ComSpec,
+} = {}) {
+  if (npmExecPath) {
+    return { command: nodeExecPath, args: [npmExecPath, 'run', script] }
+  }
+  if (platform === 'win32') {
+    return {
+      command: comSpec ?? 'cmd.exe',
+      args: ['/d', '/s', '/c', `"npm.cmd run ${script}"`],
+    }
+  }
+  return { command: 'npm', args: ['run', script] }
+}
+
 function npmRun(script) {
-  run('npm', ['run', script])
+  const invocation = resolveNpmInvocation(script)
+  run(invocation.command, invocation.args)
 }
 
 function assertRepositorySafety({ requireClean = false } = {}) {

@@ -10,6 +10,7 @@ import {
   isTerminalWorkflow,
   parseQueueArgs,
   recoverToCheckpoint,
+  resolveNpmInvocation,
   resolveQueueEntries,
   shouldStopForTimeBudget,
 } from './researchQueue.mjs'
@@ -42,6 +43,28 @@ test('parses the documented queue command', () => {
     timeBudgetMinutes: 210,
     continueFromManifest: true,
     dryRun: true,
+  })
+})
+
+test('runs npm checkpoint validators through the npm CLI with Node on Windows', () => {
+  assert.deepEqual(resolveNpmInvocation('validate:source-evidence', {
+    npmExecPath: 'C:\\npm\\npm-cli.js',
+    nodeExecPath: 'C:\\node\\node.exe',
+    platform: 'win32',
+  }), {
+    command: 'C:\\node\\node.exe',
+    args: ['C:\\npm\\npm-cli.js', 'run', 'validate:source-evidence'],
+  })
+})
+
+test('uses cmd only as the Windows fallback when npm CLI metadata is unavailable', () => {
+  assert.deepEqual(resolveNpmInvocation('validate:item-provenance', {
+    npmExecPath: '',
+    platform: 'win32',
+    comSpec: 'C:\\Windows\\System32\\cmd.exe',
+  }), {
+    command: 'C:\\Windows\\System32\\cmd.exe',
+    args: ['/d', '/s', '/c', '"npm.cmd run validate:item-provenance"'],
   })
 })
 
