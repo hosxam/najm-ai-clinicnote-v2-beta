@@ -43,7 +43,7 @@ const sources = [
       clinical_setting: 'CKD detection, evaluation, monitoring, medication stewardship, referral, and longitudinal kidney care.',
       applicability_note: 'Exact for selected CKD, GFR, albuminuria, medication-review, and referral documentation. Diagnosis, treatment, medicine changes or doses, fixed monitoring intervals beyond stated qualifiers, and UAE service pathways remain clinician responsibilities.',
       recency_verification: { verified_on: '2026-07-13', status: 'current_official_KDIGO_2024_PDF_opened_focused_chapter_update_not_yet_published', revision_due: null },
-      superseded_status_check: { checked_on: '2026-07-13', status: '2024_CKD_guideline_current_global_standard_2012_guideline_superseded' },
+      superseded_status_check: { checked_on: '2026-07-13', status: 'current_2024_CKD_guideline;_replaces_2012_predecessor' },
       exact_sections: [
         section('kdigo-ckd-2024-detection-chronicity', 'Detection of CKD and evaluation of chronicity', 'Practice Points 1.1.1.1–1.1.1.2 and 1.1.3.1–1.1.3.2; summary PDF pages 34 and 54–57', 'Supports GFR and urine-albumin testing, repeat confirmation, prior GFR or albuminuria trends, imaging, history, and the minimum chronicity context without diagnosing CKD from one result.'),
         section('kdigo-ckd-2024-cause-kidney-context', 'Evaluation of cause and kidney-function context', 'Practice Point 1.1.4.1, Figure 8, Table 6, and Practice Point 1.2.1.1; summary PDF pages 34–35 and 61', 'Supports careful medical, family, medicine, urinary, systemic, examination, urinalysis, ACR, electrolyte, and imaging context in clinician-led CKD evaluation.'),
