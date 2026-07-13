@@ -249,6 +249,19 @@ const allResearch = getResearchPaths().map((filePath) => readJson(filePath))
 const terminalResearch = allResearch.filter((record) => allowedTerminalStatuses.has(record.source_status))
 const exactDocumentIds = new Set(terminalResearch.flatMap((record) => record.exact_documents_opened))
 const exactSectionIds = new Set(terminalResearch.flatMap((record) => record.exact_sections_reviewed))
+const uaeEvidencedResearch = terminalResearch.filter((record) =>
+  ['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record.source_status),
+)
+const uaePartialApplicabilityFindings = uaeEvidencedResearch.filter(
+  (record) => record.source_status === 'partial_exact_source_verified',
+)
+const uaeMissingExplicitEvidenceFindings = uaeEvidencedResearch.filter(
+  (record) => !/Dubai|UAE|United Arab Emirates/i.test(record.UAE_applicability),
+)
+const uaeAffectedWorkflowIds = new Set([
+  ...uaePartialApplicabilityFindings,
+  ...uaeMissingExplicitEvidenceFindings,
+].map((record) => record.workflow_id))
 const sourceSupportedLegacyItemCount = allResearch.reduce(
   (total, record) => total + (record.legacy_item_support_mappings?.length ?? 0),
   0,
@@ -309,6 +322,11 @@ Object.assign(checkpoint.counts, {
   uae_official_sources: readJson(path.join(EXPANSION_DIR, 'sources', 'uae_clinical_sources.json')).sources.length,
   international_official_sources: readJson(path.join(EXPANSION_DIR, 'sources', 'international_clinical_sources.json')).sources.length,
   exact_sections_reviewed: exactSectionIds.size,
+  uae_applicability_affected_workflows: uaeAffectedWorkflowIds.size,
+  uae_applicability_individual_findings: uaePartialApplicabilityFindings.length + uaeMissingExplicitEvidenceFindings.length,
+  uae_partial_applicability_findings: uaePartialApplicabilityFindings.length,
+  uae_missing_explicit_evidence_findings: uaeMissingExplicitEvidenceFindings.length,
+  uae_other_applicability_findings: 0,
   source_derived_items: 0,
   unsupported_legacy_items: unsupportedRows.length,
   generic_generated_items: 0,
@@ -325,7 +343,7 @@ checkpoint.clinical_blocker_commands = checkpoint.clinical_blocker_commands.map(
   if (entry.command === 'npm run audit:uae-applicability') {
     return {
       ...entry,
-      reason: `${terminalResearch.length} researched workflows retain population, setting, or jurisdiction applicability gaps.`,
+      reason: `${uaeAffectedWorkflowIds.size} evidenced workflow(s) have ${uaePartialApplicabilityFindings.length + uaeMissingExplicitEvidenceFindings.length} UAE-applicability finding(s): ${uaePartialApplicabilityFindings.length} partial-applicability, ${uaeMissingExplicitEvidenceFindings.length} missing-explicit-evidence, and 0 other.`,
     }
   }
   if (entry.command === 'npm run audit:unsupported-legacy-content') {
