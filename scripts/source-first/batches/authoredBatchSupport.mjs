@@ -139,6 +139,27 @@ export const SOURCE_META = {
   'hrs-remote-device-clinic-2023': {
     url: 'https://www.hrsonline.org/wp-content/uploads/2025/02/2023-HRS-EHRA-APHRS-LAHRS-Remote-Device-Clinic.pdf',
   },
+  'nice-venous-thromboembolic-diseases-ng158-2023': {
+    url: 'https://www.nice.org.uk/guidance/ng158/chapter/recommendations',
+  },
+  'nice-medicines-adherence-cg76-2009': {
+    url: 'https://www.nice.org.uk/guidance/cg76/chapter/recommendations',
+  },
+  'nice-stable-angina-cg126-2016': {
+    url: 'https://www.nice.org.uk/guidance/cg126/chapter/recommendations',
+  },
+  'nice-acne-vulgaris-ng198-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng198/chapter/recommendations',
+  },
+  'nice-cellulitis-erysipelas-ng141-2019': {
+    url: 'https://www.nice.org.uk/guidance/ng141/chapter/recommendations',
+  },
+  'nice-diabetic-foot-ng19-2019': {
+    url: 'https://www.nice.org.uk/guidance/ng19/chapter/recommendations',
+  },
+  'bad-hidradenitis-suppurativa-guideline-2018': {
+    url: 'https://onlinelibrary.wiley.com/doi/10.1111/bjd.17537',
+  },
 }
 
 function unique(values) {
