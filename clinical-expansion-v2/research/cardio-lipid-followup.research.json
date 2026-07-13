@@ -3,27 +3,372 @@
   "workflow_id": "cardio-lipid-followup",
   "presentation": "Lipid follow-up",
   "specialty": "Cardiology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae laboratory monitoring chronic conditions statin lipid guideline PDF",
+    "site:nice.org.uk NG238 lipid modification recommendations follow-up",
+    "site:doh.gov.ae dyslipidaemia guideline",
+    "site:who.int cardiovascular risk lipid monitoring guideline"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "d38211197974b9501497c98ded3db0be10ce6e209a17c659b3d523398eb2b73f"
+  "official_pages_opened": [
+    "https://dha.gov.ae/en/licensing-regulations-telehealth",
+    "https://www.nice.org.uk/guidance/ng238/chapter/recommendations"
+  ],
+  "exact_documents_opened": [
+    "dha-laboratory-monitoring-chronic-v2-2024",
+    "nice-cvd-lipid-modification-ng238-2023"
+  ],
+  "exact_sections_reviewed": [
+    "dha-chronic-labs-v2-condition-list",
+    "dha-chronic-labs-v2-required-tests",
+    "dha-chronic-labs-v2-statin-monitoring",
+    "nice-ng238-risk-lifestyle-review",
+    "nice-ng238-lipid-assessment-baseline-tests",
+    "nice-ng238-lipid-response-annual-review"
+  ],
+  "candidate_sources_rejected": [
+    "patient cholesterol pages",
+    "medicine-specific dose schedules",
+    "nonofficial cardiovascular risk calculators"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Dose-bearing prescribing content was not mapped.",
+    "Nonofficial tools do not establish an exact documentation workflow source."
+  ],
+  "selected_primary_sources": [
+    "dha-laboratory-monitoring-chronic-v2-2024"
+  ],
+  "selected_supporting_sources": [
+    "nice-cvd-lipid-modification-ng238-2023"
+  ],
+  "population_applicability": "Partial: the DHA source covers chronic laboratory monitoring and NICE covers adults receiving cardiovascular risk or lipid-modification review; the legacy workflow has no explicit adult-only filter.",
+  "setting_applicability": "Direct for clinician-led chronic laboratory and lipid follow-up documentation; prescribing decisions remain outside the workflow evidence mapping.",
+  "UAE_applicability": "Direct for DHA laboratory-monitoring fields, with international NICE guidance used for additional adult risk, lifestyle, and follow-up context requiring UAE clinician review.",
+  "recency_verification": "The current DHA Issue 2 laboratory-monitoring guideline and NICE NG238 recommendations were rechecked on 2026-07-13.",
+  "superseded_check": "No newer DHA issue was identified; NICE NG238 remains the current official lipid-modification guideline.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "cardio-lipid-followup--dha-chronic-labs-v2-condition-list",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "Supports chronic lipid and statin monitoring as a virtual chronic-condition use case.",
+      "paraphrased_evidence_summary": "Includes hypothyroidism, hyperthyroidism, and hypercholesterolaemia/hyperlipidaemia among the listed chronic conditions.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "cardio-lipid-followup--dha-chronic-labs-v2-required-tests",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "Supports mapped lipid, renal, liver, glycaemic, blood-pressure, and BMI monitoring fields.",
+      "paraphrased_evidence_summary": "Lists condition-linked baseline and follow-up laboratory monitoring and states that unlisted testing remains clinician-directed.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "cardio-lipid-followup--dha-chronic-labs-v2-statin-monitoring",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-statin-monitoring",
+      "direct_relationship": "Supports mapped adverse-effect and laboratory monitoring fields without selecting treatment or dose.",
+      "paraphrased_evidence_summary": "Links statin review to documented ALT and cholesterol or lipid results before clinician prescribing decisions.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "cardio-lipid-followup--nice-ng238-risk-lifestyle-review",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "Supports mapped cardiovascular-risk and documented lifestyle-review fields.",
+      "paraphrased_evidence_summary": "Supports clinician-led cardiovascular risk review and documented lifestyle discussion without autonomously generating advice.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "cardio-lipid-followup--nice-ng238-lipid-assessment-baseline-tests",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-assessment-baseline-tests",
+      "direct_relationship": "Supports mapped lipid-assessment identity, blood-pressure, BMI, renal, liver, and glycaemic fields.",
+      "paraphrased_evidence_summary": "Supports full lipid profile, blood pressure, BMI, diabetes status, renal function, liver transaminases, thyroid context, muscle symptoms, and clinician-led specialist assessment.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    },
+    {
+      "evidence_item_id": "cardio-lipid-followup--nice-ng238-lipid-response-annual-review",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "Supports mapped results, adherence, adverse-effect, medication-review, repeat-testing, and arranged-follow-up documentation.",
+      "paraphrased_evidence_summary": "Supports clinician-documented adherence, adverse-effect review, lifestyle and cardiovascular risk discussion, repeat lipid and liver testing, annual medication review, and agreed follow-up without mapping doses.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "The workflow does not enforce the adult population in the NICE source.",
+    "Chest-pain negatives, generic vital signs, heart rate, general appearance, and generic clinician plans remain unsupported.",
+    "Diagnosis, medicine selection, dose, and risk interpretation remain clinician-stated and qualified clinician review is still required."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "0059ceb5c10e8a6365c6b016290694e11abd1a8566b8d357eecaf483a651dc96",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "cardio-lipid-followup--workflow-presentation--chief-complaint",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--legacy-diagnosis-label--diagnosis",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--matching-alias--alias-1",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--matching-alias--alias-2",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--matching-alias--alias-3",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--matching-alias--alias-4",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-symptoms--cardio-lipid-followup-symptoms-1",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-condition-list",
+      "direct_relationship": "The exact DHA chronic-condition list supports lipid and statin monitoring as a clinician-led chronic follow-up context."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-investigations--cardio-lipid-followup-investigations-1",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-investigations--cardio-lipid-followup-investigations-2",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--examination-prompt--bp",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--examination-prompt--weight-bmi",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--investigation-documentation-option--1-1-lipid-profile",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--investigation-documentation-option--1-2-renal-function",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--investigation-documentation-option--1-3-lft",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--investigation-documentation-option--1-4-hba1c",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--investigation-documentation-option--2-1-bp",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-required-tests",
+      "direct_relationship": "The exact DHA test table supports these clinician-reviewed lipid, renal, liver, glycaemic, blood-pressure, and BMI fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-relevant-negatives--cardio-lipid-followup-relevant-negatives-2",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-statin-monitoring",
+      "direct_relationship": "The exact DHA statin-monitoring section supports documented adverse-effect and liver-function review without medicine selection or dose generation."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-symptoms--cardio-lipid-followup-symptoms-6",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-statin-monitoring",
+      "direct_relationship": "The exact DHA statin-monitoring section supports documented adverse-effect and liver-function review without medicine selection or dose generation."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+      "source_id": "dha-laboratory-monitoring-chronic-v2-2024",
+      "source_section_id": "dha-chronic-labs-v2-statin-monitoring",
+      "direct_relationship": "The exact DHA statin-monitoring section supports documented adverse-effect and liver-function review without medicine selection or dose generation."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-symptoms--cardio-lipid-followup-symptoms-3",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "The exact NICE risk and lifestyle section supports these cardiovascular-risk, lifestyle-context, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-symptoms--cardio-lipid-followup-symptoms-4",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "The exact NICE risk and lifestyle section supports these cardiovascular-risk, lifestyle-context, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-plan-phrases--cardio-lipid-followup-plan-phrases-1",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "The exact NICE risk and lifestyle section supports these cardiovascular-risk, lifestyle-context, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "The exact NICE risk and lifestyle section supports these cardiovascular-risk, lifestyle-context, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "The exact NICE risk and lifestyle section supports these cardiovascular-risk, lifestyle-context, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--plan-documentation-option--1-2-cardio-lipid-followup-lifestyle-advice",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-risk-lifestyle-review",
+      "direct_relationship": "The exact NICE risk and lifestyle section supports these cardiovascular-risk, lifestyle-context, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-symptoms--cardio-lipid-followup-symptoms-2",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-symptoms--cardio-lipid-followup-symptoms-5",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-plan-phrases--cardio-lipid-followup-plan-phrases-2",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--chip-plan-phrases--cardio-lipid-followup-plan-phrases-3",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--history-draft--default-history-draft",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--plan-documentation-option--2-1-cardio-lipid-followup-medication-plan",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--plan-documentation-option--2-2-cardio-lipid-followup-adherence-review",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--plan-documentation-option--3-1-cardio-lipid-followup-follow-up",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    },
+    {
+      "item_id": "cardio-lipid-followup--plan-documentation-option--3-2-cardio-lipid-followup-repeat-lipids",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "source_section_id": "nice-ng238-lipid-response-annual-review",
+      "direct_relationship": "The exact NICE response and annual-review section supports these lipid-result, adherence, history, medication-review, repeat-testing, and arranged-follow-up fields."
+    }
+  ],
+  "supported_legacy_item_count": 40,
+  "unsupported_legacy_item_count": 11,
+  "unsupported_legacy_item_ids": [
+    "cardio-lipid-followup--chip-relevant-negatives--cardio-lipid-followup-relevant-negatives-1",
+    "cardio-lipid-followup--chip-exam-findings--cardio-lipid-followup-exam-findings-1",
+    "cardio-lipid-followup--preset-default-duration-options--default-duration-options-1",
+    "cardio-lipid-followup--preset-default-duration-options--default-duration-options-2",
+    "cardio-lipid-followup--preset-default-duration-options--default-duration-options-3",
+    "cardio-lipid-followup--preset-default-duration-options--default-duration-options-4",
+    "cardio-lipid-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+    "cardio-lipid-followup--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+    "cardio-lipid-followup--examination-prompt--heart-rate",
+    "cardio-lipid-followup--examination-prompt--general-appearance",
+    "cardio-lipid-followup--plan-documentation-option--1-1-cardio-lipid-followup-clinician-plan"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
