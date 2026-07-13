@@ -95,7 +95,7 @@ export const SOURCE_META = {
     url: 'https://www.who.int/publications/i/item/9789241598590',
   },
   'mhaus-family-history-mh-current': {
-    url: 'https://www.mhaus.org/faqs/how-should-i-manage-a-patient-with-a-family-history-of-mh/',
+    url: 'https://www.mhaus.org/healthcare-professionals/mhaus-recommendations/can-patients-with-a-suspected-personal-or-family-history-of-mh-be-safely-anesthetized-prior-to-diagnostic-testing-for-mh-susceptibility/',
   },
   'cpoc-surgery-opioids-2021': {
     url: 'https://www.cpoc.org.uk/sites/cpoc/files/documents/2021-03/surgery-and-opioids-2021.pdf',

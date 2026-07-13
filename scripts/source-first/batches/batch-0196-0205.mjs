@@ -128,7 +128,7 @@ const workflows = [
     concept_support: [{
       source_id: 'mhaus-family-history-mh-current',
       source_section_id: 'mhaus-family-history-verification',
-      relationship: 'The exact MHAUS FAQ supports recording a reported family history and clinician or specialist verification context; it does not confirm susceptibility or generate an anesthetic plan.',
+      relationship: 'The exact MHAUS 2018 recommendation supports documenting a suspected personal or family MH history and incomplete records or testing context; it does not confirm susceptibility or generate an anesthetic plan.',
       exact_texts: anesthesiaIdentityTexts('Malignant hyperthermia history documentation', 'Malignant hyperthermia history documentation context documented'),
     }],
     search_queries_used: ['site:mhaus.org family history malignant hyperthermia manage patient', 'site:asahq.org preanesthesia malignant hyperthermia family history', 'site:rcoa.ac.uk malignant hyperthermia preoperative history'],
@@ -137,8 +137,8 @@ const workflows = [
     population_applicability: 'Patients reporting a personal or family malignant-hyperthermia history during preanesthesia assessment.',
     setting_applicability: 'Direct for history and verification documentation; active crisis, testing, and anesthetic preparation are outside scope.',
     UAE_applicability: 'MHAUS is international specialty evidence; UAE referral, testing, registry, and facility preparedness require local review.',
-    recency_verification: 'Current official MHAUS FAQ and ASA preanesthesia standards were reviewed on 2026-07-13; the FAQ publication date is not stated.',
-    superseded_check: 'No superseding MHAUS FAQ was identified.',
+    recency_verification: 'The official MHAUS recommendation posted in 2018 and ASA preanesthesia standards were reviewed on 2026-07-13.',
+    superseded_check: 'No newer MHAUS recommendation on suspected personal or family history before diagnostic testing was identified.',
     unresolved_source_gaps: ['Personal versus family history, relative, event details, records, genetic or contracture testing, susceptibility conclusion, alert status, anesthetic plan, and emergency management remain unsupported.'],
   }),
   anesthesiaWorkflow({
