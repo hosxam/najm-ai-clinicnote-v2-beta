@@ -3,27 +3,315 @@
   "workflow_id": "cardio-echocardiogram-result-review",
   "presentation": "Echocardiogram result review",
   "specialty": "Cardiology outpatient",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:nice.org.uk NG106 echocardiography result review heart failure",
+    "site:nice.org.uk NG208 murmur echocardiography assessment",
+    "site:doh.gov.ae echocardiogram result review"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "2bce70c6c77ef4c1dc443dac6c411599dac473e9a1d93e27592e0e4ed17984a2"
+  "official_pages_opened": [],
+  "exact_documents_opened": [
+    "nice-chronic-heart-failure-ng106-2025",
+    "nice-heart-valve-disease-ng208-2021"
+  ],
+  "exact_sections_reviewed": [
+    "nice-ng106-diagnosis-assessment-tests",
+    "nice-ng208-murmur-echo-assessment",
+    "nice-ng106-primary-care-review-care-plan"
+  ],
+  "candidate_sources_rejected": [
+    "automatic echocardiogram interpretation",
+    "automatic valve or heart-failure diagnosis and treatment",
+    "automatic diagnosis, investigation, treatment, medication, dose, procedure, referral, escalation, or discharge instructions",
+    "search snippets, landing pages, and broad source-family matches without an exact applicable section"
+  ],
+  "rejection_reasons": [
+    "Interpretation requires the actual report or images, technical quality, indication, comparison, and qualified clinician review.",
+    "No diagnosis, severity grade, treatment, referral, or follow-up interval was generated.",
+    "Autonomous clinical output is outside this documentation-only research programme and was not mapped.",
+    "Only opened exact official documents and directly applicable sections were accepted as evidence."
+  ],
+  "selected_primary_sources": [
+    "nice-chronic-heart-failure-ng106-2025"
+  ],
+  "selected_supporting_sources": [
+    "nice-heart-valve-disease-ng208-2021"
+  ],
+  "population_applicability": "Adults with an echocardiogram being reviewed; source applicability depends on heart-failure or valve-disease context.",
+  "setting_applicability": "Primary, outpatient, and specialist result review; acute instability requires direct assessment.",
+  "UAE_applicability": "International NICE evidence requires UAE echocardiography reporting, cardiology, referral, and facility-policy adaptation.",
+  "recency_verification": "Current NICE NG106 and NG208 sources were reviewed on 2026-07-13.",
+  "superseded_check": "Both reviewed NICE guidelines remain current.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "cardio-echocardiogram-result-review--nice-ng106-diagnosis-assessment-tests",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis.",
+      "paraphrased_evidence_summary": "Supports clinical history and examination, NT-proBNP, echocardiography, ECG, chest X-ray, renal, thyroid, liver, lipid, glucose, blood count, and urinalysis review.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "cardio-echocardiogram-result-review--nice-ng208-murmur-echo-assessment",
+      "source_id": "nice-heart-valve-disease-ng208-2021",
+      "source_section_id": "nice-ng208-murmur-echo-assessment",
+      "direct_relationship": "The NICE valve section confirms echocardiography relevance for clinician-assessed murmur and valve-disease context; it is conditional and does not classify a valve lesion.",
+      "paraphrased_evidence_summary": "Supports murmur nature, family and medical history, symptoms, peripheral signs, abnormal ECG, and clinician-led echocardiography review.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "cardio-echocardiogram-result-review--nice-ng106-primary-care-review-care-plan",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management.",
+      "paraphrased_evidence_summary": "Supports regular primary-care review, record updates, medicine review, functional assessment, deterioration review, follow-up planning, and specialist access.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "Indication, date, modality, image quality, chambers, function, valves, pressures, effusion, measurements, comparison, formal interpretation, diagnosis, severity, urgency, treatment, referral, communication, and follow-up remain unsupported.",
+    "Any legacy item not explicitly mapped to an exact section remains unsupported pending qualified clinician review.",
+    "No mapping authorises an automatic diagnosis, differential, investigation, management decision, medicine, dose, procedure, referral, urgency conclusion, discharge decision, or patient instruction."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "37dde75a4556c49487f48a43a4f54090304d81db0af6752e7df6647788bb27f9",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "cardio-echocardiogram-result-review--workflow-presentation--chief-complaint",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--legacy-diagnosis-label--diagnosis",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--matching-alias--alias-1",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-1-echocardiogram-result-review-reason-for-result-review-docume",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-2-result-source-date-documented-if-available",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-4-change-since-last-review-documented",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-5-severity-impact-on-function-documented-if-discussed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-6-associated-symptoms-reviewed-if-relevant",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-7-relevant-negatives-documented-if-assessed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-8-patient-concerns-or-goals-documented-if-discussed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-exam-findings--cardio-echocardiogram-result-review-exam-findings-2-1-vital-signs-documented-only-if-assessed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-exam-findings--cardio-echocardiogram-result-review-exam-findings-2-2-cardiovascular-examination-documented-only-if-assessed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-exam-findings--cardio-echocardiogram-result-review-exam-findings-2-3-respiratory-examination-documented-only-if-assessed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-exam-findings--cardio-echocardiogram-result-review-exam-findings-2-4-peripheral-perfusion-edema-documented-only-if-assessed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-investigations--cardio-echocardiogram-result-review-investigations-4-1-ecg-reviewed-if-performed-by-clinician",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-investigations--cardio-echocardiogram-result-review-investigations-4-3-cardiac-or-laboratory-results-reviewed-if-already-ordered",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-investigations--prechecked-investigations-3",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-diagnosis-assessment-tests",
+      "direct_relationship": "The NICE heart-failure section supports documenting the echocardiogram source and date, reason for review, symptom and examination context, and clinician review of cardiac structure or function when heart failure is suspected; it does not create an interpretation or diagnosis."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-red-flags--cardio-echocardiogram-result-review-red-flags-3-1-severe-or-rapidly-worsening-symptoms-documented-if-assessed",
+      "source_id": "nice-heart-valve-disease-ng208-2021",
+      "source_section_id": "nice-ng208-murmur-echo-assessment",
+      "direct_relationship": "The NICE valve section confirms echocardiography relevance for clinician-assessed murmur and valve-disease context; it is conditional and does not classify a valve lesion."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-red-flags--cardio-echocardiogram-result-review-red-flags-3-2-abnormal-vital-signs-documented-if-measured",
+      "source_id": "nice-heart-valve-disease-ng208-2021",
+      "source_section_id": "nice-ng208-murmur-echo-assessment",
+      "direct_relationship": "The NICE valve section confirms echocardiography relevance for clinician-assessed murmur and valve-disease context; it is conditional and does not classify a valve lesion."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-red-flags--cardio-echocardiogram-result-review-red-flags-3-3-new-neurological-cardiorespiratory-or-systemic-concern-docum",
+      "source_id": "nice-heart-valve-disease-ng208-2021",
+      "source_section_id": "nice-ng208-murmur-echo-assessment",
+      "direct_relationship": "The NICE valve section confirms echocardiography relevance for clinician-assessed murmur and valve-disease context; it is conditional and does not classify a valve lesion."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-red-flags--cardio-echocardiogram-result-review-red-flags-3-4-clinician-concern-requiring-escalation-documented-if-present",
+      "source_id": "nice-heart-valve-disease-ng208-2021",
+      "source_section_id": "nice-ng208-murmur-echo-assessment",
+      "direct_relationship": "The NICE valve section confirms echocardiography relevance for clinician-assessed murmur and valve-disease context; it is conditional and does not classify a valve lesion."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-plan-phrases--cardio-echocardiogram-result-review-plan-phrases-5-1-clinician-entered-plan-documented",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-plan-phrases--cardio-echocardiogram-result-review-plan-phrases-5-2-safety-netting-documented-if-discussed-by-clinician",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-plan-phrases--cardio-echocardiogram-result-review-plan-phrases-5-3-follow-up-documented-if-arranged-by-clinician",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    },
+    {
+      "item_id": "cardio-echocardiogram-result-review--chip-plan-phrases--cardio-echocardiogram-result-review-plan-phrases-5-4-patient-questions-documented-if-discussed",
+      "source_id": "nice-chronic-heart-failure-ng106-2025",
+      "source_section_id": "nice-ng106-primary-care-review-care-plan",
+      "direct_relationship": "The review section supports documenting clinician explanation, an entered plan, safety-net discussion, and arranged follow-up without generating management."
+    }
+  ],
+  "supported_legacy_item_count": 34,
+  "unsupported_legacy_item_count": 19,
+  "unsupported_legacy_item_ids": [
+    "cardio-echocardiogram-result-review--matching-alias--alias-2",
+    "cardio-echocardiogram-result-review--matching-alias--alias-3",
+    "cardio-echocardiogram-result-review--chip-symptoms--cardio-echocardiogram-result-review-symptoms-1-3-onset-duration-documented-if-discussed",
+    "cardio-echocardiogram-result-review--chip-investigations--cardio-echocardiogram-result-review-investigations-4-2-blood-pressure-or-home-readings-reviewed-if-available",
+    "cardio-echocardiogram-result-review--preset-default-duration-options--default-duration-options-1",
+    "cardio-echocardiogram-result-review--preset-prechecked-symptoms--prechecked-symptoms-3",
+    "cardio-echocardiogram-result-review--preset-prechecked-investigations--prechecked-investigations-2",
+    "cardio-echocardiogram-result-review--history-draft--default-history-draft",
+    "cardio-echocardiogram-result-review--examination-prompt--vital-signs-documented",
+    "cardio-echocardiogram-result-review--examination-prompt--cardiovascular-examination-documented",
+    "cardio-echocardiogram-result-review--examination-prompt--respiratory-examination-documented",
+    "cardio-echocardiogram-result-review--examination-prompt--peripheral-perfusion-edema-documented",
+    "cardio-echocardiogram-result-review--investigation-documentation-option--1-1-ecg-reviewed-if-performed-by-clinician",
+    "cardio-echocardiogram-result-review--investigation-documentation-option--1-2-blood-pressure-or-home-readings-reviewed-if-available",
+    "cardio-echocardiogram-result-review--investigation-documentation-option--1-3-cardiac-or-laboratory-results-reviewed-if-already-ordered",
+    "cardio-echocardiogram-result-review--plan-documentation-option--1-1-cardio-echocardiogram-result-review-clinician-plan",
+    "cardio-echocardiogram-result-review--plan-documentation-option--1-2-cardio-echocardiogram-result-review-safety-netting",
+    "cardio-echocardiogram-result-review--plan-documentation-option--1-3-cardio-echocardiogram-result-review-follow-up",
+    "cardio-echocardiogram-result-review--plan-documentation-option--1-4-cardio-echocardiogram-result-review-patient-questions"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
