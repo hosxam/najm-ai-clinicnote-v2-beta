@@ -7,6 +7,7 @@ export const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)
 export const EXPANSION_DIR = path.join(ROOT_DIR, 'clinical-expansion-v2')
 export const BASELINE_COMMIT = '95758951d46510f34548b5520510c5d9d59f017f'
 export const VERIFICATION_DATE = '2026-07-11'
+export const RESEARCH_TIME_ZONE = 'Asia/Dubai'
 export const CHECKPOINT_TIMESTAMP = '2026-07-11T00:00:00+04:00'
 
 export const ALLOWED_ORIGINS = new Set([

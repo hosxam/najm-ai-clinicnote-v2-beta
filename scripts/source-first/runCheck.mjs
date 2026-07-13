@@ -6,6 +6,7 @@ import {
   BASELINE_COMMIT,
   EXPANSION_DIR,
   PROHIBITED_GENERIC_PATTERNS,
+  RESEARCH_TIME_ZONE,
   ROOT_DIR,
   VERIFICATION_DATE,
   assert,
@@ -145,7 +146,15 @@ function exactCoverageCheck() {
 
 function sourceRecencyCheck() {
   const sources = loadSourceRegistry()
-  const today = new Date().toISOString().slice(0, 10)
+  const dateParts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: RESEARCH_TIME_ZONE,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).formatToParts(new Date()).map(({ type, value }) => [type, value]),
+  )
+  const today = `${dateParts.year}-${dateParts.month}-${dateParts.day}`
   for (const source of sources.values()) {
     const verifiedOn = source.recency_verification?.verified_on ?? ''
     assert(/^https:\/\//.test(source.exact_official_url), `${source.source_id}: malformed official URL.`, errors)
