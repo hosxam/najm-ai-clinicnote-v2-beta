@@ -3,27 +3,544 @@
   "workflow_id": "urgent-fever-suspected-infection",
   "presentation": "Fever / Suspected infection",
   "specialty": "Emergency / Urgent Care",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:nice.org.uk NG253 suspected sepsis recommendations",
+    "site:dha.gov.ae sepsis guideline",
+    "site:doh.gov.ae sepsis standard",
+    "site:who.int sepsis recognition guideline"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "8a9e213565fb2839b4534175662764f16a2536d8564f4ed5f5ceffc0fa527fdd"
+  "official_pages_opened": [
+    "https://www.nice.org.uk/guidance/ng253/chapter/Recommendations",
+    "https://www.nice.org.uk/guidance/ng253/resources/suspected-sepsis-in-people-aged-16-or-over-recognition-assessment-and-early-management-pdf-66144015386053"
+  ],
+  "exact_documents_opened": [
+    "nice-suspected-sepsis-ng253-2026"
+  ],
+  "exact_sections_reviewed": [
+    "nice-ng253-recognition-scope",
+    "nice-ng253-assessment-observations",
+    "nice-ng253-risk-criteria",
+    "nice-ng253-transfer-monitoring-information",
+    "nice-ng253-source-investigations"
+  ],
+  "candidate_sources_rejected": [
+    "patient fever pages",
+    "antibiotic treatment tables",
+    "paediatric and obstetric sepsis pathways"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Treatment and dose content was not mapped.",
+    "The exact source excludes children and people who are or were recently pregnant."
+  ],
+  "selected_primary_sources": [
+    "nice-suspected-sepsis-ng253-2026"
+  ],
+  "selected_supporting_sources": [],
+  "population_applicability": "Partial: exact for non-pregnant people aged 16 years and over with suspected sepsis; not exact for children or pregnancy.",
+  "setting_applicability": "Direct for recognition, assessment, transfer, monitoring, and source investigation; treatment remains clinician-led.",
+  "UAE_applicability": "International NICE guidance requires UAE clinician review and local ambulance, emergency, microbiology, and referral pathways.",
+  "recency_verification": "The current NICE NG253 recommendations and official PDF, including the 2026 wording update, were opened on 2026-07-13.",
+  "superseded_check": "NICE NG253 is the current official guideline for this exact scope.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "urgent-fever-suspected-infection--nice-ng253-recognition-scope",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "Supports mapped suspected-infection, fever, source, duration, and rigors fields.",
+      "paraphrased_evidence_summary": "Supports suspected-infection and fever presentation documentation, source symptoms, risk factors, and recognition that sepsis can present with nonspecific illness.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "urgent-fever-suspected-infection--nice-ng253-assessment-observations",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "Supports mapped observations, source examination, urine-output, and general-assessment fields.",
+      "paraphrased_evidence_summary": "Supports temperature, heart rate, respiratory rate, blood pressure, consciousness, oxygen saturation, skin signs, urine output, fever or rigors, and examination for the suspected infection source.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "urgent-fever-suspected-infection--nice-ng253-risk-criteria",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "Supports mapped confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields.",
+      "paraphrased_evidence_summary": "Supports confusion, respiratory compromise, hypotension, tachycardia, oliguria, temperature abnormality, non-blanching or mottled skin, and immunosuppression as assessed risk features.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "urgent-fever-suspected-infection--nice-ng253-transfer-monitoring-information",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "Supports mapped escalation, return, and warning-information documentation.",
+      "paraphrased_evidence_summary": "Supports emergency transfer or escalation for high-risk presentations and documented monitoring, warning signs, and how to seek care for lower-risk presentations.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "urgent-fever-suspected-infection--nice-ng253-source-investigations",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "Supports mapped blood, microbiology, urine, chest-X-ray, and imaging review.",
+      "paraphrased_evidence_summary": "Supports clinician-selected blood and microbiology testing, urinalysis, chest radiography, and abdominal or pelvic imaging to identify an infection source.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "Children, pregnancy, neck stiffness, broad “temperature” matching, hydration assessment, and the history draft containing neck-stiffness text remain unsupported.",
+    "Supportive care, hydration advice, antipyretics, antibiotics, and fixed follow-up remain unsupported and clinician-led.",
+    "Qualified clinician review has not been completed."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "71cc206be1a30aa706d91a629f01cd0e4d7712430b969e873252c4d9835c5783",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "urgent-fever-suspected-infection--workflow-presentation--chief-complaint",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--legacy-diagnosis-label--diagnosis",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-4",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-5",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-6",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-7",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-8",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-9",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-10",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-12",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-13",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--matching-alias--alias-14",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-4",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-5",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-6",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-recognition-scope",
+      "direct_relationship": "The exact NICE recognition section supports these fever, suspected-infection, sepsis-concern, source-symptom, rigors, duration, and preset fields without asserting a diagnosis."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-symptoms--urgent-fever-suspected-infection-symptoms-7",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-relevant-negatives--urgent-fever-suspected-infection-relevant-negatives-5",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-4",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-6",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-7",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--examination-prompt--temp-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--examination-prompt--hr-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--examination-prompt--rr-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--examination-prompt--bp-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--examination-prompt--source-exam-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--examination-prompt--general-appearance-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-assessment-observations",
+      "direct_relationship": "The exact assessment section supports these temperature, heart-rate, respiratory-rate, blood-pressure, source-examination, general-appearance, urine-source-negative, observation, prompt, and temperature-record fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-relevant-negatives--urgent-fever-suspected-infection-relevant-negatives-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-relevant-negatives--urgent-fever-suspected-infection-relevant-negatives-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-4",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-5",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-7",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-risk-criteria",
+      "direct_relationship": "The exact NICE risk criteria support these assessed confusion and breathing negatives plus confusion, hypotension, respiratory, rash, immunocompromise, and oliguria warning fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-plan-phrases--urgent-fever-suspected-infection-plan-phrases-5",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "The exact transfer and information section supports clinician-decided escalation and documented worsening or new-warning return instructions."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-plan-phrases--urgent-fever-suspected-infection-plan-phrases-6",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "The exact transfer and information section supports clinician-decided escalation and documented worsening or new-warning return instructions."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-follow-up--urgent-fever-suspected-infection-follow-up-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "The exact transfer and information section supports clinician-decided escalation and documented worsening or new-warning return instructions."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-follow-up--urgent-fever-suspected-infection-follow-up-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "The exact transfer and information section supports clinician-decided escalation and documented worsening or new-warning return instructions."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-follow-up--prechecked-follow-up-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "The exact transfer and information section supports clinician-decided escalation and documented worsening or new-warning return instructions."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--plan-documentation-option--3-1-return-prec-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-transfer-monitoring-information",
+      "direct_relationship": "The exact transfer and information section supports clinician-decided escalation and documented worsening or new-warning return instructions."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-investigations--urgent-fever-suspected-infection-investigations-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-investigations--urgent-fever-suspected-infection-investigations-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-investigations--urgent-fever-suspected-infection-investigations-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--chip-investigations--urgent-fever-suspected-infection-investigations-4",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--preset-prechecked-investigations--prechecked-investigations-3",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--investigation-documentation-option--1-1-bloods-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--investigation-documentation-option--1-2-ua-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--investigation-documentation-option--1-3-cultures-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    },
+    {
+      "item_id": "urgent-fever-suspected-infection--investigation-documentation-option--2-1-cxr-urgent-fever-suspected-infection",
+      "source_id": "nice-suspected-sepsis-ng253-2026",
+      "source_section_id": "nice-ng253-source-investigations",
+      "direct_relationship": "The exact source-investigation section supports these clinician-selected urinalysis, blood-test, culture, imaging, and chest-X-ray review fields."
+    }
+  ],
+  "supported_legacy_item_count": 68,
+  "unsupported_legacy_item_count": 27,
+  "unsupported_legacy_item_ids": [
+    "urgent-fever-suspected-infection--matching-alias--alias-11",
+    "urgent-fever-suspected-infection--chip-plan-phrases--urgent-fever-suspected-infection-plan-phrases-1",
+    "urgent-fever-suspected-infection--chip-follow-up--urgent-fever-suspected-infection-follow-up-1",
+    "urgent-fever-suspected-infection--chip-relevant-negatives--urgent-fever-suspected-infection-relevant-negatives-2",
+    "urgent-fever-suspected-infection--chip-plan-phrases--urgent-fever-suspected-infection-plan-phrases-2",
+    "urgent-fever-suspected-infection--chip-plan-phrases--urgent-fever-suspected-infection-plan-phrases-3",
+    "urgent-fever-suspected-infection--chip-relevant-negatives--urgent-fever-suspected-infection-relevant-negatives-4",
+    "urgent-fever-suspected-infection--chip-plan-phrases--urgent-fever-suspected-infection-plan-phrases-4",
+    "urgent-fever-suspected-infection--chip-exam-findings--urgent-fever-suspected-infection-exam-findings-5",
+    "urgent-fever-suspected-infection--chip-investigations--urgent-fever-suspected-infection-investigations-5",
+    "urgent-fever-suspected-infection--chip-red-flags--urgent-fever-suspected-infection-red-flags-6",
+    "urgent-fever-suspected-infection--preset-default-duration-options--default-duration-options-1",
+    "urgent-fever-suspected-infection--preset-default-duration-options--default-duration-options-2",
+    "urgent-fever-suspected-infection--preset-default-duration-options--default-duration-options-3",
+    "urgent-fever-suspected-infection--preset-default-duration-options--default-duration-options-4",
+    "urgent-fever-suspected-infection--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+    "urgent-fever-suspected-infection--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "urgent-fever-suspected-infection--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+    "urgent-fever-suspected-infection--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+    "urgent-fever-suspected-infection--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "urgent-fever-suspected-infection--history-draft--default-history-draft",
+    "urgent-fever-suspected-infection--examination-prompt--hydration-urgent-fever-suspected-infection",
+    "urgent-fever-suspected-infection--plan-documentation-option--1-1-supportive-urgent-fever-suspected-infection",
+    "urgent-fever-suspected-infection--plan-documentation-option--1-2-hydration-urgent-fever-suspected-infection",
+    "urgent-fever-suspected-infection--plan-documentation-option--2-1-antipyretic-urgent-fever-suspected-infection",
+    "urgent-fever-suspected-infection--plan-documentation-option--2-2-abx-urgent-fever-suspected-infection",
+    "urgent-fever-suspected-infection--plan-documentation-option--4-1-fup-2-3d-urgent-fever-suspected-infection"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }

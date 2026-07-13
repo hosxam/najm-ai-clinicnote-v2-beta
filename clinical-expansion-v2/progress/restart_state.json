@@ -86,14 +86,24 @@
     "urgent-wound-care-laceration",
     "urgent-burn-assessment",
     "urgent-allergic-reaction",
-    "urgent-head-injury"
+    "urgent-head-injury",
+    "urgent-chest-pain",
+    "urgent-shortness-of-breath",
+    "urgent-abdominal-pain",
+    "urgent-syncope",
+    "urgent-fever-suspected-infection",
+    "cardio-chest-pain",
+    "cardio-palpitations",
+    "cardio-hypertension-followup",
+    "cardio-heart-failure-followup",
+    "cardio-ecg-review"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "urgent-chest-pain",
-  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0076–0085 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is urgent-chest-pain.",
+  "next_workflow_id": "cardio-dyspnea",
+  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0086–0095 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is cardio-dyspnea.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow urgent-chest-pain",
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow cardio-dyspnea",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"
