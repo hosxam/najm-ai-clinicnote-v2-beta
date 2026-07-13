@@ -116,14 +116,24 @@
     "resp-copd-followup",
     "resp-chronic-cough",
     "resp-dyspnea",
-    "resp-wheeze"
+    "resp-wheeze",
+    "resp-pneumonia-followup",
+    "resp-sleep-apnea-symptoms",
+    "resp-hemoptysis-documentation",
+    "resp-smoking-history-note",
+    "resp-pulmonary-function-review",
+    "gastro-gerd",
+    "gastro-abdominal-pain",
+    "gastro-ibs-symptoms",
+    "gastro-constipation",
+    "gastro-diarrhea"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "resp-pneumonia-followup",
-  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0106–0115 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is resp-pneumonia-followup.",
+  "next_workflow_id": "gastro-rectal-bleeding",
+  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0116–0125 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is gastro-rectal-bleeding.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow resp-pneumonia-followup",
+    "node scripts/source-first/researchNextWorkflow.mjs --workflow gastro-rectal-bleeding",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"

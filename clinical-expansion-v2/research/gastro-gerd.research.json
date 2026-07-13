@@ -3,27 +3,372 @@
   "workflow_id": "gastro-gerd",
   "presentation": "GERD",
   "specialty": "Gastroenterology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae GERD telehealth clinical guideline PDF",
+    "site:doh.gov.ae gastroesophageal reflux guideline UAE",
+    "site:nice.org.uk/guidance/cg184 GORD dyspepsia adults recommendations",
+    "site:nice.org.uk/guidance/ng12 dysphagia upper gastrointestinal cancer referral"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "7867a4bcec14d92a9e9fbb48c1477fa8929b1796c35a1ba2228d5e6483ed9f25"
+  "official_pages_opened": [
+    "https://www.nice.org.uk/guidance/cg184/chapter/Recommendations"
+  ],
+  "exact_documents_opened": [
+    "nice-gord-dyspepsia-cg184-2019"
+  ],
+  "exact_sections_reviewed": [
+    "nice-cg184-gord-symptom-profile",
+    "nice-cg184-gord-alarm-endoscopy",
+    "nice-cg184-gord-investigation-review",
+    "nice-cg184-gord-management-referral"
+  ],
+  "candidate_sources_rejected": [
+    "patient reflux pages",
+    "PPI dose tables",
+    "non-official diet advice"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Medicine names and doses were not mapped.",
+    "Non-official lifestyle advice was not accepted."
+  ],
+  "selected_primary_sources": [
+    "nice-gord-dyspepsia-cg184-2019"
+  ],
+  "selected_supporting_sources": [],
+  "population_applicability": "Partial: exact for adults aged 18 years and over; the legacy workflow has no age restriction and its diagnosis label still requires clinician confirmation.",
+  "setting_applicability": "Direct for adult primary-care symptom assessment, review, and clinician-led referral or management discussion.",
+  "UAE_applicability": "International NICE guidance requires UAE clinician review and local investigation, prescribing, endoscopy, and referral pathways.",
+  "recency_verification": "The current official CG184 recommendations, last updated 2019-10-18, were opened on 2026-07-13.",
+  "superseded_check": "CG184 remains the current official NICE GORD and dyspepsia guideline.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "gastro-gerd--nice-cg184-gord-symptom-profile",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "Supports mapped adult reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields.",
+      "paraphrased_evidence_summary": "Supports adult recurrent epigastric pain, heartburn, acid regurgitation, bloating, nausea or vomiting, associated precipitants, meal timing, and clinician-discussed lifestyle documentation.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "gastro-gerd--nice-cg184-gord-alarm-endoscopy",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "Supports mapped acute GI-bleeding, medicine-cause, prior-endoscopy, and clinician-referral fields.",
+      "paraphrased_evidence_summary": "Supports immediate specialist referral for significant acute gastrointestinal bleeding, medicine-cause review, prior endoscopy review, and further assessment when new alarm signs are present.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "gastro-gerd--nice-cg184-gord-investigation-review",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-investigation-review",
+      "direct_relationship": "Supports mapped clinician-reviewed H. pylori and arranged review fields.",
+      "paraphrased_evidence_summary": "Supports clinician-reviewed H. pylori testing context and annual review for people needing long-term dyspepsia management; medicine names and doses are not mapped.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "gastro-gerd--nice-cg184-gord-management-referral",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-management-referral",
+      "direct_relationship": "Supports mapped clinician-discussed medication, PPI, follow-up, and specialist-referral documentation without names or doses.",
+      "paraphrased_evidence_summary": "Supports clinician-documented reflux management, medication-plan discussion, review, and specialist referral where symptoms do not respond or remain unexplained; no dose or autonomous treatment text is mapped.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "People younger than 18 years are outside the exact source.",
+    "Specific dysphagia, odynophagia, weight-loss, vomiting, anaemia, and black-stool fields require more specific exact alarm-feature sources and remain unsupported here except acute GI bleeding.",
+    "Examination fields, generic blood tests, previous records, generic clinician plan, safety-netting, fixed follow-up ranges, PRN wording, and autonomous interpretation remain unsupported.",
+    "Diagnosis, investigation selection, treatment, medicine dosing, referral urgency, and qualified clinician review remain clinician responsibilities."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "20c19680bea6d4e95f3d86ac2c68550845886f97b6e9daf4a240b5fd5bcfbbb6",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "gastro-gerd--workflow-presentation--chief-complaint",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--legacy-diagnosis-label--diagnosis",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--matching-alias--alias-1",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--matching-alias--alias-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--matching-alias--alias-3",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--matching-alias--alias-4",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-1",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-3",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-4",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-5",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-6",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-7",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-8",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-symptoms--gastro-gerd-symptoms-9",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--history-draft--default-history-draft",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--plan-documentation-option--1-2-gastro-gerd-lifestyle",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-symptom-profile",
+      "direct_relationship": "The exact adult symptom and common-care recommendations support these reflux, heartburn, regurgitation, epigastric, meal, nocturnal, trigger, medicine-history, lifestyle, preset, and structured-history fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-relevant-negatives--gastro-gerd-relevant-negatives-4",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--chip-red-flags--gastro-gerd-red-flags-4",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--chip-investigations--gastro-gerd-investigations-1",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-5",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--investigation-documentation-option--1-1-previous-ogd",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--plan-documentation-option--3-2-gastro-gerd-referral",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-alarm-endoscopy",
+      "direct_relationship": "The exact referral section supports these acute GI-bleeding, prior-endoscopy, and clinician-referral fields; other specific alarm labels remain unsupported."
+    },
+    {
+      "item_id": "gastro-gerd--chip-investigations--gastro-gerd-investigations-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-investigation-review",
+      "direct_relationship": "The exact H. pylori and review recommendations support these clinician-reviewed result and arranged-review fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-6",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-investigation-review",
+      "direct_relationship": "The exact H. pylori and review recommendations support these clinician-reviewed result and arranged-review fields."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-investigation-review",
+      "direct_relationship": "The exact H. pylori and review recommendations support these clinician-reviewed result and arranged-review fields."
+    },
+    {
+      "item_id": "gastro-gerd--investigation-documentation-option--1-2-hpylori",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-investigation-review",
+      "direct_relationship": "The exact H. pylori and review recommendations support these clinician-reviewed result and arranged-review fields."
+    },
+    {
+      "item_id": "gastro-gerd--plan-documentation-option--3-1-gastro-gerd-follow-up",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-investigation-review",
+      "direct_relationship": "The exact H. pylori and review recommendations support these clinician-reviewed result and arranged-review fields."
+    },
+    {
+      "item_id": "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-3",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-management-referral",
+      "direct_relationship": "The exact management section supports clinician-decided medication and PPI discussion plus referral and follow-up documentation without medicine names or doses."
+    },
+    {
+      "item_id": "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-7",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-management-referral",
+      "direct_relationship": "The exact management section supports clinician-decided medication and PPI discussion plus referral and follow-up documentation without medicine names or doses."
+    },
+    {
+      "item_id": "gastro-gerd--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-management-referral",
+      "direct_relationship": "The exact management section supports clinician-decided medication and PPI discussion plus referral and follow-up documentation without medicine names or doses."
+    },
+    {
+      "item_id": "gastro-gerd--plan-documentation-option--2-1-gastro-gerd-ppi",
+      "source_id": "nice-gord-dyspepsia-cg184-2019",
+      "source_section_id": "nice-cg184-gord-management-referral",
+      "direct_relationship": "The exact management section supports clinician-decided medication and PPI discussion plus referral and follow-up documentation without medicine names or doses."
+    }
+  ],
+  "supported_legacy_item_count": 38,
+  "unsupported_legacy_item_count": 44,
+  "unsupported_legacy_item_ids": [
+    "gastro-gerd--chip-relevant-negatives--gastro-gerd-relevant-negatives-1",
+    "gastro-gerd--chip-exam-findings--gastro-gerd-exam-findings-1",
+    "gastro-gerd--chip-red-flags--gastro-gerd-red-flags-1",
+    "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-1",
+    "gastro-gerd--chip-follow-up--gastro-gerd-follow-up-1",
+    "gastro-gerd--chip-relevant-negatives--gastro-gerd-relevant-negatives-2",
+    "gastro-gerd--chip-exam-findings--gastro-gerd-exam-findings-2",
+    "gastro-gerd--chip-red-flags--gastro-gerd-red-flags-2",
+    "gastro-gerd--chip-follow-up--gastro-gerd-follow-up-2",
+    "gastro-gerd--chip-relevant-negatives--gastro-gerd-relevant-negatives-3",
+    "gastro-gerd--chip-exam-findings--gastro-gerd-exam-findings-3",
+    "gastro-gerd--chip-red-flags--gastro-gerd-red-flags-3",
+    "gastro-gerd--chip-investigations--gastro-gerd-investigations-3",
+    "gastro-gerd--chip-follow-up--gastro-gerd-follow-up-3",
+    "gastro-gerd--chip-exam-findings--gastro-gerd-exam-findings-4",
+    "gastro-gerd--chip-investigations--gastro-gerd-investigations-4",
+    "gastro-gerd--chip-plan-phrases--gastro-gerd-plan-phrases-4",
+    "gastro-gerd--chip-follow-up--gastro-gerd-follow-up-4",
+    "gastro-gerd--chip-relevant-negatives--gastro-gerd-relevant-negatives-5",
+    "gastro-gerd--chip-red-flags--gastro-gerd-red-flags-5",
+    "gastro-gerd--chip-exam-findings--gastro-gerd-exam-findings-5",
+    "gastro-gerd--chip-follow-up--gastro-gerd-follow-up-5",
+    "gastro-gerd--chip-relevant-negatives--gastro-gerd-relevant-negatives-6",
+    "gastro-gerd--chip-red-flags--gastro-gerd-red-flags-6",
+    "gastro-gerd--preset-default-duration-options--default-duration-options-1",
+    "gastro-gerd--preset-default-duration-options--default-duration-options-2",
+    "gastro-gerd--preset-default-duration-options--default-duration-options-3",
+    "gastro-gerd--preset-default-duration-options--default-duration-options-4",
+    "gastro-gerd--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+    "gastro-gerd--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+    "gastro-gerd--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+    "gastro-gerd--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+    "gastro-gerd--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+    "gastro-gerd--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+    "gastro-gerd--preset-prechecked-investigations--prechecked-investigations-3",
+    "gastro-gerd--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "gastro-gerd--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "gastro-gerd--preset-prechecked-follow-up--prechecked-follow-up-2",
+    "gastro-gerd--examination-prompt--abdominal",
+    "gastro-gerd--examination-prompt--epigastric",
+    "gastro-gerd--examination-prompt--bp",
+    "gastro-gerd--investigation-documentation-option--2-1-bloods",
+    "gastro-gerd--plan-documentation-option--1-1-gastro-gerd-clinician-plan",
+    "gastro-gerd--plan-documentation-option--3-3-gastro-gerd-safety-netting"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }

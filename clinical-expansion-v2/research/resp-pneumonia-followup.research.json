@@ -3,27 +3,419 @@
   "workflow_id": "resp-pneumonia-followup",
   "presentation": "Pneumonia follow-up",
   "specialty": "Respiratory / Pulmonology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae pneumonia follow-up clinical guideline PDF UAE",
+    "site:doh.gov.ae pneumonia follow-up guideline UAE",
+    "site:nice.org.uk/guidance/ng250 pneumonia follow-up recovery reassessment chest X-ray",
+    "site:nice.org.uk/guidance/ng12 haemoptysis lung cancer recommendations"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "c27aa27d4e49e1cc39f0dbe838d77d9a643f9d97019e08326957c1580426782b"
+  "official_pages_opened": [
+    "https://www.nice.org.uk/guidance/NG250/chapter/recommendations",
+    "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer"
+  ],
+  "exact_documents_opened": [
+    "nice-pneumonia-ng250-2026",
+    "nice-suspected-cancer-ng12-2026"
+  ],
+  "exact_sections_reviewed": [
+    "nice-ng250-pneumonia-clinical-observations",
+    "nice-ng250-pneumonia-recovery-safety",
+    "nice-ng250-pneumonia-reassessment",
+    "nice-ng250-pneumonia-followup-cxr",
+    "nice-ng12-lung-respiratory-symptoms"
+  ],
+  "candidate_sources_rejected": [
+    "patient pneumonia recovery pages",
+    "antibiotic prescribing tables",
+    "non-official local chest X-ray protocols"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Antibiotic names, selection, and doses were outside this documentation-only mapping.",
+    "Non-official protocols were not accepted as authoritative UAE sources."
+  ],
+  "selected_primary_sources": [
+    "nice-pneumonia-ng250-2026"
+  ],
+  "selected_supporting_sources": [
+    "nice-suspected-cancer-ng12-2026"
+  ],
+  "population_applicability": "Partial: NG250 contains adult and child recommendations with recommendation-specific qualifiers, while the legacy workflow has no age or inpatient-discharge filter.",
+  "setting_applicability": "Partial: exact for pneumonia recovery, reassessment, hospital biomarker context, and post-inpatient chest-radiograph decisions, not a universal follow-up template.",
+  "UAE_applicability": "International NICE guidance requires UAE clinician review and local investigation, referral, and follow-up pathways.",
+  "recency_verification": "The current official NG250 recommendations, including the January 2026 minor update, and NG12 updated 2026-04-15 were opened on 2026-07-13.",
+  "superseded_check": "NG250 and NG12 remain current official NICE guidance.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "resp-pneumonia-followup--nice-ng250-pneumonia-clinical-observations",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "Supports mapped clinician-recorded temperature, respiratory rate, oxygen saturation, and chest-auscultation fields without asserting severity.",
+      "paraphrased_evidence_summary": "Supports clinician-recorded temperature, respiratory rate, oxygen saturation, mental status, eating or hydration context, and focal chest examination findings without asserting severity or diagnosis.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-pneumonia-followup--nice-ng250-pneumonia-recovery-safety",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "Supports mapped pneumonia follow-up terms, symptom recovery, assessed negatives, worsening or non-improving prompts, and safety documentation with source qualifiers preserved.",
+      "paraphrased_evidence_summary": "Supports review of fever, cough, sputum, breathlessness, chest pain, fatigue or functional recovery, worsening or non-improving symptoms, systemic illness, and clinician-documented safety advice, with adult and child qualifiers preserved.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-pneumonia-followup--nice-ng250-pneumonia-reassessment",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-reassessment",
+      "direct_relationship": "Supports mapped reassessment, persistent signs, referral, and hospital CRP-review fields.",
+      "paraphrased_evidence_summary": "Supports reassessment when symptoms or signs do not improve or worsen, clinician-led referral, microbiology where specified, and CRP or procalcitonin review in the qualified hospital treatment-failure context.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-pneumonia-followup--nice-ng250-pneumonia-followup-cxr",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "Supports mapped clinician-reviewed or clinician-decided follow-up chest-radiograph fields in the qualified post-inpatient context.",
+      "paraphrased_evidence_summary": "Supports no routine post-inpatient follow-up radiograph, consideration at 6 weeks for smoking, age over 50, persistent or deteriorating symptoms, or unexplained weight loss, and shared decision-making using recent imaging, comorbidity, frailty, prognosis, treatment options, and preferences.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-pneumonia-followup--nice-ng12-lung-respiratory-symptoms",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "source_section_id": "nice-ng12-lung-respiratory-symptoms",
+      "direct_relationship": "Supports the mapped haemoptysis assessed-negative prompt as a respiratory warning feature.",
+      "paraphrased_evidence_summary": "Supports clinician recognition of unexplained haemoptysis and age- and smoking-context combinations involving unexplained cough, fatigue, breathlessness, chest pain, weight loss, appetite loss, recurrent chest infection, clubbing, lymphadenopathy, or chest signs.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "The legacy workflow does not preserve every age, community-treatment, hospital-treatment, or discharge qualifier.",
+    "Chest infection alias, medication adherence, appetite or hydration without child qualifier, chest percussion, generic blood tests, incomplete imaging resolution as a red flag, physiotherapy, generic clinician plan, fixed follow-up ranges, PRN wording, and some follow-up fields remain unsupported.",
+    "Diagnosis, severity, imaging interpretation, treatment, referral urgency, and qualified clinician review remain clinician responsibilities."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "aa8f862f4a343a1d69f3cbaed8491c9519fe77e9fb80ab22f54d57390142a7f9",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "resp-pneumonia-followup--chip-exam-findings--resp-pneumonia-followup-exam-findings-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-exam-findings--resp-pneumonia-followup-exam-findings-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-exam-findings--resp-pneumonia-followup-exam-findings-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-exam-findings--resp-pneumonia-followup-exam-findings-4",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--examination-prompt--temp",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--examination-prompt--o2-sat",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--examination-prompt--rr",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--examination-prompt--auscultation",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-clinical-observations",
+      "direct_relationship": "The exact observations and signs recommendations support these clinician-recorded temperature, oxygen, respiratory-rate, and chest-auscultation fields without interpreting severity."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--workflow-presentation--chief-complaint",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--legacy-diagnosis-label--diagnosis",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--matching-alias--alias-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--matching-alias--alias-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--matching-alias--alias-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-4",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-5",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-6",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-9",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-relevant-negatives--resp-pneumonia-followup-relevant-negatives-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-relevant-negatives--resp-pneumonia-followup-relevant-negatives-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-red-flags--resp-pneumonia-followup-red-flags-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-red-flags--resp-pneumonia-followup-red-flags-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-plan-phrases--resp-pneumonia-followup-plan-phrases-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-follow-up--resp-pneumonia-followup-follow-up-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--plan-documentation-option--1-2-resp-pneumonia-followup-safety-netting",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-recovery-safety",
+      "direct_relationship": "The exact recovery recommendations support these pneumonia follow-up terms, symptom progress, cough, sputum, fever, breathlessness, function, chest pain, assessed negatives, worsening or non-improving prompts, and safety documentation with age qualifiers retained."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-red-flags--resp-pneumonia-followup-red-flags-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-reassessment",
+      "direct_relationship": "The exact reassessment recommendations support persistent chest-sign review, clinician referral, and CRP review only in the stated non-improving or hospital treatment-failure contexts."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-plan-phrases--resp-pneumonia-followup-plan-phrases-4",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-reassessment",
+      "direct_relationship": "The exact reassessment recommendations support persistent chest-sign review, clinician referral, and CRP review only in the stated non-improving or hospital treatment-failure contexts."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--investigation-documentation-option--2-1-crp",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-reassessment",
+      "direct_relationship": "The exact reassessment recommendations support persistent chest-sign review, clinician referral, and CRP review only in the stated non-improving or hospital treatment-failure contexts."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-investigations--resp-pneumonia-followup-investigations-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "The exact post-inpatient recommendations support these clinician-reviewed or clinician-decided follow-up chest-radiograph fields; routine imaging is not asserted."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-plan-phrases--resp-pneumonia-followup-plan-phrases-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "The exact post-inpatient recommendations support these clinician-reviewed or clinician-decided follow-up chest-radiograph fields; routine imaging is not asserted."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "The exact post-inpatient recommendations support these clinician-reviewed or clinician-decided follow-up chest-radiograph fields; routine imaging is not asserted."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "The exact post-inpatient recommendations support these clinician-reviewed or clinician-decided follow-up chest-radiograph fields; routine imaging is not asserted."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--investigation-documentation-option--1-1-cxr",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "The exact post-inpatient recommendations support these clinician-reviewed or clinician-decided follow-up chest-radiograph fields; routine imaging is not asserted."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--plan-documentation-option--2-2-resp-pneumonia-followup-imaging-fu",
+      "source_id": "nice-pneumonia-ng250-2026",
+      "source_section_id": "nice-ng250-pneumonia-followup-cxr",
+      "direct_relationship": "The exact post-inpatient recommendations support these clinician-reviewed or clinician-decided follow-up chest-radiograph fields; routine imaging is not asserted."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--chip-relevant-negatives--resp-pneumonia-followup-relevant-negatives-3",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "source_section_id": "nice-ng12-lung-respiratory-symptoms",
+      "direct_relationship": "The exact respiratory suspected-cancer section supports documenting whether haemoptysis was assessed; it does not assert that it is absent."
+    },
+    {
+      "item_id": "resp-pneumonia-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "source_section_id": "nice-ng12-lung-respiratory-symptoms",
+      "direct_relationship": "The exact respiratory suspected-cancer section supports documenting whether haemoptysis was assessed; it does not assert that it is absent."
+    }
+  ],
+  "supported_legacy_item_count": 47,
+  "unsupported_legacy_item_count": 25,
+  "unsupported_legacy_item_ids": [
+    "resp-pneumonia-followup--matching-alias--alias-4",
+    "resp-pneumonia-followup--chip-plan-phrases--resp-pneumonia-followup-plan-phrases-1",
+    "resp-pneumonia-followup--chip-follow-up--resp-pneumonia-followup-follow-up-1",
+    "resp-pneumonia-followup--chip-investigations--resp-pneumonia-followup-investigations-2",
+    "resp-pneumonia-followup--chip-follow-up--resp-pneumonia-followup-follow-up-2",
+    "resp-pneumonia-followup--chip-red-flags--resp-pneumonia-followup-red-flags-4",
+    "resp-pneumonia-followup--chip-follow-up--resp-pneumonia-followup-follow-up-4",
+    "resp-pneumonia-followup--chip-plan-phrases--resp-pneumonia-followup-plan-phrases-5",
+    "resp-pneumonia-followup--chip-exam-findings--resp-pneumonia-followup-exam-findings-5",
+    "resp-pneumonia-followup--chip-follow-up--resp-pneumonia-followup-follow-up-5",
+    "resp-pneumonia-followup--chip-plan-phrases--resp-pneumonia-followup-plan-phrases-6",
+    "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-7",
+    "resp-pneumonia-followup--chip-symptoms--resp-pneumonia-followup-symptoms-8",
+    "resp-pneumonia-followup--preset-default-duration-options--default-duration-options-1",
+    "resp-pneumonia-followup--preset-default-duration-options--default-duration-options-2",
+    "resp-pneumonia-followup--preset-default-duration-options--default-duration-options-3",
+    "resp-pneumonia-followup--preset-default-duration-options--default-duration-options-4",
+    "resp-pneumonia-followup--preset-prechecked-investigations--prechecked-investigations-2",
+    "resp-pneumonia-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "resp-pneumonia-followup--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "resp-pneumonia-followup--preset-prechecked-follow-up--prechecked-follow-up-2",
+    "resp-pneumonia-followup--history-draft--default-history-draft",
+    "resp-pneumonia-followup--investigation-documentation-option--2-2-cbc",
+    "resp-pneumonia-followup--plan-documentation-option--1-1-resp-pneumonia-followup-clinician-plan",
+    "resp-pneumonia-followup--plan-documentation-option--2-1-resp-pneumonia-followup-follow-up"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
