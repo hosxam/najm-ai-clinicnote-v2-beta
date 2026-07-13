@@ -100,6 +100,176 @@ export const SOURCE_META = {
   'cpoc-surgery-opioids-2021': {
     url: 'https://www.cpoc.org.uk/sites/cpoc/files/documents/2021-03/surgery-and-opioids-2021.pdf',
   },
+  'asa-pdph-statement-2021': {
+    url: 'https://www.asahq.org/standards-and-practice-parameters/statement-on-post-dural-puncture-headache-management',
+  },
+  'cpoc-diabetes-perioperative-2022': {
+    url: 'https://www.cpoc.org.uk/sites/cpoc/files/documents/2023-02/CPOC-Diabetes-Guideline-Updated2022.pdf',
+  },
+  'cpoc-bgs-frailty-2021': {
+    url: 'https://www.cpoc.org.uk/sites/cpoc/files/documents/2021-09/CPOC-BGS-Frailty-Guideline-2021.pdf',
+  },
+  'rcoa-gpas-paediatric-anesthesia-2025': {
+    url: 'https://www.rcoa.ac.uk/gpas/chapter-10',
+  },
+  'asa-preanesthesia-evaluation-advisory-2012': {
+    url: 'https://www.asahq.org/~/media/sites/asahq/files/public/resources/standards-guidelines/practice-advisory-for-preanesthesia-evaluation.pdf',
+  },
+  'asa-awareness-advisory-2006': {
+    url: 'https://www.asahq.org/~/media/sites/asahq/files/public/resources/standards-guidelines/practice-advisory-for-intraoperative-awareness-and-brain-function-monitoring.pdf',
+  },
+  'acc-aha-perioperative-cv-key-points-2024': {
+    url: 'https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2024/09/23/04/15/2024-aha-acc-perioperative-guideline-gl',
+  },
+  'nice-atrial-fibrillation-ng196-2021': {
+    url: 'https://www.nice.org.uk/guidance/ng196/chapter/recommendations',
+  },
+  'nice-hypertension-ng136-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng136/chapter/recommendations',
+  },
+  'nice-chest-pain-cg95-2016': {
+    url: 'https://www.nice.org.uk/guidance/cg95/chapter/recommendations',
+  },
+  'acc-aha-hrs-bradycardia-gms-2018': {
+    url: 'https://www.acc.org/-/media/Non-Clinical/Files-PDFs-Excel-MS-Word-etc/Guidelines/2018/Guidelines_Made_Simple_2018_Bradycardia.pdf',
+  },
+  'hrs-ishne-ambulatory-ecg-2017': {
+    url: 'https://www.hrsonline.org/wp-content/uploads/2025/02/2017-ISHNE-HRS-Ambulatory-ECG.pdf',
+  },
+  'hrs-remote-device-clinic-2023': {
+    url: 'https://www.hrsonline.org/wp-content/uploads/2025/02/2023-HRS-EHRA-APHRS-LAHRS-Remote-Device-Clinic.pdf',
+  },
+}
+
+function unique(values) {
+  return [...new Set(values)]
+}
+
+function alignedRejections(candidates, reasons, workflowId) {
+  if (candidates.length !== reasons.length) {
+    throw new Error(`${workflowId}: every rejected candidate requires one precise rejection reason`)
+  }
+  return { candidates, reasons }
+}
+
+export function evidenceWorkflow({
+  workflow_id,
+  evidence_groups = [],
+  reviewed_sections = [],
+  search_queries_used,
+  official_pages_opened = [],
+  candidate_sources_rejected = [],
+  rejection_reasons = [],
+  selected_primary_sources,
+  selected_supporting_sources,
+  population_applicability,
+  setting_applicability,
+  UAE_applicability,
+  recency_verification,
+  superseded_check,
+  unresolved_source_gaps,
+  source_status = 'partial_exact_source_verified',
+}) {
+  const rejected = alignedRejections(candidate_sources_rejected, rejection_reasons, workflow_id)
+  const allSections = [...evidence_groups, ...reviewed_sections]
+  if (allSections.length === 0) throw new Error(`${workflow_id}: evidence workflow requires an exact reviewed section`)
+
+  const supportGroups = evidence_groups.map((group) => supportTexts(
+    group.source_id,
+    group.source_section_id,
+    group.relationship,
+    workflow_id,
+    group.exact_texts,
+  ))
+  const exactDocuments = unique(allSections.map((group) => group.source_id))
+  const exactSections = unique(allSections.map((group) => group.source_section_id))
+  const primarySources = selected_primary_sources ?? [exactDocuments[0]]
+  const supportingSources = selected_supporting_sources
+    ?? exactDocuments.filter((sourceId) => !primarySources.includes(sourceId))
+  const sectionRelationships = {}
+
+  for (const group of allSections) {
+    const current = sectionRelationships[group.source_section_id]
+    sectionRelationships[group.source_section_id] = current && current !== group.relationship
+      ? `${current} ${group.relationship}`
+      : group.relationship
+  }
+
+  return workflowRecord({
+    workflow_id,
+    search_queries_used,
+    official_pages_opened: unique([
+      ...exactDocuments.map((sourceId) => SOURCE_META[sourceId]?.url).filter(Boolean),
+      ...official_pages_opened,
+    ]),
+    exact_documents_opened: exactDocuments,
+    exact_sections_reviewed: exactSections,
+    candidate_sources_rejected: [
+      ...rejected.candidates,
+      'automatic diagnosis, investigation, treatment, medication, dose, procedure, referral, escalation, or discharge instructions',
+      'search snippets, landing pages, and broad source-family matches without an exact applicable section',
+    ],
+    rejection_reasons: [
+      ...rejected.reasons,
+      'Autonomous clinical output is outside this documentation-only research programme and was not mapped.',
+      'Only opened exact official documents and directly applicable sections were accepted as evidence.',
+    ],
+    selected_primary_sources: primarySources,
+    selected_supporting_sources: supportingSources,
+    population_applicability,
+    setting_applicability,
+    UAE_applicability,
+    recency_verification,
+    superseded_check,
+    unresolved_source_gaps: [
+      ...unresolved_source_gaps,
+      'Any legacy item not explicitly mapped to an exact section remains unsupported pending qualified clinician review.',
+      'No mapping authorises an automatic diagnosis, differential, investigation, management decision, medicine, dose, procedure, referral, urgency conclusion, discharge decision, or patient instruction.',
+    ],
+    section_relationships: sectionRelationships,
+    support_groups: supportGroups,
+    source_status,
+  })
+}
+
+export function noAuthoritativeWorkflow({
+  workflow_id,
+  search_queries_used,
+  official_pages_opened,
+  candidate_sources_rejected,
+  rejection_reasons,
+  population_applicability,
+  setting_applicability,
+  UAE_applicability,
+  recency_verification,
+  superseded_check,
+  unresolved_source_gaps,
+}) {
+  const rejected = alignedRejections(candidate_sources_rejected, rejection_reasons, workflow_id)
+  return workflowRecord({
+    workflow_id,
+    search_queries_used,
+    official_pages_opened: unique(official_pages_opened),
+    exact_documents_opened: [],
+    exact_sections_reviewed: [],
+    candidate_sources_rejected: rejected.candidates,
+    rejection_reasons: rejected.reasons,
+    selected_primary_sources: [],
+    selected_supporting_sources: [],
+    population_applicability,
+    setting_applicability,
+    UAE_applicability,
+    recency_verification,
+    superseded_check,
+    unresolved_source_gaps: [
+      ...unresolved_source_gaps,
+      'All retained legacy items remain unsupported pending qualified clinician review.',
+      'No automatic diagnosis, investigation, treatment, medicine, dose, procedure, referral, urgency conclusion, discharge decision, or patient instruction is authorised.',
+    ],
+    section_relationships: {},
+    support_groups: [],
+    source_status: 'no_authoritative_source_found',
+  })
 }
 
 const ASA_COMMON_PREOPERATIVE_TEXTS = [
