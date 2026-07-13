@@ -1,0 +1,500 @@
+import path from 'node:path'
+import { EXPANSION_DIR, readJson } from '../common.mjs'
+
+function section(section_id, heading, locator, evidence_summary) {
+  return { section_id, heading, locator, evidence_summary }
+}
+
+function ids(workflowId, suffixes) {
+  return suffixes.map((suffix) => `${workflowId}--${suffix}`)
+}
+
+function seq(prefix, start, end) {
+  return Array.from({ length: end - start + 1 }, (_, index) => `${prefix}${start + index}`)
+}
+
+function support(source_id, source_section_id, relationship, workflowId, suffixes) {
+  return { source_id, source_section_id, relationship, item_ids: ids(workflowId, suffixes) }
+}
+
+function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
+  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
+  const existing = registry.sources.find((source) => source.source_id === sourceId)
+  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
+  const additionalSectionIds = new Set(additionalSections.map((candidate) => candidate.section_id))
+
+  return {
+    ...existing,
+    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
+    recency_verification: {
+      ...existing.recency_verification,
+      verified_on: '2026-07-13',
+    },
+    superseded_status_check: {
+      ...existing.superseded_status_check,
+      checked_on: '2026-07-13',
+    },
+    exact_sections: [
+      ...existing.exact_sections.filter((candidate) => !additionalSectionIds.has(candidate.section_id)),
+      ...additionalSections,
+    ],
+  }
+}
+
+const BSG_LGIB_PAGE = 'https://www.bsg.org.uk/clinical-resource/diagnosis-and-management-of-acute-lgi'
+const BSG_LGIB_PDF = 'https://www.bsg.org.uk/getattachment/6d80aa64-9d11-4923-8789-a2e9b08502ef/gutjnl-2018-317807.pdf?lang=en-US'
+const BSG_LIVER_PAGE = 'https://www.bsg.org.uk/clinical-resource/guidelines-on-abnormal-liver-blood-tests'
+const BSG_LIVER_PDF = 'https://www.bsg.org.uk/getmedia/b51bdc64-7145-43ad-828b-21f473b0a918/Guidelines-on-the-management-of-abnormal-liver-blood-tests.pdf'
+const BSG_SEDATION_PAGE = 'https://www.bsg.org.uk/clinical-resource/green-endoscopy-british-society-of-gastroenterolo'
+const BSG_SEDATION_PDF = 'https://www.bsg.org.uk/getattachment/dfb6942c-3482-49fe-afc0-1df88891f7fc/BSG-Guidelines-on-Sedation-in-Gastrointestinal-Endoscopy-2023.pdf'
+const NICE_THYROID_URL = 'https://www.nice.org.uk/guidance/NG145/chapter/recommendations'
+const NICE_OBESITY_IDENTIFY_URL = 'https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity'
+const NICE_OBESITY_DISCUSS_URL = 'https://www.nice.org.uk/guidance/ng246/chapter/Discussing-results-and-referral'
+const NICE_OBESITY_BEHAVIOUR_URL = 'https://www.nice.org.uk/guidance/ng246/chapter/Behavioural-overweight-and-obesity-management-interventions'
+const NICE_CANCER_URL = 'https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer'
+const NICE_GORD_URL = 'https://www.nice.org.uk/guidance/cg184/chapter/Recommendations'
+const DHA_DIABETES_URL = 'https://dha.gov.ae/uploads/032024/30%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Type%202%20Diabetes2024322535.pdf'
+
+const sources = [
+  {
+    registry_file: 'specialty_society_sources.json',
+    source: {
+      source_id: 'bsg-acute-lower-gi-bleeding-2019',
+      issuing_organisation: 'British Society of Gastroenterology',
+      exact_document_title: 'Diagnosis and management of acute lower gastrointestinal bleeding: guidelines from the British Society of Gastroenterology',
+      exact_official_url: BSG_LGIB_PDF,
+      publication_date: '2019-02-12',
+      effective_date: '2019-02-12',
+      revision_date: null,
+      version: 'Gut 2019;68:776–789; first version; DOI 10.1136/gutjnl-2018-317807',
+      jurisdiction: 'United Kingdom',
+      population: 'Adults aged 16 years and over presenting acutely to hospital with lower gastrointestinal bleeding.',
+      clinical_setting: 'Acute hospital assessment and management of lower gastrointestinal bleeding.',
+      applicability_note: 'Exact only for selected acute adult hospital lower-GI-bleeding presentation, initial-assessment, antithrombotic-context, stability, and qualified follow-up fields. Uncomplicated primary-care bleeding, chronic bleeding, diagnosis, treatment, and UAE pathways remain outside scope or require clinician review.',
+      recency_verification: { verified_on: '2026-07-13', status: 'current_official_BSG_resource_and_pdf_opened', revision_due: null },
+      superseded_status_check: { checked_on: '2026-07-13', status: 'no_newer_official_BSG_acute_LGIB_guideline_identified' },
+      exact_sections: [
+        section('bsg-lgib-2019-scope-presentation', 'Scope of the guideline and background presentation description', 'PDF pages 2–3; lines 193–229', 'Defines acute adult hospital lower gastrointestinal bleeding as bright or dark red blood per rectum, clots per rectum, or blood mixed with stool, while warning that brisk bleeding should not automatically be ascribed to haemorrhoids.'),
+        section('bsg-lgib-2019-initial-assessment', 'Management algorithm — initial assessment and Oakland variables', 'PDF page 4; lines 267–316', 'Supports routine observations, full history and examination including digital rectal examination, appropriate blood tests, heart rate, systolic blood pressure, haemoglobin, and previous lower-GI-bleeding admission context.'),
+        section('bsg-lgib-2019-antithrombotic-context', 'Abstract and recommendations — anticoagulant and antiplatelet context', 'PDF pages 1–2; lines 58–60 and 110–145', 'Supports documenting whether anticoagulant or antiplatelet treatment is relevant to acute lower gastrointestinal bleeding; medicine interruption, reversal, and restart instructions are deliberately not mapped.'),
+        section('bsg-lgib-2019-stability-followup', 'Recommendations 1–4 and risk assessment', 'PDF pages 1 and 4; lines 63–84 and 267–352', 'Supports clinician assessment of haemodynamic stability, major versus minor bleeding context, and qualified clinician-decided hospital or outpatient follow-up documentation without calculating a score or inserting disposition advice.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'specialty_society_sources.json',
+    source: {
+      source_id: 'bsg-abnormal-liver-blood-tests-2018',
+      issuing_organisation: 'British Society of Gastroenterology',
+      exact_document_title: 'Guidelines on the management of abnormal liver blood tests',
+      exact_official_url: BSG_LIVER_PDF,
+      publication_date: '2017-11-09',
+      effective_date: '2017-11-09',
+      revision_date: null,
+      version: 'Gut 2018;67:6–19; online first 2017-11-09; DOI 10.1136/gutjnl-2017-314924',
+      jurisdiction: 'United Kingdom',
+      population: 'Children and adults with abnormal liver blood tests, with recommendation-specific adult and paediatric differences.',
+      clinical_setting: 'Primary and secondary care assessment of abnormal liver blood tests.',
+      applicability_note: 'Exact for selected result-context, history, adult liver-aetiology-screen, and clinician-referral documentation. The BSG resource page was last reviewed in 2021 with review due in 2025; UAE pathways and patient-specific interpretation require clinician review.',
+      recency_verification: { verified_on: '2026-07-13', status: 'official_BSG_resource_and_pdf_opened_review_due_2025', revision_due: '2025' },
+      superseded_status_check: { checked_on: '2026-07-13', status: 'no_newer_official_BSG_replacement_identified_review_overdue' },
+      exact_sections: [
+        section('bsg-liver-tests-2018-standard-panel', 'Recommendation 1 — standard initial liver blood-test panel', 'PDF page 1; recommendations list', 'Supports clinician review of bilirubin and standard liver blood-test components; it does not provide patient-specific interpretation or diagnosis.'),
+        section('bsg-liver-tests-2018-context-interpretation', 'Recommendations 2–3 — prior results and clinical context', 'PDF pages 8–9; lines 717–764', 'Requires review of previous results, past medical history, current condition, the specific abnormal analyte, and clinical context rather than inferring significance from magnitude alone.'),
+        section('bsg-liver-tests-2018-clinical-history', 'Response to abnormal liver blood tests — clinical history', 'PDF page 10; lines 849–855', 'Supports age, hepatitis-risk context, jaundice, abdominal pain, weight loss, pruritus, comorbidity, prescribed or non-prescribed drug history, travel or exposure context, and alcohol history.'),
+        section('bsg-liver-tests-2018-aetiology-screen', 'Recommendations 4–6 — liver aetiology screen', 'PDF pages 1 and 10; lines 68–86 and 899 onward', 'Supports clinician-reviewed abdominal ultrasound and hepatitis B or C testing in the recommendation-qualified adult liver-aetiology-screen context; investigation choice remains clinician-led.'),
+        section('bsg-liver-tests-2018-response-referral', 'Response pathway and Recommendation 10', 'PDF pages 2, 9, and 12; figure 1 and Recommendation 10', 'Supports clinician-led further investigation or referral based on synthetic failure, suspicious symptoms or signs, analyte pattern, persistence, risk factors, and clinical context without automatically assigning urgency.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'specialty_society_sources.json',
+    source: {
+      source_id: 'bsg-endoscopy-sedation-2023',
+      issuing_organisation: 'British Society of Gastroenterology',
+      exact_document_title: 'British Society of Gastroenterology guidelines on sedation in gastrointestinal endoscopy',
+      exact_official_url: BSG_SEDATION_PDF,
+      publication_date: '2023-11-01',
+      effective_date: '2023-11-01',
+      revision_date: null,
+      version: 'Gut 2024;73:219–245; guideline accepted 2023-09-06; DOI 10.1136/gutjnl-2023-330396',
+      jurisdiction: 'United Kingdom',
+      population: 'People undergoing gastrointestinal endoscopy with recommendation-specific sedation, procedure, age, and comorbidity contexts.',
+      clinical_setting: 'Endoscopy pre-assessment, procedure, recovery, and discharge.',
+      applicability_note: 'Exact only for selected procedure-context, monitored-recovery, discharge-assessment, follow-up-planning, and safety-instruction documentation. It does not support retrospective diagnosis, pathology interpretation, treatment, or universal post-endoscopy follow-up.',
+      recency_verification: { verified_on: '2026-07-13', status: 'current_official_BSG_resource_and_pdf_opened', revision_due: '2028' },
+      superseded_status_check: { checked_on: '2026-07-13', status: 'current_BSG_sedation_guideline_no_replacement_identified' },
+      exact_sections: [
+        section('bsg-endoscopy-sedation-2023-procedure-context', 'Pre-assessment — indication, intended aim, and procedure context', 'PDF page 9; lines 861–870', 'Supports documenting the endoscopic procedure context and indication or intended aim as known clinical-record information.'),
+        section('bsg-endoscopy-sedation-2023-monitoring-recovery', 'Recommendations 16–17 — monitoring and complete recovery', 'PDF pages 12–13; lines 1232–1288', 'Supports documenting recovery progress, baseline consciousness or function, vital monitoring, complications during recovery, information exchange, follow-up planning, and discharge advice.'),
+        section('bsg-endoscopy-sedation-2023-discharge-documentation', 'Recommendations 18–19 — suitability for discharge and instructions', 'PDF page 13; lines 1289–1316', 'Supports formal documented discharge assessment, recovery from sedation, absence of complications, vital and respiratory status, pain or discomfort review, procedure-appropriate instructions, contact information, and activity restrictions after sedation.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'international_clinical_sources.json',
+    source: {
+      source_id: 'nice-thyroid-ng145-2023',
+      issuing_organisation: 'National Institute for Health and Care Excellence',
+      exact_document_title: 'Thyroid disease: assessment and management',
+      exact_official_url: NICE_THYROID_URL,
+      publication_date: '2019-11-20',
+      effective_date: '2019-11-20',
+      revision_date: null,
+      version: 'NICE NG145; last updated 2023-10-12; reviewed 2025-10-03',
+      jurisdiction: 'England, United Kingdom',
+      population: 'Adults, children, and young people with suspected or diagnosed thyroid disease, subject to recommendation-specific age and disease qualifiers.',
+      clinical_setting: 'Assessment, investigation, treatment discussion, monitoring, and follow-up of thyroid disease.',
+      applicability_note: 'Exact for selected thyroid-testing, thyroid-enlargement warning, hypothyroidism-monitoring, and hyperthyroidism-monitoring documentation. Symptom diagnosis, medicine selection or dose, and UAE pathways remain clinician responsibilities.',
+      recency_verification: { verified_on: '2026-07-13', status: 'current_official_NICE_recommendations_page_opened_reviewed_2025-10-03', revision_due: null },
+      superseded_status_check: { checked_on: '2026-07-13', status: 'NG145_current_official_guideline' },
+      exact_sections: [
+        section('nice-ng145-thyroid-information-red-flags', 'Recommendations 1.1.1–1.1.6 — information and thyroid-enlargement warning symptoms', 'recommendations 1.1.1–1.1.6', 'Supports shared decision documentation, thyroid-medicine interaction information, and specific thyroid-enlargement warning symptoms including shortness of breath, rapid growth, hoarse voice, and swallowing difficulty.'),
+        section('nice-ng145-thyroid-suspected-testing', 'Recommendations 1.2.1–1.3.2 — suspected dysfunction testing and antibodies', 'recommendations 1.2.1–1.3.2', 'Supports clinician suspicion context, mood or anxiety context, TSH, FT4, FT3, biotin history, repeat testing when symptoms change, and TPO antibody testing in recommendation-qualified cases.'),
+        section('nice-ng145-hypothyroidism-monitoring', 'Recommendations 1.4.1–1.4.6 — follow-up and monitoring of primary hypothyroidism', 'recommendations 1.4.1–1.4.6', 'Supports clinician-reviewed TSH and FT4 monitoring, persistent-symptom review, and clinician-led follow-up for confirmed primary hypothyroidism without mapping a dose or autonomous treatment change.'),
+        section('nice-ng145-hyperthyroidism-monitoring', 'Recommendations 1.7.1–1.8.5 — follow-up and monitoring of hyperthyroidism', 'recommendations 1.7.1–1.8.5', 'Supports clinician-reviewed TSH, FT4, and FT3 monitoring, treatment-context review, and clinician-led follow-up or specialist advice without mapping medicine doses or autonomous treatment.'),
+        section('nice-ng145-thyroid-enlargement', 'Recommendations 1.9.1–1.9.8 — thyroid enlargement with normal thyroid function', 'recommendations 1.9.1–1.9.8', 'Supports clinician assessment of palpable thyroid enlargement or focal nodularity, recommendation-qualified ultrasound, compression symptoms, and clinician-led specialist assessment.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'international_clinical_sources.json',
+    source: {
+      source_id: 'nice-overweight-obesity-ng246-2026',
+      issuing_organisation: 'National Institute for Health and Care Excellence',
+      exact_document_title: 'Overweight and obesity management',
+      exact_official_url: NICE_OBESITY_IDENTIFY_URL,
+      publication_date: '2025-01-14',
+      effective_date: '2025-01-14',
+      revision_date: null,
+      version: 'NICE NG246; last updated 2026-01-08',
+      jurisdiction: 'England, United Kingdom',
+      population: 'Adults, children, and young people with overweight, obesity, or central adiposity, subject to section-specific age criteria.',
+      clinical_setting: 'Identification, sensitive discussion, assessment, behavioural intervention, referral, and follow-up.',
+      applicability_note: 'Exact for selected permission-sensitive adult weight discussion, measurements, context, previous attempts, goals, clinician-discussed intervention or referral, and follow-up fields. It does not support automatic advice, medicine selection, dosing, or UAE referral pathways.',
+      recency_verification: { verified_on: '2026-07-13', status: 'current_official_NICE_recommendations_pages_opened', revision_due: null },
+      superseded_status_check: { checked_on: '2026-07-13', status: 'NG246_current_official_guideline_updated_2026-01-08' },
+      exact_sections: [
+        section('nice-ng246-obesity-permission-measurements', 'Recommendations 1.9.1–1.9.17 — permission, measurements, and adult assessment', 'recommendations 1.9.1–1.9.17', 'Supports avoiding diagnostic overshadowing, asking permission before weight discussion or measurements, and recording height, weight, BMI, waist or waist-to-height context and weight-related health risk.'),
+        section('nice-ng246-obesity-context-intervention-referral', 'Recommendations 1.11.1–1.11.14 — results, context, intervention discussion, and referral', 'recommendations 1.11.1–1.11.14', 'Supports comorbidity, social or mental-health context, diet or activity goals, previous attempts, experiences, barriers, preferences, clinician-agreed intervention, and preference-sensitive referral documentation.'),
+        section('nice-ng246-obesity-goals-progress-followup', 'Behavioural intervention recommendations — goals, progress, feedback, and follow-up', 'behavioural intervention recommendations including 1.13 and 1.14', 'Supports documenting personalised goals, progress, barriers, support, and clinician-arranged review without inserting automatic lifestyle instructions.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'international_clinical_sources.json',
+    source: extendRegisteredSource(
+      'international_clinical_sources.json',
+      'nice-suspected-cancer-ng12-2026',
+      [
+        section('nice-ng12-upper-gi-dysphagia-jaundice', 'Recommendations 1.2.1–1.2.7 — oesophageal, stomach, and pancreatic cancer features', 'recommendations 1.2.1–1.2.7', 'Supports clinician recognition of dysphagia, weight-loss combinations, and jaundice in recommendation-specific age and symptom contexts; it does not assert cancer or an automatic referral decision.'),
+        section('nice-ng12-colorectal-rectal-bleeding', 'Recommendations 1.3.1–1.3.5 — colorectal cancer features', 'recommendations 1.3.1–1.3.5', 'Supports clinician recognition of rectal bleeding, change in bowel habit, abdominal pain, weight loss, anaemia, and rectal-mass contexts with recommendation-specific age qualifiers; it does not assert cancer.'),
+      ],
+      'This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated.',
+    ),
+  },
+]
+
+const workflows = [
+  {
+    workflow_id: 'gastro-rectal-bleeding',
+    search_queries_used: ['site:dha.gov.ae rectal bleeding clinical guideline UAE PDF', 'site:doh.gov.ae lower gastrointestinal bleeding guideline UAE', 'site:bsg.org.uk acute lower gastrointestinal bleeding guideline', 'site:nice.org.uk/guidance/ng12 rectal bleeding colorectal cancer recommendation'],
+    official_pages_opened: [BSG_LGIB_PAGE, BSG_LGIB_PDF, NICE_CANCER_URL],
+    exact_documents_opened: ['bsg-acute-lower-gi-bleeding-2019', 'nice-suspected-cancer-ng12-2026'],
+    exact_sections_reviewed: ['bsg-lgib-2019-scope-presentation', 'bsg-lgib-2019-initial-assessment', 'bsg-lgib-2019-antithrombotic-context', 'bsg-lgib-2019-stability-followup', 'nice-ng12-colorectal-rectal-bleeding'],
+    candidate_sources_rejected: ['patient haemorrhoid or rectal-bleeding pages', 'colonoscopy preparation protocols', 'anticoagulant reversal protocols', 'search-result snippets without opened official documents'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Preparation protocols do not support a general rectal-bleeding documentation workflow.', 'Medicine interruption, reversal, and restart instructions were outside the documentation-only mapping.', 'Snippets and catalog entries are not exact evidence.'],
+    selected_primary_sources: ['bsg-acute-lower-gi-bleeding-2019'],
+    selected_supporting_sources: ['nice-suspected-cancer-ng12-2026'],
+    population_applicability: 'Partial: BSG is for acute hospital LGIB in adults aged 16 years and over; NICE colorectal recommendations are adult and age-qualified. The legacy workflow has no age, acuity, or setting filter.',
+    setting_applicability: 'Partial: exact for selected acute hospital assessment fields and suspected-cancer recognition context, not uncomplicated primary-care bleeding, chronic bleeding, postoperative review, or screening.',
+    UAE_applicability: 'No exact UAE rectal-bleeding guideline was identified. UK evidence requires UAE clinician review and local escalation, referral, investigation, and follow-up pathways.',
+    recency_verification: 'The current official BSG resource and PDF and current NICE NG12 recommendations updated 2026-04-15 were opened on 2026-07-13.',
+    superseded_check: 'No newer official BSG acute LGIB replacement was identified; NICE NG12 remains current.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['The BSG source excludes uncomplicated primary-care LGIB and is limited to acute adult hospital presentations.', 'Amount or frequency, melaena or black-stool summary, dizziness or syncope, pain on defecation, anal inspection, family history, prior colonoscopy, coagulation testing, generic previous-record review, fixed follow-up intervals, PRN wording, and the combined history draft remain unsupported.', 'Diagnosis, bleeding source, severity, haemodynamic interpretation, risk-score calculation, investigation choice, treatment, transfusion, medicine changes, referral urgency, and disposition remain clinician responsibilities.'],
+    section_relationships: {
+      'bsg-lgib-2019-scope-presentation': 'Supports mapped acute lower-GI-bleeding presentation terms and blood colour or relation-to-stool fields without attributing a cause.',
+      'bsg-lgib-2019-initial-assessment': 'Supports mapped clinician-recorded examination, DRE, observations, blood pressure, heart rate, haemoglobin or CBC, and previous-bleed assessment fields.',
+      'bsg-lgib-2019-antithrombotic-context': 'Supports documenting anticoagulant relevance only; no medicine change or reversal instruction is mapped.',
+      'bsg-lgib-2019-stability-followup': 'Supports mapped haemodynamic-stability prompts and clinician-decided follow-up or referral documentation in qualified acute contexts; no score or disposition is generated.',
+      'nice-ng12-colorectal-rectal-bleeding': 'Supports mapped rectal-bleeding combinations with age, weight-loss, and bowel-habit qualifiers as prompts only; no cancer diagnosis is asserted.',
+    },
+    support_groups: [
+      support('bsg-acute-lower-gi-bleeding-2019', 'bsg-lgib-2019-scope-presentation', 'The exact scope supports these lower-GI-bleeding presentation and blood-colour or relation-to-stool fields in acute adult hospital care.', 'gastro-rectal-bleeding', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 3), 'chip-symptoms--gastro-rectal-bleeding-symptoms-1', 'chip-symptoms--gastro-rectal-bleeding-symptoms-2', 'chip-symptoms--gastro-rectal-bleeding-symptoms-4', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-symptoms--prechecked-symptoms-2']),
+      support('bsg-acute-lower-gi-bleeding-2019', 'bsg-lgib-2019-initial-assessment', 'The exact initial-assessment section supports clinician-recorded full examination, DRE, routine observations, BP, HR, and haemoglobin or CBC fields.', 'gastro-rectal-bleeding', [...seq('chip-exam-findings--gastro-rectal-bleeding-exam-findings-', 1, 3), 'chip-investigations--gastro-rectal-bleeding-investigations-1', ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'preset-prechecked-investigations--prechecked-investigations-1', 'examination-prompt--abdominal', 'examination-prompt--dre', 'examination-prompt--bp', 'examination-prompt--hr', 'investigation-documentation-option--1-1-cbc']),
+      support('bsg-acute-lower-gi-bleeding-2019', 'bsg-lgib-2019-antithrombotic-context', 'The exact guideline scope and antithrombotic recommendations support documenting anticoagulant use as relevant context; management is not mapped.', 'gastro-rectal-bleeding', ['chip-symptoms--gastro-rectal-bleeding-symptoms-8']),
+      support('bsg-acute-lower-gi-bleeding-2019', 'bsg-lgib-2019-stability-followup', 'The exact stability and risk-assessment section supports these haemodynamic prompts and clinician-decided follow-up or referral fields without inserting a disposition.', 'gastro-rectal-bleeding', ['chip-red-flags--gastro-rectal-bleeding-red-flags-1', 'chip-red-flags--gastro-rectal-bleeding-red-flags-2', 'chip-plan-phrases--gastro-rectal-bleeding-plan-phrases-3', 'chip-plan-phrases--gastro-rectal-bleeding-plan-phrases-4', 'plan-documentation-option--2-1-gastro-rectal-bleeding-follow-up', 'plan-documentation-option--2-2-gastro-rectal-bleeding-referral']),
+      support('nice-suspected-cancer-ng12-2026', 'nice-ng12-colorectal-rectal-bleeding', 'The exact colorectal section supports documenting these age-, weight-loss-, and bowel-habit contexts with rectal bleeding; it does not assert malignancy.', 'gastro-rectal-bleeding', ['chip-relevant-negatives--gastro-rectal-bleeding-relevant-negatives-3', 'chip-red-flags--gastro-rectal-bleeding-red-flags-3', 'chip-red-flags--gastro-rectal-bleeding-red-flags-5', 'chip-red-flags--gastro-rectal-bleeding-red-flags-6', 'chip-symptoms--gastro-rectal-bleeding-symptoms-6', 'chip-symptoms--gastro-rectal-bleeding-symptoms-7', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3']),
+    ],
+  },
+  {
+    workflow_id: 'gastro-liver-enzyme-review',
+    search_queries_used: ['site:dha.gov.ae abnormal liver enzymes guideline UAE', 'site:doh.gov.ae abnormal liver blood tests guideline', 'site:bsg.org.uk abnormal liver blood tests guideline', 'site:gut.bmj.com abnormal liver blood tests recommendations previous results clinical context'],
+    official_pages_opened: [BSG_LIVER_PAGE, BSG_LIVER_PDF],
+    exact_documents_opened: ['bsg-abnormal-liver-blood-tests-2018'],
+    exact_sections_reviewed: ['bsg-liver-tests-2018-standard-panel', 'bsg-liver-tests-2018-context-interpretation', 'bsg-liver-tests-2018-clinical-history', 'bsg-liver-tests-2018-aetiology-screen', 'bsg-liver-tests-2018-response-referral'],
+    candidate_sources_rejected: ['patient liver-test pages', 'non-official abnormal-LFT algorithms', 'disease-specific treatment protocols', 'automatic LFT pattern classifiers'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Non-official algorithms were not accepted.', 'The workflow documents result review rather than treatment of an inferred disease.', 'Automatic interpretation would exceed documentation-only scope.'],
+    selected_primary_sources: ['bsg-abnormal-liver-blood-tests-2018'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: BSG covers adults and children with age-specific differences; the mapped aetiology screen is adult-specific and the legacy workflow has no age filter.',
+    setting_applicability: 'Partial: exact for primary or secondary care abnormal liver blood-test review, not automatic diagnosis or disease-specific management.',
+    UAE_applicability: 'No exact UAE abnormal-liver-test guideline was identified. UK guidance requires UAE clinician review and local laboratory, imaging, and referral pathways.',
+    recency_verification: 'The official BSG resource and exact PDF were opened on 2026-07-13. The resource was last reviewed 2021-12-09 and lists review due 2025.',
+    superseded_check: 'No newer official BSG replacement was identified, but the listed review date has passed and remains a recency limitation.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['The BSG source is review-overdue and adult aetiology-screen recommendations cannot be applied to children without modification.', 'Dark urine or pale stool, fatigue, examination findings, significant transaminitis, obstructive-pattern labels, decompensation labels, rapidly rising enzymes, generic previous imaging or records, safety-net wording, fixed follow-up intervals, PRN wording, and generic clinician plan remain unsupported.', 'Result interpretation, diagnosis, significance, investigation selection, urgency, treatment, and referral decisions remain clinician responsibilities.'],
+    section_relationships: {
+      'bsg-liver-tests-2018-standard-panel': 'Supports mapped clinician review of liver blood tests without interpretation.',
+      'bsg-liver-tests-2018-context-interpretation': 'Supports mapped result type, prior-result comparison, trend, and clinical-context review while prohibiting significance inference from magnitude alone.',
+      'bsg-liver-tests-2018-clinical-history': 'Supports mapped alcohol, medicine or supplement, hepatitis-risk, jaundice, abdominal-pain, weight-loss, and pruritus history fields.',
+      'bsg-liver-tests-2018-aetiology-screen': 'Supports mapped clinician-reviewed adult ultrasound and viral-hepatitis fields in recommendation-qualified contexts.',
+      'bsg-liver-tests-2018-response-referral': 'Supports clinician-arranged further testing and clinician-decided referral documentation without automatic urgency.',
+    },
+    support_groups: [
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-standard-panel', 'The exact standard-panel recommendation supports clinician review of liver blood tests without interpreting their meaning.', 'gastro-liver-enzyme-review', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'chip-symptoms--gastro-liver-enzyme-review-symptoms-1', 'chip-investigations--gastro-liver-enzyme-review-investigations-1', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-investigations--prechecked-investigations-1', 'investigation-documentation-option--1-1-lft']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-context-interpretation', 'The exact context recommendations support result type, comparison, trend, previous-result review, and the structured history shell without assigning clinical significance.', 'gastro-liver-enzyme-review', ['chip-symptoms--gastro-liver-enzyme-review-symptoms-2', 'chip-symptoms--gastro-liver-enzyme-review-symptoms-3', 'chip-investigations--gastro-liver-enzyme-review-investigations-2', 'preset-prechecked-symptoms--prechecked-symptoms-2', 'preset-prechecked-symptoms--prechecked-symptoms-3', 'preset-prechecked-investigations--prechecked-investigations-2', 'history-draft--default-history-draft']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-clinical-history', 'The exact clinical-history section supports these alcohol, medicine or supplement, hepatitis-risk, jaundice, abdominal-pain, weight-loss, and pruritus prompts.', 'gastro-liver-enzyme-review', ['chip-relevant-negatives--gastro-liver-enzyme-review-relevant-negatives-1', ...seq('chip-symptoms--gastro-liver-enzyme-review-symptoms-', 4, 7), 'chip-red-flags--gastro-liver-enzyme-review-red-flags-3', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-aetiology-screen', 'The exact adult aetiology-screen recommendation supports clinician-reviewed ultrasound and hepatitis-serology documentation with age qualification retained.', 'gastro-liver-enzyme-review', ['chip-investigations--gastro-liver-enzyme-review-investigations-3', 'chip-investigations--gastro-liver-enzyme-review-investigations-4', 'preset-prechecked-investigations--prechecked-investigations-3', 'investigation-documentation-option--1-2-viral-hepatitis', 'investigation-documentation-option--2-1-ultrasound']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-response-referral', 'The exact response pathway supports clinician-arranged further testing and clinician-decided referral documentation; timing and urgency are not generated.', 'gastro-liver-enzyme-review', ['chip-plan-phrases--gastro-liver-enzyme-review-plan-phrases-2', 'chip-plan-phrases--gastro-liver-enzyme-review-plan-phrases-4', 'chip-plan-phrases--gastro-liver-enzyme-review-plan-phrases-5', 'plan-documentation-option--2-1-gastro-liver-enzyme-review-follow-up', 'plan-documentation-option--2-2-gastro-liver-enzyme-review-referral']),
+    ],
+  },
+  {
+    workflow_id: 'gastro-jaundice-documentation',
+    search_queries_used: ['site:dha.gov.ae jaundice adult guideline UAE', 'site:doh.gov.ae jaundice guideline UAE', 'site:bsg.org.uk abnormal liver blood tests jaundice guideline', 'site:nice.org.uk/guidance/ng12 jaundice pancreatic cancer recommendation'],
+    official_pages_opened: [BSG_LIVER_PAGE, BSG_LIVER_PDF, NICE_CANCER_URL],
+    exact_documents_opened: ['bsg-abnormal-liver-blood-tests-2018', 'nice-suspected-cancer-ng12-2026'],
+    exact_sections_reviewed: ['bsg-liver-tests-2018-standard-panel', 'bsg-liver-tests-2018-clinical-history', 'bsg-liver-tests-2018-aetiology-screen', 'bsg-liver-tests-2018-response-referral', 'nice-ng12-upper-gi-dysphagia-jaundice'],
+    candidate_sources_rejected: ['newborn jaundice guidance', 'patient jaundice pages', 'non-official cholangitis algorithms', 'disease-specific treatment pathways'],
+    rejection_reasons: ['Newborn guidance is not applicable to this unrestricted workflow.', 'Patient pages are not clinician guidance.', 'Non-official algorithms were not accepted.', 'Treatment and diagnosis pathways exceed documentation-only scope.'],
+    selected_primary_sources: ['bsg-abnormal-liver-blood-tests-2018'],
+    selected_supporting_sources: ['nice-suspected-cancer-ng12-2026'],
+    population_applicability: 'Partial: BSG covers adults and children with differences; NICE jaundice referral context is for people aged 40 and over. The legacy workflow has no age filter.',
+    setting_applicability: 'Partial: exact for selected jaundice history and result-review fields plus age-qualified suspected-cancer context, not acute biliary sepsis, neonatal jaundice, or disease-specific management.',
+    UAE_applicability: 'No exact UAE jaundice guideline was identified. UK evidence requires UAE clinician review and local referral and investigation pathways.',
+    recency_verification: 'The official BSG resource and PDF and current NICE NG12 recommendations updated 2026-04-15 were opened on 2026-07-13.',
+    superseded_check: 'No newer BSG abnormal-liver-test replacement was identified although review is overdue; NICE NG12 remains current.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['The BSG source is review-overdue and the NICE jaundice cancer recommendation is age-qualified.', 'Yellow-skin or yellow-eye aliases, duration, dark urine, pale stool, fever, trauma, examination findings, liver-failure labels, rapidly rising bilirubin, right-upper-quadrant tenderness, palpable gallbladder, fever with rigors, safety-netting, fixed follow-up intervals, PRN wording, and the combined history draft remain unsupported.', 'Diagnosis, bilirubin interpretation, cholestasis or obstruction, infection, liver failure, investigation choice, referral urgency, and treatment remain clinician responsibilities.'],
+    section_relationships: {
+      'bsg-liver-tests-2018-standard-panel': 'Supports mapped clinician review of liver blood tests and bilirubin without interpreting the result.',
+      'bsg-liver-tests-2018-clinical-history': 'Supports mapped jaundice, pruritus, abdominal pain, weight loss, medicine, and alcohol history fields.',
+      'bsg-liver-tests-2018-aetiology-screen': 'Supports mapped clinician-reviewed adult ultrasound documentation.',
+      'bsg-liver-tests-2018-response-referral': 'Supports clinician-led response and referral context without assigning urgency.',
+      'nice-ng12-upper-gi-dysphagia-jaundice': 'Supports age-qualified clinician recognition and referral documentation for jaundice without asserting pancreatic cancer.',
+    },
+    support_groups: [
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-standard-panel', 'The exact standard-panel recommendation supports clinician review of liver tests and bilirubin without interpretation.', 'gastro-jaundice-documentation', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 2), 'chip-symptoms--gastro-jaundice-documentation-symptoms-1', 'chip-investigations--gastro-jaundice-documentation-investigations-1', 'chip-investigations--gastro-jaundice-documentation-investigations-2', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-investigations--prechecked-investigations-1', 'preset-prechecked-investigations--prechecked-investigations-2', 'investigation-documentation-option--1-1-lft', 'investigation-documentation-option--1-2-bilirubin']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-clinical-history', 'The exact history section supports these jaundice, pruritus, abdominal-pain, weight-loss, medicine, and alcohol prompts.', 'gastro-jaundice-documentation', ['chip-symptoms--gastro-jaundice-documentation-symptoms-5', 'chip-symptoms--gastro-jaundice-documentation-symptoms-6', 'chip-symptoms--gastro-jaundice-documentation-symptoms-8', 'chip-symptoms--gastro-jaundice-documentation-symptoms-9', 'chip-red-flags--gastro-jaundice-documentation-red-flags-5']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-aetiology-screen', 'The exact adult aetiology-screen recommendation supports clinician-reviewed ultrasound documentation with the adult qualifier retained.', 'gastro-jaundice-documentation', ['chip-investigations--gastro-jaundice-documentation-investigations-3', 'preset-prechecked-investigations--prechecked-investigations-3', 'investigation-documentation-option--2-1-ultrasound']),
+      support('bsg-abnormal-liver-blood-tests-2018', 'bsg-liver-tests-2018-response-referral', 'The exact response pathway was reviewed for clinical escalation context, but no additional unqualified legacy item is mapped from it.', 'gastro-jaundice-documentation', []),
+      support('nice-suspected-cancer-ng12-2026', 'nice-ng12-upper-gi-dysphagia-jaundice', 'The exact age-qualified jaundice recommendation supports clinician-decided referral documentation without asserting cancer.', 'gastro-jaundice-documentation', ['chip-plan-phrases--gastro-jaundice-documentation-plan-phrases-3', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'plan-documentation-option--2-2-gastro-jaundice-documentation-referral']),
+    ],
+  },
+  {
+    workflow_id: 'gastro-dysphagia',
+    search_queries_used: ['site:dha.gov.ae dysphagia guideline UAE', 'site:doh.gov.ae dysphagia guideline', 'site:nice.org.uk/guidance/ng12 dysphagia oesophageal cancer recommendation', 'site:nice.org.uk/guidance/cg184 dysphagia endoscopy alarm symptoms'],
+    official_pages_opened: [NICE_CANCER_URL, NICE_GORD_URL],
+    exact_documents_opened: ['nice-suspected-cancer-ng12-2026', 'nice-gord-dyspepsia-cg184-2019'],
+    exact_sections_reviewed: ['nice-ng12-upper-gi-dysphagia-jaundice', 'nice-ng12-safety-netting-review', 'nice-cg184-gord-symptom-profile', 'nice-cg184-gord-alarm-endoscopy'],
+    candidate_sources_rejected: ['patient swallowing-difficulty pages', 'speech-and-language therapy handouts', 'barium-swallow protocols', 'non-official dysphagia algorithms'],
+    rejection_reasons: ['Patient and handout pages are not clinician guidance.', 'Investigation protocols did not directly support this broad workflow.', 'Non-official algorithms were not accepted.'],
+    selected_primary_sources: ['nice-suspected-cancer-ng12-2026'],
+    selected_supporting_sources: ['nice-gord-dyspepsia-cg184-2019'],
+    population_applicability: 'Partial: NG12 recommendations are age- and symptom-qualified where stated; CG184 applies to adults. The legacy workflow has no age filter.',
+    setting_applicability: 'Partial: exact for primary-care suspected-cancer recognition, safety-netting, reflux context, and previous-endoscopy review, not oropharyngeal-neurological dysphagia or specialist swallowing assessment.',
+    UAE_applicability: 'No exact UAE dysphagia guideline was identified. NICE referral and endoscopy pathways require UAE clinician review.',
+    recency_verification: 'The current official NG12 recommendations updated 2026-04-15 and current CG184 recommendations last updated 2019-10-18 were opened on 2026-07-13.',
+    superseded_check: 'NG12 and CG184 remain current official NICE guidance.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['The exact sources do not cover all ages or all oropharyngeal, neurological, structural, and specialist-swallowing contexts.', 'Duration, solids-versus-liquids distinction, progression, odynophagia, haematemesis negative, oral or throat examination, vitals, BMI, hoarseness or cervical nodes, family history, regurgitation, cough or choking, blood tests, generic previous records, barium swallow, fixed follow-up intervals, PRN wording, and the combined history draft remain unsupported.', 'Cause, diagnosis, aspiration risk, urgency, investigation choice, endoscopy decision, treatment, and referral route remain clinician responsibilities.'],
+    section_relationships: {
+      'nice-ng12-upper-gi-dysphagia-jaundice': 'Supports mapped dysphagia presentation, weight-loss context, and clinician-decided referral documentation without asserting cancer.',
+      'nice-ng12-safety-netting-review': 'Supports mapped warning-symptom, return, and agreed-review documentation without fixed timing.',
+      'nice-cg184-gord-symptom-profile': 'Supports mapped adult reflux-symptom context only.',
+      'nice-cg184-gord-alarm-endoscopy': 'Supports mapped previous-endoscopy review and alarm-context documentation without automatically ordering endoscopy.',
+    },
+    support_groups: [
+      support('nice-suspected-cancer-ng12-2026', 'nice-ng12-upper-gi-dysphagia-jaundice', 'The exact upper-GI recommendations support dysphagia presentation, weight-loss context, and clinician-decided referral documentation without asserting malignancy.', 'gastro-dysphagia', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'chip-symptoms--gastro-dysphagia-symptoms-1', 'chip-relevant-negatives--gastro-dysphagia-relevant-negatives-1', 'chip-red-flags--gastro-dysphagia-red-flags-2', 'chip-red-flags--gastro-dysphagia-red-flags-4', 'chip-symptoms--gastro-dysphagia-symptoms-7', 'chip-plan-phrases--gastro-dysphagia-plan-phrases-3', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'plan-documentation-option--2-2-gastro-dysphagia-referral']),
+      support('nice-suspected-cancer-ng12-2026', 'nice-ng12-safety-netting-review', 'The exact safety-netting section supports clinician-discussed safety and agreed follow-up documentation without fixed intervals.', 'gastro-dysphagia', ['chip-plan-phrases--gastro-dysphagia-plan-phrases-2', 'chip-plan-phrases--gastro-dysphagia-plan-phrases-4', 'chip-follow-up--gastro-dysphagia-follow-up-3', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'plan-documentation-option--1-2-gastro-dysphagia-safety-netting', 'plan-documentation-option--2-1-gastro-dysphagia-follow-up']),
+      support('nice-gord-dyspepsia-cg184-2019', 'nice-cg184-gord-symptom-profile', 'The exact adult GORD symptom section supports review of associated reflux symptoms only.', 'gastro-dysphagia', ['chip-symptoms--gastro-dysphagia-symptoms-6']),
+      support('nice-gord-dyspepsia-cg184-2019', 'nice-cg184-gord-alarm-endoscopy', 'The exact alarm and endoscopy section supports review of an available previous endoscopy report; it does not order a new procedure.', 'gastro-dysphagia', ['chip-investigations--gastro-dysphagia-investigations-1', 'preset-prechecked-investigations--prechecked-investigations-1', 'investigation-documentation-option--1-1-previous-ogd']),
+    ],
+  },
+  {
+    workflow_id: 'gastro-post-endoscopy-followup',
+    search_queries_used: ['site:dha.gov.ae endoscopy recovery guideline UAE', 'site:doh.gov.ae endoscopy discharge guideline', 'site:bsg.org.uk sedation gastrointestinal endoscopy recovery discharge guideline', 'site:bsg.org.uk post endoscopy follow-up guidance'],
+    official_pages_opened: [BSG_SEDATION_PAGE, BSG_SEDATION_PDF],
+    exact_documents_opened: ['bsg-endoscopy-sedation-2023'],
+    exact_sections_reviewed: ['bsg-endoscopy-sedation-2023-procedure-context', 'bsg-endoscopy-sedation-2023-monitoring-recovery', 'bsg-endoscopy-sedation-2023-discharge-documentation'],
+    candidate_sources_rejected: ['patient post-endoscopy leaflets', 'procedure-specific pathology surveillance schedules', 'sedative dose protocols', 'non-official discharge checklists'],
+    rejection_reasons: ['Patient leaflets are not clinician guidance.', 'Surveillance schedules require procedure, finding, pathology, and local-programme qualifiers absent from the workflow.', 'Medicine doses were outside scope.', 'Non-official checklists were not accepted.'],
+    selected_primary_sources: ['bsg-endoscopy-sedation-2023'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: BSG covers gastrointestinal endoscopy with recommendation-specific procedure, sedation, age, and comorbidity contexts; the legacy workflow does not record all qualifiers.',
+    setting_applicability: 'Partial: exact for endoscopy-unit recovery and discharge documentation, not a universal later outpatient follow-up or pathology-surveillance workflow.',
+    UAE_applicability: 'No exact UAE post-endoscopy guideline was identified. UK endoscopy recovery and discharge guidance requires UAE facility-policy and clinician review.',
+    recency_verification: 'The current official BSG resource and exact guideline PDF were opened on 2026-07-13.',
+    superseded_check: 'The 2023 BSG sedation guideline remains the current official BSG resource and anticipates five-year review.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['The exact source is sedation and endoscopy-unit recovery guidance, not a universal outpatient follow-up or surveillance schedule.', 'Specific bleeding, fever, perforation, abdominal examination or tenderness, endoscopy-report interpretation, histology or pathology, previous records, medication review, referral, generic clinician plan, fixed surveillance or follow-up intervals, PRN wording, and the combined history draft remain unsupported.', 'Procedure findings, pathology, complication diagnosis, treatment, investigation, referral, discharge, and surveillance decisions remain clinician responsibilities.'],
+    section_relationships: {
+      'bsg-endoscopy-sedation-2023-procedure-context': 'Supports mapped procedure type and indication as known documentation context.',
+      'bsg-endoscopy-sedation-2023-monitoring-recovery': 'Supports mapped recovery, symptom review, diet or activity recovery, vital monitoring, and follow-up-planning documentation.',
+      'bsg-endoscopy-sedation-2023-discharge-documentation': 'Supports mapped discharge-assessment, safety-instruction, and clinician-arranged follow-up documentation without diagnosing a complication.',
+    },
+    support_groups: [
+      support('bsg-endoscopy-sedation-2023', 'bsg-endoscopy-sedation-2023-procedure-context', 'The exact pre-assessment context supports recording the procedure type and indication or intended aim.', 'gastro-post-endoscopy-followup', ['chip-symptoms--gastro-post-endoscopy-followup-symptoms-2', 'chip-symptoms--gastro-post-endoscopy-followup-symptoms-3', 'preset-prechecked-symptoms--prechecked-symptoms-2', 'preset-prechecked-symptoms--prechecked-symptoms-3']),
+      support('bsg-endoscopy-sedation-2023', 'bsg-endoscopy-sedation-2023-monitoring-recovery', 'The exact recovery section supports these post-endoscopy recovery, symptom-review, diet, activity, vital-monitoring, and follow-up-planning fields.', 'gastro-post-endoscopy-followup', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 3), 'chip-symptoms--gastro-post-endoscopy-followup-symptoms-1', 'chip-symptoms--gastro-post-endoscopy-followup-symptoms-5', 'chip-symptoms--gastro-post-endoscopy-followup-symptoms-7', 'chip-symptoms--gastro-post-endoscopy-followup-symptoms-8', 'chip-exam-findings--gastro-post-endoscopy-followup-exam-findings-2', 'chip-plan-phrases--gastro-post-endoscopy-followup-plan-phrases-2', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-exam-findings--prechecked-exam-findings-2', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'examination-prompt--bp', 'examination-prompt--hr', 'plan-documentation-option--2-1-gastro-post-endoscopy-followup-follow-up']),
+      support('bsg-endoscopy-sedation-2023', 'bsg-endoscopy-sedation-2023-discharge-documentation', 'The exact discharge section supports clinician-discussed safety instructions, late-recovery contact information, and review if symptoms recur without asserting a complication.', 'gastro-post-endoscopy-followup', ['chip-plan-phrases--gastro-post-endoscopy-followup-plan-phrases-4', 'chip-follow-up--gastro-post-endoscopy-followup-follow-up-4', 'plan-documentation-option--2-3-gastro-post-endoscopy-followup-safety-netting']),
+    ],
+  },
+  {
+    workflow_id: 'endo-diabetes-followup',
+    search_queries_used: ['site:dha.gov.ae telehealth type 2 diabetes clinical guideline PDF 2024', 'site:doh.gov.ae diabetes follow-up guideline UAE', 'site:mohap.gov.ae diabetes guideline follow-up UAE', 'site:dha.gov.ae type 2 diabetes annual review HbA1c ACR foot retinal'],
+    official_pages_opened: [DHA_DIABETES_URL],
+    exact_documents_opened: ['dha-telehealth-type2-diabetes-v2-2024'],
+    exact_sections_reviewed: ['dha-type2-diabetes-v2-scope-applicability', 'dha-type2-diabetes-v2-annual-review', 'dha-type2-diabetes-v2-red-flags', 'dha-type2-diabetes-v2-monitoring', 'dha-type2-diabetes-v2-laboratory-summary'],
+    candidate_sources_rejected: ['patient diabetes pages', 'medicine dose tables', 'non-UAE clinic protocols', 'type 1 diabetes-only guidance'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Medicine names and doses were not mapped.', 'Non-UAE local protocols were unnecessary because a direct DHA source was available.', 'Type 1-only evidence was not applied to this generic diabetes follow-up workflow.'],
+    selected_primary_sources: ['dha-telehealth-type2-diabetes-v2-2024'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: the exact DHA guideline is for adults with type 2 diabetes and contains diagnostic exclusions; the legacy workflow says diabetes generally and has no adult or type filter.',
+    setting_applicability: 'Partial: direct for DHA-licensed telehealth type 2 diabetes review, monitoring, and referral documentation, not every in-person or type 1 diabetes setting.',
+    UAE_applicability: 'Direct Dubai DHA guidance for the mapped adult type 2 diabetes telehealth fields.',
+    recency_verification: 'The controlled DHA Version 2 Issue 2 PDF, effective 2024-04-21 with revision due 2029-02-21, was opened on 2026-07-13.',
+    superseded_check: 'No newer official DHA issue was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Type 1 diabetes, children, pregnancy, and non-telehealth settings are not fully covered by the exact source.', 'General acute-infection negatives, chest pain or breathlessness, detailed pulse or sensation findings, injection sites, cardiac examination, sick-day rules, rising or target-based follow-up labels, fixed follow-up intervals, PRN wording, and generic clinician plan remain unsupported.', 'Diabetes type, control, complications, result interpretation, medication choice or dose, treatment change, referral urgency, and follow-up interval remain clinician responsibilities.'],
+    section_relationships: {
+      'dha-type2-diabetes-v2-scope-applicability': 'Supports mapped adult type 2 diabetes telehealth presentation fields with scope limitations retained.',
+      'dha-type2-diabetes-v2-annual-review': 'Supports mapped home glucose, hypoglycaemia, lifestyle, BP, BMI, foot, renal, ACR, HbA1c, lipid, podiatry, retinal, and annual-review fields.',
+      'dha-type2-diabetes-v2-red-flags': 'Supports mapped foot-ulcer, visual, neuropathy, and clinician-referral context as prompts only.',
+      'dha-type2-diabetes-v2-monitoring': 'Supports mapped adherence, glucose-monitoring, and clinician-decided medication-plan documentation without dose or autonomous change.',
+      'dha-type2-diabetes-v2-laboratory-summary': 'Supports mapped clinician-reviewed HbA1c, renal, lipid, and urine ACR documentation.',
+    },
+    support_groups: [
+      support('dha-telehealth-type2-diabetes-v2-2024', 'dha-type2-diabetes-v2-scope-applicability', 'The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation.', 'endo-diabetes-followup', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 3), 'chip-symptoms--endo-diabetes-followup-symptoms-1', 'preset-prechecked-symptoms--prechecked-symptoms-1']),
+      support('dha-telehealth-type2-diabetes-v2-2024', 'dha-type2-diabetes-v2-annual-review', 'The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields.', 'endo-diabetes-followup', ['chip-symptoms--endo-diabetes-followup-symptoms-2', 'chip-symptoms--endo-diabetes-followup-symptoms-3', 'chip-symptoms--endo-diabetes-followup-symptoms-5', 'chip-symptoms--endo-diabetes-followup-symptoms-6', 'chip-symptoms--endo-diabetes-followup-symptoms-10', 'chip-symptoms--endo-diabetes-followup-symptoms-11', 'chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-1', ...seq('chip-exam-findings--endo-diabetes-followup-exam-findings-', 1, 3), ...seq('chip-investigations--endo-diabetes-followup-investigations-', 1, 6), 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-3', 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-7', 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-8', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 2, 3), 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1', ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), ...seq('preset-prechecked-investigations--prechecked-investigations-', 1, 3), 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'examination-prompt--bp', 'examination-prompt--weight', 'examination-prompt--foot-exam', 'investigation-documentation-option--1-1-hba1c', 'investigation-documentation-option--1-2-renal', 'investigation-documentation-option--1-3-acr', 'investigation-documentation-option--1-4-lipid', 'investigation-documentation-option--1-5-eye-screening', 'plan-documentation-option--1-2-endo-diabetes-followup-lifestyle', 'plan-documentation-option--3-1-endo-diabetes-followup-follow-up', 'history-draft--default-history-draft']),
+      support('dha-telehealth-type2-diabetes-v2-2024', 'dha-type2-diabetes-v2-red-flags', 'The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only.', 'endo-diabetes-followup', ['chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-2', 'chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-4', 'chip-symptoms--endo-diabetes-followup-symptoms-7', 'chip-symptoms--endo-diabetes-followup-symptoms-8', 'chip-symptoms--endo-diabetes-followup-symptoms-9', 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-6', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2', 'plan-documentation-option--3-2-endo-diabetes-followup-referral']),
+      support('dha-telehealth-type2-diabetes-v2-2024', 'dha-type2-diabetes-v2-monitoring', 'The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change.', 'endo-diabetes-followup', ['chip-symptoms--endo-diabetes-followup-symptoms-4', 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-2', 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-4', 'chip-plan-phrases--endo-diabetes-followup-plan-phrases-5', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'plan-documentation-option--2-1-endo-diabetes-followup-medication-plan', 'plan-documentation-option--2-2-endo-diabetes-followup-glucose-monitoring']),
+      support('dha-telehealth-type2-diabetes-v2-2024', 'dha-type2-diabetes-v2-laboratory-summary', 'The exact laboratory summary was reviewed as corroboration for the already mapped diabetes laboratory fields; no duplicate item mapping is added.', 'endo-diabetes-followup', []),
+    ],
+  },
+  {
+    workflow_id: 'endo-thyroid-symptoms',
+    search_queries_used: ['site:dha.gov.ae thyroid disease guideline UAE', 'site:doh.gov.ae thyroid guideline UAE', 'site:nice.org.uk/guidance/ng145 thyroid symptoms testing recommendations', 'site:nice.org.uk/guidance/ng145 thyroid enlargement hoarse voice dysphagia ultrasound'],
+    official_pages_opened: [NICE_THYROID_URL],
+    exact_documents_opened: ['nice-thyroid-ng145-2023'],
+    exact_sections_reviewed: ['nice-ng145-thyroid-information-red-flags', 'nice-ng145-thyroid-suspected-testing', 'nice-ng145-thyroid-enlargement'],
+    candidate_sources_rejected: ['patient thyroid symptom pages', 'medicine dose tables', 'thyroid nodule procedure protocols', 'non-official symptom checklists'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Medicine doses were outside scope.', 'Procedure protocols do not support this broad symptoms workflow.', 'Non-official symptom checklists were not accepted as exact evidence.'],
+    selected_primary_sources: ['nice-thyroid-ng145-2023'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: NG145 covers adults, children, and young people with recommendation-specific differences; the legacy workflow does not retain all qualifiers.',
+    setting_applicability: 'Partial: exact for suspected-thyroid-dysfunction testing, thyroid-enlargement warning symptoms, and clinician-led referral context, not diagnosis from a symptom list.',
+    UAE_applicability: 'No exact UAE thyroid guideline was identified. NICE testing, ultrasound, treatment, and referral pathways require UAE clinician review.',
+    recency_verification: 'The current official NG145 recommendations, last updated 2023-10-12 and reviewed 2025-10-03, were opened on 2026-07-13.',
+    superseded_check: 'NG145 remains the current official NICE guideline.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['The exact guideline warns that one symptom alone may not indicate thyroid disease and does not enumerate all legacy symptom or examination fields.', 'Weight change, heat or cold intolerance, palpitations, tremor, bowel habit, skin or hair change, menstrual change, chest-pain or severe-palpitations negatives, broad vitals, eye signs, blood pressure, lymph nodes, previous records, generic clinician plan, medication plan, fixed follow-up intervals, PRN wording, and the combined history draft remain unsupported.', 'Diagnosis, test interpretation, ultrasound indication, treatment, medicine choice or dose, and referral decisions remain clinician responsibilities.'],
+    section_relationships: {
+      'nice-ng145-thyroid-information-red-flags': 'Supports mapped thyroid-enlargement warning symptoms and shared-decision information without asserting disease.',
+      'nice-ng145-thyroid-suspected-testing': 'Supports mapped suspected-thyroid presentation, mood or anxiety context, thyroid tests, antibodies, and symptom-change review with qualifiers retained.',
+      'nice-ng145-thyroid-enlargement': 'Supports mapped neck or thyroid assessment, recommendation-qualified ultrasound, and clinician-decided specialist assessment.',
+    },
+    support_groups: [
+      support('nice-thyroid-ng145-2023', 'nice-ng145-thyroid-information-red-flags', 'The exact information section supports documenting thyroid-enlargement warning symptoms such as swallowing difficulty and voice change without asserting their absence unless assessed.', 'endo-thyroid-symptoms', ['chip-relevant-negatives--endo-thyroid-symptoms-relevant-negatives-3', 'chip-relevant-negatives--endo-thyroid-symptoms-relevant-negatives-4', 'chip-symptoms--endo-thyroid-symptoms-symptoms-8', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3']),
+      support('nice-thyroid-ng145-2023', 'nice-ng145-thyroid-suspected-testing', 'The exact suspected-dysfunction section supports these thyroid-presentation, mood or anxiety, TFT, antibody, and worsening-symptom follow-up fields; diagnosis is not inferred from one symptom.', 'endo-thyroid-symptoms', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'chip-symptoms--endo-thyroid-symptoms-symptoms-1', 'chip-symptoms--endo-thyroid-symptoms-symptoms-7', 'chip-investigations--endo-thyroid-symptoms-investigations-1', 'chip-investigations--endo-thyroid-symptoms-investigations-2', 'chip-plan-phrases--endo-thyroid-symptoms-plan-phrases-4', 'chip-follow-up--endo-thyroid-symptoms-follow-up-3', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-investigations--prechecked-investigations-1', 'preset-prechecked-investigations--prechecked-investigations-2', 'investigation-documentation-option--1-1-tft', 'investigation-documentation-option--1-2-antibodies', 'plan-documentation-option--3-1-endo-thyroid-symptoms-follow-up']),
+      support('nice-thyroid-ng145-2023', 'nice-ng145-thyroid-enlargement', 'The exact thyroid-enlargement section supports clinician-assessed neck or thyroid findings, recommendation-qualified ultrasound, and clinician-decided referral documentation.', 'endo-thyroid-symptoms', ['chip-exam-findings--endo-thyroid-symptoms-exam-findings-2', 'chip-investigations--endo-thyroid-symptoms-investigations-3', 'chip-plan-phrases--endo-thyroid-symptoms-plan-phrases-3', 'preset-prechecked-exam-findings--prechecked-exam-findings-2', 'preset-prechecked-investigations--prechecked-investigations-3', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'examination-prompt--neck', 'investigation-documentation-option--2-1-us-thyroid', 'plan-documentation-option--3-2-endo-thyroid-symptoms-referral']),
+    ],
+  },
+  {
+    workflow_id: 'endo-hypothyroidism-followup',
+    search_queries_used: ['site:dha.gov.ae hypothyroidism follow-up guideline UAE', 'site:doh.gov.ae hypothyroidism monitoring guideline', 'site:nice.org.uk/guidance/ng145 hypothyroidism follow-up monitoring TSH FT4', 'site:nice.org.uk/guidance/ng145 levothyroxine interactions follow-up'],
+    official_pages_opened: [NICE_THYROID_URL],
+    exact_documents_opened: ['nice-thyroid-ng145-2023'],
+    exact_sections_reviewed: ['nice-ng145-thyroid-information-red-flags', 'nice-ng145-hypothyroidism-monitoring'],
+    candidate_sources_rejected: ['patient hypothyroidism pages', 'levothyroxine dose tables', 'non-official monitoring protocols', 'pregnancy-only thyroid guidance'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Medicine doses and automatic changes were not mapped.', 'Non-official protocols were not accepted.', 'Pregnancy-only guidance was not applied to an unrestricted workflow.'],
+    selected_primary_sources: ['nice-thyroid-ng145-2023'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: NG145 includes adults, children, and young people with age-specific monitoring; the legacy workflow does not retain every qualifier.',
+    setting_applicability: 'Partial: exact for confirmed primary hypothyroidism information and laboratory monitoring, not diagnosis or autonomous treatment adjustment.',
+    UAE_applicability: 'No exact UAE hypothyroidism guideline was identified. NICE monitoring and medicine pathways require UAE clinician review.',
+    recency_verification: 'The current official NG145 recommendations, last updated 2023-10-12 and reviewed 2025-10-03, were opened on 2026-07-13.',
+    superseded_check: 'NG145 remains current official NICE guidance.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Age-specific monitoring and confirmed-primary-hypothyroidism qualifiers are not encoded in the legacy workflow.', 'Fatigue, cold intolerance, weight change, constipation, dry skin or hair loss, myxoedema symptoms, heart-rate symptoms, chest or palpitation negatives, all examination findings, previous records, referral, fixed follow-up intervals, PRN wording, TSH-out-of-range timing, generic clinician plan, and the combined history draft remain unsupported.', 'Diagnosis, result interpretation, dose selection or change, medicine choice, treatment, and exact follow-up timing remain clinician responsibilities.'],
+    section_relationships: {
+      'nice-ng145-thyroid-information-red-flags': 'Supports mapped thyroid-replacement information, medicine-interaction, and adherence-discussion documentation without specifying a dose.',
+      'nice-ng145-hypothyroidism-monitoring': 'Supports mapped TSH, FT4, persistent-symptom, clinician-led medication-plan, and follow-up documentation for confirmed primary hypothyroidism.',
+    },
+    support_groups: [
+      support('nice-thyroid-ng145-2023', 'nice-ng145-thyroid-information-red-flags', 'The exact hypothyroidism information section supports these thyroid-replacement and adherence-discussion fields without a medicine dose or autonomous change.', 'endo-hypothyroidism-followup', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'chip-symptoms--endo-hypothyroidism-followup-symptoms-1', 'chip-symptoms--endo-hypothyroidism-followup-symptoms-7', 'chip-plan-phrases--endo-hypothyroidism-followup-plan-phrases-2', 'chip-plan-phrases--endo-hypothyroidism-followup-plan-phrases-3', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'plan-documentation-option--2-1-endo-hypothyroidism-followup-medication-plan', 'plan-documentation-option--2-2-endo-hypothyroidism-followup-adherence']),
+      support('nice-thyroid-ng145-2023', 'nice-ng145-hypothyroidism-monitoring', 'The exact monitoring section supports clinician-reviewed TSH and FT4 plus clinician-arranged follow-up; fixed legacy intervals are not mapped.', 'endo-hypothyroidism-followup', ['chip-investigations--endo-hypothyroidism-followup-investigations-1', 'chip-investigations--endo-hypothyroidism-followup-investigations-2', 'chip-plan-phrases--endo-hypothyroidism-followup-plan-phrases-4', 'preset-prechecked-investigations--prechecked-investigations-1', 'preset-prechecked-investigations--prechecked-investigations-2', 'investigation-documentation-option--1-1-tsh', 'investigation-documentation-option--1-2-free-t4', 'plan-documentation-option--3-1-endo-hypothyroidism-followup-follow-up']),
+    ],
+  },
+  {
+    workflow_id: 'endo-hyperthyroidism-followup',
+    search_queries_used: ['site:dha.gov.ae hyperthyroidism follow-up guideline UAE', 'site:doh.gov.ae hyperthyroidism monitoring guideline', 'site:nice.org.uk/guidance/ng145 hyperthyroidism monitoring TSH FT4 FT3', 'site:nice.org.uk/guidance/ng145 antithyroid drugs follow-up'],
+    official_pages_opened: [NICE_THYROID_URL],
+    exact_documents_opened: ['nice-thyroid-ng145-2023'],
+    exact_sections_reviewed: ['nice-ng145-thyroid-information-red-flags', 'nice-ng145-hyperthyroidism-monitoring'],
+    candidate_sources_rejected: ['patient hyperthyroidism pages', 'antithyroid dose protocols', 'radioiodine treatment protocols', 'non-official monitoring schedules'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Medicine doses and autonomous treatment were not mapped.', 'Treatment-specific protocols exceed this follow-up documentation scope.', 'Non-official schedules were not accepted.'],
+    selected_primary_sources: ['nice-thyroid-ng145-2023'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: NG145 includes adults, children, and young people with treatment- and age-specific monitoring contexts; the legacy workflow does not encode all qualifiers.',
+    setting_applicability: 'Partial: exact for established hyperthyroidism treatment-context monitoring and clinician-led follow-up, not diagnosis or universal symptom review.',
+    UAE_applicability: 'No exact UAE hyperthyroidism guideline was identified. NICE monitoring, treatment, and referral pathways require UAE clinician review.',
+    recency_verification: 'The current official NG145 recommendations, last updated 2023-10-12 and reviewed 2025-10-03, were opened on 2026-07-13.',
+    superseded_check: 'NG145 remains current official NICE guidance.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Treatment-specific and age-specific monitoring qualifiers are not encoded in the legacy workflow.', 'Palpitations, heat intolerance, tremor, weight change, anxiety, bowel habit, eye symptoms, fatigue, sleep, neck discomfort, dyspnoea, chest-pain or syncope negatives, eye-visual negatives, all examination fields, TSI or antibody review, previous records, eye-care referral, fixed follow-up intervals, PRN wording, generic clinician plan, and the combined history draft remain unsupported.', 'Diagnosis, severity, result interpretation, medicine choice or dose, treatment change, eye-disease assessment, referral, and exact follow-up timing remain clinician responsibilities.'],
+    section_relationships: {
+      'nice-ng145-thyroid-information-red-flags': 'Supports mapped established thyrotoxicosis information and clinician-discussed treatment-context documentation without specifying treatment.',
+      'nice-ng145-hyperthyroidism-monitoring': 'Supports mapped TFT monitoring, clinician-led medication-plan, referral, and follow-up documentation with treatment and age qualifiers retained.',
+    },
+    support_groups: [
+      support('nice-thyroid-ng145-2023', 'nice-ng145-thyroid-information-red-flags', 'The exact thyrotoxicosis information section supports these established hyperthyroidism and antithyroid-treatment context terms without a medicine dose.', 'endo-hyperthyroidism-followup', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'chip-symptoms--endo-hyperthyroidism-followup-symptoms-1', 'preset-prechecked-symptoms--prechecked-symptoms-1']),
+      support('nice-thyroid-ng145-2023', 'nice-ng145-hyperthyroidism-monitoring', 'The exact monitoring section supports clinician-reviewed TFTs, a clinician-decided medication plan, clinician-decided referral, and clinician-arranged follow-up; fixed legacy intervals are not mapped.', 'endo-hyperthyroidism-followup', ['chip-investigations--endo-hyperthyroidism-followup-investigations-1', 'chip-plan-phrases--endo-hyperthyroidism-followup-plan-phrases-2', 'chip-plan-phrases--endo-hyperthyroidism-followup-plan-phrases-3', 'chip-plan-phrases--endo-hyperthyroidism-followup-plan-phrases-4', 'preset-prechecked-investigations--prechecked-investigations-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'investigation-documentation-option--1-1-tft', 'plan-documentation-option--2-1-endo-hyperthyroidism-followup-medication-plan', 'plan-documentation-option--3-1-endo-hyperthyroidism-followup-follow-up', 'plan-documentation-option--3-2-endo-hyperthyroidism-followup-referral']),
+    ],
+  },
+  {
+    workflow_id: 'endo-obesity-counseling-documentation',
+    search_queries_used: ['site:dha.gov.ae obesity management guideline UAE', 'site:doh.gov.ae obesity guideline UAE', 'site:nice.org.uk/guidance/ng246 permission discuss weight BMI waist goals referral', 'site:nice.org.uk/guidance/ng246 previous attempts barriers preferences follow-up'],
+    official_pages_opened: [NICE_OBESITY_IDENTIFY_URL, NICE_OBESITY_DISCUSS_URL, NICE_OBESITY_BEHAVIOUR_URL],
+    exact_documents_opened: ['nice-overweight-obesity-ng246-2026'],
+    exact_sections_reviewed: ['nice-ng246-obesity-permission-measurements', 'nice-ng246-obesity-context-intervention-referral', 'nice-ng246-obesity-goals-progress-followup'],
+    candidate_sources_rejected: ['patient weight-loss pages', 'commercial diet programmes', 'anti-obesity medicine dose guidance', 'automatic calorie or target-weight calculators'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Commercial programmes were not accepted.', 'Medicine selection and doses were outside scope.', 'Automatic targets and calculators were prohibited.'],
+    selected_primary_sources: ['nice-overweight-obesity-ng246-2026'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: NG246 has adult, child, and young-person sections with section-specific criteria; mapped measurements and discussions are predominantly adult and the legacy workflow has no age filter.',
+    setting_applicability: 'Partial: exact for permission-sensitive assessment, discussion, intervention or referral documentation, and behavioural follow-up, not automatic counselling or treatment.',
+    UAE_applicability: 'No exact UAE obesity-management guideline was identified. NICE service, referral, and intervention pathways require UAE clinician review and local availability.',
+    recency_verification: 'The current official NG246 pages, last updated 2026-01-08, were opened on 2026-07-13.',
+    superseded_check: 'NG246 remains current official NICE guidance.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Adult measurement and referral qualifiers are not encoded in the unrestricted legacy workflow.', 'No-acute-symptom and unexplained-weight-loss negatives, blood pressure, broad vitals, sleep, medicine history, HbA1c or glucose, lipid, thyroid tests, pharmacotherapy, fixed follow-up intervals, PRN wording, generic clinician plan, and the combined history draft remain unsupported.', 'Diagnosis, classification, health-risk interpretation, advice content, intervention selection, medicine or surgery discussion, referral, and targets remain clinician responsibilities.'],
+    section_relationships: {
+      'nice-ng246-obesity-permission-measurements': 'Supports mapped permission-sensitive weight-management presentation, BMI, weight, and waist measurement fields while warning against diagnostic overshadowing.',
+      'nice-ng246-obesity-context-intervention-referral': 'Supports mapped diet or activity context, comorbidity, eating or mental-health context, previous attempts, readiness, clinician-discussed lifestyle, goals, and preference-sensitive referral fields.',
+      'nice-ng246-obesity-goals-progress-followup': 'Supports mapped weight-trend, progress, goal-setting, and clinician-arranged follow-up documentation without inserting advice.',
+    },
+    support_groups: [
+      support('nice-overweight-obesity-ng246-2026', 'nice-ng246-obesity-permission-measurements', 'The exact adult assessment section supports these permission-sensitive weight-management, BMI, weight, and waist fields; diagnostic overshadowing and age qualifiers are retained.', 'endo-obesity-counseling-documentation', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'chip-symptoms--endo-obesity-counseling-documentation-symptoms-1', 'chip-symptoms--endo-obesity-counseling-documentation-symptoms-2', 'chip-exam-findings--endo-obesity-counseling-documentation-exam-findings-2', 'chip-exam-findings--endo-obesity-counseling-documentation-exam-findings-3', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-symptoms--prechecked-symptoms-2', 'preset-prechecked-exam-findings--prechecked-exam-findings-2', 'preset-prechecked-exam-findings--prechecked-exam-findings-3', 'examination-prompt--weight', 'examination-prompt--waist']),
+      support('nice-overweight-obesity-ng246-2026', 'nice-ng246-obesity-context-intervention-referral', 'The exact discussion section supports these diet, activity, comorbidity, eating-pattern, previous-attempt, mental-health, readiness, clinician-discussed lifestyle, goal, and referral fields without generating advice.', 'endo-obesity-counseling-documentation', ['chip-symptoms--endo-obesity-counseling-documentation-symptoms-4', 'chip-symptoms--endo-obesity-counseling-documentation-symptoms-5', 'chip-symptoms--endo-obesity-counseling-documentation-symptoms-7', ...seq('chip-symptoms--endo-obesity-counseling-documentation-symptoms-', 9, 12), 'chip-plan-phrases--endo-obesity-counseling-documentation-plan-phrases-2', 'chip-plan-phrases--endo-obesity-counseling-documentation-plan-phrases-3', 'chip-plan-phrases--endo-obesity-counseling-documentation-plan-phrases-5', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'plan-documentation-option--1-2-endo-obesity-counseling-documentation-lifestyle', 'plan-documentation-option--2-2-endo-obesity-counseling-documentation-referral']),
+      support('nice-overweight-obesity-ng246-2026', 'nice-ng246-obesity-goals-progress-followup', 'The exact progress and follow-up section supports weight-trend, goal-setting, and clinician-arranged follow-up documentation without fixed timing.', 'endo-obesity-counseling-documentation', ['chip-symptoms--endo-obesity-counseling-documentation-symptoms-3', 'chip-plan-phrases--endo-obesity-counseling-documentation-plan-phrases-4', 'plan-documentation-option--2-1-endo-obesity-counseling-documentation-follow-up']),
+    ],
+  },
+]
+
+export default {
+  batch_id: 'batch-0126-0135',
+  sources,
+  workflows,
+  interruption_reason: 'The exact-source queue is checkpointed after workflows 0126–0135 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is endo-hypoglycemia-review.',
+}
