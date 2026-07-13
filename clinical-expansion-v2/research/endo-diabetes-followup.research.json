@@ -3,27 +3,515 @@
   "workflow_id": "endo-diabetes-followup",
   "presentation": "Diabetes follow-up",
   "specialty": "Endocrinology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae telehealth type 2 diabetes clinical guideline PDF 2024",
+    "site:doh.gov.ae diabetes follow-up guideline UAE",
+    "site:mohap.gov.ae diabetes guideline follow-up UAE",
+    "site:dha.gov.ae type 2 diabetes annual review HbA1c ACR foot retinal"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "947f71217e478f32335ee211289d2fa67da758d547cf61dfe674b40ab95937b7"
+  "official_pages_opened": [
+    "https://dha.gov.ae/uploads/032024/30%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Type%202%20Diabetes2024322535.pdf"
+  ],
+  "exact_documents_opened": [
+    "dha-telehealth-type2-diabetes-v2-2024"
+  ],
+  "exact_sections_reviewed": [
+    "dha-type2-diabetes-v2-scope-applicability",
+    "dha-type2-diabetes-v2-annual-review",
+    "dha-type2-diabetes-v2-red-flags",
+    "dha-type2-diabetes-v2-monitoring",
+    "dha-type2-diabetes-v2-laboratory-summary"
+  ],
+  "candidate_sources_rejected": [
+    "patient diabetes pages",
+    "medicine dose tables",
+    "non-UAE clinic protocols",
+    "type 1 diabetes-only guidance"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Medicine names and doses were not mapped.",
+    "Non-UAE local protocols were unnecessary because a direct DHA source was available.",
+    "Type 1-only evidence was not applied to this generic diabetes follow-up workflow."
+  ],
+  "selected_primary_sources": [
+    "dha-telehealth-type2-diabetes-v2-2024"
+  ],
+  "selected_supporting_sources": [],
+  "population_applicability": "Partial: the exact DHA guideline is for adults with type 2 diabetes and contains diagnostic exclusions; the legacy workflow says diabetes generally and has no adult or type filter.",
+  "setting_applicability": "Partial: direct for DHA-licensed telehealth type 2 diabetes review, monitoring, and referral documentation, not every in-person or type 1 diabetes setting.",
+  "UAE_applicability": "Direct Dubai DHA guidance for the mapped adult type 2 diabetes telehealth fields.",
+  "recency_verification": "The controlled DHA Version 2 Issue 2 PDF, effective 2024-04-21 with revision due 2029-02-21, was opened on 2026-07-13.",
+  "superseded_check": "No newer official DHA issue was identified.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "endo-diabetes-followup--dha-type2-diabetes-v2-scope-applicability",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "Supports mapped adult type 2 diabetes telehealth presentation fields with scope limitations retained.",
+      "paraphrased_evidence_summary": "Defines DHA-licensed telehealth type 2 diabetes scope and emergency and controlled-medication exclusions.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-diabetes-followup--dha-type2-diabetes-v2-annual-review",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "Supports mapped home glucose, hypoglycaemia, lifestyle, BP, BMI, foot, renal, ACR, HbA1c, lipid, podiatry, retinal, and annual-review fields.",
+      "paraphrased_evidence_summary": "Specifies hypoglycaemia awareness, home glucose review, BP and BMI, renal testing, urine ACR, HbA1c, cholesterol, podiatry, and retinal review.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-diabetes-followup--dha-type2-diabetes-v2-red-flags",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "Supports mapped foot-ulcer, visual, neuropathy, and clinician-referral context as prompts only.",
+      "paraphrased_evidence_summary": "Lists metabolic decompensation, DKA or hyperosmolar state, infected foot ulcer, profound hypoglycaemia, and rapidly deteriorating complications.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-diabetes-followup--dha-type2-diabetes-v2-monitoring",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "Supports mapped adherence, glucose-monitoring, and clinician-decided medication-plan documentation without dose or autonomous change.",
+      "paraphrased_evidence_summary": "Specifies clinician review of BP, creatinine, electrolytes, HbA1c, cholesterol, urine ACR, home glucose context, and adherence before medication decisions.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-diabetes-followup--dha-type2-diabetes-v2-laboratory-summary",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-laboratory-summary",
+      "direct_relationship": "Supports mapped clinician-reviewed HbA1c, renal, lipid, and urine ACR documentation.",
+      "paraphrased_evidence_summary": "Summarises HbA1c, renal, lipid, ALT, and urine ACR review intervals for diabetes.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "Type 1 diabetes, children, pregnancy, and non-telehealth settings are not fully covered by the exact source.",
+    "General acute-infection negatives, chest pain or breathlessness, detailed pulse or sensation findings, injection sites, cardiac examination, sick-day rules, rising or target-based follow-up labels, fixed follow-up intervals, PRN wording, and generic clinician plan remain unsupported.",
+    "Diabetes type, control, complications, result interpretation, medication choice or dose, treatment change, referral urgency, and follow-up interval remain clinician responsibilities."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "eaafd4f29a11ceb0b3519ee5dd08d6da33d198681ceda98b333277a72da6da9d",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "endo-diabetes-followup--workflow-presentation--chief-complaint",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--legacy-diagnosis-label--diagnosis",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--matching-alias--alias-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--matching-alias--alias-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--matching-alias--alias-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-scope-applicability",
+      "direct_relationship": "The exact DHA scope supports these adult type 2 diabetes telehealth presentation terms; broader diabetes use remains a limitation."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-5",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-6",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-10",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-11",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-investigations--endo-diabetes-followup-investigations-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-investigations--endo-diabetes-followup-investigations-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-investigations--endo-diabetes-followup-investigations-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-investigations--endo-diabetes-followup-investigations-4",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-investigations--endo-diabetes-followup-investigations-5",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-investigations--endo-diabetes-followup-investigations-6",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-7",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-8",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-investigations--prechecked-investigations-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--examination-prompt--bp",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--examination-prompt--weight",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--examination-prompt--foot-exam",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--investigation-documentation-option--1-1-hba1c",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--investigation-documentation-option--1-2-renal",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--investigation-documentation-option--1-3-acr",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--investigation-documentation-option--1-4-lipid",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--investigation-documentation-option--1-5-eye-screening",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--plan-documentation-option--1-2-endo-diabetes-followup-lifestyle",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--plan-documentation-option--3-1-endo-diabetes-followup-follow-up",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--history-draft--default-history-draft",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact annual-review section supports these home-glucose, HbA1c, lifestyle, hypoglycaemia, foot, visual, kidney, cardiovascular, BP, BMI, foot-exam, investigation, annual-review, and clinician-discussed lifestyle fields."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-4",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-7",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-8",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-9",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-6",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--plan-documentation-option--3-2-endo-diabetes-followup-referral",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "The exact red-flag and specialist-referral section supports these foot-ulcer, foot-symptom, visual-symptom, neuropathy, and clinician-arranged referral fields as prompts only."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-symptoms--endo-diabetes-followup-symptoms-4",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-4",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    },
+    {
+      "item_id": "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-5",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    },
+    {
+      "item_id": "endo-diabetes-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    },
+    {
+      "item_id": "endo-diabetes-followup--plan-documentation-option--2-1-endo-diabetes-followup-medication-plan",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    },
+    {
+      "item_id": "endo-diabetes-followup--plan-documentation-option--2-2-endo-diabetes-followup-glucose-monitoring",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-monitoring",
+      "direct_relationship": "The exact monitoring section supports adherence, glucose monitoring, and a clinician-decided medication plan without inserting a medicine, dose, or treatment change."
+    }
+  ],
+  "supported_legacy_item_count": 62,
+  "unsupported_legacy_item_count": 33,
+  "unsupported_legacy_item_ids": [
+    "endo-diabetes-followup--matching-alias--alias-4",
+    "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-1",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-1",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-2",
+    "endo-diabetes-followup--chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-3",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-3",
+    "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-4",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-4",
+    "endo-diabetes-followup--chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-5",
+    "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-5",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-5",
+    "endo-diabetes-followup--chip-relevant-negatives--endo-diabetes-followup-relevant-negatives-6",
+    "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-6",
+    "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-7",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-7",
+    "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-8",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-8",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-9",
+    "endo-diabetes-followup--chip-plan-phrases--endo-diabetes-followup-plan-phrases-9",
+    "endo-diabetes-followup--chip-exam-findings--endo-diabetes-followup-exam-findings-9",
+    "endo-diabetes-followup--chip-follow-up--endo-diabetes-followup-follow-up-10",
+    "endo-diabetes-followup--preset-default-duration-options--default-duration-options-1",
+    "endo-diabetes-followup--preset-default-duration-options--default-duration-options-2",
+    "endo-diabetes-followup--preset-default-duration-options--default-duration-options-3",
+    "endo-diabetes-followup--preset-default-duration-options--default-duration-options-4",
+    "endo-diabetes-followup--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+    "endo-diabetes-followup--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "endo-diabetes-followup--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "endo-diabetes-followup--preset-prechecked-follow-up--prechecked-follow-up-2",
+    "endo-diabetes-followup--examination-prompt--pulses",
+    "endo-diabetes-followup--examination-prompt--sensation",
+    "endo-diabetes-followup--examination-prompt--injection-sites",
+    "endo-diabetes-followup--plan-documentation-option--1-1-endo-diabetes-followup-clinician-plan"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }

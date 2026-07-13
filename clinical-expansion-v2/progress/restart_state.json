@@ -126,14 +126,24 @@
     "gastro-abdominal-pain",
     "gastro-ibs-symptoms",
     "gastro-constipation",
-    "gastro-diarrhea"
+    "gastro-diarrhea",
+    "gastro-rectal-bleeding",
+    "gastro-liver-enzyme-review",
+    "gastro-jaundice-documentation",
+    "gastro-dysphagia",
+    "gastro-post-endoscopy-followup",
+    "endo-diabetes-followup",
+    "endo-thyroid-symptoms",
+    "endo-hypothyroidism-followup",
+    "endo-hyperthyroidism-followup",
+    "endo-obesity-counseling-documentation"
   ],
   "completed_workflow_ids": [],
-  "next_workflow_id": "gastro-rectal-bleeding",
-  "exact_interruption_reason": "The exact-source queue is checkpointed after workflows 0116–0125 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is gastro-rectal-bleeding.",
+  "next_workflow_id": "endo-hypoglycemia-review",
+  "exact_interruption_reason": "The source-first queue is restartable at endo-hypoglycemia-review.",
   "manifest_path": "clinical-expansion-v2/progress/execution_manifest.json",
   "resume_commands": [
-    "node scripts/source-first/researchNextWorkflow.mjs --workflow gastro-rectal-bleeding",
+    "npm run research:queue -- --start endo-hypoglycemia-review --continue-from-manifest",
     "npm run validate:source-evidence",
     "npm run validate:item-provenance",
     "npm run audit:research-claims"
