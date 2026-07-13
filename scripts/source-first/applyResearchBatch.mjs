@@ -18,6 +18,12 @@ import {
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
 
+const workflowArgumentIndex = process.argv.indexOf('--workflow')
+const requestedWorkflowId = workflowArgumentIndex >= 0 ? process.argv[workflowArgumentIndex + 1] : null
+if (workflowArgumentIndex >= 0 && (!requestedWorkflowId || requestedWorkflowId.startsWith('--'))) {
+  throw new Error('--workflow requires a workflow_id')
+}
+
 const batchPath = path.isAbsolute(batchArgument) ? batchArgument : path.join(ROOT_DIR, batchArgument)
 const { default: batch } = await import(pathToFileURL(batchPath).href)
 
@@ -56,15 +62,31 @@ for (const registryName of [
 
 const manifestPath = path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json')
 const manifest = readJson(manifestPath)
+const selectedConfigs = requestedWorkflowId
+  ? batch.workflows.filter((config) => config.workflow_id === requestedWorkflowId)
+  : batch.workflows
+if (requestedWorkflowId && selectedConfigs.length !== 1) {
+  throw new Error(`${requestedWorkflowId}: workflow is not present in ${batch.batch_id}`)
+}
+const pendingConfigs = selectedConfigs.filter((config) => {
+  const entry = manifest.workflows.find((candidate) => candidate.workflow_id === config.workflow_id)
+  if (!entry) throw new Error(`${config.workflow_id}: missing execution manifest entry`)
+  return !entry.terminal_research
+})
+const pendingWorkflowIds = new Set(pendingConfigs.map((config) => config.workflow_id))
 const auditPath = path.join(EXPANSION_DIR, 'audits', 'workflow_audit_ledger.jsonl')
 const auditRows = readJsonl(auditPath)
 const auditById = new Map(auditRows.map((row) => [row.workflow_id, row]))
 const executionLogPath = path.join(EXPANSION_DIR, 'progress', 'execution_log.jsonl')
 const executionLog = readJsonl(executionLogPath)
-  .filter((row) => !(row.event === 'research_batch_workflow_finalized' && row.batch_id === batch.batch_id))
+  .filter((row) => !(
+    row.event === 'research_batch_workflow_finalized'
+    && row.batch_id === batch.batch_id
+    && pendingWorkflowIds.has(row.workflow_id)
+  ))
 const newlySupportedIds = new Set()
 
-for (const config of batch.workflows) {
+for (const config of pendingConfigs) {
   if (!allowedTerminalStatuses.has(config.source_status)) {
     throw new Error(`${config.workflow_id}: non-terminal or invalid source status ${config.source_status}`)
   }
@@ -260,10 +282,14 @@ writeJson(restartPath, {
     .map((entry) => entry.workflow_id),
   completed_workflow_ids: [],
   next_workflow_id: manifest.next_workflow_id,
-  exact_interruption_reason: batch.interruption_reason,
+  exact_interruption_reason: manifest.next_workflow_id
+    ? `The source-first queue is restartable at ${manifest.next_workflow_id}.`
+    : 'All manifest workflows have terminal research status.',
   manifest_path: 'clinical-expansion-v2/progress/execution_manifest.json',
   resume_commands: [
-    `node scripts/source-first/researchNextWorkflow.mjs --workflow ${manifest.next_workflow_id}`,
+    manifest.next_workflow_id
+      ? `npm run research:queue -- --start ${manifest.next_workflow_id} --continue-from-manifest`
+      : 'npm run research:queue -- --continue-from-manifest',
     'npm run validate:source-evidence',
     'npm run validate:item-provenance',
     'npm run audit:research-claims',
@@ -317,7 +343,7 @@ rebuildIndexesAndHashManifest()
 console.log(JSON.stringify({
   status: 'PASS_WITH_CLINICAL_BLOCKERS',
   batch_id: batch.batch_id,
-  workflows_finalized: batch.workflows.length,
+  workflows_finalized: pendingConfigs.length,
   terminal_research_workflows: terminalResearch.length,
   exact_workflow_source_verified: manifest.exact_source_verified_count,
   partial_exact_source_verified: manifest.partial_exact_source_verified_count,

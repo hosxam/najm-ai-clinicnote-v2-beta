@@ -50,21 +50,28 @@ export function readJson(relativeOrAbsolutePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'))
 }
 
-export function writeJson(relativeOrAbsolutePath, value) {
+export function writeTextAtomic(relativeOrAbsolutePath, payload) {
   const filePath = path.isAbsolute(relativeOrAbsolutePath)
     ? relativeOrAbsolutePath
     : path.join(ROOT_DIR, relativeOrAbsolutePath)
   ensureDir(path.dirname(filePath))
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8')
+  const temporaryPath = `${filePath}.${process.pid}.${crypto.randomUUID()}.tmp`
+
+  try {
+    fs.writeFileSync(temporaryPath, payload, 'utf8')
+    fs.renameSync(temporaryPath, filePath)
+  } finally {
+    if (fs.existsSync(temporaryPath)) fs.unlinkSync(temporaryPath)
+  }
+}
+
+export function writeJson(relativeOrAbsolutePath, value) {
+  writeTextAtomic(relativeOrAbsolutePath, `${JSON.stringify(value, null, 2)}\n`)
 }
 
 export function writeJsonl(relativeOrAbsolutePath, rows) {
-  const filePath = path.isAbsolute(relativeOrAbsolutePath)
-    ? relativeOrAbsolutePath
-    : path.join(ROOT_DIR, relativeOrAbsolutePath)
-  ensureDir(path.dirname(filePath))
   const payload = rows.length ? `${rows.map((row) => JSON.stringify(row)).join('\n')}\n` : ''
-  fs.writeFileSync(filePath, payload, 'utf8')
+  writeTextAtomic(relativeOrAbsolutePath, payload)
 }
 
 export function readJsonl(relativeOrAbsolutePath) {
