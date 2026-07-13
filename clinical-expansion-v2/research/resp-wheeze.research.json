@@ -3,27 +3,444 @@
   "workflow_id": "resp-wheeze",
   "presentation": "Wheeze",
   "specialty": "Respiratory / Pulmonology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae asthma wheeze telehealth clinical guideline PDF",
+    "site:nice.org.uk NG245 wheeze objective tests recommendations",
+    "site:doh.gov.ae wheeze guideline",
+    "site:who.int wheeze clinical guideline"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "b1341d9429acfd17f0573ad3b1b66e187652546491ffa5361cced1c751978aab"
+  "official_pages_opened": [
+    "https://www.dha.gov.ae/uploads/032024/38%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Asthma2024332757.pdf",
+    "https://www.nice.org.uk/guidance/ng245/chapter/recommendations"
+  ],
+  "exact_documents_opened": [
+    "dha-telehealth-asthma-v2-2024",
+    "nice-asthma-ng245-2025"
+  ],
+  "exact_sections_reviewed": [
+    "dha-asthma-v2-symptoms-diagnosis",
+    "dha-asthma-v2-red-flags",
+    "dha-asthma-v2-investigations",
+    "dha-asthma-v2-review-referral",
+    "nice-ng245-asthma-clinical-assessment",
+    "nice-ng245-asthma-monitoring-review"
+  ],
+  "candidate_sources_rejected": [
+    "patient wheeze pages",
+    "acute severe-asthma treatment algorithms",
+    "medicine-specific bronchodilator guidance"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Wheeze does not by itself establish asthma or a severe attack.",
+    "Medicine names and doses were not mapped."
+  ],
+  "selected_primary_sources": [
+    "dha-telehealth-asthma-v2-2024"
+  ],
+  "selected_supporting_sources": [
+    "nice-asthma-ng245-2025"
+  ],
+  "population_applicability": "Partial: the exact sources include age- and asthma-context recommendations, while the legacy workflow is an unrestricted wheeze presentation.",
+  "setting_applicability": "Partial: exact for DHA telehealth and chronic asthma assessment, not every cause of wheeze or acute emergency treatment.",
+  "UAE_applicability": "Direct for DHA-licensed telehealth fields, with NICE used as international supporting evidence requiring UAE clinician review.",
+  "recency_verification": "The current DHA Issue 2 asthma guideline and current NICE NG245 recommendations were opened on 2026-07-13.",
+  "superseded_check": "No newer DHA issue was identified; NG245 remains current and was last updated 2025-11.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "resp-wheeze--dha-asthma-v2-symptoms-diagnosis",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "Supports mapped wheeze identity, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and history.",
+      "paraphrased_evidence_summary": "Supports wheeze, cough, breathlessness, chest tightness, variation, nocturnal or seasonal pattern, triggers, exercise and occupational context, atopy or family history, bronchodilator response, respiratory examination, peak flow, and objective confirmation.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-wheeze--dha-asthma-v2-red-flags",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "Supports mapped severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields as prompts only.",
+      "paraphrased_evidence_summary": "Supports sudden or severe breathing difficulty, cardiac or chest symptoms, cyanosis, inability to speak full sentences, confusion or agitation, stridor or audible wheeze, immobility or trauma, orthopnoea, status asthmaticus, and near-fatal asthma history as clinician-assessed prompts.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-wheeze--dha-asthma-v2-investigations",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "Supports mapped peak-flow and spirometry fields.",
+      "paraphrased_evidence_summary": "Supports peak flow, pulmonary function testing, spirometry, bronchodilator reversibility, and selected clinician-led investigations.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "resp-wheeze--dha-asthma-v2-review-referral",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-review-referral",
+      "direct_relationship": "Was reviewed for inhaler and treatment-response context; no additional plan item is mapped.",
+      "paraphrased_evidence_summary": "Supports review of alternative or comorbid causes, adherence, inhaler technique, smoking, occupational, psychosocial and environmental factors, treatment response, device review, and clinician-led referral.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    },
+    {
+      "evidence_item_id": "resp-wheeze--nice-ng245-asthma-clinical-assessment",
+      "source_id": "nice-asthma-ng245-2025",
+      "source_section_id": "nice-ng245-asthma-clinical-assessment",
+      "direct_relationship": "Corroborates mapped wheeze, symptom, examination, peak-flow, and spirometry fields; no duplicate item is mapped.",
+      "paraphrased_evidence_summary": "Supports wheeze, cough, breathlessness, chest tightness, symptom variation, nocturnal or seasonal pattern, triggers, atopy and family history, occupational context, respiratory examination, peak flow, FeNO, spirometry, and objective confirmation.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    },
+    {
+      "evidence_item_id": "resp-wheeze--nice-ng245-asthma-monitoring-review",
+      "source_id": "nice-asthma-ng245-2025",
+      "source_section_id": "nice-ng245-asthma-monitoring-review",
+      "direct_relationship": "Was reviewed for chronic symptom and response context; no duplicate item is mapped.",
+      "paraphrased_evidence_summary": "Supports review of symptoms, time off work or school, reliever use, systemic steroid courses, admissions or emergency attendance, validated control questionnaires, peak flow, FeNO, adherence, inhaler technique, smoking or vaping, occupational, psychosocial, seasonal and environmental factors, and response to treatment change.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "Wheeze has causes beyond asthma and the legacy workflow does not enforce the exact source populations or setting.",
+    "Hemoptysis, oxygen-below-baseline, silent chest, generic medication plans, symptom diary, fixed follow-up, PRN wording, and generic clinician plans remain unsupported.",
+    "Diagnosis, objective-test interpretation, treatment choice, medicine dosing, emergency disposition, and qualified clinician review remain clinician responsibilities."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "e9979c6629b499a03287117b3641d2808da30d6dc8ac59a05f7682adbe1b4f0b",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "resp-wheeze--workflow-presentation--chief-complaint",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--legacy-diagnosis-label--diagnosis",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--matching-alias--alias-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--matching-alias--alias-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--matching-alias--alias-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--matching-alias--alias-4",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-4",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-5",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-6",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-7",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-8",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-symptoms--resp-wheeze-symptoms-9",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-4",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-5",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-6",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-exam-findings--resp-wheeze-exam-findings-7",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--history-draft--default-history-draft",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--examination-prompt--o2-sat",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--examination-prompt--rr",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--examination-prompt--peak-flow",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--examination-prompt--auscultation",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--examination-prompt--wheeze",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-symptoms-diagnosis",
+      "direct_relationship": "The exact DHA symptom and diagnosis sections support these wheeze terms, duration, episodic pattern, triggers, cough, breathlessness, chest tightness, inhaler and bronchodilator-response context, nocturnal symptoms, respiratory examination, peak flow, presets, and structured history."
+    },
+    {
+      "item_id": "resp-wheeze--chip-relevant-negatives--resp-wheeze-relevant-negatives-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--chip-relevant-negatives--resp-wheeze-relevant-negatives-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--chip-relevant-negatives--resp-wheeze-relevant-negatives-4",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--chip-red-flags--resp-wheeze-red-flags-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--chip-red-flags--resp-wheeze-red-flags-4",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--chip-plan-phrases--resp-wheeze-plan-phrases-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--plan-documentation-option--3-2-resp-wheeze-safety-netting",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-assessed severe-breathlessness, chest-symptom, stridor, respiratory-distress, cyanosis, and safety fields without asserting asthma or another diagnosis."
+    },
+    {
+      "item_id": "resp-wheeze--chip-investigations--resp-wheeze-investigations-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "The exact DHA investigation section supports clinician-recorded peak flow and reviewed spirometry."
+    },
+    {
+      "item_id": "resp-wheeze--chip-investigations--resp-wheeze-investigations-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "The exact DHA investigation section supports clinician-recorded peak flow and reviewed spirometry."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "The exact DHA investigation section supports clinician-recorded peak flow and reviewed spirometry."
+    },
+    {
+      "item_id": "resp-wheeze--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "The exact DHA investigation section supports clinician-recorded peak flow and reviewed spirometry."
+    },
+    {
+      "item_id": "resp-wheeze--investigation-documentation-option--1-1-peak-flow",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "The exact DHA investigation section supports clinician-recorded peak flow and reviewed spirometry."
+    },
+    {
+      "item_id": "resp-wheeze--investigation-documentation-option--2-1-spirometry",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "source_section_id": "dha-asthma-v2-investigations",
+      "direct_relationship": "The exact DHA investigation section supports clinician-recorded peak flow and reviewed spirometry."
+    }
+  ],
+  "supported_legacy_item_count": 50,
+  "unsupported_legacy_item_count": 23,
+  "unsupported_legacy_item_ids": [
+    "resp-wheeze--chip-plan-phrases--resp-wheeze-plan-phrases-1",
+    "resp-wheeze--chip-follow-up--resp-wheeze-follow-up-1",
+    "resp-wheeze--chip-red-flags--resp-wheeze-red-flags-2",
+    "resp-wheeze--chip-plan-phrases--resp-wheeze-plan-phrases-2",
+    "resp-wheeze--chip-follow-up--resp-wheeze-follow-up-2",
+    "resp-wheeze--chip-relevant-negatives--resp-wheeze-relevant-negatives-3",
+    "resp-wheeze--chip-red-flags--resp-wheeze-red-flags-3",
+    "resp-wheeze--chip-follow-up--resp-wheeze-follow-up-3",
+    "resp-wheeze--chip-plan-phrases--resp-wheeze-plan-phrases-4",
+    "resp-wheeze--chip-follow-up--resp-wheeze-follow-up-4",
+    "resp-wheeze--chip-plan-phrases--resp-wheeze-plan-phrases-5",
+    "resp-wheeze--preset-default-duration-options--default-duration-options-1",
+    "resp-wheeze--preset-default-duration-options--default-duration-options-2",
+    "resp-wheeze--preset-default-duration-options--default-duration-options-3",
+    "resp-wheeze--preset-default-duration-options--default-duration-options-4",
+    "resp-wheeze--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+    "resp-wheeze--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "resp-wheeze--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+    "resp-wheeze--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "resp-wheeze--preset-prechecked-follow-up--prechecked-follow-up-2",
+    "resp-wheeze--plan-documentation-option--1-1-resp-wheeze-clinician-plan",
+    "resp-wheeze--plan-documentation-option--2-1-resp-wheeze-medication-plan",
+    "resp-wheeze--plan-documentation-option--3-1-resp-wheeze-follow-up"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
