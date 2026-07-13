@@ -1,0 +1,514 @@
+import fs from 'node:fs'
+
+function section(section_id, heading, locator, evidence_summary) {
+  return { section_id, heading, locator, evidence_summary }
+}
+
+function dhaSource({ source_id, code, title, url, population, applicability_note, exact_sections }) {
+  return {
+    source_id,
+    issuing_organisation: 'Dubai Health Authority',
+    exact_document_title: title,
+    exact_official_url: url,
+    publication_date: '2024-02-21',
+    effective_date: '2024-04-21',
+    revision_date: '2029-02-21',
+    version: `Issue 2; ${code}`,
+    jurisdiction: 'Dubai, United Arab Emirates',
+    population,
+    clinical_setting: 'Telehealth services in DHA-licensed health facilities.',
+    applicability_note,
+    recency_verification: {
+      verified_on: '2026-07-12',
+      status: 'current_official_copy_opened',
+      revision_due: '2029-02-21',
+    },
+    superseded_status_check: {
+      checked_on: '2026-07-12',
+      status: 'no_newer_official_issue_identified_on_DHA_portal',
+    },
+    exact_sections,
+  }
+}
+
+function ids(workflowId, suffixes) {
+  return suffixes.map((suffix) => `${workflowId}--${suffix}`)
+}
+
+function seq(prefix, start, end) {
+  return Array.from({ length: end - start + 1 }, (_, index) => `${prefix}${start + index}`)
+}
+
+function support(source_id, source_section_id, relationship, workflowId, suffixes) {
+  return { source_id, source_section_id, relationship, item_ids: ids(workflowId, suffixes) }
+}
+
+function withSections(source, additions) {
+  const sections = new Map((source.exact_sections ?? []).map((item) => [item.section_id, item]))
+  for (const item of additions) sections.set(item.section_id, item)
+  return { ...source, exact_sections: [...sections.values()] }
+}
+
+const DHA_DEPRESSION_URL = 'https://dha.gov.ae/uploads/032024/32%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Depression2024334819.pdf'
+const DHA_INSOMNIA_URL = 'https://dha.gov.ae/uploads/032024/24%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Insomnia2024313354.pdf'
+const DHA_BURNS_URL = 'https://dha.gov.ae/uploads/032024/35%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Burns2024329667.pdf'
+const DHA_HEAD_INJURY_URL = 'https://dha.gov.ae/uploads/032024/31%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Minor%20Head%20Injury2024335820.pdf'
+const WHO_STRESS_URL = 'https://iris.who.int/server/api/core/bitstreams/659e3dab-1e1b-4ca4-84e0-4ce26484612f/content'
+const WHO_BEC_URL = 'https://hlh.who.int/docs/librariesprovider4/clinical-care/who-icrc-basic-emergency-care.pdf'
+
+const internationalRegistryUrl = new URL('../../../clinical-expansion-v2/sources/international_clinical_sources.json', import.meta.url)
+const internationalRegistry = JSON.parse(fs.readFileSync(internationalRegistryUrl, 'utf8'))
+const existingNiceGad = internationalRegistry.sources.find((source) => source.source_id === 'nice-gad-cg113-2020')
+if (!existingNiceGad) throw new Error('Expected NICE CG113 source from the previous checkpoint.')
+
+const panicSections = [
+  section('nice-cg113-panic-diagnosis-physical-exclusion', 'Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems', 'lines 431–473', 'Supports structured adult panic-disorder diagnosis, history, comorbidity review, panic presentations, and proportionate investigation to exclude acute physical problems before primary-care follow-up.'),
+  section('nice-cg113-panic-treatment-shared-decision', 'Recommendations 1.3.6–1.3.25 — clinician-led treatment and shared decisions', 'lines 474–627', 'Supports clinician-documented discussion of psychological and medication options, patient preference, information, monitoring, self-help, referral, and follow-up without autonomous treatment output or doses.'),
+  section('nice-cg113-panic-specialist-reassessment-risk', 'Recommendations 1.3.26–1.3.33 — reassessment, risk, and specialist care', 'lines 628–686', 'Supports reassessment of prior treatment and concordance, substance use, comorbidity, function, social support, stressors, avoidance, comprehensive risk, side effects, efficacy, and a shared care plan.'),
+]
+
+const sources = [
+  {
+    registry_file: 'uae_clinical_sources.json',
+    source: dhaSource({
+      source_id: 'dha-depression-issue2-2024',
+      code: 'DHA/HRS/HPSD/CG-43',
+      title: 'DHA Telehealth Clinical Guidelines for Virtual Management of Depression',
+      url: DHA_DEPRESSION_URL,
+      population: 'Adults presenting with suspected or established depressive symptoms; emergency, severe, psychotic, bipolar, or safeguarding presentations require escalation.',
+      applicability_note: 'Direct for Dubai telehealth depression documentation and risk screening; treatment, diagnosis, and local emergency pathways remain clinician-led.',
+      exact_sections: [
+        section('dha-depression-i2-features-assessment', 'Sections 5–7 — depressive features and structured assessment', 'pages 7–18; extracted lines 104–313', 'Supports low mood, loss of interest, sleep, appetite, energy, concentration, guilt or worthlessness, duration, function, previous episodes and treatment, medical and medication history, stressors, social context, comorbidity, mania or hypomania, substance use, family history, and support assessment.'),
+        section('dha-depression-i2-risk-mental-status-investigations', 'Section 7 — risk, mental-status examination, and selected investigations', 'pages 16–20; extracted lines 245–385', 'Supports clinician assessment of suicide, self-harm, harm or neglect, protective and support factors, mental status, cognition, insight, substance use, medical contributors, medication history, thyroid testing, and selected blood testing when indicated.'),
+        section('dha-depression-i2-red-flags', 'Section 7 — red flags', 'page 20; extracted lines 386–390', 'Lists suicidal ideation or attempt, risk of harm or neglect, moderate or severe depression, and psychotic or bipolar features as escalation concerns.'),
+        section('dha-depression-i2-adjustment-stressor-differential', 'Differential diagnosis — adjustment disorder with depressed mood', 'pages 21–22; extracted lines 430–439', 'Describes depressed mood in response to an identifiable psychosocial stressor and supports documenting single, multiple, recurrent, or continuing social and occupational stressors.'),
+        section('dha-depression-i2-management-referral', 'Sections 8–9 — clinician-led management, monitoring, and referral', 'pages 23–27; extracted lines 449–528', 'Supports clinician-documented supportive discussion, questions, safety planning, treatment or medication decisions, monitoring, follow-up, and referral without autonomous treatment selection or doses.'),
+      ],
+    }),
+  },
+  {
+    registry_file: 'uae_clinical_sources.json',
+    source: dhaSource({
+      source_id: 'dha-insomnia-issue2-2024',
+      code: 'DHA/HRS/HPSD/CG-35',
+      title: 'DHA Telehealth Clinical Guidelines for Virtual Management of Insomnia',
+      url: DHA_INSOMNIA_URL,
+      population: 'Adults with difficulty initiating or maintaining sleep or early waking with daytime impact.',
+      applicability_note: 'Direct for Dubai telehealth insomnia history, red flags, causes, and clinician-led management; fixed follow-up intervals and autonomous medication choices are not supported.',
+      exact_sections: [
+        section('dha-insomnia-i2-history-daytime-function', 'Sections 5–7 — sleep history and daytime consequences', 'pages 7–12; extracted lines 79–180', 'Supports sleep initiation or maintenance difficulty, early waking, non-restorative sleep, adequate opportunity, fatigue, concentration, mood, irritability, daytime sleepiness, motivation, duration, stress, and functional impact.'),
+        section('dha-insomnia-i2-red-flags-evaluation', 'Section 7 — red flags and evaluation', 'pages 12–14; extracted lines 182–212', 'Lists sleep attacks, apnoea or gasping, unstable cardiopulmonary disease, stroke, injury during sleep, sleepwalking, excessive daytime sleepiness, substance misuse, depression, anxiety, and significant functional impact; supports sleep-diary and targeted evaluation.'),
+        section('dha-insomnia-i2-causes-investigations', 'Section 7 — substances, medicines, comorbidity, environment, and selected tests', 'pages 14–16; extracted lines 213–249', 'Supports caffeine, nicotine, medication, substance, sleep-apnoea, restless-legs, pain, withdrawal, thyroid, dyspnoea, mood, anxiety, life-stress, bedtime-worry, environmental, and sleep-habit review plus selected tests when clinically indicated.'),
+        section('dha-insomnia-i2-management-referral', 'Sections 8–9 — clinician-led management and referral', 'pages 17–22; extracted lines 250–350', 'Supports clinician-documented discussion of sleep routine or hygiene, lifestyle context, psychological or medication plans, reassessment, questions, monitoring, and referral without autonomous advice or doses.'),
+      ],
+    }),
+  },
+  {
+    registry_file: 'uae_clinical_sources.json',
+    source: dhaSource({
+      source_id: 'dha-burns-issue2-2024',
+      code: 'DHA/HRS/HPSD/CG-46',
+      title: 'DHA Telehealth Clinical Guidelines for Virtual Management of Burns',
+      url: DHA_BURNS_URL,
+      population: 'Adults and children with thermal, scald, chemical, electrical, friction, or inhalational burn presentations.',
+      applicability_note: 'Direct for Dubai telehealth burn documentation and escalation; definitive treatment remains clinician-led and serious burns require in-person or emergency assessment.',
+      exact_sections: [
+        section('dha-burns-i2-mechanism-classification', 'Sections 5–7 — mechanisms and burn classification', 'pages 7–13; extracted lines 99–210', 'Supports thermal, scald, electrical, chemical, friction, depth, blistering, redness, pain, site, and mechanism documentation.'),
+        section('dha-burns-i2-assessment-tbsa', 'Section 7 — airway, vital signs, depth, site, size, and total body surface area', 'pages 13–16; extracted lines 185–260', 'Supports airway and inhalation assessment, neurological and neurovascular context, burn site, size or area, depth, blistering, circumferential features, and total-body-surface-area estimation.'),
+        section('dha-burns-i2-referral-red-flags', 'Sections 7–9 — red flags and referral', 'pages 16–19; extracted lines 270–300', 'Supports escalation for face or neck and airway involvement, inhalation, chemical or electrical burns, circumferential or deep burns, large surface area, special sites, comorbidity, infection, or associated trauma.'),
+        section('dha-burns-i2-management-followup', 'Sections 8–9 — clinician-led burn care, dressing, analgesia, tetanus, monitoring, and follow-up', 'pages 18–23; extracted lines 289–370', 'Supports clinician-documented burn-care discussion, dressing, analgesia, tetanus, return precautions, infection monitoring, arranged follow-up, and referral without autonomous treatment or dose selection.'),
+      ],
+    }),
+  },
+  {
+    registry_file: 'uae_clinical_sources.json',
+    source: dhaSource({
+      source_id: 'dha-minor-head-injury-issue2-2024',
+      code: 'DHA/HRS/HPSD/CG-42',
+      title: 'DHA Telehealth Clinical Guidelines for Virtual Management of Minor Head Injury',
+      url: DHA_HEAD_INJURY_URL,
+      population: 'Adults and children with minor head injury; red-flag, anticoagulated, non-accidental, or deteriorating presentations require escalation.',
+      applicability_note: 'Direct for Dubai telehealth minor-head-injury assessment, warning signs, imaging context, advice, and escalation; concussion diagnosis and local imaging decisions remain clinician-led.',
+      exact_sections: [
+        section('dha-minor-head-injury-i2-signs-assessment', 'Sections 5–7 — mechanism, symptoms, and examination', 'pages 7–13; extracted lines 83–160', 'Supports mechanism and time, loss of consciousness, headache, nausea or vomiting, dizziness, blurred vision, amnesia or confusion, medication and bleeding-risk review, vital signs, Glasgow Coma Scale, pupils, neurological screen, scalp, and neck documentation.'),
+        section('dha-minor-head-injury-i2-red-flags', 'Section 7 — red flags', 'pages 13–15; extracted lines 161–187', 'Lists loss of consciousness, seizure, repeated vomiting, drowsiness, worsening headache, amnesia, focal neurological or balance or speech or vision changes, skull or penetrating injury, bleeding disorder or anticoagulant use, intoxication, and non-accidental injury concerns.'),
+        section('dha-minor-head-injury-i2-investigations-referral', 'Sections 7–9 — imaging and referral', 'pages 16–19; extracted lines 207–239', 'Supports clinician-determined CT, MRI, or X-ray documentation and immediate referral or escalation when serious-injury criteria are present.'),
+        section('dha-minor-head-injury-i2-management-observation', 'Sections 8–9 — observation, advice, return precautions, and follow-up', 'pages 19–23; extracted lines 240–323', 'Supports clinician-documented observation, head-injury advice, analgesia decisions, worsening-symptom return precautions, and arranged follow-up without fixed routine timing or doses.'),
+      ],
+    }),
+  },
+  {
+    registry_file: 'international_clinical_sources.json',
+    source: {
+      source_id: 'who-stress-related-conditions-2013',
+      issuing_organisation: 'World Health Organization',
+      exact_document_title: 'Guidelines for the management of conditions specifically related to stress',
+      exact_official_url: WHO_STRESS_URL,
+      publication_date: '2013-08-06',
+      effective_date: '2013-08-06',
+      revision_date: null,
+      version: 'WHO 2013; ISBN 978 92 4 150540 6',
+      jurisdiction: 'International',
+      population: 'Children, adolescents, and adults with symptoms and disorders specifically related to traumatic stress, bereavement, or acute stress.',
+      clinical_setting: 'Non-specialist and specialist health-care settings.',
+      applicability_note: 'Exact only for trauma-related stress conditions and physical-cause exclusion; not exact for generic work stress, burnout, or every adjustment presentation, and UAE pathways require clinician review.',
+      recency_verification: { verified_on: '2026-07-12', status: 'official_WHO_full_text_opened', revision_due: null },
+      superseded_status_check: { checked_on: '2026-07-12', status: 'no_newer_WHO_guideline_for_this_exact_scope_identified' },
+      exact_sections: [
+        section('who-stress-2013-assessment-scope', 'Assessment before applying stress-specific recommendations', 'document page 18; PDF page 23', 'Requires full assessment of presenting mental-health problems and exclusion of physical causes before stress-specific management.'),
+        section('who-stress-2013-acute-traumatic-stress', 'Acute traumatic stress symptoms in the first month after a potentially traumatic event', 'document pages 19–23; PDF pages 24–28', 'Defines acute traumatic stress through intrusion, avoidance, hyperarousal, and significant functional impairment after a potentially traumatic event and supports clinician-led psychological-first-aid or trauma-focused care documentation without medication invention.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'international_clinical_sources.json',
+    source: {
+      source_id: 'who-icrc-basic-emergency-care-2018',
+      issuing_organisation: 'World Health Organization and International Committee of the Red Cross',
+      exact_document_title: 'Basic emergency care: approach to the acutely ill and injured',
+      exact_official_url: WHO_BEC_URL,
+      publication_date: '2018',
+      effective_date: '2018',
+      revision_date: null,
+      version: 'First edition, 2018; ISBN 978-92-4-151308-1',
+      jurisdiction: 'International',
+      population: 'Adults and children with acute illness or injury presenting to first-contact emergency care.',
+      clinical_setting: 'First-contact emergency units and resource-limited emergency-care settings.',
+      applicability_note: 'Exact for structured trauma history, secondary survey, extremity perfusion, and open-wound assessment; partial for minor outpatient injury follow-up, imaging, closure, antibiotics, and UAE pathways.',
+      recency_verification: { verified_on: '2026-07-12', status: 'current_official_WHO_ICRC_manual_opened', revision_due: null },
+      superseded_status_check: { checked_on: '2026-07-12', status: 'no_newer_official_WHO_ICRC_BEC_edition_identified' },
+      exact_sections: [
+        section('who-bec-2018-sample-trauma-history', 'SAMPLE history and emergency disposition', 'PDF extracted lines 1426–1469 and 2210–2366', 'Supports signs and symptoms, allergies, medicines, past history, last intake, events or mechanism, examination, interventions, reassessment, and disposition documentation.'),
+        section('who-bec-2018-trauma-secondary-survey', 'Trauma secondary survey', 'PDF extracted lines 2375–2450', 'Supports inspection for wounds, bruising, swelling, tenderness, deformity, range of movement, neurological findings, severe pain, and other injury signs.'),
+        section('who-bec-2018-extremity-perfusion', 'Extremity trauma and perfusion', 'PDF extracted lines 2771–2820', 'Supports deformity, distal pulse, capillary refill, sensation, neurovascular compromise, open fracture, splinting, and perfusion reassessment documentation.'),
+        section('who-bec-2018-open-wound', 'Open wound and laceration assessment', 'PDF extracted lines 2823–2860', 'Supports laceration or abrasion, location, size and depth, bleeding, contamination, foreign-body concern, underlying structures, distal perfusion, dressing, splinting, tetanus, and return or disposition documentation.'),
+      ],
+    },
+  },
+  {
+    registry_file: 'international_clinical_sources.json',
+    source: withSections(existingNiceGad, panicSections),
+  },
+]
+
+const workflows = [
+  {
+    workflow_id: 'psych-low-mood',
+    search_queries_used: ['site:dha.gov.ae depression telehealth clinical guideline PDF Dubai', 'site:doh.gov.ae depression guideline Abu Dhabi', 'site:who.int mhGAP depression guideline', 'site:nice.org.uk depression adults recommendations'],
+    official_pages_opened: [DHA_DEPRESSION_URL, 'https://dha.gov.ae/en/licensing-regulations-telehealth'],
+    exact_documents_opened: ['dha-depression-issue2-2024'],
+    exact_sections_reviewed: ['dha-depression-i2-features-assessment', 'dha-depression-i2-risk-mental-status-investigations', 'dha-depression-i2-red-flags', 'dha-depression-i2-management-referral'],
+    candidate_sources_rejected: ['patient depression pages', 'screening-tool landing pages', 'treatment dose tables as documentation evidence'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Tool pages do not support the full workflow.', 'Dose tables were not mapped and treatment remains clinician-led.'],
+    selected_primary_sources: ['dha-depression-issue2-2024'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: exact for adult depressive-symptom assessment and risk; not exact for every age group or every legacy symptom synonym.',
+    setting_applicability: 'Direct for DHA telehealth documentation; severe or emergency presentations require in-person or emergency escalation.',
+    UAE_applicability: 'Direct for Dubai telehealth facilities, with local crisis and referral pathways still requiring clinician judgment.',
+    recency_verification: 'DHA Issue 2, effective 2024-04-21 and due for revision 2029-02-21, was opened on 2026-07-12.',
+    superseded_check: 'No newer official DHA issue was identified on the telehealth guideline portal.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['MDD abbreviations, tearfulness, social withdrawal, safeguarding, PHQ-9, lifestyle advice, and fixed one-to-two-week review remain unsupported.', 'Depression diagnosis, risk conclusions, and treatment remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'dha-depression-i2-features-assessment': 'Supports mapped depressive features, chronology, function, history, and clinician-assessed context.',
+      'dha-depression-i2-risk-mental-status-investigations': 'Supports mapped risk, mental-status, substance, medication-history, thyroid, and selected blood-test documentation.',
+      'dha-depression-i2-red-flags': 'Supports mapped suicide, self-harm, harm, psychotic, bipolar, severe-function, and worsening-risk fields.',
+      'dha-depression-i2-management-referral': 'Supports mapped clinician-documented management, support, referral, monitoring, questions, and follow-up without treatment invention.',
+    },
+    support_groups: [
+      support('dha-depression-issue2-2024', 'dha-depression-i2-features-assessment', 'The exact DHA feature and assessment sections support these depressive-presentation, symptom, chronology, function, preset, and history fields.', 'psych-low-mood', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 8), ...seq('matching-alias--alias-', 10, 13), ...seq('matching-alias--alias-', 15, 16), ...seq('chip-symptoms--psych-low-mood-s', 1, 7), 'chip-symptoms--psych-low-mood-s9', 'chip-symptoms--psych-low-mood-s11', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), 'history-draft--default-history-draft']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-risk-mental-status-investigations', 'The exact DHA risk and mental-status section supports these clinician-assessed negatives, findings, prompts, medication-history, thyroid, and blood-test fields without asserting absence.', 'psych-low-mood', [...seq('chip-relevant-negatives--psych-low-mood-n', 12, 17), ...seq('chip-exam-findings--psych-low-mood-e', 18, 26), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'examination-prompt--appearance-psych-low-mood', 'examination-prompt--behaviour-psych-low-mood', 'examination-prompt--speech-psych-low-mood', 'examination-prompt--mood-psych-low-mood', 'examination-prompt--affect-psych-low-mood', 'examination-prompt--thought-form-psych-low-mood', 'examination-prompt--thought-content-psych-low-mood', 'examination-prompt--perception-psych-low-mood', 'examination-prompt--cognition-psych-low-mood', 'examination-prompt--insight-judgment-psych-low-mood', 'examination-prompt--risk-assessment-psych-low-mood', 'examination-prompt--self-harm-psych-low-mood', 'examination-prompt--protective-factors-psych-low-mood', 'examination-prompt--substance-use-psych-low-mood', 'investigation-documentation-option--2-1-prev-psych-low-mood', 'investigation-documentation-option--2-2-med-psych-low-mood', 'investigation-documentation-option--3-1-tft-psych-low-mood', 'investigation-documentation-option--3-2-bloods-psych-low-mood']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-red-flags', 'The exact DHA red-flag section supports these clinician-confirmed risk and escalation fields, including safer-return wording.', 'psych-low-mood', [...seq('chip-red-flags--psych-low-mood-r', 27, 32), 'chip-plan-phrases--psych-low-mood-p35', 'chip-follow-up--psych-low-mood-f41', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-management-referral', 'The exact DHA management section supports these clinician-documented plan, support, referral, questions, worsening review, and arranged-follow-up fields without selecting treatment.', 'psych-low-mood', ['chip-plan-phrases--psych-low-mood-p34', 'chip-plan-phrases--psych-low-mood-p36', 'chip-plan-phrases--psych-low-mood-p37', 'chip-plan-phrases--psych-low-mood-p38', 'chip-follow-up--psych-low-mood-f40', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'preset-prechecked-follow-up--prechecked-follow-up-2', 'plan-documentation-option--1-1-counseling-psych-low-mood', 'plan-documentation-option--2-1-med-psych-low-mood', 'plan-documentation-option--3-1-ref-psych-low-mood', 'plan-documentation-option--4-1-fup-psych-low-mood']),
+    ],
+  },
+  {
+    workflow_id: 'psych-sleep-difficulty',
+    search_queries_used: ['site:dha.gov.ae insomnia telehealth clinical guideline PDF Dubai', 'site:doh.gov.ae insomnia guideline', 'site:who.int insomnia guideline stress', 'site:nice.org.uk insomnia recommendations adults'],
+    official_pages_opened: [DHA_INSOMNIA_URL, DHA_DEPRESSION_URL],
+    exact_documents_opened: ['dha-insomnia-issue2-2024', 'dha-depression-issue2-2024'],
+    exact_sections_reviewed: ['dha-insomnia-i2-history-daytime-function', 'dha-insomnia-i2-red-flags-evaluation', 'dha-insomnia-i2-causes-investigations', 'dha-insomnia-i2-management-referral', 'dha-depression-i2-risk-mental-status-investigations', 'dha-depression-i2-red-flags'],
+    candidate_sources_rejected: ['consumer sleep-hygiene pages', 'sleep-medicine product pages', 'insomnia medicine dose tables'],
+    rejection_reasons: ['Consumer pages are not clinician guidance.', 'Product pages are not authoritative clinical guidance.', 'Dose tables were not mapped.'],
+    selected_primary_sources: ['dha-insomnia-issue2-2024'],
+    selected_supporting_sources: ['dha-depression-issue2-2024'],
+    population_applicability: 'Partial: exact for adults with insomnia symptoms and daytime impact; not exact for children, nightmares, or every psychiatric differential.',
+    setting_applicability: 'Direct for DHA telehealth assessment and clinician-led management; sleep-laboratory and emergency pathways are outside this workflow.',
+    UAE_applicability: 'Direct for Dubai telehealth facilities, with local prescribing and referral governance still required.',
+    recency_verification: 'DHA Insomnia Issue 2 and Depression Issue 2 were opened on 2026-07-12 and are due for revision in 2029.',
+    superseded_check: 'No newer official DHA issue was identified for either guideline.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Nightmares, psychosis as an insomnia-specific feature, previous-record review, and fixed one-to-two-week review remain unsupported.', 'Primary insomnia diagnosis, treatment, and medication choice remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'dha-insomnia-i2-history-daytime-function': 'Supports mapped sleep-pattern, duration, stress, mood, daytime-function, and history fields.',
+      'dha-insomnia-i2-red-flags-evaluation': 'Supports mapped sleep attacks, breathing concerns, substance concern, severe function, evaluation, and escalation fields.',
+      'dha-insomnia-i2-causes-investigations': 'Supports mapped caffeine, medication, substance, thyroid, blood-test, and contributing-condition review.',
+      'dha-insomnia-i2-management-referral': 'Supports mapped clinician-documented sleep routine, lifestyle, medication, questions, worsening review, follow-up, and referral.',
+      'dha-depression-i2-risk-mental-status-investigations': 'Supports mapped mental-status and suicide or self-harm risk documentation when depression is assessed as a comorbidity.',
+      'dha-depression-i2-red-flags': 'Supports mapped suicidal, bipolar, and psychotic warning fields when assessed.',
+    },
+    support_groups: [
+      support('dha-insomnia-issue2-2024', 'dha-insomnia-i2-history-daytime-function', 'The exact DHA insomnia history section supports these insomnia terms, sleep symptoms, duration, stress, daytime impact, preset, finding, and history fields.', 'psych-sleep-difficulty', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 13), ...seq('chip-symptoms--psych-sleep-difficulty-s', 1, 7), 'chip-symptoms--psych-sleep-difficulty-s9', 'chip-symptoms--psych-sleep-difficulty-s11', 'chip-exam-findings--psych-sleep-difficulty-e20', 'chip-exam-findings--psych-sleep-difficulty-e21', 'chip-exam-findings--psych-sleep-difficulty-e22', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), 'preset-prechecked-exam-findings--prechecked-exam-findings-3', 'history-draft--default-history-draft']),
+      support('dha-insomnia-issue2-2024', 'dha-insomnia-i2-red-flags-evaluation', 'The exact insomnia red-flag section supports these sleep-attack, breathing, substance, severe-function, and risk fields without asserting absence.', 'psych-sleep-difficulty', ['chip-relevant-negatives--psych-sleep-difficulty-n16', 'chip-relevant-negatives--psych-sleep-difficulty-n17', 'chip-red-flags--psych-sleep-difficulty-r25', 'chip-red-flags--psych-sleep-difficulty-r28', 'chip-red-flags--psych-sleep-difficulty-r29']),
+      support('dha-insomnia-issue2-2024', 'dha-insomnia-i2-causes-investigations', 'The exact causes and investigation section supports these caffeine, medication-history, substance, thyroid, blood-test, and contributing-factor fields.', 'psych-sleep-difficulty', ['chip-symptoms--psych-sleep-difficulty-s10', 'examination-prompt--substance-use-psych-sleep-difficulty', 'investigation-documentation-option--1-2-med-psych-sleep-difficulty', 'investigation-documentation-option--2-1-tft-psych-sleep-difficulty', 'investigation-documentation-option--2-2-bloods-psych-sleep-difficulty']),
+      support('dha-insomnia-issue2-2024', 'dha-insomnia-i2-management-referral', 'The exact DHA management section supports these clinician-documented sleep-hygiene, lifestyle, medication, questions, referral, worsening review, and follow-up records.', 'psych-sleep-difficulty', [...seq('chip-plan-phrases--psych-sleep-difficulty-p', 30, 33), 'chip-follow-up--psych-sleep-difficulty-f35', ...seq('preset-prechecked-plan-phrases--prechecked-plan-phrases-', 1, 2), 'preset-prechecked-follow-up--prechecked-follow-up-2', 'plan-documentation-option--1-1-sleep-psych-sleep-difficulty', 'plan-documentation-option--1-2-lifestyle-psych-sleep-difficulty', 'plan-documentation-option--2-1-med-psych-sleep-difficulty', 'plan-documentation-option--3-1-fup-psych-sleep-difficulty']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-risk-mental-status-investigations', 'The exact depression risk and mental-status section supports these assessed comorbidity negatives, findings, and prompts without implying absent content was stated.', 'psych-sleep-difficulty', [...seq('chip-relevant-negatives--psych-sleep-difficulty-n', 12, 15), 'chip-exam-findings--psych-sleep-difficulty-e18', 'chip-exam-findings--psych-sleep-difficulty-e19', 'chip-exam-findings--psych-sleep-difficulty-e23', ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 2), 'examination-prompt--appearance-psych-sleep-difficulty', 'examination-prompt--behaviour-psych-sleep-difficulty', 'examination-prompt--speech-psych-sleep-difficulty', 'examination-prompt--mood-psych-sleep-difficulty', 'examination-prompt--affect-psych-sleep-difficulty', 'examination-prompt--thought-form-psych-sleep-difficulty', 'examination-prompt--thought-content-psych-sleep-difficulty', 'examination-prompt--perception-psych-sleep-difficulty', 'examination-prompt--cognition-psych-sleep-difficulty', 'examination-prompt--insight-judgment-psych-sleep-difficulty', 'examination-prompt--risk-assessment-psych-sleep-difficulty', 'examination-prompt--self-harm-psych-sleep-difficulty', 'examination-prompt--protective-factors-psych-sleep-difficulty']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-red-flags', 'The exact depression red-flag section supports these clinician-assessed suicide, bipolar, and psychotic warning fields.', 'psych-sleep-difficulty', ['chip-red-flags--psych-sleep-difficulty-r24', 'chip-red-flags--psych-sleep-difficulty-r26', 'chip-red-flags--psych-sleep-difficulty-r27']),
+    ],
+  },
+  {
+    workflow_id: 'psych-stress-symptoms',
+    search_queries_used: ['site:dha.gov.ae adjustment disorder depression telehealth guideline', 'site:who.int stress related conditions guideline PDF', 'site:nice.org.uk adjustment disorder stress guideline', 'site:doh.gov.ae stress mental health guideline'],
+    official_pages_opened: [DHA_DEPRESSION_URL, 'https://www.who.int/publications-detail-redirect/9789241505406', WHO_STRESS_URL],
+    exact_documents_opened: ['dha-depression-issue2-2024', 'who-stress-related-conditions-2013'],
+    exact_sections_reviewed: ['dha-depression-i2-features-assessment', 'dha-depression-i2-risk-mental-status-investigations', 'dha-depression-i2-red-flags', 'dha-depression-i2-adjustment-stressor-differential', 'dha-depression-i2-management-referral', 'who-stress-2013-assessment-scope', 'who-stress-2013-acute-traumatic-stress'],
+    candidate_sources_rejected: ['burnout opinion pages', 'workplace wellness pages', 'patient stress-management pages'],
+    rejection_reasons: ['No exact authoritative clinical burnout workflow was identified.', 'Workplace wellness pages are not clinical guidance.', 'Patient pages were not used as clinician evidence.'],
+    selected_primary_sources: ['dha-depression-issue2-2024'],
+    selected_supporting_sources: ['who-stress-related-conditions-2013'],
+    population_applicability: 'Partial: exact for identifiable psychosocial stressors and trauma-related acute stress; not exact for generic burnout or every somatic stress presentation.',
+    setting_applicability: 'Direct for DHA telehealth depression or adjustment assessment and WHO non-specialist trauma-related stress assessment; occupational pathways remain outside scope.',
+    UAE_applicability: 'DHA assessment is directly applicable in Dubai; WHO trauma guidance requires local crisis, safeguarding, and referral pathways.',
+    recency_verification: 'DHA Issue 2 and the official WHO full text were opened on 2026-07-12.',
+    superseded_check: 'No newer DHA issue or WHO guideline for the same exact trauma-related scope was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Burnout, emotional exhaustion, generic stress-management matching, irritability, fatigue, somatic symptoms, safeguarding, screening tools, thyroid or blood testing, and fixed one-to-two-week review remain unsupported.', 'Adjustment or acute-stress diagnosis and all management remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'dha-depression-i2-features-assessment': 'Supports mapped sleep, concentration, function, mental-health history, and contextual assessment fields.',
+      'dha-depression-i2-risk-mental-status-investigations': 'Supports mapped risk, mental-status, support, substance, and previous-treatment fields.',
+      'dha-depression-i2-red-flags': 'Supports mapped suicide, self-harm, harm, severe-function, and substance escalation fields.',
+      'dha-depression-i2-adjustment-stressor-differential': 'Supports mapped adjustment, social, occupational, family, and continuing-stressor fields.',
+      'dha-depression-i2-management-referral': 'Supports mapped clinician-documented support, safety, counseling, referral, monitoring, questions, and follow-up.',
+      'who-stress-2013-assessment-scope': 'Supports the requirement to assess the full presentation and exclude physical causes before attributing symptoms to stress.',
+      'who-stress-2013-acute-traumatic-stress': 'Supports only the mapped acute-stress-reaction term after a potentially traumatic event, not generic stress or burnout.',
+    },
+    support_groups: [
+      support('dha-depression-issue2-2024', 'dha-depression-i2-adjustment-stressor-differential', 'The exact DHA adjustment-differential section supports these stressor, adjustment, work, family, social, duration, function, preset, and history fields.', 'psych-stress-symptoms', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 7), ...seq('matching-alias--alias-', 9, 11), 'matching-alias--alias-14', ...seq('chip-symptoms--psych-stress-symptoms-s', 1, 4), 'chip-symptoms--psych-stress-symptoms-s10', 'chip-symptoms--psych-stress-symptoms-s11', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), 'history-draft--default-history-draft']),
+      support('who-stress-related-conditions-2013', 'who-stress-2013-acute-traumatic-stress', 'The exact WHO section supports only this acute stress reaction matching term in a potentially traumatic-event context.', 'psych-stress-symptoms', ['matching-alias--alias-8']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-features-assessment', 'The exact depression feature section supports sleep disturbance and concentration difficulty when assessed within the stress presentation.', 'psych-stress-symptoms', ['chip-symptoms--psych-stress-symptoms-s7', 'chip-symptoms--psych-stress-symptoms-s8']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-risk-mental-status-investigations', 'The exact DHA risk and mental-status section supports these clinician-assessed negatives, findings, support, risk, and mental-status prompts.', 'psych-stress-symptoms', [...seq('chip-relevant-negatives--psych-stress-symptoms-n', 12, 17), ...seq('chip-exam-findings--psych-stress-symptoms-e', 18, 24), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'examination-prompt--appearance-psych-stress-symptoms', 'examination-prompt--behaviour-psych-stress-symptoms', 'examination-prompt--speech-psych-stress-symptoms', 'examination-prompt--mood-psych-stress-symptoms', 'examination-prompt--affect-psych-stress-symptoms', 'examination-prompt--thought-form-psych-stress-symptoms', 'examination-prompt--thought-content-psych-stress-symptoms', 'examination-prompt--perception-psych-stress-symptoms', 'examination-prompt--cognition-psych-stress-symptoms', 'examination-prompt--insight-judgment-psych-stress-symptoms', 'examination-prompt--risk-assessment-psych-stress-symptoms', 'examination-prompt--self-harm-psych-stress-symptoms', 'examination-prompt--protective-factors-psych-stress-symptoms', 'examination-prompt--substance-use-psych-stress-symptoms', 'investigation-documentation-option--2-1-prev-psych-stress-symptoms']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-red-flags', 'The exact DHA red-flag section supports these clinician-confirmed suicide, self-harm, harm, severe-function, and substance warning fields.', 'psych-stress-symptoms', ['chip-red-flags--psych-stress-symptoms-r25', 'chip-red-flags--psych-stress-symptoms-r26', 'chip-red-flags--psych-stress-symptoms-r27', 'chip-red-flags--psych-stress-symptoms-r28', 'chip-red-flags--psych-stress-symptoms-r30', 'chip-plan-phrases--psych-stress-symptoms-p32', 'chip-follow-up--psych-stress-symptoms-f39', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-management-referral', 'The exact DHA management section supports these clinician-documented management, stress-support, counseling, referral, questions, worsening review, and arranged-follow-up fields.', 'psych-stress-symptoms', ['chip-plan-phrases--psych-stress-symptoms-p31', ...seq('chip-plan-phrases--psych-stress-symptoms-p', 33, 36), 'chip-follow-up--psych-stress-symptoms-f38', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'preset-prechecked-follow-up--prechecked-follow-up-2', 'plan-documentation-option--1-1-counseling-psych-stress-symptoms', 'plan-documentation-option--1-2-coping-psych-stress-symptoms', 'plan-documentation-option--2-1-ref-psych-stress-symptoms', 'plan-documentation-option--3-1-fup-psych-stress-symptoms']),
+      support('who-stress-related-conditions-2013', 'who-stress-2013-assessment-scope', 'The exact WHO assessment statement reinforces physical-cause exclusion; no additional legacy item was mapped from this section.', 'psych-stress-symptoms', []),
+    ],
+  },
+  {
+    workflow_id: 'psych-panic-symptoms',
+    search_queries_used: ['site:nice.org.uk CG113 panic disorder recommendations', 'site:dha.gov.ae panic telehealth guideline', 'site:who.int panic disorder guideline', 'site:doh.gov.ae panic disorder guideline'],
+    official_pages_opened: ['https://www.nice.org.uk/guidance/cg113/chapter/Recommendations', 'https://www.nice.org.uk/guidance/cg113'],
+    exact_documents_opened: ['nice-gad-cg113-2020'],
+    exact_sections_reviewed: ['nice-cg113-panic-diagnosis-physical-exclusion', 'nice-cg113-panic-treatment-shared-decision', 'nice-cg113-panic-specialist-reassessment-risk'],
+    candidate_sources_rejected: ['patient panic pages', 'symptom encyclopedia pages', 'hyperventilation advice without panic-disorder scope'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Symptom lists were not treated as exact clinical recommendations.', 'Hyperventilation guidance does not establish panic disorder.'],
+    selected_primary_sources: ['nice-gad-cg113-2020'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: exact for adults with suspected or established panic disorder; not exact for children or every individual physical symptom.',
+    setting_applicability: 'Direct for primary, community, and specialist mental-health care; emergency physical presentations require separate acute assessment.',
+    UAE_applicability: 'NICE recommendations require UAE clinician review, local emergency exclusion, prescribing governance, and referral pathways.',
+    recency_verification: 'The current NICE CG113 recommendations, last updated 2020-06-15, were opened on 2026-07-12.',
+    superseded_check: 'NICE CG113 remains the current official guideline for adult panic disorder.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Palpitations, breathlessness, chest tightness, trembling, sweating, dizziness, syncope, focal neurological symptoms, psychosis, detailed mental-status fields, named screening tools, ECG, thyroid or blood testing, grounding techniques, and fixed one-to-two-week review remain unsupported.', 'Panic diagnosis, physical exclusion, risk, and treatment remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'nice-cg113-panic-diagnosis-physical-exclusion': 'Supports mapped panic presentation, history, diagnosis context, avoidance, triggers, duration, and physical-cause exclusion.',
+      'nice-cg113-panic-treatment-shared-decision': 'Supports mapped clinician-documented management, psychological or medication discussion, preference, questions, monitoring, referral, and follow-up.',
+      'nice-cg113-panic-specialist-reassessment-risk': 'Supports mapped self-harm or suicide risk, substance use, severe functional impact, avoidance, support, side-effect, efficacy, and shared-plan fields.',
+    },
+    support_groups: [
+      support('nice-gad-cg113-2020', 'nice-cg113-panic-diagnosis-physical-exclusion', 'The exact NICE panic diagnosis section supports these panic terms, episode, fear, control, avoidance, trigger, duration, preset, and structured-history fields.', 'psych-panic-symptoms', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 3), ...seq('matching-alias--alias-', 6, 10), ...seq('matching-alias--alias-', 13, 15), 'chip-symptoms--psych-panic-symptoms-s1', 'chip-symptoms--psych-panic-symptoms-s2', ...seq('chip-symptoms--psych-panic-symptoms-s', 9, 12), 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-symptoms--prechecked-symptoms-2', 'history-draft--default-history-draft']),
+      support('nice-gad-cg113-2020', 'nice-cg113-panic-specialist-reassessment-risk', 'The exact specialist reassessment section supports these clinician-assessed suicide, self-harm, function, substance, anxiety, risk, support, safety, and urgent-review fields.', 'psych-panic-symptoms', ['chip-relevant-negatives--psych-panic-symptoms-n16', 'chip-relevant-negatives--psych-panic-symptoms-n17', 'chip-exam-findings--psych-panic-symptoms-e22', 'chip-exam-findings--psych-panic-symptoms-e25', ...seq('chip-red-flags--psych-panic-symptoms-r', 29, 32), 'chip-plan-phrases--psych-panic-symptoms-p34', 'chip-follow-up--psych-panic-symptoms-f41', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'examination-prompt--mood-psych-panic-symptoms', 'examination-prompt--risk-assessment-psych-panic-symptoms', 'examination-prompt--self-harm-psych-panic-symptoms', 'examination-prompt--protective-factors-psych-panic-symptoms', 'examination-prompt--substance-use-psych-panic-symptoms']),
+      support('nice-gad-cg113-2020', 'nice-cg113-panic-treatment-shared-decision', 'The exact NICE treatment section supports these clinician-documented management, support, counseling, medication, referral, questions, worsening review, and arranged-follow-up fields without autonomous treatment.', 'psych-panic-symptoms', ['chip-plan-phrases--psych-panic-symptoms-p33', 'chip-plan-phrases--psych-panic-symptoms-p36', 'chip-plan-phrases--psych-panic-symptoms-p37', 'chip-plan-phrases--psych-panic-symptoms-p38', 'chip-follow-up--psych-panic-symptoms-f40', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'preset-prechecked-follow-up--prechecked-follow-up-2', 'investigation-documentation-option--2-1-prev-psych-panic-symptoms', 'investigation-documentation-option--2-2-med-psych-panic-symptoms', 'plan-documentation-option--1-1-counseling-psych-panic-symptoms', 'plan-documentation-option--1-2-panic-psych-panic-symptoms', 'plan-documentation-option--2-1-med-psych-panic-symptoms', 'plan-documentation-option--3-1-ref-psych-panic-symptoms', 'plan-documentation-option--4-1-fup-psych-panic-symptoms']),
+    ],
+  },
+  {
+    workflow_id: 'psych-medication-followup',
+    search_queries_used: ['site:nice.org.uk CG113 antidepressant monitoring panic follow-up', 'site:dha.gov.ae depression medication follow up guideline', 'site:who.int psychotropic medication monitoring guideline', 'site:doh.gov.ae psychiatric medication monitoring'],
+    official_pages_opened: ['https://www.nice.org.uk/guidance/cg113/chapter/Recommendations', DHA_DEPRESSION_URL],
+    exact_documents_opened: ['nice-gad-cg113-2020', 'dha-depression-issue2-2024'],
+    exact_sections_reviewed: ['nice-cg113-panic-treatment-shared-decision', 'nice-cg113-panic-specialist-reassessment-risk', 'dha-depression-i2-features-assessment', 'dha-depression-i2-risk-mental-status-investigations', 'dha-depression-i2-red-flags', 'dha-depression-i2-management-referral'],
+    candidate_sources_rejected: ['drug monographs', 'commercial interaction checkers', 'mood-stabiliser monitoring pages without exact workflow scope'],
+    rejection_reasons: ['Drug monographs were not used as workflow-level guidance.', 'Commercial tools are not authoritative guidelines.', 'No exact broad psychiatric medication-review guideline covered every medication class in this workflow.'],
+    selected_primary_sources: ['nice-gad-cg113-2020'],
+    selected_supporting_sources: ['dha-depression-issue2-2024'],
+    population_applicability: 'Partial: exact for adult antidepressant monitoring in panic or depression contexts; not exact for mood stabilisers, all psychotropics, or paediatric prescribing.',
+    setting_applicability: 'Direct for primary and specialist mental-health medication review within the source scope; laboratory and prescribing decisions require local governance.',
+    UAE_applicability: 'DHA depression assessment is directly applicable in Dubai; NICE medication monitoring requires UAE clinician review and local prescribing rules.',
+    recency_verification: 'Current NICE CG113 and DHA Depression Issue 2 were opened on 2026-07-12.',
+    superseded_check: 'No newer NICE CG113 replacement or DHA depression issue was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Broad psychiatric medication review, mood stabilisers, psychopharmacology, allergic reactions, laboratory panels, medication levels, and fixed two-to-four-week review remain unsupported.', 'Medication adjustment, risk conclusions, and all prescribing remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'nice-cg113-panic-treatment-shared-decision': 'Supports mapped antidepressant adherence, response, side effects, concerns, questions, medication decisions, monitoring, and follow-up.',
+      'nice-cg113-panic-specialist-reassessment-risk': 'Supports mapped missed doses, concordance, tolerability, efficacy, function, substance use, risk, and shared-plan fields.',
+      'dha-depression-i2-features-assessment': 'Supports mapped mood, sleep, appetite, function, prior treatment, and medication-history review.',
+      'dha-depression-i2-risk-mental-status-investigations': 'Supports mapped risk, mental-status, self-harm, harm, substance, protective-factor, and medication-history fields.',
+      'dha-depression-i2-red-flags': 'Supports mapped suicidal, self-harm, harm, psychotic, agitation or worsening-risk escalation fields.',
+      'dha-depression-i2-management-referral': 'Supports mapped clinician-documented safety, counseling, referral, monitoring, questions, and urgent follow-up.',
+    },
+    support_groups: [
+      support('nice-gad-cg113-2020', 'nice-cg113-panic-treatment-shared-decision', 'The exact NICE shared-decision and monitoring section supports these antidepressant-review aliases, adherence, response, side effects, questions, monitoring, plan, and follow-up records.', 'psych-medication-followup', ['matching-alias--alias-3', 'matching-alias--alias-9', 'matching-alias--alias-10', 'matching-alias--alias-15', ...seq('chip-symptoms--psych-medication-followup-s', 1, 6), 'chip-symptoms--psych-medication-followup-s9', 'chip-exam-findings--psych-medication-followup-e21', 'chip-exam-findings--psych-medication-followup-e22', 'chip-investigations--psych-medication-followup-i24', 'chip-investigations--psych-medication-followup-i25', 'chip-red-flags--psych-medication-followup-r29', 'chip-plan-phrases--psych-medication-followup-p34', ...seq('chip-plan-phrases--psych-medication-followup-p', 36, 40), 'chip-follow-up--psych-medication-followup-f42', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), 'preset-prechecked-investigations--prechecked-investigations-2', 'preset-prechecked-investigations--prechecked-investigations-3', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'preset-prechecked-follow-up--prechecked-follow-up-2', 'history-draft--default-history-draft', 'investigation-documentation-option--1-1-prev-psych-medication-followup', 'plan-documentation-option--1-1-review-psych-medication-followup', 'plan-documentation-option--1-2-adherence-psych-medication-followup', 'plan-documentation-option--2-1-counseling-psych-medication-followup', 'plan-documentation-option--3-1-fup-psych-medication-followup']),
+      support('nice-gad-cg113-2020', 'nice-cg113-panic-specialist-reassessment-risk', 'The exact NICE reassessment section additionally supports missed-dose, function, substance, tolerability, and comprehensive-risk review.', 'psych-medication-followup', ['chip-symptoms--psych-medication-followup-s8', 'chip-relevant-negatives--psych-medication-followup-n13', 'chip-relevant-negatives--psych-medication-followup-n15']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-features-assessment', 'The exact DHA depression assessment section supports sleep, appetite, mood, response, function, and prior-treatment review within depression care.', 'psych-medication-followup', ['chip-symptoms--psych-medication-followup-s7']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-risk-mental-status-investigations', 'The exact DHA risk and mental-status section supports these assessed negatives, findings, presets, and prompts without implying absence.', 'psych-medication-followup', [...seq('chip-relevant-negatives--psych-medication-followup-n', 10, 12), ...seq('chip-exam-findings--psych-medication-followup-e', 16, 20), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'examination-prompt--appearance-psych-medication-followup', 'examination-prompt--behaviour-psych-medication-followup', 'examination-prompt--speech-psych-medication-followup', 'examination-prompt--mood-psych-medication-followup', 'examination-prompt--affect-psych-medication-followup', 'examination-prompt--thought-form-psych-medication-followup', 'examination-prompt--thought-content-psych-medication-followup', 'examination-prompt--perception-psych-medication-followup', 'examination-prompt--cognition-psych-medication-followup', 'examination-prompt--insight-judgment-psych-medication-followup', 'examination-prompt--risk-assessment-psych-medication-followup', 'examination-prompt--self-harm-psych-medication-followup', 'examination-prompt--protective-factors-psych-medication-followup', 'examination-prompt--substance-use-psych-medication-followup']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-red-flags', 'The exact DHA red-flag section supports these suicidal, self-harm, harm, worsening, agitation, and psychotic warning fields.', 'psych-medication-followup', ['chip-red-flags--psych-medication-followup-r26', 'chip-red-flags--psych-medication-followup-r27', 'chip-red-flags--psych-medication-followup-r28', 'chip-red-flags--psych-medication-followup-r31', 'chip-red-flags--psych-medication-followup-r32', 'chip-red-flags--psych-medication-followup-r33']),
+      support('dha-depression-issue2-2024', 'dha-depression-i2-management-referral', 'The exact DHA management section supports safety discussion and urgent review for suicide or severe distress.', 'psych-medication-followup', ['chip-plan-phrases--psych-medication-followup-p35', 'chip-follow-up--psych-medication-followup-f43', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2']),
+    ],
+  },
+  {
+    workflow_id: 'urgent-minor-trauma',
+    search_queries_used: ['site:who.int basic emergency care trauma PDF', 'site:icrc.org basic emergency care trauma', 'site:dha.gov.ae minor trauma clinical guideline', 'site:nice.org.uk minor injury assessment'],
+    official_pages_opened: [WHO_BEC_URL, 'https://www.who.int/publications/i/item/basic-emergency-care-approach-to-the-acutely-ill-and-injured'],
+    exact_documents_opened: ['who-icrc-basic-emergency-care-2018'],
+    exact_sections_reviewed: ['who-bec-2018-sample-trauma-history', 'who-bec-2018-trauma-secondary-survey', 'who-bec-2018-extremity-perfusion', 'who-bec-2018-open-wound'],
+    candidate_sources_rejected: ['first-aid consumer pages', 'sports-injury advice pages', 'fracture imaging rules outside a defined body site'],
+    rejection_reasons: ['Consumer pages are not clinician guidance.', 'Sports advice was not treated as general trauma evidence.', 'Body-site imaging rules do not support a generic trauma workflow.'],
+    selected_primary_sources: ['who-icrc-basic-emergency-care-2018'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: exact for adult and paediatric acute trauma assessment; not exact for every minor outpatient injury subtype.',
+    setting_applicability: 'Direct for first-contact emergency assessment; partial for routine outpatient follow-up and physiotherapy pathways.',
+    UAE_applicability: 'International BEC content requires UAE clinician review and local imaging, referral, and emergency pathways.',
+    recency_verification: 'The official WHO/ICRC first-edition manual was opened on 2026-07-12.',
+    superseded_check: 'No newer official WHO/ICRC BEC edition was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['X-ray and imaging review, previous records, wound-check timing, physiotherapy referral, and fixed one-week review remain unsupported.', 'Injury diagnosis, imaging need, analgesia, splinting, and disposition remain clinician-decided.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'who-bec-2018-sample-trauma-history': 'Supports mapped trauma history, mechanism, symptoms, interventions, return, and disposition fields.',
+      'who-bec-2018-trauma-secondary-survey': 'Supports mapped inspection, pain, swelling, bruising, tenderness, movement, deformity, and neurological fields.',
+      'who-bec-2018-extremity-perfusion': 'Supports mapped neurovascular, perfusion, splinting, and deformity fields.',
+      'who-bec-2018-open-wound': 'Supports mapped abrasion and open-wound assessment fields.',
+    },
+    support_groups: [
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-sample-trauma-history', 'The exact SAMPLE history and disposition sections support these trauma, injury, mechanism, timing, pain, consciousness, advice, follow-up, and return fields.', 'urgent-minor-trauma', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 8), ...seq('matching-alias--alias-', 11, 14), 'chip-symptoms--urgent-minor-trauma-symptoms-1', 'chip-symptoms--urgent-minor-trauma-symptoms-2', 'chip-symptoms--urgent-minor-trauma-symptoms-6', 'chip-symptoms--urgent-minor-trauma-symptoms-7', 'chip-relevant-negatives--urgent-minor-trauma-relevant-negatives-1', 'chip-red-flags--urgent-minor-trauma-red-flags-5', 'chip-plan-phrases--urgent-minor-trauma-plan-phrases-1', 'chip-plan-phrases--urgent-minor-trauma-plan-phrases-2', 'chip-plan-phrases--urgent-minor-trauma-plan-phrases-4', 'chip-plan-phrases--urgent-minor-trauma-plan-phrases-5', 'chip-follow-up--urgent-minor-trauma-follow-up-2', 'preset-prechecked-symptoms--prechecked-symptoms-1', 'preset-prechecked-symptoms--prechecked-symptoms-2', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'preset-prechecked-follow-up--prechecked-follow-up-2', 'history-draft--default-history-draft', 'examination-prompt--vitals-documented-urgent-minor-trauma', 'plan-documentation-option--1-1-injury-advice-urgent-minor-trauma', 'plan-documentation-option--1-2-return-precautions-urgent-minor-trauma', 'plan-documentation-option--2-1-analgesia-urgent-minor-trauma']),
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-trauma-secondary-survey', 'The exact secondary-survey section supports these contusion, swelling, bruising, movement, pain, inspection, tenderness, deformity, and examination fields.', 'urgent-minor-trauma', ['matching-alias--alias-9', ...seq('chip-symptoms--urgent-minor-trauma-symptoms-', 3, 5), 'chip-relevant-negatives--urgent-minor-trauma-relevant-negatives-4', 'chip-relevant-negatives--urgent-minor-trauma-relevant-negatives-5', ...seq('chip-exam-findings--urgent-minor-trauma-exam-findings-', 1, 5), 'chip-red-flags--urgent-minor-trauma-red-flags-2', 'chip-red-flags--urgent-minor-trauma-red-flags-4', 'preset-prechecked-symptoms--prechecked-symptoms-3', ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'examination-prompt--inspection-urgent-minor-trauma', 'examination-prompt--tenderness-urgent-minor-trauma', 'examination-prompt--swelling-bruising-urgent-minor-trauma', 'examination-prompt--rom-urgent-minor-trauma']),
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-extremity-perfusion', 'The exact extremity section supports these neurovascular, deformity, perfusion, and clinician-decided splinting fields.', 'urgent-minor-trauma', ['chip-relevant-negatives--urgent-minor-trauma-relevant-negatives-2', 'chip-exam-findings--urgent-minor-trauma-exam-findings-6', 'chip-red-flags--urgent-minor-trauma-red-flags-1', 'chip-plan-phrases--urgent-minor-trauma-plan-phrases-3', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'examination-prompt--neurovascular-urgent-minor-trauma']),
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-open-wound', 'The exact open-wound section supports these abrasion and open-wound fields.', 'urgent-minor-trauma', ['matching-alias--alias-10', 'chip-relevant-negatives--urgent-minor-trauma-relevant-negatives-3', 'chip-red-flags--urgent-minor-trauma-red-flags-3', 'preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3']),
+    ],
+  },
+  {
+    workflow_id: 'urgent-wound-care-laceration',
+    search_queries_used: ['site:who.int basic emergency care open wound laceration PDF', 'site:icrc.org wound laceration emergency care', 'site:dha.gov.ae laceration guideline', 'site:nice.org.uk traumatic wound laceration guideline'],
+    official_pages_opened: [WHO_BEC_URL, 'https://www.who.int/publications/i/item/basic-emergency-care-approach-to-the-acutely-ill-and-injured'],
+    exact_documents_opened: ['who-icrc-basic-emergency-care-2018'],
+    exact_sections_reviewed: ['who-bec-2018-sample-trauma-history', 'who-bec-2018-trauma-secondary-survey', 'who-bec-2018-extremity-perfusion', 'who-bec-2018-open-wound'],
+    candidate_sources_rejected: ['surgical-incision infection guidance as complete traumatic-wound evidence', 'consumer wound-care pages', 'antibiotic formularies'],
+    rejection_reasons: ['Surgical wounds are not exact for traumatic laceration.', 'Consumer pages are not clinician guidance.', 'Formularies do not support this workflow and medication choices were not mapped.'],
+    selected_primary_sources: ['who-icrc-basic-emergency-care-2018'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: exact for adult and paediatric acute open-wound assessment; not exact for every closure or aftercare pathway.',
+    setting_applicability: 'Direct for first-contact emergency care; partial for outpatient suture review and fixed wound-check schedules.',
+    UAE_applicability: 'International BEC content requires UAE clinician review and local tetanus, imaging, closure, antibiotic, and referral governance.',
+    recency_verification: 'The official WHO/ICRC first-edition manual was opened on 2026-07-12.',
+    superseded_check: 'No newer official WHO/ICRC BEC edition was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Suture review, closure methods, X-ray or foreign-body imaging, infection-sign conclusions, antibiotics, wound-check timing, and suture-removal timing remain unsupported.', 'Closure, antibiotics, tetanus administration, analgesia, and disposition remain clinician-decided.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'who-bec-2018-sample-trauma-history': 'Supports mapped mechanism, timing, pain, intervention, return, and disposition fields.',
+      'who-bec-2018-trauma-secondary-survey': 'Supports mapped inspection, surrounding tissue, pain, and associated-injury fields.',
+      'who-bec-2018-extremity-perfusion': 'Supports mapped neurovascular and underlying-structure fields.',
+      'who-bec-2018-open-wound': 'Supports mapped laceration, abrasion, bleeding, contamination, foreign body, depth, dressing, tetanus, and return fields.',
+    },
+    support_groups: [
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-open-wound', 'The exact open-wound section supports these wound, laceration, mechanism, location, size, depth, bleeding, contamination, foreign-body, underlying-structure, neurovascular, dressing, tetanus, and return fields.', 'urgent-wound-care-laceration', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), ...seq('matching-alias--alias-', 6, 13), ...seq('chip-symptoms--urgent-wound-care-laceration-symptoms-', 1, 7), ...seq('chip-relevant-negatives--urgent-wound-care-laceration-relevant-negatives-', 1, 4), ...seq('chip-exam-findings--urgent-wound-care-laceration-exam-findings-', 1, 7), ...seq('chip-red-flags--urgent-wound-care-laceration-red-flags-', 1, 4), 'chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-1', 'chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-3', 'chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-5', 'chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-8', 'chip-follow-up--urgent-wound-care-laceration-follow-up-3', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-3', 'history-draft--default-history-draft', 'examination-prompt--wound-location-urgent-wound-care-laceration', 'examination-prompt--wound-size-depth-urgent-wound-care-laceration', 'examination-prompt--bleeding-urgent-wound-care-laceration', 'examination-prompt--contamination-urgent-wound-care-laceration', 'examination-prompt--neurovascular-urgent-wound-care-laceration', 'examination-prompt--surrounding-skin-urgent-wound-care-laceration', 'plan-documentation-option--1-1-wound-advice-urgent-wound-care-laceration', 'plan-documentation-option--1-2-dressing-urgent-wound-care-laceration', 'plan-documentation-option--2-1-tetanus-urgent-wound-care-laceration']),
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-sample-trauma-history', 'The exact SAMPLE and disposition section supports clinician-decided analgesia and documented return or reassessment.', 'urgent-wound-care-laceration', ['chip-plan-phrases--urgent-wound-care-laceration-plan-phrases-6']),
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-trauma-secondary-survey', 'The exact secondary survey supports surrounding-injury review already mapped to the wound fields.', 'urgent-wound-care-laceration', []),
+      support('who-icrc-basic-emergency-care-2018', 'who-bec-2018-extremity-perfusion', 'The exact extremity-perfusion section supports the neurovascular and deep-structure items already mapped to the open-wound section.', 'urgent-wound-care-laceration', []),
+    ],
+  },
+  {
+    workflow_id: 'urgent-burn-assessment',
+    search_queries_used: ['site:dha.gov.ae burns telehealth clinical guideline PDF Dubai', 'site:doh.gov.ae burns guideline', 'site:who.int burns clinical guideline', 'site:nice.org.uk burns assessment referral'],
+    official_pages_opened: [DHA_BURNS_URL, 'https://dha.gov.ae/en/licensing-regulations-telehealth'],
+    exact_documents_opened: ['dha-burns-issue2-2024'],
+    exact_sections_reviewed: ['dha-burns-i2-mechanism-classification', 'dha-burns-i2-assessment-tbsa', 'dha-burns-i2-referral-red-flags', 'dha-burns-i2-management-followup'],
+    candidate_sources_rejected: ['first-aid burn pages', 'medicine dose tables', 'non-authoritative burn-size calculators'],
+    rejection_reasons: ['First-aid pages were not used as clinician workflow evidence.', 'Dose tables were not mapped.', 'Unverified calculators were not used.'],
+    selected_primary_sources: ['dha-burns-issue2-2024'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: exact for adults and children with burn presentations; treatment and disposition vary by age, site, depth, size, mechanism, and comorbidity.',
+    setting_applicability: 'Direct for DHA telehealth triage and documentation; serious burns require in-person, burn-service, or emergency assessment.',
+    UAE_applicability: 'Direct for Dubai telehealth facilities with local emergency and burn-service pathways.',
+    recency_verification: 'DHA Burns Issue 2, effective 2024-04-21 and due for revision 2029-02-21, was opened on 2026-07-12.',
+    superseded_check: 'No newer official DHA issue was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Imaging, previous-record review, fixed two-to-three-day dressing change, and fixed one-week review remain unsupported.', 'Burn depth, size, treatment, dressing, analgesia, tetanus, and escalation remain clinician-determined.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'dha-burns-i2-mechanism-classification': 'Supports mapped burn terms, mechanisms, pain, blistering, redness, and history fields.',
+      'dha-burns-i2-assessment-tbsa': 'Supports mapped site, size, depth, airway, inhalation, circumferential, and neurovascular assessment fields.',
+      'dha-burns-i2-referral-red-flags': 'Supports mapped airway, inhalation, circumferential, chemical, electrical, full-thickness, large-area, and escalation fields.',
+      'dha-burns-i2-management-followup': 'Supports mapped clinician-documented burn care, dressing, analgesia, tetanus, infection return, referral, and arranged follow-up.',
+    },
+    support_groups: [
+      support('dha-burns-issue2-2024', 'dha-burns-i2-mechanism-classification', 'The exact DHA mechanism and classification sections support these burn, thermal, scald, mechanism, site, pain, blistering, redness, preset, and history fields.', 'urgent-burn-assessment', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 12), ...seq('chip-symptoms--urgent-burn-assessment-symptoms-', 1, 8), ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), 'history-draft--default-history-draft']),
+      support('dha-burns-issue2-2024', 'dha-burns-i2-assessment-tbsa', 'The exact DHA assessment section supports these site, size, depth, blistering, circumferential, inhalation, neurovascular, preset, and examination fields.', 'urgent-burn-assessment', [...seq('chip-exam-findings--urgent-burn-assessment-exam-findings-', 1, 7), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'examination-prompt--burn-site-urgent-burn-assessment', 'examination-prompt--burn-size-urgent-burn-assessment', 'examination-prompt--burn-depth-urgent-burn-assessment', 'examination-prompt--blistering-urgent-burn-assessment', 'examination-prompt--circumferential-urgent-burn-assessment', 'examination-prompt--neurovascular-urgent-burn-assessment']),
+      support('dha-burns-issue2-2024', 'dha-burns-i2-referral-red-flags', 'The exact DHA red-flag and referral section supports these assessed negatives, red flags, escalation, and referral fields without asserting absence.', 'urgent-burn-assessment', [...seq('chip-relevant-negatives--urgent-burn-assessment-relevant-negatives-', 1, 5), ...seq('chip-red-flags--urgent-burn-assessment-red-flags-', 1, 5), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), 'chip-plan-phrases--urgent-burn-assessment-plan-phrases-6']),
+      support('dha-burns-issue2-2024', 'dha-burns-i2-management-followup', 'The exact DHA management section supports these clinician-documented burn-care, dressing, analgesia, tetanus, return, referral, and arranged-follow-up records.', 'urgent-burn-assessment', [...seq('chip-plan-phrases--urgent-burn-assessment-plan-phrases-', 1, 5), 'chip-follow-up--urgent-burn-assessment-follow-up-1', 'chip-follow-up--urgent-burn-assessment-follow-up-3', ...seq('preset-prechecked-plan-phrases--prechecked-plan-phrases-', 1, 3), 'preset-prechecked-follow-up--prechecked-follow-up-1', 'plan-documentation-option--1-1-burn-advice-urgent-burn-assessment', 'plan-documentation-option--1-2-dressing-urgent-burn-assessment', 'plan-documentation-option--2-1-analgesia-urgent-burn-assessment', 'plan-documentation-option--2-2-tetanus-urgent-burn-assessment', 'plan-documentation-option--3-1-fup-1w-urgent-burn-assessment']),
+    ],
+  },
+  {
+    workflow_id: 'urgent-allergic-reaction',
+    search_queries_used: ['site:resus.org.uk anaphylaxis guideline 2021 PDF', 'site:eaaci.org urticaria guideline angioedema', 'site:dha.gov.ae allergic reaction telehealth guideline', 'site:doh.gov.ae anaphylaxis guideline'],
+    official_pages_opened: ['https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf', 'https://eaaci.org/guidelines-position-papers/the-international-eaaci-ga%C2%B2len-euroguiderm-apaaaci-guideline-for-the-definition-classification-diagnosis-and-management-of-urticaria/'],
+    exact_documents_opened: ['rcuk-anaphylaxis-2021', 'eaaci-urticaria-guideline-2022'],
+    exact_sections_reviewed: ['rcuk-anaphylaxis-2021-recognition', 'rcuk-anaphylaxis-2021-triggers-followup', 'eaaci-urticaria-2022-definition', 'eaaci-urticaria-2022-impact-scope'],
+    candidate_sources_rejected: ['patient allergy pages', 'antihistamine product information', 'skin rash pages that did not distinguish anaphylaxis'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Product information was not used for workflow evidence.', 'Skin findings alone must not be relabelled as anaphylaxis.'],
+    selected_primary_sources: ['rcuk-anaphylaxis-2021'],
+    selected_supporting_sources: ['eaaci-urticaria-guideline-2022'],
+    population_applicability: 'Partial: exact for adults and children with suspected anaphylaxis or urticaria; not exact for every non-urticarial rash or allergy subtype.',
+    setting_applicability: 'Direct for healthcare recognition and escalation; partial for routine outpatient allergy follow-up.',
+    UAE_applicability: 'International and UK specialty guidance requires UAE emergency, referral, and medication governance.',
+    recency_verification: 'The official RCUK 2021 guideline and EAACI 2022 guideline page were opened on 2026-07-12; the RCUK review date has been reached and no newer dedicated version was identified.',
+    superseded_check: 'No newer dedicated RCUK anaphylaxis guideline or published EAACI urticaria guideline was identified on the official pages.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Broad rash and swelling matching, previous-record review, medication or antihistamine plans, fixed one-week review, and full outpatient allergy management remain unsupported.', 'Skin changes alone do not establish anaphylaxis; diagnosis and treatment remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'rcuk-anaphylaxis-2021-recognition': 'Supports mapped rapid airway, breathing, circulation, mucosal, skin, syncope, hypotension, wheeze, stridor, vital, respiratory, and airway fields.',
+      'rcuk-anaphylaxis-2021-triggers-followup': 'Supports mapped trigger, allergy history, action or safety discussion, return, escalation, and specialist follow-up fields.',
+      'eaaci-urticaria-2022-definition': 'Supports mapped wheal or urticaria, itching, and angioedema fields without equating skin findings with anaphylaxis.',
+      'eaaci-urticaria-2022-impact-scope': 'Supports the urticaria scope reviewed; no additional treatment item is mapped.',
+    },
+    support_groups: [
+      support('eaaci-urticaria-guideline-2022', 'eaaci-urticaria-2022-definition', 'The exact EAACI definition supports these urticaria, itching, wheal, rash, swelling, angioedema, preset, and examination fields without inferring anaphylaxis.', 'urgent-allergic-reaction', ['matching-alias--alias-5', 'matching-alias--alias-6', 'matching-alias--alias-7', 'matching-alias--alias-9', 'matching-alias--alias-10', 'matching-alias--alias-11', ...seq('chip-symptoms--urgent-allergic-reaction-symptoms-', 1, 3), 'chip-exam-findings--urgent-allergic-reaction-exam-findings-2', 'chip-exam-findings--urgent-allergic-reaction-exam-findings-3', 'chip-exam-findings--urgent-allergic-reaction-exam-findings-4', ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), 'preset-prechecked-exam-findings--prechecked-exam-findings-2', 'preset-prechecked-exam-findings--prechecked-exam-findings-3', 'examination-prompt--rash-doc-urgent-allergic-reaction', 'examination-prompt--rash-dist-urgent-allergic-reaction', 'examination-prompt--angioedema-urgent-allergic-reaction']),
+      support('rcuk-anaphylaxis-2021', 'rcuk-anaphylaxis-2021-recognition', 'The exact RCUK recognition section supports these allergic-reaction, airway, breathing, circulation, mucosal-swelling, dizziness, syncope, hypotension, wheeze, stridor, vital, and history fields.', 'urgent-allergic-reaction', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 4), 'matching-alias--alias-8', 'matching-alias--alias-12', 'chip-symptoms--urgent-allergic-reaction-symptoms-4', ...seq('chip-symptoms--urgent-allergic-reaction-symptoms-', 6, 8), ...seq('chip-relevant-negatives--urgent-allergic-reaction-relevant-negatives-', 1, 5), 'chip-exam-findings--urgent-allergic-reaction-exam-findings-1', 'chip-exam-findings--urgent-allergic-reaction-exam-findings-5', 'chip-exam-findings--urgent-allergic-reaction-exam-findings-6', ...seq('chip-red-flags--urgent-allergic-reaction-red-flags-', 1, 5), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3), 'preset-prechecked-exam-findings--prechecked-exam-findings-1', 'history-draft--default-history-draft', 'examination-prompt--vitals-urgent-allergic-reaction', 'examination-prompt--resp-status-urgent-allergic-reaction', 'examination-prompt--airway-urgent-allergic-reaction']),
+      support('rcuk-anaphylaxis-2021', 'rcuk-anaphylaxis-2021-triggers-followup', 'The exact RCUK trigger and follow-up section supports these exposure, allergy-history, advice, trigger, return, escalation, and specialist-follow-up fields.', 'urgent-allergic-reaction', ['chip-symptoms--urgent-allergic-reaction-symptoms-5', 'chip-investigations--urgent-allergic-reaction-investigations-2', 'chip-plan-phrases--urgent-allergic-reaction-plan-phrases-1', 'chip-plan-phrases--urgent-allergic-reaction-plan-phrases-2', 'chip-plan-phrases--urgent-allergic-reaction-plan-phrases-5', 'chip-plan-phrases--urgent-allergic-reaction-plan-phrases-6', 'chip-follow-up--urgent-allergic-reaction-follow-up-2', 'chip-follow-up--urgent-allergic-reaction-follow-up-3', 'preset-prechecked-investigations--prechecked-investigations-2', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-1', 'preset-prechecked-plan-phrases--prechecked-plan-phrases-2', 'preset-prechecked-follow-up--prechecked-follow-up-2', 'investigation-documentation-option--1-2-allergy-urgent-allergic-reaction', 'plan-documentation-option--1-1-allergy-advice-urgent-allergic-reaction', 'plan-documentation-option--1-2-trigger-avoid-urgent-allergic-reaction', 'plan-documentation-option--3-1-return-prec-urgent-allergic-reaction']),
+      support('eaaci-urticaria-guideline-2022', 'eaaci-urticaria-2022-impact-scope', 'The exact EAACI scope section was reviewed but does not directly support an additional legacy item.', 'urgent-allergic-reaction', []),
+    ],
+  },
+  {
+    workflow_id: 'urgent-head-injury',
+    search_queries_used: ['site:dha.gov.ae minor head injury telehealth clinical guideline PDF Dubai', 'site:doh.gov.ae head injury guideline', 'site:who.int head injury emergency guideline', 'site:nice.org.uk head injury assessment recommendations'],
+    official_pages_opened: [DHA_HEAD_INJURY_URL, 'https://dha.gov.ae/en/licensing-regulations-telehealth'],
+    exact_documents_opened: ['dha-minor-head-injury-issue2-2024'],
+    exact_sections_reviewed: ['dha-minor-head-injury-i2-signs-assessment', 'dha-minor-head-injury-i2-red-flags', 'dha-minor-head-injury-i2-investigations-referral', 'dha-minor-head-injury-i2-management-observation'],
+    candidate_sources_rejected: ['patient concussion pages', 'sports return-to-play pages', 'medicine dose tables'],
+    rejection_reasons: ['Patient pages are not clinician guidance.', 'Sports return-to-play scope is narrower than this workflow.', 'Dose tables were not mapped.'],
+    selected_primary_sources: ['dha-minor-head-injury-issue2-2024'],
+    selected_supporting_sources: [],
+    population_applicability: 'Partial: exact for adults and children with minor head injury; anticoagulated, non-accidental, severe, or deteriorating cases require escalation.',
+    setting_applicability: 'Direct for DHA telehealth assessment and referral; neurological examination, imaging, and emergency pathways remain clinician-led.',
+    UAE_applicability: 'Direct for Dubai telehealth facilities with local imaging, emergency, safeguarding, and neurosurgical pathways.',
+    recency_verification: 'DHA Minor Head Injury Issue 2, effective 2024-04-21 and due for revision 2029-02-21, was opened on 2026-07-12.',
+    superseded_check: 'No newer official DHA issue was identified.',
+    source_status: 'partial_exact_source_verified',
+    unresolved_source_gaps: ['Previous-record review and fixed one-to-two-day routine follow-up remain unsupported.', 'Concussion diagnosis, neurological findings, imaging decisions, analgesia, observation, and referral remain clinician-stated.', 'Qualified clinician review has not been completed.'],
+    section_relationships: {
+      'dha-minor-head-injury-i2-signs-assessment': 'Supports mapped mechanism, timing, symptoms, anticoagulant history, GCS, pupils, neurological, scalp, neck, vital, preset, and history fields.',
+      'dha-minor-head-injury-i2-red-flags': 'Supports mapped loss of consciousness, vomiting, seizure, headache, neurological deficit, anticoagulant, and assessed-negative fields.',
+      'dha-minor-head-injury-i2-investigations-referral': 'Supports mapped clinician-determined imaging, referral, escalation, and specialist-follow-up documentation.',
+      'dha-minor-head-injury-i2-management-observation': 'Supports mapped clinician-documented advice, observation, analgesia, return, worsening review, and arranged follow-up without fixed timing.',
+    },
+    support_groups: [
+      support('dha-minor-head-injury-issue2-2024', 'dha-minor-head-injury-i2-signs-assessment', 'The exact DHA signs and assessment sections support these head-injury, concussion-context, mechanism, timing, symptom, examination, preset, and history fields.', 'urgent-head-injury', ['workflow-presentation--chief-complaint', 'legacy-diagnosis-label--diagnosis', ...seq('matching-alias--alias-', 1, 12), ...seq('chip-symptoms--urgent-head-injury-symptoms-', 1, 8), ...seq('chip-exam-findings--urgent-head-injury-exam-findings-', 1, 6), ...seq('preset-prechecked-symptoms--prechecked-symptoms-', 1, 3), ...seq('preset-prechecked-exam-findings--prechecked-exam-findings-', 1, 3), 'history-draft--default-history-draft', 'examination-prompt--vitals-urgent-head-injury', 'examination-prompt--gcs-urgent-head-injury', 'examination-prompt--pupils-urgent-head-injury', 'examination-prompt--neuro-screen-urgent-head-injury', 'examination-prompt--scalp-urgent-head-injury', 'examination-prompt--neck-urgent-head-injury']),
+      support('dha-minor-head-injury-issue2-2024', 'dha-minor-head-injury-i2-red-flags', 'The exact DHA red-flag section supports these assessed negatives and loss-of-consciousness, vomiting, seizure, headache, neurological, and anticoagulant warning fields.', 'urgent-head-injury', [...seq('chip-relevant-negatives--urgent-head-injury-relevant-negatives-', 1, 5), ...seq('chip-red-flags--urgent-head-injury-red-flags-', 1, 6), ...seq('preset-prechecked-relevant-negatives--prechecked-relevant-negatives-', 1, 3)]),
+      support('dha-minor-head-injury-issue2-2024', 'dha-minor-head-injury-i2-investigations-referral', 'The exact DHA investigation and referral section supports clinician-determined CT or imaging review, escalation, and arranged neurosurgical follow-up.', 'urgent-head-injury', ['chip-investigations--urgent-head-injury-investigations-1', 'chip-investigations--urgent-head-injury-investigations-2', 'chip-plan-phrases--urgent-head-injury-plan-phrases-5', 'chip-follow-up--urgent-head-injury-follow-up-4', 'preset-prechecked-investigations--prechecked-investigations-1', 'preset-prechecked-investigations--prechecked-investigations-2', 'investigation-documentation-option--1-1-ct-urgent-head-injury']),
+      support('dha-minor-head-injury-issue2-2024', 'dha-minor-head-injury-i2-management-observation', 'The exact DHA management section supports these clinician-documented advice, observation, return, analgesia, worsening review, and arranged-follow-up fields.', 'urgent-head-injury', [...seq('chip-plan-phrases--urgent-head-injury-plan-phrases-', 1, 4), 'chip-follow-up--urgent-head-injury-follow-up-2', 'chip-follow-up--urgent-head-injury-follow-up-3', ...seq('preset-prechecked-plan-phrases--prechecked-plan-phrases-', 1, 3), 'preset-prechecked-follow-up--prechecked-follow-up-2', 'plan-documentation-option--1-1-head-advice-urgent-head-injury', 'plan-documentation-option--1-2-observation-urgent-head-injury', 'plan-documentation-option--2-1-return-prec-urgent-head-injury']),
+    ],
+  },
+]
+
+export default {
+  batch_id: 'batch-0076-0085',
+  sources,
+  workflows,
+  interruption_reason: 'The exact-source queue is checkpointed after workflows 0076–0085 so the next ten workflows can be researched without weakening item-level provenance. The next workflow is urgent-chest-pain.',
+}
