@@ -3,27 +3,387 @@
   "workflow_id": "uro-frequency-urgency",
   "presentation": "Frequency/urgency",
   "specialty": "Urology / Nephrology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae frequency urgency dysuria guideline UAE PDF",
+    "site:nice.org.uk/guidance/ng123 urinary urgency frequency initial assessment bladder training",
+    "site:nice.org.uk/guidance/ng123 urine dipstick culture referral haematuria"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "eb40136e90558c95163ae8dbb4dc2c44dea952aa503fe301693fe7bc7c2516b8"
+  "official_pages_opened": [
+    "https://dha.gov.ae/uploads/032024/05%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dysuria2024322795.pdf",
+    "https://www.nice.org.uk/guidance/ng123/chapter/recommendations"
+  ],
+  "exact_documents_opened": [
+    "dha-dysuria-issue2-2024",
+    "nice-urinary-incontinence-women-ng123-2019"
+  ],
+  "exact_sections_reviewed": [
+    "dha-dysuria-v2-history",
+    "dha-dysuria-v2-red-flags",
+    "nice-ng123-ui-initial-assessment",
+    "nice-ng123-ui-urine-residual-diary",
+    "nice-ng123-ui-referral",
+    "nice-ng123-ui-conservative"
+  ],
+  "candidate_sources_rejected": [
+    "patient overactive-bladder pages",
+    "medicine protocols",
+    "procedure guidance",
+    "automatic incontinence classification tools"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Medicine and procedure content was outside documentation scope.",
+    "The workflow must not classify or diagnose overactive bladder autonomously."
+  ],
+  "selected_primary_sources": [
+    "nice-urinary-incontinence-women-ng123-2019"
+  ],
+  "selected_supporting_sources": [
+    "dha-dysuria-issue2-2024"
+  ],
+  "population_applicability": "Partial: NICE NG123 applies to adult women with urinary incontinence or overactive-bladder symptoms, while this broad workflow has no age or sex filter; DHA dysuria has infection and complication qualifiers.",
+  "setting_applicability": "Partial: exact for selected assessment and discussion fields, not automatic diagnosis, treatment, medicine, procedure, or fixed follow-up.",
+  "UAE_applicability": "DHA is direct for Dubai telehealth urinary-history and red-flag documentation. NICE assessment and conservative-management pathways require UAE clinician review.",
+  "recency_verification": "The current DHA Issue 2 PDF and current NICE NG123 recommendations with March 2025 minor updates were reviewed on 2026-07-13.",
+  "superseded_check": "No newer DHA dysuria issue was identified and NICE NG123 remains current.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "uro-frequency-urgency--dha-dysuria-v2-history",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-history",
+      "direct_relationship": "Supports mapped dysuria and broad urinary-symptom history without inferring infection.",
+      "paraphrased_evidence_summary": "Supports onset, persistence, severity, duration, location, fever, rigors, nausea, vomiting, flank pain, medicine or procedure context, pregnancy and sexual context, trauma or irritants, haematuria, frequency, urgency, and voiding symptoms.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "uro-frequency-urgency--dha-dysuria-v2-red-flags",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-red-flags",
+      "direct_relationship": "Supports mapped fever and flank-pain negatives or warning context without automatic escalation.",
+      "paraphrased_evidence_summary": "Supports fever with flank pain or tenderness, vomiting, visible haematuria, pregnancy, diabetes, immunosuppression, and recurrence as prompts only, without automatic urgency or referral output.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "uro-frequency-urgency--nice-ng123-ui-initial-assessment",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "Supports mapped urgency, frequency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields in adult women.",
+      "paraphrased_evidence_summary": "Supports urgency-incontinence or overactive-bladder symptom context, relevant contributing factors, and clinician-performed pelvic-floor assessment in adult women.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "uro-frequency-urgency--nice-ng123-ui-urine-residual-diary",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "Supports mapped urinalysis and qualified culture documentation.",
+      "paraphrased_evidence_summary": "Supports urine dipstick, qualified culture, post-void residual, and bladder-diary documentation in adult women.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "uro-frequency-urgency--nice-ng123-ui-referral",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-referral",
+      "direct_relationship": "Supports mapped haematuria prompts and clinician-decided referral in qualified contexts.",
+      "paraphrased_evidence_summary": "Supports clinician-led referral documentation for qualified bladder, urethral, voiding, neurological, haematuria, or recurrent unexplained UTI contexts.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "uro-frequency-urgency--nice-ng123-ui-conservative",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "Supports mapped caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements.",
+      "paraphrased_evidence_summary": "Supports documenting caffeine or fluid discussion and bladder training only when discussed or arranged by the clinician for qualified adult women.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "The workflow does not encode adult female eligibility, incontinence classification, infection status, voiding dysfunction, recurrence, or referral qualifiers.",
+    "Urinary-retention negatives, symptom progression, glucose or HbA1c, blood pressure, previous records, generic plan, safety-netting, fixed intervals, PRN wording, and the combined history draft remain unsupported.",
+    "Diagnosis, medicine or procedure selection, referral urgency, and exact follow-up timing remain clinician responsibilities."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "32e9facde5b4742384b1ad786fd34b757937839ed4480df38224200665ba9fd2",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "uro-frequency-urgency--workflow-presentation--chief-complaint",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--legacy-diagnosis-label--diagnosis",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--matching-alias--alias-1",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--matching-alias--alias-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--matching-alias--alias-3",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--matching-alias--alias-4",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--matching-alias--alias-5",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-1",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-3",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-4",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-8",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-exam-findings--uro-frequency-urgency-exam-findings-3",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-initial-assessment",
+      "direct_relationship": "The exact adult-women initial-assessment section supports these frequency, urgency, nocturia, urge-incontinence, pelvic-floor, and clinician-performed examination fields with the population qualifier retained."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-5",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-history",
+      "direct_relationship": "The exact DHA urinary-history section supports dysuria review without inferring urinary infection."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-relevant-negatives--uro-frequency-urgency-relevant-negatives-1",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-confirmed fever and flank-pain fields as prompts only."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-relevant-negatives--uro-frequency-urgency-relevant-negatives-2",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-confirmed fever and flank-pain fields as prompts only."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-red-flags--uro-frequency-urgency-red-flags-1",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-confirmed fever and flank-pain fields as prompts only."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-confirmed fever and flank-pain fields as prompts only."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+      "source_id": "dha-dysuria-issue2-2024",
+      "source_section_id": "dha-dysuria-v2-red-flags",
+      "direct_relationship": "The exact DHA red-flag section supports these clinician-confirmed fever and flank-pain fields as prompts only."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-investigations--uro-frequency-urgency-investigations-1",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "The exact urine-testing section supports urinalysis and recommendation-qualified culture review without autonomous testing."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-investigations--uro-frequency-urgency-investigations-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "The exact urine-testing section supports urinalysis and recommendation-qualified culture review without autonomous testing."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "The exact urine-testing section supports urinalysis and recommendation-qualified culture review without autonomous testing."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "The exact urine-testing section supports urinalysis and recommendation-qualified culture review without autonomous testing."
+    },
+    {
+      "item_id": "uro-frequency-urgency--investigation-documentation-option--1-1-urinalysis",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "The exact urine-testing section supports urinalysis and recommendation-qualified culture review without autonomous testing."
+    },
+    {
+      "item_id": "uro-frequency-urgency--investigation-documentation-option--1-2-culture",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-urine-residual-diary",
+      "direct_relationship": "The exact urine-testing section supports urinalysis and recommendation-qualified culture review without autonomous testing."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-6",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-referral",
+      "direct_relationship": "The exact referral section supports haematuria prompts and clinician-decided specialist referral only in qualified adult-women contexts."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-red-flags--uro-frequency-urgency-red-flags-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-referral",
+      "direct_relationship": "The exact referral section supports haematuria prompts and clinician-decided specialist referral only in qualified adult-women contexts."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-4",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-referral",
+      "direct_relationship": "The exact referral section supports haematuria prompts and clinician-decided specialist referral only in qualified adult-women contexts."
+    },
+    {
+      "item_id": "uro-frequency-urgency--plan-documentation-option--2-2-uro-frequency-urgency-referral",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-referral",
+      "direct_relationship": "The exact referral section supports haematuria prompts and clinician-decided specialist referral only in qualified adult-women contexts."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-7",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "The exact conservative-management section supports these caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "The exact conservative-management section supports these caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-6",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "The exact conservative-management section supports these caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements."
+    },
+    {
+      "item_id": "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-7",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "The exact conservative-management section supports these caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements."
+    },
+    {
+      "item_id": "uro-frequency-urgency--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "The exact conservative-management section supports these caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements."
+    },
+    {
+      "item_id": "uro-frequency-urgency--plan-documentation-option--1-2-uro-frequency-urgency-lifestyle",
+      "source_id": "nice-urinary-incontinence-women-ng123-2019",
+      "source_section_id": "nice-ng123-ui-conservative",
+      "direct_relationship": "The exact conservative-management section supports these caffeine, fluid, and bladder-training fields only as clinician-documented discussions or arrangements."
+    }
+  ],
+  "supported_legacy_item_count": 39,
+  "unsupported_legacy_item_count": 32,
+  "unsupported_legacy_item_ids": [
+    "uro-frequency-urgency--chip-exam-findings--uro-frequency-urgency-exam-findings-1",
+    "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-1",
+    "uro-frequency-urgency--chip-follow-up--uro-frequency-urgency-follow-up-1",
+    "uro-frequency-urgency--chip-exam-findings--uro-frequency-urgency-exam-findings-2",
+    "uro-frequency-urgency--chip-follow-up--uro-frequency-urgency-follow-up-2",
+    "uro-frequency-urgency--chip-relevant-negatives--uro-frequency-urgency-relevant-negatives-3",
+    "uro-frequency-urgency--chip-red-flags--uro-frequency-urgency-red-flags-3",
+    "uro-frequency-urgency--chip-investigations--uro-frequency-urgency-investigations-3",
+    "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-3",
+    "uro-frequency-urgency--chip-follow-up--uro-frequency-urgency-follow-up-3",
+    "uro-frequency-urgency--chip-investigations--uro-frequency-urgency-investigations-4",
+    "uro-frequency-urgency--chip-follow-up--uro-frequency-urgency-follow-up-4",
+    "uro-frequency-urgency--chip-plan-phrases--uro-frequency-urgency-plan-phrases-5",
+    "uro-frequency-urgency--chip-symptoms--uro-frequency-urgency-symptoms-9",
+    "uro-frequency-urgency--preset-default-duration-options--default-duration-options-1",
+    "uro-frequency-urgency--preset-default-duration-options--default-duration-options-2",
+    "uro-frequency-urgency--preset-default-duration-options--default-duration-options-3",
+    "uro-frequency-urgency--preset-default-duration-options--default-duration-options-4",
+    "uro-frequency-urgency--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+    "uro-frequency-urgency--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+    "uro-frequency-urgency--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+    "uro-frequency-urgency--preset-prechecked-investigations--prechecked-investigations-3",
+    "uro-frequency-urgency--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "uro-frequency-urgency--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+    "uro-frequency-urgency--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "uro-frequency-urgency--preset-prechecked-follow-up--prechecked-follow-up-2",
+    "uro-frequency-urgency--history-draft--default-history-draft",
+    "uro-frequency-urgency--examination-prompt--abdominal",
+    "uro-frequency-urgency--examination-prompt--bp",
+    "uro-frequency-urgency--investigation-documentation-option--2-1-glucose",
+    "uro-frequency-urgency--plan-documentation-option--1-1-uro-frequency-urgency-clinician-plan",
+    "uro-frequency-urgency--plan-documentation-option--2-1-uro-frequency-urgency-follow-up"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
