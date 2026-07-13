@@ -3,27 +3,427 @@
   "workflow_id": "endo-hypoglycemia-review",
   "presentation": "Hypoglycemia review",
   "specialty": "Endocrinology",
-  "progress_state": "not_started",
-  "research_started_at": null,
-  "research_completed_at": null,
-  "search_queries_used": [],
-  "official_pages_opened": [],
-  "exact_documents_opened": [],
-  "exact_sections_reviewed": [],
-  "candidate_sources_rejected": [],
-  "rejection_reasons": [],
-  "selected_primary_sources": [],
-  "selected_supporting_sources": [],
-  "population_applicability": "not_assessed",
-  "setting_applicability": "not_assessed",
-  "UAE_applicability": "not_assessed",
-  "recency_verification": "not_assessed",
-  "superseded_check": "not_assessed",
-  "evidence_items": [],
-  "source_status": "research_interrupted",
-  "unresolved_source_gaps": [
-    "Exact authoritative workflow research has not started."
+  "progress_state": "clinical_review_required",
+  "research_started_at": "2026-07-11T00:00:00+04:00",
+  "research_completed_at": "2026-07-11T00:00:00+04:00",
+  "search_queries_used": [
+    "site:dha.gov.ae hypoglycaemia diabetes telehealth guideline UAE PDF",
+    "site:diabetesjournals.org Standards of Care 2026 hypoglycemia recommendations awareness severe event",
+    "site:diabetesjournals.org 2026 hypoglycemia risk assessment driving glucagon education"
   ],
-  "researcher_type": "codex_source_first_checkpoint",
-  "evidence_hash": "942910da15121e2055d1b50783a26dfec43535039971e1ec96675bb5045650bd"
+  "official_pages_opened": [
+    "https://dha.gov.ae/uploads/032024/30%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Type%202%20Diabetes2024322535.pdf",
+    "https://diabetesjournals.org/care/article/49/Supplement_1/S132/163927/6-Glycemic-Goals-Hypoglycemia-and-Hyperglycemic"
+  ],
+  "exact_documents_opened": [
+    "dha-telehealth-type2-diabetes-v2-2024",
+    "ada-standards-care-hypoglycemia-2026"
+  ],
+  "exact_sections_reviewed": [
+    "dha-type2-diabetes-v2-annual-review",
+    "dha-type2-diabetes-v2-red-flags",
+    "ada-soc-2026-hypoglycemia-recommendations",
+    "ada-soc-2026-hypoglycemia-definitions",
+    "ada-soc-2026-hypoglycemia-risk-assessment",
+    "ada-soc-2026-hypoglycemia-prevention-context"
+  ],
+  "candidate_sources_rejected": [
+    "patient hypoglycaemia pages",
+    "medicine dose or correction protocols",
+    "non-official diabetes summaries"
+  ],
+  "rejection_reasons": [
+    "Patient pages are not clinician guidance.",
+    "Dose and correction instructions were prohibited.",
+    "Non-official summaries were not accepted as exact evidence."
+  ],
+  "selected_primary_sources": [
+    "ada-standards-care-hypoglycemia-2026"
+  ],
+  "selected_supporting_sources": [
+    "dha-telehealth-type2-diabetes-v2-2024"
+  ],
+  "population_applicability": "Partial: ADA recommendations cover people with diabetes broadly, while the DHA source is adult type 2 diabetes and the legacy workflow has no diabetes-type or age restriction.",
+  "setting_applicability": "Partial: exact for event review and clinician-led prevention documentation, not emergency treatment, medicine dosing, or automatic management.",
+  "UAE_applicability": "The DHA adult telehealth diabetes source provides local glucose-awareness, home-monitoring, HbA1c, and profound-hypoglycaemia context; ADA details require UAE clinician review.",
+  "recency_verification": "The official DHA issue 2 PDF and official 2026 ADA Standards section were reviewed on 2026-07-13.",
+  "superseded_check": "DHA issue 2 remains within its stated revision cycle; ADA 2026 is current for the active research date.",
+  "evidence_items": [
+    {
+      "evidence_item_id": "endo-hypoglycemia-review--dha-type2-diabetes-v2-annual-review",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "Supports mapped adult type 2 diabetes home-glucose, HbA1c, and hypoglycaemia-awareness review fields with scope qualifiers retained.",
+      "paraphrased_evidence_summary": "Specifies hypoglycaemia awareness, home glucose review, BP and BMI, renal testing, urine ACR, HbA1c, cholesterol, podiatry, and retinal review.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-hypoglycemia-review--dha-type2-diabetes-v2-red-flags",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-red-flags",
+      "direct_relationship": "Reviewed for profound hypoglycaemia context; no emergency conclusion or automatic referral item is mapped.",
+      "paraphrased_evidence_summary": "Lists metabolic decompensation, DKA or hyperosmolar state, infected foot ulcer, profound hypoglycaemia, and rapidly deteriorating complications.",
+      "content_mapping_status": "reviewed_not_mapped_to_legacy_content"
+    },
+    {
+      "evidence_item_id": "endo-hypoglycemia-review--ada-soc-2026-hypoglycemia-recommendations",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "Supports mapped clinician-led treatment-plan review, follow-up, education, and glucagon-discussion documentation without treatment instructions.",
+      "paraphrased_evidence_summary": "Supports reviewing hypoglycaemia history at encounters, awareness, high-risk or severe events, clinician-led treatment-plan reevaluation, structured education, and glucagon discussion without inserting treatment instructions.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-hypoglycemia-review--ada-soc-2026-hypoglycemia-definitions",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "Supports mapped event identity, glucose-value, severe-assistance, loss-of-consciousness, and seizure documentation.",
+      "paraphrased_evidence_summary": "Defines clinically relevant glucose and severe-event context, including events requiring assistance and possible loss of consciousness or seizure, without diagnosing an individual event.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-hypoglycemia-review--ada-soc-2026-hypoglycemia-risk-assessment",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "Supports mapped episode frequency, timing, symptoms, medication, meal or activity, awareness, glucose, and history-draft documentation.",
+      "paraphrased_evidence_summary": "Supports documenting event frequency, severity, precipitants, symptoms, treatment approach, glucose readings, medication context, awareness, and risk factors.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    },
+    {
+      "evidence_item_id": "endo-hypoglycemia-review--ada-soc-2026-hypoglycemia-prevention-context",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-prevention-context",
+      "direct_relationship": "Supports mapped driving-safety and monitoring context without generating advice.",
+      "paraphrased_evidence_summary": "Supports meal, activity, illness, monitoring, driving-safety, education, and glucagon context as clinician-reviewed documentation only.",
+      "content_mapping_status": "mapped_to_explicit_legacy_items_pending_clinician_review"
+    }
+  ],
+  "source_status": "partial_exact_source_verified",
+  "unresolved_source_gaps": [
+    "The legacy workflow does not encode diabetes type, age, pregnancy, medicine class, or all high-risk qualifiers.",
+    "Alcohol context, broad vitals, general appearance, weight, blood pressure, generic clinician plan, safety-net wording, fixed follow-up intervals, and PRN wording remain unsupported.",
+    "Diagnosis, emergency response, glucose correction, treatment, medicine selection or dose, driving restriction, and referral remain clinician responsibilities."
+  ],
+  "researcher_type": "codex_exact_document_section_review",
+  "evidence_hash": "7b1545ed86c6e0b451c489a208b4e3f68954f226ba3a4f026ab23641c739f84b",
+  "legacy_item_support_mappings": [
+    {
+      "item_id": "endo-hypoglycemia-review--workflow-presentation--chief-complaint",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--legacy-diagnosis-label--diagnosis",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--matching-alias--alias-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--matching-alias--alias-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--matching-alias--alias-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--matching-alias--alias-4",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-relevant-negatives--endo-hypoglycemia-review-relevant-negatives-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-relevant-negatives--endo-hypoglycemia-review-relevant-negatives-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-relevant-negatives--endo-hypoglycemia-review-relevant-negatives-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-exam-findings--endo-hypoglycemia-review-exam-findings-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-symptoms--prechecked-symptoms-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-relevant-negatives--prechecked-relevant-negatives-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-exam-findings--prechecked-exam-findings-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--examination-prompt--glucose",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-definitions",
+      "direct_relationship": "The exact definitions section supports these hypoglycaemia event, glucose-value, severe-assistance, loss-of-consciousness, and seizure fields without diagnosing an individual event."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-4",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-5",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-6",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-7",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-8",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-11",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-exam-findings--endo-hypoglycemia-review-exam-findings-4",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-investigations--endo-hypoglycemia-review-investigations-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-investigations--endo-hypoglycemia-review-investigations-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-symptoms--prechecked-symptoms-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-symptoms--prechecked-symptoms-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-investigations--prechecked-investigations-1",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-investigations--prechecked-investigations-3",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--history-draft--default-history-draft",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--investigation-documentation-option--1-2-glucose-log",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--investigation-documentation-option--1-3-medication-list",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-risk-assessment",
+      "direct_relationship": "The exact risk-assessment section supports these event-frequency, timing, symptoms, glucose, medication, meal or activity, awareness, log, medicine-list, and combined-history fields."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-9",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-prevention-context",
+      "direct_relationship": "The exact prevention section supports these driving-safety and glucose-monitoring fields as reviewed context only."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-4",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-prevention-context",
+      "direct_relationship": "The exact prevention section supports these driving-safety and glucose-monitoring fields as reviewed context only."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-5",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-6",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-7",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-2",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--plan-documentation-option--2-1-endo-hypoglycemia-review-medication-adjustment",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--plan-documentation-option--3-1-endo-hypoglycemia-review-follow-up",
+      "source_id": "ada-standards-care-hypoglycemia-2026",
+      "source_section_id": "ada-soc-2026-hypoglycemia-recommendations",
+      "direct_relationship": "The exact recommendations support clinician-decided plan review, education, glucagon discussion, and clinician-arranged follow-up without a dose or autonomous recommendation."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--chip-investigations--endo-hypoglycemia-review-investigations-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact adult DHA diabetes review section supports HbA1c review in the qualified adult type 2 diabetes context."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--preset-prechecked-investigations--prechecked-investigations-2",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact adult DHA diabetes review section supports HbA1c review in the qualified adult type 2 diabetes context."
+    },
+    {
+      "item_id": "endo-hypoglycemia-review--investigation-documentation-option--1-1-hba1c",
+      "source_id": "dha-telehealth-type2-diabetes-v2-2024",
+      "source_section_id": "dha-type2-diabetes-v2-annual-review",
+      "direct_relationship": "The exact adult DHA diabetes review section supports HbA1c review in the qualified adult type 2 diabetes context."
+    }
+  ],
+  "supported_legacy_item_count": 47,
+  "unsupported_legacy_item_count": 25,
+  "unsupported_legacy_item_ids": [
+    "endo-hypoglycemia-review--chip-exam-findings--endo-hypoglycemia-review-exam-findings-1",
+    "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-1",
+    "endo-hypoglycemia-review--chip-follow-up--endo-hypoglycemia-review-follow-up-1",
+    "endo-hypoglycemia-review--chip-follow-up--endo-hypoglycemia-review-follow-up-2",
+    "endo-hypoglycemia-review--chip-exam-findings--endo-hypoglycemia-review-exam-findings-3",
+    "endo-hypoglycemia-review--chip-plan-phrases--endo-hypoglycemia-review-plan-phrases-3",
+    "endo-hypoglycemia-review--chip-follow-up--endo-hypoglycemia-review-follow-up-3",
+    "endo-hypoglycemia-review--chip-follow-up--endo-hypoglycemia-review-follow-up-4",
+    "endo-hypoglycemia-review--chip-exam-findings--endo-hypoglycemia-review-exam-findings-5",
+    "endo-hypoglycemia-review--chip-follow-up--endo-hypoglycemia-review-follow-up-6",
+    "endo-hypoglycemia-review--chip-symptoms--endo-hypoglycemia-review-symptoms-10",
+    "endo-hypoglycemia-review--preset-default-duration-options--default-duration-options-1",
+    "endo-hypoglycemia-review--preset-default-duration-options--default-duration-options-2",
+    "endo-hypoglycemia-review--preset-default-duration-options--default-duration-options-3",
+    "endo-hypoglycemia-review--preset-default-duration-options--default-duration-options-4",
+    "endo-hypoglycemia-review--preset-prechecked-exam-findings--prechecked-exam-findings-1",
+    "endo-hypoglycemia-review--preset-prechecked-exam-findings--prechecked-exam-findings-3",
+    "endo-hypoglycemia-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-1",
+    "endo-hypoglycemia-review--preset-prechecked-plan-phrases--prechecked-plan-phrases-3",
+    "endo-hypoglycemia-review--preset-prechecked-follow-up--prechecked-follow-up-1",
+    "endo-hypoglycemia-review--preset-prechecked-follow-up--prechecked-follow-up-2",
+    "endo-hypoglycemia-review--examination-prompt--bp",
+    "endo-hypoglycemia-review--examination-prompt--appearance",
+    "endo-hypoglycemia-review--plan-documentation-option--1-1-endo-hypoglycemia-review-clinician-plan",
+    "endo-hypoglycemia-review--plan-documentation-option--1-2-endo-hypoglycemia-review-safety-netting"
+  ],
+  "technical_audit": {
+    "status": "PASS_WITH_CLINICAL_BLOCKERS",
+    "provenance_complete": true,
+    "generic_generated_items": 0,
+    "source_gap_marked_as_pass": false,
+    "qualified_clinician_review_required": true
+  }
 }
