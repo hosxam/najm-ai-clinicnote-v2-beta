@@ -136,7 +136,7 @@ const workflows = [
     workflow_id: 'geri-activities-of-daily-living-documentation',
     evidence_groups: [
       { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-identification-function-frailty', relationship: 'The exact section supports documenting difficulty with day-to-day activities, mobility, falls, frailty context and support needs without auto-scoring function or frailty.', exact_texts: [...geriHistory, ...geriExam, 'Falls/cognition/function screen results documented if completed'] },
-      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact section supports goals, independence, carer involvement, reviewed support records and clinician-entered planning without generating services or treatment.', exact_texts: ['patient concerns or goals documented if discussed', 'Caregiver or care-home records reviewed if available', ...entPlan] },
+      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact section supports independence, carer involvement, reviewed support records and clinician-entered planning without generating services or treatment.', exact_texts: ['Caregiver or care-home records reviewed if available', ...entPlan] },
     ],
     search_queries_used: ['site:nice.org.uk NG56 day-to-day activities independence frailty falls multimorbidity', 'site:who.int ICOPE functional ability older people assessment'],
     candidate_sources_rejected: ['automatic ADL score or dependency classification', 'automatic care package, equipment, therapy, or referral'],
@@ -159,7 +159,7 @@ const workflows = [
   evidence({
     workflow_id: 'geri-caregiver-support-review',
     evidence_groups: [
-      { source_id: 'nice-dementia-ng97-2025', source_section_id: 'nice-ng97-driving-carer-support', relationship: 'The exact dementia carer-support section supports interval caregiver needs, physical and mental wellbeing, education, support access, preferences and carer assessment without assuming dementia or prescribing services.', exact_texts: [...followupHistory, 'Caregiver or care-home records reviewed if available', 'Medication/support context documented only if assessed'] },
+      { source_id: 'nice-dementia-ng97-2025', source_section_id: 'nice-ng97-driving-carer-support', relationship: 'The exact dementia carer-support section supports interval caregiver needs, physical and mental wellbeing, education, support access, preferences and carer assessment without assuming dementia or prescribing services.', exact_texts: [...followupHistory, 'Caregiver or care-home records reviewed if available'] },
       { source_id: 'nice-dementia-ng97-2025', source_section_id: 'nice-ng97-monitoring-support', relationship: 'The exact monitoring section supports documenting emerging support needs, care coordination, clinician-entered plans, follow-up and questions.', exact_texts: [...geriExam, 'Falls/cognition/function screen results documented if completed', ...entPlan] },
     ],
     search_queries_used: ['site:nice.org.uk NG97 carers support needs assessment dementia recommendations', 'site:nice.org.uk supporting adult carers NG150 assessment support'],
@@ -184,7 +184,7 @@ const workflows = [
     workflow_id: 'geri-comprehensive-geriatric-review',
     evidence_groups: [
       { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-identification-function-frailty', relationship: 'The exact multimorbidity section supports documenting function, frailty, falls, sensory impairment, long-term conditions, medicines and service burden without claiming a completed comprehensive geriatric assessment.', exact_texts: [...followupHistory, ...geriExam, ...geriRecords] },
-      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact priorities section supports personal goals, values, independence, social activity, carer involvement, clinician-entered plans and follow-up.', exact_texts: ['patient concerns or goals documented if discussed', 'Caregiver or care-home records reviewed if available', ...entPlan] },
+      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact priorities section supports values, independence, social activity, carer involvement, clinician-entered plans and follow-up.', exact_texts: [...entPlan] },
     ],
     search_queries_used: ['site:nice.org.uk NG56 multimorbidity functional frailty medicines goals carers', 'site:who.int comprehensive geriatric assessment older people integrated care'],
     candidate_sources_rejected: ['generic workflow labelled as a completed comprehensive geriatric assessment', 'automatic frailty score, care plan, medicine change, equipment, or referral'],

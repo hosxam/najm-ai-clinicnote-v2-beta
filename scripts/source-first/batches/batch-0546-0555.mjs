@@ -74,7 +74,7 @@ const workflows = [
     workflow_id: 'geri-dementia-care-planning-documentation',
     evidence_groups: [
       { source_id: 'nice-dementia-ng97-2025', source_section_id: 'nice-ng97-monitoring-support', relationship: 'The exact monitoring and coordination section supports needs assessment, family or carer involvement, emerging needs, named coordination, support planning and reviewed records without creating a care plan.', exact_texts: [...history, ...exam, ...records] },
-      { source_id: 'nice-dementia-ng97-2025', source_section_id: 'nice-ng97-driving-carer-support', relationship: 'The exact section supports clinician-documented driving and carer-support discussions plus questions without generating legal or service advice.', exact_texts: ['patient concerns or goals documented if discussed', 'Caregiver or care-home records reviewed if available', ...plan] },
+      { source_id: 'nice-dementia-ng97-2025', source_section_id: 'nice-ng97-driving-carer-support', relationship: 'The exact section supports clinician-documented driving and carer-support discussions plus questions without generating legal or service advice.', exact_texts: [...plan] },
     ],
     search_queries_used: ['site:nice.org.uk NG97 dementia care coordination emerging needs carer support plan', 'site:nice.org.uk NG97 dementia advance care planning'],
     candidate_sources_rejected: ['dementia diagnosis or capacity inferred', 'automatic services, legal advice, driving restriction, medicine, or placement decision'],
@@ -122,7 +122,7 @@ const workflows = [
     workflow_id: 'geri-frailty-review-documentation',
     evidence_groups: [
       { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-identification-function-frailty', relationship: 'The exact section supports documenting gait, self-reported health, function, falls and clinician-completed frailty assessment while cautioning against performance tools during acute illness.', exact_texts: [...followup, ...exam, 'Falls/cognition/function screen results documented if completed'] },
-      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact section supports personal priorities, treatment burden, carer involvement and reviewed support records.', exact_texts: ['patient concerns or goals documented if discussed', 'Caregiver or care-home records reviewed if available', 'Medication list or reconciliation documentation reviewed if available'] },
+      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact section supports treatment burden, carer involvement and reviewed support records.', exact_texts: ['Caregiver or care-home records reviewed if available', 'Medication list or reconciliation documentation reviewed if available'] },
     ],
     search_queries_used: ['site:nice.org.uk NG56 assess frailty gait self reported health acute illness', 'site:nice.org.uk NG56 multimorbidity goals treatment burden carers'],
     candidate_sources_rejected: ['automatic frailty score or category', 'frailty assessment during acute illness treated as valid'],
@@ -134,7 +134,7 @@ const workflows = [
     workflow_id: 'geri-functional-status-review',
     evidence_groups: [
       { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-identification-function-frailty', relationship: 'The exact section supports interval day-to-day activity difficulty, gait, falls, function and support-service burden without assigning dependency.', exact_texts: [...followup, ...exam, 'Falls/cognition/function screen results documented if completed'] },
-      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact section supports goals, independence, work, social and family participation, carer involvement and clinician-entered review documentation.', exact_texts: ['patient concerns or goals documented if discussed', 'Caregiver or care-home records reviewed if available', ...plan] },
+      { source_id: 'nice-multimorbidity-ng56-2016', source_section_id: 'nice-ng56-priorities-goals', relationship: 'The exact section supports independence, work, social and family participation, carer involvement and clinician-entered review documentation.', exact_texts: ['Caregiver or care-home records reviewed if available', ...plan] },
     ],
     search_queries_used: ['site:nice.org.uk NG56 day to day activities independence function goals carers', 'site:who.int older people functional ability guidance'],
     candidate_sources_rejected: ['automatic functional score or dependency grade', 'automatic equipment, therapy, care package, or referral'],
@@ -158,7 +158,7 @@ const workflows = [
     workflow_id: 'geri-hearing-impairment-geriatric-review',
     evidence_groups: [
       { source_id: 'nice-hearing-loss-adults-ng98-2023', source_section_id: 'nice-hearing-ng98-audiology-assessment', relationship: 'The exact adult hearing section supports interval hearing and communication needs, psychosocial and activity impact, otoscopy, audiometry, tympanometry, personalised discussion and reviewed outcomes without recommending a device.', exact_texts: [...followup, 'patient concerns or goals documented if discussed', 'Caregiver or care-home records reviewed if available', 'Falls/cognition/function screen results documented if completed'] },
-      { source_id: 'nice-hearing-loss-adults-ng98-2023', source_section_id: 'nice-hearing-ng98-specific-signs-referral', relationship: 'The exact section supports associated symptoms, relevant negatives, clinician-performed assessment and concern documentation without generating referral.', exact_texts: ['associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', ...exam, 'clinician concern requiring escalation documented if present'] },
+      { source_id: 'nice-hearing-loss-adults-ng98-2023', source_section_id: 'nice-hearing-ng98-specific-signs-referral', relationship: 'The exact section supports clinician-performed assessment and concern documentation without generating referral.', exact_texts: [...exam, 'clinician concern requiring escalation documented if present'] },
       { source_id: 'nice-hearing-loss-adults-ng98-2023', source_section_id: 'nice-hearing-ng98-audiology-assessment', relationship: 'The exact assessment section supports clinician-entered plan, follow-up and questions based on reviewed hearing needs and results.', exact_texts: plan },
     ],
     search_queries_used: ['site:nice.org.uk NG98 hearing loss adults communication needs psychosocial impact audiology follow up', 'site:entnet.org age related hearing loss 2024 guideline older adults'],

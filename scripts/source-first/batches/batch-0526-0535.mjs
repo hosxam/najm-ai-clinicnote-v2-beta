@@ -118,7 +118,6 @@ const workflows = [
     workflow_id: 'ent-throat-clearing',
     evidence_groups: [
       { source_id: 'bts-chronic-cough-adults-2023', source_section_id: 'bts-cc-2023-history-examination', relationship: 'The exact adult chronic-cough section supports duration, throat-clearing or cough context, triggers, smoking, medicine, rhinitis, reflux, functional impact and upper-airway examination without assigning a cause.', exact_texts: [...commonHistoryTexts, 'Ear/nose/throat examination documented only if assessed', 'General appearance documented only if assessed'] },
-      { source_id: 'bsaci-rhinitis-2017', source_section_id: 'bsaci-rhinitis-2017-history-red-flags', relationship: 'The exact rhinitis history section supports associated nasal symptoms, obstruction, postnasal symptoms, sleep and trigger context without diagnosing rhinitis.', exact_texts: ['associated symptoms reviewed if relevant', 'relevant negatives documented if assessed'] },
       { source_id: 'bts-chronic-cough-adults-2023', source_section_id: 'bts-cc-2023-investigation-referral', relationship: 'The exact investigation context supports recording reviewed specialist information and a clinician-entered plan or follow-up without ordering tests or treatment.', exact_texts: ['Imaging or specialist report reviewed if already available', ...commonPlanTexts] },
     ],
     search_queries_used: ['site:brit-thoracic.org.uk chronic cough adults throat clearing upper airway history', 'site:bsaci.org rhinitis throat clearing postnasal drip guideline'],
@@ -131,7 +130,7 @@ const workflows = [
     workflow_id: 'ent-tinnitus-impact-review',
     evidence_groups: [
       { source_id: 'nice-tinnitus-ng155-2020', source_section_id: 'nice-tinnitus-ng155-support-history', relationship: 'The exact section supports interval tinnitus experience, duration, concerns, hearing and noise context, sleep impact, preferences and discussion without asserting a cause.', exact_texts: [...commonHistoryTexts, 'change since last review documented'] },
-      { source_id: 'nice-tinnitus-ng155-2020', source_section_id: 'nice-tinnitus-ng155-impact', relationship: 'The exact impact section supports documenting quality-of-life, sleep, concentration, mental-health and school or work impact plus clinician-performed assessment.', exact_texts: ['severity/impact on function documented if discussed', 'General appearance documented only if assessed'] },
+      { source_id: 'nice-tinnitus-ng155-2020', source_section_id: 'nice-tinnitus-ng155-impact', relationship: 'The exact impact section supports documenting quality-of-life, sleep, concentration, mental-health and school or work impact plus clinician-performed assessment.', exact_texts: ['General appearance documented only if assessed'] },
       { source_id: 'nice-tinnitus-ng155-2020', source_section_id: 'nice-tinnitus-ng155-investigations', relationship: 'The exact investigations section supports reviewing existing audiology, tympanometry, imaging or specialist results without ordering tests.', exact_texts: ['Audiology or tympanometry results reviewed if available', 'Imaging or specialist report reviewed if already available'] },
       { source_id: 'nice-tinnitus-ng155-2020', source_section_id: 'nice-tinnitus-ng155-support-history', relationship: 'The support section allows recording a jointly documented management discussion, follow-up, and questions without creating advice.', exact_texts: commonPlanTexts },
     ],
@@ -170,7 +169,7 @@ const workflows = [
     workflow_id: 'ent-tonsil-size-documentation',
     evidence_groups: [
       { source_id: 'aao-hns-tonsillectomy-children-2019', source_section_id: 'aao-tonsillectomy-2019-sleep-comorbidity', relationship: 'The exact paediatric section supports documenting caregiver-reported sleep symptoms, functional or behavioural impact, relevant negatives, ENT examination and comorbidity context without diagnosing tonsillar hypertrophy or recommending surgery.', exact_texts: [...commonHistoryTexts, 'Ear/nose/throat examination documented only if assessed', 'General appearance documented only if assessed'] },
-      { source_id: 'aao-hns-tonsillectomy-children-2019', source_section_id: 'aao-tonsillectomy-2019-recurrent-assessment', relationship: 'The exact recurrent-infection section supports associated infection history and clinician-entered review documentation without applying a tonsillectomy threshold.', exact_texts: ['associated symptoms reviewed if relevant', ...commonPlanTexts] },
+      { source_id: 'aao-hns-tonsillectomy-children-2019', source_section_id: 'aao-tonsillectomy-2019-recurrent-assessment', relationship: 'The exact recurrent-infection section supports clinician-entered review documentation without applying a tonsillectomy threshold.', exact_texts: commonPlanTexts },
     ],
     search_queries_used: ['site:entnet.org tonsillectomy children tonsillar hypertrophy sleep-disordered breathing comorbidities', 'site:entnet.org tonsil size documentation guideline'],
     candidate_sources_rejected: ['tonsil size treated as sleep apnoea or surgical indication', 'paediatric evidence applied automatically to adults'],
