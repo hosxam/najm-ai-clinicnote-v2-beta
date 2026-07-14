@@ -202,6 +202,105 @@ export const SOURCE_META = {
   'bad-hidradenitis-suppurativa-guideline-2018': {
     url: 'https://onlinelibrary.wiley.com/doi/10.1111/bjd.17537',
   },
+  'dha-telehealth-abdominal-pain-adults-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/11%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Abdominal%20Pain%20in%20Adults2024345246.pdf',
+  },
+  'rcuk-anaphylaxis-2021': {
+    url: 'https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf',
+  },
+  'dha-telehealth-asthma-v2-2024': {
+    url: 'https://www.dha.gov.ae/uploads/032024/38%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Asthma2024332757.pdf',
+  },
+  'dha-acute-low-back-pain-issue2-2024': {
+    url: 'https://www.dha.gov.ae/uploads/032024/15%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Acute%20Low%20Back%20Pain2024359368.pdf',
+  },
+  'dha-burns-issue2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/35%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Burns2024329667.pdf',
+  },
+  'dha-telehealth-chest-pain-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/45%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Chest%20Pain2024324241.pdf',
+  },
+  'nice-copd-ng115-2025': {
+    url: 'https://www.nice.org.uk/guidance/ng115/chapter/recommendations',
+  },
+  'dha-telehealth-gastroenteritis-adults-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/41%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Gastroenteritis%20in%20Adults2024316937.pdf',
+  },
+  'rcem-discharge-gp-2022': {
+    url: 'https://rcem.ac.uk/wp-content/uploads/2022/10/Discharge_to_General_Practice_Updated_Oct22.pdf',
+  },
+  'dha-telehealth-dizziness-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/13%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dizziness2024312187.pdf',
+  },
+  'who-ipv-clinical-handbook-2014': {
+    url: 'https://www.who.int/publications/i/item/WHO-RHR-14.26',
+  },
+  'rcem-domestic-abuse-2015': {
+    url: 'https://rcem.ac.uk/wp-content/uploads/2021/10/Management_of_Domestic_Abuse_March2015.pdf',
+  },
+  'college-optometrists-corneal-abrasion-v15-2025': {
+    url: 'https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/cornealabrasion',
+  },
+  'college-optometrists-eye-referral-annex4-current': {
+    url: 'https://www.college-optometrists.org/clinical-guidance/guidance/guidance-annexes/annex-4-urgency-of-referrals-table',
+  },
+  'nice-falls-ng249-2025': {
+    url: 'https://www.nice.org.uk/guidance/ng249/chapter/Recommendations',
+  },
+  'nice-delirium-cg103-2023': {
+    url: 'https://www.nice.org.uk/guidance/cg103/chapter/Recommendations',
+  },
+  'who-icrc-basic-emergency-care-2018': {
+    url: 'https://hlh.who.int/docs/librariesprovider4/clinical-care/who-icrc-basic-emergency-care.pdf',
+  },
+  'nice-suspected-sepsis-ng253-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng253/chapter/Recommendations',
+  },
+  'nice-fractures-noncomplex-ng38-2025': {
+    url: 'https://www.nice.org.uk/guidance/ng38/chapter/Recommendations',
+  },
+  'dha-telehealth-headache-adults-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/19%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Headache%20in%20Adults2024344630.pdf',
+  },
+  'rcem-investigation-results-ed-2023': {
+    url: 'https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf',
+  },
+  'dha-minor-head-injury-issue2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/31%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Minor%20Head%20Injury2024335820.pdf',
+  },
+  'rcem-mental-health-toolkit-2023': {
+    url: 'https://rcem.ac.uk/wp-content/uploads/2023/04/Mental_Health_Toolkit_April_2023_v1.pdf',
+  },
+  'nice-self-harm-ng225-2022': {
+    url: 'https://www.nice.org.uk/guidance/ng225/chapter/Recommendations',
+  },
+  'gmc-decision-making-consent-2024': {
+    url: 'https://www.gmc-uk.org/professional-standards/the-professional-standards/decision-making-and-consent',
+  },
+  'dha-telehealth-fever-children-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/17%20-%20DHA%20Telehealth%20Clinical%20guidelines%20for%20Virtual%20Management%20of%20Fever%20in%20Children2024314793.pdf',
+  },
+  'nice-child-abuse-neglect-ng76-2017': {
+    url: 'https://www.nice.org.uk/guidance/ng76/chapter/Recommendations',
+  },
+  'rcog-chronic-pelvic-pain-gtg41-2012': {
+    url: 'https://www.rcog.org.uk/media/muab2gj2/gtg_41.pdf',
+  },
+  'nice-ectopic-miscarriage-ng126-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng126',
+  },
+  'rcem-procedural-sedation-ed-2022': {
+    url: 'https://rcem.ac.uk/wp-content/uploads/2022/08/RCEM_BPC_Procedural_Sedation_Final_Aug_22.pdf',
+  },
+  'rcem-invasive-procedures-ed-2023': {
+    url: 'https://rcem.ac.uk/wp-content/uploads/2023/10/RCEM_Best_Practice_Invasive_Procedures_in_the_Emergency_Department.pdf',
+  },
+  'nice-renal-ureteric-stones-ng118-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng118/chapter/Recommendations',
+  },
+  'nice-epilepsies-ng217-2025': {
+    url: 'https://www.nice.org.uk/guidance/ng217',
+  },
 }
 
 function unique(values) {
