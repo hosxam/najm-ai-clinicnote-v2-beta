@@ -151,6 +151,48 @@ export const SOURCE_META = {
   'nice-acne-vulgaris-ng198-2026': {
     url: 'https://www.nice.org.uk/guidance/ng198/chapter/recommendations',
   },
+  'jsw-keloid-hypertrophic-consensus-2018': {
+    url: 'https://link.springer.com/article/10.1186/s41038-019-0175-y',
+  },
+  'nice-impetigo-ng153-2020': {
+    url: 'https://www.nice.org.uk/guidance/ng153/chapter/recommendations',
+  },
+  'nice-insect-bites-ng182-2020': {
+    url: 'https://www.nice.org.uk/guidance/ng182/chapter/recommendations',
+  },
+  'nice-leg-ulcer-infection-ng152-2020': {
+    url: 'https://www.nice.org.uk/guidance/ng152/chapter/recommendations',
+  },
+  'nice-drug-allergy-cg183-2014': {
+    url: 'https://www.nice.org.uk/guidance/cg183/chapter/recommendations',
+  },
+  'nice-melanoma-ng14-2022': {
+    url: 'https://www.nice.org.uk/guidance/ng14/chapter/recommendations',
+  },
+  'cdc-molluscum-clinical-overview-2025': {
+    url: 'https://www.cdc.gov/molluscum-contagiosum/hcp/clinical-overview/index.html',
+  },
+  'bad-rosacea-guideline-2021': {
+    url: 'https://academic.oup.com/bjd/article/185/4/725/6599936',
+  },
+  'bad-cutaneous-warts-guideline-2014': {
+    url: 'https://academic.oup.com/bjd/article/171/4/696/6615605',
+  },
+  'nice-pressure-ulcers-cg179-2014': {
+    url: 'https://www.nice.org.uk/guidance/cg179/chapter/recommendations',
+  },
+  'edf-chronic-pruritus-guideline-2025': {
+    url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12529596/',
+  },
+  'who-scabies-fact-sheet-2023': {
+    url: 'https://www.who.int/news-room/fact-sheets/detail/scabies',
+  },
+  'nice-varicose-veins-cg168-2013': {
+    url: 'https://www.nice.org.uk/guidance/cg168/chapter/1-recommendations',
+  },
+  'bad-vitiligo-guideline-2021': {
+    url: 'https://academic.oup.com/bjd/article/186/1/18/6593593',
+  },
   'nice-cellulitis-erysipelas-ng141-2019': {
     url: 'https://www.nice.org.uk/guidance/ng141/chapter/recommendations',
   },
