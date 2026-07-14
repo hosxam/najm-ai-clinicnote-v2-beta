@@ -349,9 +349,6 @@ export const SOURCE_META = {
   'eau-erectile-dysfunction-2026': {
     url: 'https://uroweb.org/guidelines/sexual-and-reproductive-health/chapter/management-of-erectile-dysfunction',
   },
-  'nice-thyroid-ng145-2023': {
-    url: 'https://www.nice.org.uk/guidance/NG145/chapter/recommendations',
-  },
   'nice-faltering-growth-ng75-2017': {
     url: 'https://www.nice.org.uk/guidance/ng75/chapter/Recommendations',
   },
@@ -381,6 +378,69 @@ export const SOURCE_META = {
   },
   'endocrine-society-testosterone-2018': {
     url: 'https://www.endocrine.org/clinical-practice-guidelines/testosterone-therapy',
+  },
+  'aao-hns-bppv-2017': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/bppv/',
+  },
+  'aao-hns-tympanostomy-tubes-2022': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/tympanostomy-tubes-in-children/',
+  },
+  'aao-hns-epistaxis-2020': {
+    url: 'https://www.entnet.org/resource/aao-hnsf-updated-cpg-nosebleed-press-release-fact-sheet/',
+  },
+  'aao-hns-neck-mass-2017': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/evaluation-of-the-neck-mass-in-adults/',
+  },
+  'aao-hns-tonsillectomy-children-2019': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/tonsillectomy-in-children-update/',
+  },
+  'aao-hns-adult-sinusitis-2025': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/cpg-adult-sinusitis/',
+  },
+  'nice-ome-ng233-2023': {
+    url: 'https://www.nice.org.uk/guidance/ng233/chapter/Recommendations',
+  },
+  'bsaci-rhinitis-2017': {
+    url: 'https://www.bsaci.org/wp-content/uploads/2020/01/Scadding_et_al-2017-Clinical_amp_Experimental_Allergy.pdf',
+  },
+  'ebi-tonsillectomy-recurrent-2024': {
+    url: 'https://ebi.aomrc.org.uk/interventions/tonsillectomy-for-recurrent-tonsillitis/',
+  },
+  'nice-suspected-cancer-ng12-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer',
+  },
+  'nice-thyroid-ng145-2023': {
+    url: 'https://www.nice.org.uk/guidance/NG145/chapter/recommendations',
+  },
+  'nice-overweight-obesity-ng246-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng246/chapter/Identifying-and-assessing-overweight-obesity-and-central-adiposity',
+  },
+  'nice-hearing-loss-adults-ng98-2023': {
+    url: 'https://www.nice.org.uk/guidance/ng98/chapter/recommendations',
+  },
+  'nice-acute-otitis-media-ng91-2022': {
+    url: 'https://www.nice.org.uk/guidance/ng91/chapter/Recommendations',
+  },
+  'aao-hns-dysphonia-cpg-2018': {
+    url: 'https://www.entnet.org/resource/aao-hnsf-updated-cpg-hoarseness-press-release-fact-sheet/',
+  },
+  'aao-hnsf-cerumen-impaction-2017': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/cerumen-impaction/',
+  },
+  'aao-hns-acute-otitis-externa-2014': {
+    url: 'https://www.entnet.org/resource/aao-hnsf-updated-cpg-acute-otitis-externa-press-release-fact-sheet/',
+  },
+  'bts-chronic-cough-adults-2023': {
+    url: 'https://www.brit-thoracic.org.uk/document-library/clinical-statements/cough-in-adults/chronic-cough-in-adults/',
+  },
+  'dha-allergic-rhinitis-issue2-2024': {
+    url: 'https://www.dha.gov.ae/uploads/032024/01%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Allergic%20Rhinitis2024359560.pdf',
+  },
+  'dha-acute-rhinosinusitis-issue2-2024': {
+    url: 'https://www.dha.gov.ae/uploads/032024/50%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Sinusitis2024327267.pdf',
+  },
+  'dha-telehealth-sore-throat-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/29%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Sore%20Throat2024321509.pdf',
   },
 }
 

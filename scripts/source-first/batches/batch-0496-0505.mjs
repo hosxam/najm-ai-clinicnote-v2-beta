@@ -1,0 +1,322 @@
+import path from 'node:path'
+import {
+  SOURCE_META,
+  evidenceWorkflow,
+  noAuthoritativeWorkflow,
+  section,
+} from './authoredBatchSupport.mjs'
+import { EXPANSION_DIR, readJson } from '../common.mjs'
+
+function registeredSource(registry_file, source) {
+  return { registry_file, source }
+}
+
+function existingSourceWithSection(registryFile, sourceId, addedSection, applicabilitySuffix) {
+  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
+  const existing = registry.sources.find((source) => source.source_id === sourceId)
+  if (!existing) throw new Error(`${sourceId}: existing source record not found`)
+  return registeredSource(registryFile, {
+    ...existing,
+    applicability_note: existing.applicability_note.includes(applicabilitySuffix)
+      ? existing.applicability_note
+      : `${existing.applicability_note} ${applicabilitySuffix}`,
+    exact_sections: [
+      ...existing.exact_sections.filter((candidate) => candidate.section_id !== addedSection.section_id),
+      addedSection,
+    ],
+  })
+}
+
+const REVIEW_DATE = '2026-07-14'
+
+const sources = [
+  registeredSource('specialty_society_sources.json', {
+    source_id: 'aao-hns-tympanostomy-tubes-2022',
+    issuing_organisation: 'American Academy of Otolaryngology–Head and Neck Surgery Foundation',
+    exact_document_title: 'Clinical Practice Guideline: Tympanostomy Tubes in Children (Update)',
+    exact_official_url: SOURCE_META['aao-hns-tympanostomy-tubes-2022'].url,
+    publication_date: '2022-02-09',
+    effective_date: '2022-02-09',
+    revision_date: null,
+    version: 'Otolaryngology–Head and Neck Surgery 2022;166(1_suppl):S1–S55',
+    jurisdiction: 'United States specialty guideline; international evidence requiring UAE paediatric ENT, audiology, procedure, and referral adaptation',
+    population: 'Children aged 6 months to 12 years with tympanostomy tubes or being considered for tubes for otitis media.',
+    clinical_setting: 'Any care setting involved in paediatric otitis-media assessment or tympanostomy-tube follow-up.',
+    applicability_note: 'Exact for child age, recurrent infection and effusion history, hearing, symptoms, risk factors, audiology, tube education, otorrhoea, examination, and routine clinician-led follow-up. It does not authorize insertion, drops, antibiotics, or a procedure decision.',
+    recency_verification: { verified_on: REVIEW_DATE, status: 'official_AAO_HNSF_2022_guideline_page_and_key_action_statements_reviewed' },
+    superseded_status_check: { checked_on: REVIEW_DATE, status: '2022_update_current_for_research_date' },
+    exact_sections: [
+      section('aao-tympanostomy-2022-candidacy-assessment', 'Key action statements 1–9 — duration, hearing, symptoms, at-risk children, and assessment', 'official guideline key action statements 1–9', 'Supports documenting recurrent AOM or OME duration, hearing assessment, symptoms attributable to effusion, risk of developmental difficulty, and clinician-performed assessment without deciding on tube placement.'),
+      section('aao-tympanostomy-2022-followup-education', 'Key action statements 10–16 — education, otorrhoea, water exposure, adenoid context, and follow-up', 'official guideline key action statements 10–16', 'Supports documenting tube status, caregiver concerns, otorrhoea, clinician-completed education, examination, and periodic follow-up. Procedure and medication recommendations are excluded.'),
+    ],
+  }),
+  registeredSource('specialty_society_sources.json', {
+    source_id: 'aao-hns-epistaxis-2020',
+    issuing_organisation: 'American Academy of Otolaryngology–Head and Neck Surgery Foundation',
+    exact_document_title: 'Clinical Practice Guideline: Nosebleed (Epistaxis)',
+    exact_official_url: SOURCE_META['aao-hns-epistaxis-2020'].url,
+    publication_date: '2020-01-07',
+    effective_date: '2020-01-07',
+    revision_date: null,
+    version: 'Otolaryngology–Head and Neck Surgery 2020;162(1_suppl):S1–S38',
+    jurisdiction: 'United States specialty guideline; international evidence requiring UAE emergency, ENT, haematology, procedure, and prescribing adaptation',
+    population: 'People aged 3 years and older with current, recurrent, or prior epistaxis; selected unusual causes and special populations require additional pathways.',
+    clinical_setting: 'Primary, urgent, emergency, outpatient, and ENT epistaxis assessment and follow-up.',
+    applicability_note: 'Exact for severity, site, recurrence, medication and bleeding-risk context, clinician examination, recurrent-bleed assessment, education, outcomes, and follow-up. It does not generate compression instructions, cautery, packing, surgery, medicine changes, or referral.',
+    recency_verification: { verified_on: REVIEW_DATE, status: 'official_AAO_HNSF_fact_sheet_and_key_action_statements_reviewed' },
+    superseded_status_check: { checked_on: REVIEW_DATE, status: '2020_guideline_remains_the_current_AAO_HNSF_epistaxis_guideline' },
+    exact_sections: [
+      section('aao-epistaxis-2020-history-severity', 'Key action statements 1–5 — prompt assessment, bleeding site, and risk factors', 'official fact sheet key action statements 1–5', 'Supports documenting onset, active or recent bleeding, severity, site, anticoagulant or antiplatelet context, bleeding disorder, vital observations, and clinician concern without generating haemostasis or medicine instructions.'),
+      section('aao-epistaxis-2020-recurrent-exam-education', 'Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes', 'official fact sheet key action statements 6–14', 'Supports documenting recurrence, laterality, clinician-performed nasal examination, already completed endoscopy context, risk factors, prevention discussion, patient questions, outcome review, and follow-up without ordering procedures.'),
+    ],
+  }),
+  existingSourceWithSection(
+    'international_clinical_sources.json',
+    'nice-suspected-cancer-ng12-2026',
+    section('nice-ng12-head-neck-features', 'Recommendations 1.8.1–1.8.5 — laryngeal, oral, and thyroid cancer recognition features', 'recommendations 1.8.1–1.8.5', 'Supports clinician recognition of recommendation-qualified persistent unexplained hoarseness, unexplained or persistent neck lump, oral ulceration lasting more than 3 weeks, lip or oral-cavity lump, red or red-and-white oral patch, and unexplained thyroid lump. It does not assert cancer or generate referral.'),
+    'This batch additionally reviews recommendation-qualified head-and-neck features; no cancer diagnosis or automatic referral text is generated.',
+  ),
+]
+
+const workflows = [
+  evidenceWorkflow({
+    workflow_id: 'ent-ear-tube-follow-up',
+    evidence_groups: [
+      {
+        source_id: 'aao-hns-tympanostomy-tubes-2022',
+        source_section_id: 'aao-tympanostomy-2022-followup-education',
+        relationship: 'The exact tube follow-up statements support interval change, functional or hearing impact, otorrhoea and associated or negative features, caregiver concerns, clinician-performed ENT examination, hearing results, entered plan, safety net, questions, and follow-up without generating drops or a procedure.',
+        exact_texts: ['change since last review documented', 'severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', 'patient concerns or goals documented if discussed', 'Ear/nose/throat examination documented only if assessed', 'Audiology or tympanometry results reviewed if available', 'clinician-entered plan documented', 'safety-netting documented if discussed by clinician', 'follow-up documented if arranged by clinician', 'patient questions documented if discussed'],
+      },
+    ],
+    search_queries_used: ['site:entnet.org tympanostomy tubes children update 2022 follow-up otorrhea hearing education', 'site:nice.org.uk NG233 grommet follow-up hearing test'],
+    candidate_sources_rejected: ['adult tympanic-membrane guidance applied to children', 'automatic eardrop, antibiotic, water precaution, tube removal, repeat surgery, or referral'],
+    rejection_reasons: ['The exact guideline is paediatric and does not validate adult tube follow-up.', 'No medicine, dose, procedure, treatment, or referral is generated.'],
+    population_applicability: 'Children aged 6 months to 12 years with tympanostomy tubes; adolescents and adults require separate evidence.',
+    setting_applicability: 'Paediatric primary, audiology, or ENT tube follow-up.',
+    UAE_applicability: 'AAO-HNSF guidance requires UAE paediatric ENT, audiology, antimicrobial, device, procedure, and follow-up adaptation.',
+    recency_verification: 'The official AAO-HNSF 2022 guideline exact follow-up action statements were reviewed on 2026-07-14.',
+    superseded_check: 'The 2022 update remains current.',
+    unresolved_source_gaps: ['Age, indication, procedure date, tube laterality and patency, pain, discharge, hearing, infection, water exposure, examination, audiology, diagnosis, medicine, procedure, and follow-up interval remain unsupported.'],
+  }),
+  evidenceWorkflow({
+    workflow_id: 'ent-epistaxis-recurrence-review',
+    evidence_groups: [
+      {
+        source_id: 'aao-hns-epistaxis-2020',
+        source_section_id: 'aao-epistaxis-2020-history-severity',
+        relationship: 'The exact epistaxis history section supports recurrence, duration and severity impact, associated symptoms, relevant negatives, medication and bleeding-risk context, vital signs, general appearance, and clinician concern without inferring blood loss or instability.',
+        exact_texts: ['onset/duration documented if discussed', 'change since last review documented', 'severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', 'Vital signs documented only if assessed', 'General appearance documented only if assessed', 'clinician concern requiring escalation documented if present'],
+      },
+      {
+        source_id: 'aao-hns-epistaxis-2020',
+        source_section_id: 'aao-epistaxis-2020-recurrent-exam-education',
+        relationship: 'The exact recurrent-bleed section supports concerns, clinician-performed ENT examination, reviewed specialist information, entered plan, safety net, follow-up, and questions without generating cautery, packing, surgery, medicine changes, or referral.',
+        exact_texts: ['patient concerns or goals documented if discussed', 'Ear/nose/throat examination documented only if assessed', 'Imaging or specialist report reviewed if already available', 'clinician-entered plan documented', 'safety-netting documented if discussed by clinician', 'follow-up documented if arranged by clinician', 'patient questions documented if discussed'],
+      },
+    ],
+    search_queries_used: ['site:entnet.org nosebleed epistaxis guideline recurrent bleeding risk factors education outcomes 2020', 'site:dha.gov.ae epistaxis guideline UAE'],
+    candidate_sources_rejected: ['automatic anaemia or bleeding-disorder conclusion', 'automatic anticoagulant interruption, compression, cautery, packing, surgery, or referral'],
+    rejection_reasons: ['Severity and cause require measured findings, medication context, examination, and clinician judgement.', 'No first aid, medicine change, treatment, procedure, referral, or urgency instruction is generated.'],
+    population_applicability: 'People aged 3 years and older with recurrent epistaxis; children under 3, trauma, tumour, pregnancy, hereditary haemorrhagic telangiectasia, and severe active bleeding require additional pathways.',
+    setting_applicability: 'Primary, urgent, emergency, haematology, or ENT recurrence review.',
+    UAE_applicability: 'International specialty guidance requires UAE emergency, anticoagulation, haematology, ENT, procedure, blood-product, and referral adaptation.',
+    recency_verification: 'The official AAO-HNSF 2020 epistaxis exact key action statements were reviewed on 2026-07-14.',
+    superseded_check: 'The 2020 guideline remains current.',
+    unresolved_source_gaps: ['Episode count, laterality, duration, volume, haemostasis, triggers, trauma, nasal products, medicines, bleeding history, vital signs, examination, laboratory results, cause, treatment, and referral remain unsupported.'],
+  }),
+  noAuthoritativeWorkflow({
+    workflow_id: 'ent-eustachian-tube-dysfunction-follow-up',
+    search_queries_used: ['site:entnet.org eustachian tube dysfunction clinical practice guideline follow-up', 'site:nice.org.uk eustachian tube dysfunction guideline', 'site:dha.gov.ae eustachian tube dysfunction UAE'],
+    official_pages_opened: ['https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/', 'https://www.nice.org.uk/guidance', 'https://www.dha.gov.ae/en/HealthRegulation'],
+    candidate_sources_rejected: ['OME guidance as a universal eustachian-tube-dysfunction source', 'procedure consensus or device marketing used as clinical guidance'],
+    rejection_reasons: ['OME is a distinct paediatric condition and cannot validate adult or broad ETD follow-up.', 'No exact current general ETD documentation guideline was identified.'],
+    population_applicability: 'Children or adults with clinician-established obstructive or patulous ETD; barotrauma, OME, cleft palate, post-radiation, and postoperative contexts differ.',
+    setting_applicability: 'Primary, audiology, or ENT follow-up.',
+    UAE_applicability: 'UAE audiology, tympanometry, ENT, procedure, prescribing, and referral pathways govern.',
+    recency_verification: 'Official AAO-HNSF, NICE, and DHA catalogues were reviewed on 2026-07-14.',
+    superseded_check: 'No exact current authoritative general ETD follow-up guideline was identified.',
+    unresolved_source_gaps: ['ETD subtype, trigger, pressure symptoms, hearing, tinnitus, autophony, barotrauma, nasal disease, examination, tympanometry, audiology, diagnosis, treatment, procedure, and follow-up remain unsupported.'],
+  }),
+  evidenceWorkflow({
+    workflow_id: 'ent-facial-pressure-ent-review',
+    evidence_groups: [
+      {
+        source_id: 'aao-hns-adult-sinusitis-2025',
+        source_section_id: 'aao-sinusitis-2025-acute-assessment',
+        relationship: 'The exact adult sinusitis assessment section supports onset, facial pain or pressure context, nasal symptoms, associated features, and relevant negatives without diagnosing sinusitis or bacterial infection.',
+        exact_texts: ['onset/duration documented if discussed', 'severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed'],
+      },
+      {
+        source_id: 'aao-hns-adult-sinusitis-2025',
+        source_section_id: 'aao-sinusitis-2025-chronic-confirmation-modifiers',
+        relationship: 'The exact chronic section supports clinician-performed ENT assessment and review of already available imaging or specialist information without interpreting CT or attributing pressure to sinus disease.',
+        exact_texts: ['Ear/nose/throat examination documented only if assessed', 'Imaging or specialist report reviewed if already available'],
+      },
+      {
+        source_id: 'dha-acute-rhinosinusitis-issue2-2024',
+        source_section_id: 'dha-rhinosinusitis-i2-red-flags',
+        relationship: 'The exact DHA red-flag section supports clinician concern, safety-net documentation, and an entered plan only when assessed; it does not infer orbital, neurological, or systemic complication.',
+        exact_texts: ['clinician concern requiring escalation documented if present', 'clinician-entered plan documented', 'safety-netting documented if discussed by clinician'],
+      },
+    ],
+    search_queries_used: ['site:entnet.org adult sinusitis facial pain pressure nasal obstruction diagnosis 2025', 'site:dha.gov.ae sinusitis facial pain pressure red flags'],
+    candidate_sources_rejected: ['automatic sinusitis diagnosis from facial pressure alone', 'automatic antibiotic, steroid, decongestant, CT, dental, neurology, or ENT referral'],
+    rejection_reasons: ['Facial pressure has sinonasal, dental, headache, neuralgic, ocular, and other causes.', 'No investigation, medicine, treatment, referral, or urgency conclusion is generated.'],
+    population_applicability: 'Adults with facial pressure and a clinician-considered sinonasal context; children, dental disease, neurological deficit, ocular symptoms, trauma, and immunocompromise require separate evidence.',
+    setting_applicability: 'UAE primary, telehealth, urgent, dental, neurological, or ENT assessment.',
+    UAE_applicability: 'DHA provides direct UAE telehealth red-flag context; AAO-HNSF assessment requires UAE imaging, dental, ENT, prescribing, and referral adaptation.',
+    recency_verification: 'Current DHA Issue 2 and AAO-HNSF 2025 exact sections were reviewed on 2026-07-14.',
+    superseded_check: 'DHA Issue 2 and the 2025 AAO-HNSF update are current registered versions.',
+    unresolved_source_gaps: ['Site, laterality, duration, nasal symptoms, headache, vision, dental symptoms, fever, neurological features, examination, imaging, diagnosis, treatment, and referral remain unsupported.'],
+  }),
+  noAuthoritativeWorkflow({
+    workflow_id: 'ent-foreign-body-sensation-throat',
+    search_queries_used: ['site:entnet.org throat foreign body sensation clinical practice guideline', 'site:nice.org.uk foreign body sensation throat guideline', 'site:dha.gov.ae throat foreign body guideline UAE'],
+    official_pages_opened: ['https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/', 'https://www.nice.org.uk/guidance', 'https://www.dha.gov.ae/en/HealthRegulation'],
+    candidate_sources_rejected: ['ingested foreign-body emergency guidance applied to sensation without known ingestion', 'globus or reflux summaries used as exact evidence'],
+    rejection_reasons: ['A sensation may reflect retained foreign body, mucosal injury, dysphagia, globus, reflux, tumour, anxiety, or other causes.', 'No exact current cause-agnostic professional documentation guideline was identified.'],
+    population_applicability: 'Children or adults with throat foreign-body sensation; known ingestion, sharp object, airway symptoms, drooling, inability to swallow, or acute distress require separate emergency pathways.',
+    setting_applicability: 'Primary, urgent, emergency, gastroenterology, or ENT assessment.',
+    UAE_applicability: 'UAE emergency, endoscopy, radiology, ENT, gastroenterology, and referral pathways govern.',
+    recency_verification: 'Official AAO-HNSF, NICE, and DHA catalogues were reviewed on 2026-07-14.',
+    superseded_check: 'No exact current authoritative general throat foreign-body-sensation guideline was identified.',
+    unresolved_source_gaps: ['Known ingestion, object, timing, dysphagia, odynophagia, drooling, airway symptoms, pain, bleeding, neck or chest symptoms, examination, imaging, endoscopy, diagnosis, removal, and referral remain unsupported.'],
+  }),
+  noAuthoritativeWorkflow({
+    workflow_id: 'ent-globus-sensation',
+    search_queries_used: ['site:entnet.org globus sensation clinical practice guideline', 'site:nice.org.uk globus pharyngeus guideline', 'site:bsaci.org globus throat guideline'],
+    official_pages_opened: ['https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/', 'https://www.nice.org.uk/guidance', 'https://www.bsaci.org/guidelines-and-standards/bsaci-guidelines/'],
+    candidate_sources_rejected: ['reflux guidance used to assign globus cause', 'patient-facing globus summaries'],
+    rejection_reasons: ['Globus is a symptom with structural, reflux, motility, inflammatory, neurological, and psychological differentials.', 'No exact current professional cause-agnostic globus documentation guideline was identified.'],
+    population_applicability: 'Adults or adolescents with persistent or intermittent globus sensation; true dysphagia, weight loss, pain, voice change, neck mass, or airway symptoms require distinct assessment.',
+    setting_applicability: 'Primary, ENT, gastroenterology, speech and language, or mental-health assessment.',
+    UAE_applicability: 'UAE ENT, gastroenterology, endoscopy, imaging, oncology, and referral pathways govern.',
+    recency_verification: 'Official AAO-HNSF, NICE, and BSACI catalogues were reviewed on 2026-07-14.',
+    superseded_check: 'No exact current authoritative globus documentation guideline was identified.',
+    unresolved_source_gaps: ['Timing, relation to swallowing or meals, dysphagia, odynophagia, reflux, voice, cough, weight loss, smoking, anxiety, examination, laryngoscopy, diagnosis, treatment, and referral remain unsupported.'],
+  }),
+  evidenceWorkflow({
+    workflow_id: 'ent-glue-ear-follow-up',
+    evidence_groups: [
+      {
+        source_id: 'nice-ome-ng233-2023',
+        source_section_id: 'nice-ng233-ome-recognition-assessment',
+        relationship: 'The exact paediatric OME section supports interval hearing, speech, behaviour, balance, ear discomfort, functional impact, associated or negative features, ENT examination, hearing testing, and tympanometry without independently diagnosing persistent glue ear.',
+        exact_texts: ['change since last review documented', 'severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', 'Ear/nose/throat examination documented only if assessed', 'General appearance documented only if assessed', 'Audiology or tympanometry results reviewed if available'],
+      },
+      {
+        source_id: 'nice-ome-ng233-2023',
+        source_section_id: 'nice-ng233-ome-reassessment',
+        relationship: 'The exact reassessment section supports child or caregiver concerns, clinician-entered review, arranged follow-up, and questions without generating treatment or an interval.',
+        exact_texts: ['patient concerns or goals documented if discussed', 'clinician-entered plan documented', 'follow-up documented if arranged by clinician', 'patient questions documented if discussed'],
+      },
+    ],
+    search_queries_used: ['site:nice.org.uk NG233 glue ear reassessment hearing impact tympanometry under 12', 'site:dha.gov.ae glue ear guideline UAE'],
+    candidate_sources_rejected: ['acute otitis media guidance applied to OME', 'automatic antibiotic, steroid, antihistamine, autoinflation, hearing aid, grommet, or adenoidectomy recommendation'],
+    rejection_reasons: ['OME differs from acute infection and requires age-appropriate hearing assessment.', 'No medicine, device, procedure, treatment, referral, or interval is generated.'],
+    population_applicability: 'Children under 12 with suspected or confirmed OME; adolescents and adults require separate evidence.',
+    setting_applicability: 'Paediatric primary, audiology, educational, or ENT follow-up.',
+    UAE_applicability: 'NICE guidance requires UAE paediatric audiology, education, device, ENT, surgical, and referral adaptation.',
+    recency_verification: 'Current NICE NG233 exact recognition and reassessment sections were reviewed on 2026-07-14.',
+    superseded_check: 'NG233 remains current and replaces CG60.',
+    unresolved_source_gaps: ['Age, laterality, duration, hearing test, tympanometry, language, education, behaviour, balance, examination, diagnosis, intervention, procedure, and follow-up interval remain unsupported.'],
+  }),
+  evidenceWorkflow({
+    workflow_id: 'ent-hearing-aid-issue',
+    evidence_groups: [
+      {
+        source_id: 'nice-hearing-loss-adults-ng98-2023',
+        source_section_id: 'nice-hearing-ng98-audiology-assessment',
+        relationship: 'The exact adult audiology section supports hearing and communication impact, associated or negative symptoms, patient goals, ENT assessment, existing audiology or tympanometry results, and individualized hearing-support review without selecting or programming a device.',
+        exact_texts: ['severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', 'patient concerns or goals documented if discussed', 'Ear/nose/throat examination documented only if assessed', 'Audiology or tympanometry results reviewed if available'],
+      },
+      {
+        source_id: 'nice-hearing-loss-adults-ng98-2023',
+        source_section_id: 'nice-hearing-ng98-specific-signs-referral',
+        relationship: 'The exact signs section supports clinician concern, entered plan, safety net, follow-up, and questions without recommending repair, replacement, imaging, or referral.',
+        exact_texts: ['clinician concern requiring escalation documented if present', 'clinician-entered plan documented', 'safety-netting documented if discussed by clinician', 'follow-up documented if arranged by clinician', 'patient questions documented if discussed'],
+      },
+    ],
+    search_queries_used: ['site:nice.org.uk NG98 hearing aid follow-up communication needs device issue audiology', 'site:dha.gov.ae hearing aid follow-up UAE'],
+    candidate_sources_rejected: ['automatic device fault conclusion', 'automatic reprogramming, repair, replacement, implant, imaging, or referral'],
+    rejection_reasons: ['Device, ear, hearing, communication, and user factors require audiology assessment.', 'No device change, procedure, investigation, referral, or treatment is generated.'],
+    population_applicability: 'Adults using hearing aids; children, implantable devices, sudden hearing change, and severe ear symptoms require separate pathways.',
+    setting_applicability: 'Community, primary, audiology, or ENT hearing-aid review.',
+    UAE_applicability: 'NICE guidance requires UAE audiology licensing, device procurement, warranty, fitting, payer, ENT, and referral adaptation.',
+    recency_verification: 'Current NICE NG98 audiology and signs sections were reviewed on 2026-07-14.',
+    superseded_check: 'NG98 remains current and was reviewed in 2023.',
+    unresolved_source_gaps: ['Device type and side, fault, fit, comfort, use, maintenance, hearing change, ear symptoms, communication goals, examination, audiology, repair, replacement, and referral remain unsupported.'],
+  }),
+  evidenceWorkflow({
+    workflow_id: 'ent-hearing-test-result-review',
+    evidence_groups: [
+      {
+        source_id: 'nice-hearing-loss-adults-ng98-2023',
+        source_section_id: 'nice-hearing-ng98-audiology-assessment',
+        relationship: 'The exact adult audiology section supports result source, hearing and communication impact, associated or negative symptoms, goals, ENT assessment, audiology or tympanometry review, an entered plan, follow-up, and questions without interpreting the audiogram or assigning a diagnosis.',
+        exact_texts: ['onset/duration documented if discussed', 'severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', 'patient concerns or goals documented if discussed', 'Ear/nose/throat examination documented only if assessed', 'Audiology or tympanometry results reviewed if available', 'clinician-entered plan documented', 'follow-up documented if arranged by clinician', 'patient questions documented if discussed'],
+      },
+      {
+        source_id: 'nice-hearing-loss-adults-ng98-2023',
+        source_section_id: 'nice-hearing-ng98-specific-signs-referral',
+        relationship: 'The exact signs section supports clinician concern and safety-net documentation when the clinician identifies asymmetric, sudden, neurological, painful, or discharge-related context; it does not generate urgency.',
+        exact_texts: ['clinician concern requiring escalation documented if present', 'safety-netting documented if discussed by clinician'],
+      },
+    ],
+    search_queries_used: ['site:nice.org.uk NG98 pure tone audiometry tympanometry result review hearing needs', 'site:dha.gov.ae audiogram result guideline UAE'],
+    candidate_sources_rejected: ['automatic conductive, sensorineural, mixed, asymmetric, or sudden-hearing-loss interpretation', 'automatic MRI, hearing aid, implant, ENT, neurology, or emergency referral'],
+    rejection_reasons: ['Audiology interpretation requires test conditions, age, reliability, thresholds, laterality, examination, and clinician context.', 'No interpretation, diagnosis, investigation, device, treatment, referral, or urgency is generated.'],
+    population_applicability: 'Adults with an existing hearing-test result; children and screening-program results require separate evidence.',
+    setting_applicability: 'Primary, community, audiology, or ENT result review.',
+    UAE_applicability: 'NICE concepts require UAE audiology standards, equipment calibration, diagnostic pathways, imaging, device, and referral adaptation.',
+    recency_verification: 'Current NICE NG98 exact audiology and signs sections were reviewed on 2026-07-14.',
+    superseded_check: 'NG98 remains current and was reviewed in 2023.',
+    unresolved_source_gaps: ['Test date and type, reliability, thresholds, frequencies, laterality, speech testing, tympanometry, symptoms, examination, interpretation, diagnosis, investigation, device, and referral remain unsupported.'],
+  }),
+  evidenceWorkflow({
+    workflow_id: 'ent-hoarseness-red-flag-screening',
+    evidence_groups: [
+      {
+        source_id: 'aao-hns-dysphonia-cpg-2018',
+        source_section_id: 'aao-dysphonia-2018-definition-history',
+        relationship: 'The exact dysphonia history section supports onset, duration, impact, associated symptoms, relevant negatives, smoking or professional-voice context, and clinician-performed ENT or neck assessment without diagnosing the cause.',
+        exact_texts: ['onset/duration documented if discussed', 'severity/impact on function documented if discussed', 'associated symptoms reviewed if relevant', 'relevant negatives documented if assessed', 'Ear/nose/throat examination documented only if assessed', 'Neck examination documented only if assessed'],
+      },
+      {
+        source_id: 'nice-suspected-cancer-ng12-2026',
+        source_section_id: 'nice-ng12-head-neck-features',
+        relationship: 'The exact NICE head-and-neck section supports clinician concern when persistent unexplained hoarseness or an unexplained neck lump is documented in recommendation-qualified age context; it does not assert cancer or generate referral.',
+        exact_texts: ['clinician concern requiring escalation documented if present'],
+      },
+      {
+        source_id: 'aao-hns-dysphonia-cpg-2018',
+        source_section_id: 'aao-dysphonia-2018-education-outcomes',
+        relationship: 'The exact education and outcomes section supports concerns, clinician-entered plan, safety net, follow-up, and questions without recommending laryngoscopy, imaging, medicine, voice therapy, or referral.',
+        exact_texts: ['patient concerns or goals documented if discussed', 'clinician-entered plan documented', 'safety-netting documented if discussed by clinician', 'follow-up documented if arranged by clinician', 'patient questions documented if discussed'],
+      },
+    ],
+    reviewed_sections: [
+      {
+        source_id: 'aao-hns-dysphonia-cpg-2018',
+        source_section_id: 'aao-dysphonia-2018-escalation-laryngoscopy',
+        relationship: 'The exact escalation and laryngoscopy section was reviewed for red-flag context, but no automatic examination, imaging, or referral action was mapped.',
+      },
+    ],
+    search_queries_used: ['site:entnet.org dysphonia guideline escalation factors tobacco neck mass intubation 2018', 'site:nice.org.uk NG12 persistent unexplained hoarseness neck lump 45'],
+    candidate_sources_rejected: ['automatic laryngeal-cancer conclusion', 'automatic laryngoscopy, imaging, antibiotic, steroid, reflux medicine, voice therapy, or referral'],
+    rejection_reasons: ['Persistent hoarseness and neck lump are recognition features, not diagnoses.', 'No investigation, medicine, treatment, procedure, referral, or urgency is generated.'],
+    population_applicability: 'Children or adults with hoarseness receive dysphonia support; NICE cancer-recognition recommendations apply to recommendation-qualified adults and do not validate paediatric use.',
+    setting_applicability: 'Primary, urgent, ENT, laryngology, or voice-clinic red-flag screening.',
+    UAE_applicability: 'International guidance requires UAE oncology, ENT, laryngoscopy, imaging, smoking, voice, and referral-pathway adaptation.',
+    recency_verification: 'The official 2018 AAO-HNSF dysphonia and current NICE NG12 head-and-neck exact sections were reviewed on 2026-07-14.',
+    superseded_check: 'The AAO-HNSF 2018 update and NICE NG12 last updated in 2026 remain current.',
+    unresolved_source_gaps: ['Age, duration, voice quality, smoking, alcohol, occupation, recent surgery or intubation, dysphagia, weight loss, pain, airway symptoms, neck mass, examination, laryngoscopy, diagnosis, investigation, referral, and urgency remain unsupported.'],
+  }),
+]
+
+export default {
+  batch_id: 'batch-0496-0505',
+  sources,
+  workflows,
+}
