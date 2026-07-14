@@ -1,5 +1,7 @@
 # GP Helper Remediation Report
 
+> Historical report for failed remediation commit `49ddb27feb8be8289f1e8d3fa7d9175810a6bda3`. Its retain/reconstruct conclusions were rejected by the independent audit and are superseded by `GP_MAPPING_CORRECTION_SUMMARY.md`.
+
 ## Outcome
 
 The failed GP helper contract was replaced with a fail-closed explicit mapping contract. All 1032 mappings across workflows 0626-0675 were retrospectively audited and reconstructed with exact workflow-owned item IDs and explicit provenance/applicability inputs. No mappings were removed and no workflow status changed because every recorded mapping was independently recoverable from the existing exact records.

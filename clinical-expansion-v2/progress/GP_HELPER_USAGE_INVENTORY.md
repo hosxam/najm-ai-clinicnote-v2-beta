@@ -1,5 +1,7 @@
 # GP Helper Usage Inventory
 
+> Historical pre-correction inventory. Its `RECONSTRUCT_EXPLICITLY` disposition was rejected by the independent audit and is superseded by `GP_MAPPING_CORRECTION_LEDGER.jsonl` and `GP_MAPPING_CORRECTION_SUMMARY.md`.
+
 ## Scope and search result
 
 - Failed helper: `scripts/source-first/batches/gpBatchSupport.mjs`.
