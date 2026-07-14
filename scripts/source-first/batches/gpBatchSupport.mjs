@@ -1,102 +1,123 @@
-import { evidenceWorkflow, noAuthoritativeWorkflow, section, SOURCE_META } from './authoredBatchSupport.mjs'
+import fs from 'node:fs'
+import path from 'node:path'
+import { EXPANSION_DIR, listClinicalItems, readJson } from '../common.mjs'
+import { validateExplicitGpMappings } from './gpExplicitMappingContract.mjs'
 
-export const REVIEW_DATE = '2026-07-14'
-
-export const history = [
-  'onset/duration documented if discussed',
-  'severity/impact on function documented if discussed',
-  'associated symptoms reviewed if relevant',
-  'relevant negatives documented if assessed',
+const REQUIRED_WORKFLOW_FIELDS = [
+  'workflowId',
+  'sourceStatus',
+  'searchQueriesUsed',
+  'officialPagesOpened',
+  'exactDocumentsOpened',
+  'exactSectionsReviewed',
+  'candidateSourcesRejected',
+  'rejectionReasons',
+  'selectedPrimarySources',
+  'selectedSupportingSources',
+  'populationApplicability',
+  'settingApplicability',
+  'uaeApplicability',
+  'recencyVerification',
+  'supersededCheck',
+  'unresolvedSourceGaps',
+  'mappings',
 ]
 
-export const goals = ['patient concerns or goals documented if discussed']
-export const followup = [...history, 'change since last review documented']
+const sourceRecords = fs.readdirSync(path.join(EXPANSION_DIR, 'sources'))
+  .filter((name) => name.endsWith('.json'))
+  .sort()
+  .flatMap((name) => readJson(path.join(EXPANSION_DIR, 'sources', name)).sources ?? [])
+const sourcesById = new Map(sourceRecords.map((source) => [source.source_id, source]))
 
-export const exam = [
-  'Vital signs documented only if assessed',
-  'General appearance documented only if assessed',
-  'Focused system examination documented only if assessed',
-  'Relevant negatives if assessed documented only if assessed',
-]
+function requireExplicit(record, field) {
+  if (!Object.hasOwn(record, field)) throw new Error(`${record.workflowId ?? '<missing>'}: explicit GP workflow field ${field} is required`)
+  const value = record[field]
+  if (value === null || value === undefined || (typeof value === 'string' && value.trim() === '')) {
+    throw new Error(`${record.workflowId ?? '<missing>'}: explicit GP workflow field ${field} cannot be empty`)
+  }
+}
 
-export const concern = [
-  'severe or rapidly worsening symptoms documented if assessed',
-  'abnormal vital signs documented if measured',
-  'new neurological, cardiorespiratory, or systemic concern documented if assessed',
-  'clinician concern requiring escalation documented if present',
-]
+function workflowContext(record) {
+  const workflow = readJson(path.join(EXPANSION_DIR, 'workflows', `${record.workflowId}.json`))
+  const items = listClinicalItems(workflow)
+  return {
+    workflowsById: new Map([[record.workflowId, workflow]]),
+    itemsByWorkflowId: new Map([[record.workflowId, new Map(items.map((item) => [item.item_id, item]))]]),
+    sourcesById,
+    reviewedSourceIds: new Set(record.exactDocumentsOpened),
+    reviewedSectionIds: new Set(record.exactSectionsReviewed),
+  }
+}
 
-export const results = [
-  'Relevant observations reviewed if measured',
-  'Laboratory results reviewed if already ordered',
-  'Existing reports or records reviewed if available',
-]
+function buildSupportGroups(mappings) {
+  const groups = new Map()
+  for (const mapping of mappings) {
+    const key = `${mapping.sourceId}\u0000${mapping.sectionId}\u0000${mapping.evidenceRelationship}`
+    const current = groups.get(key) ?? {
+      source_id: mapping.sourceId,
+      source_section_id: mapping.sectionId,
+      relationship: mapping.evidenceRelationship,
+      item_ids: [],
+    }
+    current.item_ids.push(mapping.itemId)
+    groups.set(key, current)
+  }
+  return [...groups.values()]
+    .map((group) => ({ ...group, item_ids: [...new Set(group.item_ids)].sort() }))
+    .sort((left, right) => `${left.source_id}/${left.source_section_id}/${left.relationship}`.localeCompare(`${right.source_id}/${right.source_section_id}/${right.relationship}`))
+}
 
-export const plan = [
-  'clinician-entered plan documented',
-  'safety-netting documented if discussed by clinician',
-  'follow-up documented if arranged by clinician',
-  'patient questions documented if discussed',
-]
+export function gpExplicitWorkflow(record) {
+  if (!record || typeof record !== 'object' || Array.isArray(record)) throw new Error('Explicit GP workflow record is required')
+  for (const field of REQUIRED_WORKFLOW_FIELDS) requireExplicit(record, field)
+  if (!Array.isArray(record.mappings)) throw new Error(`${record.workflowId}: mappings must be an explicit array`)
 
-export const GP_SOURCES = [
-  {
-    registry_file: 'international_clinical_sources.json',
-    source: {
-      source_id: 'who-audit-primary-care-2001',
-      issuing_organisation: 'World Health Organization',
-      exact_document_title: 'AUDIT: The Alcohol Use Disorders Identification Test — Guidelines for Use in Primary Care, Second Edition',
-      exact_official_url: 'https://iris.who.int/bitstream/handle/10665/67205/WHO_MSD_MSB_01.6a-eng.pdf',
-      publication_date: '2001-11-18',
-      effective_date: '2001-11-18',
-      revision_date: null,
-      version: 'Second edition; WHO/MSD/MSB/01.6a',
-      jurisdiction: 'World Health Organization international guidance requiring UAE service adaptation',
-      population: 'Adults in primary and general healthcare settings where alcohol-use screening or brief assessment is clinically appropriate.',
-      clinical_setting: 'Primary healthcare and general medical care.',
-      applicability_note: 'Supports clinician-entered alcohol frequency, quantity, heavy-use episodes, dependence-related symptoms, alcohol-related harm, and screening context without automatically scoring, diagnosing, or generating intervention advice.',
-      recency_verification: { verified_on: REVIEW_DATE, status: 'official_WHO_publication_page_and_exact_manual_reviewed' },
-      superseded_status_check: { checked_on: REVIEW_DATE, status: 'official_WHO_AUDIT_second_edition_remains_published_for_primary_care_use' },
-      exact_sections: [
-        section('who-audit-2001-purpose-context', 'Purpose of the manual and context of alcohol screening', 'manual pages 4–7', 'Supports documenting why alcohol use was reviewed and the primary-care screening context without asserting hazardous use.'),
-        section('who-audit-2001-consumption-harm-items', 'AUDIT questions and domains', 'manual pages 15–18 and Appendix B', 'Supports recording alcohol frequency, typical quantity, heavy-use episodes, dependence-related symptoms, harmful consequences, concern from others, and prior injury without automatically scoring or diagnosing.'),
-      ],
-    },
-  },
-]
+  const mappings = validateExplicitGpMappings(record.mappings, workflowContext(record))
+  const noSource = record.sourceStatus === 'no_authoritative_source_found'
+  if (noSource && (mappings.length > 0 || record.exactDocumentsOpened.length > 0 || record.exactSectionsReviewed.length > 0)) {
+    throw new Error(`${record.workflowId}: no-authoritative-source record cannot emit evidence mappings`)
+  }
+  if (!noSource && mappings.length === 0) throw new Error(`${record.workflowId}: evidenced workflow requires explicit mappings`)
 
-Object.assign(SOURCE_META, {
-  'who-audit-primary-care-2001': { url: 'https://iris.who.int/bitstream/handle/10665/67205/WHO_MSD_MSB_01.6a-eng.pdf' },
-  'nice-ibs-cg61-2025': { url: 'https://www.nice.org.uk/guidance/cg61/chapter/recommendations' },
-  'bsg-abnormal-liver-blood-tests-2018': { url: 'https://www.bsg.org.uk/getmedia/b51bdc64-7145-43ad-828b-21f473b0a918/Guidelines-on-the-management-of-abnormal-liver-blood-tests.pdf' },
-  'bsg-iron-deficiency-anaemia-2021': { url: 'https://www.bsg.org.uk/getmedia/3e13dd5c-8e7b-4110-87c5-dcc1feee495d/Iron-Deficiency-Aneamia-in-Adults.pdf' },
-  'dha-telehealth-constipation-v2-2024': { url: 'https://dha.gov.ae/uploads/032024/04%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20Of%20Constipation2024324786.pdf' },
-  'dha-telehealth-cough-v2-2024': { url: 'https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf' },
-  'bsg-chronic-diarrhoea-2018': { url: 'https://www.bsg.org.uk/clinical-resource/bsg-guidelines-chronic-diarrhoea' },
-  'nice-gord-dyspepsia-cg184-2019': { url: 'https://www.nice.org.uk/guidance/cg184/chapter/Recommendations' },
-  'nice-suspected-neurological-conditions-ng127-2023': { url: 'https://www.nice.org.uk/guidance/ng127/chapter/recommendations-for-adults-aged-over-16' },
-  'nice-headaches-cg150-2025': { url: 'https://www.nice.org.uk/guidance/cg150/chapter/recommendations' },
-  'ascrs-hemorrhoids-2024': { url: 'https://fascrs.org/ascrs/media/files/2024-Hemorrhoids-CPG.pdf' },
-})
+  const sectionRelationships = {}
+  for (const mapping of mappings) {
+    const existing = sectionRelationships[mapping.sectionId]
+    sectionRelationships[mapping.sectionId] = existing && existing !== mapping.evidenceRelationship
+      ? [...new Set([existing, mapping.evidenceRelationship])].sort().join(' ')
+      : mapping.evidenceRelationship
+  }
 
-export function gpEvidence(config) {
-  return evidenceWorkflow({
-    ...config,
-    setting_applicability: config.setting_applicability ?? 'Primary-care documentation and follow-up as qualified by the exact source and clinical context.',
-    UAE_applicability: config.UAE_applicability ?? 'International evidence requires UAE primary-care, laboratory, prescribing, referral, safeguarding, and local-pathway adaptation.',
-    recency_verification: config.recency_verification ?? `Exact official documents and sections were reviewed on ${REVIEW_DATE}.`,
-    superseded_check: config.superseded_check ?? 'The cited exact source remains current on the issuing organisation website at the review date.',
+  return Object.freeze({
+    workflow_id: record.workflowId,
+    search_queries_used: structuredClone(record.searchQueriesUsed),
+    official_pages_opened: structuredClone(record.officialPagesOpened),
+    exact_documents_opened: structuredClone(record.exactDocumentsOpened),
+    exact_sections_reviewed: structuredClone(record.exactSectionsReviewed),
+    candidate_sources_rejected: structuredClone(record.candidateSourcesRejected),
+    rejection_reasons: structuredClone(record.rejectionReasons),
+    selected_primary_sources: structuredClone(record.selectedPrimarySources),
+    selected_supporting_sources: structuredClone(record.selectedSupportingSources),
+    population_applicability: record.populationApplicability,
+    setting_applicability: record.settingApplicability,
+    UAE_applicability: record.uaeApplicability,
+    recency_verification: record.recencyVerification,
+    superseded_check: record.supersededCheck,
+    unresolved_source_gaps: structuredClone(record.unresolvedSourceGaps),
+    section_relationships: sectionRelationships,
+    support_groups: buildSupportGroups(mappings),
+    source_status: record.sourceStatus,
   })
 }
 
-export function gpNoSource(config) {
-  return noAuthoritativeWorkflow({
-    ...config,
-    setting_applicability: config.setting_applicability ?? 'Primary-care documentation; the workflow purpose is too broad or administrative for a single exact clinical guideline.',
-    UAE_applicability: config.UAE_applicability ?? 'No exact current UAE or directly applicable authoritative documentation guideline was identified for the unqualified workflow purpose.',
-    recency_verification: config.recency_verification ?? `Official UAE and international sources were searched on ${REVIEW_DATE}.`,
-    superseded_check: config.superseded_check ?? 'No directly applicable exact guideline was selected.',
-  })
+export function gpExplicitWorkflowsForRange(ledger, firstSequence, lastSequence) {
+  if (!ledger || ledger.schemaVersion !== '1.0.0' || !Array.isArray(ledger.workflows)) {
+    throw new Error('Validated GP explicit mapping ledger is required')
+  }
+  const records = ledger.workflows.filter(({ sequence }) => sequence >= firstSequence && sequence <= lastSequence)
+  if (records.length !== lastSequence - firstSequence + 1) {
+    throw new Error(`Expected ${lastSequence - firstSequence + 1} GP records for ${firstSequence}-${lastSequence}; found ${records.length}`)
+  }
+  return Object.freeze(records.map(gpExplicitWorkflow))
 }
 
-export default { batch_id: 'gp-batch-support', sources: [], workflows: [] }
+export default { batch_id: 'gp-batch-support-explicit-contract', sources: [], workflows: [] }
