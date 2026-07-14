@@ -442,6 +442,27 @@ export const SOURCE_META = {
   'dha-telehealth-sore-throat-v2-2024': {
     url: 'https://dha.gov.ae/uploads/032024/29%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Sore%20Throat2024321509.pdf',
   },
+  'aao-hns-sudden-hearing-loss-2019': {
+    url: 'https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/sudden-hearing-loss-update/',
+  },
+  'nice-multimorbidity-ng56-2016': {
+    url: 'https://www.nice.org.uk/guidance/ng56/chapter/recommendations',
+  },
+  'nice-medicines-optimisation-ng5-2015': {
+    url: 'https://www.nice.org.uk/guidance/ng5/chapter/Recommendations',
+  },
+  'nice-nutrition-support-cg32-2017': {
+    url: 'https://www.nice.org.uk/guidance/cg32/chapter/Recommendations',
+  },
+  'nice-older-people-wellbeing-ng32-2015': {
+    url: 'https://www.nice.org.uk/guidance/ng32/chapter/recommendations',
+  },
+  'nice-end-of-life-ng142-2019': {
+    url: 'https://www.nice.org.uk/guidance/ng142/chapter/recommendations',
+  },
+  'nice-depression-ng222-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng222/chapter/Recommendations',
+  },
 }
 
 function unique(values) {
