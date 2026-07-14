@@ -1,0 +1,136 @@
+import { examAndConcern, followup, giEvidence, history, plan, resultContext, results } from './giBatchSupport.mjs'
+
+const workflows = [
+  giEvidence({
+    workflow_id: 'gi-iron-deficiency-gi-review',
+    evidence_groups: [
+      { source_id: 'bsg-iron-deficiency-anaemia-2021', source_section_id: 'bsg-ida-2021-assessment', relationship: 'The exact adult IDA section supports symptom, bleeding, bowel, dietary, medicine, menstrual, family, prior test, and comorbidity context plus clinician assessment without assigning cause.', exact_texts: [...followup, ...examAndConcern] },
+      { source_id: 'bsg-iron-deficiency-anaemia-2021', source_section_id: 'bsg-ida-2021-gi-investigation-followup', relationship: 'The exact GI investigation and follow-up section supports recording already available laboratory, coeliac, endoscopy, or imaging results and clinician-entered follow-up without ordering tests.', exact_texts: [...results, ...plan] },
+    ],
+    search_queries_used: ['site:bsg.org.uk iron deficiency anaemia guideline assessment gastrointestinal investigation follow-up', 'site:bsg.org.uk IDA adults coeliac endoscopy monitoring'],
+    candidate_sources_rejected: ['automatic gastrointestinal blood-loss or cancer diagnosis', 'automatic iron, coeliac testing, endoscopy, imaging, referral, or surveillance'],
+    rejection_reasons: ['Iron deficiency and anaemia require verified laboratory and cause assessment.', 'No investigation or treatment is generated.'],
+    population_applicability: 'Adults with confirmed or suspected iron deficiency anaemia; pregnancy, children, menstruation, acute bleeding, inherited anaemia, and known malignancy need separate evidence.',
+    unresolved_source_gaps: ['Laboratory definition, severity, bleeding, menstruation, diet, cause, diagnosis, iron treatment, endoscopy, imaging, referral, urgency, and follow-up remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-jaundice-documentation',
+    evidence_groups: [
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-clinical-history', relationship: 'The exact liver-history section supports jaundice, pruritus, abdominal pain, weight loss, medicine, travel, exposure, comorbidity, and alcohol context without assigning a cause.', exact_texts: history },
+      { source_id: 'nice-suspected-cancer-ng12-2026', source_section_id: 'nice-ng12-upper-gi-dysphagia-jaundice', relationship: 'The exact upper-GI section supports clinician-assessed jaundice and concern context with age qualifiers without diagnosing cancer or assigning urgency.', exact_texts: examAndConcern },
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-standard-panel', relationship: 'The exact panel section supports clinician review of bilirubin and liver blood tests without interpretation.', exact_texts: ['Laboratory results reviewed if already ordered', 'Stool or liver-related results reviewed if available'] },
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-aetiology-screen', relationship: 'The exact section supports recording already available ultrasound and aetiology-screen context without ordering tests.', exact_texts: ['Endoscopy or imaging reports reviewed if available'] },
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-response-referral', relationship: 'The exact response section supports clinician-entered concern, follow-up, and safety net without generating referral or urgency.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:bsg.org.uk abnormal liver blood tests jaundice history ultrasound referral', 'site:nice.org.uk NG12 jaundice upper GI referral'],
+    candidate_sources_rejected: ['automatic obstructive, hepatic, haemolytic, infectious, or malignant diagnosis', 'automatic blood tests, ultrasound, admission, referral, or treatment'],
+    rejection_reasons: ['Jaundice has multiple potentially serious causes.', 'No test, urgency, or management is generated.'],
+    population_applicability: 'Adults with jaundice; neonates, children, pregnancy, acute liver failure, sepsis, postoperative, and known malignancy require separate pathways.',
+    unresolved_source_gaps: ['Onset, bilirubin fraction, stool or urine change, fever, pain, exposure, examination, test interpretation, diagnosis, urgency, admission, and referral remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-lactose-intolerance-documentation',
+    evidence_groups: [
+      { source_id: 'bsg-chronic-diarrhoea-2018', source_section_id: 'bsg-diarrhoea-2018-history-exam', relationship: 'The exact adult chronic-diarrhoea section supports dairy association, bowel pattern, bloating, duration, weight, nocturnal symptoms, blood, medicine, travel, and clinician assessment without diagnosing lactose intolerance.', exact_texts: [...history, ...examAndConcern] },
+      { source_id: 'bsg-chronic-diarrhoea-2018', source_section_id: 'bsg-diarrhoea-2018-investigation-context', relationship: 'The exact section supports existing laboratory, stool, breath-test, endoscopy, or imaging context and clinician-entered follow-up without ordering tests or diets.', exact_texts: [...results, ...plan] },
+    ],
+    search_queries_used: ['site:bsg.org.uk chronic diarrhoea lactose maldigestion breath test guideline', 'site:bsg.org.uk lactose intolerance adult diarrhoea assessment'],
+    candidate_sources_rejected: ['symptoms after dairy treated as diagnostic', 'automatic lactose-free diet, breath test, supplement, or referral'],
+    rejection_reasons: ['Symptoms may reflect other food, bowel, or malabsorption disorders.', 'No dietary or testing action is generated.'],
+    population_applicability: 'Adults with dairy-associated bowel symptoms; infants, children, allergy, coeliac disease, IBD, severe malnutrition, and acute infection require separate evidence.',
+    unresolved_source_gaps: ['Exposure amount, timing, reproducibility, allergy features, nutrition, test result, diagnosis, elimination or challenge, dietetics, and follow-up remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-liver-ultrasound-result-review',
+    evidence_groups: [
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-context-interpretation', relationship: 'The exact section supports result indication, clinical context, prior and current liver results, symptoms, and medicine or alcohol context without interpreting an ultrasound in isolation.', exact_texts: resultContext },
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-clinical-history', relationship: 'The exact history section supports clinician assessment of liver-related symptoms and general status.', exact_texts: examAndConcern },
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-aetiology-screen', relationship: 'The exact adult aetiology section supports clinician review of an existing ultrasound, liver tests, and related results without assigning cause.', exact_texts: results },
+      { source_id: 'bsg-abnormal-liver-blood-tests-2018', source_section_id: 'bsg-liver-tests-2018-response-referral', relationship: 'The exact response section supports clinician-entered discussion, follow-up, and referral status without generating action.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:bsg.org.uk abnormal liver tests ultrasound result interpretation context', 'site:bsg.org.uk liver ultrasound aetiology screen referral guideline'],
+    candidate_sources_rejected: ['automatic fatty liver, cirrhosis, obstruction, mass, or normal-result interpretation', 'automatic repeat imaging, blood test, referral, surveillance, or treatment'],
+    rejection_reasons: ['Ultrasound interpretation requires the exact report and clinical context.', 'No action is generated.'],
+    population_applicability: 'Adults with an existing liver ultrasound; children, pregnancy, acute jaundice, suspected malignancy, postoperative, and transplant contexts need tailored evidence.',
+    unresolved_source_gaps: ['Indication, exact report, prior imaging, liver tests, interpretation, diagnosis, fibrosis, surveillance, referral, urgency, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-medication-review',
+    evidence_groups: [
+      { source_id: 'nice-medicines-optimisation-ng5-2015', source_section_id: 'nice-ng5-structured-medication-review', relationship: 'The exact structured-review section supports indication, benefit, harm, adverse effects, adherence, interactions, monitoring, patient priorities, and medicine-review documentation without changing treatment.', exact_texts: [...followup, ...examAndConcern, ...results] },
+      { source_id: 'nice-medicines-optimisation-ng5-2015', source_section_id: 'nice-ng5-person-involvement', relationship: 'The exact involvement section supports clinician-entered shared discussion, questions, plan, and follow-up without a medicine recommendation.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk NG5 structured medication review benefits harms adherence monitoring patient preferences', 'site:nice.org.uk NG5 medicines optimisation shared decision review'],
+    candidate_sources_rejected: ['GI specialty label used to infer a specific medicine or indication', 'automatic start, stop, substitute, taper, dose, frequency, route, or monitoring plan'],
+    rejection_reasons: ['The generic workflow lacks medicine and disease context.', 'Only clinician-entered medication-review documentation is supported.'],
+    population_applicability: 'People receiving a clinician-led medication review; age, pregnancy, indication, medicine, comorbidity, renal or hepatic status, and prescriber responsibility must be specified.',
+    unresolved_source_gaps: ['Complete medicine list, indication, dose, adherence, adverse effects, interactions, tests, decisions, prescriber, monitoring, and follow-up interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-nausea-follow-up',
+    evidence_groups: [
+      { source_id: 'dha-telehealth-nausea-vomiting-v2-2024', source_section_id: 'dha-nausea-vomiting-v2-assessment', relationship: 'The exact DHA assessment section supports interval nausea, vomiting, triggers, intake, hydration history, associated symptoms, pregnancy, medicine, and impact context without assigning cause.', exact_texts: followup },
+      { source_id: 'dha-telehealth-nausea-vomiting-v2-2024', source_section_id: 'dha-nausea-vomiting-v2-red-flags', relationship: 'The exact red-flag section supports clinician-assessed hydration, general status, and concern documentation without asserting a negative.', exact_texts: examAndConcern },
+      { source_id: 'dha-telehealth-nausea-vomiting-v2-2024', source_section_id: 'dha-nausea-vomiting-v2-investigations', relationship: 'The exact section supports recording already available tests and imaging without generating investigations.', exact_texts: results },
+      { source_id: 'dha-telehealth-nausea-vomiting-v2-2024', source_section_id: 'dha-nausea-vomiting-v2-referral', relationship: 'The exact section supports clinician-entered safety net, follow-up, and escalation status without assigning urgency.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:dha.gov.ae nausea vomiting telehealth assessment red flags follow-up', 'site:dha.gov.ae nausea vomiting investigations referral 2024'],
+    candidate_sources_rejected: ['automatic diagnosis from symptom response', 'automatic antiemetic, hydration instruction, test, referral, or admission'],
+    rejection_reasons: ['Nausea has multiple causes and follow-up needs actual interval data.', 'No treatment or escalation is generated.'],
+    population_applicability: 'DHA telehealth patients with nausea or vomiting; chronic, paediatric, pregnancy, postoperative, neurological, metabolic, and severe systemic contexts require tailored evidence.',
+    unresolved_source_gaps: ['Cause, frequency, hydration, pregnancy, medicine, neurological or metabolic assessment, diagnosis, test, treatment, urgency, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-nsaid-gi-risk-review',
+    evidence_groups: [
+      { source_id: 'nice-medicines-optimisation-ng5-2015', source_section_id: 'nice-ng5-structured-medication-review', relationship: 'The exact structured-review section supports NSAID indication, exposure, adherence, benefits, harms, GI symptoms, concurrent medicines, monitoring, and patient priorities without calculating risk or changing treatment.', exact_texts: [...followup, ...examAndConcern, ...results] },
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-alarm-endoscopy', relationship: 'The exact alarm section was reviewed for GI-bleeding and dyspepsia concern context; no separate automatic conclusion or action is mapped.', exact_texts: [] },
+      { source_id: 'nice-medicines-optimisation-ng5-2015', source_section_id: 'nice-ng5-person-involvement', relationship: 'The exact involvement section supports clinician-entered risk discussion, plan, safety net, and follow-up without recommending a medicine change.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk NG5 NSAID structured medication review adverse effects GI bleeding', 'site:nice.org.uk CG184 NSAID dyspepsia bleeding review'],
+    candidate_sources_rejected: ['automatic GI-risk score or bleeding diagnosis', 'automatic NSAID stop, switch, gastroprotection, dose, test, or referral'],
+    rejection_reasons: ['Risk depends on patient, medicine, dose, duration, comorbidity, and concurrent treatment.', 'No medication action is generated.'],
+    population_applicability: 'People with clinician-confirmed NSAID exposure; age, indication, dose, duration, ulcer history, bleeding, renal or cardiovascular risk, pregnancy, and concurrent medicines must be specified.',
+    unresolved_source_gaps: ['NSAID identity, dose, duration, indication, ulcer or bleeding history, concurrent medicines, renal status, calculated risk, medicine decision, test, and follow-up remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-nutritional-counseling-gi-documentation',
+    evidence_groups: [
+      { source_id: 'nice-nutrition-support-cg32-2017', source_section_id: 'nice-cg32-screening-concern', relationship: 'The exact screening section supports appetite, intake, weight change, BMI, swallowing, bowel, illness, and functional context without assigning malnutrition.', exact_texts: history },
+      { source_id: 'nice-nutrition-support-cg32-2017', source_section_id: 'nice-cg32-malnutrition-risk-context', relationship: 'The exact section supports clinician-assessed nutrition status, reviewed results, consent or best-interest context where relevant, and documentation of counseling actually provided without creating advice.', exact_texts: [...examAndConcern, ...results, ...plan] },
+    ],
+    search_queries_used: ['site:nice.org.uk CG32 nutrition screening counseling documentation consent', 'site:nice.org.uk CG32 malnutrition intake weight swallowing assessment'],
+    candidate_sources_rejected: ['generic healthy-diet advice presented as patient-specific counseling', 'automatic supplement, feeding route, calorie target, diet, or referral'],
+    rejection_reasons: ['The workflow may record only clinician-delivered counseling based on assessment.', 'No nutrition advice is generated.'],
+    population_applicability: 'Adults with a clinician-led GI nutrition discussion; children, pregnancy, eating disorders, dysphagia, severe malnutrition, and disease-specific diets require separate evidence.',
+    unresolved_source_gaps: ['Diagnosis, measured intake, weight, BMI, swallowing safety, dietary assessment, counseling content, consent, nutrition support, dietetics, and monitoring remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-pancreatitis-follow-up-documentation',
+    evidence_groups: [
+      { source_id: 'nice-pancreatitis-ng104-2020', source_section_id: 'nice-ng104-chronic-followup', relationship: 'The exact pancreatitis follow-up section supports interval symptoms, nutrition, exocrine function, diabetes, bone, aetiology, complications, prior procedures, imaging, and clinician review without assigning current disease activity.', exact_texts: [...followup, ...examAndConcern, ...results] },
+      { source_id: 'nice-pancreatitis-ng104-2020', source_section_id: 'nice-ng104-information-course', relationship: 'The exact information and course section supports documenting clinician-entered discussion, handover, safety net, and follow-up without generating treatment.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk NG104 pancreatitis chronic follow-up nutrition diabetes bone imaging', 'site:nice.org.uk NG104 pancreatitis information complications follow-up'],
+    candidate_sources_rejected: ['automatic acute recurrence, chronic pancreatitis, or complication diagnosis', 'automatic enzyme, analgesia, nutrition, imaging, admission, surgery, or referral'],
+    rejection_reasons: ['Current status and complications require direct assessment and results.', 'No management action is generated.'],
+    population_applicability: 'Adults, children, and young people with established acute or chronic pancreatitis follow-up, preserving age, hereditary, metabolic, alcohol, gallstone, and postoperative qualifiers.',
+    unresolved_source_gaps: ['Pancreatitis type, cause, current pain, nutrition, exocrine function, diabetes, imaging, complication, medicine, procedure, referral, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-perianal-symptoms-gi-review',
+    evidence_groups: [
+      { source_id: 'ascrs-anal-fissures-2023', source_section_id: 'ascrs-fissure-2023-presentation', relationship: 'The exact fissure presentation section supports defecation-related pain, bleeding, constipation or diarrhoea context, duration, and impact without diagnosing a fissure.', exact_texts: followup },
+      { source_id: 'ascrs-hemorrhoids-2024', source_section_id: 'ascrs-hemorrhoids-2024-evaluation', relationship: 'The exact haemorrhoid evaluation section supports bleeding, prolapse, swelling, discomfort, hygiene, bowel habit, continence, and clinician-performed focused examination without attributing symptoms to haemorrhoids.', exact_texts: examAndConcern },
+      { source_id: 'nice-crohns-ng129-2019', source_section_id: 'nice-ng129-information-monitoring', relationship: 'The exact Crohn section supports recording established IBD, perianal disease, nutrition, treatment context, and existing results without diagnosing Crohn disease.', exact_texts: results },
+      { source_id: 'ascrs-hemorrhoids-2024', source_section_id: 'ascrs-hemorrhoids-2024-followup-context', relationship: 'The exact follow-up context supports clinician-entered plan and prior-procedure review without generating treatment, surgery, or referral.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:fascrs.org anal fissure hemorrhoids perianal symptoms evaluation guideline', 'site:nice.org.uk NG129 Crohn perianal disease monitoring'],
+    candidate_sources_rejected: ['automatic fissure, haemorrhoid, abscess, fistula, Crohn, infection, or malignancy diagnosis', 'default anorectal examination, anoscopy, imaging, antibiotics, procedure, or referral'],
+    rejection_reasons: ['Perianal symptoms have multiple causes and need direct examination where appropriate.', 'No intimate examination is implied and no management is generated.'],
+    population_applicability: 'Adults with perianal symptoms; children, pregnancy, postpartum, immunocompromise, known IBD, postoperative state, severe systemic illness, and malignancy concern need tailored evidence.',
+    unresolved_source_gaps: ['Pain, bleeding, discharge, swelling, fever, bowel context, consent, chaperone, examination, diagnosis, imaging, medicine, procedure, referral, and urgency remain unsupported.'],
+  }),
+]
+
+export default { batch_id: 'source-first-0606-0615', description: 'Workflow-specific iron deficiency, jaundice, food intolerance, liver imaging, medication, nausea, NSAID, nutrition, pancreatitis, and perianal review.', sources: [], workflows }

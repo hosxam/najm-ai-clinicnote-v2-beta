@@ -1,0 +1,126 @@
+import { examAndConcern, followup, giEvidence, giNoSource, history, plan, resultContext, results } from './giBatchSupport.mjs'
+
+const workflows = [
+  giNoSource({
+    workflow_id: 'gi-colonoscopy-result-discussion-documentation',
+    search_queries_used: ['site:bsg.org.uk colonoscopy result communication documentation guideline', 'site:nice.org.uk colonoscopy result discussion follow-up documentation'],
+    official_pages_opened: ['https://www.nice.org.uk/guidance/ng151/chapter/Recommendations'],
+    candidate_sources_rejected: ['colorectal cancer follow-up guidance', 'screening programme guidance', 'generic endoscopy service pages'],
+    rejection_reasons: ['A generic colonoscopy result can involve normal findings, polyps, inflammation, cancer, inadequate preparation, surveillance, or complications.', 'Screening and cancer follow-up do not cover every result.', 'Service pages do not establish clinical interpretation.'],
+    population_applicability: 'People discussing an existing colonoscopy report; indication, histology, preparation quality, completeness, age, symptoms, and pathway are unspecified.',
+    unresolved_source_gaps: ['Procedure indication, report, histology, completeness, preparation, interpretation, diagnosis, surveillance, referral, treatment, and follow-up remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-constipation-follow-up',
+    evidence_groups: [
+      { source_id: 'dha-telehealth-constipation-v2-2024', source_section_id: 'dha-constipation-v2-history', relationship: 'The exact DHA history section supports interval stool frequency and form, straining, incomplete evacuation, abdominal symptoms, bleeding, medicines, and impact without assigning a cause.', exact_texts: followup },
+      { source_id: 'dha-telehealth-constipation-v2-2024', source_section_id: 'dha-constipation-v2-red-flags', relationship: 'The exact red-flag section supports clinician assessment and concern documentation without populating negatives.', exact_texts: examAndConcern },
+      { source_id: 'dha-telehealth-constipation-v2-2024', source_section_id: 'dha-constipation-v2-investigations', relationship: 'The exact section supports recording already reviewed investigations in persistent or suspected-secondary contexts.', exact_texts: results },
+      { source_id: 'dha-telehealth-constipation-v2-2024', source_section_id: 'dha-constipation-v2-referral', relationship: 'The exact section supports a clinician-entered safety net, follow-up, and referral status without generating urgency.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:dha.gov.ae constipation telehealth history red flags investigation referral 2024', 'site:dha.gov.ae constipation follow-up bowel habit'],
+    candidate_sources_rejected: ['automatic functional constipation diagnosis', 'automatic laxative, stool softener, diet, imaging, or referral'],
+    rejection_reasons: ['Constipation follow-up requires actual response and secondary-cause context.', 'No treatment or investigation is generated.'],
+    population_applicability: 'DHA telehealth constipation population; children, pregnancy, postoperative, neurological, opioid-related, and suspected obstruction contexts require separate evidence.',
+    unresolved_source_gaps: ['Current bowel pattern, response, adherence, secondary cause, examination, diagnosis, medicine, dose, investigation, referral, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-crohn-disease-follow-up-documentation',
+    evidence_groups: [
+      { source_id: 'nice-crohns-ng129-2019', source_section_id: 'nice-ng129-information-monitoring', relationship: 'The exact section supports interval symptoms, nutrition, growth where relevant, treatment and adverse-effect context, perianal status, and patient priorities without assigning activity.', exact_texts: [...followup, ...examAndConcern, ...results] },
+      { source_id: 'nice-crohns-ng129-2019', source_section_id: 'nice-ng129-remission-followup', relationship: 'The exact remission section supports clinician-entered access, surveillance, safety-net, and follow-up documentation without setting an interval.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk NG129 Crohn monitoring follow-up remission perianal nutrition', 'site:nice.org.uk NG129 Crohn disease adverse effects surveillance'],
+    candidate_sources_rejected: ['automatic flare or remission classification', 'automatic steroid, biologic, nutrition, surgery, surveillance, or referral'],
+    rejection_reasons: ['Disease activity and complications require clinician assessment.', 'No management action is generated.'],
+    population_applicability: 'Adults, children, and young people with established Crohn disease, retaining age, growth, perianal, surgery, pregnancy, and treatment qualifiers.',
+    unresolved_source_gaps: ['Disease extent and activity, growth, perianal findings, medicine, adverse effects, biomarkers, imaging, endoscopy, surgery, surveillance, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-diarrhea-follow-up',
+    evidence_groups: [
+      { source_id: 'bsg-chronic-diarrhoea-2018', source_section_id: 'bsg-diarrhoea-2018-history-exam', relationship: 'The exact adult chronic-diarrhoea section supports interval bowel pattern, duration, nocturnal symptoms, blood, weight, travel, medicine, diet, family history, functional impact, and clinician examination.', exact_texts: [...followup, ...examAndConcern] },
+      { source_id: 'bsg-chronic-diarrhoea-2018', source_section_id: 'bsg-diarrhoea-2018-investigation-context', relationship: 'The exact investigation section supports clinician review of existing laboratory, stool, endoscopy, and imaging context plus entered follow-up without ordering tests.', exact_texts: [...results, ...plan] },
+    ],
+    search_queries_used: ['site:bsg.org.uk chronic diarrhoea guideline history examination investigations adults', 'site:bsg.org.uk chronic diarrhea follow-up bile acid microscopic colitis coeliac'],
+    candidate_sources_rejected: ['automatic infection, IBS, IBD, malabsorption, or cancer diagnosis', 'automatic stool test, colonoscopy, imaging, medicine, or referral'],
+    rejection_reasons: ['Diarrhoea has multiple acute and chronic causes.', 'Tests and treatment remain clinician-decided.'],
+    population_applicability: 'Adults with chronic or recurrent diarrhoea; acute infection, children, pregnancy, immunocompromise, severe dehydration, and known disease need tailored evidence.',
+    unresolved_source_gaps: ['Exact stool pattern, duration, hydration, cause, diagnosis, tests, medicine, diet, referral, urgency, and follow-up interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-dyspepsia-follow-up',
+    evidence_groups: [
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-symptom-profile', relationship: 'The exact adult section supports interval dyspepsia, reflux, epigastric, meal-related, nocturnal, trigger, medicine, and impact documentation without confirming a cause.', exact_texts: followup },
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-alarm-endoscopy', relationship: 'The exact alarm section supports clinician-assessed concern, examination, and existing endoscopy context without ordering a procedure.', exact_texts: examAndConcern },
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-investigation-review', relationship: 'The exact review section supports existing H. pylori, laboratory, and endoscopy results without automatic interpretation.', exact_texts: results },
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-management-referral', relationship: 'The exact section supports only clinician-entered discussion, safety net, follow-up, and referral status.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk CG184 dyspepsia follow-up alarm H pylori endoscopy', 'site:nice.org.uk CG184 reflux dyspepsia review treatment response'],
+    candidate_sources_rejected: ['automatic ulcer, reflux, or functional dyspepsia diagnosis', 'automatic PPI, H. pylori testing, endoscopy, or referral'],
+    rejection_reasons: ['The symptom complex does not establish a diagnosis.', 'No medication, test, or referral is generated.'],
+    population_applicability: 'Adults with dyspepsia follow-up; pregnancy, children, acute bleeding, severe pain, postoperative, and malignancy contexts require separate pathways.',
+    unresolved_source_gaps: ['Current symptoms, response, medicine, adherence, alarm features, H. pylori status, endoscopy, diagnosis, referral, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-dysphagia-documentation',
+    evidence_groups: [
+      { source_id: 'nice-suspected-cancer-ng12-2026', source_section_id: 'nice-ng12-upper-gi-dysphagia-jaundice', relationship: 'The exact upper-GI section supports documenting dysphagia, associated upper-GI symptoms, age-qualified context, weight loss, and clinician concern without diagnosing cancer or assigning urgency.', exact_texts: history },
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-alarm-endoscopy', relationship: 'The exact alarm section supports clinician-assessed status and already available endoscopy context without generating a procedure.', exact_texts: [...examAndConcern, ...results] },
+      { source_id: 'nice-suspected-cancer-ng12-2026', source_section_id: 'nice-ng12-safety-netting-review', relationship: 'The exact safety-net section supports clinician-entered follow-up and safety-net documentation without assigning a pathway.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk NG12 dysphagia upper gastrointestinal cancer referral', 'site:nice.org.uk CG184 dysphagia alarm endoscopy'],
+    candidate_sources_rejected: ['automatic mechanical or neurological dysphagia diagnosis', 'automatic endoscopy, swallow study, imaging, referral, diet, or admission'],
+    rejection_reasons: ['Dysphagia location, severity, cause, and aspiration risk need direct assessment.', 'No investigation or urgency is generated.'],
+    population_applicability: 'Adults with dysphagia; children, acute obstruction, aspiration, stroke, neurological disease, pregnancy, and postoperative contexts require separate evidence.',
+    unresolved_source_gaps: ['Oropharyngeal versus oesophageal pattern, solids or liquids, aspiration, neurological findings, nutrition, diagnosis, test, referral, urgency, and plan remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-early-satiety-documentation',
+    evidence_groups: [
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-symptom-profile', relationship: 'The exact adult dyspepsia section supports meal-related upper-GI symptoms, nausea, bloating, pain, duration, triggers, and impact without diagnosing a motility disorder.', exact_texts: history },
+      { source_id: 'nice-suspected-cancer-ng12-2026', source_section_id: 'nice-ng12-upper-gi-dysphagia-jaundice', relationship: 'The exact upper-GI cancer section supports clinician-assessed weight loss, dysphagia, jaundice, and concern context without asserting disease.', exact_texts: examAndConcern },
+      { source_id: 'nice-gord-dyspepsia-cg184-2019', source_section_id: 'nice-cg184-gord-investigation-review', relationship: 'The exact section supports documenting existing results and clinician-entered review without ordering or interpreting tests.', exact_texts: [...results, ...plan] },
+    ],
+    search_queries_used: ['site:nice.org.uk CG184 early satiety dyspepsia symptoms', 'site:nice.org.uk NG12 early satiety upper GI symptoms weight loss'],
+    candidate_sources_rejected: ['automatic gastroparesis, obstruction, dyspepsia, or cancer diagnosis', 'automatic endoscopy, imaging, medicine, diet, or referral'],
+    rejection_reasons: ['Early satiety is nonspecific.', 'Tests and management require clinician judgement.'],
+    population_applicability: 'Adults with early satiety; children, pregnancy, diabetes, postoperative, neurological, obstruction, and acute severe contexts require tailored evidence.',
+    unresolved_source_gaps: ['Meal amount, vomiting, weight trajectory, diabetes, surgery, medicine, examination, diagnosis, tests, referral, and treatment remain unsupported.'],
+  }),
+  giNoSource({
+    workflow_id: 'gi-endoscopy-result-discussion-documentation',
+    search_queries_used: ['site:bsg.org.uk endoscopy result communication documentation guideline', 'site:nice.org.uk endoscopy result discussion follow-up'],
+    official_pages_opened: ['https://www.nice.org.uk/guidance/cg184/chapter/Recommendations'],
+    candidate_sources_rejected: ['dyspepsia guidance', 'colorectal cancer follow-up guidance', 'generic endoscopy service pages'],
+    rejection_reasons: ['Dyspepsia guidance does not cover all upper and lower endoscopy results.', 'Cancer follow-up is diagnosis-specific.', 'Service pages do not establish interpretation or plan.'],
+    population_applicability: 'People discussing an unspecified existing endoscopy report; procedure, indication, anatomy, biopsy, histology, completeness, and clinical context are unknown.',
+    unresolved_source_gaps: ['Procedure type, indication, findings, histology, interpretation, diagnosis, treatment, surveillance, referral, and follow-up remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-fatty-liver-follow-up',
+    evidence_groups: [
+      { source_id: 'nice-nafld-ng49-2016', source_section_id: 'nice-ng49-assessment', relationship: 'The exact assessment section supports interval metabolic, alcohol, liver-test, ultrasound, and fibrosis context without diagnosing NAFLD or interpreting fibrosis.', exact_texts: [...followup, ...examAndConcern, ...results] },
+      { source_id: 'nice-nafld-ng49-2016', source_section_id: 'nice-ng49-monitoring', relationship: 'The exact monitoring section supports clinician-entered associated-condition review and follow-up without generating lifestyle, testing, or referral advice.', exact_texts: plan },
+    ],
+    search_queries_used: ['site:nice.org.uk NG49 NAFLD follow-up fibrosis monitoring ultrasound metabolic', 'site:nice.org.uk NG49 fatty liver associated conditions'],
+    candidate_sources_rejected: ['automatic NAFLD or fibrosis-stage diagnosis', 'automatic weight loss, diet, exercise, blood test, imaging, or referral'],
+    rejection_reasons: ['Diagnosis and fibrosis risk require clinician-reviewed data.', 'No management action is generated.'],
+    population_applicability: 'Adults, children, and young people with suspected or established NAFLD, preserving age-specific and cirrhosis qualifiers.',
+    unresolved_source_gaps: ['Diagnostic basis, alcohol amount, metabolic measures, liver tests, fibrosis result, ultrasound, cirrhosis, medicine, lifestyle plan, referral, and interval remain unsupported.'],
+  }),
+  giEvidence({
+    workflow_id: 'gi-fecal-incontinence-documentation',
+    evidence_groups: [
+      { source_id: 'nice-faecal-incontinence-cg49-2007', source_section_id: 'nice-cg49-baseline-assessment', relationship: 'The exact adult baseline section supports bowel symptoms, contributory factors, physical, emotional, social, cognitive, and functional impact plus clinician-performed examination only when entered.', exact_texts: [...history, ...examAndConcern] },
+      { source_id: 'nice-faecal-incontinence-cg49-2007', source_section_id: 'nice-cg49-review-specialist-context', relationship: 'The exact review section supports existing investigation context, prior management, preferences, dignity, specialist status, and clinician-entered follow-up without generating treatment.', exact_texts: [...results, ...plan] },
+    ],
+    search_queries_used: ['site:nice.org.uk CG49 faecal incontinence baseline assessment examination impact', 'site:nice.org.uk CG49 specialist assessment review adults'],
+    candidate_sources_rejected: ['automatic incontinence cause or severity grade', 'default intimate examination, bowel training, medicine, procedure, or referral'],
+    rejection_reasons: ['Cause and findings require direct assessment.', 'No examination is implied and no intervention is generated.'],
+    population_applicability: 'Adults reporting faecal incontinence; obstetric, neurological, postoperative, prolapse, cancer-warning, and acute spinal contexts need separate assessment.',
+    unresolved_source_gaps: ['Episode pattern, stool consistency, obstetric or surgical history, consent, chaperone, examination, cognition, diagnosis, tests, treatment, and referral remain unsupported.'],
+  }),
+]
+
+export default { batch_id: 'source-first-0586-0595', description: 'Workflow-specific GI result, constipation, inflammatory bowel, diarrhoea, dyspepsia, dysphagia, NAFLD, and continence review.', sources: [], workflows }
