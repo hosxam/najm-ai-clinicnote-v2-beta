@@ -301,6 +301,87 @@ export const SOURCE_META = {
   'nice-epilepsies-ng217-2025': {
     url: 'https://www.nice.org.uk/guidance/ng217',
   },
+  'nhs-england-adult-breathlessness-pathway-2023': {
+    url: 'https://www.england.nhs.uk/long-read/adult-breathlessness-pathway-pre-diagnosis-diagnostic-pathway-support-tool/',
+  },
+  'dha-muscle-sprains-strains-issue2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/47%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Muscle%20Sprains%20and%20Strains2024317846.pdf',
+  },
+  'dha-telehealth-nausea-vomiting-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf',
+  },
+  'nice-tloc-cg109-2023': {
+    url: 'https://www.nice.org.uk/guidance/cg109/chapter/Recommendations',
+  },
+  'nice-violence-aggression-ng10-2015': {
+    url: 'https://www.nice.org.uk/guidance/ng10/chapter/Recommendations',
+  },
+  'ese-adrenal-incidentaloma-2023': {
+    url: 'https://academic.oup.com/ejendo/article/189/1/G1/7198474',
+  },
+  'nice-b12-deficiency-ng239-2024': {
+    url: 'https://www.nice.org.uk/guidance/ng239/chapter/recommendations',
+  },
+  'doh-osteoporosis-screening-v09-2019': {
+    url: 'https://www.doh.gov.ae/-/media/Feature/Resources/Guidelines/DOH-Guideline-for-the-Screening-of-Osteoporosis.ashx',
+  },
+  'nice-hyperparathyroidism-ng132-2019': {
+    url: 'https://www.nice.org.uk/guidance/ng132/chapter/Recommendations',
+  },
+  'ada-standards-diabetes-technology-2026': {
+    url: 'https://diabetesjournals.org/care/article/49/Supplement_1/S150/163922/7-Diabetes-Technology-Standards-of-Care-in',
+  },
+  'ada-standards-care-hypoglycemia-2026': {
+    url: 'https://diabetesjournals.org/care/article/49/Supplement_1/S132/163927/6-Glycemic-Goals-Hypoglycemia-and-Hyperglycemic',
+  },
+  'ada-standards-comprehensive-evaluation-2026': {
+    url: 'https://diabetesjournals.org/care/article/49/Supplement_1/S61/163931/4-Comprehensive-Medical-Evaluation-and-Assessment',
+  },
+  'dha-telehealth-type2-diabetes-v2-2024': {
+    url: 'https://dha.gov.ae/uploads/032024/30%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Type%202%20Diabetes2024322535.pdf',
+  },
+  'nhs-diabetic-eye-screening-pathway-2025': {
+    url: 'https://www.gov.uk/government/publications/diabetic-eye-screening-pathway-requirements-specification/diabetic-eye-screening-pathway-requirements-specification',
+  },
+  'kdigo-ckd-evaluation-management-2024': {
+    url: 'https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf',
+  },
+  'eau-erectile-dysfunction-2026': {
+    url: 'https://uroweb.org/guidelines/sexual-and-reproductive-health/chapter/management-of-erectile-dysfunction',
+  },
+  'nice-thyroid-ng145-2023': {
+    url: 'https://www.nice.org.uk/guidance/NG145/chapter/recommendations',
+  },
+  'nice-faltering-growth-ng75-2017': {
+    url: 'https://www.nice.org.uk/guidance/ng75/chapter/Recommendations',
+  },
+  'endocrine-society-hirsutism-2018': {
+    url: 'https://www.endocrine.org/clinical-practice-guidelines/hirsutism',
+  },
+  'ada-standards-pharmacologic-treatment-2026': {
+    url: 'https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment',
+  },
+  'nice-cvd-lipid-modification-ng238-2023': {
+    url: 'https://www.nice.org.uk/guidance/ng238/chapter/recommendations',
+  },
+  'nice-menopause-ng23-2026': {
+    url: 'https://www.nice.org.uk/guidance/ng23/chapter/Recommendations',
+  },
+  'pituitary-society-incidentaloma-2025': {
+    url: 'https://www.nature.com/articles/s41574-025-01134-8',
+  },
+  'ada-standards-prevention-diabetes-2026': {
+    url: 'https://diabetesjournals.org/care/article/49/Supplement_1/S50/163924/3-Prevention-or-Delay-of-Diabetes-and-Associated',
+  },
+  'endocrine-society-hyperprolactinemia-2011': {
+    url: 'https://www.endocrine.org/clinical-practice-guidelines/hyperprolactinemia',
+  },
+  'who-infertility-guideline-2025': {
+    url: 'https://iris.who.int/server/api/core/bitstreams/0b4b00be-9412-4d73-a3a9-1fb00874fdb6/content',
+  },
+  'endocrine-society-testosterone-2018': {
+    url: 'https://www.endocrine.org/clinical-practice-guidelines/testosterone-therapy',
+  },
 }
 
 function unique(values) {
