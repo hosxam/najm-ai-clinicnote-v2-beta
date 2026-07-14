@@ -14,6 +14,8 @@ import {
   writeJson,
   writeJsonl,
 } from './common.mjs'
+import { canonicalMappingsForWorkflow } from './canonicalMappingLedger.mjs'
+import { validateExplicitGpMappings } from './batches/gpExplicitMappingContract.mjs'
 
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
@@ -34,11 +36,47 @@ const allowedTerminalStatuses = new Set([
   'conflicting_authoritative_sources',
   'source_access_failed',
 ])
+const allowedUaeFindingTypes = new Set(['partial_applicability', 'missing_explicit_uae_evidence', 'other'])
 
 if (!batch.batch_id || !Array.isArray(batch.workflows) || batch.workflows.length === 0) {
   throw new Error('Batch module must define batch_id and workflows.')
 }
 
+const manifestPath = path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json')
+const manifest = readJson(manifestPath)
+const selectedConfigs = requestedWorkflowId
+  ? batch.workflows.filter((config) => config.workflow_id === requestedWorkflowId)
+  : batch.workflows
+if (requestedWorkflowId && selectedConfigs.length !== 1) {
+  throw new Error(`${requestedWorkflowId}: workflow is not present in ${batch.batch_id}`)
+}
+const pendingConfigs = selectedConfigs.filter((config) => {
+  const entry = manifest.workflows.find((candidate) => candidate.workflow_id === config.workflow_id)
+  if (!entry) throw new Error(`${config.workflow_id}: missing execution manifest entry`)
+  return !entry.terminal_research
+})
+const pendingWorkflowIds = new Set(pendingConfigs.map((config) => config.workflow_id))
+for (const config of pendingConfigs) {
+  if (!Array.isArray(config.uae_applicability_findings)) {
+    throw new Error(`${config.workflow_id}: uae_applicability_findings must be an explicit structured array; free-text UAE wording cannot drive programme accounting`)
+  }
+  for (const finding of config.uae_applicability_findings) {
+    if (!finding || typeof finding !== 'object' || Array.isArray(finding) || Object.getPrototypeOf(finding) !== Object.prototype) {
+      throw new Error(`${config.workflow_id}: UAE applicability finding must be a plain object`)
+    }
+    const expectedFields = new Set(['workflow_id', 'finding_type', 'source_status', 'evidence_basis'])
+    if (Object.keys(finding).some((field) => !expectedFields.has(field))) {
+      throw new Error(`${config.workflow_id}: UAE applicability finding contains an unexpected field`)
+    }
+    if (finding.workflow_id !== config.workflow_id
+      || finding.source_status !== config.source_status
+      || !allowedUaeFindingTypes.has(finding.finding_type)
+      || typeof finding.evidence_basis !== 'string'
+      || finding.evidence_basis.trim() === '') {
+      throw new Error(`${config.workflow_id}: invalid structured UAE applicability finding`)
+    }
+  }
+}
 const sourceById = new Map()
 for (const sourceUpdate of batch.sources ?? []) {
   const registryPath = path.join(EXPANSION_DIR, 'sources', sourceUpdate.registry_file)
@@ -59,21 +97,6 @@ for (const registryName of [
   const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryName))
   for (const source of registry.sources ?? []) sourceById.set(source.source_id, source)
 }
-
-const manifestPath = path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json')
-const manifest = readJson(manifestPath)
-const selectedConfigs = requestedWorkflowId
-  ? batch.workflows.filter((config) => config.workflow_id === requestedWorkflowId)
-  : batch.workflows
-if (requestedWorkflowId && selectedConfigs.length !== 1) {
-  throw new Error(`${requestedWorkflowId}: workflow is not present in ${batch.batch_id}`)
-}
-const pendingConfigs = selectedConfigs.filter((config) => {
-  const entry = manifest.workflows.find((candidate) => candidate.workflow_id === config.workflow_id)
-  if (!entry) throw new Error(`${config.workflow_id}: missing execution manifest entry`)
-  return !entry.terminal_research
-})
-const pendingWorkflowIds = new Set(pendingConfigs.map((config) => config.workflow_id))
 const auditPath = path.join(EXPANSION_DIR, 'audits', 'workflow_audit_ledger.jsonl')
 const auditRows = readJsonl(auditPath)
 const auditById = new Map(auditRows.map((row) => [row.workflow_id, row]))
@@ -99,44 +122,35 @@ for (const config of pendingConfigs) {
   const researchPath = path.join(EXPANSION_DIR, 'research', `${config.workflow_id}.research.json`)
   const workflow = readJson(workflowPath)
   const itemById = new Map(listClinicalItems(workflow).map((item) => [item.item_id, item]))
-  const mappings = []
-
   for (const group of config.support_groups ?? []) {
-    if (!group || typeof group !== 'object' || Array.isArray(group) || Object.getPrototypeOf(group) !== Object.prototype) {
-      throw new Error(`${config.workflow_id}: support group must be a plain explicit object`)
-    }
-    for (const field of Object.keys(group)) {
+    for (const field of Object.keys(group ?? {})) {
       if (forbiddenMappingFields.has(field)) throw new Error(`${config.workflow_id}: text-to-item mapping field ${field} is prohibited`)
     }
-    if (!Array.isArray(group.item_ids) || group.item_ids.length === 0) {
-      throw new Error(`${config.workflow_id}: support group requires at least one explicit workflow-owned item_id`)
-    }
-    const source = sourceById.get(group.source_id)
-    if (!source) throw new Error(`${config.workflow_id}: unknown source ${group.source_id}`)
-    if (!source.exact_sections?.some((section) => section.section_id === group.source_section_id)) {
-      throw new Error(`${config.workflow_id}: unknown source section ${group.source_section_id}`)
-    }
+  }
+  if ((config.support_groups ?? []).length > 0) {
+    throw new Error(`${config.workflow_id}: batch support groups are historical only; supported mappings must come from the canonical ledger`)
+  }
+  const canonicalMappings = canonicalMappingsForWorkflow(config.workflow_id)
+  const mappings = validateExplicitGpMappings(canonicalMappings, {
+    workflowsById: new Map([[config.workflow_id, workflow]]),
+    itemsByWorkflowId: new Map([[config.workflow_id, itemById]]),
+    sourcesById: sourceById,
+    reviewedSourceIds: new Set(config.exact_documents_opened),
+    reviewedSectionIds: new Set(config.exact_sections_reviewed),
+  })
 
-    for (const itemId of group.item_ids) {
-      const item = itemById.get(itemId)
-      if (!item) throw new Error(`${config.workflow_id}: support map references missing item ${itemId}`)
-      if (newlySupportedIds.has(itemId)) throw new Error(`${config.workflow_id}: duplicate support mapping for ${itemId}`)
-      newlySupportedIds.add(itemId)
-      item.source_ids = [group.source_id]
-      item.source_section_ids = [group.source_section_id]
-      item.clinical_review_status = 'legacy_exact_source_supported_pending_clinician_review'
-      item.evidence_relationship = group.relationship
-      mappings.push({
-        item_id: itemId,
-        source_id: group.source_id,
-        source_section_id: group.source_section_id,
-        direct_relationship: group.relationship,
-      })
-    }
+  for (const mapping of mappings) {
+    const item = itemById.get(mapping.itemId)
+    if (newlySupportedIds.has(mapping.itemId)) throw new Error(`${config.workflow_id}: duplicate canonical support mapping for ${mapping.itemId}`)
+    newlySupportedIds.add(mapping.itemId)
+    item.source_ids = [mapping.sourceId]
+    item.source_section_ids = [mapping.sectionId]
+    item.clinical_review_status = 'legacy_exact_source_supported_pending_clinician_review'
+    item.evidence_relationship = mapping.evidenceRelationship
   }
 
   const unsupportedIds = listClinicalItems(workflow)
-    .filter((item) => !mappings.some((mapping) => mapping.item_id === item.item_id))
+    .filter((item) => !mappings.some((mapping) => mapping.itemId === item.item_id))
     .map((item) => item.item_id)
 
   workflow.research_status = config.source_status
@@ -160,7 +174,7 @@ for (const config of pendingConfigs) {
     )
     const section = source?.exact_sections?.find((candidate) => candidate.section_id === sectionId)
     if (!source || !section) throw new Error(`${config.workflow_id}: exact section ${sectionId} is not registered`)
-    const mapped = mappings.some((mapping) => mapping.source_section_id === sectionId)
+    const mapped = mappings.some((mapping) => mapping.sectionId === sectionId)
     return {
       evidence_item_id: `${config.workflow_id}--${sectionId}`,
       source_id: source.source_id,
@@ -254,7 +268,15 @@ for (const config of pendingConfigs) {
 
 const unsupportedPath = path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl')
 const unsupportedRows = readJsonl(unsupportedPath).filter((row) => !newlySupportedIds.has(row.item_id))
+const uaeFindingsPath = path.join(EXPANSION_DIR, 'progress', 'UAE_APPLICABILITY_FINDINGS.jsonl')
+const uaeFindings = [
+  ...readJsonl(uaeFindingsPath).filter((row) => !pendingWorkflowIds.has(row.workflow_id)),
+  ...pendingConfigs.flatMap((config) => config.uae_applicability_findings),
+].sort((left, right) => `${left.workflow_id}/${left.finding_type}`.localeCompare(`${right.workflow_id}/${right.finding_type}`))
+const uaeFindingKeys = new Set(uaeFindings.map((finding) => `${finding.workflow_id}\u0000${finding.finding_type}`))
+if (uaeFindingKeys.size !== uaeFindings.length) throw new Error('Structured UAE applicability findings contain duplicate workflow/type keys')
 writeJsonl(unsupportedPath, unsupportedRows)
+writeJsonl(uaeFindingsPath, uaeFindings)
 writeJsonl(auditPath, auditRows)
 writeJsonl(executionLogPath, executionLog)
 
@@ -262,19 +284,16 @@ const allResearch = getResearchPaths().map((filePath) => readJson(filePath))
 const terminalResearch = allResearch.filter((record) => allowedTerminalStatuses.has(record.source_status))
 const exactDocumentIds = new Set(terminalResearch.flatMap((record) => record.exact_documents_opened))
 const exactSectionIds = new Set(terminalResearch.flatMap((record) => record.exact_sections_reviewed))
-const uaeEvidencedResearch = terminalResearch.filter((record) =>
-  ['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record.source_status),
+const uaePartialApplicabilityFindings = uaeFindings.filter(
+  (finding) => finding.finding_type === 'partial_applicability',
 )
-const uaePartialApplicabilityFindings = uaeEvidencedResearch.filter(
-  (record) => record.source_status === 'partial_exact_source_verified',
+const uaeMissingExplicitEvidenceFindings = uaeFindings.filter(
+  (finding) => finding.finding_type === 'missing_explicit_uae_evidence',
 )
-const uaeMissingExplicitEvidenceFindings = uaeEvidencedResearch.filter(
-  (record) => !/Dubai|UAE|United Arab Emirates/i.test(record.UAE_applicability),
-)
+const uaeOtherApplicabilityFindings = uaeFindings.filter((finding) => finding.finding_type === 'other')
 const uaeAffectedWorkflowIds = new Set([
-  ...uaePartialApplicabilityFindings,
-  ...uaeMissingExplicitEvidenceFindings,
-].map((record) => record.workflow_id))
+  ...uaeFindings.map((finding) => finding.workflow_id),
+])
 const sourceSupportedLegacyItemCount = allResearch.reduce(
   (total, record) => total + (record.legacy_item_support_mappings?.length ?? 0),
   0,
@@ -336,10 +355,10 @@ Object.assign(checkpoint.counts, {
   international_official_sources: readJson(path.join(EXPANSION_DIR, 'sources', 'international_clinical_sources.json')).sources.length,
   exact_sections_reviewed: exactSectionIds.size,
   uae_applicability_affected_workflows: uaeAffectedWorkflowIds.size,
-  uae_applicability_individual_findings: uaePartialApplicabilityFindings.length + uaeMissingExplicitEvidenceFindings.length,
+  uae_applicability_individual_findings: uaeFindings.length,
   uae_partial_applicability_findings: uaePartialApplicabilityFindings.length,
   uae_missing_explicit_evidence_findings: uaeMissingExplicitEvidenceFindings.length,
-  uae_other_applicability_findings: 0,
+  uae_other_applicability_findings: uaeOtherApplicabilityFindings.length,
   source_derived_items: 0,
   unsupported_legacy_items: unsupportedRows.length,
   generic_generated_items: 0,
@@ -356,7 +375,7 @@ checkpoint.clinical_blocker_commands = checkpoint.clinical_blocker_commands.map(
   if (entry.command === 'npm run audit:uae-applicability') {
     return {
       ...entry,
-      reason: `${uaeAffectedWorkflowIds.size} evidenced workflow(s) have ${uaePartialApplicabilityFindings.length + uaeMissingExplicitEvidenceFindings.length} UAE-applicability finding(s): ${uaePartialApplicabilityFindings.length} partial-applicability, ${uaeMissingExplicitEvidenceFindings.length} missing-explicit-evidence, and 0 other.`,
+      reason: `${uaeAffectedWorkflowIds.size} evidenced workflow(s) have ${uaeFindings.length} structured UAE-applicability finding(s): ${uaePartialApplicabilityFindings.length} partial-applicability, ${uaeMissingExplicitEvidenceFindings.length} missing-explicit-evidence, and ${uaeOtherApplicabilityFindings.length} other.`,
     }
   }
   if (entry.command === 'npm run audit:unsupported-legacy-content') {

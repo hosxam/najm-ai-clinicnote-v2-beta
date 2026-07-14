@@ -9,6 +9,8 @@ import {
   validateExplicitGpMapping,
   validateExplicitGpMappings,
 } from './batches/gpExplicitMappingContract.mjs'
+import { CANONICAL_MAPPING_VERSION } from './canonicalMappingLedger.mjs'
+import { scanStaticClinicalMappingSource } from './auditExplicitMappingContract.mjs'
 import { ROOT_DIR, fileSha256 } from './common.mjs'
 
 const workflow = { workflow_id: 'gp-contract-test', content_sections: {} }
@@ -45,9 +47,10 @@ function validMapping() {
     settingApplicability: `${identity}: transfer from the source setting to the test workflow is direct only for documentation; management and referral decisions are excluded.`,
     jurisdictionApplicability: `${identity}: the source jurisdiction is non-UAE and transfers indirectly; local pathways, regulation, and scope remain excluded pending review.`,
     uaeApplicability: `${identity}: applicable_with_local_review because the source is non-UAE; UAE pathways, prescribing, referral, and scope require separate confirmation.`,
-    applicabilityRationale: `${identity}: the exact reviewed section directly describes the same documentation element for the stated adult population, while clinical management and UAE-local pathway decisions remain excluded.`,
+    applicabilityRationale: `${identity}: the exact reviewed section directly describes the same documentation element for the stated adult population in the reviewed outpatient setting. UAE-local pathway transfer is limited, and all clinical management, prescribing, investigation, escalation, and referral decisions remain excluded.`,
     supportStatus: 'exact_section_supported',
     origin: 'legacy_exact',
+    mappingVersion: CANONICAL_MAPPING_VERSION,
   }
 }
 
@@ -72,6 +75,7 @@ for (const field of [
   'origin',
   'sourceHash',
   'sectionHash',
+  'mappingVersion',
 ]) {
   test(`omitted ${field} fails closed`, () => {
     const mapping = validMapping()
@@ -116,6 +120,16 @@ test('duplicate item ID fails', () => {
   assert.throws(() => validateExplicitGpMappings([validMapping(), validMapping()], context()), /unique-item-within-workflow/)
 })
 
+test('conflicting mappings for the same workflow item fail', () => {
+  const conflicting = validMapping()
+  conflicting.sourceId = 'different-source'
+  conflicting.sectionId = 'different-section'
+  assert.throws(
+    () => validateExplicitGpMappings([validMapping(), conflicting], context()),
+    /unique-item-within-workflow/,
+  )
+})
+
 for (const field of ['text', 'label', 'fuzzy']) {
   test(`${field} matching is unavailable`, () => {
     assert.throws(() => assertNoTextMappingRequest({ ...validMapping(), [field]: 'clinical wording' }), /text-matching-unavailable/)
@@ -149,6 +163,28 @@ test('previous generic remediation rationale fails even when workflow ID is pres
   assert.throws(() => validateExplicitGpMapping(mapping, context()), /workflow-specific-applicability-rationale|generic-applicability-rationale/)
 })
 
+test('generic rationale with all IDs but no substantive applicability dimensions fails', () => {
+  const mapping = validMapping()
+  mapping.applicabilityRationale = `${mapping.workflowId} ${mapping.itemId} ${mapping.sourceId} ${mapping.sectionId}: documentation correspondence is recorded for these identifiers and no decision is made by this mapping.`
+  assert.throws(() => validateExplicitGpMapping(mapping, context()), /workflow-specific-applicability-rationale/)
+})
+
+test('unchanged rationale reused across unrelated workflows fails', () => {
+  const shared = `${workflow.workflow_id} ${item.item_id} ${otherWorkflow.workflow_id} ${otherItem.item_id} ${source.source_id} ${section.section_id}: adult population limits, outpatient setting limits, UAE local pathway limits, and excluded management scope are recorded identically for both unrelated mappings.`
+  const first = validMapping()
+  const second = validMapping()
+  second.workflowId = otherWorkflow.workflow_id
+  second.itemId = otherItem.item_id
+  for (const mapping of [first, second]) {
+    mapping.populationApplicability = shared
+    mapping.settingApplicability = shared
+    mapping.jurisdictionApplicability = shared
+    mapping.uaeApplicability = shared
+    mapping.applicabilityRationale = shared
+  }
+  assert.throws(() => validateExplicitGpMappings([first, second], context()), /no-cross-workflow-shared-clinical-prose/)
+})
+
 test('generic shared applicability supplied through object spread fails', () => {
   const sharedApplicability = {
     populationApplicability: 'Adults represented by the exact source population.',
@@ -163,6 +199,17 @@ test('generic shared applicability constant fails', () => {
   const mapping = validMapping()
   mapping.settingApplicability = 'Primary-care documentation in the exact reviewed setting.'
   assert.throws(() => validateExplicitGpMapping(mapping, context()), /mapping-specific-settingApplicability/)
+})
+
+test('valid-looking shared applicability spread is rejected at the source boundary', () => {
+  const sourceText = `
+    const shared = {
+      populationApplicability: 'gp-contract-test item-gp-contract-test-1 source-contract-1 section-contract-1 adult population applicability with explicit exclusions and limitations',
+      settingApplicability: 'gp-contract-test item-gp-contract-test-1 source-contract-1 section-contract-1 outpatient setting applicability with explicit exclusions and limitations'
+    }
+    export const mapping = { ...shared, workflowId: 'gp-contract-test', itemId: 'item-gp-contract-test-1' }
+  `
+  assert.notEqual(scanStaticClinicalMappingSource('alternate/shared-spread.mjs', sourceText).length, 0)
 })
 
 test('unexpected mapping property fails', () => {
@@ -193,6 +240,15 @@ test('caller mapping object is cloned', () => {
   const result = validateExplicitGpMapping(mapping, context())
   mapping.itemId = 'changed-after-validation'
   assert.equal(result.itemId, item.item_id)
+})
+
+test('caller mapping array is cloned and immutable', () => {
+  const mappings = [validMapping()]
+  const result = validateExplicitGpMappings(mappings, context())
+  mappings.push(validMapping())
+  assert.equal(result.length, 1)
+  assert.equal(Object.isFrozen(result), true)
+  assert.throws(() => result.push(validMapping()), TypeError)
 })
 
 test('legacy item cannot be relabelled source derived', () => {

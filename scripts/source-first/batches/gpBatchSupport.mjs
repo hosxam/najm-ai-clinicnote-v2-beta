@@ -49,30 +49,15 @@ function workflowContext(record) {
   }
 }
 
-function buildSupportGroups(mappings) {
-  const groups = new Map()
-  for (const mapping of mappings) {
-    const key = `${mapping.sourceId}\u0000${mapping.sectionId}\u0000${mapping.evidenceRelationship}`
-    const current = groups.get(key) ?? {
-      source_id: mapping.sourceId,
-      source_section_id: mapping.sectionId,
-      relationship: mapping.evidenceRelationship,
-      item_ids: [],
-    }
-    current.item_ids.push(mapping.itemId)
-    groups.set(key, current)
-  }
-  return [...groups.values()]
-    .map((group) => ({ ...group, item_ids: [...new Set(group.item_ids)].sort() }))
-    .sort((left, right) => `${left.source_id}/${left.source_section_id}/${left.relationship}`.localeCompare(`${right.source_id}/${right.source_section_id}/${right.relationship}`))
-}
-
 export function gpExplicitWorkflow(record) {
   if (!record || typeof record !== 'object' || Array.isArray(record)) throw new Error('Explicit GP workflow record is required')
   for (const field of REQUIRED_WORKFLOW_FIELDS) requireExplicit(record, field)
   if (!Array.isArray(record.mappings)) throw new Error(`${record.workflowId}: mappings must be an explicit array`)
 
   const mappings = validateExplicitGpMappings(record.mappings, workflowContext(record))
+  if (mappings.length > 0) {
+    throw new Error(`${record.workflowId}: batch-local mappings are prohibited; author canonical mappings in CANONICAL_SUPPORTED_MAPPING_LEDGER.jsonl`)
+  }
   const noSource = record.sourceStatus === 'no_authoritative_source_found'
   if (noSource && (mappings.length > 0 || record.exactDocumentsOpened.length > 0 || record.exactSectionsReviewed.length > 0)) {
     throw new Error(`${record.workflowId}: no-authoritative-source record cannot emit evidence mappings`)
@@ -106,7 +91,7 @@ export function gpExplicitWorkflow(record) {
     superseded_check: record.supersededCheck,
     unresolved_source_gaps: structuredClone(record.unresolvedSourceGaps),
     section_relationships: sectionRelationships,
-    support_groups: buildSupportGroups(mappings),
+    support_groups: [],
     source_status: record.sourceStatus,
   })
 }

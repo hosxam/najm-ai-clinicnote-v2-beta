@@ -169,11 +169,33 @@ function sourceRecencyCheck() {
 
 function uaeApplicabilityCheck() {
   const evidenced = research.filter((record) => ['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record.source_status))
-  for (const record of evidenced) {
-    assert(/Dubai|UAE|United Arab Emirates/i.test(record.UAE_applicability), `${record.workflow_id}: UAE applicability is not evidenced.`, errors)
-    assert(record.source_status !== 'partial_exact_source_verified', `${record.workflow_id}: partial UAE/population/setting coverage is a clinical blocker.`, errors)
+  const findings = readJsonl(path.join(EXPANSION_DIR, 'progress', 'UAE_APPLICABILITY_FINDINGS.jsonl'))
+  const allowedFindingTypes = new Set(['partial_applicability', 'missing_explicit_uae_evidence', 'other'])
+  const seen = new Set()
+  for (const finding of findings) {
+    const key = `${finding.workflow_id}\u0000${finding.finding_type}`
+    assert(!seen.has(key), `${finding.workflow_id}: duplicate structured UAE finding ${finding.finding_type}.`, errors)
+    seen.add(key)
+    assert(allowedFindingTypes.has(finding.finding_type), `${finding.workflow_id}: invalid structured UAE finding type.`, errors)
+    const record = researchById.get(finding.workflow_id)
+    assert(Boolean(record), `${finding.workflow_id}: structured UAE finding has no research record.`, errors)
+    assert(['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record?.source_status), `${finding.workflow_id}: structured UAE finding is not attached to an evidenced workflow.`, errors)
+    if (finding.finding_type === 'partial_applicability') {
+      assert(record?.source_status === 'partial_exact_source_verified', `${finding.workflow_id}: partial finding does not match source status.`, errors)
+    }
+    errors.push(`${finding.workflow_id}: structured UAE applicability blocker ${finding.finding_type}.`)
   }
-  printResult(check, errors, { evidenced_workflows: evidenced.length, partial_applicability_blockers: errors.length })
+  for (const record of evidenced.filter((entry) => entry.source_status === 'partial_exact_source_verified')) {
+    assert(seen.has(`${record.workflow_id}\u0000partial_applicability`), `${record.workflow_id}: missing structured partial-applicability finding.`, errors)
+  }
+  printResult(check, errors, {
+    evidenced_workflows: evidenced.length,
+    affected_workflows: new Set(findings.map((finding) => finding.workflow_id)).size,
+    structured_findings: findings.length,
+    partial_applicability_findings: findings.filter((finding) => finding.finding_type === 'partial_applicability').length,
+    missing_explicit_uae_evidence_findings: findings.filter((finding) => finding.finding_type === 'missing_explicit_uae_evidence').length,
+    other_findings: findings.filter((finding) => finding.finding_type === 'other').length,
+  })
 }
 
 function unsupportedLegacyCheck() {

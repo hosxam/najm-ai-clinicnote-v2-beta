@@ -1,24 +1,13 @@
 import { sha256 } from '../common.mjs'
+import {
+  CANONICAL_MAPPING_FIELDS,
+  CANONICAL_MAPPING_VERSION,
+} from '../canonicalMappingLedger.mjs'
 
 export const GP_MAPPING_SUPPORT_STATUSES = new Set(['exact_section_supported'])
 export const GP_MAPPING_ORIGINS = new Set(['legacy_exact', 'legacy_cleaned'])
 
-const REQUIRED_FIELDS = [
-  'workflowId',
-  'itemId',
-  'sourceId',
-  'sectionId',
-  'sourceHash',
-  'sectionHash',
-  'evidenceRelationship',
-  'populationApplicability',
-  'settingApplicability',
-  'jurisdictionApplicability',
-  'uaeApplicability',
-  'applicabilityRationale',
-  'supportStatus',
-  'origin',
-]
+const REQUIRED_FIELDS = CANONICAL_MAPPING_FIELDS
 
 const REQUIRED_FIELD_SET = new Set(REQUIRED_FIELDS)
 
@@ -79,8 +68,16 @@ function deepFreeze(value) {
 function validateRationale(mapping, rationale) {
   const normalized = rationale.toLowerCase()
   const requiredTokens = [mapping.workflowId, mapping.itemId, mapping.sourceId, mapping.sectionId]
-  if (rationale.length < 120 || requiredTokens.some((token) => !normalized.includes(token.toLowerCase()))) {
-    fail(mapping, 'workflow-specific-applicability-rationale', 'applicabilityRationale must name the exact workflow, item, source, and section IDs and explain applicability in at least 120 characters')
+  const substantiveDimensions = [
+    /population|adult|child|pregnan|age/i,
+    /setting|primary care|outpatient|inpatient|telehealth|emergency/i,
+    /UAE|Dubai|United Arab Emirates|jurisdiction|local/i,
+    /limit|exclude|scope|not applicable|not transfer/i,
+  ]
+  if (rationale.length < 160
+    || requiredTokens.some((token) => !normalized.includes(token.toLowerCase()))
+    || substantiveDimensions.some((pattern) => !pattern.test(rationale))) {
+    fail(mapping, 'workflow-specific-applicability-rationale', 'applicabilityRationale must name the exact workflow, item, source, and section IDs and substantively address population, setting, UAE/local transfer, and material limitations in at least 160 characters')
   }
   if (/^(applicable|relevant|supports|same as|workflow specific|workflow-specific)\b/i.test(rationale)
     || /the exact reviewed source section is retained only for this workflow-owned documentation item/i.test(rationale)
@@ -93,7 +90,7 @@ function validateApplicability(mapping, field) {
   const value = mapping[field]
   const normalized = value.toLowerCase()
   const requiredTokens = [mapping.workflowId, mapping.itemId, mapping.sourceId, mapping.sectionId]
-  if (value.length < 80 || requiredTokens.some((token) => !normalized.includes(token.toLowerCase()))) {
+  if (value.length < 100 || requiredTokens.some((token) => !normalized.includes(token.toLowerCase()))) {
     fail(mapping, `mapping-specific-${field}`, `${field} must name the exact workflow, item, source, and section IDs and state material limitations`)
   }
   if (/^(applicable|relevant|same as|primary care|outpatient|uae review required)\b/i.test(value)) {
@@ -165,6 +162,9 @@ export function validateExplicitGpMapping(mapping, context) {
   if (!GP_MAPPING_ORIGINS.has(mapping.origin)) {
     fail(mapping, 'permitted-origin', `origin must be one of ${[...GP_MAPPING_ORIGINS].join(', ')}`)
   }
+  if (mapping.mappingVersion !== CANONICAL_MAPPING_VERSION) {
+    fail(mapping, 'canonical-mapping-version', `mappingVersion must equal ${CANONICAL_MAPPING_VERSION}`)
+  }
   if (mapping.origin === 'source_derived' || item.origin === 'source_derived') {
     fail(mapping, 'legacy-not-source-derived', 'legacy items cannot be relabelled source_derived')
   }
@@ -178,11 +178,28 @@ export function validateExplicitGpMapping(mapping, context) {
 export function validateExplicitGpMappings(mappings, context) {
   if (!Array.isArray(mappings)) throw new Error('[explicit-mapping-contract] mappings must be an explicit array')
   const seen = new Set()
+  const sharedSemanticValues = new Map()
   const validated = mappings.map((mapping) => {
     const key = `${mapping?.workflowId ?? '<missing>'}\u0000${mapping?.itemId ?? '<missing>'}`
     if (seen.has(key)) fail(mapping, 'unique-item-within-workflow', 'duplicate itemId in workflow mapping set')
     seen.add(key)
-    return validateExplicitGpMapping(mapping, context)
+    const result = validateExplicitGpMapping(mapping, context)
+    for (const field of [
+      'populationApplicability',
+      'settingApplicability',
+      'jurisdictionApplicability',
+      'uaeApplicability',
+      'applicabilityRationale',
+    ]) {
+      const normalized = result[field].replace(/\s+/g, ' ').trim().toLowerCase()
+      const previousIdentity = sharedSemanticValues.get(`${field}\u0000${normalized}`)
+      const identity = `${result.workflowId}\u0000${result.itemId}`
+      if (previousIdentity && previousIdentity !== identity) {
+        fail(mapping, 'no-cross-workflow-shared-clinical-prose', `${field} is reused unchanged across unrelated mappings`)
+      }
+      sharedSemanticValues.set(`${field}\u0000${normalized}`, identity)
+    }
+    return result
   })
   return deepFreeze(validated)
 }

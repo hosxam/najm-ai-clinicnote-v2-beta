@@ -1,22 +1,63 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readJsonl } from './common.mjs'
-import { runExplicitMappingAudit, scanStaticClinicalMappingSource } from './auditExplicitMappingContract.mjs'
+import {
+  compareMappingSets,
+  runExplicitMappingAudit,
+  scanStaticClinicalMappingSource,
+} from './auditExplicitMappingContract.mjs'
 
-const unsafeStaticFixtures = [
-  ['alternate/text-wrapper.mjs', "export const renamed = (...args) => supportTexts(...args)"],
-  ['alternate/normalizer.mjs', "function normalizeText(value) { return value.trim() }\nexport function mapItem(text) { return normalizeText(text) }"],
-  ['alternate/computed.mjs', "const itemId='itemId'; const mapping = { [itemId]: 'x', sourceId: 's' }"],
-  ['alternate/spread.mjs', "const shared = {}; const mapping = { ...shared, populationApplicability: 'x', settingApplicability: 'y' }"],
-  ['alternate/writer.mjs', "research.legacy_item_support_mappings = mappings"],
-  ['alternate/defaults.mjs', "const exact_texts = ['clinical text']"],
+const guardStaticProbes = [
+  ['01 early non-numbered writer', 'early/workflow-0001.mjs', 'research.legacy_item_support_mappings = mappings'],
+  ['02 writer outside batch directory', 'tools/clinical-writer.mjs', 'workflow.clinical_review_status = "legacy_exact_source_supported_pending_clinician_review"'],
+  ['03 renamed text helper', 'alternate/renamed-helper.mjs', 'export const renamed = (...args) => supportTexts(...args)'],
+  ['04 wrapper around text resolver', 'alternate/wrapper.mjs', 'export function wrapped(...args) { return supportTexts(...args) }'],
+  ['05 default UAE applicability', 'alternate/default-uae.mjs', 'const defaultUae = "shared"; const mapping = { uaeApplicability: defaultUae }'],
+  ['06 default setting applicability', 'alternate/default-setting.mjs', 'const defaultSetting = "shared"; const mapping = { settingApplicability: defaultSetting }'],
+  ['07 default population applicability', 'alternate/default-population.mjs', 'const defaultPopulation = "shared"; const mapping = { populationApplicability: defaultPopulation }'],
+  ['08 generic rationale', 'alternate/generic-rationale.mjs', 'const mapping = { applicabilityRationale: "Applicable to this workflow" }'],
+  ['09 computed mapping property', 'alternate/computed.mjs', "const itemId='itemId'; const mapping = { [itemId]: 'x', sourceId: 's' }"],
+  ['10 dynamic mapping import', 'alternate/dynamic.mjs', 'const helper = await import("./clinicalMappingWriter.mjs")'],
 ]
 
-for (const [fileName, sourceText] of unsafeStaticFixtures) {
-  test(`static guard rejects ${fileName}`, () => {
+for (const [name, fileName, sourceText] of guardStaticProbes) {
+  test(`guard probe ${name} fails closed`, () => {
     assert.notEqual(scanStaticClinicalMappingSource(fileName, sourceText).length, 0)
   })
 }
+
+const baseMapping = {
+  workflowId: 'workflow-a',
+  itemId: 'item-a',
+  sourceId: 'source-a',
+  sectionId: 'section-a',
+  sourceHash: 'a'.repeat(64),
+  sectionHash: 'b'.repeat(64),
+  evidenceRelationship: 'direct',
+  populationApplicability: 'population',
+  settingApplicability: 'setting',
+  jurisdictionApplicability: 'jurisdiction',
+  uaeApplicability: 'uae',
+  applicabilityRationale: 'rationale',
+  supportStatus: 'exact_section_supported',
+  origin: 'legacy_exact',
+  mappingVersion: '1.0.0',
+}
+
+test('guard probe 11 runtime and persistence mismatch fails closed', () => {
+  assert.throws(
+    () => compareMappingSets('probe runtime versus persistence', [baseMapping], []),
+    /mismatch/,
+  )
+})
+
+test('guard probe 12 equal totals with different mapping keys fail closed', () => {
+  const differentKey = { ...baseMapping, itemId: 'item-b' }
+  assert.throws(
+    () => compareMappingSets('probe equal-total key mismatch', [baseMapping], [differentKey]),
+    /missing=1 unexpected=1/,
+  )
+})
 
 test('historical text batch is retained only as a non-writing snapshot', () => {
   const safe = "import { supportTexts } from './authoredBatchSupport.mjs'\nconst group = supportTexts('s','x','r','w',['text'])"
@@ -29,8 +70,10 @@ test('historical text batch is retained only as a non-writing snapshot', () => {
 test('runtime guard reconciles persisted, workflow, and explicit-ledger mappings', () => {
   const result = runExplicitMappingAudit()
   assert.equal(result.reconciliationEqual, true)
+  assert.equal(result.canonicalSupportedMappings, 0)
   assert.equal(result.persistedSupportedMappings, result.workflowSupportedMappings)
   assert.equal(result.persistedSupportedMappings, result.explicitMappingLedgerRecords)
+  assert.equal(result.persistedSupportedMappings, result.runtimeEmittedSupportedMappings)
   assert.equal(result.guardInspectedSupportedMappings, result.persistedSupportedMappings)
 })
 
@@ -38,7 +81,7 @@ test('runtime guard includes all early GP workflows and all correction records',
   const result = runExplicitMappingAudit()
   assert.equal(result.earlyGpWorkflowsInspected, 5)
   assert.equal(result.gpCorrectionRecordsInspected, 1164)
-  assert.equal(result.numberedGpMappingsRemaining, 0)
+  assert.equal(result.globalCorrectionRecordsInspected, 17347)
 })
 
 test('duplicate-text ambiguity is retained in the correction ledger and no arbitrary target remains', () => {
