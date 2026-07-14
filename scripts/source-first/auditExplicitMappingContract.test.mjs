@@ -26,6 +26,78 @@ for (const [name, fileName, sourceText] of guardStaticProbes) {
   })
 }
 
+const computedPropertyGuardProbes = [
+  [
+    'shorthand computed applicability variable',
+    'alternate/shorthand-computed.mjs',
+    'const field = "uaeApplicability"; const mapping = { [field]: value, workflowId, itemId, sourceId, sectionId, evidenceRelationship }',
+  ],
+  [
+    'direct computed protected string without companion identity fields',
+    'alternate/direct-computed.mjs',
+    'const metadata = { ["uaeApplicability"]: value }',
+  ],
+  [
+    'computed protected variable alias',
+    'alternate/alias-computed.mjs',
+    'const requiredFieldName = "supportStatus"; const fieldAlias = requiredFieldName; const mapping = { [fieldAlias]: value, workflowId, itemId, sourceId, sectionId }',
+  ],
+  [
+    'unresolved computed key in mapping-like object',
+    'alternate/unresolved-computed.mjs',
+    'const mapping = { [getClinicalField()]: value, workflowId, itemId, sourceId, sectionId }',
+  ],
+  [
+    'computed mapping identity field',
+    'alternate/computed-identity.mjs',
+    'const workflowField = "workflowId"; const mapping = { [workflowField]: workflowId, itemId, sourceId, sectionId }',
+  ],
+  [
+    'nested computed applicability field',
+    'alternate/nested-computed.mjs',
+    'const field = "uaeApplicability"; const mapping = { workflowId, itemId, sourceId, sectionId, applicability: { [field]: value } }',
+  ],
+  [
+    'computed property after statically resolvable identity spread',
+    'alternate/spread-computed.mjs',
+    'const base = { workflowId, itemId, sourceId, sectionId }; const field = "uaeApplicability"; const record = { ...base, [field]: value }',
+  ],
+  [
+    'computed property in wrapper return',
+    'alternate/wrapper-computed.mjs',
+    'const field = "uaeApplicability"; function createRecord() { return { [field]: value, workflowId, itemId, sourceId, sectionId }; }',
+  ],
+  [
+    'template-generated computed protected key',
+    'alternate/template-computed.mjs',
+    'const suffix = "Applicability"; const mapping = { [`uae${suffix}`]: value, workflowId, itemId, sourceId, sectionId }',
+  ],
+  [
+    'computed property in exported array',
+    'alternate/exported-array-computed.mjs',
+    'const field = "supportStatus"; export const records = [{ [field]: value, workflowId, itemId, sourceId, sectionId }]',
+  ],
+  [
+    'computed property in dynamically imported clinical module',
+    'alternate/dynamic-clinical-mapping-module.mjs',
+    'export default function loadClinicalMapping() { return { [resolveField()]: value, workflowId, itemId, sourceId, sectionId }; }',
+  ],
+]
+
+for (const [name, fileName, sourceText] of computedPropertyGuardProbes) {
+  test(`computed-property guard ${name} fails closed`, () => {
+    assert.match(
+      scanStaticClinicalMappingSource(fileName, sourceText).join('\n'),
+      /computed clinical mapping propert(?:y|ies) (?:is|are) prohibited/,
+    )
+  })
+}
+
+test('nonclinical computed property outside mapping context is accepted', () => {
+  const sourceText = 'const field = "theme"; const metadata = { [field]: "dark", displayName: "Night mode" }'
+  assert.deepEqual(scanStaticClinicalMappingSource('ui/theme-metadata.mjs', sourceText), [])
+})
+
 const baseMapping = {
   workflowId: 'workflow-a',
   itemId: 'item-a',
@@ -52,6 +124,8 @@ test('guard probe 11 runtime and persistence mismatch fails closed', () => {
 })
 
 test('guard probe 12 equal totals with different mapping keys fail closed', () => {
+  const computedSource = 'const field = "itemId"; const mapping = { [field]: "item-b", workflowId: "workflow-a", sourceId: "source-a", sectionId: "section-a" }'
+  assert.notEqual(scanStaticClinicalMappingSource('alternate/equal-total-computed.mjs', computedSource).length, 0)
   const differentKey = { ...baseMapping, itemId: 'item-b' }
   assert.throws(
     () => compareMappingSets('probe equal-total key mismatch', [baseMapping], [differentKey]),
