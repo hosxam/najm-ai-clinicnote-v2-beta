@@ -1,4 +1,4 @@
-import { examAndConcern, followup, giEvidence, giNoSource, history, plan, resultContext, results } from './giBatchSupport.mjs'
+import { examAndConcern, followup, giEvidence, giNoSource, history, plan, results } from './giBatchSupport.mjs'
 
 const workflows = [
   giNoSource({
