@@ -77,7 +77,9 @@ export function gpExplicitWorkflow(record) {
   if (noSource && (mappings.length > 0 || record.exactDocumentsOpened.length > 0 || record.exactSectionsReviewed.length > 0)) {
     throw new Error(`${record.workflowId}: no-authoritative-source record cannot emit evidence mappings`)
   }
-  if (!noSource && mappings.length === 0) throw new Error(`${record.workflowId}: evidenced workflow requires explicit mappings`)
+  if (!noSource && mappings.length === 0 && !record.unresolvedSourceGaps.some((gap) => /mapping|unsupported|item-level/i.test(gap))) {
+    throw new Error(`${record.workflowId}: evidenced workflow with no retained mappings must explicitly record the unresolved item-level mapping gap`)
+  }
 
   const sectionRelationships = {}
   for (const mapping of mappings) {

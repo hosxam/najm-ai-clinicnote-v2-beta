@@ -85,6 +85,10 @@ const executionLog = readJsonl(executionLogPath)
     && pendingWorkflowIds.has(row.workflow_id)
   ))
 const newlySupportedIds = new Set()
+const forbiddenMappingFields = new Set([
+  'text', 'texts', 'exactText', 'exactTexts', 'exact_texts', 'label', 'labels',
+  'alias', 'aliases', 'category', 'position', 'keyword', 'keywords', 'substring', 'fuzzy',
+])
 
 for (const config of pendingConfigs) {
   if (!allowedTerminalStatuses.has(config.source_status)) {
@@ -98,6 +102,15 @@ for (const config of pendingConfigs) {
   const mappings = []
 
   for (const group of config.support_groups ?? []) {
+    if (!group || typeof group !== 'object' || Array.isArray(group) || Object.getPrototypeOf(group) !== Object.prototype) {
+      throw new Error(`${config.workflow_id}: support group must be a plain explicit object`)
+    }
+    for (const field of Object.keys(group)) {
+      if (forbiddenMappingFields.has(field)) throw new Error(`${config.workflow_id}: text-to-item mapping field ${field} is prohibited`)
+    }
+    if (!Array.isArray(group.item_ids) || group.item_ids.length === 0) {
+      throw new Error(`${config.workflow_id}: support group requires at least one explicit workflow-owned item_id`)
+    }
     const source = sourceById.get(group.source_id)
     if (!source) throw new Error(`${config.workflow_id}: unknown source ${group.source_id}`)
     if (!source.exact_sections?.some((section) => section.section_id === group.source_section_id)) {

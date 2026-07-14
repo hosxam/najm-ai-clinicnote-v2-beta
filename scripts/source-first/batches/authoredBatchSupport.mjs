@@ -1,6 +1,3 @@
-import path from 'node:path'
-import { EXPANSION_DIR, listClinicalItems, readJson } from '../common.mjs'
-
 export function section(section_id, heading, locator, evidence_summary) {
   return { section_id, heading, locator, evidence_summary }
 }
@@ -13,42 +10,8 @@ export function workflowRecord(config) {
   }
 }
 
-const itemCache = new Map()
-
-function workflowItems(workflowId) {
-  if (!itemCache.has(workflowId)) {
-    const workflowPath = path.join(EXPANSION_DIR, 'workflows', `${workflowId}.json`)
-    itemCache.set(workflowId, listClinicalItems(readJson(workflowPath)))
-  }
-  return itemCache.get(workflowId)
-}
-
-function normalizeText(value) {
-  return String(value).replace(/\s+/g, ' ').trim()
-}
-
-export function supportTexts(source_id, source_section_id, relationship, workflowId, exactTexts) {
-  const requested = [...new Set(exactTexts.map(normalizeText))]
-  const items = workflowItems(workflowId)
-  const itemIds = []
-  const missing = []
-
-  for (const text of requested) {
-    const matches = items.filter((item) => normalizeText(item.text) === text)
-    if (matches.length === 0) missing.push(text)
-    else itemIds.push(...matches.map((item) => item.item_id))
-  }
-
-  if (missing.length > 0) {
-    throw new Error(`${workflowId}: exact support text not found: ${missing.join(' | ')}`)
-  }
-
-  return {
-    source_id,
-    source_section_id,
-    relationship,
-    item_ids: [...new Set(itemIds)],
-  }
+export function supportTexts() {
+  throw new Error('supportTexts is retired: clinical mappings require independently authored workflow-owned item IDs and may not be resolved from text')
 }
 
 export const SOURCE_META = {

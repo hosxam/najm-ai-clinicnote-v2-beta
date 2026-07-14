@@ -32,6 +32,7 @@ function context() {
 }
 
 function validMapping() {
+  const identity = `${workflow.workflow_id} ${item.item_id} ${source.source_id} ${section.section_id}`
   return {
     workflowId: workflow.workflow_id,
     itemId: item.item_id,
@@ -40,11 +41,11 @@ function validMapping() {
     sourceHash: sourceObjectHash(source),
     sectionHash: sectionObjectHash(section),
     evidenceRelationship: 'The exact section directly supports this exact legacy documentation item.',
-    populationApplicability: 'Adults represented by the exact source population.',
-    settingApplicability: 'Primary-care documentation in the exact reviewed setting.',
-    jurisdictionApplicability: 'International guidance requiring explicit local jurisdiction review.',
-    uaeApplicability: 'Requires explicit UAE pathway and jurisdiction review.',
-    applicabilityRationale: 'gp-contract-test uses this exact section only for its workflow-owned documentation item.',
+    populationApplicability: `${identity}: the source population is limited to adults represented by the reviewed section; children, pregnancy, and unmatched populations are excluded.`,
+    settingApplicability: `${identity}: transfer from the source setting to the test workflow is direct only for documentation; management and referral decisions are excluded.`,
+    jurisdictionApplicability: `${identity}: the source jurisdiction is non-UAE and transfers indirectly; local pathways, regulation, and scope remain excluded pending review.`,
+    uaeApplicability: `${identity}: applicable_with_local_review because the source is non-UAE; UAE pathways, prescribing, referral, and scope require separate confirmation.`,
+    applicabilityRationale: `${identity}: the exact reviewed section directly describes the same documentation element for the stated adult population, while clinical management and UAE-local pathway decisions remain excluded.`,
     supportStatus: 'exact_section_supported',
     origin: 'legacy_exact',
   }
@@ -140,6 +141,58 @@ test('invalid source and section hashes fail', () => {
 
 test('generic applicability rationale fails', () => {
   assert.throws(() => validateExplicitGpMapping({ ...validMapping(), applicabilityRationale: 'Applicable.' }, context()), /workflow-specific-applicability-rationale/)
+})
+
+test('previous generic remediation rationale fails even when workflow ID is present', () => {
+  const mapping = validMapping()
+  mapping.applicabilityRationale = `${mapping.workflowId}: the exact reviewed source section is retained only for this workflow-owned documentation item; its recorded population, setting, source jurisdiction, and UAE limitations remain explicit and require clinician review.`
+  assert.throws(() => validateExplicitGpMapping(mapping, context()), /workflow-specific-applicability-rationale|generic-applicability-rationale/)
+})
+
+test('generic shared applicability supplied through object spread fails', () => {
+  const sharedApplicability = {
+    populationApplicability: 'Adults represented by the exact source population.',
+    settingApplicability: 'Primary-care documentation in the exact reviewed setting.',
+    jurisdictionApplicability: 'International guidance requiring explicit local jurisdiction review.',
+    uaeApplicability: 'Requires explicit UAE pathway and jurisdiction review.',
+  }
+  assert.throws(() => validateExplicitGpMapping({ ...validMapping(), ...sharedApplicability }, context()), /mapping-specific-/)
+})
+
+test('generic shared applicability constant fails', () => {
+  const mapping = validMapping()
+  mapping.settingApplicability = 'Primary-care documentation in the exact reviewed setting.'
+  assert.throws(() => validateExplicitGpMapping(mapping, context()), /mapping-specific-settingApplicability/)
+})
+
+test('unexpected mapping property fails', () => {
+  assert.throws(() => validateExplicitGpMapping({ ...validMapping(), defaultUaeApplicability: 'shared' }, context()), /no-unexpected-properties/)
+})
+
+test('prototype-derived mapping fails', () => {
+  const mapping = Object.create(validMapping())
+  assert.throws(() => validateExplicitGpMapping(mapping, context()), /plain-schema-owned-object/)
+})
+
+test('whitespace-only required fields fail', () => {
+  for (const field of ['workflowId', 'itemId', 'sourceId', 'sectionId', 'applicabilityRationale']) {
+    const mapping = validMapping()
+    mapping[field] = '   '
+    assert.throws(() => validateExplicitGpMapping(mapping, context()), new RegExp(`nonempty-${field}`))
+  }
+})
+
+test('validated output cannot be mutated', () => {
+  const result = validateExplicitGpMapping(validMapping(), context())
+  assert.throws(() => { result.itemId = 'changed' }, TypeError)
+  assert.equal(result.itemId, item.item_id)
+})
+
+test('caller mapping object is cloned', () => {
+  const mapping = validMapping()
+  const result = validateExplicitGpMapping(mapping, context())
+  mapping.itemId = 'changed-after-validation'
+  assert.equal(result.itemId, item.item_id)
 })
 
 test('legacy item cannot be relabelled source derived', () => {

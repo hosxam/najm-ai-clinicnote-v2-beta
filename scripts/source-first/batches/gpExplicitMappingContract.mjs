@@ -20,6 +20,8 @@ const REQUIRED_FIELDS = [
   'origin',
 ]
 
+const REQUIRED_FIELD_SET = new Set(REQUIRED_FIELDS)
+
 const FORBIDDEN_TEXT_MAPPING_FIELDS = new Set([
   'text',
   'texts',
@@ -53,6 +55,20 @@ function explicitString(mapping, field) {
   return value.trim()
 }
 
+function assertPlainSchemaObject(mapping) {
+  if (Object.getPrototypeOf(mapping) !== Object.prototype) {
+    fail(mapping, 'plain-schema-owned-object', 'mapping must be a plain object with Object.prototype')
+  }
+  if (Object.getOwnPropertySymbols(mapping).length > 0) {
+    fail(mapping, 'no-symbol-properties', 'mapping must not contain symbol properties')
+  }
+  for (const field of Object.keys(mapping)) {
+    if (!REQUIRED_FIELD_SET.has(field)) {
+      fail(mapping, 'no-unexpected-properties', `unexpected mapping property ${field}`)
+    }
+  }
+}
+
 function deepFreeze(value) {
   if (!value || typeof value !== 'object' || Object.isFrozen(value)) return value
   Object.freeze(value)
@@ -62,11 +78,26 @@ function deepFreeze(value) {
 
 function validateRationale(mapping, rationale) {
   const normalized = rationale.toLowerCase()
-  if (rationale.length < 40 || !normalized.includes(mapping.workflowId.toLowerCase())) {
-    fail(mapping, 'workflow-specific-applicability-rationale', 'applicabilityRationale must name the exact workflow ID and explain applicability in at least 40 characters')
+  const requiredTokens = [mapping.workflowId, mapping.itemId, mapping.sourceId, mapping.sectionId]
+  if (rationale.length < 120 || requiredTokens.some((token) => !normalized.includes(token.toLowerCase()))) {
+    fail(mapping, 'workflow-specific-applicability-rationale', 'applicabilityRationale must name the exact workflow, item, source, and section IDs and explain applicability in at least 120 characters')
   }
-  if (/^(applicable|relevant|supports|same as|workflow specific|workflow-specific)\b/i.test(rationale)) {
+  if (/^(applicable|relevant|supports|same as|workflow specific|workflow-specific)\b/i.test(rationale)
+    || /the exact reviewed source section is retained only for this workflow-owned documentation item/i.test(rationale)
+    || /\b(?:applicable to this workflow|supports this item|relevant clinical guidance|uae review required|outpatient applicability|applies in primary care)\b/i.test(rationale)) {
     fail(mapping, 'generic-applicability-rationale', 'generic applicability rationale is prohibited')
+  }
+}
+
+function validateApplicability(mapping, field) {
+  const value = mapping[field]
+  const normalized = value.toLowerCase()
+  const requiredTokens = [mapping.workflowId, mapping.itemId, mapping.sourceId, mapping.sectionId]
+  if (value.length < 80 || requiredTokens.some((token) => !normalized.includes(token.toLowerCase()))) {
+    fail(mapping, `mapping-specific-${field}`, `${field} must name the exact workflow, item, source, and section IDs and state material limitations`)
+  }
+  if (/^(applicable|relevant|same as|primary care|outpatient|uae review required)\b/i.test(value)) {
+    fail(mapping, `non-generic-${field}`, `${field} cannot use a generic or shared default statement`)
   }
 }
 
@@ -82,6 +113,8 @@ export function validateExplicitGpMapping(mapping, context) {
   if (!mapping || typeof mapping !== 'object' || Array.isArray(mapping)) {
     fail(mapping, 'mapping-object', 'mapping must be an explicit object')
   }
+
+  assertPlainSchemaObject(mapping)
 
   for (const field of Object.keys(mapping)) {
     if (FORBIDDEN_TEXT_MAPPING_FIELDS.has(field)) {
@@ -122,6 +155,9 @@ export function validateExplicitGpMapping(mapping, context) {
   }
 
   validateRationale(mapping, mapping.applicabilityRationale)
+  for (const field of ['populationApplicability', 'settingApplicability', 'jurisdictionApplicability', 'uaeApplicability']) {
+    validateApplicability(mapping, field)
+  }
 
   if (!GP_MAPPING_SUPPORT_STATUSES.has(mapping.supportStatus)) {
     fail(mapping, 'permitted-support-status', `supportStatus must be one of ${[...GP_MAPPING_SUPPORT_STATUSES].join(', ')}`)
