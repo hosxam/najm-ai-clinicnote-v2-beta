@@ -8,6 +8,7 @@ import {
   acquireQueueLock,
   executeSequentialQueue,
   isTerminalWorkflow,
+  LIGHTWEIGHT_VALIDATORS,
   parseQueueArgs,
   recoverToCheckpoint,
   resolveNpmInvocation,
@@ -66,6 +67,10 @@ test('uses cmd only as the Windows fallback when npm CLI metadata is unavailable
     command: 'C:\\Windows\\System32\\cmd.exe',
     args: ['/d', '/s', '/c', '"npm.cmd run validate:item-provenance"'],
   })
+})
+
+test('queue checkpoints enforce the explicit mapping contract audit', () => {
+  assert.equal(LIGHTWEIGHT_VALIDATORS.includes('audit:explicit-mapping-contract'), true)
 })
 
 test('resumes at the first unfinished workflow and skips terminal entries', () => {
