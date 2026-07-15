@@ -2,6 +2,7 @@ import { sha256 } from '../common.mjs'
 import {
   CANONICAL_MAPPING_FIELDS,
   CANONICAL_MAPPING_VERSION,
+  CANONICAL_RESOURCE_LIMITS,
 } from '../canonicalMappingContract.mjs'
 
 export const GP_MAPPING_SUPPORT_STATUSES = new Set(['exact_section_supported'])
@@ -41,7 +42,18 @@ function explicitString(mapping, field) {
   if (!Object.hasOwn(mapping, field)) fail(mapping, `required-${field}`, `${field} must be explicitly supplied`)
   const value = mapping[field]
   if (typeof value !== 'string' || value.trim() === '') fail(mapping, `nonempty-${field}`, `${field} must be a non-empty string`)
-  return value.trim()
+  if (value.trim() !== value) fail(mapping, `exact-${field}`, `${field} must not contain leading or trailing whitespace`)
+  const limit = field === 'applicabilityRationale'
+    ? CANONICAL_RESOURCE_LIMITS.maxRationaleLength
+    : field.endsWith('Applicability')
+      ? CANONICAL_RESOURCE_LIMITS.maxApplicabilityLength
+      : field === 'evidenceRelationship'
+        ? CANONICAL_RESOURCE_LIMITS.maxEvidenceRelationshipLength
+        : ['workflowId', 'itemId', 'sourceId', 'sectionId'].includes(field)
+          ? CANONICAL_RESOURCE_LIMITS.maxIdentifierLength
+          : CANONICAL_RESOURCE_LIMITS.maxStringLength
+  if (value.length > limit) fail(mapping, `bounded-${field}`, `${field} exceeds ${limit} characters`)
+  return value
 }
 
 function assertPlainSchemaObject(mapping) {
@@ -54,6 +66,10 @@ function assertPlainSchemaObject(mapping) {
   for (const field of Object.keys(mapping)) {
     if (!REQUIRED_FIELD_SET.has(field)) {
       fail(mapping, 'no-unexpected-properties', `unexpected mapping property ${field}`)
+    }
+    const descriptor = Object.getOwnPropertyDescriptor(mapping, field)
+    if (!descriptor || !Object.hasOwn(descriptor, 'value')) {
+      fail(mapping, 'own-data-properties-only', `${field} must be an own data property; accessors are prohibited`)
     }
   }
 }

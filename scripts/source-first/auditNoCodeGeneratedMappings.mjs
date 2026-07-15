@@ -10,10 +10,24 @@ const ALLOWLIST = new Set([
   'scripts/source-first/auditExplicitMappingContract.mjs',
   'scripts/source-first/auditNoCodeGeneratedMappings.mjs',
   'scripts/source-first/canonicalMappingContract.mjs',
+  'scripts/source-first/canonicalMappingEnvironment.mjs',
+  'scripts/source-first/canonicalMappingManifest.mjs',
+  'scripts/source-first/canonicalMappingTransaction.mjs',
+  'scripts/source-first/canonicalJson.mjs',
+  'scripts/source-first/candidateMappingProposalStore.mjs',
   'scripts/source-first/canonicalMappingLedger.mjs',
   'scripts/source-first/canonicalMappingReconciliation.mjs',
   'scripts/source-first/canonicalMappingStore.mjs',
+  'scripts/source-first/canonicalSupportAccounting.mjs',
+  'scripts/source-first/canonicalMappingTestHarness.mjs',
   'scripts/source-first/computedMappingDataFlow.mjs',
+  'scripts/source-first/inspectApprovalManifest.mjs',
+  'scripts/source-first/inspectCanonicalFiles.mjs',
+  'scripts/source-first/inspectPersistedSupport.mjs',
+  'scripts/source-first/inspectRuntimeMappings.mjs',
+  'scripts/source-first/inspectSupportAccounting.mjs',
+  'scripts/source-first/mappingConsumerOutput.mjs',
+  'scripts/source-first/removeCanonicalMapping.mjs',
   'scripts/source-first/writeCanonicalMapping.mjs',
   'scripts/source-first/batches/gpExplicitMappingContract.mjs',
 ])
@@ -34,8 +48,19 @@ const SUPPORT_FIELDS = new Set([
 ])
 const ACTIVE_STATUS = 'legacy_exact_source_supported_pending_clinician_review'
 const RETIRED_LEDGER_NAMES = /CANONICAL_SUPPORTED_MAPPING_LEDGER\.jsonl|EXPLICIT_SUPPORTED_MAPPING_LEDGER\.jsonl/
-const SERIALIZER_IMPORT = /(?:^|\/)writeCanonicalMapping\.mjs$/
-const ACTIVE_MAPPING_SOURCE_IMPORT = /(?:^|\/)(?:canonicalMappingLedger|canonicalMappingReconciliation|canonicalMappingStore|writeCanonicalMapping)\.mjs$/
+const SERIALIZER_IMPORT = /(?:^|\/)(?:writeCanonicalMapping|removeCanonicalMapping|canonicalMappingTransaction)\.mjs$/
+const ACTIVE_MAPPING_SOURCE_IMPORT = /(?:^|\/)(?:canonicalMappingLedger|canonicalMappingReconciliation|canonicalMappingStore|canonicalMappingTransaction|writeCanonicalMapping|removeCanonicalMapping)\.mjs$/
+const CANONICAL_TARGET_PATTERN = /(?:^|[^a-z0-9])clinical-expansion-v2[\\/](?:canonical-mappings|active-mappings|supported-mappings|mapping-ledger)(?:[\\/]|$)|CANONICAL_MAPPING_DIRECTORY/i
+const WRITE_METHODS = new Set([
+  'writeFile', 'writeFileSync', 'appendFile', 'appendFileSync', 'createWriteStream',
+  'copyFile', 'copyFileSync', 'cp', 'cpSync', 'rename', 'renameSync', 'link', 'linkSync',
+  'symlink', 'symlinkSync', 'open', 'openSync', 'rm', 'rmSync', 'unlink', 'unlinkSync',
+])
+const DESTINATION_ARGUMENT = new Map([
+  ['copyFile', 1], ['copyFileSync', 1], ['cp', 1], ['cpSync', 1],
+  ['rename', 1], ['renameSync', 1], ['link', 1], ['linkSync', 1],
+  ['symlink', 1], ['symlinkSync', 1],
+])
 
 function normalizedRelative(fileName, rootDirectory = ROOT_DIR) {
   const absolute = path.isAbsolute(fileName) ? fileName : path.join(rootDirectory, fileName)
@@ -66,10 +91,15 @@ function isZero(expression) {
 }
 
 function candidateOnlyObject(propertyNames, node) {
-  if (!propertyNames.has('candidateStatus')) return false
-  const statusProperty = node.properties.find((property) => staticPropertyName(property.name) === 'candidateStatus')
+  if (!propertyNames.has('proposalStatus') || [...SUPPORT_FIELDS].some((field) => propertyNames.has(field))) return false
+  const allowedFields = new Set([
+    'workflowId', 'itemId', 'sourceId', 'sectionId', 'proposalRationale',
+    'populationAssessment', 'settingAssessment', 'uaeAssessment', 'proposalStatus',
+  ])
+  if ([...propertyNames].some((field) => !allowedFields.has(field))) return false
+  const statusProperty = node.properties.find((property) => staticPropertyName(property.name) === 'proposalStatus')
   if (!statusProperty || !ts.isPropertyAssignment(statusProperty) || !ts.isStringLiteralLike(statusProperty.initializer)) return false
-  return new Set(['candidate_pending_review', 'unsupported_pending_review', 'clinician_review_required'])
+  return new Set(['candidate_pending_review', 'unsupported_pending_review', 'clinician_review_required', 'rejected_candidate'])
     .has(statusProperty.initializer.text)
 }
 
@@ -81,6 +111,9 @@ export function scanNoCodeGeneratedMappingSource(fileName, sourceText, {
   if (!forceProduction && (/\.test\.[mc]?[jt]sx?$/.test(relative) || ALLOWLIST.has(relative))) return []
   const sourceFile = ts.createSourceFile(fileName, sourceText, ts.ScriptTarget.Latest, true, scriptKindFor(fileName))
   const errors = []
+  const constantInitializers = new Map()
+  const importedCanonicalConstants = new Set()
+  const canonicalHandles = new Set()
   for (const diagnostic of sourceFile.parseDiagnostics ?? []) {
     errors.push(`${relative}: parse failure prevents declarative mapping architecture enforcement: ${ts.flattenDiagnosticMessageText(diagnostic.messageText, ' ')}`)
   }
@@ -91,8 +124,11 @@ export function scanNoCodeGeneratedMappingSource(fileName, sourceText, {
   }
 
   function inspectCanonicalModuleAccess(node, moduleSpecifier) {
-    if (!moduleSpecifier || !ACTIVE_MAPPING_SOURCE_IMPORT.test(moduleSpecifier)) return
-    if (SERIALIZER_IMPORT.test(moduleSpecifier)) {
+    if (!moduleSpecifier) return
+    const unsuffixed = moduleSpecifier.replace(/[?#].*$/, '')
+    if (!ACTIVE_MAPPING_SOURCE_IMPORT.test(unsuffixed)) return
+    if (/[?#]/.test(moduleSpecifier)) fail(node, 'query/hash suffixes are prohibited for canonical mapping infrastructure imports')
+    if (SERIALIZER_IMPORT.test(unsuffixed)) {
       fail(node, 'production code must not import, re-export, or dynamically load the canonical serializer as a mapping factory')
       return
     }
@@ -100,6 +136,96 @@ export function scanNoCodeGeneratedMappingSource(fileName, sourceText, {
       fail(node, 'canonical active-mapping readers are restricted to explicitly allowlisted infrastructure and read-only consumers')
     }
   }
+
+  function unwrap(expression) {
+    let current = expression
+    while (current && (ts.isParenthesizedExpression(current)
+      || ts.isAsExpression(current)
+      || ts.isTypeAssertionExpression(current)
+      || ts.isNonNullExpression(current)
+      || ts.isAwaitExpression(current))) current = current.expression
+    return current
+  }
+
+  function staticString(expression, seen = new Set()) {
+    const node = unwrap(expression)
+    if (!node) return null
+    if (ts.isStringLiteralLike(node)) return node.text
+    if (ts.isNoSubstitutionTemplateLiteral(node)) return node.text
+    if (ts.isIdentifier(node)) {
+      if (importedCanonicalConstants.has(node.text) || node.text === 'CANONICAL_MAPPING_DIRECTORY') return 'clinical-expansion-v2/canonical-mappings'
+      if (seen.has(node.text)) return null
+      const initializer = constantInitializers.get(node.text)
+      if (!initializer) return null
+      seen.add(node.text)
+      return staticString(initializer, seen)
+    }
+    if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken) {
+      const left = staticString(node.left, new Set(seen))
+      const right = staticString(node.right, new Set(seen))
+      return left === null || right === null ? null : `${left}${right}`
+    }
+    if (ts.isTemplateExpression(node)) {
+      let value = node.head.text
+      for (const span of node.templateSpans) {
+        const replacement = staticString(span.expression, new Set(seen))
+        if (replacement === null) return null
+        value += replacement + span.literal.text
+      }
+      return value
+    }
+    if (ts.isCallExpression(node)) {
+      const method = ts.isPropertyAccessExpression(node.expression) ? node.expression.name.text : node.expression.getText(sourceFile)
+      if (method === 'join' || method === 'resolve') {
+        const values = node.arguments.map((argument) => staticString(argument, new Set(seen)))
+        return values.some((value) => value === null) ? null : values.join('/')
+      }
+      if (method === 'fileURLToPath' && node.arguments.length === 1) return staticString(node.arguments[0], seen)
+      if (method === 'createWriteStream' && node.arguments.length > 0) return staticString(node.arguments[0], seen)
+    }
+    if (ts.isNewExpression(node) && node.expression.getText(sourceFile) === 'URL' && node.arguments?.length) {
+      return staticString(node.arguments[0], seen)
+    }
+    return null
+  }
+
+  function callMethod(node) {
+    if (!ts.isCallExpression(node)) return null
+    if (ts.isPropertyAccessExpression(node.expression)) return node.expression.name.text
+    if (ts.isIdentifier(node.expression)) return node.expression.text
+    return null
+  }
+
+  function isCanonicalTarget(expression) {
+    const value = staticString(expression)
+    return value !== null && CANONICAL_TARGET_PATTERN.test(value.replaceAll('\\', '/'))
+  }
+
+  function collect(node) {
+    if (ts.isImportDeclaration(node) && node.importClause && ts.isStringLiteralLike(node.moduleSpecifier)) {
+      const bindings = node.importClause.namedBindings
+      if (bindings && ts.isNamedImports(bindings)) {
+        for (const element of bindings.elements) {
+          const imported = element.propertyName?.text ?? element.name.text
+          if (/^CANONICAL_(?:MAPPING_DIRECTORY|APPROVAL_MANIFEST_PATH|APPROVAL_SIGNATURE_PATH)$/.test(imported)) {
+            importedCanonicalConstants.add(element.name.text)
+          }
+        }
+      }
+    }
+    if (ts.isVariableDeclaration(node) && ts.isIdentifier(node.name) && node.initializer) {
+      const declarationList = node.parent
+      if (ts.isVariableDeclarationList(declarationList) && (declarationList.flags & ts.NodeFlags.Const)) {
+        constantInitializers.set(node.name.text, node.initializer)
+      }
+      const initializer = unwrap(node.initializer)
+      if (ts.isCallExpression(initializer) && ['open', 'openSync'].includes(callMethod(initializer)) && isCanonicalTarget(initializer.arguments[0])) {
+        canonicalHandles.add(node.name.text)
+      }
+    }
+    ts.forEachChild(node, collect)
+  }
+  collect(sourceFile)
 
   function visit(node) {
     if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier)) {
@@ -113,12 +239,35 @@ export function scanNoCodeGeneratedMappingSource(fileName, sourceText, {
         inspectCanonicalModuleAccess(node, node.arguments[0].text)
       }
       const callee = node.expression.getText(sourceFile)
+      const method = callMethod(node)
       if (/\b(?:write|persist|emit|create|build|assemble|restore)\w*(?:Canonical)?Mappings?\b/i.test(callee)) {
         fail(node, `code-generated mapping call ${callee} is prohibited outside canonical infrastructure`)
       }
-      if (/\b(?:writeFileSync|writeFile|writeJson|writeJsonl|writeTextAtomic|renameSync)\b/.test(callee)
-        && /canonical-mappings|CANONICAL_MAPPING_DIRECTORY/.test(sourceText)) {
-        fail(node, 'canonical mapping directory writes are prohibited outside the approved serializer')
+      if (WRITE_METHODS.has(method)) {
+        const targetIndex = DESTINATION_ARGUMENT.get(method) ?? 0
+        const target = node.arguments[targetIndex]
+        if (target && isCanonicalTarget(target)) {
+          fail(node, `canonical mapping directory mutation through ${method} is prohibited outside the signed transaction authority`)
+        } else if (target && staticString(target) === null && /canonical-mappings|CANONICAL_MAPPING_DIRECTORY|supported-mappings|active-mappings/.test(sourceText)) {
+          fail(node, `ambiguous ${method} destination in canonical-mapping-aware production code fails closed`)
+        }
+      }
+      if (method === 'pipe' && node.arguments.some(isCanonicalTarget)) {
+        fail(node, 'stream piping into the canonical mapping directory is prohibited')
+      }
+      if (['write', 'writeFile', 'appendFile', 'createWriteStream'].includes(method)
+        && ts.isPropertyAccessExpression(node.expression)
+        && ts.isIdentifier(node.expression.expression)
+        && canonicalHandles.has(node.expression.expression.text)) {
+        fail(node, 'file-handle write into the canonical mapping directory is prohibited')
+      }
+      if (['exec', 'execSync', 'spawn', 'spawnSync'].includes(method)) {
+        const command = node.arguments.map((argument) => staticString(argument)).filter((value) => value !== null).join(' ')
+        if (/\b(?:cp|copy|move|mv|rename)\b/i.test(command)
+          && (CANONICAL_TARGET_PATTERN.test(command.replaceAll('\\', '/'))
+            || CANONICAL_TARGET_PATTERN.test(sourceText.replaceAll('\\', '/')))) {
+          fail(node, 'statically evident external-process copy/move into canonical storage is prohibited')
+        }
       }
     }
     if (ts.isObjectLiteralExpression(node)) {

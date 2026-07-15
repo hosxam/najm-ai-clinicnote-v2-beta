@@ -14,12 +14,12 @@ import {
 import {
   CANONICAL_MAPPING_FIELDS,
   canonicalMappingKey,
-} from './canonicalMappingLedger.mjs'
+} from './canonicalMappingContract.mjs'
 import {
-  createCanonicalMappingViews,
   deriveUnsupportedLegacyRows,
-  reconcileCanonicalMappingViews,
+  reconcileIndependentMappingConsumers,
 } from './canonicalMappingReconciliation.mjs'
+import { loadCanonicalMappings } from './canonicalMappingStore.mjs'
 import { scanComputedMappingDataFlow } from './computedMappingDataFlow.mjs'
 import { runNoCodeGeneratedMappingsAudit } from './auditNoCodeGeneratedMappings.mjs'
 
@@ -28,16 +28,32 @@ export { scanComputedMappingDataFlow } from './computedMappingDataFlow.mjs'
 const SUPPORTED_STATUS = 'legacy_exact_source_supported_pending_clinician_review'
 const EARLY_GP_WORKFLOWS = new Set(['gp-cough', 'gp-dizziness', 'gp-fever-urti', 'gp-headache', 'gp-sore-throat'])
 const ALLOWED_MAPPING_WRITERS = new Set([
+  'canonicalMappingTransaction.mjs',
+  'removeCanonicalMapping.mjs',
   'writeCanonicalMapping.mjs',
 ])
 const DECLARATIVE_INFRASTRUCTURE = new Set([
   'auditNoCodeGeneratedMappings.mjs',
   'applyResearchBatch.mjs',
   'canonicalMappingContract.mjs',
+  'canonicalMappingEnvironment.mjs',
+  'canonicalMappingManifest.mjs',
+  'canonicalMappingTransaction.mjs',
+  'canonicalJson.mjs',
   'canonicalMappingLedger.mjs',
   'canonicalMappingReconciliation.mjs',
   'canonicalMappingStore.mjs',
+  'canonicalSupportAccounting.mjs',
+  'canonicalMappingTestHarness.mjs',
+  'candidateMappingProposalStore.mjs',
   'gpExplicitMappingContract.mjs',
+  'inspectApprovalManifest.mjs',
+  'inspectCanonicalFiles.mjs',
+  'inspectPersistedSupport.mjs',
+  'inspectRuntimeMappings.mjs',
+  'inspectSupportAccounting.mjs',
+  'mappingConsumerOutput.mjs',
+  'removeCanonicalMapping.mjs',
   'writeCanonicalMapping.mjs',
 ])
 const SKIPPED_DIRECTORIES = new Set(['.git', '.agents', '.codex', 'dist', 'node_modules', 'public', 'clinical-expansion-v2'])
@@ -317,13 +333,13 @@ export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
   let historicalTextBatchCount = 0
   for (const filePath of recursiveSourceFiles(rootDirectory)) {
     const relative = path.relative(rootDirectory, filePath).replaceAll('\\', '/')
-    if (/\.test\.[mc]?[jt]sx?$/.test(relative)
-      || relative.endsWith('auditExplicitMappingContract.mjs')
+    if (/\.test\.[mc]?[jt]sx?$/.test(relative) || relative.endsWith('canonicalMappingTestHarness.mjs')) continue
+    const sourceText = fs.readFileSync(filePath, 'utf8')
+    sourceEntries.push({ fileName: filePath, sourceText })
+    if (relative.endsWith('auditExplicitMappingContract.mjs')
       || relative.endsWith('computedMappingDataFlow.mjs')
       || relative.endsWith('writeGpHelperRemediationReports.mjs')
       || DECLARATIVE_INFRASTRUCTURE.has(path.basename(relative))) continue
-    const sourceText = fs.readFileSync(filePath, 'utf8')
-    sourceEntries.push({ fileName: filePath, sourceText })
     const historicalBatch = /(?:^|\/)batches\/batch-\d{4}-\d{4}\.mjs$/.test(relative)
       && /\bsupportTexts\s*\(|\bexact_texts\b/.test(sourceText)
     if (historicalBatch) historicalTextBatchCount += 1
@@ -358,9 +374,8 @@ export function runExplicitMappingAudit() {
     throw new Error(`[explicit-mapping-audit] alternate active mapping source detected: research=${legacyPersistedRows.length} workflow=${legacyWorkflowSupportedKeys.length} retiredCanonical=${retiredCanonicalRows.length} retiredExplicit=${retiredExplicitRows.length}`)
   }
 
-  const views = createCanonicalMappingViews()
-  const reconciliation = reconcileCanonicalMappingViews({ views })
-  const canonicalRows = views.canonicalJson
+  const reconciliation = reconcileIndependentMappingConsumers()
+  const canonicalRows = loadCanonicalMappings()
   const unsupported = deriveUnsupportedLegacyRows(
     readJsonl(path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl')),
     canonicalRows,
@@ -386,11 +401,11 @@ export function runExplicitMappingAudit() {
     researchRecordsInspected: researchById.size,
     earlyGpWorkflowsInspected: [...EARLY_GP_WORKFLOWS].filter((workflowId) => researchById.has(workflowId)).length,
     canonicalSupportedMappings: canonicalRows.length,
-    persistedSupportedMappings: views.persistedActive.length,
-    workflowSupportedMappings: views.persistedActive.length,
-    guardInspectedSupportedMappings: views.guardInspected.length,
-    explicitMappingLedgerRecords: views.explicitLedger.length,
-    runtimeEmittedSupportedMappings: views.runtimeEmitted.length,
+    persistedSupportedMappings: reconciliation.persistedSupport,
+    workflowSupportedMappings: reconciliation.supportAccounting,
+    guardInspectedSupportedMappings: reconciliation.approvalManifest,
+    explicitMappingLedgerRecords: reconciliation.canonicalFiles,
+    runtimeEmittedSupportedMappings: reconciliation.runtimeEmission,
     retiredAlternateMappingRecords: 0,
     globalCorrectionRecordsInspected: globalCorrectionRows.length,
     gpCorrectionRecordsInspected: gpCorrectionRows.length,

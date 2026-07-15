@@ -2,6 +2,14 @@ import path from 'node:path'
 import ts from 'typescript'
 
 const SOURCE_EXTENSIONS = ['.js', '.mjs', '.cjs', '.jsx', '.ts', '.tsx', '.mts', '.cts']
+const EXTERNAL_IMPORT_ALLOWLIST = new Set([
+  'node:child_process',
+  'node:crypto',
+  'node:fs',
+  'node:path',
+  'node:url',
+  'typescript',
+])
 const MAPPING_IDENTITY_FIELDS = new Set([
   'workflowId',
   'itemId',
@@ -161,6 +169,19 @@ function relativeModuleCandidates(containingFile, specifier) {
     for (const extension of SOURCE_EXTENSIONS) candidates.push(path.join(base, `index${extension}`))
   }
   return candidates.map(canonicalPath)
+}
+
+function importPolicyError(specifier) {
+  if (typeof specifier !== 'string'
+    || specifier.length === 0
+    || specifier.includes('\u0000')
+    || specifier.includes('\\')) return 'malformed module specifier'
+  if (specifier.startsWith('.')) {
+    if (/[?#]/.test(specifier)) return 'query/hash local module specifiers are prohibited'
+    return null
+  }
+  if (EXTERNAL_IMPORT_ALLOWLIST.has(specifier)) return null
+  return `external package is not allowlisted: ${specifier}`
 }
 
 function isFunctionLike(node) {
@@ -349,6 +370,7 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   }
 
   function resolvedModulePath(containingFile, specifier) {
+    if (importPolicyError(specifier)) return null
     return relativeModuleCandidates(containingFile, specifier).find((candidate) => sourceByPath.has(candidate)) ?? null
   }
 
@@ -570,21 +592,35 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   }
 
   function resolveImportRecord(record) {
+    const policyError = importPolicyError(record.specifier)
     const targetPath = resolvedModulePath(record.sourceFile.fileName, record.specifier)
     if (!targetPath) {
-      if (!record.specifier.startsWith('node:')) {
+      if (policyError || record.specifier.startsWith('.')) {
         const clause = record.declaration.importClause
-        if (!clause && isMappingInfrastructureFile(record.sourceFile.fileName)) {
+        if (!isMappingInfrastructureFile(record.sourceFile.fileName)) return
+        const reason = policyError
+          ? `unresolved imported value (${policyError})`
+          : `unresolved local import ${record.specifier}`
+        if (!clause) {
           const importId = syntheticId(record.declaration, `unresolved-side-effect-import-${record.specifier}`)
-          addHazard(importId, `${labels.get(importId)}: unresolved side-effect import ${record.specifier}`)
+          addHazard(importId, `${labels.get(importId)}: ${reason}`)
           addSink(importId, 'unresolved mapping-infrastructure side effect')
         }
-        if (clause?.name) addHazard(nodeId(clause.name), `${labels.get(nodeId(clause.name))}: unresolved imported value ${record.specifier}`)
+        if (clause?.name) {
+          addHazard(nodeId(clause.name), `${labels.get(nodeId(clause.name))}: ${reason}`)
+          addSink(nodeId(clause.name), 'unresolved mapping-infrastructure default import')
+        }
         const bindings = clause?.namedBindings
         if (bindings && ts.isNamedImports(bindings)) {
-          for (const element of bindings.elements) addHazard(nodeId(element.name), `${labels.get(nodeId(element.name))}: unresolved imported value ${record.specifier}`)
+          for (const element of bindings.elements) {
+            addHazard(nodeId(element.name), `${labels.get(nodeId(element.name))}: ${reason}`)
+            addSink(nodeId(element.name), 'unresolved mapping-infrastructure named import')
+          }
         }
-        if (bindings && ts.isNamespaceImport(bindings)) addHazard(nodeId(bindings.name), `${labels.get(nodeId(bindings.name))}: unresolved imported namespace ${record.specifier}`)
+        if (bindings && ts.isNamespaceImport(bindings)) {
+          addHazard(nodeId(bindings.name), `${labels.get(nodeId(bindings.name))}: ${reason}`)
+          addSink(nodeId(bindings.name), 'unresolved mapping-infrastructure namespace import')
+        }
       }
       return
     }
@@ -606,7 +642,10 @@ export function scanComputedMappingDataFlow(sourceEntries) {
           addEdge(targetId, localId)
           bindingTargets.set(localId, targetId)
         }
-        else addHazard(nodeId(element.name), `${labels.get(nodeId(element.name))}: unresolved imported binding ${importedName}`)
+        else {
+          addHazard(nodeId(element.name), `${labels.get(nodeId(element.name))}: unresolved imported binding ${importedName}`)
+          if (isMappingInfrastructureFile(record.sourceFile.fileName)) addSink(nodeId(element.name), 'unresolved mapping-infrastructure named binding')
+        }
       }
     }
     if (bindings && ts.isNamespaceImport(bindings)) {
@@ -618,11 +657,12 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   for (let iteration = 0; iteration <= sourceFiles.length; iteration += 1) {
     let changed = false
     for (const record of reExportRecords) {
+      const policyError = importPolicyError(record.specifier)
       const targetPath = resolvedModulePath(record.sourceFile.fileName, record.specifier)
       if (!targetPath) {
-        if (!record.specifier.startsWith('node:') && isMappingInfrastructureFile(record.sourceFile.fileName)) {
+        if ((policyError || record.specifier.startsWith('.')) && isMappingInfrastructureFile(record.sourceFile.fileName)) {
           const exportId = syntheticId(record.declaration, `unresolved-reexport-${record.specifier}`)
-          addHazard(exportId, `${labels.get(exportId)}: unresolved re-export ${record.specifier}`)
+          addHazard(exportId, `${labels.get(exportId)}: ${policyError ?? `unresolved re-export ${record.specifier}`}`)
           addSink(exportId, 'unresolved mapping-infrastructure re-export')
         }
         continue
@@ -634,6 +674,11 @@ export function scanComputedMappingDataFlow(sourceEntries) {
         for (const element of clause.elements) {
           const importedName = element.propertyName?.text ?? element.name.text
           if (targetExports.has(importedName)) changed = addExport(localPath, element.name.text, targetExports.get(importedName)) || changed
+          else if (isMappingInfrastructureFile(record.sourceFile.fileName)) {
+            const exportId = syntheticId(element, `unresolved-reexport-binding-${importedName}`)
+            addHazard(exportId, `${labels.get(exportId)}: unresolved re-exported binding ${importedName}`)
+            addSink(exportId, 'unresolved mapping-infrastructure re-export binding')
+          }
         }
       } else {
         for (const [name, id] of targetExports) changed = addExport(localPath, name, id) || changed
@@ -644,9 +689,13 @@ export function scanComputedMappingDataFlow(sourceEntries) {
 
   for (const record of importRecords) resolveImportRecord(record)
   for (const record of dynamicImportRecords) {
+    const policyError = importPolicyError(record.specifier)
     const targetPath = resolvedModulePath(record.sourceFile.fileName, record.specifier)
     if (!targetPath) {
-      if (!record.specifier.startsWith('node:')) addHazard(record.callId, `${labels.get(record.callId)}: unresolved dynamic import ${record.specifier}`)
+      if ((policyError || record.specifier.startsWith('.')) && isMappingInfrastructureFile(record.sourceFile.fileName)) {
+        addHazard(record.callId, `${labels.get(record.callId)}: ${policyError ?? `unresolved dynamic import ${record.specifier}`}`)
+        addSink(record.callId, 'unresolved mapping-infrastructure dynamic import')
+      }
       continue
     }
     for (const exportedId of moduleExports(targetPath).values()) addEdge(exportedId, record.callId)

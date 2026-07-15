@@ -15,9 +15,10 @@ import {
   writeJsonl,
 } from './common.mjs'
 import {
-  createCanonicalMappingViews,
   deriveUnsupportedLegacyRows,
 } from './canonicalMappingReconciliation.mjs'
+import { loadCanonicalMappings } from './canonicalMappingStore.mjs'
+import { writeCandidateProposalDocument } from './candidateMappingProposalStore.mjs'
 import { validateResearchBatchMappingContract } from './researchBatchMappingContract.mjs'
 
 const batchArgument = process.argv[2]
@@ -133,6 +134,7 @@ for (const config of pendingConfigs) {
     throw new Error(`${config.workflow_id}: batch support groups are historical only; research completion cannot create item-level support`)
   }
   const candidateProposals = validateResearchBatchMappingContract(config)
+  if (candidateProposals.length > 0) writeCandidateProposalDocument(config.workflow_id, candidateProposals)
   const unsupportedIds = items.map((item) => item.item_id)
 
   workflow.research_status = config.source_status
@@ -188,7 +190,7 @@ for (const config of pendingConfigs) {
     source_status: config.source_status,
     unresolved_source_gaps: config.unresolved_source_gaps,
     researcher_type: 'codex_exact_document_section_review',
-    candidate_item_evidence_proposals: candidateProposals,
+    candidate_item_evidence_proposals: [],
     legacy_item_support_mappings: [],
     supported_legacy_item_count: 0,
     unsupported_legacy_item_count: unsupportedIds.length,
@@ -248,8 +250,8 @@ for (const config of pendingConfigs) {
 
 const unsupportedPath = path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl')
 const rawUnsupportedRows = readJsonl(unsupportedPath)
-const canonicalMappingViews = createCanonicalMappingViews()
-const unsupportedRows = deriveUnsupportedLegacyRows(rawUnsupportedRows, canonicalMappingViews.canonicalJson)
+const canonicalMappings = loadCanonicalMappings()
+const unsupportedRows = deriveUnsupportedLegacyRows(rawUnsupportedRows, canonicalMappings)
 const uaeFindingsPath = path.join(EXPANSION_DIR, 'progress', 'UAE_APPLICABILITY_FINDINGS.jsonl')
 const uaeFindings = [
   ...readJsonl(uaeFindingsPath).filter((row) => !pendingWorkflowIds.has(row.workflow_id)),
@@ -275,7 +277,7 @@ const uaeOtherApplicabilityFindings = uaeFindings.filter((finding) => finding.fi
 const uaeAffectedWorkflowIds = new Set([
   ...uaeFindings.map((finding) => finding.workflow_id),
 ])
-const sourceSupportedLegacyItemCount = canonicalMappingViews.canonicalJson.length
+const sourceSupportedLegacyItemCount = canonicalMappings.length
 const sourceStatusCount = (status) => allResearch.filter((record) => record.source_status === status).length
 const nextManifestEntry = manifest.workflows.find((entry) => !entry.terminal_research)
 

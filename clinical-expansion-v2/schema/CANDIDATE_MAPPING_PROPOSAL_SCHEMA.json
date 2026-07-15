@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm-clinicnote.local/schema/candidate-mapping-proposal-1.0.0.json",
+  "title": "Najm ClinicNote non-active candidate mapping proposal file",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "workflowId", "proposals"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workflowId": { "type": "string", "maxLength": 256, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "proposals": { "type": "array", "maxItems": 5000, "items": { "$ref": "#/$defs/proposal" } }
+  },
+  "$defs": {
+    "identifier": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "assessment": { "type": "string", "minLength": 1, "maxLength": 4096 },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflowId", "itemId", "sourceId", "sectionId", "proposalRationale",
+        "populationAssessment", "settingAssessment", "uaeAssessment", "proposalStatus"
+      ],
+      "properties": {
+        "workflowId": { "type": "string", "maxLength": 256, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "itemId": { "$ref": "#/$defs/identifier" },
+        "sourceId": { "$ref": "#/$defs/identifier" },
+        "sectionId": { "$ref": "#/$defs/identifier" },
+        "proposalRationale": { "$ref": "#/$defs/assessment" },
+        "populationAssessment": { "$ref": "#/$defs/assessment" },
+        "settingAssessment": { "$ref": "#/$defs/assessment" },
+        "uaeAssessment": { "$ref": "#/$defs/assessment" },
+        "proposalStatus": {
+          "enum": [
+            "candidate_pending_review",
+            "clinician_review_required",
+            "rejected_candidate",
+            "unsupported_pending_review"
+          ]
+        }
+      }
+    }
+  }
+}
