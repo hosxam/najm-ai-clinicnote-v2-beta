@@ -42,7 +42,7 @@ export default {
         'cdc-yellow-book-2026-motion-differential-safety': 'Relevant to documenting clinician consideration of vestibular and migraine alternatives; all treatment content is excluded.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-motion-sickness', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'The current CDC Yellow Book supplies exact symptom and assessment context, but no exact UAE motion-sickness clinical source was found.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-motion-sickness', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'The current CDC Yellow Book supplies exact symptom and assessment context, but no exact UAE motion-sickness clinical source was found.' }],
     },
     {
       workflow_id: 'gp-mouth-dryness',
@@ -76,7 +76,7 @@ export default {
         'nice-ng12-safety-netting-review': 'Relevant to documenting clinician review and safety net for persistent unexplained symptoms without generating an interval or referral.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-mouth-ulcer', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE supplies exact persistent oral-ulcer recognition evidence, but no matching UAE pathway source was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-mouth-ulcer', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE supplies exact persistent oral-ulcer recognition evidence, but no matching UAE pathway source was identified.' }],
     },
     {
       workflow_id: 'gp-nail-discoloration',
@@ -132,7 +132,7 @@ export default {
         'nice-ng12-safety-netting-review': 'Relevant to documenting review and safety net for unexplained symptoms without generating an interval or pathway.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-neck-lump', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE supplies exact recognition features, but no exact UAE neck-lump pathway source was identified and local referral systems differ.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-neck-lump', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE supplies exact recognition features, but no exact UAE neck-lump pathway source was identified and local referral systems differ.' }],
     },
     {
       workflow_id: 'gp-new-patient-registration-review',

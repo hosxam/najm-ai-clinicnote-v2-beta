@@ -37,7 +37,7 @@ export default {
         'nice-cg76-periodic-medicine-review': 'Relevant to documenting that a medicine review occurred; no interval or medicine decision is generated.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-medication-adherence-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'The exact NICE adherence recommendations are applicable to documentation, but no explicit UAE adherence-review standard was identified and the source is old.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-medication-adherence-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'The exact NICE adherence recommendations are applicable to documentation, but no explicit UAE adherence-review standard was identified and the source is old.' }],
     },
     {
       workflow_id: 'gp-medication-allergy-clarification',
@@ -57,7 +57,7 @@ export default {
         'nice-cg183-structured-reaction-documentation': 'Relevant to structured recording and communication of an assessed reaction without activating a label automatically.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-medication-allergy-clarification', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'Exact structured documentation recommendations were found in NICE CG183, but no matching explicit UAE clinical standard was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-medication-allergy-clarification', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'Exact structured documentation recommendations were found in NICE CG183, but no matching explicit UAE clinical standard was identified.' }],
     },
     {
       workflow_id: 'gp-medication-reconciliation-after-discharge',
@@ -79,7 +79,7 @@ export default {
         'nice-ng5-person-involvement': 'Relevant to documenting patient or carer involvement, preferences and questions without generating decisions.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-medication-reconciliation-after-discharge', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE NG5 directly addresses transfer reconciliation, but no exact UAE national workflow standard was identified and local systems determine implementation.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-medication-reconciliation-after-discharge', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE NG5 directly addresses transfer reconciliation, but no exact UAE national workflow standard was identified and local systems determine implementation.' }],
     },
     {
       workflow_id: 'gp-medication-refill-documentation',
@@ -100,7 +100,7 @@ export default {
         'nice-ng5-person-involvement': 'Relevant to documenting questions, preferences and shared discussion without creating a prescription decision.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-medication-refill-documentation', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE medication-review principles partially apply, but no exact UAE generic refill-documentation standard was found and local prescribing rules are decisive.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-medication-refill-documentation', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE medication-review principles partially apply, but no exact UAE generic refill-documentation standard was found and local prescribing rules are decisive.' }],
     },
     {
       workflow_id: 'gp-medication-side-effect-review',
@@ -122,7 +122,7 @@ export default {
         'nice-cg76-periodic-medicine-review': 'Relevant to documenting that review occurred, not to selecting an action.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-medication-side-effect-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE medicine-review sections support documentation domains, but no exact UAE generic side-effect-review workflow source was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-medication-side-effect-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE medicine-review sections support documentation domains, but no exact UAE generic side-effect-review workflow source was identified.' }],
     },
     {
       workflow_id: 'gp-microscopic-hematuria-review',
@@ -202,7 +202,7 @@ export default {
         'who-bec-2018-open-wound': 'Relevant to clinician-recorded open-wound features, contamination and neurovascular assessment without selecting closure or treatment.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-minor-wound-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'WHO Basic Emergency Care supports structured wound assessment, but no exact UAE outpatient minor-wound follow-up standard was found.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-minor-wound-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'WHO Basic Emergency Care supports structured wound assessment, but no exact UAE outpatient minor-wound follow-up standard was found.' }],
     },
   ],
 }

@@ -131,7 +131,7 @@ export default {
         'bsg-ida-2021-gi-investigation-followup': 'Relevant to recording completed coeliac, endoscopy, imaging, response, recurrence and follow-up context without generating investigations or treatment.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-iron-deficiency-follow-up', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'The exact adult BSG guideline is internationally relevant, but no explicit UAE iron-deficiency follow-up pathway was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-iron-deficiency-follow-up', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'The exact adult BSG guideline is internationally relevant, but no explicit UAE iron-deficiency follow-up pathway was identified.' }],
     },
     {
       workflow_id: 'gp-laboratory-trend-review',
@@ -172,7 +172,7 @@ export default {
         'nice-ng158-pe-history-examination': 'Relevant only when PE symptoms or signs are actually assessed and entered; it cannot assign urgency automatically.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-leg-swelling', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE DVT/PE assessment sections are relevant to one important cause, but no exact UAE leg-swelling workflow source was found and local pathways differ.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-leg-swelling', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE DVT/PE assessment sections are relevant to one important cause, but no exact UAE leg-swelling workflow source was found and local pathways differ.' }],
     },
     {
       workflow_id: 'gp-lifestyle-goal-review',
@@ -231,7 +231,7 @@ export default {
         'nice-ng188-holistic-assessment': 'Relevant to clinician-recorded physical, cognitive, psychological, psychiatric, comorbidity and functional review without predicting course or generating care.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-long-covid-symptom-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'Exact NICE sections support post-acute identification and holistic assessment, but no exact current UAE long-COVID pathway was located.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-long-covid-symptom-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'Exact NICE sections support post-acute identification and holistic assessment, but no exact current UAE long-COVID pathway was located.' }],
     },
     {
       workflow_id: 'gp-lymph-node-follow-up',
@@ -252,7 +252,7 @@ export default {
         'nice-ng12-safety-netting-review': 'Relevant to clinician-documented review and safety net when symptoms remain unexplained; it does not assign an interval or action automatically.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-lymph-node-follow-up', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE supplies selected recognition and safety-net evidence, but an exact UAE lymph-node follow-up standard was not identified and local referral pathways differ.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-lymph-node-follow-up', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE supplies selected recognition and safety-net evidence, but an exact UAE lymph-node follow-up standard was not identified and local referral pathways differ.' }],
     },
   ],
 }

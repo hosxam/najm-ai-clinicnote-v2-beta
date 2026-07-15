@@ -99,7 +99,7 @@ export default {
         'nice-ng56-treatment-review': 'Relevant to clinician-led benefit/harm and burden discussion without generating a medicine change.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-polypharmacy-concern', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'Exact NICE medicine and multimorbidity review sections were found, but no explicit UAE polypharmacy-review standard was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-polypharmacy-concern', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'Exact NICE medicine and multimorbidity review sections were found, but no explicit UAE polypharmacy-review standard was identified.' }],
     },
     {
       workflow_id: 'gp-post-hospital-discharge-gp-review',
@@ -120,7 +120,7 @@ export default {
         'nice-ng5-person-involvement': 'Relevant to documenting patient/carer involvement and questions.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-post-hospital-discharge-gp-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE directly supports medicines transfer but no exact UAE generic post-discharge GP review standard was found; disease-specific gaps remain.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-post-hospital-discharge-gp-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE directly supports medicines transfer but no exact UAE generic post-discharge GP review standard was found; disease-specific gaps remain.' }],
     },
     {
       workflow_id: 'gp-post-viral-fatigue',
@@ -177,7 +177,7 @@ export default {
         'cdc-yellow-book-2026-pretravel-risk-assessment': 'Relevant to clinician-recorded medical, immunization, medicine, prior-travel, destination and special-risk assessment without calculating risk.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-pre-travel-consultation', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'Current CDC Yellow Book sections support exact assessment domains, but no exact UAE generic pre-travel consultation guideline was located.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-pre-travel-consultation', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'Current CDC Yellow Book sections support exact assessment domains, but no exact UAE generic pre-travel consultation guideline was located.' }],
     },
     {
       workflow_id: 'gp-prediabetes-review',
@@ -197,7 +197,7 @@ export default {
         'ada-soc-2026-prediabetes-comorbidity-review': 'Relevant to clinician review of age, BMI, gestational history, laboratory trajectory and cardiovascular risk without recommending medicine.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-prediabetes-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'Current ADA prediabetes sections are exact for monitoring and risk discussion, but no matching explicit UAE review pathway was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-prediabetes-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'Current ADA prediabetes sections are exact for monitoring and risk discussion, but no matching explicit UAE review pathway was identified.' }],
     },
     {
       workflow_id: 'gp-proteinuria-result-discussion',
@@ -219,7 +219,7 @@ export default {
         'kdigo-ckd-2024-referral': 'Relevant to recording clinician-assessed referral context without assigning referral or urgency.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-proteinuria-result-discussion', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'KDIGO supplies exact albuminuria and CKD-context evidence, but no explicit UAE proteinuria-result pathway was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-proteinuria-result-discussion', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'KDIGO supplies exact albuminuria and CKD-context evidence, but no explicit UAE proteinuria-result pathway was identified.' }],
     },
   ],
 }

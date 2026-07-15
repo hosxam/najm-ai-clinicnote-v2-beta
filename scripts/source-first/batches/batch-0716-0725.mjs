@@ -66,7 +66,7 @@ export default {
         'nice-ng5-person-involvement': 'Relevant to patient questions, preferences and shared discussion without generating a prescribing decision.',
       },
       support_groups: [], candidate_item_evidence_proposals: [], source_status: 'partial_exact_source_verified',
-      uae_applicability_findings: [{ workflow_id: 'gp-repeat-prescription-safety-review', finding_type: 'missing_explicit_uae_evidence', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE structured-review sections partially apply, but no exact UAE generic repeat-prescription safety-review standard was identified.' }],
+      uae_applicability_findings: [{ workflow_id: 'gp-repeat-prescription-safety-review', finding_type: 'partial_applicability', source_status: 'partial_exact_source_verified', evidence_basis: 'NICE structured-review sections partially apply, but no exact UAE generic repeat-prescription safety-review standard was identified.' }],
     },
     {
       workflow_id: 'gp-restless-legs-symptoms',
