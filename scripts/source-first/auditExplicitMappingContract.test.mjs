@@ -8,6 +8,7 @@ import {
   scanComputedMappingDataFlow,
   scanStaticClinicalMappingSource,
 } from './auditExplicitMappingContract.mjs'
+import { scanNoCodeGeneratedMappingSource } from './auditNoCodeGeneratedMappings.mjs'
 
 const guardStaticProbes = [
   ['01 early non-numbered writer', 'early/workflow-0001.mjs', 'research.legacy_item_support_mappings = mappings'],
@@ -375,8 +376,8 @@ test('data-flow guard accepts a provably disconnected imported nonclinical compu
   assert.deepEqual(result.errors, [])
 })
 
-test('data-flow guard accepts a valid literal canonical mapping', () => {
-  const result = scanComputedMappingDataFlow([fixtureEntry('safe/canonical.mjs', `
+test('general data-flow analysis is not the authority: a literal mapping is rejected by the declarative architecture guard', () => {
+  const sourceText = `
     const mapping = {
       workflowId: 'workflow-a',
       itemId: 'item-a',
@@ -394,8 +395,30 @@ test('data-flow guard accepts a valid literal canonical mapping', () => {
       mappingVersion: '1.0.0',
     }
     emitCanonicalMappings([mapping])
+  `
+  assert.deepEqual(scanComputedMappingDataFlow([fixtureEntry('safe/canonical.mjs', sourceText)]).errors, [])
+  assert.notEqual(scanNoCodeGeneratedMappingSource('scripts/tools/canonical.mjs', sourceText, { forceProduction: true }).length, 0)
+})
+
+test('data-flow guard rejects unavailable bare imports', () => {
+  const result = scanComputedMappingDataFlow([fixtureEntry('bare/unavailable.mjs', `
+    import { fragment } from 'unavailable-clinical-mapping-module'
+    ${mappingIdentityDeclarations}
+    const mapping = { workflowId, itemId, sourceId, sectionId, ...fragment }
   `)])
-  assert.deepEqual(result.errors, [])
+  assert.match(result.errors.join('\n'), /unresolved imported value/)
+})
+
+test('data-flow guard terminates safely on export-star cycles', () => {
+  const entries = [
+    fixtureEntry('export-star/hazard.mjs', `${dynamicFieldDeclarations} export const fragment = { [field]: value }`),
+    fixtureEntry('export-star/a.mjs', `export * from './b.mjs'; export * from './hazard.mjs'`),
+    fixtureEntry('export-star/b.mjs', `export * from './a.mjs'`),
+    fixtureEntry('export-star/use.mjs', `import { fragment } from './a.mjs'; ${mappingIdentityDeclarations} const mapping = { workflowId, itemId, sourceId, sectionId, ...fragment }`),
+  ]
+  const result = scanComputedMappingDataFlow(entries)
+  assert.match(result.errors.join('\n'), /unresolved computed field/)
+  assert.deepEqual(result.errors, scanComputedMappingDataFlow([...entries].reverse()).errors)
 })
 
 const baseMapping = {

@@ -189,6 +189,12 @@ function sortedSet(values) {
   return [...values].sort((left, right) => left.localeCompare(right))
 }
 
+function isMappingInfrastructureFile(fileName) {
+  const normalized = fileName.replaceAll('\\', '/').toLowerCase()
+  return normalized.includes('/scripts/source-first/')
+    || normalized.includes('/.virtual-data-flow-fixtures/')
+}
+
 export function scanComputedMappingDataFlow(sourceEntries) {
   const { entries, program, sourceByPath } = createSourceProgram(sourceEntries)
   const checker = program.getTypeChecker()
@@ -354,7 +360,7 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   function addExport(fileName, exportName, id) {
     if (!id) return false
     const exports = moduleExports(fileName)
-    if (exports.get(exportName) === id) return false
+    if (exports.has(exportName)) return false
     exports.set(exportName, id)
     return true
   }
@@ -528,7 +534,7 @@ export function scanComputedMappingDataFlow(sourceEntries) {
         }
       }
 
-      if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier) && node.importClause) {
+      if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier)) {
         importRecords.push({ declaration: node, sourceFile, specifier: node.moduleSpecifier.text })
       }
 
@@ -566,14 +572,19 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   function resolveImportRecord(record) {
     const targetPath = resolvedModulePath(record.sourceFile.fileName, record.specifier)
     if (!targetPath) {
-      if (record.specifier.startsWith('.')) {
+      if (!record.specifier.startsWith('node:')) {
         const clause = record.declaration.importClause
-        if (clause?.name) addHazard(nodeId(clause.name), `${labels.get(nodeId(clause.name))}: unresolved imported value`)
+        if (!clause && isMappingInfrastructureFile(record.sourceFile.fileName)) {
+          const importId = syntheticId(record.declaration, `unresolved-side-effect-import-${record.specifier}`)
+          addHazard(importId, `${labels.get(importId)}: unresolved side-effect import ${record.specifier}`)
+          addSink(importId, 'unresolved mapping-infrastructure side effect')
+        }
+        if (clause?.name) addHazard(nodeId(clause.name), `${labels.get(nodeId(clause.name))}: unresolved imported value ${record.specifier}`)
         const bindings = clause?.namedBindings
         if (bindings && ts.isNamedImports(bindings)) {
-          for (const element of bindings.elements) addHazard(nodeId(element.name), `${labels.get(nodeId(element.name))}: unresolved imported value`)
+          for (const element of bindings.elements) addHazard(nodeId(element.name), `${labels.get(nodeId(element.name))}: unresolved imported value ${record.specifier}`)
         }
-        if (bindings && ts.isNamespaceImport(bindings)) addHazard(nodeId(bindings.name), `${labels.get(nodeId(bindings.name))}: unresolved imported namespace`)
+        if (bindings && ts.isNamespaceImport(bindings)) addHazard(nodeId(bindings.name), `${labels.get(nodeId(bindings.name))}: unresolved imported namespace ${record.specifier}`)
       }
       return
     }
@@ -608,11 +619,18 @@ export function scanComputedMappingDataFlow(sourceEntries) {
     let changed = false
     for (const record of reExportRecords) {
       const targetPath = resolvedModulePath(record.sourceFile.fileName, record.specifier)
-      if (!targetPath) continue
+      if (!targetPath) {
+        if (!record.specifier.startsWith('node:') && isMappingInfrastructureFile(record.sourceFile.fileName)) {
+          const exportId = syntheticId(record.declaration, `unresolved-reexport-${record.specifier}`)
+          addHazard(exportId, `${labels.get(exportId)}: unresolved re-export ${record.specifier}`)
+          addSink(exportId, 'unresolved mapping-infrastructure re-export')
+        }
+        continue
+      }
       const targetExports = moduleExports(targetPath)
       const localPath = canonicalPath(record.sourceFile.fileName)
       const clause = record.declaration.exportClause
-      if (ts.isNamedExports(clause)) {
+      if (clause && ts.isNamedExports(clause)) {
         for (const element of clause.elements) {
           const importedName = element.propertyName?.text ?? element.name.text
           if (targetExports.has(importedName)) changed = addExport(localPath, element.name.text, targetExports.get(importedName)) || changed
@@ -628,7 +646,7 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   for (const record of dynamicImportRecords) {
     const targetPath = resolvedModulePath(record.sourceFile.fileName, record.specifier)
     if (!targetPath) {
-      if (record.specifier.startsWith('.')) addHazard(record.callId, `${labels.get(record.callId)}: unresolved dynamic import`)
+      if (!record.specifier.startsWith('node:')) addHazard(record.callId, `${labels.get(record.callId)}: unresolved dynamic import ${record.specifier}`)
       continue
     }
     for (const exportedId of moduleExports(targetPath).values()) addEdge(exportedId, record.callId)
