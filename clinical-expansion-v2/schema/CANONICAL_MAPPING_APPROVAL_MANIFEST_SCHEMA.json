@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm-clinicnote.local/schema/canonical-mapping-approval-manifest-1.0.0.json",
+  "title": "Najm ClinicNote signed canonical mapping approval manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifestSchemaVersion",
+    "repositoryNamespace",
+    "canonicalSchemaVersion",
+    "createdAt",
+    "approvalSequence",
+    "previousManifestHash",
+    "files",
+    "mappingKeys",
+    "aggregateHash"
+  ],
+  "properties": {
+    "manifestSchemaVersion": { "const": "1.0.0" },
+    "repositoryNamespace": { "const": "najm-ai-clinicnote-v2/source-first-canonical-mappings" },
+    "canonicalSchemaVersion": { "const": "1.0.0" },
+    "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+    "approvalSequence": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "previousManifestHash": { "$ref": "#/$defs/hash" },
+    "files": { "type": "array", "maxItems": 1500, "items": { "$ref": "#/$defs/file" } },
+    "mappingKeys": { "type": "array", "maxItems": 100000, "items": { "$ref": "#/$defs/key" } },
+    "aggregateHash": { "$ref": "#/$defs/hash" }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "identifier": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflowId", "itemId", "sourceId", "sectionId"],
+      "properties": {
+        "workflowId": { "type": "string", "maxLength": 256, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "itemId": { "$ref": "#/$defs/identifier" },
+        "sourceId": { "$ref": "#/$defs/identifier" },
+        "sectionId": { "$ref": "#/$defs/identifier" }
+      }
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "workflowId", "sha256", "byteLength", "mappingCount", "mappingKeys"],
+      "properties": {
+        "path": { "type": "string", "minLength": 6, "maxLength": 261, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.json$" },
+        "workflowId": { "type": "string", "maxLength": 256, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "sha256": { "$ref": "#/$defs/hash" },
+        "byteLength": { "type": "integer", "minimum": 1, "maximum": 33554432 },
+        "mappingCount": { "type": "integer", "minimum": 1, "maximum": 5000 },
+        "mappingKeys": { "type": "array", "minItems": 1, "maxItems": 5000, "items": { "$ref": "#/$defs/key" } }
+      }
+    }
+  }
+}

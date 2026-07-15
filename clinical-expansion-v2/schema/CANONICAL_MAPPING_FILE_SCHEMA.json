@@ -15,10 +15,12 @@
     },
     "workflowId": {
       "type": "string",
+      "maxLength": 256,
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
     "mappings": {
       "type": "array",
+      "maxItems": 5000,
       "items": {
         "$ref": "#/$defs/mapping"
       }
@@ -48,19 +50,23 @@
       "properties": {
         "workflowId": {
           "type": "string",
+          "maxLength": 256,
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "itemId": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 256
         },
         "sourceId": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 256
         },
         "sectionId": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 256
         },
         "sourceHash": {
           "type": "string",
@@ -72,27 +78,33 @@
         },
         "evidenceRelationship": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 4096
         },
         "populationApplicability": {
           "type": "string",
-          "minLength": 100
+          "minLength": 100,
+          "maxLength": 4096
         },
         "settingApplicability": {
           "type": "string",
-          "minLength": 100
+          "minLength": 100,
+          "maxLength": 4096
         },
         "jurisdictionApplicability": {
           "type": "string",
-          "minLength": 100
+          "minLength": 100,
+          "maxLength": 4096
         },
         "uaeApplicability": {
           "type": "string",
-          "minLength": 100
+          "minLength": 100,
+          "maxLength": 4096
         },
         "applicabilityRationale": {
           "type": "string",
-          "minLength": 160
+          "minLength": 160,
+          "maxLength": 4096
         },
         "supportStatus": {
           "const": "exact_section_supported"
