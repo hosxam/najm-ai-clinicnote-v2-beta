@@ -1,3 +1,20 @@
+import path from 'node:path'
+import { EXPANSION_DIR, readJson } from '../common.mjs'
+
+function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
+  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
+  const existing = registry.sources.find((source) => source.source_id === sourceId)
+  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
+  const additions = new Set(additionalSections.map((candidate) => candidate.section_id))
+  return {
+    ...existing,
+    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
+    recency_verification: { ...existing.recency_verification, verified_on: '2026-07-15' },
+    superseded_status_check: { ...existing.superseded_status_check, checked_on: '2026-07-15' },
+    exact_sections: [...existing.exact_sections.filter((candidate) => !additions.has(candidate.section_id)), ...additionalSections],
+  }
+}
+
 export default {
   batch_id: 'source-first-0736-0745',
   description: 'Workflow-specific GP research for returned travel illness, travel records, weight, vaccination, varicose veins, viral follow-up, vitamin D and workplace exposure; research only.',
@@ -22,18 +39,16 @@ export default {
     },
     {
       registry_file: 'international_clinical_sources.json',
-      source: {
-        source_id: 'nice-varicose-veins-cg168-2013', issuing_organisation: 'National Institute for Health and Care Excellence', exact_document_title: 'Varicose veins: diagnosis and management', exact_official_url: 'https://www.nice.org.uk/guidance/cg168/chapter/Recommendations',
-        publication_date: '2013-07-24', effective_date: '2013-07-24', revision_date: '2016-02-04', version: 'NICE clinical guideline CG168; last reviewed 4 February 2016', jurisdiction: 'United Kingdom; requires UAE vascular-service adaptation',
-        population: 'People aged 18 and over with primary or recurrent lower-limb varicose veins, including pregnancy-specific qualifiers.', clinical_setting: 'Primary-care recognition and vascular-service assessment and management.',
-        applicability_note: 'Exact for adult symptom, complication, referral and duplex-assessment documentation with recommendation qualifiers preserved. It does not diagnose venous disease or generate treatment.',
-        recency_verification: { verified_on: '2026-07-15', status: 'current_official_NICE_guidance_page_opened_and_surveillance_status_checked', revision_due: null }, superseded_status_check: { checked_on: '2026-07-15', status: 'NICE_reports_no_new_evidence_affecting_recommendations' },
-        exact_sections: [
+      source: extendRegisteredSource(
+        'international_clinical_sources.json',
+        'nice-varicose-veins-cg168-2013',
+        [
           { section_id: 'nice-cg168-varicose-information-symptoms', heading: 'Recommendations 1.1.1–1.1.2 — symptoms, progression and complications', locator: 'official recommendations section 1.1', evidence_summary: 'Supports clinician documentation of pain, aching, discomfort, swelling, heaviness, itching, skin change, bleeding, thrombophlebitis, ulcer and patient questions without asserting complication.' },
           { section_id: 'nice-cg168-varicose-referral-features', heading: 'Recommendations 1.2.1–1.2.2 — vascular-service referral features', locator: 'official recommendations section 1.2', evidence_summary: 'Supports recording bleeding, troublesome symptoms, skin change, hard painful veins and active or healed ulcer context; referral remains a clinician decision adapted to local pathways.' },
           { section_id: 'nice-cg168-varicose-duplex-pregnancy', heading: 'Recommendations 1.3.1 and 1.4.1–1.4.3 — duplex assessment and pregnancy', locator: 'official recommendations sections 1.3 and 1.4', evidence_summary: 'Supports clinician-reviewed duplex results and pregnancy context without generating imaging, intervention or compression advice.' },
         ],
-      },
+        'This batch additionally reviews adult symptom, complication, referral, duplex and pregnancy recommendations while preserving the previously registered chronic-venous-skin and ulcer-history sections. No diagnosis, imaging or treatment is generated.',
+      ),
     },
     {
       registry_file: 'international_clinical_sources.json',
