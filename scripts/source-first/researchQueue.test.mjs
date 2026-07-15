@@ -16,6 +16,7 @@ import {
   shouldStopForTimeBudget,
 } from './researchQueue.mjs'
 import { writeJson } from './common.mjs'
+import { validateResearchBatchMappingContract } from './researchBatchMappingContract.mjs'
 
 const terminal = (sequence, workflowId) => ({
   sequence,
@@ -71,6 +72,14 @@ test('uses cmd only as the Windows fallback when npm CLI metadata is unavailable
 
 test('queue checkpoints enforce the explicit mapping contract audit', () => {
   assert.equal(LIGHTWEIGHT_VALIDATORS.includes('audit:explicit-mapping-contract'), true)
+  assert.equal(LIGHTWEIGHT_VALIDATORS.includes('audit:no-code-generated-mappings'), true)
+  assert.equal(LIGHTWEIGHT_VALIDATORS.includes('verify:canonical-mapping-reconciliation'), true)
+})
+
+test('queue research records cannot emit supported mappings directly', () => {
+  assert.throws(() => validateResearchBatchMappingContract({ support_groups: [{ item_ids: ['item-1'] }] }), /historical-only/)
+  assert.throws(() => validateResearchBatchMappingContract({ legacy_item_support_mappings: [] }), /prohibited/)
+  assert.deepEqual(validateResearchBatchMappingContract({ support_groups: [], candidate_item_evidence_proposals: [] }), [])
 })
 
 test('resumes at the first unfinished workflow and skips terminal entries', () => {
