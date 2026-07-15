@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict'
+import path from 'node:path'
 import test from 'node:test'
 import { readJsonl } from './common.mjs'
 import {
   compareMappingSets,
   runExplicitMappingAudit,
+  scanComputedMappingDataFlow,
   scanStaticClinicalMappingSource,
 } from './auditExplicitMappingContract.mjs'
 
@@ -96,6 +98,304 @@ for (const [name, fileName, sourceText] of computedPropertyGuardProbes) {
 test('nonclinical computed property outside mapping context is accepted', () => {
   const sourceText = 'const field = "theme"; const metadata = { [field]: "dark", displayName: "Night mode" }'
   assert.deepEqual(scanStaticClinicalMappingSource('ui/theme-metadata.mjs', sourceText), [])
+})
+
+const dataFlowFixtureRoot = path.resolve('scripts/source-first/.virtual-data-flow-fixtures')
+const mappingIdentityDeclarations = "const workflowId='workflow-a',itemId='item-a',sourceId='source-a',sectionId='section-a';"
+const dynamicFieldDeclarations = "const field=getFieldAtRuntime(),value='value';"
+
+function fixtureEntry(fileName, sourceText) {
+  return { fileName: path.join(dataFlowFixtureRoot, fileName), sourceText }
+}
+
+function rejectsComputedFlow(name, entries, expectedReason = /unresolved computed field reaches clinical mapping sink/) {
+  test(`data-flow guard ${name} rejects the intended mapping hazard`, () => {
+    const result = scanComputedMappingDataFlow(entries)
+    assert.match(result.errors.join('\n'), expectedReason)
+  })
+}
+
+rejectsComputedFlow('pre-bound object spread', [fixtureEntry('pre-bound-spread.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = { [field]: value }
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...dynamicPart }
+`)])
+
+rejectsComputedFlow('pre-bound nested object', [fixtureEntry('pre-bound-nested.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = { [field]: value }
+  const mapping = { workflowId, itemId, sourceId, sectionId, applicability: dynamicPart }
+`)])
+
+rejectsComputedFlow('mapping-function argument', [fixtureEntry('mapping-argument.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = { [field]: value }
+  createCanonicalMapping({ workflowId, itemId, sourceId, sectionId }, dynamicPart)
+`)])
+
+rejectsComputedFlow('one-hop alias', [fixtureEntry('one-hop-alias.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const original = { [field]: value }
+  const alias = original
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...alias }
+`)])
+
+rejectsComputedFlow('multi-hop alias', [fixtureEntry('multi-hop-alias.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const original = { [field]: value }
+  const aliasOne = original
+  const aliasTwo = aliasOne
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...aliasTwo }
+`)])
+
+rejectsComputedFlow('wrapper return', [fixtureEntry('wrapper-return.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  function buildApplicability() { return { [field]: value } }
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...buildApplicability() }
+`)])
+
+rejectsComputedFlow('function parameter propagation', [fixtureEntry('function-parameter.mjs', `
+  ${dynamicFieldDeclarations}
+  function createMapping(extra) {
+    return { workflowId: 'workflow-a', itemId: 'item-a', sourceId: 'source-a', sectionId: 'section-a', ...extra }
+  }
+  createMapping({ [field]: value })
+`)], /(?:wrapper invokes clinical mapping sink|unresolved computed field reaches clinical mapping sink)/)
+
+rejectsComputedFlow('named imported hazard', [
+  fixtureEntry('named-import/hazard.mjs', `${dynamicFieldDeclarations} export const dynamicPart = { [field]: value }`),
+  fixtureEntry('named-import/mapping.mjs', `
+    import { dynamicPart } from './hazard.mjs'
+    ${mappingIdentityDeclarations}
+    const mapping = { workflowId, itemId, sourceId, sectionId, ...dynamicPart }
+  `),
+])
+
+rejectsComputedFlow('default-exported hazard', [
+  fixtureEntry('default-import/hazard.mjs', `${dynamicFieldDeclarations} export default { [field]: value }`),
+  fixtureEntry('default-import/mapping.mjs', `
+    import dynamicPart from './hazard.mjs'
+    ${mappingIdentityDeclarations}
+    const mapping = { workflowId, itemId, sourceId, sectionId, ...dynamicPart }
+  `),
+])
+
+rejectsComputedFlow('Object.assign hazard', [fixtureEntry('object-assign.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = { [field]: value }
+  const mapping = Object.assign({ workflowId, itemId, sourceId, sectionId }, dynamicPart)
+`)])
+
+rejectsComputedFlow('array-mediated hazard', [fixtureEntry('array-mediated.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const fragments = [{ [field]: value }]
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...fragments[0] }
+`)])
+
+rejectsComputedFlow('nested alias and spread', [fixtureEntry('nested-alias.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = { [field]: value }
+  const container = { applicability: dynamicPart }
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...container }
+`)])
+
+rejectsComputedFlow('conditional hazard', [fixtureEntry('conditional.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = condition ? { [field]: value } : safeValue
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...dynamicPart }
+`)])
+
+rejectsComputedFlow('logical-expression hazard', [fixtureEntry('logical.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = provided || { [field]: value }
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...dynamicPart }
+`)])
+
+rejectsComputedFlow('later property-assignment hazard', [fixtureEntry('later-assignment.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const dynamicPart = {}
+  dynamicPart[field] = value
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...dynamicPart }
+`)], /later unresolved computed assignment reaches clinical mapping sink/)
+
+rejectsComputedFlow('dynamically imported hazard', [
+  fixtureEntry('dynamic-import/hazard.mjs', `${dynamicFieldDeclarations} export const dynamicPart = { [field]: value }`),
+  fixtureEntry('dynamic-import/mapping.mjs', `
+    ${mappingIdentityDeclarations}
+    const loaded = await import('./hazard.mjs')
+    const mapping = { workflowId, itemId, sourceId, sectionId, ...loaded.dynamicPart }
+  `),
+])
+
+rejectsComputedFlow('renamed imported wrapper', [
+  fixtureEntry('renamed-wrapper/factory.mjs', `
+    export function build(extra) {
+      return { workflowId: 'workflow-a', itemId: 'item-a', sourceId: 'source-a', sectionId: 'section-a', ...extra }
+    }
+  `),
+  fixtureEntry('renamed-wrapper/use.mjs', `
+    import { build as renamedWrapper } from './factory.mjs'
+    ${dynamicFieldDeclarations}
+    renamedWrapper({ [field]: value })
+  `),
+], /(?:wrapper invokes clinical mapping sink|unresolved computed field reaches clinical mapping sink)/)
+
+rejectsComputedFlow('locally aliased wrapper', [fixtureEntry('renamed-wrapper/local-alias.mjs', `
+  ${dynamicFieldDeclarations}
+  function build(extra) {
+    return { workflowId: 'workflow-a', itemId: 'item-a', sourceId: 'source-a', sectionId: 'section-a', ...extra }
+  }
+  const renamedWrapper = build
+  renamedWrapper({ [field]: value })
+`)], /(?:wrapper invokes clinical mapping sink|unresolved computed field reaches clinical mapping sink)/)
+
+rejectsComputedFlow('named re-export hazard', [
+  fixtureEntry('re-export/hazard.mjs', `${dynamicFieldDeclarations} export const dynamicPart = { [field]: value }`),
+  fixtureEntry('re-export/barrel.mjs', `export { dynamicPart as fragment } from './hazard.mjs'`),
+  fixtureEntry('re-export/alternate/source-first/mapping.mjs', `
+    import { fragment } from '../../barrel.mjs'
+    ${mappingIdentityDeclarations}
+    const mapping = { workflowId, itemId, sourceId, sectionId, ...fragment }
+  `),
+])
+
+rejectsComputedFlow('alternate-directory hazard', [fixtureEntry('tools/alternate/clinical-mapping-writer.mts', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const fragment = { [field]: value }
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...fragment }
+`)])
+
+rejectsComputedFlow('runtime-only mapping sink', [fixtureEntry('runtime/emitter.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const fragment = { [field]: value }
+  emitRuntimeMapping({ workflowId, itemId, sourceId, sectionId }, fragment)
+`)])
+
+rejectsComputedFlow('persisted-only mapping sink', [fixtureEntry('persistence/writer.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const fragment = { [field]: value }
+  persistCanonicalMapping({ workflowId, itemId, sourceId, sectionId }, fragment)
+`)])
+
+rejectsComputedFlow('hazard concealed behind equal mapping totals', [fixtureEntry('equal-totals.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  const fragment = { [field]: value }
+  const runtimeMappings = [{ workflowId, itemId, sourceId, sectionId, ...fragment }]
+  const persistedMappings = [{ workflowId, itemId, sourceId, sectionId }]
+  compareMappingTotals(runtimeMappings.length, persistedMappings.length)
+`)])
+
+rejectsComputedFlow('cyclic aliases', [fixtureEntry('cycles/aliases.mjs', `
+  ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+  let aliasOne
+  let aliasTwo = aliasOne
+  aliasOne = aliasTwo
+  aliasOne = { [field]: value }
+  const mapping = { workflowId, itemId, sourceId, sectionId, ...aliasTwo }
+`)])
+
+rejectsComputedFlow('mutually recursive wrappers', [fixtureEntry('cycles/mutual-wrappers.mjs', `
+  ${dynamicFieldDeclarations}
+  function first(extra) { return second(extra) }
+  function second(extra) {
+    return condition ? first(extra) : {
+      workflowId: 'workflow-a', itemId: 'item-a', sourceId: 'source-a', sectionId: 'section-a', ...extra,
+    }
+  }
+  first({ [field]: value })
+`)], /(?:wrapper invokes clinical mapping sink|unresolved computed field reaches clinical mapping sink)/)
+
+rejectsComputedFlow('circular imports', [
+  fixtureEntry('cycles/circular-a.mjs', `
+    import { consume } from './circular-b.mjs'
+    ${dynamicFieldDeclarations}
+    export const dynamicPart = { [field]: value }
+    export const run = () => consume(dynamicPart)
+  `),
+  fixtureEntry('cycles/circular-b.mjs', `
+    import { dynamicPart } from './circular-a.mjs'
+    export function consume(extra) {
+      return { workflowId: 'workflow-a', itemId: 'item-a', sourceId: 'source-a', sectionId: 'section-a', ...extra }
+    }
+    consume(dynamicPart)
+  `),
+], /(?:wrapper invokes clinical mapping sink|unresolved computed field reaches clinical mapping sink)/)
+
+test('data-flow guard produces stable diagnostics across repeated execution', () => {
+  const entries = [fixtureEntry('determinism/repeated.mjs', `
+    ${mappingIdentityDeclarations} ${dynamicFieldDeclarations}
+    const fragment = { [field]: value }
+    const mapping = { workflowId, itemId, sourceId, sectionId, ...fragment }
+  `)]
+  assert.deepEqual(scanComputedMappingDataFlow(entries), scanComputedMappingDataFlow(entries))
+})
+
+test('data-flow guard is independent of file-discovery order', () => {
+  const entries = [
+    fixtureEntry('determinism/hazard.mjs', `${dynamicFieldDeclarations} export const fragment = { [field]: value }`),
+    fixtureEntry('determinism/mapping.mjs', `
+      import { fragment } from './hazard.mjs'
+      ${mappingIdentityDeclarations}
+      const mapping = { workflowId, itemId, sourceId, sectionId, ...fragment }
+    `),
+  ]
+  assert.deepEqual(
+    scanComputedMappingDataFlow(entries).errors,
+    scanComputedMappingDataFlow([...entries].reverse()).errors,
+  )
+})
+
+test('data-flow guard fails closed on parse failure with a clear diagnostic', () => {
+  const result = scanComputedMappingDataFlow([fixtureEntry('parse-failure.mjs', `
+    ${mappingIdentityDeclarations}
+    const mapping = { workflowId, itemId, sourceId, sectionId, [field]: }
+  `)])
+  assert.match(result.errors.join('\n'), /AST parse failure prevents fail-closed mapping analysis/)
+})
+
+test('data-flow guard accepts a provably disconnected local nonclinical computed object', () => {
+  const result = scanComputedMappingDataFlow([fixtureEntry('safe/local-ui.mjs', `
+    const key = getDisplayKey()
+    const uiConfig = { [key]: 'Example' }
+    renderUi(uiConfig)
+  `)])
+  assert.deepEqual(result.errors, [])
+})
+
+test('data-flow guard accepts a provably disconnected imported nonclinical computed object', () => {
+  const result = scanComputedMappingDataFlow([
+    fixtureEntry('safe/imported-ui.mjs', `const key = getDisplayKey(); export const uiConfig = { [key]: 'Example' }`),
+    fixtureEntry('safe/use-ui.mjs', `
+      import { uiConfig } from './imported-ui.mjs'
+      renderUi(uiConfig)
+      ${mappingIdentityDeclarations}
+      const mapping = { workflowId, itemId, sourceId, sectionId }
+    `),
+  ])
+  assert.deepEqual(result.errors, [])
+})
+
+test('data-flow guard accepts a valid literal canonical mapping', () => {
+  const result = scanComputedMappingDataFlow([fixtureEntry('safe/canonical.mjs', `
+    const mapping = {
+      workflowId: 'workflow-a',
+      itemId: 'item-a',
+      sourceId: 'source-a',
+      sectionId: 'section-a',
+      sourceHash: '${'a'.repeat(64)}',
+      sectionHash: '${'b'.repeat(64)}',
+      evidenceRelationship: 'direct',
+      populationApplicability: 'population',
+      settingApplicability: 'setting',
+      uaeApplicability: 'uae',
+      applicabilityRationale: 'rationale',
+      supportStatus: 'exact_section_supported',
+      origin: 'legacy_exact',
+      mappingVersion: '1.0.0',
+    }
+    emitCanonicalMappings([mapping])
+  `)])
+  assert.deepEqual(result.errors, [])
 })
 
 const baseMapping = {
