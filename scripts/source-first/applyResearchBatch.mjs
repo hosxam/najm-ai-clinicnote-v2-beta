@@ -14,8 +14,11 @@ import {
   writeJson,
   writeJsonl,
 } from './common.mjs'
-import { canonicalMappingsForWorkflow } from './canonicalMappingLedger.mjs'
-import { validateExplicitGpMappings } from './batches/gpExplicitMappingContract.mjs'
+import {
+  createCanonicalMappingViews,
+  deriveUnsupportedLegacyRows,
+} from './canonicalMappingReconciliation.mjs'
+import { validateResearchBatchMappingContract } from './researchBatchMappingContract.mjs'
 
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
@@ -107,7 +110,6 @@ const executionLog = readJsonl(executionLogPath)
     && row.batch_id === batch.batch_id
     && pendingWorkflowIds.has(row.workflow_id)
   ))
-const newlySupportedIds = new Set()
 const forbiddenMappingFields = new Set([
   'text', 'texts', 'exactText', 'exactTexts', 'exact_texts', 'label', 'labels',
   'alias', 'aliases', 'category', 'position', 'keyword', 'keywords', 'substring', 'fuzzy',
@@ -121,37 +123,17 @@ for (const config of pendingConfigs) {
   const workflowPath = path.join(EXPANSION_DIR, 'workflows', `${config.workflow_id}.json`)
   const researchPath = path.join(EXPANSION_DIR, 'research', `${config.workflow_id}.research.json`)
   const workflow = readJson(workflowPath)
-  const itemById = new Map(listClinicalItems(workflow).map((item) => [item.item_id, item]))
+  const items = listClinicalItems(workflow)
   for (const group of config.support_groups ?? []) {
     for (const field of Object.keys(group ?? {})) {
       if (forbiddenMappingFields.has(field)) throw new Error(`${config.workflow_id}: text-to-item mapping field ${field} is prohibited`)
     }
   }
   if ((config.support_groups ?? []).length > 0) {
-    throw new Error(`${config.workflow_id}: batch support groups are historical only; supported mappings must come from the canonical ledger`)
+    throw new Error(`${config.workflow_id}: batch support groups are historical only; research completion cannot create item-level support`)
   }
-  const canonicalMappings = canonicalMappingsForWorkflow(config.workflow_id)
-  const mappings = validateExplicitGpMappings(canonicalMappings, {
-    workflowsById: new Map([[config.workflow_id, workflow]]),
-    itemsByWorkflowId: new Map([[config.workflow_id, itemById]]),
-    sourcesById: sourceById,
-    reviewedSourceIds: new Set(config.exact_documents_opened),
-    reviewedSectionIds: new Set(config.exact_sections_reviewed),
-  })
-
-  for (const mapping of mappings) {
-    const item = itemById.get(mapping.itemId)
-    if (newlySupportedIds.has(mapping.itemId)) throw new Error(`${config.workflow_id}: duplicate canonical support mapping for ${mapping.itemId}`)
-    newlySupportedIds.add(mapping.itemId)
-    item.source_ids = [mapping.sourceId]
-    item.source_section_ids = [mapping.sectionId]
-    item.clinical_review_status = 'legacy_exact_source_supported_pending_clinician_review'
-    item.evidence_relationship = mapping.evidenceRelationship
-  }
-
-  const unsupportedIds = listClinicalItems(workflow)
-    .filter((item) => !mappings.some((mapping) => mapping.itemId === item.item_id))
-    .map((item) => item.item_id)
+  const candidateProposals = validateResearchBatchMappingContract(config)
+  const unsupportedIds = items.map((item) => item.item_id)
 
   workflow.research_status = config.source_status
   workflow.workflow_processed = true
@@ -160,7 +142,7 @@ for (const config of pendingConfigs) {
   workflow.active_clinical_approval = false
   workflow.clinical_blockers = config.unresolved_source_gaps
   workflow.unsupported_legacy_item_count = unsupportedIds.length
-  workflow.supported_legacy_item_count = mappings.length
+  workflow.supported_legacy_item_count = 0
   workflow.source_derived_item_count = 0
   workflow.technical_audit_passed = true
   workflow.provenance_audit_passed = true
@@ -174,16 +156,13 @@ for (const config of pendingConfigs) {
     )
     const section = source?.exact_sections?.find((candidate) => candidate.section_id === sectionId)
     if (!source || !section) throw new Error(`${config.workflow_id}: exact section ${sectionId} is not registered`)
-    const mapped = mappings.some((mapping) => mapping.sectionId === sectionId)
     return {
       evidence_item_id: `${config.workflow_id}--${sectionId}`,
       source_id: source.source_id,
       source_section_id: sectionId,
       direct_relationship: config.section_relationships[sectionId],
       paraphrased_evidence_summary: section.evidence_summary,
-      content_mapping_status: mapped
-        ? 'mapped_to_explicit_legacy_items_pending_clinician_review'
-        : 'reviewed_not_mapped_to_legacy_content',
+      content_mapping_status: 'reviewed_not_mapped_to_legacy_content',
     }
   })
 
@@ -209,8 +188,9 @@ for (const config of pendingConfigs) {
     source_status: config.source_status,
     unresolved_source_gaps: config.unresolved_source_gaps,
     researcher_type: 'codex_exact_document_section_review',
-    legacy_item_support_mappings: mappings,
-    supported_legacy_item_count: mappings.length,
+    candidate_item_evidence_proposals: candidateProposals,
+    legacy_item_support_mappings: [],
+    supported_legacy_item_count: 0,
     unsupported_legacy_item_count: unsupportedIds.length,
     unsupported_legacy_item_ids: unsupportedIds,
     technical_audit: {
@@ -246,7 +226,7 @@ for (const config of pendingConfigs) {
     research_terminal_status: config.source_status,
     technical_audit_status: 'PASS',
     provenance_audit_status: 'PASS',
-    supported_legacy_items: mappings.length,
+    supported_legacy_items: 0,
     unsupported_legacy_items: unsupportedIds.length,
   })
 
@@ -258,7 +238,7 @@ for (const config of pendingConfigs) {
     source_status: config.source_status,
     exact_documents_opened: config.exact_documents_opened.length,
     exact_sections_reviewed: config.exact_sections_reviewed.length,
-    supported_legacy_items: mappings.length,
+    supported_legacy_items: 0,
     unsupported_legacy_items: unsupportedIds.length,
     source_derived_items: 0,
     technical_audit_status: 'PASS',
@@ -267,7 +247,9 @@ for (const config of pendingConfigs) {
 }
 
 const unsupportedPath = path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl')
-const unsupportedRows = readJsonl(unsupportedPath).filter((row) => !newlySupportedIds.has(row.item_id))
+const rawUnsupportedRows = readJsonl(unsupportedPath)
+const canonicalMappingViews = createCanonicalMappingViews()
+const unsupportedRows = deriveUnsupportedLegacyRows(rawUnsupportedRows, canonicalMappingViews.canonicalJson)
 const uaeFindingsPath = path.join(EXPANSION_DIR, 'progress', 'UAE_APPLICABILITY_FINDINGS.jsonl')
 const uaeFindings = [
   ...readJsonl(uaeFindingsPath).filter((row) => !pendingWorkflowIds.has(row.workflow_id)),
@@ -275,7 +257,6 @@ const uaeFindings = [
 ].sort((left, right) => `${left.workflow_id}/${left.finding_type}`.localeCompare(`${right.workflow_id}/${right.finding_type}`))
 const uaeFindingKeys = new Set(uaeFindings.map((finding) => `${finding.workflow_id}\u0000${finding.finding_type}`))
 if (uaeFindingKeys.size !== uaeFindings.length) throw new Error('Structured UAE applicability findings contain duplicate workflow/type keys')
-writeJsonl(unsupportedPath, unsupportedRows)
 writeJsonl(uaeFindingsPath, uaeFindings)
 writeJsonl(auditPath, auditRows)
 writeJsonl(executionLogPath, executionLog)
@@ -294,10 +275,7 @@ const uaeOtherApplicabilityFindings = uaeFindings.filter((finding) => finding.fi
 const uaeAffectedWorkflowIds = new Set([
   ...uaeFindings.map((finding) => finding.workflow_id),
 ])
-const sourceSupportedLegacyItemCount = allResearch.reduce(
-  (total, record) => total + (record.legacy_item_support_mappings?.length ?? 0),
-  0,
-)
+const sourceSupportedLegacyItemCount = canonicalMappingViews.canonicalJson.length
 const sourceStatusCount = (status) => allResearch.filter((record) => record.source_status === status).length
 const nextManifestEntry = manifest.workflows.find((entry) => !entry.terminal_research)
 
@@ -401,7 +379,7 @@ console.log(JSON.stringify({
   research_interrupted: manifest.research_interrupted_count,
   exact_documents_registered: exactDocumentIds.size,
   exact_sections_registered: exactSectionIds.size,
-  newly_supported_legacy_items: newlySupportedIds.size,
+  newly_supported_legacy_items: 0,
   source_supported_legacy_items_total: sourceSupportedLegacyItemCount,
   unsupported_legacy_items_remaining: unsupportedRows.length,
   source_derived_items: 0,

@@ -1,7 +1,4 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { EXPANSION_DIR, listClinicalItems, readJson } from '../common.mjs'
-import { validateExplicitGpMappings } from './gpExplicitMappingContract.mjs'
+import { validateResearchCandidateProposals } from '../researchBatchMappingContract.mjs'
 
 const REQUIRED_WORKFLOW_FIELDS = [
   'workflowId',
@@ -23,12 +20,6 @@ const REQUIRED_WORKFLOW_FIELDS = [
   'mappings',
 ]
 
-const sourceRecords = fs.readdirSync(path.join(EXPANSION_DIR, 'sources'))
-  .filter((name) => name.endsWith('.json'))
-  .sort()
-  .flatMap((name) => readJson(path.join(EXPANSION_DIR, 'sources', name)).sources ?? [])
-const sourcesById = new Map(sourceRecords.map((source) => [source.source_id, source]))
-
 function requireExplicit(record, field) {
   if (!Object.hasOwn(record, field)) throw new Error(`${record.workflowId ?? '<missing>'}: explicit GP workflow field ${field} is required`)
   const value = record[field]
@@ -37,41 +28,21 @@ function requireExplicit(record, field) {
   }
 }
 
-function workflowContext(record) {
-  const workflow = readJson(path.join(EXPANSION_DIR, 'workflows', `${record.workflowId}.json`))
-  const items = listClinicalItems(workflow)
-  return {
-    workflowsById: new Map([[record.workflowId, workflow]]),
-    itemsByWorkflowId: new Map([[record.workflowId, new Map(items.map((item) => [item.item_id, item]))]]),
-    sourcesById,
-    reviewedSourceIds: new Set(record.exactDocumentsOpened),
-    reviewedSectionIds: new Set(record.exactSectionsReviewed),
-  }
-}
-
 export function gpExplicitWorkflow(record) {
   if (!record || typeof record !== 'object' || Array.isArray(record)) throw new Error('Explicit GP workflow record is required')
   for (const field of REQUIRED_WORKFLOW_FIELDS) requireExplicit(record, field)
   if (!Array.isArray(record.mappings)) throw new Error(`${record.workflowId}: mappings must be an explicit array`)
 
-  const mappings = validateExplicitGpMappings(record.mappings, workflowContext(record))
-  if (mappings.length > 0) {
-    throw new Error(`${record.workflowId}: batch-local mappings are prohibited; author canonical mappings in CANONICAL_SUPPORTED_MAPPING_LEDGER.jsonl`)
+  if (record.mappings.length > 0) {
+    throw new Error(`${record.workflowId}: batch-local mappings are prohibited; use the controlled canonical JSON serializer after research review`)
   }
+  const candidateProposals = validateResearchCandidateProposals(record.candidateItemEvidenceProposals ?? [])
   const noSource = record.sourceStatus === 'no_authoritative_source_found'
-  if (noSource && (mappings.length > 0 || record.exactDocumentsOpened.length > 0 || record.exactSectionsReviewed.length > 0)) {
+  if (noSource && (candidateProposals.length > 0 || record.exactDocumentsOpened.length > 0 || record.exactSectionsReviewed.length > 0)) {
     throw new Error(`${record.workflowId}: no-authoritative-source record cannot emit evidence mappings`)
   }
-  if (!noSource && mappings.length === 0 && !record.unresolvedSourceGaps.some((gap) => /mapping|unsupported|item-level/i.test(gap))) {
+  if (!noSource && !record.unresolvedSourceGaps.some((gap) => /mapping|unsupported|item-level/i.test(gap))) {
     throw new Error(`${record.workflowId}: evidenced workflow with no retained mappings must explicitly record the unresolved item-level mapping gap`)
-  }
-
-  const sectionRelationships = {}
-  for (const mapping of mappings) {
-    const existing = sectionRelationships[mapping.sectionId]
-    sectionRelationships[mapping.sectionId] = existing && existing !== mapping.evidenceRelationship
-      ? [...new Set([existing, mapping.evidenceRelationship])].sort().join(' ')
-      : mapping.evidenceRelationship
   }
 
   return Object.freeze({
@@ -90,8 +61,9 @@ export function gpExplicitWorkflow(record) {
     recency_verification: record.recencyVerification,
     superseded_check: record.supersededCheck,
     unresolved_source_gaps: structuredClone(record.unresolvedSourceGaps),
-    section_relationships: sectionRelationships,
+    section_relationships: {},
     support_groups: [],
+    candidate_item_evidence_proposals: candidateProposals,
     source_status: record.sourceStatus,
   })
 }

@@ -9,32 +9,36 @@ import {
   listClinicalItems,
   readJson,
   readJsonl,
-  sha256,
   stableValue,
 } from './common.mjs'
 import {
   CANONICAL_MAPPING_FIELDS,
-  CANONICAL_MAPPING_VERSION,
   canonicalMappingKey,
-  emitCanonicalMappings,
-  readCanonicalMappings,
 } from './canonicalMappingLedger.mjs'
-import { validateExplicitGpMappings } from './batches/gpExplicitMappingContract.mjs'
+import {
+  createCanonicalMappingViews,
+  deriveUnsupportedLegacyRows,
+  reconcileCanonicalMappingViews,
+} from './canonicalMappingReconciliation.mjs'
 import { scanComputedMappingDataFlow } from './computedMappingDataFlow.mjs'
+import { runNoCodeGeneratedMappingsAudit } from './auditNoCodeGeneratedMappings.mjs'
 
 export { scanComputedMappingDataFlow } from './computedMappingDataFlow.mjs'
 
 const SUPPORTED_STATUS = 'legacy_exact_source_supported_pending_clinician_review'
 const EARLY_GP_WORKFLOWS = new Set(['gp-cough', 'gp-dizziness', 'gp-fever-urti', 'gp-headache', 'gp-sore-throat'])
-const CANONICAL_FIELD_SET = new Set(CANONICAL_MAPPING_FIELDS)
-const FORBIDDEN_MAPPING_FIELDS = new Set([
-  'text', 'texts', 'exactText', 'exactTexts', 'exact_texts', 'label', 'labels',
-  'alias', 'aliases', 'category', 'position', 'keyword', 'keywords', 'substring', 'fuzzy',
-])
 const ALLOWED_MAPPING_WRITERS = new Set([
+  'writeCanonicalMapping.mjs',
+])
+const DECLARATIVE_INFRASTRUCTURE = new Set([
+  'auditNoCodeGeneratedMappings.mjs',
   'applyResearchBatch.mjs',
-  'correctGpMappings.mjs',
-  'correctGlobalMappingArchitecture.mjs',
+  'canonicalMappingContract.mjs',
+  'canonicalMappingLedger.mjs',
+  'canonicalMappingReconciliation.mjs',
+  'canonicalMappingStore.mjs',
+  'gpExplicitMappingContract.mjs',
+  'writeCanonicalMapping.mjs',
 ])
 const SKIPPED_DIRECTORIES = new Set(['.git', '.agents', '.codex', 'dist', 'node_modules', 'public', 'clinical-expansion-v2'])
 const SOURCE_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.mts', '.cts'])
@@ -316,7 +320,8 @@ export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
     if (/\.test\.[mc]?[jt]sx?$/.test(relative)
       || relative.endsWith('auditExplicitMappingContract.mjs')
       || relative.endsWith('computedMappingDataFlow.mjs')
-      || relative.endsWith('writeGpHelperRemediationReports.mjs')) continue
+      || relative.endsWith('writeGpHelperRemediationReports.mjs')
+      || DECLARATIVE_INFRASTRUCTURE.has(path.basename(relative))) continue
     const sourceText = fs.readFileSync(filePath, 'utf8')
     sourceEntries.push({ fileName: filePath, sourceText })
     const historicalBatch = /(?:^|\/)batches\/batch-\d{4}-\d{4}\.mjs$/.test(relative)
@@ -329,98 +334,37 @@ export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
   return { errors: [...new Set(errors)].sort(), historicalTextBatchCount, dataFlow }
 }
 
-function sourceRegistry() {
-  const sources = fs.readdirSync(path.join(EXPANSION_DIR, 'sources'))
-    .filter((name) => name.endsWith('.json'))
-    .sort()
-    .flatMap((name) => readJson(path.join(EXPANSION_DIR, 'sources', name)).sources ?? [])
-  return new Map(sources.map((source) => [source.source_id, source]))
-}
-
-function validateCanonicalRows(rows, sourcesById, workflowById, researchById) {
-  const reviewedSourceIds = new Set([...researchById.values()].flatMap((research) => research.exact_documents_opened ?? []))
-  const reviewedSectionIds = new Set([...researchById.values()].flatMap((research) => research.exact_sections_reviewed ?? []))
-  validateExplicitGpMappings(rows, {
-    workflowsById: workflowById,
-    itemsByWorkflowId: new Map([...workflowById].map(([workflowId, workflow]) => [
-      workflowId,
-      new Map(listClinicalItems(workflow).map((item) => [item.item_id, item])),
-    ])),
-    sourcesById,
-    reviewedSourceIds,
-    reviewedSectionIds,
-  })
-  for (const mapping of rows) {
-    if (!mapping || typeof mapping !== 'object' || Array.isArray(mapping) || Object.getPrototypeOf(mapping) !== Object.prototype) {
-      throw new Error('[explicit-mapping-audit] canonical mapping must be a plain schema-owned object')
-    }
-    for (const field of Object.keys(mapping)) {
-      if (FORBIDDEN_MAPPING_FIELDS.has(field)) throw new Error(`[explicit-mapping-audit] forbidden text mapping field ${field}`)
-      if (!CANONICAL_FIELD_SET.has(field)) throw new Error(`[explicit-mapping-audit] unexpected canonical mapping field ${field}`)
-    }
-    for (const field of CANONICAL_MAPPING_FIELDS) {
-      if (!Object.hasOwn(mapping, field) || typeof mapping[field] !== 'string' || mapping[field].trim() === '') {
-        throw new Error(`[explicit-mapping-audit] missing explicit canonical field ${field}`)
-      }
-    }
-    if (mapping.mappingVersion !== CANONICAL_MAPPING_VERSION) throw new Error('[explicit-mapping-audit] invalid canonical mapping version')
-    const workflow = workflowById.get(mapping.workflowId)
-    const research = researchById.get(mapping.workflowId)
-    const item = workflow && listClinicalItems(workflow).find((candidate) => candidate.item_id === mapping.itemId)
-    const source = sourcesById.get(mapping.sourceId)
-    const section = source?.exact_sections?.find((candidate) => candidate.section_id === mapping.sectionId)
-    if (!item || !source || !section) throw new Error(`[explicit-mapping-audit] invalid canonical identity ${canonicalMappingKey(mapping)}`)
-    if (!research.exact_documents_opened.includes(mapping.sourceId) || !research.exact_sections_reviewed.includes(mapping.sectionId)) {
-      throw new Error(`[explicit-mapping-audit] canonical source/section not opened and reviewed ${canonicalMappingKey(mapping)}`)
-    }
-    if (mapping.sourceHash !== sha256(source) || mapping.sectionHash !== sha256(section)) {
-      throw new Error(`[explicit-mapping-audit] canonical source/section hash mismatch ${canonicalMappingKey(mapping)}`)
-    }
-  }
-}
-
 export function runExplicitMappingAudit() {
-  const sourcesById = sourceRegistry()
-  const workflowById = new Map()
   const researchById = new Map()
-  const persistedRows = []
-  const workflowSupportedKeys = []
+  const legacyPersistedRows = []
+  const legacyWorkflowSupportedKeys = []
   for (const researchPath of getResearchPaths()) {
     const research = readJson(researchPath)
     const workflow = readJson(path.join(EXPANSION_DIR, 'workflows', `${research.workflow_id}.json`))
     researchById.set(research.workflow_id, research)
-    workflowById.set(research.workflow_id, workflow)
-    persistedRows.push(...(research.legacy_item_support_mappings ?? []))
+    legacyPersistedRows.push(...(research.legacy_item_support_mappings ?? []))
     for (const item of listClinicalItems(workflow)) {
       if (item.clinical_review_status !== SUPPORTED_STATUS) continue
       if (item.source_ids?.length !== 1 || item.source_section_ids?.length !== 1) {
         throw new Error(`[explicit-mapping-audit] supported workflow item lacks exact provenance ${item.item_id}`)
       }
-      workflowSupportedKeys.push([research.workflow_id, item.item_id, item.source_ids[0], item.source_section_ids[0]].join('\u0000'))
+      legacyWorkflowSupportedKeys.push([research.workflow_id, item.item_id, item.source_ids[0], item.source_section_ids[0]].join('\u0000'))
     }
   }
 
-  const canonicalRows = readCanonicalMappings()
-  const explicitRows = readJsonl(path.join(EXPANSION_DIR, 'progress', 'EXPLICIT_SUPPORTED_MAPPING_LEDGER.jsonl'))
-  const runtimeRows = [...emitCanonicalMappings()]
-  validateCanonicalRows(canonicalRows, sourcesById, workflowById, researchById)
-  validateCanonicalRows(persistedRows, sourcesById, workflowById, researchById)
-  validateCanonicalRows(explicitRows, sourcesById, workflowById, researchById)
-  validateCanonicalRows(runtimeRows, sourcesById, workflowById, researchById)
-  compareMappingSets('canonical versus persisted research', canonicalRows, persistedRows)
-  compareMappingSets('canonical versus explicit evidence ledger', canonicalRows, explicitRows)
-  compareMappingSets('canonical versus runtime emission', canonicalRows, runtimeRows)
-  const canonicalKeys = new Set(canonicalRows.map(canonicalMappingKey))
-  const workflowUnexpected = workflowSupportedKeys.filter((key) => !canonicalKeys.has(key))
-  const workflowMissing = [...canonicalKeys].filter((key) => !workflowSupportedKeys.includes(key))
-  if (workflowUnexpected.length || workflowMissing.length || workflowSupportedKeys.length !== new Set(workflowSupportedKeys).size) {
-    throw new Error(`[explicit-mapping-audit] canonical versus workflow provenance mismatch: missing=${workflowMissing.length} unexpected=${workflowUnexpected.length}`)
+  const retiredCanonicalRows = readJsonl(path.join(EXPANSION_DIR, 'progress', 'CANONICAL_SUPPORTED_MAPPING_LEDGER.jsonl'))
+  const retiredExplicitRows = readJsonl(path.join(EXPANSION_DIR, 'progress', 'EXPLICIT_SUPPORTED_MAPPING_LEDGER.jsonl'))
+  if (legacyPersistedRows.length || legacyWorkflowSupportedKeys.length || retiredCanonicalRows.length || retiredExplicitRows.length) {
+    throw new Error(`[explicit-mapping-audit] alternate active mapping source detected: research=${legacyPersistedRows.length} workflow=${legacyWorkflowSupportedKeys.length} retiredCanonical=${retiredCanonicalRows.length} retiredExplicit=${retiredExplicitRows.length}`)
   }
 
-  const unsupported = new Set(readJsonl(path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl'))
-    .map((row) => `${row.workflow_id}\u0000${row.item_id}`))
-  const overlap = canonicalRows.filter((row) => unsupported.has(`${row.workflowId}\u0000${row.itemId}`))
-  if (overlap.length) throw new Error(`[explicit-mapping-audit] ${overlap.length} canonical mapping(s) are also unsupported`)
+  const views = createCanonicalMappingViews()
+  const reconciliation = reconcileCanonicalMappingViews({ views })
+  const canonicalRows = views.canonicalJson
+  const unsupported = deriveUnsupportedLegacyRows(
+    readJsonl(path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl')),
+    canonicalRows,
+  )
 
   const globalCorrectionRows = readJsonl(path.join(EXPANSION_DIR, 'progress', 'GLOBAL_MAPPING_CORRECTION_LEDGER.jsonl'))
   const inventoryRows = readJsonl(path.join(EXPANSION_DIR, 'progress', 'GLOBAL_MAPPING_ARCHITECTURE_INVENTORY.jsonl'))
@@ -435,22 +379,25 @@ export function runExplicitMappingAudit() {
   if (gpCorrectionRows.length !== 1164) throw new Error('[explicit-mapping-audit] GP correction ledger count mismatch')
   const { errors: staticErrors, historicalTextBatchCount } = scanRepositoryForMappingRisks(ROOT_DIR)
   if (staticErrors.length) throw new Error(`[explicit-mapping-audit] repository guard failures:\n${staticErrors.join('\n')}`)
+  const architectureGuard = runNoCodeGeneratedMappingsAudit()
 
   const result = {
     status: 'PASS',
     researchRecordsInspected: researchById.size,
     earlyGpWorkflowsInspected: [...EARLY_GP_WORKFLOWS].filter((workflowId) => researchById.has(workflowId)).length,
     canonicalSupportedMappings: canonicalRows.length,
-    persistedSupportedMappings: persistedRows.length,
-    workflowSupportedMappings: workflowSupportedKeys.length,
-    guardInspectedSupportedMappings: canonicalRows.length,
-    explicitMappingLedgerRecords: explicitRows.length,
-    runtimeEmittedSupportedMappings: runtimeRows.length,
+    persistedSupportedMappings: views.persistedActive.length,
+    workflowSupportedMappings: views.persistedActive.length,
+    guardInspectedSupportedMappings: views.guardInspected.length,
+    explicitMappingLedgerRecords: views.explicitLedger.length,
+    runtimeEmittedSupportedMappings: views.runtimeEmitted.length,
+    retiredAlternateMappingRecords: 0,
     globalCorrectionRecordsInspected: globalCorrectionRows.length,
     gpCorrectionRecordsInspected: gpCorrectionRows.length,
-    unsupportedItemsInspected: unsupported.size,
+    unsupportedItemsInspected: unsupported.length,
     historicalTextBatchSnapshotsRetainedButIncapableOfEmission: historicalTextBatchCount,
-    reconciliationEqual: true,
+    codeGeneratedSupportedMappings: architectureGuard.codeGeneratedSupportedMappings,
+    reconciliationEqual: reconciliation.reconciliationEqual,
   }
   return result
 }

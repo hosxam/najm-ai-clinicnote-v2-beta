@@ -19,6 +19,7 @@ import {
   readJson,
   readJsonl,
 } from './common.mjs'
+import { readDerivedUnsupportedLegacyRows } from './canonicalMappingReconciliation.mjs'
 
 const check = process.argv[2]
 const errors = []
@@ -199,7 +200,7 @@ function uaeApplicabilityCheck() {
 }
 
 function unsupportedLegacyCheck() {
-  const rows = readJsonl(path.join(EXPANSION_DIR, 'review', 'unsupported_legacy_items.jsonl'))
+  const rows = readDerivedUnsupportedLegacyRows()
   assert(rows.length === 0, `${rows.length} unsupported legacy clinical item(s) require source mapping and clinician review.`, errors)
   printResult(check, errors, { unsupported_legacy_items: rows.length })
 }

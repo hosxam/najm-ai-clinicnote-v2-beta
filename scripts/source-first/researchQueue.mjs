@@ -16,7 +16,9 @@ export const LIGHTWEIGHT_VALIDATORS = [
   'validate:source-evidence',
   'validate:item-provenance',
   'audit:no-generic-templates',
+  'audit:no-code-generated-mappings',
   'audit:explicit-mapping-contract',
+  'verify:canonical-mapping-reconciliation',
   'audit:research-claims',
   'verify:source-evidence-hashes',
 ]

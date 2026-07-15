@@ -2,7 +2,7 @@ import { sha256 } from '../common.mjs'
 import {
   CANONICAL_MAPPING_FIELDS,
   CANONICAL_MAPPING_VERSION,
-} from '../canonicalMappingLedger.mjs'
+} from '../canonicalMappingContract.mjs'
 
 export const GP_MAPPING_SUPPORT_STATUSES = new Set(['exact_section_supported'])
 export const GP_MAPPING_ORIGINS = new Set(['legacy_exact', 'legacy_cleaned'])
