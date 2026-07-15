@@ -187,7 +187,7 @@ export default {
       workflow_id: 'gp-minor-wound-review',
       search_queries_used: ['site:who.int basic emergency care open wound assessment PDF', 'site:dha.gov.ae minor wound guideline'],
       official_pages_opened: ['https://hlh.who.int/docs/librariesprovider4/clinical-care/who-icrc-basic-emergency-care.pdf'],
-      exact_documents_opened: ['who-icrc-basic-emergency-care-2018'], exact_sections_reviewed: ['who-bec-2018-trauma-primary-survey', 'who-bec-2018-trauma-secondary-survey', 'who-bec-2018-open-wound'],
+      exact_documents_opened: ['who-icrc-basic-emergency-care-2018'], exact_sections_reviewed: ['who-bec-2018-sample-trauma-history', 'who-bec-2018-trauma-secondary-survey', 'who-bec-2018-open-wound'],
       candidate_sources_rejected: ['wound-care product instructions', 'automatic clean/minor wound classification', 'closure and antibiotic advice without wound assessment'],
       rejection_reasons: ['Wound mechanism, site, depth, contamination, neurovascular status and timing are required.', 'WHO emergency-care material is broader than outpatient follow-up.', 'No closure, dressing, tetanus, antibiotic or referral plan is generated.'],
       selected_primary_sources: ['who-icrc-basic-emergency-care-2018'], selected_supporting_sources: [],
@@ -197,7 +197,7 @@ export default {
       recency_verification: 'The official WHO/ICRC Basic Emergency Care document (2018) was rechecked on 2026-07-15.', superseded_check: 'No newer full WHO Basic Emergency Care edition was identified on 2026-07-15; recency remains a limitation.',
       unresolved_source_gaps: ['All item-level mappings remain unsupported pending separate clinician review and signed approval.', 'Mechanism, date, site, depth, contamination, foreign body, bleeding, neurovascular status, infection, closure and tetanus are absent.', 'No wound classification, procedure, dressing, antibiotic, vaccination, imaging or referral is generated.'],
       section_relationships: {
-        'who-bec-2018-trauma-primary-survey': 'Relevant only to clinician-performed initial trauma assessment and immediate concerns; it does not imply stability.',
+        'who-bec-2018-sample-trauma-history': 'Relevant to clinician-recorded mechanism, symptoms, allergies, medicines, history, intake and events without implying stability or disposition.',
         'who-bec-2018-trauma-secondary-survey': 'Relevant to recording mechanism, associated injury and focused assessment when actually performed.',
         'who-bec-2018-open-wound': 'Relevant to clinician-recorded open-wound features, contamination and neurovascular assessment without selecting closure or treatment.',
       },
