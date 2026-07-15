@@ -192,10 +192,21 @@ function assertRepositorySafety({ requireClean = false } = {}) {
   }
 }
 
-async function discoverBatchModules() {
+export function batchModuleOverlapsEntries(name, entries) {
+  const match = /^batch-(\d{4})-(\d{4})\.mjs$/.exec(name)
+  if (!match) return false
+  const first = Number(match[1])
+  const last = Number(match[2])
+  return entries.some(({ sequence }) => Number.isInteger(sequence) && sequence >= first && sequence <= last)
+}
+
+async function discoverBatchModules(entries) {
   const directory = path.join(ROOT_DIR, 'scripts', 'source-first', 'batches')
   const byWorkflowId = new Map()
-  for (const name of fs.readdirSync(directory).filter((entry) => entry.endsWith('.mjs')).sort()) {
+  const relevantNames = fs.readdirSync(directory)
+    .filter((name) => batchModuleOverlapsEntries(name, entries))
+    .sort()
+  for (const name of relevantNames) {
     const filePath = path.join(directory, name)
     const { default: batch } = await import(pathToFileURL(filePath).href)
     for (const workflow of batch.workflows ?? []) {
@@ -229,7 +240,7 @@ export async function runQueue(options) {
   const manifestPath = path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json')
   const manifest = readJson(manifestPath)
   const entries = resolveQueueEntries(manifest, options)
-  const batches = await discoverBatchModules()
+  const batches = await discoverBatchModules(entries)
   const unavailable = entries.find((entry) => !batches.has(entry.workflow_id))
   const runnableEntries = unavailable
     ? entries.slice(0, entries.indexOf(unavailable))

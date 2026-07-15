@@ -6,6 +6,7 @@ import path from 'node:path'
 import test from 'node:test'
 import {
   acquireQueueLock,
+  batchModuleOverlapsEntries,
   executeSequentialQueue,
   isTerminalWorkflow,
   LIGHTWEIGHT_VALIDATORS,
@@ -74,6 +75,14 @@ test('queue checkpoints enforce the explicit mapping contract audit', () => {
   assert.equal(LIGHTWEIGHT_VALIDATORS.includes('audit:explicit-mapping-contract'), true)
   assert.equal(LIGHTWEIGHT_VALIDATORS.includes('audit:no-code-generated-mappings'), true)
   assert.equal(LIGHTWEIGHT_VALIDATORS.includes('verify:canonical-mapping-reconciliation'), true)
+})
+
+test('live discovery imports only numbered batch modules overlapping requested manifest entries', () => {
+  const entries = [pending(676, 'w676'), pending(685, 'w685')]
+  assert.equal(batchModuleOverlapsEntries('batch-0676-0685.mjs', entries), true)
+  assert.equal(batchModuleOverlapsEntries('batch-0666-0675.mjs', entries), false)
+  assert.equal(batchModuleOverlapsEntries('batch-0686-0695.mjs', entries), false)
+  assert.equal(batchModuleOverlapsEntries('gpBatchSupport.mjs', entries), false)
 })
 
 test('queue research records cannot emit supported mappings directly', () => {
