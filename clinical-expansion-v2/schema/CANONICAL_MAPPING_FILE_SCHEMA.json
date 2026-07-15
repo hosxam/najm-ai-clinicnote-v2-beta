@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm-clinicnote.local/schema/canonical-mapping-file-1.0.0.json",
+  "title": "Najm ClinicNote canonical evidence mapping file",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "workflowId",
+    "mappings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workflowId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/mapping"
+      }
+    }
+  },
+  "$defs": {
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflowId",
+        "itemId",
+        "sourceId",
+        "sectionId",
+        "sourceHash",
+        "sectionHash",
+        "evidenceRelationship",
+        "populationApplicability",
+        "settingApplicability",
+        "jurisdictionApplicability",
+        "uaeApplicability",
+        "applicabilityRationale",
+        "supportStatus",
+        "origin",
+        "mappingVersion"
+      ],
+      "properties": {
+        "workflowId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "itemId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sectionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sectionHash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "evidenceRelationship": {
+          "type": "string",
+          "minLength": 1
+        },
+        "populationApplicability": {
+          "type": "string",
+          "minLength": 100
+        },
+        "settingApplicability": {
+          "type": "string",
+          "minLength": 100
+        },
+        "jurisdictionApplicability": {
+          "type": "string",
+          "minLength": 100
+        },
+        "uaeApplicability": {
+          "type": "string",
+          "minLength": 100
+        },
+        "applicabilityRationale": {
+          "type": "string",
+          "minLength": 160
+        },
+        "supportStatus": {
+          "const": "exact_section_supported"
+        },
+        "origin": {
+          "enum": [
+            "legacy_exact",
+            "legacy_cleaned"
+          ]
+        },
+        "mappingVersion": {
+          "const": "1.0.0"
+        }
+      }
+    }
+  }
+}
