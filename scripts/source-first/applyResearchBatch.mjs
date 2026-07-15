@@ -20,6 +20,7 @@ import {
 import { loadCanonicalMappings } from './canonicalMappingStore.mjs'
 import { writeCandidateProposalDocument } from './candidateMappingProposalStore.mjs'
 import { validateResearchBatchMappingContract } from './researchBatchMappingContract.mjs'
+import { assertSourceDateSemantics } from './sourceDateSemantics.mjs'
 
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
@@ -83,6 +84,7 @@ for (const config of pendingConfigs) {
 }
 const sourceById = new Map()
 for (const sourceUpdate of batch.sources ?? []) {
+  assertSourceDateSemantics(sourceUpdate.source)
   const registryPath = path.join(EXPANSION_DIR, 'sources', sourceUpdate.registry_file)
   const registry = readJson(registryPath)
   const existingIndex = registry.sources.findIndex((source) => source.source_id === sourceUpdate.source.source_id)
