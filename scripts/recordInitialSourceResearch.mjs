@@ -11,6 +11,7 @@ import {
   writeJson,
   writeJsonl,
 } from './source-first/common.mjs'
+import { assertSourceDateSemantics } from './source-first/sourceDateSemantics.mjs'
 
 const portalUrl = 'https://dha.gov.ae/en/licensing-regulations-telehealth'
 const sourceRegistry = [
@@ -145,6 +146,8 @@ const sourceRegistry = [
     ]
   }
 ]
+
+for (const source of sourceRegistry) assertSourceDateSemantics(source)
 
 writeJson(path.join(EXPANSION_DIR, 'sources', 'uae_clinical_sources.json'), {
   schema_version: '2.0.0',

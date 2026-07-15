@@ -39,6 +39,11 @@ function loadSourceRegistry() {
     'nonclinical_operational_sources.json',
   ]
   const sources = files.flatMap((name) => readJson(path.join(EXPANSION_DIR, 'sources', name)).sources ?? [])
+  for (const source of sources) {
+    for (const dateError of sourceDateSemanticsErrors(source)) {
+      assert(false, `${source.source_id}: ${dateError}.`, errors)
+    }
+  }
   return new Map(sources.map((source) => [source.source_id, source]))
 }
 
@@ -159,9 +164,6 @@ function sourceRecencyCheck() {
   const today = `${dateParts.year}-${dateParts.month}-${dateParts.day}`
   for (const source of sources.values()) {
     const verifiedOn = source.recency_verification?.verified_on ?? ''
-    for (const dateError of sourceDateSemanticsErrors(source)) {
-      assert(false, `${source.source_id}: ${dateError}.`, errors)
-    }
     assert(/^https:\/\//.test(source.exact_official_url), `${source.source_id}: malformed official URL.`, errors)
     assert(Boolean(source.publication_date), `${source.source_id}: publication date missing.`, errors)
     assert(Boolean(source.version), `${source.source_id}: version missing.`, errors)
@@ -351,6 +353,7 @@ function sourceEvidenceHashesCheck() {
 }
 
 function clinicalDataReproducibilityCheck() {
+  loadSourceRegistry()
   const manifest = readJson(path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json'))
   for (const [relativePath, expectedHash] of Object.entries(manifest.baseline_file_hashes ?? {})) {
     assert(fileSha256(path.join(ROOT_DIR, relativePath)) === expectedHash, `${relativePath}: stable baseline file changed.`, errors)

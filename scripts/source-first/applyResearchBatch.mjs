@@ -87,6 +87,7 @@ for (const sourceUpdate of batch.sources ?? []) {
   assertSourceDateSemantics(sourceUpdate.source)
   const registryPath = path.join(EXPANSION_DIR, 'sources', sourceUpdate.registry_file)
   const registry = readJson(registryPath)
+  for (const source of registry.sources ?? []) assertSourceDateSemantics(source)
   const existingIndex = registry.sources.findIndex((source) => source.source_id === sourceUpdate.source.source_id)
   if (existingIndex >= 0) registry.sources[existingIndex] = sourceUpdate.source
   else registry.sources.push(sourceUpdate.source)
@@ -101,7 +102,10 @@ for (const registryName of [
   'nonclinical_operational_sources.json',
 ]) {
   const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryName))
-  for (const source of registry.sources ?? []) sourceById.set(source.source_id, source)
+  for (const source of registry.sources ?? []) {
+    assertSourceDateSemantics(source)
+    sourceById.set(source.source_id, source)
+  }
 }
 const auditPath = path.join(EXPANSION_DIR, 'audits', 'workflow_audit_ledger.jsonl')
 const auditRows = readJsonl(auditPath)

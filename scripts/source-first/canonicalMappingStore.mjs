@@ -33,6 +33,7 @@ import {
   verifyApprovalManifestSignature,
 } from './canonicalMappingManifest.mjs'
 import { validateExplicitGpMappings } from './batches/gpExplicitMappingContract.mjs'
+import { assertSourceDateSemantics } from './sourceDateSemantics.mjs'
 
 export { parseStrictJsonBytes, parseStrictJsonText }
 
@@ -106,6 +107,7 @@ export function createRepositoryCanonicalMappingContext() {
     .filter((name) => name.endsWith('.json'))
     .sort()
     .flatMap((name) => readJson(path.join(EXPANSION_DIR, 'sources', name)).sources ?? [])
+  for (const source of sources) assertSourceDateSemantics(source)
   return createCanonicalMappingContextFromDocument({ workflows, research, sources })
 }
 
