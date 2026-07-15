@@ -20,6 +20,9 @@ import {
   readCanonicalMappings,
 } from './canonicalMappingLedger.mjs'
 import { validateExplicitGpMappings } from './batches/gpExplicitMappingContract.mjs'
+import { scanComputedMappingDataFlow } from './computedMappingDataFlow.mjs'
+
+export { scanComputedMappingDataFlow } from './computedMappingDataFlow.mjs'
 
 const SUPPORTED_STATUS = 'legacy_exact_source_supported_pending_clinician_review'
 const EARLY_GP_WORKFLOWS = new Set(['gp-cough', 'gp-dizziness', 'gp-fever-urti', 'gp-headache', 'gp-sore-throat'])
@@ -34,7 +37,7 @@ const ALLOWED_MAPPING_WRITERS = new Set([
   'correctGlobalMappingArchitecture.mjs',
 ])
 const SKIPPED_DIRECTORIES = new Set(['.git', '.agents', '.codex', 'dist', 'node_modules', 'public', 'clinical-expansion-v2'])
-const SOURCE_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx'])
+const SOURCE_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.mts', '.cts'])
 const PROTECTED_MAPPING_FIELDS = new Set([
   ...CANONICAL_MAPPING_FIELDS,
   'workflow_id',
@@ -58,12 +61,14 @@ const POTENTIAL_MAPPING_PATH = /mapping|support|evidence|clinical|provenance|ide
 
 function recursiveSourceFiles(directory) {
   if (!fs.existsSync(directory)) return []
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+  return fs.readdirSync(directory, { withFileTypes: true })
+    .sort((left, right) => left.name.localeCompare(right.name))
+    .flatMap((entry) => {
     if (entry.isDirectory() && SKIPPED_DIRECTORIES.has(entry.name)) return []
     const filePath = path.join(directory, entry.name)
     if (entry.isDirectory()) return recursiveSourceFiles(filePath)
     return SOURCE_EXTENSIONS.has(path.extname(entry.name)) ? [filePath] : []
-  })
+    })
 }
 
 function semanticSignature(mapping) {
@@ -304,19 +309,24 @@ export function scanStaticClinicalMappingSource(fileName, sourceText, { historic
 
 export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
   const errors = []
+  const sourceEntries = []
   let historicalTextBatchCount = 0
   for (const filePath of recursiveSourceFiles(rootDirectory)) {
     const relative = path.relative(rootDirectory, filePath).replaceAll('\\', '/')
     if (/\.test\.[mc]?[jt]sx?$/.test(relative)
       || relative.endsWith('auditExplicitMappingContract.mjs')
+      || relative.endsWith('computedMappingDataFlow.mjs')
       || relative.endsWith('writeGpHelperRemediationReports.mjs')) continue
     const sourceText = fs.readFileSync(filePath, 'utf8')
+    sourceEntries.push({ fileName: filePath, sourceText })
     const historicalBatch = /(?:^|\/)batches\/batch-\d{4}-\d{4}\.mjs$/.test(relative)
       && /\bsupportTexts\s*\(|\bexact_texts\b/.test(sourceText)
     if (historicalBatch) historicalTextBatchCount += 1
     errors.push(...scanStaticClinicalMappingSource(relative, sourceText, { historicalBatch }))
   }
-  return { errors, historicalTextBatchCount }
+  const dataFlow = scanComputedMappingDataFlow(sourceEntries)
+  errors.push(...dataFlow.errors)
+  return { errors: [...new Set(errors)].sort(), historicalTextBatchCount, dataFlow }
 }
 
 function sourceRegistry() {
