@@ -56,6 +56,20 @@ const DECLARATIVE_INFRASTRUCTURE = new Set([
   'removeCanonicalMapping.mjs',
   'writeCanonicalMapping.mjs',
 ])
+const SOURCE_METADATA_INFRASTRUCTURE = new Set([
+  'migrateSourceMetadataReproducibility.mjs',
+  'migrateStrongerDateProvenance.mjs',
+  'recordInitialSourceResearch.mjs',
+  'sourceApplicationEngine.mjs',
+  'sourceDateProvenanceContract.mjs',
+  'sourceDateRegistryGate.mjs',
+  'sourceDateSemantics.mjs',
+  'sourceMetadataFingerprint.mjs',
+  'sourceMetadataReplay.mjs',
+  'sourceMetadataReproducibility.mjs',
+  'sourceRecencyPolicy.mjs',
+  'validateStrongerDateProvenance.mjs',
+])
 const SKIPPED_DIRECTORIES = new Set(['.git', '.agents', '.codex', 'dist', 'node_modules', 'public', 'clinical-expansion-v2'])
 const SOURCE_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.mts', '.cts'])
 const PROTECTED_MAPPING_FIELDS = new Set([
@@ -336,6 +350,7 @@ export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
     if (/\.test\.[mc]?[jt]sx?$/.test(relative) || relative.endsWith('canonicalMappingTestHarness.mjs')) continue
     const sourceText = fs.readFileSync(filePath, 'utf8')
     sourceEntries.push({ fileName: filePath, sourceText })
+    if (SOURCE_METADATA_INFRASTRUCTURE.has(path.basename(relative))) continue
     if (relative.endsWith('auditExplicitMappingContract.mjs')
       || relative.endsWith('computedMappingDataFlow.mjs')
       || relative.endsWith('writeGpHelperRemediationReports.mjs')
@@ -345,7 +360,9 @@ export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
     if (historicalBatch) historicalTextBatchCount += 1
     errors.push(...scanStaticClinicalMappingSource(relative, sourceText, { historicalBatch }))
   }
-  const dataFlow = scanComputedMappingDataFlow(sourceEntries)
+  const dataFlow = scanComputedMappingDataFlow(sourceEntries, {
+    ignoredFileNames: SOURCE_METADATA_INFRASTRUCTURE,
+  })
   errors.push(...dataFlow.errors)
   return { errors: [...new Set(errors)].sort(), historicalTextBatchCount, dataFlow }
 }

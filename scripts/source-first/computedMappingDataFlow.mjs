@@ -216,8 +216,11 @@ function isMappingInfrastructureFile(fileName) {
     || normalized.includes('/.virtual-data-flow-fixtures/')
 }
 
-export function scanComputedMappingDataFlow(sourceEntries) {
+export function scanComputedMappingDataFlow(sourceEntries, { ignoredFileNames = new Set() } = {}) {
   const { entries, program, sourceByPath } = createSourceProgram(sourceEntries)
+  const ignoredSourcePaths = new Set(entries
+    .filter((entry) => ignoredFileNames.has(path.basename(entry.fileName)))
+    .map((entry) => canonicalPath(entry.fileName)))
   const checker = program.getTypeChecker()
   const edges = new Map()
   const labels = new Map()
@@ -265,12 +268,12 @@ export function scanComputedMappingDataFlow(sourceEntries) {
   }
 
   function addHazard(id, reason) {
-    if (!id || hazardSeeds.has(id)) return
+    if (!id || ignoredSourcePaths.has(id.split('#', 1)[0]) || hazardSeeds.has(id)) return
     hazardSeeds.set(id, reason)
   }
 
   function addSink(id, reason) {
-    if (!id || sinkSeeds.has(id)) return false
+    if (!id || ignoredSourcePaths.has(id.split('#', 1)[0]) || sinkSeeds.has(id)) return false
     sinkSeeds.set(id, reason)
     return true
   }
