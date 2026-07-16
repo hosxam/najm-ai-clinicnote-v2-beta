@@ -186,9 +186,15 @@ export function loadReplayManifest() {
 
 export function productionDiscoveredNumberedBatchPaths() {
   const executionManifest = readJson(path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json'))
-  const productionEntries = executionManifest.workflows.filter((entry) => entry.terminal_research === true)
-  if (productionEntries.length !== 775) {
-    throw new Error(`[source-metadata-replay] expected 775 terminal research entries, found ${productionEntries.length}`)
+  const firstNumberedSequence = 6
+  const finalNumberedSequence = 5 + (EXPECTED_NUMBERED_BATCH_COUNT * 10)
+  const productionEntries = executionManifest.workflows.filter((entry) => (
+    entry.sequence >= firstNumberedSequence && entry.sequence <= finalNumberedSequence
+  ))
+  if (productionEntries.length !== EXPECTED_NUMBERED_BATCH_COUNT * 10) {
+    throw new Error(
+      `[source-metadata-replay] expected ${EXPECTED_NUMBERED_BATCH_COUNT * 10} indexed workflow entries for numbered batch discovery, found ${productionEntries.length}`,
+    )
   }
   const modulePaths = discoverBatchModuleFiles(productionEntries)
   if (modulePaths.length !== EXPECTED_NUMBERED_BATCH_COUNT) {
