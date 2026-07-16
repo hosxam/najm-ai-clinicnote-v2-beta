@@ -6,9 +6,7 @@ import {
   BASELINE_COMMIT,
   EXPANSION_DIR,
   PROHIBITED_GENERIC_PATTERNS,
-  RESEARCH_TIME_ZONE,
   ROOT_DIR,
-  VERIFICATION_DATE,
   assert,
   fileSha256,
   getResearchPaths,
@@ -20,7 +18,9 @@ import {
   readJsonl,
 } from './common.mjs'
 import { readDerivedUnsupportedLegacyRows } from './canonicalMappingReconciliation.mjs'
-import { sourceDateSemanticsErrors, sourceRecencyProvenanceBasis } from './sourceDateSemantics.mjs'
+import { sourceDateSemanticsErrors } from './sourceDateSemantics.mjs'
+import { verifySourceMetadataReproducibility } from './sourceMetadataReproducibility.mjs'
+import { summarizeSourceRecency, validatePersistedSourceRecency } from './sourceRecencyPolicy.mjs'
 
 const check = process.argv[2]
 const errors = []
@@ -152,33 +152,21 @@ function exactCoverageCheck() {
 }
 
 function sourceRecencyCheck() {
-  const sources = loadSourceRegistry()
-  const provenanceBasisCounts = {
-    explicit_stronger_date_provenance: 0,
-    explicit_weaker_metadata_provenance: 0,
-    source_access_and_verification_only: 0,
-  }
-  const dateParts = Object.fromEntries(
-    new Intl.DateTimeFormat('en-US', {
-      timeZone: RESEARCH_TIME_ZONE,
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    }).formatToParts(new Date()).map(({ type, value }) => [type, value]),
-  )
-  const today = `${dateParts.year}-${dateParts.month}-${dateParts.day}`
-  for (const source of sources.values()) {
-    const verifiedOn = source.recency_verification?.verified_on ?? ''
-    const provenanceBasis = sourceRecencyProvenanceBasis(source)
+  const sources = [...loadSourceRegistry().values()]
+  for (const source of sources) {
     assert(/^https:\/\//.test(source.exact_official_url), `${source.source_id}: malformed official URL.`, errors)
     assert(Boolean(source.version), `${source.source_id}: version missing.`, errors)
-    assert(/^\d{4}-\d{2}-\d{2}$/.test(verifiedOn), `${source.source_id}: recency verification date is invalid.`, errors)
-    assert(verifiedOn >= VERIFICATION_DATE && verifiedOn <= today, `${source.source_id}: recency was not verified during the active research mission.`, errors)
-    assert(!/superseded/i.test(source.superseded_status_check?.status ?? ''), `${source.source_id}: source is marked superseded.`, errors)
-    assert(provenanceBasis.valid, `${source.source_id}: no semantically valid recency provenance basis.`, errors)
-    if (provenanceBasis.basis) provenanceBasisCounts[provenanceBasis.basis] += 1
+    for (const recencyError of validatePersistedSourceRecency(source)) {
+      assert(false, recencyError, errors)
+    }
   }
-  printResult(check, errors, { exact_sources_checked: sources.size, provenance_basis_counts: provenanceBasisCounts })
+  const counts = summarizeSourceRecency(sources)
+  printResult(check, errors, {
+    exact_sources_checked: sources.length,
+    recency_basis_counts: counts.recency_basis_counts,
+    recency_outcome_counts: counts.recency_outcome_counts,
+    date_precision_counts: counts.date_precision_counts,
+  })
 }
 
 function uaeApplicabilityCheck() {
@@ -343,31 +331,64 @@ function exclusionsCheck() {
   printResult(check, errors, { active_exclusions: exclusions.length, proposed_exclusions: proposed.proposed_exclusions.length })
 }
 
-function sourceEvidenceHashesCheck() {
+function sourceEvidenceHashErrors() {
+  const hashErrors = []
   const manifest = readJson(path.join(EXPANSION_DIR, 'hash_manifest.json'))
   for (const workflow of workflows) {
-    assert(manifest.workflow_hashes[workflow.workflow_id] === hashWithout(workflow, ['content_hash']), `${workflow.workflow_id}: workflow hash manifest mismatch.`, errors)
+    assert(manifest.workflow_hashes[workflow.workflow_id] === hashWithout(workflow, ['content_hash']), `${workflow.workflow_id}: workflow hash manifest mismatch.`, hashErrors)
   }
   for (const record of research) {
-    assert(manifest.research_hashes[record.workflow_id] === hashWithout(record, ['evidence_hash']), `${record.workflow_id}: evidence hash manifest mismatch.`, errors)
+    assert(manifest.research_hashes[record.workflow_id] === hashWithout(record, ['evidence_hash']), `${record.workflow_id}: evidence hash manifest mismatch.`, hashErrors)
   }
   for (const [indexName, expectedHash] of Object.entries(manifest.index_hashes)) {
     const index = readJson(path.join(EXPANSION_DIR, 'indexes', indexName))
-    assert(expectedHash === hashWithout(index, ['index_hash']), `${indexName}: index hash manifest mismatch.`, errors)
+    assert(expectedHash === hashWithout(index, ['index_hash']), `${indexName}: index hash manifest mismatch.`, hashErrors)
   }
-  assert(manifest.manifest_hash === hashWithout(manifest, ['manifest_hash']), 'Hash manifest self-hash mismatch.', errors)
-  printResult(check, errors, { workflow_hashes: workflows.length, evidence_hashes: research.length, index_hashes: Object.keys(manifest.index_hashes).length })
+  assert(manifest.manifest_hash === hashWithout(manifest, ['manifest_hash']), 'Hash manifest self-hash mismatch.', hashErrors)
+  return {
+    errors: hashErrors,
+    details: {
+      workflow_hashes: workflows.length,
+      evidence_hashes: research.length,
+      index_hashes: Object.keys(manifest.index_hashes).length,
+    },
+  }
 }
 
-function clinicalDataReproducibilityCheck() {
+function sourceEvidenceHashesCheck() {
+  const result = sourceEvidenceHashErrors()
+  errors.push(...result.errors)
+  printResult(check, errors, result.details)
+}
+
+async function clinicalDataReproducibilityCheck() {
+  // Build and verify the independent source replay before this process reads
+  // active registry records for any other clinical-data check.
+  const sourceMetadataResult = await verifySourceMetadataReproducibility()
+  errors.push(...sourceMetadataResult.errors.map((message) => `Source metadata reproducibility: ${message}`))
   loadSourceRegistry()
+  const evidenceHashResult = sourceEvidenceHashErrors()
+  errors.push(...evidenceHashResult.errors)
   const manifest = readJson(path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json'))
   for (const [relativePath, expectedHash] of Object.entries(manifest.baseline_file_hashes ?? {})) {
     assert(fileSha256(path.join(ROOT_DIR, relativePath)) === expectedHash, `${relativePath}: stable baseline file changed.`, errors)
   }
   const diff = spawnSync('git', ['diff', '--quiet', BASELINE_COMMIT, '--', 'public/data', 'public/config/limited_testing_exclusions.json'], { cwd: ROOT_DIR })
   assert(diff.status === 0, 'Active public clinical data or exclusion configuration differs from stable main.', errors)
-  printResult(check, errors, { baseline_files_checked: Object.keys(manifest.baseline_file_hashes ?? {}).length, public_data_changed: diff.status !== 0 })
+  printResult(check, errors, {
+    baseline_files_checked: Object.keys(manifest.baseline_file_hashes ?? {}).length,
+    public_data_changed: diff.status !== 0,
+    evidence_hashes: evidenceHashResult.details,
+    source_metadata_reproducibility: {
+      status: sourceMetadataResult.status,
+      checks: sourceMetadataResult.checks,
+      source_count: sourceMetadataResult.sourceCount,
+      replay_source_count: sourceMetadataResult.replaySourceCount,
+      replay_module_count: sourceMetadataResult.replayModuleCount,
+      recency_counts: sourceMetadataResult.recencyCounts,
+      fingerprints: sourceMetadataResult.fingerprints,
+    },
+  })
 }
 
 const checks = {
