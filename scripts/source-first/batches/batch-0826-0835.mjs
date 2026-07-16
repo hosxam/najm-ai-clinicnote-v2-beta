@@ -16,7 +16,7 @@ const partialTopic = ({ workflow_id, topic, sections, setting, gap, uae = 'The c
   recency_verification: 'The cited current official documents and exact sections were opened and reviewed on 2026-07-16.',
   superseded_check: 'The selected official pages remained current; no newer replacement was identified during the targeted review.',
   unresolved_source_gaps: [safetyGap, gap, `No diagnosis, interpretation, investigation, treatment, medicine, dose, procedure, escalation or disposition is generated for ${topic}.`],
-}), uae.startsWith('DHA') ? 'explicit_uae_applicability' : 'partial_applicability')
+}), uae.startsWith('DHA') ? 'other' : 'partial_applicability')
 const noExact = ({ workflow_id, topic, gap }) => withUaeFinding(baseNoAuthoritativeWorkflow({
   workflow_id,
   search_queries_used: [`site:dha.gov.ae ${topic} ICU guideline`, `site:doh.gov.ae ${topic} critical care standard`, `site:who.int ${topic} clinical guideline`],
