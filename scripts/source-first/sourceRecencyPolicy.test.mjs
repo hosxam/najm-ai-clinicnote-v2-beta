@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
 import { EXPANSION_DIR } from './common.mjs'
+import { validateActiveRegistrySource } from './sourceDateRegistryGate.mjs'
 import {
   classifySourceRecency,
   sourceRecencyPolicy,
@@ -199,4 +200,49 @@ test('persisted recency validation requires the exact snake-case schema', () => 
   source.source_recency = classifySourceRecency(source)
   source.source_recency.policyVersion = source.source_recency.policy_version
   assert.match(validatePersistedSourceRecency(source).join('\n'), /policyVersion is not part/)
+})
+
+test('active registry validation rejects a stale self-selected evaluation date', () => {
+  const source = accessFixture({
+    recency_verification: {
+      verified_on: '2026-06-20',
+      status: 'current_official_source_opened',
+    },
+    superseded_status_check: {
+      checked_on: '2026-06-20',
+      status: 'current_source_not_superseded',
+    },
+  })
+  source.source_recency = classifySourceRecency(source, { as_of_date: '2026-07-01' })
+
+  assert.equal(source.source_recency.evaluated_on, '2026-07-01')
+  assert.equal(source.source_recency.verification_age_days, 11)
+  assert.equal(source.source_recency.recency_outcome, 'access_verification_current')
+  assert.equal(classifySourceRecency(source).verification_age_days, 26)
+  assert.equal(classifySourceRecency(source).recency_outcome, 'recheck_due')
+  assert.throws(() => validateActiveRegistrySource(source), (error) => {
+    assert.match(error.message, /source_recency\.evaluated_on differs/)
+    assert.match(error.message, /source_recency\.recency_outcome differs/)
+    assert.match(error.message, /source_recency\.verification_age_days differs/)
+    return true
+  })
+})
+
+test('active registry validation accepts recency persisted for the committed policy date', () => {
+  const source = accessFixture({
+    recency_verification: {
+      verified_on: '2026-06-20',
+      status: 'current_official_source_opened',
+    },
+    superseded_status_check: {
+      checked_on: '2026-06-20',
+      status: 'current_source_not_superseded',
+    },
+  })
+  source.source_recency = classifySourceRecency(source)
+
+  assert.equal(source.source_recency.evaluated_on, sourceRecencyPolicy().evaluation_date)
+  assert.equal(source.source_recency.verification_age_days, 26)
+  assert.equal(source.source_recency.recency_outcome, 'recheck_due')
+  assert.equal(validateActiveRegistrySource(source), source)
 })
