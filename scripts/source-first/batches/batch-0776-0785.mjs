@@ -1,14 +1,16 @@
-import { evidenceWorkflow, noAuthoritativeWorkflow } from './authoredBatchSupport.mjs'
+import { evidenceWorkflow, noAuthoritativeWorkflow as baseNoAuthoritativeWorkflow } from './authoredBatchSupport.mjs'
 
 const safetyGap = 'All item-level mappings remain unsupported pending separate clinician review and signed approval.'
 const reviewed = (source_id, source_section_id, relationship) => ({ source_id, source_section_id, relationship })
-const partial = (config) => evidenceWorkflow({
+const withUaeFinding = (record, finding_type) => ({ ...record, uae_applicability_findings: [{ workflow_id: record.workflow_id, finding_type, source_status: record.source_status, evidence_basis: record.UAE_applicability }] })
+const partial = (config) => withUaeFinding(evidenceWorkflow({
   source_status: 'partial_exact_source_verified',
   recency_verification: 'The cited current official documents and exact sections were opened and reviewed on 2026-07-16.',
   superseded_check: 'The selected official pages remained current; no newer replacement was identified during the targeted review.',
   unresolved_source_gaps: [safetyGap, ...config.unresolved_source_gaps],
   ...config,
-})
+}), 'partial_applicability')
+const noAuthoritativeWorkflow = (config) => withUaeFinding(baseNoAuthoritativeWorkflow(config), 'missing_explicit_uae_evidence')
 
 const workflows = [
   partial({
