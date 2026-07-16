@@ -112,11 +112,17 @@ for (const source of activeSources) {
 }
 
 async function validateCommittedReplay() {
-  const { verifyCommittedSourceBatchReplay } = await import('./sourceMetadataReplay.mjs')
+  const {
+    EXPECTED_NUMBERED_BATCH_COUNT,
+    verifyCommittedSourceBatchReplay,
+  } = await import('./sourceMetadataReplay.mjs')
   const result = await verifyCommittedSourceBatchReplay()
   for (const error of result.errors) errors.push(`[committed replay] ${error}`)
   expect(result.replay.initialModuleApplied === true, 'Committed replay did not apply the initial source module')
-  expect(result.replay.numberedModuleCount === 77, 'Committed replay did not apply all 77 numbered batch modules')
+  expect(
+    result.replay.numberedModuleCount === EXPECTED_NUMBERED_BATCH_COUNT,
+    `Committed replay did not apply all ${EXPECTED_NUMBERED_BATCH_COUNT} numbered batch modules`,
+  )
   expect(result.replay.supplementApplied === false, 'Committed replay applied a prohibited supplement')
   expect(result.replay.records.length === 235, `Committed replay produced ${result.replay.records.length} sources instead of 235`)
   return {
