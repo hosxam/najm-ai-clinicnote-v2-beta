@@ -279,8 +279,9 @@ export function normalizeAndValidateReplaySource({
 
 export function validateActiveRegistrySource(source) {
   assertSourceDateSemantics(source)
+  const authoritativeEvaluationDate = sourceRecencyPolicy().evaluation_date
   const recencyErrors = validatePersistedSourceRecency(source, {
-    as_of_date: source?.source_recency?.evaluated_on ?? sourceRecencyPolicy().evaluation_date,
+    as_of_date: authoritativeEvaluationDate,
   })
   if (recencyErrors.length > 0) {
     throw new Error(`[source-date-registry] ${recencyErrors.join('; ')}`)
