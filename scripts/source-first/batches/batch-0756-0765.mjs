@@ -1,35 +1,32 @@
-import path from 'node:path'
-import { EXPANSION_DIR, readJson } from '../common.mjs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 
 function section(section_id, heading, locator, evidence_summary) {
   return { section_id, heading, locator, evidence_summary }
 }
 
 function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
-  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
-  const existing = registry.sources.find((source) => source.source_id === sourceId)
-  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
-  const additions = new Set(additionalSections.map((candidate) => candidate.section_id))
-  return {
-    ...existing,
-    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
-    recency_verification: { ...existing.recency_verification, verified_on: '2026-07-15' },
-    superseded_status_check: { ...existing.superseded_status_check, checked_on: '2026-07-15' },
-    exact_sections: [...existing.exact_sections.filter((candidate) => !additions.has(candidate.section_id)), ...additionalSections],
-  }
+  return declarativeSourcePatch({
+    registryFile,
+    sourceId,
+    upsertExactSections: additionalSections,
+    appendApplicabilityNote: applicabilityAddition,
+    applicabilityNoteOccurrences: 10,
+    merge: {
+      recency_verification: { verified_on: '2026-07-15' },
+      superseded_status_check: { checked_on: '2026-07-15' },
+    },
+  })
 }
 
 const WHO_SPR_URL = 'https://www.who.int/publications/i/item/9789240115606'
 const NICE_ENDO_URL = 'https://www.nice.org.uk/guidance/ng73/chapter/Recommendations'
 const safetyGap = 'All item-level mappings remain unsupported pending separate clinician review and signed approval.'
 
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0756-0765',
   description: 'Workflow-specific gynaecology research for contraception follow-up, dysmenorrhoea, dyspareunia, early pregnancy, emergency contraception, endometriosis, family planning, fertility and fibroids; research only.',
   sources: [
-    {
-      registry_file: 'international_clinical_sources.json',
-      source: extendRegisteredSource(
+    extendRegisteredSource(
         'international_clinical_sources.json',
         'who-contraceptive-spr-fourth-2025',
         [
@@ -37,8 +34,7 @@ export default {
           section('who-spr4-emergency-contraception', 'Emergency contraceptive pills and copper-bearing intrauterine devices for emergency contraception', 'fourth edition emergency-contraception chapter', 'Supports documenting intercourse timing, method discussion, pregnancy possibility and clinician-selected emergency-contraception care with method and eligibility qualifiers retained; it does not autonomously select or provide a method.'),
         ],
         'This batch also reviews method-follow-up, entered effects, and emergency-contraception sections. Eligibility, product selection, dosing, procedures and UAE availability remain clinician responsibilities.',
-      ),
-    },
+    ),
     {
       registry_file: 'international_clinical_sources.json',
       source: {

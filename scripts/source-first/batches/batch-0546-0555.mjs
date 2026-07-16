@@ -172,4 +172,5 @@ const workflows = [
   }),
 ]
 
-export default { batch_id: 'source-first-0546-0555', description: 'Workflow-specific geriatric continence, delirium, dementia, falls, frailty, function, goals, and hearing review.', sources, workflows }
+export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-0546-0555', description: 'Workflow-specific geriatric continence, delirium, dementia, falls, frailty, function, goals, and hearing review.', sources, workflows }

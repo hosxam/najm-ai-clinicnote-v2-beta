@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
   CHECKPOINT_TIMESTAMP,
   EXPANSION_DIR,
@@ -147,7 +148,36 @@ const sourceRegistry = [
   }
 ]
 
-const normalizedSourceRegistry = sourceRegistry.map((source) => normalizeAndValidateReplaySource(source))
+export const initialSourceBatch = {
+  batch_id: 'initial-source-research',
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
+  sources: sourceRegistry.map((source) => ({
+    registry_file: 'uae_clinical_sources.json',
+    source,
+  })),
+  workflows: [],
+}
+export default initialSourceBatch
+
+export async function main() {
+  const initialSourceModulePath = fileURLToPath(import.meta.url)
+  const replayManifest = readJson(path.join(EXPANSION_DIR, 'schema', 'SOURCE_METADATA_REPLAY_MANIFEST.json'))
+  const registryState = new Map([['uae_clinical_sources.json', {
+    schema_version: '2.0.0',
+    verified_on: VERIFICATION_DATE,
+    sources: [],
+  }]])
+  const normalizedSourceRegistry = initialSourceBatch.sources.map((sourceUpdate) => {
+    const normalized = normalizeAndValidateReplaySource({
+      sourceUpdate,
+      modulePath: initialSourceModulePath,
+      batch: initialSourceBatch,
+      registryState,
+      manifest: replayManifest,
+    })
+    registryState.get(sourceUpdate.registry_file).sources.push(normalized)
+    return normalized
+  })
 
 writeJson(path.join(EXPANSION_DIR, 'sources', 'uae_clinical_sources.json'), {
   schema_version: '2.0.0',
@@ -211,7 +241,7 @@ const workflowResearch = {
   },
 }
 
-const sourceById = new Map(sourceRegistry.map((source) => [source.source_id, source]))
+const sourceById = new Map(normalizedSourceRegistry.map((source) => [source.source_id, source]))
 const completedIds = Object.keys(workflowResearch)
 const manifestPath = path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json')
 const manifest = readJson(manifestPath)
@@ -352,3 +382,8 @@ console.log(JSON.stringify({
   workflow_hashes: Object.keys(hashManifest.workflow_hashes).length,
   source_data_modified: false,
 }, null, 2))
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await main()
+}

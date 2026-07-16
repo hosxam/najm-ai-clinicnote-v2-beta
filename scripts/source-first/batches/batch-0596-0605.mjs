@@ -130,4 +130,4 @@ const workflows = [
   }),
 ]
 
-export default { batch_id: 'source-first-0596-0605', description: 'Workflow-specific FIT, bowel symptom, gallstone, H. pylori, anorectal, hepatitis, IBS, and IBD review.', sources: [], workflows }
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-0596-0605', description: 'Workflow-specific FIT, bowel symptom, gallstone, H. pylori, anorectal, hepatitis, IBS, and IBD review.', sources: [], workflows }

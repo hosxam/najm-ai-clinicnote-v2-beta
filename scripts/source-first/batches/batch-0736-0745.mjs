@@ -1,21 +1,20 @@
-import path from 'node:path'
-import { EXPANSION_DIR, readJson } from '../common.mjs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 
 function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
-  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
-  const existing = registry.sources.find((source) => source.source_id === sourceId)
-  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
-  const additions = new Set(additionalSections.map((candidate) => candidate.section_id))
-  return {
-    ...existing,
-    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
-    recency_verification: { ...existing.recency_verification, verified_on: '2026-07-15' },
-    superseded_status_check: { ...existing.superseded_status_check, checked_on: '2026-07-15' },
-    exact_sections: [...existing.exact_sections.filter((candidate) => !additions.has(candidate.section_id)), ...additionalSections],
-  }
+  return declarativeSourcePatch({
+    registryFile,
+    sourceId,
+    upsertExactSections: additionalSections,
+    appendApplicabilityNote: applicabilityAddition,
+    applicabilityNoteOccurrences: 10,
+    merge: {
+      recency_verification: { verified_on: '2026-07-15' },
+      superseded_status_check: { checked_on: '2026-07-15' },
+    },
+  })
 }
 
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0736-0745',
   description: 'Workflow-specific GP research for returned travel illness, travel records, weight, vaccination, varicose veins, viral follow-up, vitamin D and workplace exposure; research only.',
   sources: [
@@ -37,9 +36,7 @@ export default {
         ],
       },
     },
-    {
-      registry_file: 'international_clinical_sources.json',
-      source: extendRegisteredSource(
+    extendRegisteredSource(
         'international_clinical_sources.json',
         'nice-varicose-veins-cg168-2013',
         [
@@ -48,8 +45,7 @@ export default {
           { section_id: 'nice-cg168-varicose-duplex-pregnancy', heading: 'Recommendations 1.3.1 and 1.4.1–1.4.3 — duplex assessment and pregnancy', locator: 'official recommendations sections 1.3 and 1.4', evidence_summary: 'Supports clinician-reviewed duplex results and pregnancy context without generating imaging, intervention or compression advice.' },
         ],
         'This batch additionally reviews adult symptom, complication, referral, duplex and pregnancy recommendations while preserving the previously registered chronic-venous-skin and ulcer-history sections. No diagnosis, imaging or treatment is generated.',
-      ),
-    },
+    ),
     {
       registry_file: 'international_clinical_sources.json',
       source: {

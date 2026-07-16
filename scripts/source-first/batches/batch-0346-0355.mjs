@@ -255,6 +255,7 @@ const workflows = [
 ]
 
 export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'batch-0346-0355',
   sources,
   workflows,

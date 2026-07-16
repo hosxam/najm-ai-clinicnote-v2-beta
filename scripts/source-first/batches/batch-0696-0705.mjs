@@ -1,4 +1,4 @@
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0696-0705',
   description: 'Workflow-specific GP research for motion sickness, oral symptoms, nausea, neck lump, registration, night sweats, body aches and occupational forms; research only.',
   sources: [

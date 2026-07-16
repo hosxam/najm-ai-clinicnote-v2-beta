@@ -200,14 +200,17 @@ export function batchModuleOverlapsEntries(name, entries) {
   return entries.some(({ sequence }) => Number.isInteger(sequence) && sequence >= first && sequence <= last)
 }
 
-async function discoverBatchModules(entries) {
+export function discoverBatchModuleFiles(entries) {
   const directory = path.join(ROOT_DIR, 'scripts', 'source-first', 'batches')
-  const byWorkflowId = new Map()
-  const relevantNames = fs.readdirSync(directory)
+  return fs.readdirSync(directory)
     .filter((name) => batchModuleOverlapsEntries(name, entries))
     .sort()
-  for (const name of relevantNames) {
-    const filePath = path.join(directory, name)
+    .map((name) => path.join(directory, name))
+}
+
+async function discoverBatchModules(entries) {
+  const byWorkflowId = new Map()
+  for (const filePath of discoverBatchModuleFiles(entries)) {
     const { default: batch } = await import(pathToFileURL(filePath).href)
     for (const workflow of batch.workflows ?? []) {
       if (byWorkflowId.has(workflow.workflow_id)) throw new Error(`Duplicate batch workflow: ${workflow.workflow_id}`)

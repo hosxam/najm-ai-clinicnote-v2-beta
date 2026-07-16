@@ -180,6 +180,7 @@ const workflows = [
 ]
 
 export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0526-0535',
   description: 'Workflow-specific ENT sleep, hearing, swallowing, tinnitus, oral, and tonsillar exact-section review.',
   sources,

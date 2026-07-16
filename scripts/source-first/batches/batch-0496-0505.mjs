@@ -1,29 +1,22 @@
-import path from 'node:path'
 import {
   SOURCE_META,
   evidenceWorkflow,
   noAuthoritativeWorkflow,
   section,
 } from './authoredBatchSupport.mjs'
-import { EXPANSION_DIR, readJson } from '../common.mjs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 
 function registeredSource(registry_file, source) {
   return { registry_file, source }
 }
 
 function existingSourceWithSection(registryFile, sourceId, addedSection, applicabilitySuffix) {
-  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
-  const existing = registry.sources.find((source) => source.source_id === sourceId)
-  if (!existing) throw new Error(`${sourceId}: existing source record not found`)
-  return registeredSource(registryFile, {
-    ...existing,
-    applicability_note: existing.applicability_note.includes(applicabilitySuffix)
-      ? existing.applicability_note
-      : `${existing.applicability_note} ${applicabilitySuffix}`,
-    exact_sections: [
-      ...existing.exact_sections.filter((candidate) => candidate.section_id !== addedSection.section_id),
-      addedSection,
-    ],
+  return declarativeSourcePatch({
+    registryFile,
+    sourceId,
+    upsertExactSections: [addedSection],
+    appendApplicabilityNote: applicabilitySuffix,
+    applicabilityNoteOccurrences: 1,
   })
 }
 
@@ -316,6 +309,7 @@ const workflows = [
 ]
 
 export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'batch-0496-0505',
   sources,
   workflows,

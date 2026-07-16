@@ -133,4 +133,4 @@ const workflows = [
   }),
 ]
 
-export default { batch_id: 'source-first-0606-0615', description: 'Workflow-specific iron deficiency, jaundice, food intolerance, liver imaging, medication, nausea, NSAID, nutrition, pancreatitis, and perianal review.', sources: [], workflows }
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-0606-0615', description: 'Workflow-specific iron deficiency, jaundice, food intolerance, liver imaging, medication, nausea, NSAID, nutrition, pancreatitis, and perianal review.', sources: [], workflows }

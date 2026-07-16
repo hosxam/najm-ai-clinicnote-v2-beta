@@ -2,10 +2,13 @@ import path from 'node:path'
 import { EXPANSION_DIR, readJson } from '../common.mjs'
 import { gpExplicitWorkflowsForRange } from './gpBatchSupport.mjs'
 
-const ledger = readJson(path.join(EXPANSION_DIR, 'progress', 'gp_explicit_mapping_ledger_0626_0675.json'))
+const replayDiscovery = process.env.NAJM_SOURCE_METADATA_REPLAY_DISCOVERY === '1'
+const ledger = replayDiscovery
+  ? null
+  : readJson(path.join(EXPANSION_DIR, 'progress', 'gp_explicit_mapping_ledger_0626_0675.json'))
 
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0636-0645',
   sources: [],
-  workflows: gpExplicitWorkflowsForRange(ledger, 636, 645),
+  workflows: replayDiscovery ? [] : gpExplicitWorkflowsForRange(ledger, 636, 645),
 }

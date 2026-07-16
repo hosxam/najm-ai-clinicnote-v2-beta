@@ -1,5 +1,4 @@
-import path from 'node:path'
-import { EXPANSION_DIR, readJson } from '../common.mjs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 import {
   SOURCE_META,
   evidenceWorkflow,
@@ -11,20 +10,17 @@ function registeredSource(registry_file, source) {
 }
 
 function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
-  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
-  const existing = registry.sources.find((source) => source.source_id === sourceId)
-  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
-  const addedIds = new Set(additionalSections.map((candidate) => candidate.section_id))
-  return {
-    ...existing,
-    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
-    recency_verification: { ...existing.recency_verification, verified_on: '2026-07-14' },
-    superseded_status_check: { ...existing.superseded_status_check, checked_on: '2026-07-14' },
-    exact_sections: [
-      ...existing.exact_sections.filter((candidate) => !addedIds.has(candidate.section_id)),
-      ...additionalSections,
-    ],
-  }
+  return declarativeSourcePatch({
+    registryFile,
+    sourceId,
+    upsertExactSections: additionalSections,
+    appendApplicabilityNote: applicabilityAddition,
+    applicabilityNoteOccurrences: 10,
+    merge: {
+      recency_verification: { verified_on: '2026-07-14' },
+      superseded_status_check: { checked_on: '2026-07-14' },
+    },
+  })
 }
 
 const sources = [
@@ -70,12 +66,12 @@ const sources = [
       section('nice-cg76-periodic-medicine-review', 'Recommendations 1.3.1–1.3.2 — periodic review', 'official recommendations lines 281–287', 'Supports documenting periodic review of knowledge, concerns, need, and clinician prescribing decisions.'),
     ],
   }),
-  registeredSource('international_clinical_sources.json', extendRegisteredSource(
+  extendRegisteredSource(
     'international_clinical_sources.json',
     'nice-hypertension-ng136-2026',
     [section('nice-ng136-postural-hypotension-measurement', 'Recommendations 1.1.5–1.1.8 — postural hypotension symptoms and standing blood pressure', 'official NICE NG136 recommendations 1.1.5–1.1.8', 'Supports documenting postural dizziness or falls context, lying or seated and standing blood pressure measurements, timing, symptoms, and clinician review without diagnosing orthostatic hypotension or changing treatment.')],
     'The postural-hypotension section additionally supports clinician-entered orthostatic blood-pressure documentation without automatic diagnosis or management.',
-  )),
+  ),
 ]
 
 const cardioExam = [
@@ -343,6 +339,7 @@ const workflows = [
 ]
 
 export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'batch-0276-0285',
   sources,
   workflows,

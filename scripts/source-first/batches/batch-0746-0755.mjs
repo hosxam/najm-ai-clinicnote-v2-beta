@@ -1,22 +1,21 @@
-import path from 'node:path'
-import { EXPANSION_DIR, readJson } from '../common.mjs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 
 function section(section_id, heading, locator, evidence_summary) {
   return { section_id, heading, locator, evidence_summary }
 }
 
 function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
-  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
-  const existing = registry.sources.find((source) => source.source_id === sourceId)
-  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
-  const additions = new Set(additionalSections.map((candidate) => candidate.section_id))
-  return {
-    ...existing,
-    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
-    recency_verification: { ...existing.recency_verification, verified_on: '2026-07-15' },
-    superseded_status_check: { ...existing.superseded_status_check, checked_on: '2026-07-15' },
-    exact_sections: [...existing.exact_sections.filter((candidate) => !additions.has(candidate.section_id)), ...additionalSections],
-  }
+  return declarativeSourcePatch({
+    registryFile,
+    sourceId,
+    upsertExactSections: additionalSections,
+    appendApplicabilityNote: applicabilityAddition,
+    applicabilityNoteOccurrences: 10,
+    merge: {
+      recency_verification: { verified_on: '2026-07-15' },
+      superseded_status_check: { checked_on: '2026-07-15' },
+    },
+  })
 }
 
 const NICE_BREAST_URL = 'https://www.nice.org.uk/guidance/ng12/chapter/Recommendations-organised-by-site-of-cancer'
@@ -25,7 +24,7 @@ const WHO_CERVICAL_URL = 'https://www.who.int/publications/i/item/9789240030824'
 
 const safetyGap = 'All item-level mappings remain unsupported pending separate clinician review and signed approval.'
 
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0746-0755',
   description: 'Workflow-specific gynaecology research for bleeding, amenorrhoea, antenatal, breast, breastfeeding, cervical and contraception documentation; research only.',
   sources: [
@@ -71,15 +70,12 @@ export default {
         ],
       },
     },
-    {
-      registry_file: 'international_clinical_sources.json',
-      source: extendRegisteredSource(
+    extendRegisteredSource(
         'international_clinical_sources.json',
         'nice-suspected-cancer-ng12-2026',
         [section('nice-ng12-breast-symptoms-referral', 'Recommendations 1.4.1–1.4.3 — breast cancer recognition and referral', 'recommendations organised by site, breast cancer section', 'Supports clinician recognition of an unexplained breast lump and age-qualified nipple or skin changes for referral consideration; it does not assert cancer or generate a referral decision.')],
         'This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence.',
-      ),
-    },
+    ),
   ],
   workflows: [
     {

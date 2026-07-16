@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 
 function section(section_id, heading, locator, evidence_summary) {
   return { section_id, heading, locator, evidence_summary }
@@ -43,23 +43,12 @@ function support(source_id, source_section_id, relationship, workflowId, suffixe
   return { source_id, source_section_id, relationship, item_ids: ids(workflowId, suffixes) }
 }
 
-function withSections(source, additions) {
-  const sections = new Map((source.exact_sections ?? []).map((item) => [item.section_id, item]))
-  for (const item of additions) sections.set(item.section_id, item)
-  return { ...source, exact_sections: [...sections.values()] }
-}
-
 const DHA_DEPRESSION_URL = 'https://dha.gov.ae/uploads/032024/32%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Depression2024334819.pdf'
 const DHA_INSOMNIA_URL = 'https://dha.gov.ae/uploads/032024/24%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Insomnia2024313354.pdf'
 const DHA_BURNS_URL = 'https://dha.gov.ae/uploads/032024/35%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Burns2024329667.pdf'
 const DHA_HEAD_INJURY_URL = 'https://dha.gov.ae/uploads/032024/31%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Minor%20Head%20Injury2024335820.pdf'
 const WHO_STRESS_URL = 'https://iris.who.int/server/api/core/bitstreams/659e3dab-1e1b-4ca4-84e0-4ce26484612f/content'
 const WHO_BEC_URL = 'https://hlh.who.int/docs/librariesprovider4/clinical-care/who-icrc-basic-emergency-care.pdf'
-
-const internationalRegistryUrl = new URL('../../../clinical-expansion-v2/sources/international_clinical_sources.json', import.meta.url)
-const internationalRegistry = JSON.parse(fs.readFileSync(internationalRegistryUrl, 'utf8'))
-const existingNiceGad = internationalRegistry.sources.find((source) => source.source_id === 'nice-gad-cg113-2020')
-if (!existingNiceGad) throw new Error('Expected NICE CG113 source from the previous checkpoint.')
 
 const panicSections = [
   section('nice-cg113-panic-diagnosis-physical-exclusion', 'Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems', 'lines 431–473', 'Supports structured adult panic-disorder diagnosis, history, comorbidity review, panic presentations, and proportionate investigation to exclude acute physical problems before primary-care follow-up.'),
@@ -185,10 +174,11 @@ const sources = [
       ],
     },
   },
-  {
-    registry_file: 'international_clinical_sources.json',
-    source: withSections(existingNiceGad, panicSections),
-  },
+  declarativeSourcePatch({
+    registryFile: 'international_clinical_sources.json',
+    sourceId: 'nice-gad-cg113-2020',
+    upsertExactSections: panicSections,
+  }),
 ]
 
 const workflows = [
@@ -507,6 +497,7 @@ const workflows = [
 ]
 
 export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'batch-0076-0085',
   sources,
   workflows,

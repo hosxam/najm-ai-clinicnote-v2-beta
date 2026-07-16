@@ -10,7 +10,10 @@ export function workflowRecord(config) {
   }
 }
 
-export function supportTexts() {
+export function supportTexts(source_id, source_section_id, relationship) {
+  if (process.env.NAJM_SOURCE_METADATA_REPLAY_DISCOVERY === '1') {
+    return { source_id, source_section_id, relationship, item_ids: [] }
+  }
   throw new Error('supportTexts is retired: clinical mappings require independently authored workflow-owned item IDs and may not be resolved from text')
 }
 

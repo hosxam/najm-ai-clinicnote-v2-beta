@@ -1,22 +1,21 @@
-import path from 'node:path'
-import { EXPANSION_DIR, readJson } from '../common.mjs'
+import { declarativeSourcePatch } from '../sourceApplicationEngine.mjs'
 
 function section(section_id, heading, locator, evidence_summary) {
   return { section_id, heading, locator, evidence_summary }
 }
 
 function extendRegisteredSource(registryFile, sourceId, additionalSections, applicabilityAddition) {
-  const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryFile))
-  const existing = registry.sources.find((source) => source.source_id === sourceId)
-  if (!existing) throw new Error(`${sourceId}: source to extend is not registered`)
-  const additions = new Set(additionalSections.map((candidate) => candidate.section_id))
-  return {
-    ...existing,
-    applicability_note: `${existing.applicability_note} ${applicabilityAddition}`,
-    recency_verification: { ...existing.recency_verification, verified_on: '2026-07-15' },
-    superseded_status_check: { ...existing.superseded_status_check, checked_on: '2026-07-15' },
-    exact_sections: [...existing.exact_sections.filter((candidate) => !additions.has(candidate.section_id)), ...additionalSections],
-  }
+  return declarativeSourcePatch({
+    registryFile,
+    sourceId,
+    upsertExactSections: additionalSections,
+    appendApplicabilityNote: applicabilityAddition,
+    applicabilityNoteOccurrences: 10,
+    merge: {
+      recency_verification: { verified_on: '2026-07-15' },
+      superseded_status_check: { checked_on: '2026-07-15' },
+    },
+  })
 }
 
 const CDC_ULCER_URL = 'https://www.cdc.gov/std/treatment-guidelines/genital-ulcers.htm'
@@ -26,7 +25,7 @@ const WHO_CERVICAL_URL = 'https://www.who.int/publications/i/item/9789240030824'
 const WHO_SPR_URL = 'https://www.who.int/publications/i/item/9789240115606'
 const safetyGap = 'All item-level mappings remain unsupported pending separate clinician review and signed approval.'
 
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0766-0775',
   description: 'Workflow-specific gynaecology research for genital lesions, imaging results, heavy bleeding, HPV, HRT, implant and IUD follow-up, irregular periods and mastitis; research only.',
   sources: [
@@ -48,9 +47,7 @@ export default {
         ],
       },
     },
-    {
-      registry_file: 'international_clinical_sources.json',
-      source: extendRegisteredSource(
+    extendRegisteredSource(
         'international_clinical_sources.json',
         'who-contraceptive-spr-fourth-2025',
         [
@@ -58,8 +55,7 @@ export default {
           section('who-spr4-iud-initiation-followup', 'Copper-bearing and levonorgestrel-releasing intrauterine devices — initiation and follow-up', 'fourth edition intrauterine-device recommendations', 'Supports documenting an identified device, insertion details, strings or examination actually assessed, bleeding or pain, pregnancy and infection context, and clinician-arranged follow-up without asserting correct position or selecting removal.'),
         ],
         'This batch also reviews implant and intrauterine-device continuation sections. Device presence, position, complications, removal, replacement and UAE service rules remain clinician responsibilities.',
-      ),
-    },
+    ),
   ],
   workflows: [
     {

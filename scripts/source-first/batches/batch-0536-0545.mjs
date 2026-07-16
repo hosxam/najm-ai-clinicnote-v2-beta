@@ -194,4 +194,5 @@ const workflows = [
   }, 'geriatrics'),
 ]
 
-export default { batch_id: 'source-first-0536-0545', description: 'Workflow-specific ENT and initial geriatric exact-section review.', sources, workflows }
+export default {
+  source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-0536-0545', description: 'Workflow-specific ENT and initial geriatric exact-section review.', sources, workflows }

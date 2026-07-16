@@ -24,6 +24,13 @@ import {
   normalizeAndValidateReplaySource,
   validateActiveRegistrySource,
 } from './sourceDateRegistryGate.mjs'
+import {
+  SOURCE_REGISTRY_FILES,
+  sourceRecordsFromRegistryState,
+  sourceUpdateIdentity,
+  upsertSourceInRegistryState,
+} from './sourceApplicationEngine.mjs'
+import { loadReplayManifest } from './sourceMetadataReplay.mjs'
 
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
@@ -86,29 +93,35 @@ for (const config of pendingConfigs) {
   }
 }
 const sourceById = new Map()
-for (const sourceUpdate of batch.sources ?? []) {
-  const normalizedSource = normalizeAndValidateReplaySource(sourceUpdate.source)
-  const registryPath = path.join(EXPANSION_DIR, 'sources', sourceUpdate.registry_file)
-  const registry = readJson(registryPath)
-  for (const source of registry.sources ?? []) validateActiveRegistrySource(source)
-  const existingIndex = registry.sources.findIndex((source) => source.source_id === normalizedSource.source_id)
-  if (existingIndex >= 0) registry.sources[existingIndex] = normalizedSource
-  else registry.sources.push(normalizedSource)
-  registry.sources.sort((left, right) => left.source_id.localeCompare(right.source_id))
-  writeJson(registryPath, registry)
-}
-
-for (const registryName of [
-  'uae_clinical_sources.json',
-  'international_clinical_sources.json',
-  'specialty_society_sources.json',
-  'nonclinical_operational_sources.json',
-]) {
+const replayManifest = loadReplayManifest()
+const sourceRegistryState = new Map(SOURCE_REGISTRY_FILES.map((registryName) => {
   const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryName))
-  for (const source of registry.sources ?? []) {
-    validateActiveRegistrySource(source)
-    sourceById.set(source.source_id, source)
-  }
+  for (const source of registry.sources ?? []) validateActiveRegistrySource(source)
+  return [registryName, registry]
+}))
+const touchedSourceRegistries = new Set()
+for (const sourceUpdate of batch.sources ?? []) {
+  const identity = sourceUpdateIdentity(sourceUpdate)
+  const normalizedSource = normalizeAndValidateReplaySource({
+    sourceUpdate,
+    modulePath: batchPath,
+    batch,
+    registryState: sourceRegistryState,
+    manifest: replayManifest,
+  })
+  upsertSourceInRegistryState({
+    registryState: sourceRegistryState,
+    registryFile: identity.registryFile,
+    source: normalizedSource,
+  })
+  touchedSourceRegistries.add(identity.registryFile)
+}
+for (const registryName of touchedSourceRegistries) {
+  writeJson(path.join(EXPANSION_DIR, 'sources', registryName), sourceRegistryState.get(registryName))
+}
+for (const { source } of sourceRecordsFromRegistryState(sourceRegistryState)) {
+  validateActiveRegistrySource(source)
+  sourceById.set(source.source_id, source)
 }
 const auditPath = path.join(EXPANSION_DIR, 'audits', 'workflow_audit_ledger.jsonl')
 const auditRows = readJsonl(auditPath)

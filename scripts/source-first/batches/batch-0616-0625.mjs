@@ -131,4 +131,4 @@ const workflows = [
   }),
 ]
 
-export default { batch_id: 'source-first-0616-0625', description: 'Workflow-specific portal-hypertension, post-treatment, bleeding, reflux, IBD, vomiting, and weight-loss review.', sources: [], workflows }
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-0616-0625', description: 'Workflow-specific portal-hypertension, post-treatment, bleeding, reflux, IBD, vomiting, and weight-loss review.', sources: [], workflows }

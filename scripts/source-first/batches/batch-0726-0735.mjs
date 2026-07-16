@@ -1,4 +1,4 @@
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0726-0735',
   description: 'Workflow-specific GP research for absence certification, medicine effects, sleep, smoking, snoring, support, wound follow-up, sensory change and thyroid results; research only.',
   sources: [

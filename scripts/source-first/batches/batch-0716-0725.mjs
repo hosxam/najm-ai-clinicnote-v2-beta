@@ -1,4 +1,4 @@
-export default {
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json',
   batch_id: 'source-first-0716-0725',
   description: 'Workflow-specific GP research for rectal pain, recurrent infection, exercise tolerance, repeat prescriptions, restless legs, forms and routine result review; research only.',
   sources: [],
