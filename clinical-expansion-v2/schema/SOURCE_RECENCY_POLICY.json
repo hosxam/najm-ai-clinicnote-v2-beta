@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "policy_version": "1.0.0",
+  "policy_status": "programme_correction_pending_independent_review",
+  "effective_on": "2026-07-16",
+  "evaluation_date": "2026-07-16",
+  "access_verification_maximum_age_days": 30,
+  "recheck_warning_window_days": 7,
+  "recency_gap_requires_immediate_recheck": true,
+  "rationale": "No earlier access-only expiry policy was recorded. A rolling 30-day verification window is a conservative one-month limit for the active source-first programme. Access and verification remain operational freshness evidence only and are never relabelled as publication, effective, or revision dates.",
+  "recency_basis_precedence": [
+    "explicit_stronger_date",
+    "approved_unknown",
+    "weaker_metadata",
+    "access_verification_only"
+  ],
+  "recency_outcome_precedence": [
+    "unavailable",
+    "superseded",
+    "incomplete_recency_metadata",
+    "verification_expired",
+    "recheck_due",
+    "explicit_stronger_date_current",
+    "approved_unknown_current_by_verification",
+    "weaker_metadata_current",
+    "access_verification_current"
+  ],
+  "stronger_field_precedence": [
+    "revision_date",
+    "effective_date",
+    "legal_effective_date",
+    "service_commencement_date",
+    "publication_date"
+  ],
+  "weaker_field_precedence": [
+    "webpage_last_updated_date",
+    "last_updated_date",
+    "source_modified_date",
+    "source_reviewed_date",
+    "recency_verification.revision_due"
+  ],
+  "basis_precision_values": [
+    "day",
+    "month",
+    "year",
+    "unknown"
+  ],
+  "approved_unknown_values": [
+    "undated_on_official_page",
+    "unknown_on_official_source"
+  ]
+}

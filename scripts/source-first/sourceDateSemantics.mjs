@@ -12,6 +12,9 @@ import {
   normalizedDateEvidenceText,
   sourceIdentitySnapshot,
 } from './sourceDateProvenanceContract.mjs'
+import {
+  classifyDatePrecision,
+} from './sourceRecencyPolicy.mjs'
 
 const PROVENANCE_PATH = path.join(EXPANSION_DIR, 'schema', 'STRONGER_DATE_PROVENANCE.json')
 const AUTHORITATIVE_STATUSES = new Set(['authoritative_explicit', 'approved_unknown'])
@@ -62,13 +65,6 @@ const WEAKER_METADATA_BY_KEY = new Map(PROVENANCE_DOCUMENT.weakerMetadataRecords
   `${record.sourceId}::${record.fieldName}::${record.dateValue}`,
   Object.freeze(record),
 ]))
-const WEAKER_METADATA_BY_SOURCE = new Map()
-for (const record of PROVENANCE_DOCUMENT.weakerMetadataRecords) {
-  const records = WEAKER_METADATA_BY_SOURCE.get(record.sourceId) ?? []
-  records.push(record)
-  WEAKER_METADATA_BY_SOURCE.set(record.sourceId, records)
-}
-
 export const SOURCE_DATE_SEMANTICS = Object.freeze({
   contractVersion: '3.0.0',
   migrationVersion: STRONGER_DATE_MIGRATION_VERSION,
@@ -108,17 +104,6 @@ function inlineRecord(record, fieldName = record.fieldName, dateValue = record.f
     verificationMethod: record.verificationMethod,
     migrationVersion: record.migrationVersion,
   }
-}
-
-function setNestedMetadata(source, fieldName, value) {
-  if (fieldName === 'recency_verification.revision_due') {
-    source.recency_verification = {
-      ...(source.recency_verification ?? {}),
-      revision_due: value,
-    }
-    return
-  }
-  source[fieldName] = value
 }
 
 function nestedMetadata(source, fieldName) {
@@ -166,10 +151,19 @@ function validateProvenanceShape(provenance, source, fieldName, dateValue, autho
   if (!AUTHORITATIVE_STATUSES.has(provenance.provenanceStatus)) {
     errors.push(provenanceError(source, fieldName, `non-authoritative provenance status ${provenance.provenanceStatus}`))
   }
+  const precision = classifyDatePrecision(dateValue)
+  if (provenance.provenanceStatus === 'approved_unknown') {
+    if (precision.kind !== 'approved_unknown' || provenance.evidenceCategory !== 'unknown_on_official_source') {
+      errors.push(provenanceError(source, fieldName, 'approved unknown must use a registered non-date value and unknown evidence category'))
+    }
+  } else if (precision.kind !== 'date') {
+    errors.push(provenanceError(source, fieldName, 'authoritative explicit provenance requires a concrete date value'))
+  }
   if (provenance.migrationVersion !== STRONGER_DATE_MIGRATION_VERSION) {
     errors.push(provenanceError(source, fieldName, 'provenance migration version mismatch'))
   }
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(provenance.reviewedOn ?? '')) {
+  const reviewedOnPrecision = classifyDatePrecision(provenance.reviewedOn)
+  if (reviewedOnPrecision.kind !== 'date' || reviewedOnPrecision.precision !== 'day') {
     errors.push(provenanceError(source, fieldName, 'provenance reviewedOn is invalid'))
   }
   if (!authoritativeRecord) {
@@ -196,6 +190,10 @@ function weakerMetadataErrors(source) {
   const errors = []
   for (const [fieldName, provenance] of Object.entries(source?.date_metadata_provenance ?? {})) {
     const dateValue = nestedMetadata(source, fieldName)
+    const precision = classifyDatePrecision(dateValue)
+    if (precision.kind !== 'date') {
+      errors.push(provenanceError(source, fieldName, 'weaker metadata must retain an explicit day, month, or year value'))
+    }
     const record = WEAKER_METADATA_BY_KEY.get(`${source.source_id}::${fieldName}::${dateValue}`)
     if (!record) {
       errors.push(provenanceError(source, fieldName, 'weaker metadata has no authoritative provenance record'))
@@ -257,79 +255,8 @@ export function assertSourceDateSemantics(source) {
 }
 
 export function normalizeSourceDateClaims(source) {
-  const dispositions = CLAIM_DISPOSITIONS_BY_SOURCE.get(source?.source_id)
-  if (!dispositions) return structuredClone(source)
-  if (!exactIdentityMatches(source, dispositions[0])) {
-    throw new Error(`[source-date-semantics] ${source.source_id}: replay source identity mismatch`)
-  }
   const normalized = structuredClone(source)
-  const inlineStronger = {}
-  for (const record of dispositions) {
-    normalized[record.fieldName] = record.finalDateValue
-    if (record.finalDateValue !== null && AUTHORITATIVE_STATUSES.has(record.provenanceStatus)) {
-      inlineStronger[record.fieldName] = inlineRecord(record)
-    }
-  }
-  if (Object.keys(inlineStronger).length > 0) normalized.date_provenance = inlineStronger
-  else delete normalized.date_provenance
-
-  const inlineWeaker = {}
-  for (const record of WEAKER_METADATA_BY_SOURCE.get(source.source_id) ?? []) {
-    setNestedMetadata(normalized, record.fieldName, record.dateValue)
-    inlineWeaker[record.fieldName] = inlineRecord(record, record.fieldName, record.dateValue)
-  }
-  if (Object.keys(inlineWeaker).length > 0) normalized.date_metadata_provenance = inlineWeaker
-  else delete normalized.date_metadata_provenance
-  return normalized
-}
-
-export function assignLabeledSourceDate(source, { label, date, targetField }) {
-  if (typeof date !== 'string' || date.trim() === '') {
-    throw new Error('[source-date-semantics] date must be a non-empty string')
-  }
-  if (STRONGER_DATE_FIELDS.includes(targetField)) {
-    const record = CLAIM_DISPOSITION_BY_KEY.get(`${source?.source_id}::${targetField}`)
-    if (!record || record.finalDateValue !== date || !AUTHORITATIVE_STATUSES.has(record.provenanceStatus)) {
-      throw new Error('[source-date-semantics] stronger-date assignment requires a reviewed authoritative provenance registry entry')
-    }
-    const normalizedLabel = normalizedDateEvidenceText(label)
-    if (!STRONGER_DATE_FIELD_CONTRACT[targetField].acceptedExplicitEvidenceLabels.includes(normalizedLabel)) {
-      throw new Error(`[source-date-semantics] ${label} is not explicit evidence for ${targetField}`)
-    }
-    const next = {
-      ...source,
-      [targetField]: date,
-      date_provenance: {
-        ...(source.date_provenance ?? {}),
-        [targetField]: inlineRecord(record),
-      },
-    }
-    return assertSourceDateSemantics(next)
-  }
-  if (!PAGE_UPDATE_FIELDS.includes(targetField)) {
-    throw new Error(`[source-date-semantics] unsupported date metadata field ${targetField}`)
-  }
-  if (!PAGE_UPDATE_LABELS.includes(normalizedDateEvidenceText(label))) {
-    throw new Error(`[source-date-semantics] ${label} is not an approved webpage-update label`)
-  }
-  return { ...source, [targetField]: date }
-}
-
-export function sourceRecencyProvenanceBasis(source) {
-  const errors = sourceDateSemanticsErrors(source)
-  if (errors.length > 0) return { valid: false, errors, basis: null }
-  const strongerCount = Object.keys(source?.date_provenance ?? {}).length
-  const weakerCount = Object.keys(source?.date_metadata_provenance ?? {}).length
-  const verifiedOn = source?.recency_verification?.verified_on
-  return {
-    valid: strongerCount > 0 || weakerCount > 0 || /^\d{4}-\d{2}-\d{2}$/.test(verifiedOn ?? ''),
-    errors: [],
-    basis: strongerCount > 0
-      ? 'explicit_stronger_date_provenance'
-      : weakerCount > 0
-        ? 'explicit_weaker_metadata_provenance'
-        : 'source_access_and_verification_only',
-  }
+  return assertSourceDateSemantics(normalized)
 }
 
 export function sourceDateProvenanceDocument() {
