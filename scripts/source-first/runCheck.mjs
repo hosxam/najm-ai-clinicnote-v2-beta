@@ -20,7 +20,7 @@ import {
   readJsonl,
 } from './common.mjs'
 import { readDerivedUnsupportedLegacyRows } from './canonicalMappingReconciliation.mjs'
-import { sourceDateSemanticsErrors } from './sourceDateSemantics.mjs'
+import { sourceDateSemanticsErrors, sourceRecencyProvenanceBasis } from './sourceDateSemantics.mjs'
 
 const check = process.argv[2]
 const errors = []
@@ -153,6 +153,11 @@ function exactCoverageCheck() {
 
 function sourceRecencyCheck() {
   const sources = loadSourceRegistry()
+  const provenanceBasisCounts = {
+    explicit_stronger_date_provenance: 0,
+    explicit_weaker_metadata_provenance: 0,
+    source_access_and_verification_only: 0,
+  }
   const dateParts = Object.fromEntries(
     new Intl.DateTimeFormat('en-US', {
       timeZone: RESEARCH_TIME_ZONE,
@@ -164,14 +169,16 @@ function sourceRecencyCheck() {
   const today = `${dateParts.year}-${dateParts.month}-${dateParts.day}`
   for (const source of sources.values()) {
     const verifiedOn = source.recency_verification?.verified_on ?? ''
+    const provenanceBasis = sourceRecencyProvenanceBasis(source)
     assert(/^https:\/\//.test(source.exact_official_url), `${source.source_id}: malformed official URL.`, errors)
-    assert(Boolean(source.publication_date), `${source.source_id}: publication date missing.`, errors)
     assert(Boolean(source.version), `${source.source_id}: version missing.`, errors)
     assert(/^\d{4}-\d{2}-\d{2}$/.test(verifiedOn), `${source.source_id}: recency verification date is invalid.`, errors)
     assert(verifiedOn >= VERIFICATION_DATE && verifiedOn <= today, `${source.source_id}: recency was not verified during the active research mission.`, errors)
     assert(!/superseded/i.test(source.superseded_status_check?.status ?? ''), `${source.source_id}: source is marked superseded.`, errors)
+    assert(provenanceBasis.valid, `${source.source_id}: no semantically valid recency provenance basis.`, errors)
+    if (provenanceBasis.basis) provenanceBasisCounts[provenanceBasis.basis] += 1
   }
-  printResult(check, errors, { exact_sources_checked: sources.size })
+  printResult(check, errors, { exact_sources_checked: sources.size, provenance_basis_counts: provenanceBasisCounts })
 }
 
 function uaeApplicabilityCheck() {

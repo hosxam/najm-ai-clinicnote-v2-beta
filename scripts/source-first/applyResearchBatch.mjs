@@ -20,7 +20,10 @@ import {
 import { loadCanonicalMappings } from './canonicalMappingStore.mjs'
 import { writeCandidateProposalDocument } from './candidateMappingProposalStore.mjs'
 import { validateResearchBatchMappingContract } from './researchBatchMappingContract.mjs'
-import { assertSourceDateSemantics } from './sourceDateSemantics.mjs'
+import {
+  normalizeAndValidateReplaySource,
+  validateActiveRegistrySource,
+} from './sourceDateRegistryGate.mjs'
 
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
@@ -84,13 +87,13 @@ for (const config of pendingConfigs) {
 }
 const sourceById = new Map()
 for (const sourceUpdate of batch.sources ?? []) {
-  assertSourceDateSemantics(sourceUpdate.source)
+  const normalizedSource = normalizeAndValidateReplaySource(sourceUpdate.source)
   const registryPath = path.join(EXPANSION_DIR, 'sources', sourceUpdate.registry_file)
   const registry = readJson(registryPath)
-  for (const source of registry.sources ?? []) assertSourceDateSemantics(source)
-  const existingIndex = registry.sources.findIndex((source) => source.source_id === sourceUpdate.source.source_id)
-  if (existingIndex >= 0) registry.sources[existingIndex] = sourceUpdate.source
-  else registry.sources.push(sourceUpdate.source)
+  for (const source of registry.sources ?? []) validateActiveRegistrySource(source)
+  const existingIndex = registry.sources.findIndex((source) => source.source_id === normalizedSource.source_id)
+  if (existingIndex >= 0) registry.sources[existingIndex] = normalizedSource
+  else registry.sources.push(normalizedSource)
   registry.sources.sort((left, right) => left.source_id.localeCompare(right.source_id))
   writeJson(registryPath, registry)
 }
@@ -103,7 +106,7 @@ for (const registryName of [
 ]) {
   const registry = readJson(path.join(EXPANSION_DIR, 'sources', registryName))
   for (const source of registry.sources ?? []) {
-    assertSourceDateSemantics(source)
+    validateActiveRegistrySource(source)
     sourceById.set(source.source_id, source)
   }
 }
