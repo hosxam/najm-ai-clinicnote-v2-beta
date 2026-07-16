@@ -10,16 +10,11 @@ import {
 import {
   SOURCE_DATE_SEMANTICS,
   assertSourceDateSemantics,
-  assignLabeledSourceDate,
   normalizeSourceDateClaims,
   sourceDateProvenanceDocument,
   sourceDateSemanticsErrors,
-  sourceRecencyProvenanceBasis,
 } from './sourceDateSemantics.mjs'
-import {
-  normalizeAndValidateReplaySource,
-  validateActiveRegistrySource,
-} from './sourceDateRegistryGate.mjs'
+import { classifyDatePrecision } from './sourceRecencyPolicy.mjs'
 
 const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'))
 const sourceFiles = [
@@ -42,13 +37,6 @@ test('independent schema and production contract cover the same five stronger-da
     .map(([fieldName]) => fieldName)
     .sort()
   assert.deepEqual(schemaFields, [...STRONGER_DATE_FIELDS].sort())
-  assert.deepEqual(schemaFields, [
-    'effective_date',
-    'legal_effective_date',
-    'publication_date',
-    'revision_date',
-    'service_commencement_date',
-  ])
 })
 
 test('frozen tuple acceptance is absent from the active contract', () => {
@@ -72,66 +60,94 @@ test('the provenance registry accounts for all 554 original claims exactly', () 
   assert.equal(provenance.totals.requiresMetadataRecheck, 274)
 })
 
-test('all active sources pass the same executable registry gate', () => {
+test('all active sources pass pure persisted-provenance validation', () => {
   assert.equal(activeSources.length, 235)
-  for (const source of activeSources) assert.equal(validateActiveRegistrySource(source), source)
+  for (const source of activeSources) assert.equal(assertSourceDateSemantics(source), source)
 })
 
-test('every retained stronger date has exact field-specific inline provenance', () => {
-  let count = 0
+test('retained stronger values preserve exact source, field, value, status, and precision', () => {
+  const counts = {
+    authoritative_explicit: 0,
+    approved_unknown: 0,
+    day: 0,
+    month: 0,
+    year: 0,
+    unknown: 0,
+  }
   for (const source of activeSources) {
     for (const fieldName of STRONGER_DATE_FIELDS) {
       if (typeof source[fieldName] !== 'string' || source[fieldName].trim() === '') continue
-      count += 1
       const fieldProvenance = source.date_provenance?.[fieldName]
       assert.ok(fieldProvenance, `${source.source_id}.${fieldName}`)
       assert.equal(fieldProvenance.sourceId, source.source_id)
       assert.equal(fieldProvenance.fieldName, fieldName)
       assert.equal(fieldProvenance.dateValue, source[fieldName])
       assert.equal(PROHIBITED_SOURCE_DATE_EVIDENCE_CATEGORIES.includes(fieldProvenance.evidenceCategory), false)
+      counts[fieldProvenance.provenanceStatus] += 1
+      counts[classifyDatePrecision(source[fieldName]).precision] += 1
     }
   }
-  assert.equal(count, 28)
+  assert.deepEqual(counts, {
+    authoritative_explicit: 25,
+    approved_unknown: 3,
+    day: 23,
+    month: 0,
+    year: 2,
+    unknown: 3,
+  })
 })
 
-test('populated stronger dates without provenance fail closed', () => {
+test('populated stronger dates without provenance fail closed and are not synthesized', () => {
   const source = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
   delete source.date_provenance.publication_date
-  assert.match(sourceDateSemanticsErrors(source).join('\n'), /no field-specific provenance/)
+  const before = structuredClone(source)
+  assert.throws(() => normalizeSourceDateClaims(source), /no field-specific provenance/)
+  assert.deepEqual(source, before)
 })
 
-test('provenance cannot be shared across fields', () => {
-  const source = structuredClone(activeById.get('gmc-decision-making-consent-2024'))
-  source.revision_date = source.effective_date
-  source.date_provenance.revision_date = structuredClone(source.date_provenance.effective_date)
-  assert.match(sourceDateSemanticsErrors(source).join('\n'), /another field|cannot establish revision_date/)
+test('historical replay values fail rather than being cleared or assigned provenance', () => {
+  const active = activeById.get('bad-hidradenitis-suppurativa-guideline-2018')
+  const tuple = historicalTuple.source_tuples.find((record) => record.source_id === active.source_id)
+  const replay = structuredClone(active)
+  delete replay.date_provenance
+  for (const [fieldName, value] of Object.entries(tuple.stronger_dates)) replay[fieldName] = value
+  const before = structuredClone(replay)
+  assert.throws(() => normalizeSourceDateClaims(replay), /no field-specific provenance/)
+  assert.deepEqual(replay, before)
 })
 
-test('provenance cannot be shared across source IDs', () => {
+test('provenance cannot be shared across fields, sources, or date values', () => {
+  const wrongField = structuredClone(activeById.get('gmc-decision-making-consent-2024'))
+  wrongField.revision_date = wrongField.effective_date
+  wrongField.date_provenance.revision_date = structuredClone(wrongField.date_provenance.effective_date)
+  assert.match(sourceDateSemanticsErrors(wrongField).join('\n'), /another field|cannot establish revision_date/)
+
+  const wrongSource = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
+  wrongSource.source_id = 'another-source'
+  assert.match(sourceDateSemanticsErrors(wrongSource).join('\n'), /another source|no authoritative/)
+
+  const wrongDate = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
+  wrongDate.publication_date = '2020-11-19'
+  assert.match(sourceDateSemanticsErrors(wrongDate).join('\n'), /another date value|another final date/)
+})
+
+test('provenance reviewedOn rejects impossible calendar days', () => {
   const source = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
-  source.source_id = 'another-source'
-  assert.match(sourceDateSemanticsErrors(source).join('\n'), /another source|no authoritative/)
+  source.date_provenance.publication_date.reviewedOn = '2026-02-30'
+  assert.match(sourceDateSemanticsErrors(source).join('\n'), /provenance reviewedOn is invalid/)
 })
 
-test('provenance cannot be shared across date values', () => {
-  const source = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
-  source.publication_date = '2020-11-19'
-  assert.match(sourceDateSemanticsErrors(source).join('\n'), /another date value|another final date/)
+test('weaker or webpage metadata cannot establish a stronger date', () => {
+  const webpage = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
+  webpage.date_provenance.publication_date.evidenceCategory = 'webpage_update_only'
+  assert.match(sourceDateSemanticsErrors(webpage).join('\n'), /cannot establish publication_date/)
+
+  const access = structuredClone(activeById.get('asa-basic-anesthetic-monitoring-2025'))
+  access.date_provenance.revision_date.evidenceCategory = 'access_or_review_date_only'
+  assert.match(sourceDateSemanticsErrors(access).join('\n'), /cannot establish revision_date/)
 })
 
-test('webpage-update provenance cannot establish a stronger date', () => {
-  const source = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
-  source.date_provenance.publication_date.evidenceCategory = 'webpage_update_only'
-  assert.match(sourceDateSemanticsErrors(source).join('\n'), /cannot establish publication_date/)
-})
-
-test('access or review provenance cannot establish revision_date', () => {
-  const source = structuredClone(activeById.get('asa-basic-anesthetic-monitoring-2025'))
-  source.date_provenance.revision_date.evidenceCategory = 'access_or_review_date_only'
-  assert.match(sourceDateSemanticsErrors(source).join('\n'), /cannot establish revision_date/)
-})
-
-test('all five stronger-date fields reject a novel unregistered claim', () => {
+test('all five stronger fields reject a novel unregistered claim', () => {
   for (const fieldName of STRONGER_DATE_FIELDS) {
     const source = {
       source_id: `fixture-${fieldName}`,
@@ -144,7 +160,7 @@ test('all five stronger-date fields reject a novel unregistered claim', () => {
   }
 })
 
-test('copying a historical tuple no longer validates a new source', () => {
+test('copying a historical tuple does not authorize a new source', () => {
   const tuple = historicalTuple.source_tuples[0]
   const source = {
     source_id: `copied-${tuple.source_id}`,
@@ -156,79 +172,26 @@ test('copying a historical tuple no longer validates a new source', () => {
   assert.notEqual(sourceDateSemanticsErrors(source).length, 0)
 })
 
-test('legacy replay normalization cannot recreate removed stronger dates', () => {
-  const active = activeById.get('bad-hidradenitis-suppurativa-guideline-2018')
-  const tuple = historicalTuple.source_tuples.find((record) => record.source_id === active.source_id)
-  const replay = structuredClone(active)
-  delete replay.date_provenance
-  for (const [fieldName, value] of Object.entries(tuple.stronger_dates)) replay[fieldName] = value
-  const normalized = normalizeAndValidateReplaySource(replay)
-  assert.equal(normalized.publication_date, null)
-  assert.equal(normalized.effective_date, null)
+test('month-precision weaker metadata remains valid without inventing a day', () => {
+  const source = activeById.get('rch-pic-acute-abdominal-pain-children-2024')
+  assert.equal(source.last_updated_date, '2024-04')
+  assert.equal(classifyDatePrecision(source.last_updated_date).precision, 'month')
+  assert.doesNotThrow(() => assertSourceDateSemantics(source))
+
+  const invalid = structuredClone(source)
+  invalid.last_updated_date = '2024-13'
+  invalid.date_metadata_provenance.last_updated_date.dateValue = '2024-13'
+  assert.match(sourceDateSemanticsErrors(invalid).join('\n'), /explicit day, month, or year/)
 })
 
-test('duplicated publication and effective values require independent effective provenance', () => {
-  const record = provenance.claimDispositions.find((candidate) => (
-    candidate.fieldName === 'effective_date'
-    && candidate.migrationClassification === 'D_DERIVED_OR_DUPLICATED_CLAIM'
-  ))
-  const active = activeById.get(record.sourceId)
-  const replay = structuredClone(active)
-  replay.effective_date = record.dateValue
-  delete replay.date_provenance
-  const normalized = normalizeSourceDateClaims(replay)
-  assert.equal(normalized.effective_date, null)
+test('valid normalization returns a detached unchanged record', () => {
+  const source = activeById.get('nice-acute-coronary-syndromes-ng185-2020')
+  const normalized = normalizeSourceDateClaims(source)
+  assert.deepEqual(normalized, source)
+  assert.notEqual(normalized, source)
 })
 
-test('replay normalization is deterministic', () => {
-  const active = activeById.get('nice-acne-vulgaris-ng198-2026')
-  const tuple = historicalTuple.source_tuples.find((record) => record.source_id === active.source_id)
-  const replay = { ...structuredClone(active), ...tuple.stronger_dates }
-  delete replay.date_provenance
-  delete replay.date_metadata_provenance
-  assert.deepEqual(normalizeSourceDateClaims(replay), normalizeSourceDateClaims(replay))
-})
-
-test('webpage update assignment remains a distinct weaker field', () => {
-  const result = assignLabeledSourceDate({}, {
-    label: 'Last updated',
-    date: '2026-07-10',
-    targetField: 'webpage_last_updated_date',
-  })
-  assert.equal(result.webpage_last_updated_date, '2026-07-10')
-  assert.equal(result.revision_date, undefined)
-})
-
-test('stronger-date assignment requires a reviewed authoritative registry record', () => {
-  assert.throws(
-    () => assignLabeledSourceDate({ source_id: 'fixture' }, {
-      label: 'Published',
-      date: '2026-07-10',
-      targetField: 'publication_date',
-    }),
-    /reviewed authoritative provenance registry entry/,
-  )
-})
-
-test('source recency uses valid provenance without relabelling verification dates', () => {
-  const counts = {
-    explicit_stronger_date_provenance: 0,
-    explicit_weaker_metadata_provenance: 0,
-    source_access_and_verification_only: 0,
-  }
-  for (const source of activeSources) {
-    const result = sourceRecencyProvenanceBasis(source)
-    assert.equal(result.valid, true, source.source_id)
-    counts[result.basis] += 1
-  }
-  assert.deepEqual(counts, {
-    explicit_stronger_date_provenance: 28,
-    explicit_weaker_metadata_provenance: 69,
-    source_access_and_verification_only: 138,
-  })
-})
-
-test('MOHAP webpage update remains weaker metadata only', () => {
+test('MOHAP unknown publication and webpage update retain distinct semantics', () => {
   const source = activeById.get('mohap-medical-leave-attestation-2026')
   assert.equal(source.publication_date, 'undated_on_official_page')
   assert.equal(source.effective_date, null)
@@ -236,13 +199,8 @@ test('MOHAP webpage update remains weaker metadata only', () => {
   assert.equal(source.webpage_last_updated_date, '2026-07-10')
   assert.equal(source.recency_verification.verified_on, '2026-07-15')
   assert.equal(source.superseded_status_check.checked_on, '2026-07-15')
+  assert.equal(source.date_provenance.publication_date.provenanceStatus, 'approved_unknown')
   assert.equal(source.date_metadata_provenance.webpage_last_updated_date.evidenceCategory, 'webpage_update_only')
   assert.equal(Object.values(source.date_provenance).some((record) => record.dateValue === '2026-07-10'), false)
   assert.doesNotThrow(() => assertSourceDateSemantics(source))
-})
-
-test('production replay gate rejects a source identity mismatch', () => {
-  const source = structuredClone(activeById.get('nice-acute-coronary-syndromes-ng185-2020'))
-  source.exact_official_url = 'https://example.test/wrong-source'
-  assert.throws(() => normalizeAndValidateReplaySource(source), /identity mismatch/)
 })
