@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm.local/schemas/source-registry-date-fields-v1.json",
+  "title": "Najm source-registry date-field classification",
+  "type": "object",
+  "properties": {
+    "publication_date": {
+      "x-najm-date-semantic": "stronger_date",
+      "x-najm-evidence-category": "publication",
+      "x-najm-explicit-evidence-example": "Publication date",
+      "x-najm-accepted-evidence-categories": ["explicit_field_label", "established_precontract_tuple"],
+      "x-najm-prohibited-evidence-categories": ["generic_webpage_update"],
+      "x-najm-null-permitted": true,
+      "x-najm-approved-unknown-values": ["undated_on_official_page"]
+    },
+    "effective_date": {
+      "x-najm-date-semantic": "stronger_date",
+      "x-najm-evidence-category": "effective date",
+      "x-najm-explicit-evidence-example": "Effective date",
+      "x-najm-accepted-evidence-categories": ["explicit_field_label", "established_precontract_tuple"],
+      "x-najm-prohibited-evidence-categories": ["generic_webpage_update"],
+      "x-najm-null-permitted": true,
+      "x-najm-approved-unknown-values": []
+    },
+    "revision_date": {
+      "x-najm-date-semantic": "stronger_date",
+      "x-najm-evidence-category": "revision",
+      "x-najm-explicit-evidence-example": "Revision date",
+      "x-najm-accepted-evidence-categories": ["explicit_field_label", "established_precontract_tuple"],
+      "x-najm-prohibited-evidence-categories": ["generic_webpage_update"],
+      "x-najm-null-permitted": true,
+      "x-najm-approved-unknown-values": []
+    },
+    "service_commencement_date": {
+      "x-najm-date-semantic": "stronger_date",
+      "x-najm-evidence-category": "service commencement",
+      "x-najm-explicit-evidence-example": "Service commenced",
+      "x-najm-accepted-evidence-categories": ["explicit_field_label", "established_precontract_tuple"],
+      "x-najm-prohibited-evidence-categories": ["generic_webpage_update"],
+      "x-najm-null-permitted": true,
+      "x-najm-approved-unknown-values": []
+    },
+    "legal_effective_date": {
+      "x-najm-date-semantic": "stronger_date",
+      "x-najm-evidence-category": "legal commencement",
+      "x-najm-explicit-evidence-example": "Legal commencement date",
+      "x-najm-accepted-evidence-categories": ["explicit_field_label", "established_precontract_tuple"],
+      "x-najm-prohibited-evidence-categories": ["generic_webpage_update"],
+      "x-najm-null-permitted": true,
+      "x-najm-approved-unknown-values": []
+    },
+    "last_updated_date": {
+      "x-najm-date-semantic": "webpage_update_date"
+    },
+    "webpage_last_updated_date": {
+      "x-najm-date-semantic": "webpage_update_date"
+    },
+    "source_modified_date": {
+      "x-najm-date-semantic": "webpage_update_date"
+    }
+  },
+  "additionalProperties": true
+}
