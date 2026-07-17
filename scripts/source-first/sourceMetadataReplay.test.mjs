@@ -20,7 +20,7 @@ import {
 
 const PROHIBITED_REPLAY_INPUT_PATTERN = /(?:clinical-expansion-v2[\\/]sources[\\/](?:international_clinical_sources|nonclinical_operational_sources|specialty_society_sources|uae_clinical_sources)\.json|gp_explicit_mapping_ledger_0626_0675\.json)$/
 
-test('independent source replay applies initial plus 107 numbered batches before exact active parity', async () => {
+test('independent source replay applies initial plus 112 numbered batches before exact active parity', async () => {
   const numberedModulePaths = productionDiscoveredNumberedBatchPaths()
   assert.equal(numberedModulePaths.length, EXPECTED_NUMBERED_BATCH_COUNT)
   assert.equal(numberedModulePaths.some((modulePath) => /supplement/i.test(path.basename(modulePath))), false)
