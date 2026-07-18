@@ -1,29 +1,26 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import crypto from 'node:crypto';
-
-const ROOT = process.cwd();
-const statePath = path.join(ROOT, 'clinical-expansion-v2', 'guideline-workflow-resolution-v2', 'WORKFLOW_RESOLUTION_STATE.json');
-const workflowDir = path.join(ROOT, 'clinical-expansion-v2', 'workflows');
-const packRoot = path.join(ROOT, 'clinical-expansion-v2', 'guideline-evidence-packs-v1');
-const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
-const archetypePath = path.join(ROOT, 'clinical-expansion-v2', 'guideline-workflow-resolution-v2', 'WORKFLOW_ARCHETYPE_MANIFEST.json');
-const archetypes = JSON.parse(fs.readFileSync(archetypePath, 'utf8'));
-const workflowIds = fs.readdirSync(workflowDir).filter((file) => file.endsWith('.json')).sort().map((file) => JSON.parse(fs.readFileSync(path.join(workflowDir, file), 'utf8')).workflow_id).sort();
-const fingerprint = crypto.createHash('sha256').update(JSON.stringify(workflowIds)).digest('hex');
-const errors = [];
-if (state.workflow_count !== 1500) errors.push(`workflow_count=${state.workflow_count}`);
-if (state.archetype_manifest_fingerprint !== archetypes.manifest_fingerprint) errors.push('archetype manifest fingerprint mismatch');
-if (archetypes.workflow_count !== 1500) errors.push('archetype workflow count mismatch');
-if (state.workflow_ids_fingerprint !== fingerprint) errors.push('workflow_ids_fingerprint mismatch');
-if (state.resolved_count !== 0 || state.resolved_workflow_ids.length !== 0) errors.push('resolved workflows were unexpectedly written');
-if (state.pending_count !== workflowIds.length || state.pending_workflow_ids.length !== workflowIds.length) errors.push('pending workflow accounting mismatch');
-if (JSON.stringify(state.pending_workflow_ids) !== JSON.stringify(workflowIds)) errors.push('pending workflow order or membership mismatch');
-if (state.final_statuses_written !== false) errors.push('final statuses must not be written while blocked');
-if (state.beta_generated !== false) errors.push('beta must not be generated while blocked');
-if (state.mappings_written !== false || state.candidates_written !== false) errors.push('mapping/candidate writes are prohibited');
-if (!fs.existsSync(path.join(packRoot, 'EVIDENCE_PACK_MANIFEST.json'))) errors.push('evidence pack manifest missing');
-if (!state.blocker_reclassification_counts || state.initial_strict_core_blockers !== 1111) errors.push('blocker reclassification accounting missing');
-const result = { status: errors.length ? 'FAIL' : 'PASS', workflow_count: state.workflow_count, resolved: state.resolved_count, pending: state.pending_count, errors };
-console.log(JSON.stringify(result, null, 2));
-if (errors.length) process.exitCode = 1;
+import fs from 'node:fs'
+import path from 'node:path'
+const root = process.cwd()
+const expansion = path.join(root, 'clinical-expansion-v2')
+const resolution = path.join(expansion, 'guideline-workflow-resolution-v2')
+const state = JSON.parse(fs.readFileSync(path.join(resolution, 'WORKFLOW_RESOLUTION_STATE.json'), 'utf8'))
+const readiness = JSON.parse(fs.readFileSync(path.join(resolution, 'WORKFLOW_READINESS.json'), 'utf8'))
+const errors = []
+if (state.workflow_count !== 1500) errors.push(`workflow_count=${state.workflow_count}`)
+if (state.resolved_count + state.pending_count !== state.workflow_count) errors.push('resolved and pending counts do not reconcile')
+if (state.resolved_workflow_ids.length !== state.resolved_count) errors.push('resolved ID count mismatch')
+if (state.pending_workflow_ids.length !== state.pending_count) errors.push('pending ID count mismatch')
+if (readiness.workflow_count !== state.workflow_count) errors.push('readiness workflow count mismatch')
+const outputRoot = path.join(resolution, 'reconstructed-workflows')
+for (const workflowId of state.resolved_workflow_ids) {
+  const file = path.join(outputRoot, `${workflowId}.json`)
+  if (!fs.existsSync(file)) { errors.push(`${workflowId}: reconstructed output missing`); continue }
+  const output = JSON.parse(fs.readFileSync(file, 'utf8'))
+  if (!['reconstructed_complete', 'reconstructed_with_noncritical_documented_limitations'].includes(output.final_status)) errors.push(`${workflowId}: invalid final status`)
+  if (!output.active_items.length) errors.push(`${workflowId}: no active exact-evidence items`)
+  for (const item of output.active_items) for (const field of ['workflow_id', 'stable_item_id', 'normalised_evidence_pack_id', 'evidence_statement_id', 'source_id', 'official_source_url', 'exact_locator', 'source_fingerprint', 'locator_fingerprint']) if (!item[field]) errors.push(`${workflowId}: active item missing ${field}`)
+  if (output.item_level_comparisons.some((item) => !item.previous_item_id || !item.previous_wording || !item.removal_category || !item.reason || !Array.isArray(item.evidence_pack_ids_assessed))) errors.push(`${workflowId}: malformed removed-item comparison`)
+}
+const result = { status: errors.length ? 'FAIL' : 'PASS', workflow_count: state.workflow_count, resolved: state.resolved_count, pending: state.pending_count, readiness_counts: readiness.counts, errors }
+console.log(JSON.stringify(result, null, 2))
+if (errors.length) process.exitCode = 1

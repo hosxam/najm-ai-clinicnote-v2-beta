@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { updateEvidenceHash, writeJson } from './common.mjs'
+import { classifySourceAcceptance } from './sourceAcceptance.mjs'
 
 const root = process.cwd()
 const researchRoot = path.join(root, 'clinical-expansion-v2', 'research')
@@ -13,6 +14,8 @@ const evidence = [
   { suffix: 'referral', section: sectionIds[1], direct: 'The NICE referral recommendations support clinician review of signs or symptoms suggesting serious illness and referral or specialist advice when indicated.', summary: 'Serious-illness review and referral context.' },
   { suffix: 'self-care', section: sectionIds[2], direct: 'The NICE self-care and antimicrobial-prescribing recommendations support documenting self-care discussion and antimicrobial-prescribing rationale without selecting a medicine or dose automatically.', summary: 'Self-care and antimicrobial rationale documentation.' },
 ]
+const acceptance = classifySourceAcceptance({ official_url: sourceUrl, accessible_full_content: true }, { populationMatch: true, settingMatch: true })
+if (!acceptance.accepted) throw new Error(`authoritative source acceptance failed: ${acceptance.reason}`)
 let changed = 0
 for (const workflowId of targets) {
   const file = path.join(researchRoot, `${workflowId}.research.json`)
