@@ -177,6 +177,9 @@ function researchWorkflow(status, detail) {
   const safety = safetyAttempt
     ? { status: 'applicable_and_covered', source_id: safetyAttempt.source_id, section_ids: safetyAttempt.safety_sections }
     : { status: 'no_authoritative_guidance_found', attempted_source_ids: sourceIds, rationale: 'The inspected committed sources did not contain explicit deterioration, urgent review, return-precaution, or referral language.' }
+  const criticalSections = ['red_flags', 'emergency_referral', 'routine_referral', 'medication_history', 'pharmacological_management', 'investigations', 'assessment_structure', 'escalation_criteria', 'follow_up', 'safety_netting', 'pregnancy_reproductive', 'focused_examination']
+  const unresolvedCriticalSections = missing.filter((section) => criticalSections.includes(section) && section !== 'relevant_negative_symptoms')
+  const criticalDeterminations = Object.fromEntries(unresolvedCriticalSections.map((section) => [section, { status: 'no_authoritative_guidance_found', rationale: 'The current inspected source set does not provide an exact applicable section for this safety-relevant requirement; the workflow remains pending.' }]))
   return {
     workflow_id: status.workflow_id,
     workflow_number: status.workflow_number,
@@ -187,11 +190,12 @@ function researchWorkflow(status, detail) {
       `${detail.title} safety netting referral follow-up official guideline`
     ],
     source_attempts: attempts,
-    section_determinations: { relevant_negative_symptoms: relevantNegative, safety_netting: safety },
+    section_determinations: { relevant_negative_symptoms: relevantNegative, safety_netting: safety, ...criticalDeterminations },
     evidence_rejected: [],
     source_access_failures: attempts.filter((attempt) => attempt.access_failure).map((attempt) => attempt.source_id),
-    remaining_noncritical_sections: missing.filter((section) => !['relevant_negative_symptoms', 'safety_netting'].includes(section)),
-    safety_critical_blocked: safety.status !== 'applicable_and_covered'
+    remaining_noncritical_sections: missing.filter((section) => !['relevant_negative_symptoms', ...criticalSections].includes(section)),
+    unresolved_critical_sections: unresolvedCriticalSections,
+    safety_critical_blocked: safety.status !== 'applicable_and_covered' || unresolvedCriticalSections.length > 0
   }
 }
 
@@ -231,9 +235,12 @@ function main() {
   const workerStates = { ...(previous.worker_states ?? {}) }
   const researchIterations = { ...(previous.research_iterations ?? {}) }
   // A prior implementation retired this workflow after inspecting only one
-  // additional source. Invalidate that decision before selecting the queue.
-  delete resolutions['gp-fever-urti']
-  workerStates['gp-fever-urti'] = 'evidence_gap_research_required'
+  // additional source. Invalidate only that obsolete retirement; preserve a
+  // separately validated final result on subsequent resumptions.
+  if (resolutions['gp-fever-urti']?.final_status?.startsWith('retired')) {
+    delete resolutions['gp-fever-urti']
+    workerStates['gp-fever-urti'] = 'evidence_gap_research_required'
+  }
   const ordered = [...statuses].sort((a, b) => a.workflow_number - b.workflow_number)
   for (const entry of queue.entries) {
     if (entry.workflow_id === 'gp-fever-urti' || resolutions[entry.workflow_id]) continue
@@ -252,6 +259,13 @@ function main() {
         research_attempts: entry.source_attempts
       }
     } else if (entry.status === 'blocked_source_access') {
+      const attempts = Array.isArray(entry.source_attempts) ? entry.source_attempts : []
+      const documentedAlternatives = typeof entry.next_action === 'string' && /alternative|replacement|supersed|official/i.test(entry.next_action)
+      const validBlocked = attempts.length > 0 && attempts.every((attempt) => typeof attempt === 'object' && attempt.full_document_inspected === false) && documentedAlternatives
+      if (!validBlocked) {
+        workerStates[entry.workflow_id] = 'additional_sources_required'
+        continue
+      }
       resolutions[entry.workflow_id] = {
         workflow_id: entry.workflow_id,
         final_status: 'blocked_source_access',
@@ -276,6 +290,22 @@ function main() {
     const detail = read(path.join(exp, 'generated', 'full-source-reconstruction', 'complete', 'workflows', `${selected.workflow_id}.json`))
     const family = detail.family_id ?? null
     if (selected.workflow_id === 'gp-fever-urti') {
+      const criticalSections = ['red_flags', 'emergency_referral', 'routine_referral', 'medication_history', 'pharmacological_management', 'investigations', 'assessment_structure', 'escalation_criteria', 'follow_up', 'safety_netting', 'pregnancy_reproductive', 'focused_examination']
+      const unresolvedCriticalSections = criticalSections.filter((section) => detail.section_omission_reasons?.[section])
+      if (unresolvedCriticalSections.length) {
+        const iteration = researchWorkflow(selected, detail)
+        iteration.intermediate_state = 'evidence_gap_research_required'
+        iteration.unresolved_critical_sections = unresolvedCriticalSections
+        iteration.safety_critical_blocked = true
+        researchIterations[selected.workflow_id] = iteration
+        workerStates[selected.workflow_id] = 'evidence_gap_research_required'
+        const value = saveProgress(previous, resolutions, ordered, family, repairs, workerStates, researchIterations)
+        const diagnostic = { result: 'GUIDELINE_RESOLUTION_WORKER_NO_PROGRESS', started_at: started, stopped_at: new Date().toISOString(), exact_command: 'npm run reconstruct:resolve-all', selected_workflow: selected.workflow_id, current_family: family, intermediate_state: iteration.intermediate_state, unresolved_critical_sections: unresolvedCriticalSections, resolved: value.reconstruction_totals.resolved, pending: value.reconstruction_totals.pending, next: value.exact_next_workflow, state_fingerprint: value.output_fingerprint, required_corrective_action: 'Complete the remaining critical section research before assigning a final status.' }
+        write(diagnosticFile, diagnostic)
+        console.error(JSON.stringify(diagnostic, null, 2))
+        process.exitCode = 2
+        return
+      }
       const result = writeRepair(family, repairs)
       repairs = result.repairs
       const repair = { ...result.repair, final_status: 'reconstructed_with_noncritical_documented_limitations', outcome: 'supported_after_multi-source-research_with_documented_noncritical_limitations' }
