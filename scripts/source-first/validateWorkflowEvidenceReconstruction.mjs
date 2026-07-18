@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+
+const ROOT = process.cwd();
+const statePath = path.join(ROOT, 'clinical-expansion-v2', 'guideline-workflow-resolution-v2', 'WORKFLOW_RESOLUTION_STATE.json');
+const workflowDir = path.join(ROOT, 'clinical-expansion-v2', 'workflows');
+const packRoot = path.join(ROOT, 'clinical-expansion-v2', 'guideline-evidence-packs-v1');
+const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+const workflowIds = fs.readdirSync(workflowDir).filter((file) => file.endsWith('.json')).sort().map((file) => JSON.parse(fs.readFileSync(path.join(workflowDir, file), 'utf8')).workflow_id).sort();
+const fingerprint = crypto.createHash('sha256').update(JSON.stringify(workflowIds)).digest('hex');
+const errors = [];
+if (state.workflow_count !== 1500) errors.push(`workflow_count=${state.workflow_count}`);
+if (state.workflow_ids_fingerprint !== fingerprint) errors.push('workflow_ids_fingerprint mismatch');
+if (state.resolved_count !== 0 || state.resolved_workflow_ids.length !== 0) errors.push('resolved workflows were unexpectedly written');
+if (state.pending_count !== workflowIds.length || state.pending_workflow_ids.length !== workflowIds.length) errors.push('pending workflow accounting mismatch');
+if (JSON.stringify(state.pending_workflow_ids) !== JSON.stringify(workflowIds)) errors.push('pending workflow order or membership mismatch');
+if (state.final_statuses_written !== false) errors.push('final statuses must not be written while blocked');
+if (state.beta_generated !== false) errors.push('beta must not be generated while blocked');
+if (state.mappings_written !== false || state.candidates_written !== false) errors.push('mapping/candidate writes are prohibited');
+if (!fs.existsSync(path.join(packRoot, 'EVIDENCE_PACK_MANIFEST.json'))) errors.push('evidence pack manifest missing');
+const result = { status: errors.length ? 'FAIL' : 'PASS', workflow_count: state.workflow_count, resolved: state.resolved_count, pending: state.pending_count, errors };
+console.log(JSON.stringify(result, null, 2));
+if (errors.length) process.exitCode = 1;
