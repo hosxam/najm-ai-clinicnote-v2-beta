@@ -1,22 +1,28 @@
 {
-  "result": "GUIDELINE_RESOLUTION_WORKER_NO_PROGRESS",
-  "started_at": "2026-07-18T17:31:58.331Z",
-  "stopped_at": "2026-07-18T17:31:58.447Z",
+  "result": "GUIDELINE_RESOLUTION_WORKER_EVIDENCE_GAP_RESEARCH_REQUIRED",
+  "started_at": "2026-07-18T17:45:33.350Z",
+  "stopped_at": "2026-07-18T17:45:33.512Z",
   "exact_command": "npm run reconstruct:resolve-all",
-  "queue_length_loaded": 1500,
-  "pending_workflow_count_loaded": 1047,
-  "selected_workflow": "gp-cough",
-  "current_family": "family-general-medicine-gp-acute-bronchitis-3b2d7124",
-  "source_access_status": "full_documents_available",
-  "reason": "selected workflow requires evidence-gap repair before a final resolution can be assigned",
-  "blocking_exception": "Automatic repair sources have not yet been inspected for this family",
-  "required_corrective_action": "Inspect additional authoritative sources, update the family pack, reconstruct and validate the workflow, then rerun the worker.",
-  "resolved_before": 453,
-  "resolved_after": 453,
-  "pending_before": 1047,
-  "pending_after": 1047,
-  "next_before": "gp-cough",
-  "next_after": "gp-cough",
-  "state_fingerprint_before": "fff5108935b28523ca7501dfd3490771eadce1e40a05df2dc53a86959e30b384",
-  "state_fingerprint_after": "fff5108935b28523ca7501dfd3490771eadce1e40a05df2dc53a86959e30b384"
+  "selected_workflow": "gp-fever-urti",
+  "current_family": "family-general-medicine-gp-viral-urti-575ce26e",
+  "intermediate_state": "evidence_gap_research_required",
+  "full_sources_inspected": [
+    "dha-telehealth-common-cold-v2-2024",
+    "dha-telehealth-fever-children-v2-2024",
+    "dha-telehealth-cough-v2-2024"
+  ],
+  "sections_still_missing": [
+    "relevant_negative_symptoms",
+    "safety_netting"
+  ],
+  "final_status_assigned": null,
+  "resolved_before": 452,
+  "resolved_after": 452,
+  "pending_before": 1048,
+  "pending_after": 1048,
+  "next_before": "gp-fever-urti",
+  "next_after": "gp-fever-urti",
+  "state_fingerprint_before": "2953d2eadac82f886b683bae9c1946212f9000df02bd5de89d9e7ba9f01d8a67",
+  "state_fingerprint_after": "2953d2eadac82f886b683bae9c1946212f9000df02bd5de89d9e7ba9f01d8a67",
+  "required_corrective_action": "Inspect additional authoritative sources or perform merge-candidate analysis; do not retire or advance the queue while required sections remain unresolved."
 }

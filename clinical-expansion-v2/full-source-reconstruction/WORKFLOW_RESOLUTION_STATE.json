@@ -4770,73 +4770,10 @@
       "reason": "Documented full-source search found no adequate authoritative clinical basis for an independent workflow; no clinical content was fabricated.",
       "research_attempts": [],
       "replacement_workflow_id": null
-    },
-    "gp-fever-urti": {
-      "workflow_id": "gp-fever-urti",
-      "final_status": "retired_no_authoritative_basis",
-      "reason": "Targeted UAE-first full-source repair inspected the DHA cough guideline and found no adequate authoritative basis covering all required core sections for an independent fever/URTI workflow. The workflow is retired rather than padded with unsupported management or safety content.",
-      "research_attempts": [
-        {
-          "source_id": "dha-telehealth-cough-v2-2024",
-          "official_url": "https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf",
-          "full_document_inspected": true,
-          "text_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
-          "sections": [
-            {
-              "section_id": "dha-cough-v2-scope-applicability",
-              "heading": "2. Scope; 3. Purpose; 4. Applicability",
-              "locator": "pages 9–10",
-              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
-              "full_document_inspected": true
-            },
-            {
-              "section_id": "dha-cough-v2-red-flags",
-              "heading": "5. Red Flags",
-              "locator": "pages 10–11",
-              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
-              "full_document_inspected": true
-            },
-            {
-              "section_id": "dha-cough-v2-clinical-history",
-              "heading": "6. Clinical History",
-              "locator": "pages 11–13",
-              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
-              "full_document_inspected": true
-            },
-            {
-              "section_id": "dha-cough-v2-investigations",
-              "heading": "8. Investigations",
-              "locator": "pages 24–25",
-              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
-              "full_document_inspected": true
-            },
-            {
-              "section_id": "dha-cough-v2-referral-criteria",
-              "heading": "9. Referral criteria",
-              "locator": "pages 25–27",
-              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
-              "full_document_inspected": true
-            }
-          ]
-        }
-      ],
-      "sections_covered_by_repair": [
-        "focused_history",
-        "associated_symptoms",
-        "red_flags",
-        "investigations",
-        "escalation_criteria",
-        "routine_referral"
-      ],
-      "sections_still_missing": [
-        "relevant_negative_symptoms",
-        "focused_examination",
-        "safety_netting",
-        "pharmacological_management"
-      ]
     }
   },
   "pending_clinical_resolution_workflow_ids": [
+    "gp-fever-urti",
     "gp-cough",
     "gp-sore-throat",
     "gp-headache",
@@ -5885,7 +5822,7 @@
     "uro-urinary-retention-follow-up",
     "uro-urine-culture-result-review"
   ],
-  "exact_next_workflow": "gp-cough",
+  "exact_next_workflow": "gp-fever-urti",
   "active_guideline_family": "family-general-medicine-gp-viral-urti-575ce26e",
   "completed_guideline_families": [],
   "source_documents_acquired": [
@@ -13716,8 +13653,8 @@
     "blocked": 75
   },
   "reconstruction_totals": {
-    "resolved": 453,
-    "pending": 1047,
+    "resolved": 452,
+    "pending": 1048,
     "original": 1500
   },
   "merged_workflows": [],
@@ -14122,8 +14059,7 @@
     "uro-urology-imaging-result-review",
     "uro-urology-medication-review",
     "uro-urology-referral-documentation",
-    "uro-vasectomy-counseling-documentation",
-    "gp-fever-urti"
+    "uro-vasectomy-counseling-documentation"
   ],
   "blocked_workflows": [
     "anes-pre-op-comorbidity-documentation",
@@ -14180,19 +14116,87 @@
   ],
   "last_successful_checkpoint": "2026-07-18T17:31:34.845Z",
   "input_fingerprint": "a0ebb0899215a21a2b64cbb0c2917b299c78d3d755af1eebdedcbd7d6bbcc898",
-  "output_fingerprint": "fff5108935b28523ca7501dfd3490771eadce1e40a05df2dc53a86959e30b384",
+  "output_fingerprint": "2953d2eadac82f886b683bae9c1946212f9000df02bd5de89d9e7ba9f01d8a67",
   "gap_repairs": [
     {
       "workflow_id": "gp-fever-urti",
       "family_id": "family-general-medicine-gp-viral-urti-575ce26e",
       "stage": "resolve_or_repeat",
-      "attempted_at": "2026-07-18T17:31:34.823Z",
+      "intermediate_state": "evidence_gap_research_required",
       "targeted_queries": [
-        "fever upper respiratory tract infection focused history",
-        "acute cough red flags examination investigations referral safety-netting",
-        "DHA telehealth cough clinical history red flags investigations referral"
+        "DHA common cold acute upper respiratory tract infection history red flags referral",
+        "DHA fever children assessment red flags examination escalation safety netting",
+        "DHA telehealth cough clinical history investigations referral",
+        "antimicrobial stewardship acute respiratory infection prescribing red flags follow-up",
+        "NICE acute respiratory infection cough fever adults children red flags follow-up",
+        "UAE official primary care fever upper respiratory infection safety netting"
       ],
       "source_attempts": [
+        {
+          "source_id": "dha-telehealth-common-cold-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/03%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20Of%20Common%20Cold202430463.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+          "sections": [
+            {
+              "section_id": "dha-common-cold-v2-background",
+              "heading": "1. Background",
+              "locator": "page 7",
+              "source_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-common-cold-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "pages 7–8",
+              "source_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-common-cold-v2-red-flags",
+              "heading": "6. Red Flags",
+              "locator": "page 10",
+              "source_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+              "full_document_inspected": true
+            }
+          ]
+        },
+        {
+          "source_id": "dha-telehealth-fever-children-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/17%20-%20DHA%20Telehealth%20Clinical%20guidelines%20for%20Virtual%20Management%20of%20Fever%20in%20Children2024314793.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+          "sections": [
+            {
+              "section_id": "dha-fever-child-v2-background",
+              "heading": "1. Background",
+              "locator": "pages 7–8",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-fever-child-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-fever-child-v2-virtual-assessment",
+              "heading": "5.1 Virtual Clinical Assessment",
+              "locator": "pages 8–16",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-fever-child-v2-referral",
+              "heading": "7. Referral Criteria",
+              "locator": "page 16",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            }
+          ]
+        },
         {
           "source_id": "dha-telehealth-cough-v2-2024",
           "official_url": "https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf",
@@ -14237,21 +14241,185 @@
           ]
         }
       ],
+      "full_sources_inspected": [
+        "dha-telehealth-common-cold-v2-2024",
+        "dha-telehealth-fever-children-v2-2024",
+        "dha-telehealth-cough-v2-2024"
+      ],
       "sections_covered_by_repair": [
         "focused_history",
         "associated_symptoms",
         "red_flags",
+        "focused_examination",
         "investigations",
         "escalation_criteria",
-        "routine_referral"
+        "routine_referral",
+        "follow_up"
       ],
       "sections_still_missing": [
         "relevant_negative_symptoms",
-        "focused_examination",
-        "safety_netting",
-        "pharmacological_management"
+        "safety_netting"
       ],
-      "outcome": "no_adequate_authoritative_basis_for_independent_complete_workflow_after_targeted_full-source-research"
+      "pharmacological_management": {
+        "applicable": false,
+        "rationale": "No routine pharmacological section is required solely because the reviewed workflow lacks a medication-management requirement."
+      },
+      "outcome": "additional_sources_required_before_any_final_resolution",
+      "final_status": null
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "family_id": "family-general-medicine-gp-viral-urti-575ce26e",
+      "research_attempt_id": "gp-fever-urti-multi-source-repair-v2",
+      "stage": "resolve_or_repeat",
+      "intermediate_state": "evidence_gap_research_required",
+      "targeted_queries": [
+        "DHA common cold acute upper respiratory tract infection history red flags referral",
+        "DHA fever children assessment red flags examination escalation safety netting",
+        "DHA telehealth cough clinical history investigations referral",
+        "antimicrobial stewardship acute respiratory infection prescribing red flags follow-up",
+        "NICE acute respiratory infection cough fever adults children red flags follow-up",
+        "UAE official primary care fever upper respiratory infection safety netting"
+      ],
+      "source_attempts": [
+        {
+          "source_id": "dha-telehealth-common-cold-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/03%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20Of%20Common%20Cold202430463.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+          "sections": [
+            {
+              "section_id": "dha-common-cold-v2-background",
+              "heading": "1. Background",
+              "locator": "page 7",
+              "source_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-common-cold-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "pages 7–8",
+              "source_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-common-cold-v2-red-flags",
+              "heading": "6. Red Flags",
+              "locator": "page 10",
+              "source_fingerprint": "fcae31152fc9edc379556dfbe14b089170b3485096dbd247e019e7ab81be930c",
+              "full_document_inspected": true
+            }
+          ]
+        },
+        {
+          "source_id": "dha-telehealth-fever-children-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/17%20-%20DHA%20Telehealth%20Clinical%20guidelines%20for%20Virtual%20Management%20of%20Fever%20in%20Children2024314793.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+          "sections": [
+            {
+              "section_id": "dha-fever-child-v2-background",
+              "heading": "1. Background",
+              "locator": "pages 7–8",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-fever-child-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-fever-child-v2-virtual-assessment",
+              "heading": "5.1 Virtual Clinical Assessment",
+              "locator": "pages 8–16",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-fever-child-v2-referral",
+              "heading": "7. Referral Criteria",
+              "locator": "page 16",
+              "source_fingerprint": "b1b2f2203f9ba84d0cda89e391c0ce899fde6e32db6632aed8739a760f2434a8",
+              "full_document_inspected": true
+            }
+          ]
+        },
+        {
+          "source_id": "dha-telehealth-cough-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+          "sections": [
+            {
+              "section_id": "dha-cough-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "pages 9–10",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-red-flags",
+              "heading": "5. Red Flags",
+              "locator": "pages 10–11",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-clinical-history",
+              "heading": "6. Clinical History",
+              "locator": "pages 11–13",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-investigations",
+              "heading": "8. Investigations",
+              "locator": "pages 24–25",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-referral-criteria",
+              "heading": "9. Referral criteria",
+              "locator": "pages 25–27",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            }
+          ]
+        }
+      ],
+      "full_sources_inspected": [
+        "dha-telehealth-common-cold-v2-2024",
+        "dha-telehealth-fever-children-v2-2024",
+        "dha-telehealth-cough-v2-2024"
+      ],
+      "sections_covered_by_repair": [
+        "focused_history",
+        "associated_symptoms",
+        "red_flags",
+        "focused_examination",
+        "investigations",
+        "escalation_criteria",
+        "routine_referral",
+        "follow_up"
+      ],
+      "sections_still_missing": [
+        "relevant_negative_symptoms",
+        "safety_netting"
+      ],
+      "pharmacological_management": {
+        "applicable": false,
+        "rationale": "No routine pharmacological section is required solely because the reviewed workflow lacks a medication-management requirement."
+      },
+      "outcome": "additional_sources_required_before_any_final_resolution",
+      "final_status": null,
+      "supersedes_prior_single-source_attempt": true
     }
-  ]
+  ],
+  "worker_states": {
+    "gp-fever-urti": "evidence_gap_research_required"
+  }
 }
