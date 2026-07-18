@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence locator",
+  "type": "object",
+  "required": ["source_id", "normalized_span_fingerprint"],
+  "properties": {
+    "source_id": {"type": "string"},
+    "page_number": {"type": ["integer", "null"]},
+    "section_heading": {"type": ["string", "null"]},
+    "subsection": {"type": ["string", "null"]},
+    "recommendation_number": {"type": ["string", "null"]},
+    "table_number": {"type": ["string", "null"]},
+    "algorithm_or_figure_number": {"type": ["string", "null"]},
+    "paragraph_or_text_span": {"type": ["string", "null"]},
+    "resolved_url": {"type": ["string", "null"]},
+    "anchor": {"type": ["string", "null"]},
+    "heading_path": {"type": "array"},
+    "dom_section_identifier": {"type": ["string", "null"]},
+    "position": {"type": ["integer", "null"]},
+    "normalized_span_fingerprint": {"type": "string"}
+  }
+}

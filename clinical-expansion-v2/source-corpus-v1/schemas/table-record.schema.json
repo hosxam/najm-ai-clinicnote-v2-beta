@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Extracted table record",
+  "type": "object",
+  "required": ["source_id", "table_id", "extraction_method", "table_fingerprint"],
+  "properties": {
+    "source_id": {"type": "string"},
+    "table_id": {"type": "string"},
+    "table_title": {"type": ["string", "null"]},
+    "page_or_html_location": {"type": "object"},
+    "headers": {"type": "array"},
+    "rows": {"type": "array"},
+    "footnotes": {"type": "array"},
+    "extraction_method": {"type": "string"},
+    "extraction_confidence": {"type": "string"},
+    "table_fingerprint": {"type": "string"}
+  }
+}

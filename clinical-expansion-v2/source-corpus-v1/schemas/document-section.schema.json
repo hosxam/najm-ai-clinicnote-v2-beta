@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Extracted document section",
+  "type": "object",
+  "required": ["source_id", "section_id", "heading_path", "section_order", "normalized_text", "text_fingerprint"],
+  "properties": {
+    "source_id": {"type": "string"},
+    "section_id": {"type": "string"},
+    "heading": {"type": "string"},
+    "heading_path": {"type": "array", "items": {"type": "string"}},
+    "section_order": {"type": "integer"},
+    "page_start": {"type": ["integer", "null"]},
+    "page_end": {"type": ["integer", "null"]},
+    "html_anchor": {"type": ["string", "null"]},
+    "normalized_text": {"type": "string"},
+    "text_fingerprint": {"type": "string"},
+    "parent_section": {"type": ["string", "null"]},
+    "tables": {"type": "array"},
+    "algorithms": {"type": "array"},
+    "recommendations": {"type": "array"}
+  }
+}

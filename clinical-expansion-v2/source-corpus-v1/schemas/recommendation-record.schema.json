@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Extracted recommendation record",
+  "type": "object",
+  "required": ["source_id", "recommendation_id", "recommendation_wording", "exact_locator", "recommendation_fingerprint"],
+  "properties": {
+    "source_id": {"type": "string"},
+    "recommendation_id": {"type": "string"},
+    "recommendation_wording": {"type": "string"},
+    "exact_locator": {"type": "object"},
+    "population": {"type": ["string", "null"]},
+    "setting": {"type": ["string", "null"]},
+    "strength_or_grade": {"type": ["string", "null"]},
+    "exceptions": {"type": "array"},
+    "recommendation_fingerprint": {"type": "string"}
+  }
+}
