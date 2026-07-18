@@ -126,11 +126,11 @@ export function HomePage() {
 
       <section className="flex flex-col gap-4 rounded-2xl border border-cyan-200 bg-cyan-50 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div>
-          <div className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-900">BETA — CLINICIAN REVIEW DATA</div>
-          <h2 className="mt-1 text-lg font-semibold text-slate-950">Review the completed source-first workflow set</h2>
-          <p className="mt-1 max-w-2xl text-sm leading-6 text-cyan-950">Open the owner-review workspace for all 1,500 workflows. Evidence varies, every item starts unreviewed, and decisions stay in this browser.</p>
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-900">BETA — FULL-SOURCE GUIDELINE WORKFLOWS</div>
+          <h2 className="mt-1 text-lg font-semibold text-slate-950">Use the reconstructed source-grounded workflow set</h2>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-cyan-950">Open the reconstructed workflow workspace for all 1,500 workflows. Each workflow shows its practical sections, exact authoritative sources, additions, rewrites, removals, and documented limitations.</p>
         </div>
-        <Button asChild variant="primary" className="shrink-0"><Link to="/beta">Open clinician review <ArrowRight className="h-4 w-4" /></Link></Button>
+        <Button asChild variant="primary" className="shrink-0"><Link to="/beta">Open reconstructed workflows <ArrowRight className="h-4 w-4" /></Link></Button>
       </section>
 
       <section aria-labelledby="mode-heading">
