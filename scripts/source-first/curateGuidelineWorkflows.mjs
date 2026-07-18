@@ -44,6 +44,49 @@ function loadSources() {
 }
 function sourceSection(source, sectionId) { return (source?.exact_sections ?? []).find((section) => section.section_id === sectionId) ?? null }
 
+function applicableSections(workflow, research, evidence) {
+  const text = `${workflow.presentation} ${workflow.specialty} ${workflow.baseline?.clinical_workflow?.diagnosis ?? ''} ${(research?.evidence_items ?? []).map((item) => `${item.direct_relationship ?? ''} ${item.paraphrased_evidence_summary ?? ''}`).join(' ')}`.toLowerCase()
+  const acute = /acute|urgent|emergency|pain|fever|bleed|breath|cough|vomit|dizz|injury|rash|swelling|disturbance|retention/.test(text)
+  const chronic = /follow.?up|annual|chronic|diabetes|hypertension|asthma|copd|thyroid|lipid|medication review/.test(text)
+  const hasTests = /investig|laboratory|test|imaging|screen|culture|scan|ecg|monitor/.test(text)
+  const hasTreatment = /treatment|manage|therapy|intervention|medication|medicine|drug|plan/.test(text)
+  const hasReferral = /referral|specialist|face.to.face|escalat|emergency|urgent/.test(text)
+  return {
+    presenting_history: true,
+    positive_and_negative_symptoms: true,
+    risk_factors: /risk|history|exposure|family|medication|comorbid/.test(text),
+    red_flags: acute || hasReferral,
+    examination: acute || /exam|physical|vital|assessment/.test(text),
+    investigations: hasTests,
+    assessment: true,
+    management_options: hasTreatment || chronic,
+    escalation_or_referral: hasReferral,
+    follow_up: chronic || /follow|review|monitor/.test(text),
+    safety_netting: acute || hasReferral,
+    patient_advice: /education|advice|counsel|instruction|safety|self.?care/.test(text),
+  }
+}
+
+function buildSectionCoverage(workflow, research, additions) {
+  const applicable = applicableSections(workflow, research, additions)
+  const evidenceText = additions.map((item) => `${item.section_id} ${item.text} ${item.rationale}`).join(' ').toLowerCase()
+  const evidenceBySection = {
+    presenting_history: /history|onset|course|duration|presentation|background/.test(evidenceText),
+    positive_and_negative_symptoms: /symptom|negative|associated/.test(evidenceText),
+    risk_factors: /risk|family|exposure|medication|comorbid/.test(evidenceText),
+    red_flags: /red.flag|danger|urgent|emergency|suicid|bleed|escalat/.test(evidenceText),
+    examination: /exam|physical|vital|neurolog/.test(evidenceText),
+    investigations: /investig|laboratory|test|imaging|screen|culture|ecg|monitor/.test(evidenceText),
+    assessment: /assessment|diagnos|evaluation|classification/.test(evidenceText),
+    management_options: /treatment|manage|therapy|intervention|plan/.test(evidenceText),
+    escalation_or_referral: /referral|face.to.face|specialist|escalat/.test(evidenceText),
+    follow_up: /follow.up|review|monitor/.test(evidenceText),
+    safety_netting: /safety|warning|return|education/.test(evidenceText),
+    patient_advice: /advice|instruction|education|counsel|self.?care/.test(evidenceText),
+  }
+  return Object.fromEntries(Object.entries(applicable).map(([section, isApplicable]) => [section, { applicable: isApplicable, status: !isApplicable ? 'intentionally_inapplicable' : evidenceBySection[section] ? 'covered_by_committed_evidence' : 'missing_full_source_review', evidence_item_count: additions.filter((item) => item.section_id === section).length }]))
+}
+
 function curateWorkflow(workflow, research, sourceMap) {
   const legacyItems = Object.entries(workflow.content_sections ?? {}).flatMap(([sectionId, items]) =>
     Array.isArray(items) ? items.map((item) => ({ section_id: sectionId, ...item })) : [],
@@ -81,6 +124,8 @@ function curateWorkflow(workflow, research, sourceMap) {
   const content = Object.fromEntries(sectionOrder.map((section) => [section, added.filter((item) => item.section_id === section)]))
   const gaps = [...(research?.unresolved_source_gaps ?? [])]
   if (!sources.length) gaps.push('No authoritative source record is committed for this workflow; all legacy clinical content was removed.')
+  const section_coverage = buildSectionCoverage(workflow, research, added)
+  const incompleteSections = Object.entries(section_coverage).filter(([, value]) => value.applicable && value.status !== 'covered_by_committed_evidence').map(([section]) => section)
   return {
     schema_version: '1.0.0',
     workflow_number: workflow.baseline.source_workflow_index + 1,
@@ -90,6 +135,12 @@ function curateWorkflow(workflow, research, sourceMap) {
     diagnosis: workflow.baseline.clinical_workflow?.diagnosis ?? workflow.presentation,
     source_status: normalizeStatus(research?.source_status),
     source_grounded: added.length > 0,
+    source_review_basis: 'committed exact-section summaries and evidence records; full guideline documents were not retained for this pass',
+    full_guideline_documents_inspected: false,
+    fully_reconstructed: false,
+    completeness_status: incompleteSections.length ? 'incomplete_full_source_review_required' : 'requires_full_source_verification',
+    applicable_sections: Object.keys(section_coverage).filter((section) => section_coverage[section].applicable),
+    section_coverage,
     content,
     sources_used: sources,
     additions: added,
@@ -117,9 +168,9 @@ function main() {
     removed += curated.removals.length
     added += curated.additions.length
     if (curated.source_grounded) sourced++
-    catalog.push({ workflow_number: curated.workflow_number, workflow_id: curated.workflow_id, title: curated.title, specialty: curated.specialty, diagnosis: curated.diagnosis, source_status: curated.source_status, source_grounded: curated.source_grounded, sources_used: curated.sources_used.length, retained_count: curated.additions.filter((item) => item.action === 'retain').length, rewritten_count: curated.rewrites.length, removed_count: curated.removals.length, added_count: curated.additions.length, unresolved_source_gap_count: curated.source_limitations.length })
+    catalog.push({ workflow_number: curated.workflow_number, workflow_id: curated.workflow_id, title: curated.title, specialty: curated.specialty, diagnosis: curated.diagnosis, source_status: curated.source_status, source_grounded: curated.source_grounded, fully_reconstructed: curated.fully_reconstructed, completeness_status: curated.completeness_status, incomplete_section_count: curated.applicable_sections.filter((section) => curated.section_coverage[section].status !== 'covered_by_committed_evidence').length, sources_used: curated.sources_used.length, retained_count: curated.additions.filter((item) => item.action === 'retain').length, rewritten_count: curated.rewrites.length, removed_count: curated.removals.length, added_count: curated.additions.length, unresolved_source_gap_count: curated.source_limitations.length })
   }
-  const metadata = { schema_version: '1.0.0', dataset: 'najm-direct-guideline-workflow-curation', generated_from: 'committed source-first workflows, research evidence, and registered official source sections', workflow_count: workflows.length, item_count: 83303, workflows_with_guideline_evidence: sourced, workflows_without_guideline_evidence: workflows.length - sourced, counts: { retained, rewritten, removed, added }, source_count: sourceMap.size, production_data_path: 'public/data (unchanged)', clinician_review_queue: false }
+  const metadata = { schema_version: '1.1.0', dataset: 'najm-direct-guideline-workflow-curation', generated_from: 'committed source-first workflows, research evidence, and registered official source sections', source_review_basis: 'summaries_only_not_full_guideline_documents', full_guideline_documents_inspected: false, workflow_count: workflows.length, item_count: 83303, workflows_with_guideline_evidence: sourced, workflows_without_guideline_evidence: workflows.length - sourced, fully_reconstructed_workflows: 0, incomplete_workflows: workflows.length, counts: { retained, rewritten, removed, added }, source_count: sourceMap.size, newly_registered_sources: 0, production_data_path: 'public/data (unchanged)', clinician_review_queue: false }
   fs.writeFileSync(path.join(outputRoot, 'catalog.json'), `${JSON.stringify(catalog)}\n`)
   fs.writeFileSync(path.join(outputRoot, 'metadata.json'), `${JSON.stringify(metadata, null, 2)}\n`)
   console.log(JSON.stringify(metadata, null, 2))
