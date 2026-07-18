@@ -4770,10 +4770,73 @@
       "reason": "Documented full-source search found no adequate authoritative clinical basis for an independent workflow; no clinical content was fabricated.",
       "research_attempts": [],
       "replacement_workflow_id": null
+    },
+    "gp-fever-urti": {
+      "workflow_id": "gp-fever-urti",
+      "final_status": "retired_no_authoritative_basis",
+      "reason": "Targeted UAE-first full-source repair inspected the DHA cough guideline and found no adequate authoritative basis covering all required core sections for an independent fever/URTI workflow. The workflow is retired rather than padded with unsupported management or safety content.",
+      "research_attempts": [
+        {
+          "source_id": "dha-telehealth-cough-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+          "sections": [
+            {
+              "section_id": "dha-cough-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "pages 9–10",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-red-flags",
+              "heading": "5. Red Flags",
+              "locator": "pages 10–11",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-clinical-history",
+              "heading": "6. Clinical History",
+              "locator": "pages 11–13",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-investigations",
+              "heading": "8. Investigations",
+              "locator": "pages 24–25",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-referral-criteria",
+              "heading": "9. Referral criteria",
+              "locator": "pages 25–27",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            }
+          ]
+        }
+      ],
+      "sections_covered_by_repair": [
+        "focused_history",
+        "associated_symptoms",
+        "red_flags",
+        "investigations",
+        "escalation_criteria",
+        "routine_referral"
+      ],
+      "sections_still_missing": [
+        "relevant_negative_symptoms",
+        "focused_examination",
+        "safety_netting",
+        "pharmacological_management"
+      ]
     }
   },
   "pending_clinical_resolution_workflow_ids": [
-    "gp-fever-urti",
     "gp-cough",
     "gp-sore-throat",
     "gp-headache",
@@ -5822,8 +5885,8 @@
     "uro-urinary-retention-follow-up",
     "uro-urine-culture-result-review"
   ],
-  "exact_next_workflow": "gp-fever-urti",
-  "active_guideline_family": null,
+  "exact_next_workflow": "gp-cough",
+  "active_guideline_family": "family-general-medicine-gp-viral-urti-575ce26e",
   "completed_guideline_families": [],
   "source_documents_acquired": [
     {
@@ -13653,8 +13716,8 @@
     "blocked": 75
   },
   "reconstruction_totals": {
-    "resolved": 452,
-    "pending": 1048,
+    "resolved": 453,
+    "pending": 1047,
     "original": 1500
   },
   "merged_workflows": [],
@@ -14059,7 +14122,8 @@
     "uro-urology-imaging-result-review",
     "uro-urology-medication-review",
     "uro-urology-referral-documentation",
-    "uro-vasectomy-counseling-documentation"
+    "uro-vasectomy-counseling-documentation",
+    "gp-fever-urti"
   ],
   "blocked_workflows": [
     "anes-pre-op-comorbidity-documentation",
@@ -14114,7 +14178,80 @@
     "uro-hematuria",
     "uro-microscopic-hematuria-result-review"
   ],
-  "last_successful_checkpoint": "2026-07-18T17:02:06.768Z",
+  "last_successful_checkpoint": "2026-07-18T17:31:34.845Z",
   "input_fingerprint": "a0ebb0899215a21a2b64cbb0c2917b299c78d3d755af1eebdedcbd7d6bbcc898",
-  "output_fingerprint": "676180a19be935aef3cc70386fb721f3408aa53a0f3431b2a566db3698764510"
+  "output_fingerprint": "fff5108935b28523ca7501dfd3490771eadce1e40a05df2dc53a86959e30b384",
+  "gap_repairs": [
+    {
+      "workflow_id": "gp-fever-urti",
+      "family_id": "family-general-medicine-gp-viral-urti-575ce26e",
+      "stage": "resolve_or_repeat",
+      "attempted_at": "2026-07-18T17:31:34.823Z",
+      "targeted_queries": [
+        "fever upper respiratory tract infection focused history",
+        "acute cough red flags examination investigations referral safety-netting",
+        "DHA telehealth cough clinical history red flags investigations referral"
+      ],
+      "source_attempts": [
+        {
+          "source_id": "dha-telehealth-cough-v2-2024",
+          "official_url": "https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf",
+          "full_document_inspected": true,
+          "text_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+          "sections": [
+            {
+              "section_id": "dha-cough-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "pages 9–10",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-red-flags",
+              "heading": "5. Red Flags",
+              "locator": "pages 10–11",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-clinical-history",
+              "heading": "6. Clinical History",
+              "locator": "pages 11–13",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-investigations",
+              "heading": "8. Investigations",
+              "locator": "pages 24–25",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            },
+            {
+              "section_id": "dha-cough-v2-referral-criteria",
+              "heading": "9. Referral criteria",
+              "locator": "pages 25–27",
+              "source_fingerprint": "20ff86f72b8dabedf633ab71b648fd2edcd67ed0656cfa915b7ee3bd2c228477",
+              "full_document_inspected": true
+            }
+          ]
+        }
+      ],
+      "sections_covered_by_repair": [
+        "focused_history",
+        "associated_symptoms",
+        "red_flags",
+        "investigations",
+        "escalation_criteria",
+        "routine_referral"
+      ],
+      "sections_still_missing": [
+        "relevant_negative_symptoms",
+        "focused_examination",
+        "safety_netting",
+        "pharmacological_management"
+      ],
+      "outcome": "no_adequate_authoritative_basis_for_independent_complete_workflow_after_targeted_full-source-research"
+    }
+  ]
 }
