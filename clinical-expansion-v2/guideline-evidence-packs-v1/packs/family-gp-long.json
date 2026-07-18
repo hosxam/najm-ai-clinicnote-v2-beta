@@ -211,7 +211,7 @@
     "patient_advice": "no_authoritative_guidance_found",
     "assessment": "no_authoritative_guidance_found"
   },
-  "pack_status": "completed",
+  "pack_status": "no_authoritative_basis_after_full_search",
   "input_fingerprint": "68af58786efc409274cadfbc8df332ec3bb38475d6518840864a4633747252ed",
   "evidence_pack_fingerprint": "66de693020f03765ff2f713c2522dc9b5e45cea9e92875ec65729d3b881ab3db",
   "workflow_archetypes": [
@@ -241,23 +241,34 @@
     "investigations": false,
     "red_flags": false
   },
-  "completion_status": "evidence_gap_requires_source",
+  "completion_status": "no_authoritative_basis_after_full_search",
   "completion_blockers": [
     {
       "section": "assessment",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
-    },
-    {
-      "section": "follow_up",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
-    },
-    {
-      "section": "investigations",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
     },
     {
       "section": "red_flags",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
+    },
+    {
+      "section": "investigations",
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
+    },
+    {
+      "section": "follow_up",
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
     }
-  ]
+  ],
+  "dependency_expansion": {
+    "evaluator_version": "source-candidate-evaluator-v2.0.0",
+    "evaluation_fingerprint": "ea33474aa381a3bd1270f02df65b8b8f09c5344f7ee1e4f7dcfb3064a9a62ca4",
+    "mapped_statement_count": 0,
+    "remaining_required_sections": [
+      "assessment",
+      "red_flags",
+      "investigations",
+      "follow_up"
+    ]
+  }
 }

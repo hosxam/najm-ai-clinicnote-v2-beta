@@ -247,7 +247,7 @@
     "patient_advice": "no_authoritative_guidance_found",
     "assessment": "no_authoritative_guidance_found"
   },
-  "pack_status": "completed",
+  "pack_status": "no_authoritative_basis_after_full_search",
   "input_fingerprint": "3325d676a9202458ea222cf07398eef19482352e5ff5c94ed1713e0c1bf15f5f",
   "evidence_pack_fingerprint": "f66d2d95a628a1bb8fd83564fdb5fb5b290cee93ddb1578090ee33b32285d1d0",
   "workflow_archetypes": [
@@ -275,19 +275,29 @@
     "escalation": false,
     "follow_up": false
   },
-  "completion_status": "evidence_gap_requires_source",
+  "completion_status": "no_authoritative_basis_after_full_search",
   "completion_blockers": [
     {
       "section": "assessment",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
-    },
-    {
-      "section": "escalation",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
     },
     {
       "section": "follow_up",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
+    },
+    {
+      "section": "escalation",
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
     }
-  ]
+  ],
+  "dependency_expansion": {
+    "evaluator_version": "source-candidate-evaluator-v2.0.0",
+    "evaluation_fingerprint": "ea33474aa381a3bd1270f02df65b8b8f09c5344f7ee1e4f7dcfb3064a9a62ca4",
+    "mapped_statement_count": 0,
+    "remaining_required_sections": [
+      "assessment",
+      "follow_up",
+      "escalation"
+    ]
+  }
 }

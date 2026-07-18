@@ -11,7 +11,7 @@ if (!errors.length) {
   if (total !== value.workflow_count) errors.push('readiness counts do not reconcile')
   const ids = value.records.map((record) => record.workflow_id)
   if (new Set(ids).size !== ids.length) errors.push('workflow IDs are not unique')
-  for (const record of value.records) if (!['READY_FOR_RECONSTRUCTION', 'NEEDS_PACK_EXPANSION', 'NEEDS_MAPPING_REPAIR', 'MERGE_ANALYSIS_REQUIRED', 'SOURCE_BLOCKED'].includes(record.readiness)) errors.push(`${record.workflow_id}: invalid readiness state`)
+  for (const record of value.records) if (!['READY_FOR_RECONSTRUCTION', 'NEEDS_PACK_EXPANSION', 'NEEDS_MAPPING_REPAIR', 'MERGE_ANALYSIS_REQUIRED', 'SOURCE_BLOCKED', 'NEEDS_RETIREMENT_ANALYSIS', 'BLOCKED_SOURCE_ACCESS'].includes(record.readiness)) errors.push(`${record.workflow_id}: invalid readiness state`)
 }
 console.log(JSON.stringify({ status: errors.length ? 'FAIL' : 'PASS', errors }, null, 2))
 if (errors.length) process.exitCode = 1

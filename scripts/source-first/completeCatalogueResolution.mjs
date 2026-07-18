@@ -1,0 +1,10 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { execFileSync } from 'node:child_process'
+const root = process.cwd(); const scripts = path.join(root, 'scripts', 'source-first'); const resolution = path.join(root, 'clinical-expansion-v2', 'guideline-workflow-resolution-v2'); const statePath = path.join(resolution, 'WORKFLOW_RESOLUTION_STATE.json'); const betaMetadata = path.join(resolution, 'beta', 'metadata.json'); const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8')); const before = fs.existsSync(statePath) ? read(statePath) : null; const beforeFingerprint = before?.output_fingerprint ?? null; const beforeBetaExists = fs.existsSync(betaMetadata)
+const run = (script) => execFileSync(process.execPath, [path.join(scripts, script)], { stdio: 'inherit' })
+run('evaluateSourceCandidates.mjs'); run('validateSourceCandidateEvaluations.mjs'); run('ingestAcceptedSources.mjs')
+if ((before?.pending_count ?? 1) > 0) { try { run('expandEvidencePackDependencies.mjs') } catch (error) { throw new Error('CATALOGUE_COMPLETION_NO_PROGRESS: dependency-scoped evidence-pack expansion made no progress') } }
+run('calculateWorkflowReadiness.mjs'); run('reconstructWorkflowsFromEvidencePacks.mjs'); run('validateWorkflowEvidenceReconstruction.mjs'); run('validateFinalStatusReconciliation.mjs'); run('buildResolvedGuidelineBeta.mjs')
+const after = read(statePath); const beta = read(betaMetadata); const progressed = beforeFingerprint !== after.output_fingerprint || !before || !beforeBetaExists
+if (!progressed) { console.error(JSON.stringify({ status: 'CATALOGUE_COMPLETION_NO_PROGRESS', active_state_fingerprint: after.output_fingerprint, required_corrective_action: 'Evaluate a new source candidate or repair a dependency-scoped pack before rerunning.' }, null, 2)); process.exitCode = 2 } else console.log(JSON.stringify({ status: 'PASS', workflow_count: after.workflow_count, resolved: after.resolved_count, pending: after.pending_count, usable_workflows: beta.usable_workflow_count, inactive_workflows: beta.inactive_workflow_count, output_fingerprint: after.output_fingerprint, catalogue_fingerprint: beta.catalogue_fingerprint }, null, 2))

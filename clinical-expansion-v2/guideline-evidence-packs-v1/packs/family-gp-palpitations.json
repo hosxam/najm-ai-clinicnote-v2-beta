@@ -822,7 +822,7 @@
     "patient_advice": "applicable_and_covered",
     "assessment": "applicable_and_covered"
   },
-  "pack_status": "completed",
+  "pack_status": "no_authoritative_basis_after_full_search",
   "input_fingerprint": "213bae721465e6d3cee23dd050c845e4b77743e4de4969812111091b8ce5d33c",
   "evidence_pack_fingerprint": "d5a048aae428b5892039294e3f8d423719dad9a03ecd196e20ea80d0f52c5602",
   "workflow_archetypes": [
@@ -852,11 +852,19 @@
     "investigations": true,
     "red_flags": true
   },
-  "completion_status": "evidence_gap_requires_source",
+  "completion_status": "no_authoritative_basis_after_full_search",
   "completion_blockers": [
     {
       "section": "follow_up",
-      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
+      "reason": "All generated official-domain candidates were terminally evaluated and no usable recommendations or exact existing-corpus mapping were found."
     }
-  ]
+  ],
+  "dependency_expansion": {
+    "evaluator_version": "source-candidate-evaluator-v2.0.0",
+    "evaluation_fingerprint": "ea33474aa381a3bd1270f02df65b8b8f09c5344f7ee1e4f7dcfb3064a9a62ca4",
+    "mapped_statement_count": 0,
+    "remaining_required_sections": [
+      "follow_up"
+    ]
+  }
 }
