@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://najm-clinicnote.local/schema/clinician-adjudication-decision-1.0.0.json",
+  "title": "Qualified-clinician adjudication micro-pilot decision template",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pilot_id",
+    "micro_review_id",
+    "record_count",
+    "authority",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "pilot_id": {
+      "const": "clinician-review-item-mapping-pilot-001"
+    },
+    "micro_review_id": {
+      "const": "micro-review-001"
+    },
+    "record_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prepared_for",
+        "clinician_authority_required",
+        "template_initial_state",
+        "supported_mappings_created",
+        "automatic_import_authorized",
+        "production_use_authorized"
+      ],
+      "properties": {
+        "prepared_for": {
+          "const": "qualified_clinician_adjudication"
+        },
+        "clinician_authority_required": {
+          "const": true
+        },
+        "template_initial_state": {
+          "const": "pending_clinician_review"
+        },
+        "supported_mappings_created": {
+          "const": 0
+        },
+        "automatic_import_authorized": {
+          "const": false
+        },
+        "production_use_authorized": {
+          "const": false
+        }
+      }
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pilot_id",
+        "micro_review_id",
+        "workflow_id",
+        "item_id",
+        "candidate_id",
+        "item_category",
+        "original_item_text",
+        "proposed_source_id",
+        "evidence_section_id",
+        "evidence_heading",
+        "evidence_locator",
+        "evidence_summary",
+        "support_classification",
+        "uae_applicability",
+        "safety_review_required",
+        "clinician_decision",
+        "revised_item_wording",
+        "clinician_comment",
+        "source_recheck_required",
+        "safety_escalation_required",
+        "reviewer_name",
+        "reviewer_professional_role",
+        "reviewer_registration_or_licence_identifier",
+        "review_date",
+        "decision_status",
+        "schema_version"
+      ],
+      "properties": {
+        "pilot_id": {
+          "const": "clinician-review-item-mapping-pilot-001"
+        },
+        "micro_review_id": {
+          "const": "micro-review-001"
+        },
+        "workflow_id": {
+          "enum": [
+            "gp-chest-pain",
+            "gp-shortness-of-breath",
+            "gp-fever-urti",
+            "peds-fever",
+            "peds-poor-feeding"
+          ]
+        },
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidate_id": {
+          "type": "string"
+        },
+        "item_category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_item_text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposed_source_id": {
+          "type": "string"
+        },
+        "evidence_section_id": {
+          "type": "string"
+        },
+        "evidence_heading": {
+          "type": "string"
+        },
+        "evidence_locator": {
+          "type": "string"
+        },
+        "evidence_summary": {
+          "type": "string"
+        },
+        "support_classification": {
+          "enum": [
+            "partial_support",
+            "contextual_support",
+            "unsupported"
+          ]
+        },
+        "uae_applicability": {
+          "type": "string",
+          "minLength": 1
+        },
+        "safety_review_required": {
+          "type": "boolean"
+        },
+        "clinician_decision": {
+          "enum": [
+            "",
+            "approve_candidate",
+            "reject_candidate",
+            "approve_with_narrower_wording",
+            "request_source_recheck",
+            "mark_item_unsupported",
+            "escalate_safety_review",
+            "defer_decision"
+          ]
+        },
+        "revised_item_wording": {
+          "type": "string"
+        },
+        "clinician_comment": {
+          "type": "string"
+        },
+        "source_recheck_required": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "safety_escalation_required": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "reviewer_name": {
+          "type": "string"
+        },
+        "reviewer_professional_role": {
+          "type": "string"
+        },
+        "reviewer_registration_or_licence_identifier": {
+          "type": "string"
+        },
+        "review_date": {
+          "anyOf": [
+            {
+              "const": ""
+            },
+            {
+              "type": "string",
+              "format": "date"
+            }
+          ]
+        },
+        "decision_status": {
+          "enum": [
+            "pending_clinician_review",
+            "clinician_decision_recorded"
+          ]
+        },
+        "schema_version": {
+          "const": "1.0.0"
+        }
+      }
+    }
+  }
+}
