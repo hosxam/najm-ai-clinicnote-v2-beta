@@ -1,4 +1,6 @@
-# Full-Source Guideline Reconstruction
+# INVALIDATED — Prior Full-Source Reconstruction Milestone
+
+This report is retained for audit history only. It must not be treated as a completion report: the strict status reopening classified 0 workflows as `reconstructed_complete`, 0 as noncritical limitations, 1,048 as clinically incomplete, 401 as source gaps, and 51 as blocked source access. See `FULL_SOURCE_RECONSTRUCTION_TRUE_COMPLETION.md`.
 
 - Branch: `full-source-guideline-reconstruction-v1`
 - Starting HEAD: `2618755f74d289e9dbddbb0af9122f62b3912163`
