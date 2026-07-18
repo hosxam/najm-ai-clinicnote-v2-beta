@@ -12,8 +12,9 @@ const errors = []
 const registry = read(path.join(corpus, 'registry', 'INGESTION_SOURCE_REGISTRY.json'))
 const manifest = read(path.join(corpus, 'manifests', 'SOURCE_CORPUS_MANIFEST.json'))
 const state = read(path.join(corpus, 'checkpoints', 'INGESTION_STATE.json'))
-if (registry.source_count !== 235 || registry.sources.length !== 235) errors.push(`registry source count is ${registry.sources.length}, expected 235`)
-if (manifest.registry_source_count !== 235 || manifest.source_records.length !== 235) errors.push('manifest does not account for all 235 source IDs')
+const expectedSourceCount = registry.sources.length
+if (registry.source_count !== expectedSourceCount) errors.push(`registry source count is ${registry.source_count}, expected ${expectedSourceCount}`)
+if (manifest.registry_source_count !== expectedSourceCount || manifest.source_records.length !== expectedSourceCount) errors.push(`manifest does not account for all ${expectedSourceCount} source IDs`)
 const seen = new Set()
 for (const source of registry.sources) {
   if (seen.has(source.source_id)) errors.push(`duplicate source id ${source.source_id}`); seen.add(source.source_id)

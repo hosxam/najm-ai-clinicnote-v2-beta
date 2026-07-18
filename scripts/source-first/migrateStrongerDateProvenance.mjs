@@ -154,8 +154,8 @@ for (const registryFile of SOURCE_FILES) {
   }
 }
 
-if (activeSourceById.size !== 235 || tupleDocument.source_tuples.length !== 235) {
-  throw new Error(`Expected 235 active sources and tuples, found ${activeSourceById.size}/${tupleDocument.source_tuples.length}`)
+if (tupleDocument.source_tuples.length !== 235 || activeSourceById.size < tupleDocument.source_tuples.length) {
+  throw new Error(`Expected at least ${tupleDocument.source_tuples.length} active sources and the historical tuple set, found ${activeSourceById.size}/${tupleDocument.source_tuples.length}`)
 }
 
 const inventoryClaims = []

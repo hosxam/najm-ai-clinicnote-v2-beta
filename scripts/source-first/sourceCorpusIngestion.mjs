@@ -61,7 +61,25 @@ function ensureTree() {
 function loadState(entries) {
   if (fs.existsSync(stateFile)) {
     const state = read(stateFile)
-    if (JSON.stringify(state.source_ids) !== JSON.stringify(entries.map((entry) => entry.source_id))) throw new Error('Ingestion checkpoint source ordering does not match the canonical registry')
+    const currentSourceIds = entries.map((entry) => entry.source_id)
+    const currentSet = new Set(currentSourceIds)
+    const missingFromRegistry = (state.source_ids ?? []).filter((sourceId) => !currentSet.has(sourceId))
+    if (missingFromRegistry.length) throw new Error(`Ingestion checkpoint contains sources missing from the canonical registry: ${missingFromRegistry.join(', ')}`)
+    if (JSON.stringify(state.source_ids) !== JSON.stringify(currentSourceIds)) {
+      // Registry expansion is append-safe even when the canonical lexical order
+      // places a new ID between completed IDs. Preserve all prior source stages
+      // and enqueue only genuinely new IDs.
+      const priorSourceIds = new Set(state.source_ids ?? [])
+      for (const sourceId of currentSourceIds) {
+        if (!priorSourceIds.has(sourceId)) {
+          state.source_status[sourceId] = { stage: 'queued', ingestion_status: null, attempts: [], output_fingerprint: null, errors: [] }
+        }
+      }
+      state.source_ids = currentSourceIds
+      state.completed_source_ids = (state.completed_source_ids ?? []).filter((sourceId) => currentSet.has(sourceId))
+      state.pending_source_ids = currentSourceIds.filter((sourceId) => !state.completed_source_ids.includes(sourceId))
+      saveState(state)
+    }
     return state
   }
   const sourceIds = entries.map((entry) => entry.source_id)

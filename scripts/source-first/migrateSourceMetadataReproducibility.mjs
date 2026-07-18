@@ -20,7 +20,7 @@ import {
 } from './sourceMetadataFingerprint.mjs'
 import { sourceRecencyPolicy } from './sourceRecencyPolicy.mjs'
 
-const EXPECTED_SOURCE_COUNT = 235
+const EXPECTED_SOURCE_COUNT = 236
 
 function operationHistoryBySource(modules) {
   const histories = new Map()

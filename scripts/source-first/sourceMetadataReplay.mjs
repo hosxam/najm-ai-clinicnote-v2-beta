@@ -29,7 +29,7 @@ export const SOURCE_METADATA_REPLAY_MANIFEST_PATH = path.join(ROOT_DIR, SOURCE_M
 export const INITIAL_SOURCE_MODULE_PATH = path.join(ROOT_DIR, 'scripts', 'recordInitialSourceResearch.mjs')
 export const EXPECTED_NUMBERED_BATCH_COUNT = 150
 export const EXPECTED_NUMBERED_WORKFLOW_COUNT = 1495
-export const EXPECTED_REPLAY_SOURCE_COUNT = 235
+export const EXPECTED_REPLAY_SOURCE_COUNT = 236
 
 export const MANAGED_SOURCE_METADATA_FIELDS = Object.freeze([
   'publication_date',

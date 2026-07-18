@@ -61,7 +61,7 @@ test('the provenance registry accounts for all 554 original claims exactly', () 
 })
 
 test('all active sources pass pure persisted-provenance validation', () => {
-  assert.equal(activeSources.length, 235)
+  assert.equal(activeSources.length, 236)
   for (const source of activeSources) assert.equal(assertSourceDateSemantics(source), source)
 })
 

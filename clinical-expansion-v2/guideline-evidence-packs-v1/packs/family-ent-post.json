@@ -842,6 +842,42 @@
     "assessment": "applicable_and_covered"
   },
   "pack_status": "completed",
-  "input_fingerprint": "fbdf321ee90af5156c21f7e79c6c45a90382ca65846b1836f7c77bc7729b405b",
-  "evidence_pack_fingerprint": "dde891be7c501cfb8557bc483e61c6b6cdcdcebd5c6579eda21d5f6efbcfe160"
+  "input_fingerprint": "9e760f06955201fbc221f1680dc5e27d7681bdf8ac37e8f1b7cda9000716a035",
+  "evidence_pack_fingerprint": "dde891be7c501cfb8557bc483e61c6b6cdcdcebd5c6579eda21d5f6efbcfe160",
+  "workflow_archetypes": [
+    "chronic_disease_follow_up",
+    "post_procedure_follow_up"
+  ],
+  "applicable_section_profile": {
+    "required_core": [
+      "assessment",
+      "escalation",
+      "follow_up",
+      "management"
+    ],
+    "conditionally_applicable": [
+      "escalation",
+      "investigations",
+      "management",
+      "patient_advice"
+    ],
+    "optional_when_guideline_supported": [
+      "red_flags",
+      "scope"
+    ],
+    "genuinely_not_applicable": []
+  },
+  "applicable_section_coverage": {
+    "assessment": true,
+    "escalation": true,
+    "follow_up": false,
+    "management": true
+  },
+  "completion_status": "evidence_gap_requires_source",
+  "completion_blockers": [
+    {
+      "section": "follow_up",
+      "reason": "No exact statement in this pack satisfies the mapped archetype requirement"
+    }
+  ]
 }
