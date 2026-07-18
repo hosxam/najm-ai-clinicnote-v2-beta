@@ -14,13 +14,20 @@ for (const id of manifest.workflow_ids) {
   const value = JSON.parse(fs.readFileSync(file, 'utf8'))
   if (!manifest.completed_workflow_ids.includes(value.workflow_id)) errors.push(`workflow not in manifest ${id}`)
   if (!value.full_documents_inspected.length && value.status !== 'source_gap_after_full_search') errors.push(`no full document recorded ${id}`)
-  for (const item of value.items) {
+  if (!Array.isArray(value.item_level_comparisons) || value.item_level_comparisons.length !== value.removed_legacy_items.length + value.retained_legacy_items.length + value.rewritten_legacy_items.length) errors.push(`legacy item comparison accounting mismatch ${id}`)
+  for (const item of value.items.filter((candidate) => candidate.action === 'added')) {
     added++
     if (!item.source.source_id || !item.source.url || !item.source.exact_location) errors.push(`missing source location ${id}/${item.item_id}`)
     if (!item.source.evidence_retrieved_on || !item.source.exact_location.locator) errors.push(`missing retrieval/location ${id}/${item.item_id}`)
   }
   removed += value.removed_legacy_items.length
-  if (value.retained_legacy_items.length + value.rewritten_legacy_items.length > 0) errors.push(`unverified legacy promotion ${id}`)
+  for (const item of [...value.retained_legacy_items, ...value.rewritten_legacy_items]) if (!item.source?.source_id || !item.source?.exact_location) errors.push(`legacy promotion lacks exact location ${id}/${item.item_id}`)
+  for (const item of value.removed_legacy_items) if (item.action !== 'remove' || !item.comparison_method || !item.reason) errors.push(`legacy removal lacks comparison reason ${id}/${item.previous_item_id}`)
+  for (const section of Object.keys(value.applicable_sections ?? {})) {
+    const sectionNeedle = section.replaceAll('_', ' ')
+    const coveredByEvidence = value.items.some((item) => item.action === 'added' && `${item.section} ${item.final_wording}`.toLowerCase().includes(sectionNeedle))
+    if (!value.section_omission_reasons[section] && !coveredByEvidence) errors.push(`unassessed section lacks omission reason ${id}/${section}`)
+  }
 }
 for (const source of manifest.archive_manifest) {
   const file = path.join(root, source.archived_filename); const textFile = path.join(root, source.text_filename)
