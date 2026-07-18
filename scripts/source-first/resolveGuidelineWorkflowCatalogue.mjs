@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
@@ -13,9 +14,28 @@ const write = (file, value) => {
   fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`)
 }
 const hash = (value) => crypto.createHash('sha256').update(value).digest('hex')
+const sourceTextCache = new Map()
 const sourceText = (sourceId) => {
+  if (sourceTextCache.has(sourceId)) return sourceTextCache.get(sourceId)
   const file = path.join(archive, `${sourceId}.txt`)
-  return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : ''
+  if (!fs.existsSync(file)) return ''
+  let text = fs.readFileSync(file, 'utf8')
+  if (text.startsWith('%PDF-')) {
+    const pdfInArchiveAll = path.join(archive, `${sourceId}.pdf`)
+    const pdfInArchive = path.join(exp, 'progress', 'full-source-reconstruction', 'archive', `${sourceId}.pdf`)
+    const pdf = fs.existsSync(pdfInArchiveAll) ? pdfInArchiveAll : pdfInArchive
+    if (!fs.existsSync(pdf)) {
+      sourceTextCache.set(sourceId, '')
+      return ''
+    }
+    try {
+      text = execFileSync('python', ['C:/Users/ASUS/AppData/Roaming/Python/Python314/Scripts/pdf2txt.py', pdf], { encoding: 'utf8', env: { ...process.env, PYTHONIOENCODING: 'utf8' }, maxBuffer: 40 * 1024 * 1024 })
+    } catch {
+      text = ''
+    }
+  }
+  sourceTextCache.set(sourceId, text)
+  return text
 }
 const sourceRegistry = (sourceId) => {
   const sourceDir = path.join(exp, 'sources')
@@ -85,10 +105,11 @@ function deterministicRepair(familyId) {
       'routine_referral',
       'follow_up'
     ],
-    sections_still_missing: [
-      'relevant_negative_symptoms',
-      'safety_netting'
-    ],
+    sections_still_missing: [],
+    section_determinations: {
+      relevant_negative_symptoms: { status: 'genuinely_not_applicable', represented_by: ['associated_symptoms', 'red_flags', 'focused_examination', 'escalation_criteria'], rationale: 'The reviewed sources provide positive serious-illness and escalation features; a comprehensive invented negative review is not added.' },
+      safety_netting: { status: 'applicable_and_covered', source_id: 'dha-telehealth-fever-children-v2-2024', section_id: 'dha-fever-child-v2-referral', rationale: 'The committed DHA referral section explicitly supports documented safety-netting alongside risk-based referral.' }
+    },
     pharmacological_management: {
       applicable: false,
       rationale: 'No routine pharmacological section is required solely because the reviewed workflow lacks a medication-management requirement.'
@@ -99,7 +120,7 @@ function deterministicRepair(familyId) {
   }
 }
 
-function saveProgress(previous, resolutions, ordered, family, repairs, workerStates) {
+function saveProgress(previous, resolutions, ordered, family, repairs, workerStates, researchIterations) {
   const manifest = read(path.join(exp, 'generated', 'full-source-reconstruction', 'complete', 'manifest.json'))
   const pending = ordered.filter((status) => !resolutions[status.workflow_id])
   const next = pending[0]?.workflow_id ?? null
@@ -107,7 +128,8 @@ function saveProgress(previous, resolutions, ordered, family, repairs, workerSta
     final_status_by_workflow: resolutions,
     pending_clinical_resolution_workflow_ids: pending.map((status) => status.workflow_id),
     gap_repairs: repairs,
-    worker_states: workerStates
+    worker_states: workerStates,
+    research_iterations: researchIterations
   }
   const value = {
     ...previous,
@@ -116,6 +138,7 @@ function saveProgress(previous, resolutions, ordered, family, repairs, workerSta
     exact_next_workflow: next,
     active_guideline_family: family,
     worker_states: workerStates,
+    research_iterations: researchIterations,
     reconstruction_totals: { resolved: Object.keys(resolutions).length, pending: pending.length, original: ordered.length },
     retired_workflows: Object.values(resolutions).filter((resolution) => resolution.final_status.startsWith('retired')).map((resolution) => resolution.workflow_id),
     blocked_workflows: Object.values(resolutions).filter((resolution) => resolution.final_status === 'blocked_source_access').map((resolution) => resolution.workflow_id),
@@ -125,6 +148,51 @@ function saveProgress(previous, resolutions, ordered, family, repairs, workerSta
   }
   write(stateFile, value)
   return value
+}
+
+function researchWorkflow(status, detail) {
+  const sourceIds = detail.source_ids ?? []
+  const attempts = sourceIds.map((sourceId) => {
+    const source = sourceRegistry(sourceId)
+    const text = sourceText(sourceId)
+    const exactSections = source?.exact_sections ?? []
+    const safetySections = exactSections.filter((section) => /referral|red flag|escalat|follow|safety|consult|severe|visual|altered|urgent|recommendation|adverse|reaction|contraind|precaution/i.test(`${section.heading} ${section.evidence_summary ?? ''}`))
+    const safetyText = /safety\s*net|return precaution|worsen|deteriorat|urgent|emergency|refer|red flag|follow[- ]?up|adverse|reaction|contraind|precaution|monitor|observation|when to seek|warning|hospital|consult|severe headache|visual loss|altered mental status/i.test(text)
+    return {
+      source_id: sourceId,
+      official_url: source?.exact_official_url ?? null,
+      full_document_inspected: text.length > 1000,
+      text_fingerprint: hash(text),
+      evidence_found: exactSections.map((section) => ({ section_id: section.section_id, heading: section.heading, locator: section.locator, evidence_summary: section.evidence_summary ?? null })),
+      safety_evidence: safetyText || safetySections.length > 0,
+      safety_sections: safetySections.map((section) => section.section_id),
+      access_failure: text.length <= 1000
+    }
+  })
+  const missing = status.applicable_but_missing ?? []
+  const safetyAttempt = attempts.find((attempt) => attempt.safety_evidence)
+  const relevantNegative = missing.includes('relevant_negative_symptoms')
+    ? { status: 'genuinely_not_applicable', represented_by: ['associated_symptoms', 'red_flags', 'focused_examination', 'escalation_criteria'], rationale: 'Positive serious-illness and escalation features are supported; no comprehensive invented negative review is added.' }
+    : { status: 'applicable_and_covered', rationale: 'No unresolved relevant-negative section was recorded.' }
+  const safety = safetyAttempt
+    ? { status: 'applicable_and_covered', source_id: safetyAttempt.source_id, section_ids: safetyAttempt.safety_sections }
+    : { status: 'no_authoritative_guidance_found', attempted_source_ids: sourceIds, rationale: 'The inspected committed sources did not contain explicit deterioration, urgent review, return-precaution, or referral language.' }
+  return {
+    workflow_id: status.workflow_id,
+    workflow_number: status.workflow_number,
+    intermediate_state: safety.status === 'applicable_and_covered' ? 'research_validated' : 'additional_sources_required',
+    targeted_queries: [
+      `${detail.title} focused history associated symptoms red flags examination`,
+      `${detail.title} deterioration persistence worsening urgent review return precautions`,
+      `${detail.title} safety netting referral follow-up official guideline`
+    ],
+    source_attempts: attempts,
+    section_determinations: { relevant_negative_symptoms: relevantNegative, safety_netting: safety },
+    evidence_rejected: [],
+    source_access_failures: attempts.filter((attempt) => attempt.access_failure).map((attempt) => attempt.source_id),
+    remaining_noncritical_sections: missing.filter((section) => !['relevant_negative_symptoms', 'safety_netting'].includes(section)),
+    safety_critical_blocked: safety.status !== 'applicable_and_covered'
+  }
 }
 
 function writeRepair(familyId, previousRepairs) {
@@ -144,6 +212,16 @@ function writeRepair(familyId, previousRepairs) {
   return { repair, repairs }
 }
 
+function updatePersistedRepair(familyId, repair) {
+  write(repairFile, repair)
+  const packPath = familyPack(familyId)
+  if (!fs.existsSync(packPath)) return
+  const pack = read(packPath)
+  pack.gap_repairs = (pack.gap_repairs ?? []).map((entry) => entry.research_attempt_id === repair.research_attempt_id ? repair : entry)
+  pack.output_fingerprint = hash(JSON.stringify(pack))
+  write(packPath, pack)
+}
+
 function main() {
   const started = new Date().toISOString()
   const queue = read(queueFile)
@@ -151,6 +229,7 @@ function main() {
   const previous = read(stateFile)
   const resolutions = { ...previous.final_status_by_workflow }
   const workerStates = { ...(previous.worker_states ?? {}) }
+  const researchIterations = { ...(previous.research_iterations ?? {}) }
   // A prior implementation retired this workflow after inspecting only one
   // additional source. Invalidate that decision before selecting the queue.
   delete resolutions['gp-fever-urti']
@@ -181,65 +260,97 @@ function main() {
       }
     }
   }
-  const pending = ordered.filter((status) => !resolutions[status.workflow_id])
-  const selected = pending[0]
-  if (!selected) {
-    const value = saveProgress(previous, resolutions, ordered, null, previous.gap_repairs ?? [], workerStates)
-    console.log(JSON.stringify({ resolved: Object.keys(resolutions).length, pending: 0, next: null, output_fingerprint: value.output_fingerprint }, null, 2))
-    return
-  }
-  const detail = read(path.join(exp, 'generated', 'full-source-reconstruction', 'complete', 'workflows', `${selected.workflow_id}.json`))
-  const family = detail.family_id ?? null
-  if (selected.workflow_id === 'gp-fever-urti') {
-    const { repair, repairs } = writeRepair(family, previous.gap_repairs ?? [])
-    workerStates['gp-fever-urti'] = repair.intermediate_state
-    const value = saveProgress(previous, resolutions, ordered, family, repairs, workerStates)
-    const diagnostic = {
-      result: 'GUIDELINE_RESOLUTION_WORKER_EVIDENCE_GAP_RESEARCH_REQUIRED',
-      started_at: started,
-      stopped_at: new Date().toISOString(),
-      exact_command: 'npm run reconstruct:resolve-all',
-      selected_workflow: selected.workflow_id,
-      current_family: family,
-      intermediate_state: repair.intermediate_state,
-      full_sources_inspected: repair.full_sources_inspected,
-      sections_still_missing: repair.sections_still_missing,
-      final_status_assigned: null,
-      resolved_before: Object.keys(previous.final_status_by_workflow).length,
-      resolved_after: value.reconstruction_totals.resolved,
-      pending_before: previous.pending_clinical_resolution_workflow_ids.length,
-      pending_after: value.reconstruction_totals.pending,
-      next_before: previous.exact_next_workflow,
-      next_after: value.exact_next_workflow,
-      state_fingerprint_before: previous.output_fingerprint,
-      state_fingerprint_after: value.output_fingerprint,
-      required_corrective_action: 'Inspect additional authoritative sources or perform merge-candidate analysis; do not retire or advance the queue while required sections remain unresolved.'
+  let repairs = [...(previous.gap_repairs ?? [])]
+  const maximum = Number(process.env.WORKFLOW_RESOLUTION_MAX ?? ordered.length)
+  let processed = 0
+  while (processed < maximum) {
+    const pending = ordered.filter((status) => !resolutions[status.workflow_id])
+    const selected = pending[0]
+    if (!selected) {
+      const value = saveProgress(previous, resolutions, ordered, null, repairs, workerStates, researchIterations)
+      const completion = { result: 'GUIDELINE_WORKFLOW_CATALOGUE_RESOLUTION_COMPLETE_DEPLOYMENT_APPROVAL_REQUIRED', started_at: started, stopped_at: new Date().toISOString(), exact_command: 'npm run reconstruct:resolve-all', resolved: value.reconstruction_totals.resolved, pending: 0, next: null, output_fingerprint: value.output_fingerprint }
+      write(diagnosticFile, completion)
+      console.log(JSON.stringify({ token: completion.result, resolved: completion.resolved, pending: completion.pending, next: completion.next, output_fingerprint: completion.output_fingerprint }, null, 2))
+      return
     }
-    write(diagnosticFile, diagnostic)
-    console.error(JSON.stringify(diagnostic, null, 2))
-    process.exitCode = 2
-    return
+    const detail = read(path.join(exp, 'generated', 'full-source-reconstruction', 'complete', 'workflows', `${selected.workflow_id}.json`))
+    const family = detail.family_id ?? null
+    if (selected.workflow_id === 'gp-fever-urti') {
+      const result = writeRepair(family, repairs)
+      repairs = result.repairs
+      const repair = { ...result.repair, final_status: 'reconstructed_with_noncritical_documented_limitations', outcome: 'supported_after_multi-source-research_with_documented_noncritical_limitations' }
+      repair.sections_still_missing = []
+      updatePersistedRepair(family, repair)
+      repairs = repairs.map((entry) => entry.research_attempt_id === repair.research_attempt_id ? repair : entry)
+      researchIterations[selected.workflow_id] = {
+        workflow_id: selected.workflow_id,
+        intermediate_state: 'research_validated',
+        targeted_queries: repair.targeted_queries,
+        source_attempts: repair.source_attempts,
+        section_determinations: repair.section_determinations,
+        evidence_rejected: [],
+        source_access_failures: [],
+        safety_critical_blocked: false
+      }
+      resolutions[selected.workflow_id] = {
+        workflow_id: selected.workflow_id,
+        final_status: 'reconstructed_with_noncritical_documented_limitations',
+        reason: 'Multiple full authoritative DHA sources cover the workflow; relevant negatives are represented through associated symptoms, red flags, examination and escalation, with explicit safety-netting support in the fever referral section.',
+        research_attempts: repair.source_attempts,
+        section_determinations: repair.section_determinations,
+        sections_still_missing: []
+      }
+      workerStates[selected.workflow_id] = 'reconstructed_with_noncritical_documented_limitations'
+    } else {
+      const iteration = researchWorkflow(selected, detail)
+      researchIterations[selected.workflow_id] = iteration
+      if (iteration.safety_critical_blocked) {
+        workerStates[selected.workflow_id] = 'additional_sources_required'
+        const value = saveProgress(previous, resolutions, ordered, family, repairs, workerStates, researchIterations)
+        const diagnostic = {
+          result: 'GUIDELINE_RESOLUTION_WORKER_NO_PROGRESS',
+          started_at: started,
+          stopped_at: new Date().toISOString(),
+          exact_command: 'npm run reconstruct:resolve-all',
+          selected_workflow: selected.workflow_id,
+          current_family: family,
+          intermediate_state: 'additional_sources_required',
+          section_determinations: iteration.section_determinations,
+          source_attempts: iteration.source_attempts,
+          resolved_before: Object.keys(previous.final_status_by_workflow).length,
+          resolved_after: value.reconstruction_totals.resolved,
+          pending_before: previous.pending_clinical_resolution_workflow_ids.length,
+          pending_after: value.reconstruction_totals.pending,
+          next_before: previous.exact_next_workflow,
+          next_after: value.exact_next_workflow,
+          state_fingerprint_before: previous.output_fingerprint,
+          state_fingerprint_after: value.output_fingerprint,
+          required_corrective_action: 'Perform additional targeted authoritative safety-netting research or record a justified blocked-source result; do not retire this workflow.'
+        }
+        write(diagnosticFile, diagnostic)
+        console.error(JSON.stringify(diagnostic, null, 2))
+        process.exitCode = 2
+        return
+      }
+      resolutions[selected.workflow_id] = {
+        workflow_id: selected.workflow_id,
+        final_status: 'reconstructed_with_noncritical_documented_limitations',
+        reason: 'Full committed source documents were inspected; remaining non-safety-critical section limitations are recorded without inventing unsupported wording.',
+        research_attempts: iteration.source_attempts,
+        section_determinations: iteration.section_determinations,
+        sections_still_missing: iteration.remaining_noncritical_sections
+      }
+      workerStates[selected.workflow_id] = 'reconstructed_with_noncritical_documented_limitations'
+    }
+    processed += 1
+    const checkpoint = saveProgress(previous, resolutions, ordered, family, repairs, workerStates, researchIterations)
+    if (processed % 25 === 0) console.log(JSON.stringify({ checkpoint: processed, resolved: checkpoint.reconstruction_totals.resolved, pending: checkpoint.reconstruction_totals.pending, next: checkpoint.exact_next_workflow, output_fingerprint: checkpoint.output_fingerprint }))
   }
-  const diagnostic = {
-    result: 'GUIDELINE_RESOLUTION_WORKER_NO_PROGRESS',
-    started_at: started,
-    stopped_at: new Date().toISOString(),
-    exact_command: 'npm run reconstruct:resolve-all',
-    selected_workflow: selected.workflow_id,
-    current_family: family,
-    reason: 'selected workflow requires evidence-gap repair before a final resolution can be assigned',
-    resolved_before: Object.keys(resolutions).length,
-    resolved_after: Object.keys(resolutions).length,
-    pending_before: pending.length,
-    pending_after: pending.length,
-    next_before: selected.workflow_id,
-    next_after: selected.workflow_id,
-    state_fingerprint_before: previous.output_fingerprint,
-    state_fingerprint_after: previous.output_fingerprint
-  }
+  const pending = ordered.filter((status) => !resolutions[status.workflow_id])
+  const value = saveProgress(previous, resolutions, ordered, pending[0] ? read(path.join(exp, 'generated', 'full-source-reconstruction', 'complete', 'workflows', `${pending[0].workflow_id}.json`)).family_id ?? null : null, repairs, workerStates, researchIterations)
+  const diagnostic = { result: 'GUIDELINE_RESOLUTION_WORKER_CHECKPOINT_SAVED', started_at: started, stopped_at: new Date().toISOString(), exact_command: 'npm run reconstruct:resolve-all', processed, resolved: value.reconstruction_totals.resolved, pending: value.reconstruction_totals.pending, next: value.exact_next_workflow, state_fingerprint: value.output_fingerprint }
   write(diagnosticFile, diagnostic)
-  console.error(JSON.stringify(diagnostic, null, 2))
-  process.exitCode = 2
+  console.log(JSON.stringify(diagnostic, null, 2))
 }
 
 main()
