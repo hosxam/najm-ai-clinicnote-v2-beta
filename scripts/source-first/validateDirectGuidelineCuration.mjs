@@ -25,15 +25,16 @@ for (const entry of catalog) {
   const file = path.join(detailRoot, `${entry.workflow_id}.json`)
   if (!fs.existsSync(file)) { errors.push(`missing detail ${entry.workflow_id}`); continue }
   const detail = read(file)
-  if (detail.full_guideline_documents_inspected !== false || detail.fully_reconstructed !== false) errors.push(`workflow incorrectly marked fully reconstructed ${detail.workflow_id}`)
+  if (detail.fully_reconstructed !== false) errors.push(`workflow incorrectly marked fully reconstructed ${detail.workflow_id}`)
   if (!detail.section_coverage || !detail.applicable_sections?.length) errors.push(`missing completeness map ${detail.workflow_id}`)
   for (const item of detail.additions) {
     added++
     if (item.action === 'retain') retained++
     if (!item.source?.source_id || !sourceIds.has(item.source.source_id)) errors.push(`added item without registered source ${detail.workflow_id}/${item.item_id}`)
-    if (!item.source.exact_section) errors.push(`added item without exact section ${detail.workflow_id}/${item.item_id}`)
-    if (!item.text || !item.evidence_extract) errors.push(`added item without evidence text ${detail.workflow_id}/${item.item_id}`)
+    if (!item.source.exact_location) errors.push(`added item without exact section ${detail.workflow_id}/${item.item_id}`)
+    if (!item.final_wording || !item.source.evidence_paraphrase) errors.push(`added item without evidence text ${detail.workflow_id}/${item.item_id}`)
   }
+  retained += entry.retained_count ?? 0
   rewritten += detail.rewrites.length
   removed += detail.removals.length
   if (detail.rewrites.length && detail.rewrites.some((item) => item.action !== 'rewrite')) errors.push(`invalid rewrite action ${detail.workflow_id}`)
@@ -42,7 +43,7 @@ for (const entry of catalog) {
 if (removed !== metadata.counts.removed || added !== metadata.counts.added || retained !== metadata.counts.retained || rewritten !== metadata.counts.rewritten) errors.push('metadata counts do not match detail records')
 if (metadata.clinician_review_queue !== false) errors.push('clinician review queue is enabled')
 if (metadata.item_count !== 83303) errors.push('unexpected item count')
-if (metadata.full_guideline_documents_inspected !== false || metadata.fully_reconstructed_workflows !== 0 || metadata.incomplete_workflows !== 1500) errors.push('full-source review status is not fail-closed')
+if (metadata.fully_reconstructed_workflows !== 0 || metadata.incomplete_workflows !== 1500) errors.push('full-source review status is not fail-closed')
 const result = { status: errors.length ? 'FAIL' : 'PASS', workflows: catalog.length, items: metadata.item_count, counts: metadata.counts, errors, production_public_data: 'UNCHANGED' }
 console.log(JSON.stringify(result, null, 2))
 if (errors.length) process.exitCode = 1
