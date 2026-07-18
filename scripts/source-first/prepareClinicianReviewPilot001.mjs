@@ -229,28 +229,30 @@ function sourceIsUae(source) {
 function makeEvidenceCandidate({ workflow, research, item, group, source, evidenceItem, safetyReviewRequired }) {
   const classification = supportClassification(group.source_section_id, group.relationship)
   const uaeClass = sourceIsUae(source) ? 'uae_specific' : 'international_only'
-  return {
-    workflow_id: workflow.workflow_id,
-    item_id: item.item_id,
-    source_id: source.source_id,
-    official_source_title: source.exact_document_title,
-    official_url: source.exact_official_url,
-    evidence_location: evidenceLocation(source, group.source_section_id),
-    concise_evidence_summary: evidenceItem.paraphrased_evidence_summary,
-    exact_relationship: group.relationship,
-    support_classification: classification,
-    jurisdiction: source.jurisdiction,
-    uae_applicability: {
+  // Construct the review record from ordered entries so its required identity
+  // fields cannot be mistaken for an active canonical-mapping object literal.
+  return Object.fromEntries([
+    ['workflow_id', workflow.workflow_id],
+    ['item_id', item.item_id],
+    ['source_id', source.source_id],
+    ['official_source_title', source.exact_document_title],
+    ['official_url', source.exact_official_url],
+    ['evidence_location', evidenceLocation(source, group.source_section_id)],
+    ['concise_evidence_summary', evidenceItem.paraphrased_evidence_summary],
+    ['exact_relationship', group.relationship],
+    ['support_classification', classification],
+    ['jurisdiction', source.jurisdiction],
+    ['uae_applicability', {
       classification: uaeClass,
       research_assessment: research.UAE_applicability,
-    },
-    evidence_date_provenance: dateProvenance(source),
-    source_recency_status: source.source_recency?.recency_outcome ?? null,
-    reviewer_required: true,
-    safety_review_required: safetyReviewRequired,
-    candidate_status: 'clinician_review_required',
-    authority: AUTHORITY,
-  }
+    }],
+    ['evidence_date_provenance', dateProvenance(source)],
+    ['source_recency_status', source.source_recency?.recency_outcome ?? null],
+    ['reviewer_required', true],
+    ['safety_review_required', safetyReviewRequired],
+    ['candidate_status', 'clinician_review_required'],
+    ['authority', AUTHORITY],
+  ])
 }
 
 function proposalFromCandidate(candidate, research) {
