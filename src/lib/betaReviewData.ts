@@ -2,6 +2,15 @@ import { publicPath } from './publicPath'
 
 export type BetaResearchStatus = 'exact_source_support' | 'partial_source_support' | 'no_authoritative_source'
 
+export type BetaAdjudicationClassification =
+  | 'fully_supported'
+  | 'partially_supported'
+  | 'contextual_only'
+  | 'not_supported'
+  | 'conflicting_evidence'
+  | 'source_inaccessible'
+  | 'no_evidence_link'
+
 export type BetaReviewDecision =
   | 'keep_as_written'
   | 'edit_wording'
@@ -45,6 +54,12 @@ export type BetaCatalogEntry = {
   source_count: number
   evidence_link_count: number
   clinician_review_status: 'not_reviewed'
+  adjudication_item_count?: number
+  support_classification_counts?: Record<BetaAdjudicationClassification, number>
+  low_confidence_count?: number
+  human_review_required_count?: number
+  adjudication_safety_review_required_count?: number
+  ai_verified_pending_clinical_approval_count?: number
 }
 
 export type BetaReviewItem = {
@@ -92,6 +107,50 @@ export type BetaWorkflowDetail = BetaCatalogEntry & {
   items: BetaReviewItem[]
 }
 
+export type BetaAdjudicationItem = {
+  workflow_id: string
+  item_id: string
+  item_category: string
+  current_item_text: string
+  source_id: string | null
+  source_title: string | null
+  source_url: string | null
+  exact_evidence_location: { section_id: string; heading: string; locator: string } | null
+  evidence_text: string | null
+  evidence_links: Array<{
+    source_id: string
+    source_title: string | null
+    source_url: string | null
+    source_section_id: string | null
+    exact_evidence_location: { section_id: string; heading: string; locator: string } | null
+    evidence_text: string | null
+    direct_relationship: string | null
+    candidate_proposal_status: string | null
+    source_registered: boolean
+  }>
+  support_classification: BetaAdjudicationClassification
+  support_rationale: string
+  wording_scope_difference: string
+  suggested_narrower_wording: string | null
+  confidence_score: number
+  human_review_required: boolean
+  review_reason: string
+  safety_critical: boolean
+  verification_state: 'AI_VERIFIED_PENDING_CLINICAL_APPROVAL' | 'HUMAN_REVIEW_REQUIRED'
+  UAE_applicability: { classification: string; statement: string; finding_types: string[] }
+  model_version: string
+  adjudication_schema_version: string
+  existing_candidate_proposal: string | null
+  clinician_decision: null
+  clinician_approval_status: 'not_approved'
+}
+
+export type BetaAdjudicationDetail = {
+  workflow_id: string
+  workflow_number: number
+  items: BetaAdjudicationItem[]
+}
+
 export type BetaReviewMetadata = {
   schema_version: '1.0.0'
   beta_label: 'BETA — CLINICIAN REVIEW DATA'
@@ -128,13 +187,21 @@ export const betaReviewDataAdapter = {
       datasetPromise = Promise.all([
         loadJson<BetaReviewMetadata>('data-beta/metadata.json'),
         loadJson<BetaCatalogEntry[]>('data-beta/catalog.json'),
-      ]).then(([metadata, catalog]) => ({ metadata, catalog }))
+        loadJson<Array<Pick<BetaCatalogEntry, 'workflow_id' | 'adjudication_item_count' | 'support_classification_counts' | 'low_confidence_count' | 'human_review_required_count' | 'adjudication_safety_review_required_count' | 'ai_verified_pending_clinical_approval_count'>>>('data-beta/adjudication/catalog.json'),
+      ]).then(([metadata, catalog, adjudicationCatalog]) => {
+        const adjudicationById = new Map(adjudicationCatalog.map((entry) => [entry.workflow_id, entry]))
+        return { metadata, catalog: catalog.map((entry) => ({ ...entry, ...(adjudicationById.get(entry.workflow_id) ?? {}) })) }
+      })
     }
     return datasetPromise
   },
 
   async getWorkflowDetail(workflowId: string) {
     return loadJson<BetaWorkflowDetail>(`data-beta/workflows/${workflowId}.json`)
+  },
+
+  async getAdjudicationDetail(workflowId: string) {
+    return loadJson<BetaAdjudicationDetail>(`data-beta/adjudication/workflows/${workflowId}.json`)
   },
 }
 

@@ -15,6 +15,8 @@ import {
   type BetaReviewRecord,
   type BetaCatalogEntry,
   type BetaWorkflowDetail,
+  type BetaAdjudicationClassification,
+  type BetaAdjudicationItem,
 } from '../lib/betaReviewData'
 import { normalizeDisplayText } from '../lib/labelUtils'
 
@@ -29,6 +31,16 @@ const decisionOptions: Array<{ value: BetaReviewDecision; label: string }> = [
   { value: 'needs_safety_review', label: 'Needs safety review' },
   { value: 'defer', label: 'Defer' },
 ]
+
+const classificationLabels: Record<BetaAdjudicationClassification, string> = {
+  fully_supported: 'Fully supported',
+  partially_supported: 'Partially supported',
+  contextual_only: 'Contextual only',
+  not_supported: 'Not supported',
+  conflicting_evidence: 'Conflicting evidence',
+  source_inaccessible: 'Source inaccessible',
+  no_evidence_link: 'No evidence link',
+}
 
 function isReviewed(record: BetaReviewRecord | undefined) {
   return Boolean(record?.decision)
@@ -56,7 +68,11 @@ function workflowMatchesFilters(
   if (filters.status !== 'all' && workflow.research_status !== filters.status) return false
   if (filters.uae && workflow.uae_finding_types.length === 0) return false
   if (filters.unsupported && workflow.unsupported_item_count === 0) return false
-  if (filters.safety && workflow.safety_review_required_count === 0) return false
+  if (filters.safety && (workflow.adjudication_safety_review_required_count ?? workflow.safety_review_required_count) === 0) return false
+  if (filters.adjudication !== 'all' && !(workflow.support_classification_counts?.[filters.adjudication] ?? 0)) return false
+  if (filters.lowConfidence && !(workflow.low_confidence_count ?? 0)) return false
+  if (filters.humanReview && !(workflow.human_review_required_count ?? 0)) return false
+  if (filters.aiVerified && !(workflow.ai_verified_pending_clinical_approval_count ?? 0)) return false
   const recordsForWorkflow = Object.values(records).filter((record) => record.workflow_id === workflow.workflow_id && isReviewed(record))
   const allReviewed = recordsForWorkflow.length >= workflow.item_count && workflow.item_count > 0
   const hasReviewed = recordsForWorkflow.length > 0
@@ -77,6 +93,10 @@ type Filters = {
   uae: boolean
   unsupported: boolean
   safety: boolean
+  adjudication: BetaAdjudicationClassification | 'all'
+  lowConfidence: boolean
+  humanReview: boolean
+  aiVerified: boolean
   reviewed: 'all' | 'reviewed' | 'unreviewed'
   edited: boolean
   deferred: boolean
@@ -85,17 +105,21 @@ type Filters = {
 function ReviewItem({
   workflowId,
   item,
+  adjudication,
   record,
   onChange,
 }: {
   workflowId: string
   item: BetaReviewItem
+  adjudication?: BetaAdjudicationItem
   record?: BetaReviewRecord
   onChange: (item: BetaReviewItem, patch: Partial<BetaReviewRecord>) => void
 }) {
   const decision = record?.decision ?? ''
+  const classification = adjudication?.support_classification
+  const isPriority = Boolean(adjudication?.human_review_required || adjudication?.safety_critical || classification === 'partially_supported' || classification === 'contextual_only' || classification === 'conflicting_evidence' || classification === 'source_inaccessible' || classification === 'no_evidence_link' || classification === 'not_supported')
   return (
-    <article className={`rounded-xl border p-4 ${item.safety_review_required ? 'border-amber-200 bg-amber-50/40' : 'border-slate-200 bg-white'}`}>
+    <article className={`rounded-xl border p-4 ${adjudication?.safety_critical || item.safety_review_required ? 'border-amber-200 bg-amber-50/40' : 'border-slate-200 bg-white'}`} data-review-priority={isPriority ? 'true' : 'false'}>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
@@ -104,6 +128,8 @@ function ReviewItem({
             <span>{item.item_type.replaceAll('_', ' ')}</span>
             {item.unsupported ? <span className="rounded-full bg-rose-100 px-2 py-0.5 text-rose-800">Unsupported pending review</span> : null}
             {item.safety_review_required ? <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-amber-900"><ShieldAlert className="h-3 w-3" /> Safety review</span> : null}
+            {classification ? <span className={`rounded-full px-2 py-0.5 ${classification === 'fully_supported' ? 'bg-emerald-100 text-emerald-900' : classification === 'no_evidence_link' || classification === 'not_supported' ? 'bg-rose-100 text-rose-800' : 'bg-violet-100 text-violet-900'}`}>{classificationLabels[classification]}</span> : null}
+            {adjudication?.verification_state === 'AI_VERIFIED_PENDING_CLINICAL_APPROVAL' ? <span className="rounded-full bg-cyan-100 px-2 py-0.5 text-cyan-900">AI verified — pending approval</span> : null}
           </div>
           <p className="mt-2 text-sm leading-6 text-slate-900">{item.text}</p>
           <p className="mt-2 font-mono text-[10px] text-slate-400">{item.item_id}</p>
@@ -121,6 +147,17 @@ function ReviewItem({
           </select>
         </label>
       </div>
+      {adjudication ? (
+        <div className="mt-4 grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3 text-xs leading-5 text-slate-700 sm:grid-cols-2">
+          <div><strong>AI rationale:</strong> {adjudication.support_rationale}</div>
+          <div><strong>Confidence:</strong> {(adjudication.confidence_score * 100).toFixed(0)}% {adjudication.human_review_required ? '• human review required' : '• low-risk pending approval'}</div>
+          <div><strong>Scope difference:</strong> {adjudication.wording_scope_difference}</div>
+          <div><strong>UAE applicability:</strong> {adjudication.UAE_applicability.classification} — {adjudication.UAE_applicability.statement}</div>
+          <div className="sm:col-span-2"><strong>Human-review reason:</strong> {adjudication.review_reason || 'No additional routing reason.'}</div>
+          {adjudication.suggested_narrower_wording ? <div className="sm:col-span-2 rounded-md border border-violet-200 bg-violet-50 px-3 py-2 text-violet-950"><strong>Suggested narrower wording (not applied):</strong> {adjudication.suggested_narrower_wording}</div> : null}
+          <div className="sm:col-span-2"><strong>Exact evidence:</strong> {adjudication.source_title ?? 'No registered source'}{adjudication.exact_evidence_location ? ` — ${adjudication.exact_evidence_location.heading} (${adjudication.exact_evidence_location.locator})` : ''}<br />{adjudication.evidence_text ?? 'No exact evidence extract is linked.'}</div>
+        </div>
+      ) : null}
       {decision === 'edit_wording' ? (
         <label className="mt-4 block space-y-1.5 text-xs font-semibold text-slate-700">
           <span>Edited wording</span>
@@ -144,10 +181,12 @@ export function BetaReviewPage() {
   const [metadata, setMetadata] = useState<Awaited<ReturnType<typeof betaReviewDataAdapter.loadDataset>>['metadata'] | null>(null)
   const [catalog, setCatalog] = useState<Awaited<ReturnType<typeof betaReviewDataAdapter.loadDataset>>['catalog']>([])
   const [details, setDetails] = useState<BetaWorkflowDetail | null>(null)
+  const [adjudication, setAdjudication] = useState<Awaited<ReturnType<typeof betaReviewDataAdapter.getAdjudicationDetail>> | null>(null)
   const [detailCache, setDetailCache] = useState<Map<string, BetaWorkflowDetail>>(new Map())
   const [records, setRecords] = useState<Record<string, BetaReviewRecord>>(() => readBetaReviewRecords())
-  const [filters, setFilters] = useState<Filters>({ search: '', specialty: 'all', status: 'all', uae: false, unsupported: false, safety: false, reviewed: 'all', edited: false, deferred: false })
+  const [filters, setFilters] = useState<Filters>({ search: '', specialty: 'all', status: 'all', uae: false, unsupported: false, safety: false, adjudication: 'all', lowConfidence: false, humanReview: false, aiVerified: false, reviewed: 'all', edited: false, deferred: false })
   const [itemSearch, setItemSearch] = useState('')
+  const [itemQueue, setItemQueue] = useState<'priority' | 'all'>('priority')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [message, setMessage] = useState<string | null>(null)
@@ -167,17 +206,23 @@ export function BetaReviewPage() {
   useEffect(() => {
     if (!workflowId) {
       setDetails(null)
+      setAdjudication(null)
       return
     }
     const cached = detailCache.get(workflowId)
     if (cached) {
       setDetails(cached)
+      betaReviewDataAdapter.getAdjudicationDetail(workflowId).then(setAdjudication).catch(() => setAdjudication(null))
       return
     }
     setDetails(null)
+    setAdjudication(null)
     betaReviewDataAdapter.getWorkflowDetail(workflowId).then((detail) => {
       setDetailCache((current) => new Map(current).set(workflowId, detail))
       setDetails(detail)
+      return betaReviewDataAdapter.getAdjudicationDetail(workflowId)
+    }).then((loadedAdjudication) => {
+      if (loadedAdjudication) setAdjudication(loadedAdjudication)
     }).catch((caughtError: unknown) => setError(caughtError instanceof Error ? caughtError.message : 'Workflow review detail could not be loaded.'))
   }, [workflowId, detailCache])
 
@@ -188,15 +233,19 @@ export function BetaReviewPage() {
     const normalizedFilters = { ...filters, search: filters.search.trim().toLowerCase() }
     return catalog.filter((workflow) => workflow.specialty === normalizedFilters.specialty || normalizedFilters.specialty === 'all')
       .filter((workflow) => workflowMatchesFilters(workflow, records, normalizedFilters))
-  }, [catalog, filters, records, detailCache])
+  }, [catalog, filters, records])
   const visibleCatalog = filteredCatalog.slice(0, 60)
   const selectedIndex = details ? catalog.findIndex((item) => item.workflow_id === details.workflow_id) : -1
   const previous = selectedIndex > 0 ? catalog[selectedIndex - 1] : null
   const next = selectedIndex >= 0 && selectedIndex < catalog.length - 1 ? catalog[selectedIndex + 1] : null
   const filteredItems = useMemo(() => {
     const normalized = itemSearch.trim().toLowerCase()
-    return (details?.items ?? []).filter((item) => !normalized || `${item.item_id} ${item.text} ${item.section_label}`.toLowerCase().includes(normalized))
-  }, [details, itemSearch])
+    return (details?.items ?? []).filter((item) => {
+      const evidence = adjudication?.items.find((candidate) => candidate.item_id === item.item_id)
+      const priority = Boolean(evidence?.human_review_required || evidence?.safety_critical || evidence?.support_classification === 'partially_supported' || evidence?.support_classification === 'contextual_only' || evidence?.support_classification === 'conflicting_evidence' || evidence?.support_classification === 'source_inaccessible' || evidence?.support_classification === 'no_evidence_link' || evidence?.support_classification === 'not_supported')
+      return (itemQueue === 'all' || priority) && (!normalized || `${item.item_id} ${item.text} ${item.section_label}`.toLowerCase().includes(normalized))
+    })
+  }, [adjudication, details, itemQueue, itemSearch])
 
   const progress = useMemo(() => {
     const reviewedRecords = Object.values(records).filter((record) => record.decision)
@@ -299,8 +348,9 @@ export function BetaReviewPage() {
             <select value={filters.specialty} onChange={(event) => setFilters((current) => ({ ...current, specialty: event.target.value }))} className="mt-3 h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm"><option value="all">All specialties</option>{specialties.map((specialty) => <option key={specialty} value={specialty}>{normalizeDisplayText(specialty)}</option>)}</select>
             <select value={filters.status} onChange={(event) => setFilters((current) => ({ ...current, status: event.target.value as Filters['status'] }))} className="mt-3 h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm"><option value="all">All evidence statuses</option><option value="partial_source_support">Partial source support</option><option value="no_authoritative_source">No authoritative source</option><option value="exact_source_support">Exact source support</option></select>
             <select value={filters.reviewed} onChange={(event) => setFilters((current) => ({ ...current, reviewed: event.target.value as Filters['reviewed'] }))} className="mt-3 h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm"><option value="all">Reviewed and unreviewed</option><option value="unreviewed">Unreviewed workflows</option><option value="reviewed">Fully reviewed workflows</option></select>
+            <select value={filters.adjudication} onChange={(event) => setFilters((current) => ({ ...current, adjudication: event.target.value as Filters['adjudication'] }))} className="mt-3 h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm"><option value="all">All AI classifications</option>{Object.entries(classificationLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select>
             <div className="mt-3 grid gap-2 text-xs text-slate-700">
-              {([['uae', 'UAE applicability finding'], ['unsupported', 'Unsupported items'], ['safety', 'Safety review required'], ['edited', 'Edited wording'], ['deferred', 'Deferred'] ] as const).map(([key, label]) => <label key={key} className="inline-flex items-center gap-2"><input type="checkbox" checked={filters[key]} onChange={(event) => setFilters((current) => ({ ...current, [key]: event.target.checked }))} /> {label}</label>)}
+              {([['uae', 'UAE applicability finding'], ['unsupported', 'Unsupported items'], ['safety', 'Safety review required'], ['lowConfidence', 'Low confidence'], ['humanReview', 'Human review required'], ['aiVerified', 'AI verified pending approval'], ['edited', 'Edited wording'], ['deferred', 'Deferred'] ] as const).map(([key, label]) => <label key={key} className="inline-flex items-center gap-2"><input type="checkbox" checked={filters[key]} onChange={(event) => setFilters((current) => ({ ...current, [key]: event.target.checked }))} /> {label}</label>)}
             </div>
             <p className="mt-3 text-xs text-slate-500">Showing {visibleCatalog.length.toLocaleString()} of {filteredCatalog.length.toLocaleString()} matching workflows.</p>
           </div>
@@ -322,7 +372,7 @@ export function BetaReviewPage() {
                 <section className="rounded-xl border border-slate-200 bg-white p-5"><h3 className="text-sm font-semibold text-slate-950">Review-only candidate evidence links</h3><p className="mt-1 text-xs leading-5 text-slate-500">These links document research evidence for clinician review. None are approved mappings or active clinical support.</p><div className="mt-3 space-y-2">{details.evidence_links.length ? details.evidence_links.map((evidence) => <div key={evidence.evidence_item_id} className="rounded-lg border border-slate-100 bg-slate-50 p-3"><div className="flex flex-wrap items-center justify-between gap-2"><span className="font-mono text-[10px] text-slate-500">{evidence.source_id} / {evidence.source_section_id}</span><span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-semibold text-violet-800">Review only</span></div><p className="mt-2 text-xs leading-5 text-slate-700">{evidence.paraphrased_evidence_summary}</p></div>) : <p className="text-sm text-slate-500">No exact evidence link is recorded.</p>}</div></section>
               </div>
               {details.unresolved_source_gaps.length ? <section className="rounded-xl border border-amber-200 bg-amber-50 p-5"><h3 className="text-sm font-semibold text-amber-950">Open source gaps and safety notes</h3><ul className="mt-2 space-y-1 text-sm leading-6 text-amber-950">{details.unresolved_source_gaps.map((gap) => <li key={gap}>• {gap}</li>)}</ul></section> : null}
-              <section className="space-y-3"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="text-lg font-semibold text-slate-950">Item-level clinician decisions</h3><p className="mt-1 text-sm text-slate-500">Every item starts unreviewed. Decisions and comments autosave locally; no patient data is collected.</p></div><div className="flex items-center gap-2"><Input className="w-64" value={itemSearch} onChange={(event) => setItemSearch(event.target.value)} placeholder="Search items" /><span className="text-xs text-slate-500">{filteredItems.length.toLocaleString()} shown</span></div></div>{filteredItems.map((item) => <ReviewItem key={item.item_id} workflowId={details.workflow_id} item={item} record={itemRecord(records, details.workflow_id, item.item_id)} onChange={updateItem} />)}</section>
+              <section className="space-y-3"><div className="flex flex-wrap items-center justify-between gap-3"><div><h3 className="text-lg font-semibold text-slate-950">AI item-evidence adjudication and clinician decisions</h3><p className="mt-1 text-sm text-slate-500">The default queue prioritizes safety, low confidence, scope exceptions, conflicts, inaccessible sources, and unlinked items. AI verification never approves or publishes content.</p></div><div className="flex flex-wrap items-center gap-2"><select value={itemQueue} onChange={(event) => setItemQueue(event.target.value as typeof itemQueue)} className="h-10 rounded-lg border border-slate-300 bg-white px-3 text-sm"><option value="priority">Priority review queue</option><option value="all">All items</option></select><Input className="w-64" value={itemSearch} onChange={(event) => setItemSearch(event.target.value)} placeholder="Search items" /><span className="text-xs text-slate-500">{filteredItems.length.toLocaleString()} shown</span></div></div>{adjudication ? <div className="flex flex-wrap gap-2 text-xs">{Object.entries(classificationLabels).map(([key, label]) => <span key={key} className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-slate-700">{label}: {adjudication.items.filter((item) => item.support_classification === key).length.toLocaleString()}</span>)}<span className="rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-amber-900">Safety review: {adjudication.items.filter((item) => item.safety_critical).length.toLocaleString()}</span></div> : null}{filteredItems.map((item) => <ReviewItem key={item.item_id} workflowId={details.workflow_id} item={item} adjudication={adjudication?.items.find((candidate) => candidate.item_id === item.item_id)} record={itemRecord(records, details.workflow_id, item.item_id)} onChange={updateItem} />)}</section>
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-4"><div className="text-xs text-slate-500">{previous ? <Link className="text-cyan-800 underline" to={`/beta/workflows/${previous.workflow_id}`}>← Previous workflow</Link> : <span>Start of queue</span>}</div><div className="inline-flex items-center gap-2 text-xs text-slate-500"><Save className="h-3.5 w-3.5 text-cyan-800" /> Local autosave active</div><div className="text-xs text-slate-500">{next ? <Link className="text-cyan-800 underline" to={`/beta/workflows/${next.workflow_id}`}>Next workflow →</Link> : <span>End of queue</span>}</div></div>
             </>
           )}
