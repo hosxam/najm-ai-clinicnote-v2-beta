@@ -16,19 +16,20 @@ The archived source files and extracted text are listed in `manifest.json`, with
 ## Output counts
 
 - Legacy items examined: 1,762
-- Legacy items retained: 0
-- Legacy items rewritten: 0
-- Legacy items removed from the provisional output: 1,762 (each remains in an audit record and is not promoted without a defensible full-text comparison)
+- Legacy items retained: 3
+- Legacy items rewritten: 177
+- Legacy items removed from the provisional output: 1,582 (each remains in an audit record with a comparison method and reason)
 - Full-source evidence items added: 93
-- Final reconstructed item count: 93
+- Final reconstructed item count: 273 (93 added, 3 retained, 177 rewritten)
+- Item-level comparison records: 1,762
 - Source-gap workflows in this batch: 0
 - Blocked-source workflows: 0
 
-Every added item carries source ID, title, publisher, URL, exact section locator, evidence paraphrase, retrieval timestamp, archive fingerprint, and rationale. No dose, threshold, timing, or population claim was inferred.
+Every added item carries source ID, title, publisher, URL, exact section locator, evidence paraphrase, retrieval timestamp, archive fingerprint, and rationale. Retained and rewritten legacy items carry their matched source and exact location; removed items carry a deterministic comparison method and reason. No dose, threshold, timing, or population claim was inferred.
 
 ## Workflow completeness
 
-All 20 outputs assess the required documentation sections and record omission reasons/status. Because the first batch uses conservative extraction and does not infer missing clinical content, each workflow is marked `reconstructed_with_documented_limitations`, not `reconstructed_complete`. Full text was retrieved and inspected programmatically; item-level legacy promotion remains conservative until the source text is compared against each legacy item.
+All 20 outputs assess the required documentation sections and record omission reasons/status. Because the first batch uses conservative extraction and does not infer missing clinical content, each workflow is marked `reconstructed_with_documented_limitations`, not `reconstructed_complete`. Full text was retrieved and inspected programmatically; item-level legacy promotion is explicit: exact phrase matches are retained, sufficiently overlapping statements are rewritten to narrower supported wording, and unsupported statements are removed with an auditable record.
 
 ## Validation
 
