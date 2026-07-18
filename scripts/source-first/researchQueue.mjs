@@ -11,6 +11,7 @@ export const TERMINAL_SOURCE_STATUSES = new Set([
   'conflicting_authoritative_sources',
   'source_access_failed',
 ])
+export const QUEUE_COMPLETE_STATUS = 'SOURCE_FIRST_RESEARCH_COMPLETE'
 
 export const LIGHTWEIGHT_VALIDATORS = [
   'validate:source-evidence',
@@ -66,6 +67,13 @@ export function parseQueueArgs(argv) {
 
 export function isTerminalWorkflow(entry) {
   return entry?.terminal_research === true && TERMINAL_SOURCE_STATUSES.has(entry.source_status)
+}
+
+export function isResearchQueueComplete(manifest) {
+  return Array.isArray(manifest?.workflows)
+    && manifest.workflows.length > 0
+    && manifest.next_workflow_id === null
+    && manifest.workflows.every(isTerminalWorkflow)
 }
 
 export function resolveQueueEntries(manifest, { start, continueFromManifest, maxWorkflows }) {
@@ -230,7 +238,10 @@ function checkpointCommit(entries) {
   }
   const first = String(entries[0].sequence).padStart(4, '0')
   const last = String(entries.at(-1).sequence).padStart(4, '0')
-  git(['commit', '-m', `chore(source-first): checkpoint workflows ${first}-${last}`])
+  const message = entries.at(-1).sequence === 1500
+    ? 'chore(source-first): complete source-first research queue'
+    : `chore(source-first): checkpoint workflows ${first}-${last}`
+  git(['commit', '-m', message])
   return git(['rev-parse', 'HEAD'], { capture: true })
 }
 
@@ -251,7 +262,9 @@ export async function runQueue(options) {
 
   if (options.dryRun) {
     return {
-      status: unavailable ? 'DRY_RUN_BLOCKED_MISSING_BATCH' : 'DRY_RUN_READY',
+      status: isResearchQueueComplete(manifest)
+        ? 'DRY_RUN_QUEUE_COMPLETE'
+        : unavailable ? 'DRY_RUN_BLOCKED_MISSING_BATCH' : 'DRY_RUN_READY',
       requested: entries.length,
       runnable: runnableEntries.length,
       start_workflow_id: runnableEntries[0]?.workflow_id ?? null,
@@ -260,6 +273,16 @@ export async function runQueue(options) {
     }
   }
   if (runnableEntries.length === 0) {
+    if (isResearchQueueComplete(manifest)) {
+      return {
+        status: QUEUE_COMPLETE_STATUS,
+        processed: 0,
+        checkpoint_commits: [],
+        next_workflow_id: null,
+        stop_reason: 'queue_already_complete',
+        first_missing_batch_workflow_id: null,
+      }
+    }
     throw new Error(unavailable
       ? `No researched batch module exists for ${unavailable.workflow_id}`
       : 'No unfinished workflows remain in the requested queue range')
@@ -319,8 +342,11 @@ export async function runQueue(options) {
     })
 
     const finalManifest = readJson(manifestPath)
+    const finalStatus = isResearchQueueComplete(finalManifest)
+      ? QUEUE_COMPLETE_STATUS
+      : 'INTERRUPTED_RESTARTABLE'
     writeQueueState(statePath, {
-      status: 'INTERRUPTED_RESTARTABLE',
+      status: finalStatus,
       checkpoint_head: checkpointHead,
       next_workflow_id: finalManifest.next_workflow_id,
       processed_workflow_ids: result.processed.map((entry) => entry.workflow_id),
@@ -328,7 +354,7 @@ export async function runQueue(options) {
     })
     assertRepositorySafety({ requireClean: true })
     return {
-      status: 'INTERRUPTED_RESTARTABLE',
+      status: finalStatus,
       processed: result.processed.length,
       checkpoint_commits: checkpointCommits,
       next_workflow_id: finalManifest.next_workflow_id,

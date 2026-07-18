@@ -8,6 +8,7 @@ import {
   acquireQueueLock,
   batchModuleOverlapsEntries,
   executeSequentialQueue,
+  isResearchQueueComplete,
   isTerminalWorkflow,
   LIGHTWEIGHT_VALIDATORS,
   parseQueueArgs,
@@ -102,6 +103,24 @@ test('resumes at the first unfinished workflow and skips terminal entries', () =
       .map((entry) => entry.workflow_id),
     ['w3', 'w4'],
   )
+})
+
+test('recognises a fully terminal queue with no invented next workflow', () => {
+  const manifest = {
+    next_workflow_id: null,
+    workflows: [terminal(1499, 'w1499'), terminal(1500, 'w1500')],
+  }
+  assert.equal(isResearchQueueComplete(manifest), true)
+  assert.deepEqual(resolveQueueEntries(manifest, {
+    start: null, continueFromManifest: true, maxWorkflows: 25,
+  }), [])
+})
+
+test('does not mark a null-next manifest complete while a workflow is unfinished', () => {
+  assert.equal(isResearchQueueComplete({
+    next_workflow_id: null,
+    workflows: [terminal(1499, 'w1499'), pending(1500, 'w1500')],
+  }), false)
 })
 
 test('checkpoints every ten and continues after the checkpoint', async () => {

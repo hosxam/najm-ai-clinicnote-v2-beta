@@ -31,6 +31,10 @@ import {
   upsertSourceInRegistryState,
 } from './sourceApplicationEngine.mjs'
 import { loadReplayManifest } from './sourceMetadataReplay.mjs'
+import {
+  QUEUE_COMPLETE_STATUS,
+  isResearchQueueComplete,
+} from './researchQueue.mjs'
 
 const batchArgument = process.argv[2]
 if (!batchArgument) throw new Error('Usage: node scripts/source-first/applyResearchBatch.mjs <batch-module>')
@@ -320,9 +324,14 @@ manifest.unsupported_legacy_item_count = unsupportedRows.length
 manifest.source_supported_legacy_item_count = sourceSupportedLegacyItemCount
 writeJson(manifestPath, manifest)
 
+const researchQueueComplete = isResearchQueueComplete(manifest)
+const researchQueueStatus = researchQueueComplete
+  ? QUEUE_COMPLETE_STATUS
+  : 'INTERRUPTED_RESTARTABLE'
+
 const restartPath = path.join(EXPANSION_DIR, 'progress', 'restart_state.json')
 writeJson(restartPath, {
-  status: 'INTERRUPTED_RESTARTABLE',
+  status: researchQueueStatus,
   saved_at: CHECKPOINT_TIMESTAMP,
   research_completed_workflow_ids: manifest.workflows
     .filter((entry) => entry.terminal_research)
@@ -334,9 +343,9 @@ writeJson(restartPath, {
     : 'All manifest workflows have terminal research status.',
   manifest_path: 'clinical-expansion-v2/progress/execution_manifest.json',
   resume_commands: [
-    manifest.next_workflow_id
-      ? `npm run research:queue -- --start ${manifest.next_workflow_id} --continue-from-manifest`
-      : 'npm run research:queue -- --continue-from-manifest',
+    ...(manifest.next_workflow_id
+      ? [`npm run research:queue -- --start ${manifest.next_workflow_id} --continue-from-manifest`]
+      : []),
     'npm run validate:source-evidence',
     'npm run validate:item-provenance',
     'npm run audit:research-claims',
@@ -345,6 +354,7 @@ writeJson(restartPath, {
 
 const checkpointPath = path.join(EXPANSION_DIR, 'progress', 'checkpoint_validation_results.json')
 const checkpoint = readJson(checkpointPath)
+checkpoint.status = researchQueueStatus
 Object.assign(checkpoint.counts, {
   research_completed_workflows: terminalResearch.length,
   exact_workflow_source_verified: manifest.exact_source_verified_count,

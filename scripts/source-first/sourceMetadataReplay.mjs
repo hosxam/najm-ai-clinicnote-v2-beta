@@ -27,7 +27,8 @@ import {
 export { SOURCE_METADATA_REPLAY_MANIFEST_RELATIVE }
 export const SOURCE_METADATA_REPLAY_MANIFEST_PATH = path.join(ROOT_DIR, SOURCE_METADATA_REPLAY_MANIFEST_RELATIVE)
 export const INITIAL_SOURCE_MODULE_PATH = path.join(ROOT_DIR, 'scripts', 'recordInitialSourceResearch.mjs')
-export const EXPECTED_NUMBERED_BATCH_COUNT = 147
+export const EXPECTED_NUMBERED_BATCH_COUNT = 150
+export const EXPECTED_NUMBERED_WORKFLOW_COUNT = 1495
 export const EXPECTED_REPLAY_SOURCE_COUNT = 235
 
 export const MANAGED_SOURCE_METADATA_FIELDS = Object.freeze([
@@ -187,13 +188,12 @@ export function loadReplayManifest() {
 export function productionDiscoveredNumberedBatchPaths() {
   const executionManifest = readJson(path.join(EXPANSION_DIR, 'progress', 'execution_manifest.json'))
   const firstNumberedSequence = 6
-  const finalNumberedSequence = 5 + (EXPECTED_NUMBERED_BATCH_COUNT * 10)
   const productionEntries = executionManifest.workflows.filter((entry) => (
-    entry.sequence >= firstNumberedSequence && entry.sequence <= finalNumberedSequence
+    entry.sequence >= firstNumberedSequence
   ))
-  if (productionEntries.length !== EXPECTED_NUMBERED_BATCH_COUNT * 10) {
+  if (productionEntries.length !== EXPECTED_NUMBERED_WORKFLOW_COUNT) {
     throw new Error(
-      `[source-metadata-replay] expected ${EXPECTED_NUMBERED_BATCH_COUNT * 10} indexed workflow entries for numbered batch discovery, found ${productionEntries.length}`,
+      `[source-metadata-replay] expected ${EXPECTED_NUMBERED_WORKFLOW_COUNT} indexed workflow entries for numbered batch discovery, found ${productionEntries.length}`,
     )
   }
   const modulePaths = discoverBatchModuleFiles(productionEntries)
