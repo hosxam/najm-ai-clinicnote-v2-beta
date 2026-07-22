@@ -3,16 +3,17 @@
 ## Attempt
 
 - Required source branch: `guideline-evidence-packs-and-reconstruction-v1`
-- Required starting source HEAD: `58be2e806dd364d571ffe168a9a64f1fc2048141`
+- Required starting source HEAD: `b04563a0c838add0156c93725966282023f4f59b`
+- Validated catalogue source commit: `58be2e806dd364d571ffe168a9a64f1fc2048141`
 - Deployment target: `https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta`
 - Deployment mechanism: existing `.github/workflows/deploy.yml` GitHub Pages workflow
-- Pushed ref: pending final validation and beta dispatch
-- Deployment workflow run: pending
-- Deployment commit: pending correction commit
+- Pushed ref: `guideline-evidence-packs-and-reconstruction-v1`
+- Deployment workflow run: `29931471479` (build passed; deploy rejected by environment protection)
+- Deployment correction commit: `6a171a20823031d1f3ea9645ba07828ae6c51252`
 
 The original failed attempt loaded `DirectGuidelineCurationPage`, which read `public/data-beta/curated-workflows/*`. That obsolete dataset reported 0 usable workflows, 1,500 incomplete/unavailable workflows, and 2,942 final source items. The corrected route now loads the single fail-closed manifest at `public/data-beta/final-catalogue/manifest.json`, generated losslessly from the validated artifacts at source commit `58be2e806dd364d571ffe168a9a64f1fc2048141`. The route no longer imports the direct-curation page or silently falls back to an older dataset.
 
-The branch, starting HEAD, clean worktree, remote, and GitHub Pages workflow were verified. The `github-pages` environment uses a custom deployment-branch policy and the workflow supports manual dispatch; no protection rules or settings were changed.
+The branch, starting HEAD, clean worktree, remote, and GitHub Pages workflow were verified. The `github-pages` environment uses a custom deployment-branch policy. The workflow accepted the manual dispatch, completed checkout, data validation, build, and artifact upload, then rejected the deploy because `guideline-evidence-packs-and-reconstruction-v1` is not an allowed deployment branch. No protection rules or settings were changed, and no unapproved retry or stable deployment was attempted.
 
 Corrected files:
 
@@ -41,6 +42,6 @@ No clinical source wording was regenerated. Production public/data, canonical st
 
 ## Required follow-up
 
-The next step is the approved beta-only push and workflow dispatch. Live verification must confirm the same counts and build SHA before the deployment is considered complete.
+The local built route is verified at the GitHub Pages base path with all canonical assets returning HTTP 200, exact counts above, representative evidence detail, inactive isolation, and no console errors or layout overflow. Live verification could not run because the existing environment branch policy rejected the deploy. An owner-authorized environment-policy update or an already-allowed beta deployment ref is required before another dispatch.
 
-**FINAL_SOURCE_GROUNDED_BETA_DEPLOYMENT_PENDING**
+**FINAL_BETA_DEPLOYMENT_BRANCH_NOT_ALLOWED**
