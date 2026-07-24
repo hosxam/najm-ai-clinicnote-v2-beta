@@ -4,6 +4,7 @@
 
 - Branch: `guideline-evidence-packs-and-reconstruction-v1`
 - Starting HEAD: `184578969ef88dc94f7bad756c690ad07277aff2`
+- Ending HEAD before this final report amendment: `afc71556d3a3add582bdb1ba7d4e3529bb84d2f6`
 - Interactive implementation commits: `027ca0ac` (compiler and data), `5080d832` (interactive workspace and visual layer), `c211d43e` (inactive-route fail-closed repair)
 - Deployed source commit: `c211d43ef0a5766540ad77f4f0f07056877afded`
 - Beta deployment workflow: `30105398473` (build and Pages deploy succeeded)
@@ -47,4 +48,3 @@ The overhaul adds a constellation hero, cyan/violet depth, immersive and Clinica
 Live Playwright verification on the deployed SHA confirmed the beta catalogue and 416 count, search, specialty/archetype filters, active workflow forms, SOAP generation/editability, local draft persistence, evidence drawer and official links, no evidence leakage into notes, merged-title variants (`cardio-post-pci-follow-up` and `cardio-post-pci-followup`), and an active emergency workflow (`ed-anaphylaxis-documentation`). Inactive examples (`gp-cough`, `gp-shortness-of-breath`, `peds-fever`, and `urgent-anaphylaxis-documentation`) showed the unavailable fail-closed state with no usable form. Desktop/tablet/mobile layouts had no major overflow; reduced-motion and Clinical Focus controls were present; console error count was zero and all observed static requests returned 200. No local filesystem paths were exposed.
 
 The primary route loaded `data-beta/interactive-workflows/manifest.json` and `catalog.json`; it did not request `curated-workflows` or the evidence-only final catalogue. Production isolation was confirmed: no stable production deployment, main push/merge, rebase, force-push, signing, approval, mapping/candidate write, canonical/signed-state change, public/data change, or exclusion change occurred.
-
