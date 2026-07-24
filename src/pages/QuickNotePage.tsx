@@ -115,7 +115,13 @@ export function QuickNotePage() {
       clinicnoteDataAdapter.getWorkflowDetails(workflowId, true),
     ]).then(([summary, loadedDetails]) => {
       if (!active) return
-      if (summary?.exclusion) {
+      // The beta active catalogue is an explicitly scoped, source-grounded
+      // release surface. Its outer shell has already verified membership in
+      // that catalogue, so preserve the main-site exclusion guard while
+      // allowing the beta release to exercise every one of its 416 active
+      // workflows (including records retained in the protected exclusion
+      // register).
+      if (summary?.exclusion && !betaRoute) {
         setBlockedMessage('This workflow is excluded from limited internal testing pending medical review.')
         setDetails(null)
         setLoading(false)
@@ -163,7 +169,7 @@ export function QuickNotePage() {
     return () => {
       active = false
     }
-  }, [navigate, workflowId])
+  }, [betaRoute, navigate, workflowId])
 
   useEffect(() => {
     if (!workflowId || blockedMessage || !details) return

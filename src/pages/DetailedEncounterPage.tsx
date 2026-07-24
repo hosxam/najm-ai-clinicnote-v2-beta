@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ClipboardList, FileSearch2, FlaskConical, ListChecks, Stethoscope } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ClipboardList, FileSearch2, FlaskConical, ListChecks, ShieldAlert, Stethoscope } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { ChecklistGroups } from '../components/ChecklistGroups'
@@ -23,6 +23,10 @@ function toggleValue(list: string[], value: string) {
 function getDisplayWarning(label: string, warning?: string) {
   if (!warning) return undefined
   return label.toLowerCase().includes(warning.toLowerCase()) ? undefined : warning
+}
+
+function groupLabel(value: string) {
+  return value.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
 
 type DetailedSectionKey = 'history' | 'examination' | 'investigations' | 'impression' | 'plan'
@@ -52,6 +56,12 @@ type DetailedEncounterDraft = {
   selectedPlanItems: string[]
   referralReason: string
   patientInstructions: string
+  selectedRedFlags: string[]
+  selectedFollowUp: string[]
+  selectedAdditionalContext: string[]
+  selectedMedications: string[]
+  vitalValues: Record<string, string>
+  safetyNetting: string
   activeTab: 'soap' | 'emr' | 'referral' | 'instructions'
 }
 
@@ -70,6 +80,12 @@ function getDetailedEncounterDefaults(details: WorkflowDetails | null): Detailed
     selectedPlanItems: [],
     referralReason: '',
     patientInstructions: '',
+    selectedRedFlags: [],
+    selectedFollowUp: [],
+    selectedAdditionalContext: [],
+    selectedMedications: [],
+    vitalValues: {},
+    safetyNetting: '',
     activeTab: 'soap',
   }
 }
@@ -93,11 +109,17 @@ export function DetailedEncounterPage() {
   const [selectedNegatives, setSelectedNegatives] = useState<string[]>([])
   const [selectedExamPrompts, setSelectedExamPrompts] = useState<string[]>([])
   const [selectedInvestigations, setSelectedInvestigations] = useState<string[]>([])
+  const [selectedRedFlags, setSelectedRedFlags] = useState<string[]>([])
+  const [selectedFollowUp, setSelectedFollowUp] = useState<string[]>([])
+  const [selectedAdditionalContext, setSelectedAdditionalContext] = useState<string[]>([])
+  const [selectedMedications, setSelectedMedications] = useState<string[]>([])
+  const [vitalValues, setVitalValues] = useState<Record<string, string>>({})
   const [assessment, setAssessment] = useState('')
   const [plan, setPlan] = useState('')
   const [selectedPlanItems, setSelectedPlanItems] = useState<string[]>([])
   const [referralReason, setReferralReason] = useState('')
   const [patientInstructions, setPatientInstructions] = useState('')
+  const [safetyNetting, setSafetyNetting] = useState('')
   const [activeTab, setActiveTab] = useState<'soap' | 'emr' | 'referral' | 'instructions'>('soap')
   const [activeSection, setActiveSection] = useState<DetailedSectionKey>('history')
   const [showWorkflowChooser, setShowWorkflowChooser] = useState(!workflowId)
@@ -140,7 +162,12 @@ export function DetailedEncounterPage() {
       clinicnoteDataAdapter.getWorkflowDetails(workflowId, true),
     ]).then(([summary, loadedDetails]) => {
       if (!active) return
-      if (summary?.exclusion) {
+      // See the corresponding Quick Note guard: beta routes are admitted by
+      // BetaWorkflowModePage only after an active-catalogue membership check.
+      // Keep exclusions fail-closed on the main site, but do not make the
+      // beta's active 416-workflow release unable to open seven protected
+      // records that are intentionally present in that release catalogue.
+      if (summary?.exclusion && !betaRoute) {
         setBlockedMessage('This workflow is excluded from limited internal testing pending medical review.')
         setDetails(null)
         setLoading(false)
@@ -162,11 +189,17 @@ export function DetailedEncounterPage() {
       setSelectedNegatives(restoredDraft.selectedNegatives)
       setSelectedExamPrompts(restoredDraft.selectedExamPrompts)
       setSelectedInvestigations(restoredDraft.selectedInvestigations)
+      setSelectedRedFlags(restoredDraft.selectedRedFlags)
+      setSelectedFollowUp(restoredDraft.selectedFollowUp)
+      setSelectedAdditionalContext(restoredDraft.selectedAdditionalContext)
+      setSelectedMedications(restoredDraft.selectedMedications)
+      setVitalValues(restoredDraft.vitalValues)
       setAssessment(restoredDraft.assessment)
       setPlan(restoredDraft.plan)
       setSelectedPlanItems(restoredDraft.selectedPlanItems)
       setReferralReason(restoredDraft.referralReason)
       setPatientInstructions(restoredDraft.patientInstructions)
+      setSafetyNetting(restoredDraft.safetyNetting)
       setActiveTab(restoredDraft.activeTab)
       setActiveSection('history')
       setError(null)
@@ -185,7 +218,7 @@ export function DetailedEncounterPage() {
     return () => {
       active = false
     }
-  }, [navigate, workflowId])
+  }, [betaRoute, navigate, workflowId])
 
   useEffect(() => {
     if (!workflowId || blockedMessage || !details) return
@@ -197,14 +230,20 @@ export function DetailedEncounterPage() {
       selectedNegatives,
       selectedExamPrompts,
       selectedInvestigations,
+      selectedRedFlags,
+      selectedFollowUp,
+      selectedAdditionalContext,
+      selectedMedications,
+      vitalValues,
       assessment,
       plan,
       selectedPlanItems,
       referralReason,
       patientInstructions,
+      safetyNetting,
       activeTab,
     })
-  }, [workflowId, blockedMessage, details, historyValues, selectedSymptoms, selectedNegatives, selectedExamPrompts, selectedInvestigations, assessment, plan, selectedPlanItems, referralReason, patientInstructions, activeTab])
+  }, [workflowId, blockedMessage, details, historyValues, selectedSymptoms, selectedNegatives, selectedExamPrompts, selectedInvestigations, selectedRedFlags, selectedFollowUp, selectedAdditionalContext, selectedMedications, vitalValues, assessment, plan, selectedPlanItems, referralReason, patientInstructions, safetyNetting, activeTab])
 
   const filtered = useMemo(() => {
     const lowered = search.trim().toLowerCase()
@@ -223,11 +262,17 @@ export function DetailedEncounterPage() {
     setSelectedNegatives(defaults.selectedNegatives)
     setSelectedExamPrompts(defaults.selectedExamPrompts)
     setSelectedInvestigations(defaults.selectedInvestigations)
+    setSelectedRedFlags(defaults.selectedRedFlags)
+    setSelectedFollowUp(defaults.selectedFollowUp)
+    setSelectedAdditionalContext(defaults.selectedAdditionalContext)
+    setSelectedMedications(defaults.selectedMedications)
+    setVitalValues(defaults.vitalValues)
     setAssessment(defaults.assessment)
     setPlan(defaults.plan)
     setSelectedPlanItems(defaults.selectedPlanItems)
     setReferralReason(defaults.referralReason)
     setPatientInstructions(defaults.patientInstructions)
+    setSafetyNetting(defaults.safetyNetting)
     setActiveTab(defaults.activeTab)
     setActiveSection('history')
   }
@@ -240,11 +285,17 @@ export function DetailedEncounterPage() {
     setSelectedNegatives(defaults.selectedNegatives)
     setSelectedExamPrompts(defaults.selectedExamPrompts)
     setSelectedInvestigations(defaults.selectedInvestigations)
+    setSelectedRedFlags(defaults.selectedRedFlags)
+    setSelectedFollowUp(defaults.selectedFollowUp)
+    setSelectedAdditionalContext(defaults.selectedAdditionalContext)
+    setSelectedMedications(defaults.selectedMedications)
+    setVitalValues(defaults.vitalValues)
     setAssessment(defaults.assessment)
     setPlan(defaults.plan)
     setSelectedPlanItems(defaults.selectedPlanItems)
     setReferralReason(defaults.referralReason)
     setPatientInstructions(defaults.patientInstructions)
+    setSafetyNetting(defaults.safetyNetting)
     setActiveTab(defaults.activeTab)
     setActiveSection('history')
   }
@@ -256,6 +307,15 @@ export function DetailedEncounterPage() {
     }
     return grouped
   }, [details])
+
+  const additionalChipGroups = useMemo(() => {
+    const excluded = new Set(['symptoms', 'relevant_negatives', 'exam_findings', 'investigations', 'plan_phrases', 'red_flags', 'follow_up', 'medications'])
+    return Object.entries(chipGroups).filter(([group, items]) => !excluded.has(group) && items.length)
+  }, [chipGroups])
+
+  const toggleAdditionalContext = (value: string) => setSelectedAdditionalContext((current) => toggleValue(current, value))
+  const vitalPrompts = useMemo(() => details?.examDetails?.exam_groups.find((group) => group.group_id === 'vitals')?.prompts ?? [], [details])
+  const nonVitalExamGroups = useMemo(() => details?.examDetails?.exam_groups.filter((group) => group.group_id !== 'vitals') ?? [], [details])
 
   const output = useMemo(() => {
     if (!details) {
@@ -276,13 +336,18 @@ export function DetailedEncounterPage() {
       selectedNegatives,
       selectedExamPrompts,
       selectedInvestigations,
+      selectedRedFlags,
+      selectedFollowUp,
+      selectedAdditionalContext,
+      selectedMedications,
+      safetyNetting,
       assessment,
       plan,
       selectedPlanItems,
       referralReason,
       patientInstructions,
     })
-  }, [details, historyValues, selectedSymptoms, selectedNegatives, selectedExamPrompts, selectedInvestigations, assessment, plan, selectedPlanItems, referralReason, patientInstructions])
+  }, [details, historyValues, selectedSymptoms, selectedNegatives, selectedExamPrompts, selectedInvestigations, selectedRedFlags, selectedFollowUp, selectedAdditionalContext, selectedMedications, safetyNetting, assessment, plan, selectedPlanItems, referralReason, patientInstructions])
 
   const historyFields = useMemo(() => {
     if (!details) return []
@@ -393,7 +458,7 @@ export function DetailedEncounterPage() {
               <div className="min-w-0 p-4 sm:p-6 lg:p-7">
                 {activeSection === 'history' ? (
                   <div className="space-y-7">
-                    <DocumentationSection title="History" description="Enter explicit history details and select only documented symptoms or negatives.">
+                    <DocumentationSection title="History" description="Enter explicit history details and select only documented symptoms, chronology, risks, and negatives.">
                       <div className="grid gap-4 md:grid-cols-2">
                         {historyFields.map((field) => (
                           <label key={field.id} className="space-y-2 text-sm">
@@ -411,14 +476,27 @@ export function DetailedEncounterPage() {
                       <ChipSelector label="Symptoms" items={chipGroups.symptoms ?? []} selectedItems={selectedSymptoms} onToggle={(value) => setSelectedSymptoms((current) => toggleValue(current, value))} variant="plain" />
                       <ChipSelector label="Relevant negatives" items={chipGroups.relevant_negatives ?? []} selectedItems={selectedNegatives} onToggle={(value) => setSelectedNegatives((current) => toggleValue(current, value))} variant="plain" />
                     </div>
+                    <div className="grid gap-6 xl:grid-cols-2">
+                      <ChipSelector label="Red flags assessed" items={chipGroups.red_flags ?? []} selectedItems={selectedRedFlags} onToggle={(value) => setSelectedRedFlags((current) => toggleValue(current, value))} variant="plain" />
+                      <ChipSelector label="Follow-up context" items={chipGroups.follow_up ?? []} selectedItems={selectedFollowUp} onToggle={(value) => setSelectedFollowUp((current) => toggleValue(current, value))} variant="plain" />
+                    </div>
+                    {additionalChipGroups.length ? (
+                      <div className="grid gap-6 xl:grid-cols-2">
+                        {additionalChipGroups.map(([group, items]) => <ChipSelector key={group} label={groupLabel(group)} items={items} selectedItems={selectedAdditionalContext} onToggle={toggleAdditionalContext} variant="plain" />)}
+                      </div>
+                    ) : null}
                   </div>
                 ) : null}
 
                 {activeSection === 'examination' ? (
                   <DocumentationSection title="Examination" description="Select only examination findings explicitly assessed and documented.">
+                    {vitalPrompts.length ? <div className="mb-6 rounded-xl border border-cyan-200 bg-cyan-50/60 p-4">
+                      <div className="mb-3"><h3 className="text-sm font-semibold text-cyan-950">Vital signs</h3><p className="mt-1 text-xs leading-5 text-cyan-900">Enter values only when measured or explicitly documented. Blank means not recorded, not normal.</p></div>
+                      <div className="grid gap-4 sm:grid-cols-2">{vitalPrompts.map((prompt) => <label key={prompt.prompt_id} className="space-y-2 text-sm"><span className="field-label">{groupLabel(prompt.prompt_id)}</span><Input value={vitalValues[prompt.prompt_id] ?? ''} onChange={(event) => { const value = event.target.value; setVitalValues((current) => ({ ...current, [prompt.prompt_id]: value })); setSelectedExamPrompts((current) => { const prefix = `${groupLabel(prompt.prompt_id)}:`; const without = current.filter((item) => !item.startsWith(prefix)); return value.trim() ? [...without, `${prefix} ${value.trim()}`] : without }) }} placeholder="Enter if measured" inputMode="decimal" /></label>)}</div>
+                    </div> : null}
                     <ChecklistGroups
                       variant="plain"
-                      groups={details.examDetails?.exam_groups.map((group) => ({
+                      groups={nonVitalExamGroups.map((group) => ({
                         id: group.group_id,
                         label: group.group_label,
                         safetyNote: group.safety_note,
@@ -486,6 +564,20 @@ export function DetailedEncounterPage() {
                           selectedValues={selectedPlanItems}
                           onToggle={(value) => setSelectedPlanItems((current) => toggleValue(current, value))}
                         />
+                      </div>
+                      <div className="mt-6">
+                        <ChecklistGroups
+                          variant="plain"
+                          groups={details.medicationDetails?.option_groups.map((group) => ({ id: group.group_id, label: group.group_label, safetyNote: group.safety_note, options: group.options.map((option) => ({ id: option.option_id, label: normalizeDocumentationText(option.label), noteText: normalizeDocumentationText(option.note_text || option.label), warning: option.warning ? normalizeDocumentationText(option.warning) : undefined })) })) ?? []}
+                          selectedValues={selectedMedications}
+                          onToggle={(value) => setSelectedMedications((current) => toggleValue(current, value))}
+                        />
+                      </div>
+                      <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50/70 p-4">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-amber-950"><ShieldAlert className="h-4 w-4" /> Safety-netting and follow-up</div>
+                        <p className="mt-1 text-xs leading-5 text-amber-900">Select only clinician-discussed follow-up or safety-netting. No escalation or treatment is inferred from an unanswered field.</p>
+                        <div className="mt-4"><ChipSelector label="Follow-up / safety-net options" items={chipGroups.follow_up ?? []} selectedItems={selectedFollowUp} onToggle={(value) => setSelectedFollowUp((current) => toggleValue(current, value))} variant="plain" /></div>
+                        {selectedRedFlags.length ? <label className="mt-5 block space-y-2 text-sm"><span className="field-label">Clinician-stated escalation detail</span><Textarea value={safetyNetting} onChange={(event) => setSafetyNetting(event.target.value)} rows={3} placeholder="Enter only the clinician-stated escalation or safety-netting detail." /></label> : null}
                       </div>
                     </DocumentationSection>
                     <DocumentationSection title="Optional outputs" description="Complete only when explicitly requested and stated by the clinician.">

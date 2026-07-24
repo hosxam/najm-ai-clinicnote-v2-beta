@@ -25,6 +25,11 @@ type DetailedEncounterInput = {
   selectedPlanItems: string[]
   referralReason: string
   patientInstructions: string
+  selectedRedFlags?: string[]
+  selectedFollowUp?: string[]
+  selectedAdditionalContext?: string[]
+  selectedMedications?: string[]
+  safetyNetting?: string
 }
 
 type NoteSections = {
@@ -167,6 +172,8 @@ export function buildDetailedOutputs(input: DetailedEncounterInput) {
     ...historyLines,
     labeledListLine('Symptoms', input.selectedSymptoms),
     labeledListLine('Important negatives', input.selectedNegatives),
+    labeledListLine('Red flags assessed', input.selectedRedFlags ?? []),
+    labeledListLine('Additional documented context', input.selectedAdditionalContext ?? []),
   ])
 
   const examination = bulletJoin(
@@ -179,7 +186,7 @@ export function buildDetailedOutputs(input: DetailedEncounterInput) {
   )
   const assessment = cleanLeadingLabels(input.assessment, ['Assessment', 'Impression', 'Clinician impression'])
   const plan = bulletJoin(
-    [input.plan, ...input.selectedPlanItems]
+    [input.plan, ...(input.selectedPlanItems ?? []), ...(input.selectedMedications ?? []), ...(input.selectedFollowUp ?? []), input.safetyNetting ?? '']
       .map((value) => cleanLeadingLabels(value, ['Plan', 'Clinician plan', 'Current clinician plan'])),
   )
 
