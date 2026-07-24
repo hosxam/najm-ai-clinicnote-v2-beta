@@ -224,6 +224,49 @@ textarea {
   scrollbar-width: thin;
 }
 
+.interactive-immersive {
+  position: relative;
+}
+
+.interactive-immersive::before {
+  position: fixed;
+  z-index: -1;
+  inset: 8rem 10% auto;
+  height: 24rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.14), rgba(124, 58, 237, 0.06) 45%, transparent 72%);
+  content: '';
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+.interactive-immersive header,
+.interactive-immersive main > section,
+.interactive-immersive aside > section {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.interactive-immersive main > section:hover,
+.interactive-immersive aside > section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px -42px rgba(8, 47, 73, 0.42);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .interactive-immersive::before {
+    display: none;
+  }
+}
+
 .output-prose {
   color: #243247;
   line-height: 1.8;

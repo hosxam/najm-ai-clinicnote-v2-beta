@@ -7,6 +7,7 @@ import { MedicalReportPage } from '../pages/MedicalReportPage'
 import { QuickNotePage } from '../pages/QuickNotePage'
 import { SafetyPage } from '../pages/SafetyPage'
 import { FinalBetaCataloguePage } from '../pages/FinalBetaCataloguePage'
+import { InteractiveBetaPage } from '../pages/InteractiveBetaPage'
 
 export const router = createHashRouter([
   {
@@ -22,8 +23,10 @@ export const router = createHashRouter([
       { path: 'report/:workflowId', element: <MedicalReportPage /> },
       { path: 'feedback', element: <FeedbackPage /> },
       { path: 'safety', element: <SafetyPage /> },
-      { path: 'beta', element: <FinalBetaCataloguePage /> },
-      { path: 'beta/workflows/:workflowId', element: <FinalBetaCataloguePage /> },
+      { path: 'beta', element: <InteractiveBetaPage /> },
+      { path: 'beta/workflows/:workflowId', element: <InteractiveBetaPage /> },
+      { path: 'beta/evidence', element: <FinalBetaCataloguePage /> },
+      { path: 'beta/evidence/:workflowId', element: <FinalBetaCataloguePage /> },
     ],
   },
 ])
