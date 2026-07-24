@@ -252,6 +252,26 @@ textarea {
   box-shadow: 0 24px 60px -42px rgba(8, 47, 73, 0.42);
 }
 
+@media (max-width: 640px), (hover: none) {
+  .interactive-immersive::before {
+    inset: 7rem 2% auto;
+    height: 16rem;
+    filter: blur(12px);
+    opacity: 0.65;
+  }
+
+  .interactive-immersive header,
+  .interactive-immersive main > section,
+  .interactive-immersive aside > section {
+    transition-duration: 80ms;
+  }
+
+  .interactive-immersive main > section:hover,
+  .interactive-immersive aside > section:hover {
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
