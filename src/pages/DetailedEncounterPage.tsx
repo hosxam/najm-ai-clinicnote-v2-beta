@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, ClipboardList, FileSearch2, FlaskConical, ListChecks, Stethoscope } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { ChecklistGroups } from '../components/ChecklistGroups'
 import { ChipSelector } from '../components/ChipSelector'
 import { DocumentationSection } from '../components/DocumentationSection'
@@ -76,7 +76,10 @@ function getDetailedEncounterDefaults(details: WorkflowDetails | null): Detailed
 
 export function DetailedEncounterPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { workflowId } = useParams()
+  const betaRoute = location.pathname.startsWith('/beta')
+  const quickRoute = (id: string) => betaRoute ? `/beta/workflows/${encodeURIComponent(id)}?mode=quick` : `/quick-note/${id}`
   const [catalog, setCatalog] = useState<WorkflowSummary[]>([])
   const [specialties, setSpecialties] = useState<string[]>([])
   const [search, setSearch] = useState('')
@@ -120,7 +123,7 @@ export function DetailedEncounterPage() {
     if (!workflowId) {
       const savedDraft = loadLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY)
       if (savedDraft?.workflowId) {
-        navigate(`/encounter/${savedDraft.workflowId}`, { replace: true })
+        navigate(betaRoute ? `/beta/workflows/${encodeURIComponent(savedDraft.workflowId)}?mode=advanced` : `/encounter/${savedDraft.workflowId}`, { replace: true })
         return
       }
       setDetails(null)
@@ -346,7 +349,7 @@ export function DetailedEncounterPage() {
             onSpecialtyChange={setSpecialty}
             onSelect={(id) => {
               setShowWorkflowChooser(false)
-              navigate(`/encounter/${id}`)
+              navigate(betaRoute ? `/beta/workflows/${encodeURIComponent(id)}?mode=advanced` : `/encounter/${id}`)
             }}
           />
         </section>
@@ -363,7 +366,7 @@ export function DetailedEncounterPage() {
                 <div className="text-sm font-semibold text-slate-950">Structured encounter</div>
                 <p className="mt-1 text-xs leading-5 text-slate-500">Defaults stay manual in Detailed Note. Focus on one section at a time.</p>
               </div>
-              <Button asChild variant="ghost" size="sm"><Link to={`/quick-note/${details.summary.workflowId}`}>Switch to Quick Note</Link></Button>
+              <Button asChild variant="ghost" size="sm"><Link to={quickRoute(details.summary.workflowId)}>Switch to Quick Note</Link></Button>
             </div>
 
             <div className="structured-editor-body">

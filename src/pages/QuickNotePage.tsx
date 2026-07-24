@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight, FilePlus2, RefreshCcw, RotateCcw, Sparkles, Wand2 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { ChipSelector } from '../components/ChipSelector'
 import { DocumentationSection } from '../components/DocumentationSection'
 import { OutputPanel } from '../components/OutputPanel'
@@ -54,7 +54,10 @@ function getQuickNoteDefaults(details: WorkflowDetails | null): QuickNoteDraft {
 
 export function QuickNotePage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { workflowId } = useParams()
+  const betaRoute = location.pathname.startsWith('/beta')
+  const detailedRoute = (id: string) => betaRoute ? `/beta/workflows/${encodeURIComponent(id)}?mode=advanced` : `/encounter/${id}`
   const [catalog, setCatalog] = useState<WorkflowSummary[]>([])
   const [specialties, setSpecialties] = useState<string[]>([])
   const [search, setSearch] = useState('')
@@ -95,7 +98,7 @@ export function QuickNotePage() {
     if (!workflowId) {
       const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
       if (savedDraft?.workflowId) {
-        navigate(`/quick-note/${savedDraft.workflowId}`, { replace: true })
+        navigate(betaRoute ? `/beta/workflows/${encodeURIComponent(savedDraft.workflowId)}?mode=quick` : `/quick-note/${savedDraft.workflowId}`, { replace: true })
         return
       }
       setDetails(null)
@@ -344,7 +347,7 @@ export function QuickNotePage() {
             onSpecialtyChange={setSpecialty}
             onSelect={(id) => {
               setShowWorkflowChooser(false)
-              navigate(`/quick-note/${id}`)
+              navigate(betaRoute ? `/beta/workflows/${encodeURIComponent(id)}?mode=quick` : `/quick-note/${id}`)
             }}
           />
         </section>
@@ -455,7 +458,7 @@ export function QuickNotePage() {
               <div className="flex flex-wrap gap-1.5">
                 <Button variant="ghost" size="sm" onClick={resetCurrentDraft}><RotateCcw className="h-4 w-4" /> Reset</Button>
                 <Button variant="warning" size="sm" onClick={clearEnteredContent}>Clear entered content</Button>
-                <Button asChild variant="ghost" size="sm"><Link to={`/encounter/${details.summary.workflowId}`}>Detailed Note</Link></Button>
+                <Button asChild variant="ghost" size="sm"><Link to={detailedRoute(details.summary.workflowId)}>Detailed Note</Link></Button>
               </div>
               <Button variant="primary" size="lg" onClick={handleReviewNote}>
                 Review note <ArrowRight className="h-4 w-4" />
