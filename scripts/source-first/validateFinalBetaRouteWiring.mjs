@@ -16,6 +16,8 @@ if (!adapter.includes('Final beta catalogue count contract failed')) errors.push
 if (page.includes('DirectGuidelineCurationPage') || page.includes('clinician review queue')) errors.push('obsolete review/fallback content appears in final beta page')
 if (!interactivePage.includes('buildInteractiveSoapNote') || !interactivePage.includes('Guideline evidence')) errors.push('interactive beta page lacks SOAP/evidence separation')
 if (!interactiveAdapter.includes('data-beta/interactive-workflows/')) errors.push('interactive adapter does not use compiled interactive catalogue')
-const result = { status: errors.length ? 'FAIL' : 'PASS', route: 'src/app/router.tsx#/beta', primary_path: 'public/data-beta/interactive-workflows/manifest.json', evidence_reference_path: 'public/data-beta/final-catalogue/manifest.json', errors }
+if (!interactiveAdapter.includes("data-beta/final-catalogue/manifest.json")) errors.push('beta route does not load the canonical final-catalogue manifest')
+if (!interactiveAdapter.includes("data/diagnosis_index.json") || !interactivePage.includes('workflow.aliases')) errors.push('beta route does not resolve committed workflow aliases')
+const result = { status: errors.length ? 'FAIL' : 'PASS', route: 'src/app/router.tsx#/beta', primary_path: 'public/data-beta/interactive-workflows/manifest.json', canonical_manifest_path: 'public/data-beta/final-catalogue/manifest.json', alias_index_path: 'public/data/diagnosis_index.json', errors }
 console.log(JSON.stringify(result, null, 2))
 if (errors.length) process.exitCode = 1

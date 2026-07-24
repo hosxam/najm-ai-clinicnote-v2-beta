@@ -59,6 +59,22 @@ export type InteractiveWorkflowSummary = {
   final_status: string
   fields: number
   evidence_records: number
+  /** Core diagnosis/search aliases retained for merged and legacy names. */
+  aliases: string[]
+}
+
+type FinalCatalogueManifest = {
+  counts?: {
+    original_workflows?: number
+    active_workflows?: number
+    inactive_workflows?: number
+    clinician_facing_items?: number
+    internal_evidence_records?: number
+  }
+}
+
+type DiagnosisIndex = {
+  entries?: Array<{ workflow_ids?: string[]; label?: string; aliases?: string[] }>
 }
 
 export type InteractiveWorkflow = InteractiveWorkflowSummary & {
@@ -79,12 +95,30 @@ function load<T>(relative: string) {
   return cache.get(relative) as Promise<T>
 }
 
-let datasetPromise: Promise<{ manifest: InteractiveManifest; workflows: InteractiveWorkflowSummary[] }> | null = null
+let datasetPromise: Promise<{ manifest: InteractiveManifest; workflows: InteractiveWorkflowSummary[]; finalCatalogueManifest: FinalCatalogueManifest }> | null = null
 export const interactiveWorkflowData = {
   loadDataset() {
-    if (!datasetPromise) datasetPromise = Promise.all([load<InteractiveManifest>('manifest.json'), load<{ workflows: InteractiveWorkflowSummary[] }>('catalog.json')]).then(([manifest, catalog]) => {
+    if (!datasetPromise) datasetPromise = Promise.all([
+      load<InteractiveManifest>('manifest.json'),
+      load<{ workflows: Array<Omit<InteractiveWorkflowSummary, 'aliases'>> }>('catalog.json'),
+      fetch(publicPath('data-beta/final-catalogue/manifest.json')).then(async (response) => {
+        if (!response.ok) throw new Error(`Final catalogue manifest failed: ${response.status}`)
+        return response.json() as Promise<FinalCatalogueManifest>
+      }),
+      fetch(publicPath('data/diagnosis_index.json')).then(async (response) => {
+        if (!response.ok) throw new Error(`Diagnosis alias index failed: ${response.status}`)
+        return response.json() as Promise<DiagnosisIndex>
+      }),
+    ]).then(([manifest, catalog, finalCatalogueManifest, diagnosisIndex]) => {
       if (manifest.counts.workflows !== 416) throw new Error('Interactive workflow count contract failed.')
-      return { manifest, workflows: catalog.workflows }
+      if (finalCatalogueManifest.counts?.original_workflows !== 1500 || finalCatalogueManifest.counts?.active_workflows !== 416 || finalCatalogueManifest.counts?.inactive_workflows !== 1084) throw new Error('Final catalogue manifest count contract failed.')
+      const aliasesByWorkflow = new Map<string, string[]>()
+      for (const entry of diagnosisIndex.entries ?? []) {
+        const aliases = [entry.label, ...(entry.aliases ?? [])].filter((value): value is string => Boolean(value?.trim()))
+        for (const workflowId of entry.workflow_ids ?? []) aliasesByWorkflow.set(workflowId, [...(aliasesByWorkflow.get(workflowId) ?? []), ...aliases])
+      }
+      const workflows = catalog.workflows.map((workflow) => ({ ...workflow, aliases: [...new Set(aliasesByWorkflow.get(workflow.workflow_id) ?? [])] }))
+      return { manifest, workflows, finalCatalogueManifest }
     })
     return datasetPromise
   },

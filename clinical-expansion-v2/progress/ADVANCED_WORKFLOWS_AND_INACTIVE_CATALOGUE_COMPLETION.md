@@ -69,6 +69,10 @@ Source-recency and clinical-data reproducibility remained PASS. The stored/activ
 
 The advanced-mode manifest fingerprint is `5700a194048ce84cffb44a10b5e0d17d615a39e4892d627dcc75b5c3e0a8fb7b`; the compact inactive reassessment fingerprint is `138814202e21424e3eed8bb222ac7a00807a24e1ea2a8ea5e05603b61963a9a3`.
 
+## Independent live-audit repairs
+
+The first live audit identified two production-surface defects and they were repaired in the follow-up beta commit: the interactive beta loader now fail-closes against and loads the canonical `data-beta/final-catalogue/manifest.json` before rendering, and it joins the committed diagnosis index so legacy and merged workflow aliases are searchable (for example, `pyrexia` resolves to `gp-fever-urti`). The route validator now asserts both contracts. The repaired build must be redeployed and rechecked before this report is considered complete.
+
 ## Boundaries
 
 - Beta only; no stable production deployment and no merge into `main`.
