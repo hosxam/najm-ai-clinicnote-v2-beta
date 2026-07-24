@@ -89,6 +89,11 @@ export const interactiveWorkflowData = {
     return datasetPromise
   },
   getWorkflow(workflowId: string) {
-    return load<InteractiveWorkflow>(`workflows/${encodeURIComponent(workflowId)}.json`)
+    return this.loadDataset().then(({ workflows }) => {
+      if (!workflows.some((workflow) => workflow.workflow_id === workflowId)) {
+        throw new Error('This workflow is inactive and is not available as usable clinical content.')
+      }
+      return load<InteractiveWorkflow>(`workflows/${encodeURIComponent(workflowId)}.json`)
+    })
   },
 }

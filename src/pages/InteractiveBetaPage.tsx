@@ -34,7 +34,22 @@ function InteractiveWorkflowView({ workflowId }: { workflowId: string }) {
   const [mode, setMode] = useState<'clinical' | 'immersive'>(() => (localStorage.getItem('najm-beta-mode') as 'clinical' | 'immersive') || 'clinical')
   const [copied, setCopied] = useState(false)
 
-  useEffect(() => { interactiveWorkflowData.getWorkflow(workflowId).then((loaded) => { setWorkflow(loaded); const saved = localStorage.getItem(draftKey(workflowId)); if (saved) setValues(JSON.parse(saved)) }).catch((caught: unknown) => setError(caught instanceof Error ? caught.message : 'Interactive workflow could not be loaded.')) }, [workflowId])
+  useEffect(() => {
+    let cancelled = false
+    setWorkflow(null)
+    setValues({})
+    setNote('')
+    setError(null)
+    interactiveWorkflowData.getWorkflow(workflowId).then((loaded) => {
+      if (cancelled) return
+      setWorkflow(loaded)
+      const saved = localStorage.getItem(draftKey(workflowId))
+      if (saved) setValues(JSON.parse(saved))
+    }).catch((caught: unknown) => {
+      if (!cancelled) setError(caught instanceof Error ? caught.message : 'Interactive workflow could not be loaded.')
+    })
+    return () => { cancelled = true }
+  }, [workflowId])
   useEffect(() => { if (workflow) localStorage.setItem(draftKey(workflow.workflow_id), JSON.stringify(values)) }, [workflow, values])
   useEffect(() => { localStorage.setItem('najm-beta-mode', mode) }, [mode])
 
