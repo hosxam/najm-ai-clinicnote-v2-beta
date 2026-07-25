@@ -2,7 +2,7 @@
 
 ## Status
 
-Implementation proof is complete on `beta-all-workflow-clinical-proof-and-repair-v1`. Beta deployment is intentionally recorded separately after the branch is pushed and the Pages workflow completes. No stable-production deployment is permitted.
+Implementation proof is complete on `beta-all-workflow-clinical-proof-and-repair-v1`. The beta build completed, but the Pages deploy job was rejected by the `github-pages` environment branch protection because this new branch is not in the environment's permitted deployment list. No stable-production deployment is permitted.
 
 ## Scope and provenance
 
@@ -90,10 +90,12 @@ No mappings or candidates were created; no clinician approvals were created; exc
 
 ## Deployment record
 
-To be completed only after the proof branch is pushed, the authorized beta Pages workflow succeeds, and the live beta is opened and rechecked:
+- Pushed branch: `beta-all-workflow-clinical-proof-and-repair-v1`
+- Workflow run: [30174256113](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30174256113)
+- Build job: passed (`89720372924`); data validation and build passed.
+- Deploy job: rejected (`89720483964`). Exact reason: `Branch "beta-all-workflow-clinical-proof-and-repair-v1" is not allowed to deploy to github-pages due to environment protection rules.`
+- Deployed source SHA: none (the environment rejected the deployment).
+- Live verification timestamp: not performed because no new deployment occurred.
+- Live verification: not claimable. The existing beta URL remains on its prior deployment and was not changed by this run.
 
-- Deployment run: pending
-- Deployment URL: pending
-- Deployed source SHA: pending
-- Live verification timestamp: pending
-- Live verification: pending
+The branch must be explicitly authorized by the repository owner in the `github-pages` environment before the same workflow can deploy. No alternate branch, stable production route, protection bypass, merge, or force-push was used.
