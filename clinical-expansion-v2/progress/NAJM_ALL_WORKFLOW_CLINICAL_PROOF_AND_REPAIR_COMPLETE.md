@@ -59,6 +59,10 @@ The real deployed beta application was exercised through Playwright in Advanced 
 
 Artifacts are in `clinical-expansion-v2/progress/clinical-remediation-proof/`, including the full manifest, fixtures, generated outputs, failures, repairs, detailed before/after cases, final test results, and browser/state/fresh proof results.
 
+The manifest now contains one complete record for each workflow, including fixture IDs, exact input facts, generated SOAP/procedure outputs, must-include and must-not-include assertions, failures, repairs, and terminal status. `FINAL_TEST_RESULTS.json` retains the browser, state, and Start Fresh summaries alongside the 416 workflow records and 15 detailed case results.
+
+The catalogue/routing browser sweep also passed: 416/416 Quick routes, 416/416 Advanced routes, 141 viewport checks across desktop/tablet/mobile, zero route failures, zero viewport failures, zero console errors, and zero failed requests.
+
 ## Validation
 
 Passed commands include:
@@ -97,5 +101,7 @@ No mappings or candidates were created; no clinician approvals were created; exc
 - Deployed source SHA: none (the environment rejected the deployment).
 - Live verification timestamp: not performed because no new deployment occurred.
 - Live verification: not claimable. The existing beta URL remains on its prior deployment and was not changed by this run.
+
+The final proof-only branch tip is `4ed2307648f5f2710c6441d2e834b6e33cd65a08`; the attempted deployment run used the earlier implementation/docs tip `1f906fc247d82d01aa6d95f74d3861c53da7c0ea` before the later artifact-only documentation correction. No application or clinical data changed between those commits.
 
 The branch must be explicitly authorized by the repository owner in the `github-pages` environment before the same workflow can deploy. No alternate branch, stable production route, protection bypass, merge, or force-push was used.
