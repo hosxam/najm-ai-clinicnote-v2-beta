@@ -98,6 +98,7 @@ No mappings or candidates were created; no clinician approvals were created; exc
 - Workflow run: [30174256113](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30174256113)
 - Build job: passed (`89720372924`); data validation and build passed.
 - Deploy job: rejected (`89720483964`). Exact reason: `Branch "beta-all-workflow-clinical-proof-and-repair-v1" is not allowed to deploy to github-pages due to environment protection rules.`
+- Verification rerun: [30174466168](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30174466168), build passed (`89720912982`), deploy rejected (`89721029203`) with the identical environment-protection reason.
 - Deployed source SHA: none (the environment rejected the deployment).
 - Live verification timestamp: not performed because no new deployment occurred.
 - Live verification: not claimable. The existing beta URL remains on its prior deployment and was not changed by this run.
