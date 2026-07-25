@@ -1,19 +1,21 @@
 # NAJM Interactive Clinical Repair
 
-Status: IMPLEMENTED; BETA DEPLOYMENT BLOCKED BY EXISTING PAGES ENVIRONMENT POLICY
+Status: IMPLEMENTED AND DEPLOYED TO BETA
 
 ## Baseline and delivery
 
 - Starting branch: `guideline-evidence-packs-and-reconstruction-v1`
 - Starting SHA: `ce35891ff68096f2ee014e6aa8af321e21723588`
 - Implementation branch: `beta-interactive-clinical-repair-v1`
-- Ending SHA before this report: `1adf3fe36f691036045234450b8e6ba2e972e5ae`
+- Implementation ending SHA: `7904df4d41bcf38d98cbd8213ba797e6e8c25aae`
+- Final documentation SHA: recorded by the documentation-only commit following deployment
 - Intended beta URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
-- Deployment workflows: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30170840800 and retry https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30170958926
-- Deployed source SHA: not available; the run's build job passed, but the deploy job was rejected because the existing `github-pages` environment does not allow `beta-interactive-clinical-repair-v1`.
+- Successful deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30171170556
+- Deployed source SHA: `7904df4d41bcf38d98cbd8213ba797e6e8c25aae` (displayed in the beta UI as `7904df4`)
+- Deployment authorization resolution: the `github-pages` environment was authorized for `beta-interactive-clinical-repair-v1`; no other protection rule was changed.
 - No stable-production deployment was attempted.
 
-The branch was pushed without force-push, merge, rebase, signing, approval, or protection-rule changes. The live URL therefore remains the previously deployed beta and was not represented as containing this repair.
+The branch was pushed without force-push, merge, rebase, signing, approval, or protection-rule changes. The successful Pages deployment now represents this repair at the live beta URL.
 
 ## Architecture changes
 
@@ -66,6 +68,22 @@ Local Playwright smoke checks passed on the catalogue, chest-pain route, draft-c
 - Exclusions remain 12.
 - No stable production deployment, merge, rebase, force-push, signing, or approval occurred.
 
-## Deployment blocker
+## Deployment history and authorization resolution
 
-GitHub Actions runs `30170840800` and `30170958926` completed their build and artifact upload successfully. Both deploy jobs failed before publication with: `Branch "beta-interactive-clinical-repair-v1" is not allowed to deploy to github-pages due to environment protection rules.` The environment currently allows only `main`, `guideline-evidence-packs-and-reconstruction-v1`, and `clinician-review-adjudication-micro-pilot-v1`. No protection rule was changed, and no alternate branch was used.
+Earlier GitHub Actions runs `30170840800` and `30170958926` were blocked by environment policy. After the explicit authorization, run `30171170556` completed both build and deploy successfully from the required branch. No alternate branch was used.
+
+## Live beta verification
+
+Verification timestamp: `2026-07-25 23:16:35 +04:00`
+
+- Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Build marker: `7904df4`, matching the deployed source SHA.
+- Catalogue: PASS; 416 interactive workflows, 3,720 rendered schema fields, and 75,484 retained evidence records displayed.
+- Quick and Advanced modes: PASS on all tested routes; Advanced section navigation and source-schema text rendered.
+- Representative routes: PASS for chest pain, ECG result review, paediatric fever, emergency assessment, pre-anaesthetic assessment, and procedure documentation.
+- Draft isolation: PASS; fever opened empty after chest-pain data, saved-draft modal appeared on return, and Start fresh cleared the prior value.
+- Console errors: none observed.
+- Failed asset/data requests: none observed.
+- Stable production: unchanged; only the beta Pages deployment workflow was run.
+
+Remaining truthful limitation: the compiled source-grounded schemas intentionally expose only fields present in each workflow's accepted evidence-backed schema; the renderer does not invent unsupported clinical controls or infer missing facts.
