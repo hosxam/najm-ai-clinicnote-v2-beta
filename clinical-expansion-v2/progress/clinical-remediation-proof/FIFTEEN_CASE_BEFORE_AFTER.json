@@ -1,0 +1,618 @@
+[
+  {
+    "name": "chest_pain",
+    "workflow_id": "cardio-chest-pain",
+    "title": "Chest pain",
+    "input": {
+      "cardio_chest_pain__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:cardio-chest-pain:f0]",
+      "cardio_chest_pain__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:cardio-chest-pain:f1]",
+      "cardio_chest_pain__symptom_characteristics": "Clinician-entered symptom characteristics fact for the encounter [proof:cardio-chest-pain:f2]",
+      "cardio_chest_pain__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:cardio-chest-pain:f3]",
+      "cardio_chest_pain__red_flags": "No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f4]",
+      "cardio_chest_pain__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f5]",
+      "cardio_chest_pain__vital_signs": "normal measured value 7 [proof:cardio-chest-pain:f6]",
+      "cardio_chest_pain__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-chest-pain:f7]",
+      "cardio_chest_pain__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-chest-pain:f8]",
+      "cardio_chest_pain__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-chest-pain:f9]",
+      "cardio_chest_pain__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:cardio-chest-pain:f10]",
+      "cardio_chest_pain__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-chest-pain:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:cardio-chest-pain:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:cardio-chest-pain:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:cardio-chest-pain:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:cardio-chest-pain:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:cardio-chest-pain:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-chest-pain:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-chest-pain:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-chest-pain:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-chest-pain:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-chest-pain:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:cardio-chest-pain:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:cardio-chest-pain:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:cardio-chest-pain:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:cardio-chest-pain:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:cardio-chest-pain:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-chest-pain:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-chest-pain:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-chest-pain:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-chest-pain:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-chest-pain:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:cardio-chest-pain:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:cardio-chest-pain:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:cardio-chest-pain:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:cardio-chest-pain:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:cardio-chest-pain:f5]",
+      "objective": "Vital signs: normal measured value 7 [proof:cardio-chest-pain:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-chest-pain:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-chest-pain:f8]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-chest-pain:f9]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-chest-pain:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-chest-pain:f11]"
+    },
+    "must_include": [
+      "[proof:cardio-chest-pain:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "fever_urti",
+    "workflow_id": "gp-fever-urti",
+    "title": "Fever",
+    "input": {
+      "gp_fever_urti__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:gp-fever-urti:f0]",
+      "gp_fever_urti__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:gp-fever-urti:f1]",
+      "gp_fever_urti__symptom_characteristics": "Clinician-entered symptom characteristics fact for the encounter [proof:gp-fever-urti:f2]",
+      "gp_fever_urti__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:gp-fever-urti:f3]",
+      "gp_fever_urti__red_flags": "No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f4]",
+      "gp_fever_urti__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f5]",
+      "gp_fever_urti__vital_signs": "normal measured value 7 [proof:gp-fever-urti:f6]",
+      "gp_fever_urti__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-fever-urti:f7]",
+      "gp_fever_urti__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-fever-urti:f8]",
+      "gp_fever_urti__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-fever-urti:f9]",
+      "gp_fever_urti__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:gp-fever-urti:f10]",
+      "gp_fever_urti__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-fever-urti:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-fever-urti:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-fever-urti:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-fever-urti:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-fever-urti:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:gp-fever-urti:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-fever-urti:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-fever-urti:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-fever-urti:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-fever-urti:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-fever-urti:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-fever-urti:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-fever-urti:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-fever-urti:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-fever-urti:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:gp-fever-urti:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-fever-urti:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-fever-urti:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-fever-urti:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-fever-urti:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-fever-urti:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-fever-urti:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-fever-urti:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-fever-urti:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-fever-urti:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-fever-urti:f5]",
+      "objective": "Vital signs: normal measured value 7 [proof:gp-fever-urti:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-fever-urti:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-fever-urti:f8]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-fever-urti:f9]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-fever-urti:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-fever-urti:f11]"
+    },
+    "must_include": [
+      "[proof:gp-fever-urti:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "sore_throat",
+    "workflow_id": "ent-recurrent-tonsillitis",
+    "title": "Recurrent tonsillitis",
+    "input": {
+      "ent_recurrent_tonsillitis__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:ent-recurrent-tonsillitis:f0]",
+      "ent_recurrent_tonsillitis__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:ent-recurrent-tonsillitis:f1]",
+      "ent_recurrent_tonsillitis__symptom_characteristics": "Clinician-entered symptom characteristics fact for the encounter [proof:ent-recurrent-tonsillitis:f2]",
+      "ent_recurrent_tonsillitis__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:ent-recurrent-tonsillitis:f3]",
+      "ent_recurrent_tonsillitis__red_flags": "No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f4]",
+      "ent_recurrent_tonsillitis__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f5]",
+      "ent_recurrent_tonsillitis__vital_signs": "normal measured value 7 [proof:ent-recurrent-tonsillitis:f6]",
+      "ent_recurrent_tonsillitis__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:ent-recurrent-tonsillitis:f7]",
+      "ent_recurrent_tonsillitis__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:ent-recurrent-tonsillitis:f8]",
+      "ent_recurrent_tonsillitis__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ent-recurrent-tonsillitis:f9]",
+      "ent_recurrent_tonsillitis__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:ent-recurrent-tonsillitis:f10]",
+      "ent_recurrent_tonsillitis__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ent-recurrent-tonsillitis:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:ent-recurrent-tonsillitis:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:ent-recurrent-tonsillitis:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:ent-recurrent-tonsillitis:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:ent-recurrent-tonsillitis:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:ent-recurrent-tonsillitis:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:ent-recurrent-tonsillitis:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:ent-recurrent-tonsillitis:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ent-recurrent-tonsillitis:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ent-recurrent-tonsillitis:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ent-recurrent-tonsillitis:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:ent-recurrent-tonsillitis:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:ent-recurrent-tonsillitis:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:ent-recurrent-tonsillitis:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:ent-recurrent-tonsillitis:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:ent-recurrent-tonsillitis:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:ent-recurrent-tonsillitis:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:ent-recurrent-tonsillitis:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ent-recurrent-tonsillitis:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ent-recurrent-tonsillitis:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ent-recurrent-tonsillitis:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:ent-recurrent-tonsillitis:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:ent-recurrent-tonsillitis:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:ent-recurrent-tonsillitis:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:ent-recurrent-tonsillitis:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:ent-recurrent-tonsillitis:f5]",
+      "objective": "Vital signs: normal measured value 7 [proof:ent-recurrent-tonsillitis:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:ent-recurrent-tonsillitis:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:ent-recurrent-tonsillitis:f8]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ent-recurrent-tonsillitis:f9]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ent-recurrent-tonsillitis:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ent-recurrent-tonsillitis:f11]"
+    },
+    "must_include": [
+      "[proof:ent-recurrent-tonsillitis:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "dyspnoea",
+    "workflow_id": "cardio-dyspnea",
+    "title": "Dyspnea",
+    "input": {
+      "cardio_dyspnea__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:cardio-dyspnea:f0]",
+      "cardio_dyspnea__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:cardio-dyspnea:f1]",
+      "cardio_dyspnea__symptom_characteristics": "Clinician-entered symptom characteristics fact for the encounter [proof:cardio-dyspnea:f2]",
+      "cardio_dyspnea__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:cardio-dyspnea:f3]",
+      "cardio_dyspnea__red_flags": "No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f4]",
+      "cardio_dyspnea__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f5]",
+      "cardio_dyspnea__vital_signs": "normal measured value 7 [proof:cardio-dyspnea:f6]",
+      "cardio_dyspnea__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-dyspnea:f7]",
+      "cardio_dyspnea__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-dyspnea:f8]",
+      "cardio_dyspnea__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-dyspnea:f9]",
+      "cardio_dyspnea__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:cardio-dyspnea:f10]",
+      "cardio_dyspnea__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-dyspnea:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:cardio-dyspnea:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:cardio-dyspnea:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:cardio-dyspnea:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:cardio-dyspnea:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:cardio-dyspnea:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-dyspnea:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-dyspnea:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-dyspnea:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-dyspnea:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-dyspnea:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:cardio-dyspnea:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:cardio-dyspnea:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:cardio-dyspnea:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:cardio-dyspnea:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:cardio-dyspnea:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-dyspnea:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-dyspnea:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-dyspnea:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-dyspnea:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-dyspnea:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:cardio-dyspnea:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:cardio-dyspnea:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:cardio-dyspnea:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:cardio-dyspnea:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:cardio-dyspnea:f5]",
+      "objective": "Vital signs: normal measured value 7 [proof:cardio-dyspnea:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-dyspnea:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-dyspnea:f8]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-dyspnea:f9]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-dyspnea:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:cardio-dyspnea:f11]"
+    },
+    "must_include": [
+      "[proof:cardio-dyspnea:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "abdominal_pain",
+    "workflow_id": "gp-abdominal-pain",
+    "title": "Abdominal pain",
+    "input": {
+      "gp_abdominal_pain__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:gp-abdominal-pain:f0]",
+      "gp_abdominal_pain__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:gp-abdominal-pain:f1]",
+      "gp_abdominal_pain__symptom_characteristics": "Clinician-entered symptom characteristics fact for the encounter [proof:gp-abdominal-pain:f2]",
+      "gp_abdominal_pain__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:gp-abdominal-pain:f3]",
+      "gp_abdominal_pain__red_flags": "No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f4]",
+      "gp_abdominal_pain__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f5]",
+      "gp_abdominal_pain__vital_signs": "normal measured value 7 [proof:gp-abdominal-pain:f6]",
+      "gp_abdominal_pain__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-abdominal-pain:f7]",
+      "gp_abdominal_pain__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-abdominal-pain:f8]",
+      "gp_abdominal_pain__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-abdominal-pain:f9]",
+      "gp_abdominal_pain__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:gp-abdominal-pain:f10]",
+      "gp_abdominal_pain__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-abdominal-pain:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-abdominal-pain:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-abdominal-pain:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-abdominal-pain:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-abdominal-pain:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:gp-abdominal-pain:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-abdominal-pain:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-abdominal-pain:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-abdominal-pain:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-abdominal-pain:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-abdominal-pain:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-abdominal-pain:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-abdominal-pain:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-abdominal-pain:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-abdominal-pain:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:gp-abdominal-pain:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-abdominal-pain:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-abdominal-pain:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-abdominal-pain:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-abdominal-pain:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-abdominal-pain:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-abdominal-pain:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-abdominal-pain:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-abdominal-pain:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-abdominal-pain:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-abdominal-pain:f5]",
+      "objective": "Vital signs: normal measured value 7 [proof:gp-abdominal-pain:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-abdominal-pain:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-abdominal-pain:f8]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-abdominal-pain:f9]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-abdominal-pain:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-abdominal-pain:f11]"
+    },
+    "must_include": [
+      "[proof:gp-abdominal-pain:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "headache",
+    "workflow_id": "gp-headache",
+    "title": "Headache",
+    "input": {
+      "gp_headache__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:gp-headache:f0]",
+      "gp_headache__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:gp-headache:f1]",
+      "gp_headache__symptom_characteristics": "Clinician-entered symptom characteristics fact for the encounter [proof:gp-headache:f2]",
+      "gp_headache__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:gp-headache:f3]",
+      "gp_headache__red_flags": "No red-flag feature reported; explicit negative assessed [proof:gp-headache:f4]",
+      "gp_headache__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:gp-headache:f5]",
+      "gp_headache__vital_signs": "normal measured value 7 [proof:gp-headache:f6]",
+      "gp_headache__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-headache:f7]",
+      "gp_headache__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-headache:f8]",
+      "gp_headache__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-headache:f9]",
+      "gp_headache__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:gp-headache:f10]",
+      "gp_headache__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-headache:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-headache:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-headache:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-headache:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-headache:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-headache:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-headache:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:gp-headache:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-headache:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-headache:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-headache:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-headache:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-headache:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-headache:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-headache:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-headache:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-headache:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-headache:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-headache:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:gp-headache:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-headache:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-headache:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-headache:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-headache:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-headache:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:gp-headache:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:gp-headache:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:gp-headache:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:gp-headache:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:gp-headache:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:gp-headache:f5]",
+      "objective": "Vital signs: normal measured value 7 [proof:gp-headache:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:gp-headache:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-headache:f8]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-headache:f9]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:gp-headache:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:gp-headache:f11]"
+    },
+    "must_include": [
+      "[proof:gp-headache:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "hypertension",
+    "workflow_id": "cardio-hypertension-followup",
+    "title": "Hypertension follow-up",
+    "input": {
+      "cardio_hypertension_followup__interval_symptoms": "Clinician-entered interval symptoms and change since last review fact for the encounter [proof:cardio-hypertension-followup:f0]",
+      "cardio_hypertension_followup__disease_control": "Clinician-entered disease-control status fact for the encounter [proof:cardio-hypertension-followup:f1]",
+      "cardio_hypertension_followup__adherence": "Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-hypertension-followup:f2]",
+      "cardio_hypertension_followup__adverse_effects": "Clinician-entered adverse effects or complications fact for the encounter [proof:cardio-hypertension-followup:f3]",
+      "cardio_hypertension_followup__monitoring_values": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-hypertension-followup:f4]",
+      "cardio_hypertension_followup__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-hypertension-followup:f5]",
+      "cardio_hypertension_followup__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-hypertension-followup:f6]",
+      "cardio_hypertension_followup__treatment_decision": "Clinician plan action; value entered without autonomous treatment selection [proof:cardio-hypertension-followup:f7]",
+      "cardio_hypertension_followup__referral": "Same-day clinician escalation documented; destination recorded [proof:cardio-hypertension-followup:f8]",
+      "cardio_hypertension_followup__follow_up": "Review in 7 days; interval explicitly recorded [proof:cardio-hypertension-followup:f9]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nInterval symptoms and change since last review: Clinician-entered interval symptoms and change since last review fact for the encounter [proof:cardio-hypertension-followup:f0]\nDisease-control status: Clinician-entered disease-control status fact for the encounter [proof:cardio-hypertension-followup:f1]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-hypertension-followup:f2]\nAdverse effects or complications: Clinician-entered adverse effects or complications fact for the encounter [proof:cardio-hypertension-followup:f3]\n\nOBJECTIVE\nMonitoring values reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-hypertension-followup:f4]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-hypertension-followup:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-hypertension-followup:f6]\n\nPLAN\nSelected treatment decision: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-hypertension-followup:f7]\nReferral or escalation: Same-day clinician escalation documented; destination recorded [proof:cardio-hypertension-followup:f8]\nFollow-up plan: Review in 7 days; interval explicitly recorded [proof:cardio-hypertension-followup:f9]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nInterval symptoms and change since last review: Clinician-entered interval symptoms and change since last review fact for the encounter [proof:cardio-hypertension-followup:f0]\nDisease-control status: Clinician-entered disease-control status fact for the encounter [proof:cardio-hypertension-followup:f1]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-hypertension-followup:f2]\nAdverse effects or complications: Clinician-entered adverse effects or complications fact for the encounter [proof:cardio-hypertension-followup:f3]\n\nOBJECTIVE\nMonitoring values reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-hypertension-followup:f4]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-hypertension-followup:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-hypertension-followup:f6]\n\nPLAN\nSelected treatment decision: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-hypertension-followup:f7]\nReferral or escalation: Same-day clinician escalation documented; destination recorded [proof:cardio-hypertension-followup:f8]\nFollow-up plan: Review in 7 days; interval explicitly recorded [proof:cardio-hypertension-followup:f9]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Interval symptoms and change since last review: Clinician-entered interval symptoms and change since last review fact for the encounter [proof:cardio-hypertension-followup:f0]\nDisease-control status: Clinician-entered disease-control status fact for the encounter [proof:cardio-hypertension-followup:f1]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-hypertension-followup:f2]\nAdverse effects or complications: Clinician-entered adverse effects or complications fact for the encounter [proof:cardio-hypertension-followup:f3]",
+      "objective": "Monitoring values reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-hypertension-followup:f4]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:cardio-hypertension-followup:f5]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-hypertension-followup:f6]",
+      "plan": "Selected treatment decision: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-hypertension-followup:f7]\nReferral or escalation: Same-day clinician escalation documented; destination recorded [proof:cardio-hypertension-followup:f8]\nFollow-up plan: Review in 7 days; interval explicitly recorded [proof:cardio-hypertension-followup:f9]"
+    },
+    "must_include": [
+      "[proof:cardio-hypertension-followup:f0]"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "diabetes",
+    "workflow_id": "gp-medication-adherence-review",
+    "title": "Medication adherence review",
+    "input": {
+      "gp_medication_adherence_review__medication": "BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]",
+      "gp_medication_adherence_review__adherence": "Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-adherence-review:f1]",
+      "gp_medication_adherence_review__efficacy": "Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-adherence-review:f2]",
+      "gp_medication_adherence_review__adverse_effects": "Clinician-entered adverse effects fact for the encounter [proof:gp-medication-adherence-review:f3]",
+      "gp_medication_adherence_review__contraindications": "Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-adherence-review:f4]",
+      "gp_medication_adherence_review__monitoring": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-adherence-review:f5]",
+      "gp_medication_adherence_review__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-adherence-review:f6]",
+      "gp_medication_adherence_review__medication_decision": "Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-adherence-review:f7]",
+      "gp_medication_adherence_review__follow_up": "Review in 7 days; interval explicitly recorded [proof:gp-medication-adherence-review:f8]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nMedication and indication: Metformin 500 mg oral twice daily; indication documented; continue decision recorded [proof:gp-medication-adherence-review:f0]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-adherence-review:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-adherence-review:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:gp-medication-adherence-review:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-adherence-review:f4]\n\nOBJECTIVE\nMonitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-adherence-review:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-adherence-review:f6]\n\nPLAN\nClinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-adherence-review:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:gp-medication-adherence-review:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nMedication and indication: BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-adherence-review:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-adherence-review:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:gp-medication-adherence-review:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-adherence-review:f4]\n\nOBJECTIVE\nMonitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-adherence-review:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-adherence-review:f6]\n\nPLAN\nClinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-adherence-review:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:gp-medication-adherence-review:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Medication and indication: BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-adherence-review:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-adherence-review:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:gp-medication-adherence-review:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-adherence-review:f4]",
+      "objective": "Monitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-adherence-review:f5]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-adherence-review:f6]",
+      "plan": "Clinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-adherence-review:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:gp-medication-adherence-review:f8]"
+    },
+    "must_include": [
+      "BEFORE:",
+      "AFTER:",
+      "Metformin",
+      "apixaban",
+      "doses and routes reconciled"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "anticoagulation",
+    "workflow_id": "cardio-anticoagulation-documentation",
+    "title": "Anticoagulation documentation",
+    "input": {
+      "cardio_anticoagulation_documentation__medication": "BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]",
+      "cardio_anticoagulation_documentation__adherence": "Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-anticoagulation-documentation:f1]",
+      "cardio_anticoagulation_documentation__efficacy": "Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:cardio-anticoagulation-documentation:f2]",
+      "cardio_anticoagulation_documentation__adverse_effects": "Clinician-entered adverse effects fact for the encounter [proof:cardio-anticoagulation-documentation:f3]",
+      "cardio_anticoagulation_documentation__contraindications": "Clinician-entered contraindications or precautions considered fact for the encounter [proof:cardio-anticoagulation-documentation:f4]",
+      "cardio_anticoagulation_documentation__monitoring": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-anticoagulation-documentation:f5]",
+      "cardio_anticoagulation_documentation__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-anticoagulation-documentation:f6]",
+      "cardio_anticoagulation_documentation__medication_decision": "Clinician plan action; value entered without autonomous treatment selection [proof:cardio-anticoagulation-documentation:f7]",
+      "cardio_anticoagulation_documentation__follow_up": "Review in 7 days; interval explicitly recorded [proof:cardio-anticoagulation-documentation:f8]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nMedication and indication: Apixaban 5 mg oral twice daily; indication documented; continue decision recorded [proof:cardio-anticoagulation-documentation:f0]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-anticoagulation-documentation:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:cardio-anticoagulation-documentation:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:cardio-anticoagulation-documentation:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:cardio-anticoagulation-documentation:f4]\n\nOBJECTIVE\nMonitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-anticoagulation-documentation:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-anticoagulation-documentation:f6]\n\nPLAN\nClinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-anticoagulation-documentation:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:cardio-anticoagulation-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nMedication and indication: BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-anticoagulation-documentation:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:cardio-anticoagulation-documentation:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:cardio-anticoagulation-documentation:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:cardio-anticoagulation-documentation:f4]\n\nOBJECTIVE\nMonitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-anticoagulation-documentation:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-anticoagulation-documentation:f6]\n\nPLAN\nClinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-anticoagulation-documentation:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:cardio-anticoagulation-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Medication and indication: BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:cardio-anticoagulation-documentation:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:cardio-anticoagulation-documentation:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:cardio-anticoagulation-documentation:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:cardio-anticoagulation-documentation:f4]",
+      "objective": "Monitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-anticoagulation-documentation:f5]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-anticoagulation-documentation:f6]",
+      "plan": "Clinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-anticoagulation-documentation:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:cardio-anticoagulation-documentation:f8]"
+    },
+    "must_include": [
+      "BEFORE:",
+      "AFTER:",
+      "Metformin",
+      "apixaban",
+      "doses and routes reconciled"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "medication_review",
+    "workflow_id": "gp-medication-review",
+    "title": "Medication review",
+    "input": {
+      "gp_medication_review__medication": "BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]",
+      "gp_medication_review__adherence": "Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-review:f1]",
+      "gp_medication_review__efficacy": "Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-review:f2]",
+      "gp_medication_review__adverse_effects": "Clinician-entered adverse effects fact for the encounter [proof:gp-medication-review:f3]",
+      "gp_medication_review__contraindications": "Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-review:f4]",
+      "gp_medication_review__monitoring": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-review:f5]",
+      "gp_medication_review__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-review:f6]",
+      "gp_medication_review__medication_decision": "Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-review:f7]",
+      "gp_medication_review__follow_up": "Review in 7 days; interval explicitly recorded [proof:gp-medication-review:f8]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nMedication and indication: Metformin 500 mg oral twice daily; indication documented; continue decision recorded [proof:gp-medication-review:f0]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-review:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-review:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:gp-medication-review:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-review:f4]\n\nOBJECTIVE\nMonitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-review:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-review:f6]\n\nPLAN\nClinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-review:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:gp-medication-review:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nMedication and indication: BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-review:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-review:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:gp-medication-review:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-review:f4]\n\nOBJECTIVE\nMonitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-review:f5]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-review:f6]\n\nPLAN\nClinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-review:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:gp-medication-review:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Medication and indication: BEFORE: Metformin 500 mg oral twice daily; apixaban 5 mg oral twice daily. AFTER: same medicines continued; doses and routes reconciled; indication and adherence documented [proof:medication-reconciliation]\nAdherence and barriers: Medication name, dose, route, frequency, adherence, and decision documented [proof:gp-medication-review:f1]\nPerceived efficacy or ongoing symptoms: Clinician-entered perceived efficacy or ongoing symptoms fact for the encounter [proof:gp-medication-review:f2]\nAdverse effects: Clinician-entered adverse effects fact for the encounter [proof:gp-medication-review:f3]\nContraindications or precautions considered: Clinician-entered contraindications or precautions considered fact for the encounter [proof:gp-medication-review:f4]",
+      "objective": "Monitoring results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:gp-medication-review:f5]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:gp-medication-review:f6]",
+      "plan": "Clinician medication decision: Clinician plan action; value entered without autonomous treatment selection [proof:gp-medication-review:f7]\nFollow-up and safety-netting: Review in 7 days; interval explicitly recorded [proof:gp-medication-review:f8]"
+    },
+    "must_include": [
+      "BEFORE:",
+      "AFTER:",
+      "Metformin",
+      "apixaban",
+      "doses and routes reconciled"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "ecg",
+    "workflow_id": "cardio-ecg-result-review",
+    "title": "ECG result review",
+    "input": {
+      "cardio_ecg_result_review__test_reviewed": "Actual finding and value documented with comparison context [proof:cardio-ecg-result-review:f0]",
+      "cardio_ecg_result_review__result_findings": "Sinus rhythm; rate 84 bpm; PR 160 ms; QRS 92 ms; QTc 420 ms; axis +45°; no ST elevation; nonspecific T-wave change; electrolytes potassium 4.2 mmol/L; troponin <5 ng/L [proof:cardio-ecg-result-review:cardio_ecg_result_review__result_findings]",
+      "cardio_ecg_result_review__comparison": "Compared with prior ECG dated 2026-06-20: rhythm and intervals stable [proof:cardio-ecg-result-review:cardio_ecg_result_review__comparison]",
+      "cardio_ecg_result_review__clinician_interpretation": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-ecg-result-review:f3]",
+      "cardio_ecg_result_review__action": "Clinician plan action; value entered without autonomous treatment selection [proof:cardio-ecg-result-review:f4]",
+      "cardio_ecg_result_review__patient_communication": "Clinician-entered patient communication documented fact for the encounter [proof:cardio-ecg-result-review:f5]",
+      "cardio_ecg_result_review__repeat_testing": "Clinician-entered repeat testing plan fact for the encounter [proof:cardio-ecg-result-review:f6]",
+      "cardio_ecg_result_review__follow_up": "Review in 7 days; interval explicitly recorded [proof:cardio-ecg-result-review:f7]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nTest or result reviewed: Actual finding and value documented with comparison context [proof:cardio-ecg-result-review:f0]\n\nOBJECTIVE\nResult values or findings: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:cardio-ecg-result-review:f1]\nComparison with previous results: Actual finding and value documented with comparison context [proof:cardio-ecg-result-review:f2]\n\nASSESSMENT\nClinician interpretation: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-ecg-result-review:f3]\n\nPLAN\nAction selected by clinician: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-ecg-result-review:f4]\nPatient communication documented: Clinician-entered patient communication documented fact for the encounter [proof:cardio-ecg-result-review:f5]\nRepeat testing plan: Clinician-entered repeat testing plan fact for the encounter [proof:cardio-ecg-result-review:f6]\nFollow-up plan: Review in 7 days; interval explicitly recorded [proof:cardio-ecg-result-review:f7]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nTest or result reviewed: Actual finding and value documented with comparison context [proof:cardio-ecg-result-review:f0]\n\nOBJECTIVE\nResult values or findings: Sinus rhythm; rate 84 bpm; PR 160 ms; QRS 92 ms; QTc 420 ms; axis +45°; no ST elevation; nonspecific T-wave change; electrolytes potassium 4.2 mmol/L; troponin <5 ng/L [proof:cardio-ecg-result-review:cardio_ecg_result_review__result_findings]\nComparison with previous results: Compared with prior ECG dated 2026-06-20: rhythm and intervals stable [proof:cardio-ecg-result-review:cardio_ecg_result_review__comparison]\n\nASSESSMENT\nClinician interpretation: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-ecg-result-review:f3]\n\nPLAN\nAction selected by clinician: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-ecg-result-review:f4]\nPatient communication documented: Clinician-entered patient communication documented fact for the encounter [proof:cardio-ecg-result-review:f5]\nRepeat testing plan: Clinician-entered repeat testing plan fact for the encounter [proof:cardio-ecg-result-review:f6]\nFollow-up plan: Review in 7 days; interval explicitly recorded [proof:cardio-ecg-result-review:f7]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Test or result reviewed: Actual finding and value documented with comparison context [proof:cardio-ecg-result-review:f0]",
+      "objective": "Result values or findings: Sinus rhythm; rate 84 bpm; PR 160 ms; QRS 92 ms; QTc 420 ms; axis +45°; no ST elevation; nonspecific T-wave change; electrolytes potassium 4.2 mmol/L; troponin <5 ng/L [proof:cardio-ecg-result-review:cardio_ecg_result_review__result_findings]\nComparison with previous results: Compared with prior ECG dated 2026-06-20: rhythm and intervals stable [proof:cardio-ecg-result-review:cardio_ecg_result_review__comparison]",
+      "assessment": "Clinician interpretation: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:cardio-ecg-result-review:f3]",
+      "plan": "Action selected by clinician: Clinician plan action; value entered without autonomous treatment selection [proof:cardio-ecg-result-review:f4]\nPatient communication documented: Clinician-entered patient communication documented fact for the encounter [proof:cardio-ecg-result-review:f5]\nRepeat testing plan: Clinician-entered repeat testing plan fact for the encounter [proof:cardio-ecg-result-review:f6]\nFollow-up plan: Review in 7 days; interval explicitly recorded [proof:cardio-ecg-result-review:f7]"
+    },
+    "must_include": [
+      "Sinus rhythm",
+      "84 bpm",
+      "PR 160 ms",
+      "QRS 92 ms",
+      "QTc 420 ms",
+      "+45°",
+      "potassium 4.2 mmol/L",
+      "troponin <5 ng/L"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "paediatric_fever",
+    "workflow_id": "ed-pediatric-fever-documentation",
+    "title": "ED pediatric fever documentation",
+    "input": {
+      "ed_pediatric_fever_documentation__clinical_context": "Age 18 months; fever 2 days; temperature 39.1 °C (axillary); pulse 128 bpm; respiratory rate 30/min; oxygen saturation 97% room air; weight 11.2 kg; capillary refill 2 seconds; hydrated; oral intake documented; glucose 5.6 mmol/L",
+      "ed_pediatric_fever_documentation__observed_findings": "Actual finding and value documented with comparison context [proof:ed-pediatric-fever-documentation:f1]",
+      "ed_pediatric_fever_documentation__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-pediatric-fever-documentation:f2]",
+      "ed_pediatric_fever_documentation__clinician_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:ed-pediatric-fever-documentation:f3]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nClinical context: Clinician-entered clinical context fact for the encounter [proof:ed-pediatric-fever-documentation:f0]\n\nOBJECTIVE\nObserved findings or results: Actual finding and value documented with comparison context [proof:ed-pediatric-fever-documentation:f1]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-pediatric-fever-documentation:f2]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ed-pediatric-fever-documentation:f3]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nClinical context: Age 18 months; fever 2 days; temperature 39.1 °C (axillary); pulse 128 bpm; respiratory rate 30/min; oxygen saturation 97% room air; weight 11.2 kg; capillary refill 2 seconds; hydrated; oral intake documented; glucose 5.6 mmol/L\n\nOBJECTIVE\nObserved findings or results: Actual finding and value documented with comparison context [proof:ed-pediatric-fever-documentation:f1]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-pediatric-fever-documentation:f2]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ed-pediatric-fever-documentation:f3]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Clinical context: Age 18 months; fever 2 days; temperature 39.1 °C (axillary); pulse 128 bpm; respiratory rate 30/min; oxygen saturation 97% room air; weight 11.2 kg; capillary refill 2 seconds; hydrated; oral intake documented; glucose 5.6 mmol/L",
+      "objective": "Observed findings or results: Actual finding and value documented with comparison context [proof:ed-pediatric-fever-documentation:f1]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-pediatric-fever-documentation:f2]",
+      "plan": "Clinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ed-pediatric-fever-documentation:f3]"
+    },
+    "must_include": [
+      "18 months",
+      "39.1 °C",
+      "128 bpm",
+      "30/min",
+      "97%",
+      "11.2 kg",
+      "capillary refill",
+      "hydrated",
+      "5.6 mmol/L"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "emergency",
+    "workflow_id": "ed-observation-unit-review",
+    "title": "ED observation-unit review",
+    "input": {
+      "ed_observation_unit_review__presenting_complaint": "Clinician-entered presenting complaint fact for the encounter [proof:ed-observation-unit-review:f0]",
+      "ed_observation_unit_review__onset_duration": "Clinician-entered onset and duration fact for the encounter [proof:ed-observation-unit-review:f1]",
+      "ed_observation_unit_review__symptom_characteristics": "ABCDE: airway patent; breathing equal; circulation warm with pulse 104; disability alert GCS 15; exposure no rash [proof:ed-observation-unit-review:ed_observation_unit_review__symptom_characteristics]",
+      "ed_observation_unit_review__associated_symptoms": "Clinician-entered associated symptoms fact for the encounter [proof:ed-observation-unit-review:f3]",
+      "ed_observation_unit_review__red_flags": "No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f4]",
+      "ed_observation_unit_review__risk_factors": "No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f5]",
+      "ed_observation_unit_review__vital_signs": "Initial observations BP 128/78, pulse 104, RR 20, SpO2 97%; repeat observations BP 124/76, pulse 92, RR 18, SpO2 98% [proof:ed-observation-unit-review:ed_observation_unit_review__vital_signs]",
+      "ed_observation_unit_review__focused_examination": "No focal abnormality; laterality not present; explicit negative examination finding [proof:ed-observation-unit-review:f7]",
+      "ed_observation_unit_review__investigations": "CBC value 5.4 x10^9/L; ECG result sinus rhythm; treatment response documented [proof:ed-observation-unit-review:ed_observation_unit_review__investigations]",
+      "ed_observation_unit_review__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-observation-unit-review:f9]",
+      "ed_observation_unit_review__clinician_plan": "Treatment given; response improved; disposition discharge with clinician-confirmed follow-up [proof:ed-observation-unit-review:ed_observation_unit_review__clinician_plan]",
+      "ed_observation_unit_review__safety_netting": "Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ed-observation-unit-review:f11]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:ed-observation-unit-review:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:ed-observation-unit-review:f1]\nSymptom characteristics: Clinician-entered symptom characteristics fact for the encounter [proof:ed-observation-unit-review:f2]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:ed-observation-unit-review:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f5]\n\nOBJECTIVE\nVital signs: normal measured value 7 [proof:ed-observation-unit-review:f6]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:ed-observation-unit-review:f7]\nInvestigation results reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:ed-observation-unit-review:f8]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-observation-unit-review:f9]\n\nPLAN\nClinician plan: Clinician plan action; value entered without autonomous treatment selection [proof:ed-observation-unit-review:f10]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ed-observation-unit-review:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nPresenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:ed-observation-unit-review:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:ed-observation-unit-review:f1]\nSymptom characteristics: ABCDE: airway patent; breathing equal; circulation warm with pulse 104; disability alert GCS 15; exposure no rash [proof:ed-observation-unit-review:ed_observation_unit_review__symptom_characteristics]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:ed-observation-unit-review:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f5]\n\nOBJECTIVE\nVital signs: Initial observations BP 128/78, pulse 104, RR 20, SpO2 97%; repeat observations BP 124/76, pulse 92, RR 18, SpO2 98% [proof:ed-observation-unit-review:ed_observation_unit_review__vital_signs]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:ed-observation-unit-review:f7]\nInvestigation results reviewed: CBC value 5.4 x10^9/L; ECG result sinus rhythm; treatment response documented [proof:ed-observation-unit-review:ed_observation_unit_review__investigations]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-observation-unit-review:f9]\n\nPLAN\nClinician plan: Treatment given; response improved; disposition discharge with clinician-confirmed follow-up [proof:ed-observation-unit-review:ed_observation_unit_review__clinician_plan]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ed-observation-unit-review:f11]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Presenting complaint: Clinician-entered presenting complaint fact for the encounter [proof:ed-observation-unit-review:f0]\nOnset and duration: Clinician-entered onset and duration fact for the encounter [proof:ed-observation-unit-review:f1]\nSymptom characteristics: ABCDE: airway patent; breathing equal; circulation warm with pulse 104; disability alert GCS 15; exposure no rash [proof:ed-observation-unit-review:ed_observation_unit_review__symptom_characteristics]\nAssociated symptoms: Clinician-entered associated symptoms fact for the encounter [proof:ed-observation-unit-review:f3]\nRed flags and explicitly assessed negatives: No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f4]\nRelevant risk factors: No red-flag feature reported; explicit negative assessed [proof:ed-observation-unit-review:f5]",
+      "objective": "Vital signs: Initial observations BP 128/78, pulse 104, RR 20, SpO2 97%; repeat observations BP 124/76, pulse 92, RR 18, SpO2 98% [proof:ed-observation-unit-review:ed_observation_unit_review__vital_signs]\nFocused examination findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:ed-observation-unit-review:f7]\nInvestigation results reviewed: CBC value 5.4 x10^9/L; ECG result sinus rhythm; treatment response documented [proof:ed-observation-unit-review:ed_observation_unit_review__investigations]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:ed-observation-unit-review:f9]",
+      "plan": "Clinician plan: Treatment given; response improved; disposition discharge with clinician-confirmed follow-up [proof:ed-observation-unit-review:ed_observation_unit_review__clinician_plan]\nSafety-netting and escalation advice: Seek urgent review for worsening symptoms; safety-net explicitly recorded [proof:ed-observation-unit-review:f11]"
+    },
+    "must_include": [
+      "ABCDE",
+      "Initial observations",
+      "repeat observations",
+      "CBC",
+      "Treatment",
+      "disposition"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "anaesthetic",
+    "workflow_id": "surg-bariatric-pre-operative-documentation",
+    "title": "Bariatric pre-operative documentation",
+    "input": {
+      "surg_bariatric_pre_operative_documentation__indication": "Laparoscopic procedure; prior anaesthesia uneventful; airway Mallampati II; medication list and penicillin rash allergy reviewed; fasting 8 hours; BP 128/78, pulse 76; investigations reviewed; ASA II entered; general anaesthesia technique; medication instructions; PACU postoperative destination [proof:anaesthetic]",
+      "surg_bariatric_pre_operative_documentation__preprocedure_assessment": "Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f1]",
+      "surg_bariatric_pre_operative_documentation__findings": "No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-bariatric-pre-operative-documentation:f2]",
+      "surg_bariatric_pre_operative_documentation__preparation": "Actual finding and value documented with comparison context [proof:surg-bariatric-pre-operative-documentation:f3]",
+      "surg_bariatric_pre_operative_documentation__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-bariatric-pre-operative-documentation:f4]",
+      "surg_bariatric_pre_operative_documentation__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-bariatric-pre-operative-documentation:f5]",
+      "surg_bariatric_pre_operative_documentation__plan": "Clinician plan action; value entered without autonomous treatment selection [proof:surg-bariatric-pre-operative-documentation:f6]",
+      "surg_bariatric_pre_operative_documentation__contingency": "Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f7]",
+      "surg_bariatric_pre_operative_documentation__outcome": "Review in 7 days; interval explicitly recorded [proof:surg-bariatric-pre-operative-documentation:f8]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nProcedure or anaesthetic indication: Clinician-entered procedure or anaesthetic indication fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f0]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f1]\n\nOBJECTIVE\nProcedure or airway findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-bariatric-pre-operative-documentation:f2]\nPreparation and monitoring documented: Actual finding and value documented with comparison context [proof:surg-bariatric-pre-operative-documentation:f3]\nRelevant investigations reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-bariatric-pre-operative-documentation:f4]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-bariatric-pre-operative-documentation:f5]\n\nPLAN\nAnaesthetic or procedure plan: Clinician plan action; value entered without autonomous treatment selection [proof:surg-bariatric-pre-operative-documentation:f6]\nContingency or escalation plan: Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f7]\nDocumentation outcome and follow-up: Review in 7 days; interval explicitly recorded [proof:surg-bariatric-pre-operative-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nProcedure or anaesthetic indication: Laparoscopic procedure; prior anaesthesia uneventful; airway Mallampati II; medication list and penicillin rash allergy reviewed; fasting 8 hours; BP 128/78, pulse 76; investigations reviewed; ASA II entered; general anaesthesia technique; medication instructions; PACU postoperative destination [proof:anaesthetic]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f1]\n\nOBJECTIVE\nProcedure or airway findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-bariatric-pre-operative-documentation:f2]\nPreparation and monitoring documented: Actual finding and value documented with comparison context [proof:surg-bariatric-pre-operative-documentation:f3]\nRelevant investigations reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-bariatric-pre-operative-documentation:f4]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-bariatric-pre-operative-documentation:f5]\n\nPLAN\nAnaesthetic or procedure plan: Clinician plan action; value entered without autonomous treatment selection [proof:surg-bariatric-pre-operative-documentation:f6]\nContingency or escalation plan: Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f7]\nDocumentation outcome and follow-up: Review in 7 days; interval explicitly recorded [proof:surg-bariatric-pre-operative-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "",
+    "sections": {
+      "subjective": "Procedure or anaesthetic indication: Laparoscopic procedure; prior anaesthesia uneventful; airway Mallampati II; medication list and penicillin rash allergy reviewed; fasting 8 hours; BP 128/78, pulse 76; investigations reviewed; ASA II entered; general anaesthesia technique; medication instructions; PACU postoperative destination [proof:anaesthetic]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f1]",
+      "objective": "Procedure or airway findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-bariatric-pre-operative-documentation:f2]\nPreparation and monitoring documented: Actual finding and value documented with comparison context [proof:surg-bariatric-pre-operative-documentation:f3]\nRelevant investigations reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-bariatric-pre-operative-documentation:f4]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-bariatric-pre-operative-documentation:f5]",
+      "plan": "Anaesthetic or procedure plan: Clinician plan action; value entered without autonomous treatment selection [proof:surg-bariatric-pre-operative-documentation:f6]\nContingency or escalation plan: Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-bariatric-pre-operative-documentation:f7]\nDocumentation outcome and follow-up: Review in 7 days; interval explicitly recorded [proof:surg-bariatric-pre-operative-documentation:f8]"
+    },
+    "must_include": [
+      "Laparoscopic procedure",
+      "prior anaesthesia",
+      "Mallampati II",
+      "penicillin rash",
+      "fasting 8 hours",
+      "ASA II",
+      "PACU"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  },
+  {
+    "name": "procedure",
+    "workflow_id": "surg-stoma-appliance-issue-documentation",
+    "title": "Stoma appliance issue documentation",
+    "input": {
+      "surg_stoma_appliance_issue_documentation__indication": "Stoma appliance change; 2026-07-26 10:30; outpatient treatment room; operator clinician; consent obtained; time-out completed; local lidocaine 1% 5 mL infiltrated; sterile technique; peristomal skin intact; specimen none; blood loss 2 mL; no complications; tolerated well; post-procedure observations stable; aftercare given [proof:procedure]",
+      "surg_stoma_appliance_issue_documentation__preprocedure_assessment": "Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f1]",
+      "surg_stoma_appliance_issue_documentation__findings": "No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-stoma-appliance-issue-documentation:f2]",
+      "surg_stoma_appliance_issue_documentation__preparation": "Actual finding and value documented with comparison context [proof:surg-stoma-appliance-issue-documentation:f3]",
+      "surg_stoma_appliance_issue_documentation__investigations": "2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-stoma-appliance-issue-documentation:f4]",
+      "surg_stoma_appliance_issue_documentation__clinician_assessment": "Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-stoma-appliance-issue-documentation:f5]",
+      "surg_stoma_appliance_issue_documentation__procedure_plan": "Clinician plan action; value entered without autonomous treatment selection [proof:surg-stoma-appliance-issue-documentation:f6]",
+      "surg_stoma_appliance_issue_documentation__contingency": "Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f7]",
+      "surg_stoma_appliance_issue_documentation__follow_up": "Review in 7 days; interval explicitly recorded [proof:surg-stoma-appliance-issue-documentation:f8]"
+    },
+    "before_output": "SOAP NOTE\n\nSUBJECTIVE\nProcedure indication: Clinician-entered procedure indication fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f0]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f1]\n\nOBJECTIVE\nProcedure findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-stoma-appliance-issue-documentation:f2]\nPreparation and monitoring: Actual finding and value documented with comparison context [proof:surg-stoma-appliance-issue-documentation:f3]\nRelevant investigations reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-stoma-appliance-issue-documentation:f4]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-stoma-appliance-issue-documentation:f5]\n\nPLAN\nProcedure plan and outcome: Clinician plan action; value entered without autonomous treatment selection [proof:surg-stoma-appliance-issue-documentation:f6]\nContingency or escalation plan: Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f7]\nFollow-up and patient advice: Review in 7 days; interval explicitly recorded [proof:surg-stoma-appliance-issue-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "after_output": "SOAP NOTE\n\nSUBJECTIVE\nProcedure indication: Stoma appliance change; 2026-07-26 10:30; outpatient treatment room; operator clinician; consent obtained; time-out completed; local lidocaine 1% 5 mL infiltrated; sterile technique; peristomal skin intact; specimen none; blood loss 2 mL; no complications; tolerated well; post-procedure observations stable; aftercare given [proof:procedure]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f1]\n\nOBJECTIVE\nProcedure findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-stoma-appliance-issue-documentation:f2]\nPreparation and monitoring: Actual finding and value documented with comparison context [proof:surg-stoma-appliance-issue-documentation:f3]\nRelevant investigations reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-stoma-appliance-issue-documentation:f4]\n\nASSESSMENT\nClinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-stoma-appliance-issue-documentation:f5]\n\nPLAN\nProcedure plan and outcome: Clinician plan action; value entered without autonomous treatment selection [proof:surg-stoma-appliance-issue-documentation:f6]\nContingency or escalation plan: Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f7]\nFollow-up and patient advice: Review in 7 days; interval explicitly recorded [proof:surg-stoma-appliance-issue-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "separate_output": "PROCEDURE NOTE\n\nProcedure\nProcedure indication: Stoma appliance change; 2026-07-26 10:30; outpatient treatment room; operator clinician; consent obtained; time-out completed; local lidocaine 1% 5 mL infiltrated; sterile technique; peristomal skin intact; specimen none; blood loss 2 mL; no complications; tolerated well; post-procedure observations stable; aftercare given [proof:procedure]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f1]\nProcedure findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-stoma-appliance-issue-documentation:f2]\nProcedure plan and outcome: Clinician plan action; value entered without autonomous treatment selection [proof:surg-stoma-appliance-issue-documentation:f6]\n\nIndication\nProcedure indication: Stoma appliance change; 2026-07-26 10:30; outpatient treatment room; operator clinician; consent obtained; time-out completed; local lidocaine 1% 5 mL infiltrated; sterile technique; peristomal skin intact; specimen none; blood loss 2 mL; no complications; tolerated well; post-procedure observations stable; aftercare given [proof:procedure]\n\nPreparation / anaesthesia\nPreparation and monitoring: Actual finding and value documented with comparison context [proof:surg-stoma-appliance-issue-documentation:f3]\n\nFindings / specimens\nProcedure findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-stoma-appliance-issue-documentation:f2]\n\nAftercare / follow-up\nFollow-up and patient advice: Review in 7 days; interval explicitly recorded [proof:surg-stoma-appliance-issue-documentation:f8]\n\nClinician-review draft. Generated only from entered or selected facts; review before use.",
+    "sections": {
+      "subjective": "Procedure indication: Stoma appliance change; 2026-07-26 10:30; outpatient treatment room; operator clinician; consent obtained; time-out completed; local lidocaine 1% 5 mL infiltrated; sterile technique; peristomal skin intact; specimen none; blood loss 2 mL; no complications; tolerated well; post-procedure observations stable; aftercare given [proof:procedure]\nRelevant pre-procedure assessment: Clinician-entered relevant pre-procedure assessment fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f1]",
+      "objective": "Procedure findings: No focal abnormality; laterality not present; explicit negative examination finding [proof:surg-stoma-appliance-issue-documentation:f2]\nPreparation and monitoring: Actual finding and value documented with comparison context [proof:surg-stoma-appliance-issue-documentation:f3]\nRelevant investigations reviewed: 2026-07-26; value 5.4 mmol/L; result stable versus prior; clinician interpretation recorded [proof:surg-stoma-appliance-issue-documentation:f4]",
+      "assessment": "Clinician assessment: Clinician assessment impression preserved; value entered without autonomous diagnosis [proof:surg-stoma-appliance-issue-documentation:f5]",
+      "plan": "Procedure plan and outcome: Clinician plan action; value entered without autonomous treatment selection [proof:surg-stoma-appliance-issue-documentation:f6]\nContingency or escalation plan: Clinician-entered contingency or escalation plan fact for the encounter [proof:surg-stoma-appliance-issue-documentation:f7]\nFollow-up and patient advice: Review in 7 days; interval explicitly recorded [proof:surg-stoma-appliance-issue-documentation:f8]"
+    },
+    "must_include": [
+      "Stoma appliance",
+      "2026-07-26 10:30",
+      "consent",
+      "time-out",
+      "lidocaine 1%",
+      "sterile technique",
+      "blood loss 2 mL",
+      "no complications"
+    ],
+    "must_not_include": [
+      "source_id",
+      "evidence_statement_id",
+      "guideline evidence",
+      "autonomous diagnosis"
+    ],
+    "failures": [],
+    "repairs": [],
+    "status": "clinically_verified_without_change"
+  }
+]
