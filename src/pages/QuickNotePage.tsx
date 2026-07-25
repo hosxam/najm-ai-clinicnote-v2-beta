@@ -38,7 +38,8 @@ type QuickNoteDraft = {
   selectedPlanItems: string[]
 }
 
-const QUICK_NOTE_STORAGE_KEY = 'quick-note-draft'
+const QUICK_NOTE_SCHEMA_VERSION = '1'
+const quickNoteStorageKey = (workflowId: string) => `draft:${QUICK_NOTE_SCHEMA_VERSION}:${workflowId}:quick`
 
 function getQuickNoteDefaults(details: WorkflowDetails | null): QuickNoteDraft {
   return {
@@ -96,11 +97,6 @@ export function QuickNotePage() {
   useEffect(() => {
     let active = true
     if (!workflowId) {
-      const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
-      if (savedDraft?.workflowId) {
-        navigate(betaRoute ? `/beta/workflows/${encodeURIComponent(savedDraft.workflowId)}?mode=quick` : `/quick-note/${savedDraft.workflowId}`, { replace: true })
-        return
-      }
       setDetails(null)
       setBlockedMessage(null)
       setError(null)
@@ -132,7 +128,7 @@ export function QuickNotePage() {
       setDetails(loadedDetails)
       setShowWorkflowChooser(false)
       const defaults = getQuickNoteDefaults(loadedDetails)
-      const savedDraft = loadLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY)
+      const savedDraft = loadLocalDraft<QuickNoteDraft>(quickNoteStorageKey(workflowId))
       const restoredSelections = restoreConfirmedQuickNoteSelections(savedDraft)
       const restoredDraft =
         savedDraft && savedDraft.workflowId === workflowId
@@ -174,7 +170,7 @@ export function QuickNotePage() {
   useEffect(() => {
     if (!workflowId || blockedMessage || !details) return
 
-    saveLocalDraft<QuickNoteDraft>(QUICK_NOTE_STORAGE_KEY, {
+    saveLocalDraft<QuickNoteDraft>(quickNoteStorageKey(workflowId), {
       workflowId,
       confirmationModelVersion: QUICK_NOTE_CONFIRMATION_MODEL_VERSION,
       duration,

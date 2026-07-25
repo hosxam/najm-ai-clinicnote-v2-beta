@@ -65,7 +65,8 @@ type DetailedEncounterDraft = {
   activeTab: 'soap' | 'emr' | 'referral' | 'instructions'
 }
 
-const DETAILED_ENCOUNTER_STORAGE_KEY = 'detailed-encounter-draft'
+const DETAILED_ENCOUNTER_SCHEMA_VERSION = '1'
+const detailedEncounterStorageKey = (workflowId: string) => `draft:${DETAILED_ENCOUNTER_SCHEMA_VERSION}:${workflowId}:advanced`
 
 function getDetailedEncounterDefaults(details: WorkflowDetails | null): DetailedEncounterDraft {
   return {
@@ -143,11 +144,6 @@ export function DetailedEncounterPage() {
   useEffect(() => {
     let active = true
     if (!workflowId) {
-      const savedDraft = loadLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY)
-      if (savedDraft?.workflowId) {
-        navigate(betaRoute ? `/beta/workflows/${encodeURIComponent(savedDraft.workflowId)}?mode=advanced` : `/encounter/${savedDraft.workflowId}`, { replace: true })
-        return
-      }
       setDetails(null)
       setBlockedMessage(null)
       setError(null)
@@ -178,7 +174,7 @@ export function DetailedEncounterPage() {
       setDetails(loadedDetails)
       setShowWorkflowChooser(false)
       const defaults = getDetailedEncounterDefaults(loadedDetails)
-      const savedDraft = loadLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY)
+      const savedDraft = loadLocalDraft<DetailedEncounterDraft>(detailedEncounterStorageKey(workflowId))
       const restoredDraft =
         savedDraft && savedDraft.workflowId === workflowId
           ? { ...defaults, ...savedDraft, workflowId }
@@ -223,7 +219,7 @@ export function DetailedEncounterPage() {
   useEffect(() => {
     if (!workflowId || blockedMessage || !details) return
 
-    saveLocalDraft<DetailedEncounterDraft>(DETAILED_ENCOUNTER_STORAGE_KEY, {
+    saveLocalDraft<DetailedEncounterDraft>(detailedEncounterStorageKey(workflowId), {
       workflowId,
       historyValues,
       selectedSymptoms,
@@ -353,8 +349,7 @@ export function DetailedEncounterPage() {
     if (!details) return []
     const layoutFields =
       details.specialtyLayout?.sections
-        .slice(0, 3)
-        .flatMap((section) => section.fields.slice(0, 2).map((field) => ({
+        .flatMap((section) => section.fields.map((field) => ({
           id: field.field_id,
           label: field.prompt,
           placeholder: field.placeholder ?? '',

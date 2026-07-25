@@ -34,7 +34,7 @@ export type InteractiveField = {
   free_text_allowed: boolean
   required: boolean
   display_order: number
-  visibility: { type: 'always' }
+  visibility: { type: 'always' } | { type: 'equals'; field_id: string; value: string }
   contradictory_option_rules: string[]
   population_restrictions: string[]
   setting_restrictions: string[]
