@@ -9,7 +9,7 @@ Status: IMPLEMENTED; BETA DEPLOYMENT BLOCKED BY EXISTING PAGES ENVIRONMENT POLIC
 - Implementation branch: `beta-interactive-clinical-repair-v1`
 - Ending SHA before this report: `1adf3fe36f691036045234450b8e6ba2e972e5ae`
 - Intended beta URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
-- Deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30170840800
+- Deployment workflows: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30170840800 and retry https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30170958926
 - Deployed source SHA: not available; the run's build job passed, but the deploy job was rejected because the existing `github-pages` environment does not allow `beta-interactive-clinical-repair-v1`.
 - No stable-production deployment was attempted.
 
@@ -68,5 +68,4 @@ Local Playwright smoke checks passed on the catalogue, chest-pain route, draft-c
 
 ## Deployment blocker
 
-GitHub Actions run `30170840800` completed its build and artifact upload successfully. The deploy job failed before publication with: `Branch "beta-interactive-clinical-repair-v1" is not allowed to deploy to github-pages due to environment protection rules.` No protection rule was changed, and no alternate branch was used.
-
+GitHub Actions runs `30170840800` and `30170958926` completed their build and artifact upload successfully. Both deploy jobs failed before publication with: `Branch "beta-interactive-clinical-repair-v1" is not allowed to deploy to github-pages due to environment protection rules.` The environment currently allows only `main`, `guideline-evidence-packs-and-reconstruction-v1`, and `clinician-review-adjudication-micro-pilot-v1`. No protection rule was changed, and no alternate branch was used.
