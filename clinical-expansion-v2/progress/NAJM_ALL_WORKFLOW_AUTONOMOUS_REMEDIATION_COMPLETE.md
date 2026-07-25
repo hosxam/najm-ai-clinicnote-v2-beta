@@ -113,6 +113,7 @@ The deterministic browser harness exercised all 416 active workflows in Quick an
 - Complete browser route coverage: PASS; 416/416 Quick routes and 416/416 Advanced routes, with zero route failures.
 - Responsive coverage: PASS; 141 desktop/tablet/mobile checks, zero overflow or viewport failures.
 - Representative archetypes: PASS; all 15 declared archetypes opened and screenshots captured.
+- Screenshot set: `acute-symptom-assessment.png`, `administrative-clinical-documentation.png`, `anaesthetic-assessment.png`, `antenatal-care.png`, `chronic-disease-follow-up.png`, `counselling.png`, `emergency-presentation.png`, `medication-review.png`, `paediatric-assessment.png`, `post-procedure-follow-up.png`, `postnatal-care.png`, `procedure-documentation.png`, `result-review.png`, `screening-preventive-care.png`, and `specialist-surveillance.png`.
 - Console and asset checks: PASS; zero uncaught console errors and zero failed requests in the complete route harness.
 - Draft isolation: PASS; workflow-scoped draft restoration appeared only after explicit navigation back to the originating workflow, and Start fresh cleared the temporary value. Temporary browser data was cleared after testing.
 - Inactive isolation: PASS; an inactive route failed closed with “This workflow is inactive and is not available as usable clinical content.”
