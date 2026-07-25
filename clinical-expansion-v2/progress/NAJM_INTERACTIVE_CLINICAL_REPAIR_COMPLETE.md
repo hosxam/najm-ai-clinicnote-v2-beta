@@ -10,7 +10,7 @@ Status: IMPLEMENTED AND DEPLOYED TO BETA
 - Implementation ending SHA: `7904df4d41bcf38d98cbd8213ba797e6e8c25aae`
 - Final documentation SHA: recorded by the documentation-only commit following deployment
 - Intended beta URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
-- Successful deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30172534440
+- Successful deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30171170556
 - Deployed source SHA: `7904df4d41bcf38d98cbd8213ba797e6e8c25aae` (displayed in the beta UI as `7904df4`)
 - Deployment authorization resolution: the `github-pages` environment was authorized for `beta-interactive-clinical-repair-v1`; no other protection rule was changed.
 - No stable-production deployment was attempted.
@@ -70,13 +70,13 @@ Local Playwright smoke checks passed on the catalogue, chest-pain route, draft-c
 
 ## Deployment history and authorization resolution
 
-Earlier GitHub Actions runs `30170840800` and `30170958926` were blocked by environment policy. After the explicit authorization, rerun `30172534440` completed both build and deploy successfully from the required branch. The earlier authorized run `30171170556` also succeeded; this rerun confirms the environment authorization remains effective. No alternate branch was used.
+Earlier GitHub Actions runs `30170840800` and `30170958926` were blocked by environment policy. After the explicit authorization, rerun `30171170556` completed both build and deploy successfully from the required branch at the exact implementation SHA. A later documentation-head confirmation run `30172534440` also succeeded; the live deployment was then restored to the implementation SHA by rerunning `30171170556`. No alternate branch was used.
 
 The rerun used source SHA `39ad804a7d7dfdc85ebd536d6cfbde7982281fad` exactly. No implementation, clinical, canonical, signed, mapping, approval, exclusion, or public/data files were changed for this deployment rerun.
 
 ## Live beta verification
 
-Verification timestamp: `2026-07-26 00:02:17 +04:00`
+Verification timestamp: `2026-07-26 00:09:23 +04:00`
 
 - Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
 - Build marker: `7904df4`, matching the deployed implementation SHA `7904df4d41bcf38d98cbd8213ba797e6e8c25aae`.
@@ -87,7 +87,7 @@ Verification timestamp: `2026-07-26 00:02:17 +04:00`
 - Console errors: none observed.
 - Failed asset/data requests: none observed.
 - Stable production: unchanged; only the beta Pages deployment workflow was run.
-- Deployment rerun: PASS; build and deploy jobs succeeded in run `30172534440` after the `github-pages` environment authorization.
+- Deployment rerun: PASS; build and deploy jobs succeeded in run `30171170556` after the `github-pages` environment authorization, with the deployment source SHA exactly matching the completed repair implementation SHA.
 - Post-deployment route coverage: PASS for Chest Pain, ECG result review, Paediatric fever, Emergency chest pain, post-anaesthesia assessment, and procedure documentation. Quick and Advanced routes rendered on each representative route.
 - Draft isolation: PASS; a temporary Chest Pain draft produced the workflow-scoped saved-draft choice, and Start fresh cleared the field. Temporary review data was cleared from localStorage after testing.
 
