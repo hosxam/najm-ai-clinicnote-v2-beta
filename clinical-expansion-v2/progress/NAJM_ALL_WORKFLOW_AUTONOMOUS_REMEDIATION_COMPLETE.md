@@ -1,14 +1,15 @@
 # NAJM All-Workflow Autonomous Remediation
 
-Status: IMPLEMENTED; BETA DEPLOYMENT PENDING
+Status: IMPLEMENTED AND DEPLOYED TO BETA
 
 ## Baseline and scope
 
 - Starting branch: `beta-interactive-clinical-repair-v1`
 - Starting SHA: `39ad804a7d7dfdc85ebd536d6cfbde7982281fad`
 - Remediation branch: `beta-all-workflow-autonomous-remediation-v1`
-- Implementation end SHA: recorded after the final implementation commit
-- Deployment source SHA: pending beta deployment
+- Implementation end SHA: `3619984eb37d90e93a2fafcbcdb9f10583f1332d`
+- Deployment source SHA: `3619984eb37d90e93a2fafcbcdb9f10583f1332d` (displayed as `3619984`)
+- Deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30173299468
 - Live beta: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
 
 The previous interactive repair was preserved. This task added a resumable, machine-readable inspection of every catalogue entry and deterministic full active-workflow fixture accounting.
@@ -99,7 +100,23 @@ The deterministic browser harness exercised all 416 active workflows in Quick an
 - No workflow was activated because no complete new authoritative basis was established.
 - The accepted compiled schemas currently contain no selectable options or contradiction rules; the test totals of zero are truthful and are not substituted with invented controls.
 - Two specialties have only one active workflow, so a distinct same-specialty isolation peer cannot be fabricated.
-- Screenshots from the final live verification will be recorded under `all-workflow-remediation/screenshots/` after deployment.
+- Screenshots from the final live verification are recorded under `all-workflow-remediation/screenshots/` (15 archetype representatives).
+
+## Beta deployment and live verification
+
+- Deployment authorization: `beta-all-workflow-autonomous-remediation-v1` was added to the existing `github-pages` allowlist; no other protection rule changed.
+- Deployment run: `30173299468` (build and deploy jobs passed).
+- Verification timestamp: `2026-07-26 00:24:23 +04:00`.
+- Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Build marker: `3619984`, matching the deployed source SHA.
+- Catalogue: PASS; 1,500 original workflows, 416 active interactive workflows, 1,084 inactive workflows, 3,720 fields, and 75,484 retained evidence records.
+- Complete browser route coverage: PASS; 416/416 Quick routes and 416/416 Advanced routes, with zero route failures.
+- Responsive coverage: PASS; 141 desktop/tablet/mobile checks, zero overflow or viewport failures.
+- Representative archetypes: PASS; all 15 declared archetypes opened and screenshots captured.
+- Console and asset checks: PASS; zero uncaught console errors and zero failed requests in the complete route harness.
+- Draft isolation: PASS; workflow-scoped draft restoration appeared only after explicit navigation back to the originating workflow, and Start fresh cleared the temporary value. Temporary browser data was cleared after testing.
+- Inactive isolation: PASS; an inactive route failed closed with “This workflow is inactive and is not available as usable clinical content.”
+- Obsolete curated-workflow requests: none observed during catalogue navigation.
 
 ## Protected-state confirmation
 
