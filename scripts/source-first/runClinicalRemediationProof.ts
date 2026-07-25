@@ -90,6 +90,10 @@ function assertWorkflow(workflow: Workflow) {
   return { values, sections, soap, procedure, failures, field_ids: [...expected] }
 }
 
+function readOptionalJson(file: string) {
+  try { return readJson<unknown>(file) } catch { return null }
+}
+
 const detailedIds: Record<string, string> = {
   chest_pain: 'cardio-chest-pain', fever_urti: 'gp-fever-urti', sore_throat: 'ent-recurrent-tonsillitis', dyspnoea: 'cardio-dyspnea', abdominal_pain: 'gp-abdominal-pain', headache: 'gp-headache', hypertension: 'cardio-hypertension-followup', diabetes: 'gp-medication-adherence-review', anticoagulation: 'cardio-anticoagulation-documentation', medication_review: 'gp-medication-review', ecg: 'cardio-ecg-result-review', paediatric_fever: 'ed-pediatric-fever-documentation', emergency: 'ed-observation-unit-review', anaesthetic: 'surg-bariatric-pre-operative-documentation', procedure: 'surg-stoma-appliance-issue-documentation',
 }
@@ -135,8 +139,21 @@ function main() {
   })
   const allFailures = results.flatMap(({ workflow, failures }) => failures.map((failure) => ({ workflow_id: workflow.workflow_id, failure })))
   const optionCount = workflows.reduce((total, workflow) => total + workflow.fields.reduce((inner, field) => inner + (field.options?.length ?? 0), 0), 0)
+  const workflowRecords = results.map(({ workflow, values, sections, soap, procedure, failures }) => ({
+    workflow_id: workflow.workflow_id,
+    title: workflow.title,
+    archetype: workflow.archetype,
+    fixture_ids: [`workflow:${workflow.workflow_id}`],
+    input_facts: values,
+    generated_outputs: { sections, soap, procedure },
+    must_include_facts: Object.values(values),
+    must_not_include_facts: ['source_id', 'evidence_statement_id', 'guideline evidence', 'autonomous diagnosis', 'documented.', 'reviewed.'],
+    failures,
+    repairs: [],
+    terminal_status: failures.length ? 'blocked_by_technical_error' : 'clinically_verified_without_change',
+  }))
   const proofManifest = {
-    schema_version: '1.0.0', generated_at: new Date().toISOString(), branch: 'beta-all-workflow-clinical-proof-and-repair-v1', base_head: '540bbae5cc6b9936d9170247ef381b62370e214e', workflow_count: workflows.length, clinically_verified_without_change: results.filter(({ failures }) => !failures.length).length, clinically_repaired_and_verified: 0, deactivated_insufficient_evidence: 0, blocked_by_technical_error: results.filter(({ failures }) => failures.length).length, fields_added: 0, fields_removed: 0, fields_relabelled: 0, field_binding_repairs: 0, contradiction_groups: 0, selected_option_tests: optionCount, unselected_option_tests: optionCount, field_sentinel_tests: workflows.reduce((n, workflow) => n + workflow.fields.length, 0), omission_fixtures: workflows.length, reset_fixtures: workflows.length, state_isolation_fixtures: workflows.length * 2, detailed_case_count: cases.length,
+    schema_version: '1.0.0', generated_at: new Date().toISOString(), branch: 'beta-all-workflow-clinical-proof-and-repair-v1', base_head: '540bbae5cc6b9936d9170247ef381b62370e214e', workflow_count: workflows.length, clinically_verified_without_change: results.filter(({ failures }) => !failures.length).length, clinically_repaired_and_verified: 0, deactivated_insufficient_evidence: 0, blocked_by_technical_error: results.filter(({ failures }) => failures.length).length, fields_added: 0, fields_removed: 0, fields_relabelled: 0, field_binding_repairs: 0, contradiction_groups: 0, selected_option_tests: optionCount, unselected_option_tests: optionCount, field_sentinel_tests: workflows.reduce((n, workflow) => n + workflow.fields.length, 0), omission_fixtures: workflows.length, reset_fixtures: workflows.length, state_isolation_fixtures: workflows.length * 2, detailed_case_count: cases.length, workflow_records: workflowRecords,
   }
   fs.mkdirSync(outputDir, { recursive: true })
   fs.writeFileSync(path.join(outputDir, 'ALL_WORKFLOW_CLINICAL_PROOF_MANIFEST.json'), JSON.stringify(proofManifest, null, 2) + '\n')
@@ -145,7 +162,7 @@ function main() {
   fs.writeFileSync(path.join(outputDir, 'FAILED_ASSERTIONS.json'), JSON.stringify(allFailures, null, 2) + '\n')
   fs.writeFileSync(path.join(outputDir, 'REPAIRS.json'), JSON.stringify([], null, 2) + '\n')
   fs.writeFileSync(path.join(outputDir, 'FIFTEEN_CASE_BEFORE_AFTER.json'), JSON.stringify(cases, null, 2) + '\n')
-  fs.writeFileSync(path.join(outputDir, 'FINAL_TEST_RESULTS.json'), JSON.stringify({ proofManifest, all_failures: allFailures, cases: cases.map(({ name, workflow_id, status, failures }) => ({ name, workflow_id, status, failures })) }, null, 2) + '\n')
+  fs.writeFileSync(path.join(outputDir, 'FINAL_TEST_RESULTS.json'), JSON.stringify({ proofManifest, all_failures: allFailures, browser_proof: readOptionalJson(path.join(outputDir, 'BROWSER_CLINICAL_PROOF_RESULTS.json')), state_proof: readOptionalJson(path.join(outputDir, 'BROWSER_STATE_PROOF_RESULTS.json')), fresh_proof: readOptionalJson(path.join(outputDir, 'BROWSER_FRESH_PROOF_RESULTS.json')), cases: cases.map(({ name, workflow_id, status, failures }) => ({ name, workflow_id, status, failures })) }, null, 2) + '\n')
   console.log(JSON.stringify({ proofManifest, case_statuses: cases.map(({ name, status, failures }) => ({ name, status, failures: failures.length })), failures: allFailures.length }, null, 2))
   if (allFailures.length || cases.some((test) => test.status !== 'clinically_verified_without_change')) process.exitCode = 1
 }
