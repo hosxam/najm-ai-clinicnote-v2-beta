@@ -1,5 +1,6 @@
 async page => {
   const base = 'https://hosxam.github.io/najm-ai-clinicnote-v2-beta'
+  const cache = '?deploy=a6f277c'
   const catalog = await page.evaluate(async () => fetch('https://hosxam.github.io/najm-ai-clinicnote-v2-beta/data-beta/final-catalogue/catalog.json').then((response) => response.json()))
   const ids = catalog.workflows.map((workflow) => workflow.workflow_id)
   const failures = []
@@ -10,9 +11,9 @@ async page => {
   for (let index = 0; index < ids.length; index += 1) {
     const id = ids[index]
     const other = ids[(index + 1) % ids.length]
-    await page.goto(`${base}/#/beta?state=${index}`)
+    await page.goto(`${base}/${cache}#/beta?state=${index}`)
     await page.evaluate(() => localStorage.clear())
-    await page.goto(`${base}/#/beta/workflows/${id}`)
+    await page.goto(`${base}/${cache}#/beta/workflows/${id}`)
     await page.waitForLoadState('networkidle')
     if (await page.getByRole('button', { name: 'Start fresh' }).count()) { await page.getByRole('button', { name: 'Start fresh' }).click(); fresh += 1 }
     const control = page.locator('main input[id], main textarea[id], main select[id]').first()
@@ -22,10 +23,10 @@ async page => {
     if (tag === 'select') await control.selectOption({ index: 1 }).catch(() => control.selectOption({ index: 0 }))
     else await control.fill(marker)
     saved += 1
-    await page.goto(`${base}/#/beta/workflows/${other}`)
+    await page.goto(`${base}/${cache}#/beta/workflows/${other}`)
     await page.waitForLoadState('networkidle')
     if (await page.getByText('Saved draft found').count()) failures.push({ workflow_id: id, failure: 'cross-workflow draft contamination' })
-    await page.goto(`${base}/#/beta/workflows/${id}`)
+    await page.goto(`${base}/${cache}#/beta/workflows/${id}`)
     await page.waitForLoadState('networkidle')
     if (await page.getByRole('button', { name: 'Resume saved draft' }).count() !== 1) failures.push({ workflow_id: id, failure: 'explicit Resume prompt missing' })
     else {
@@ -38,7 +39,7 @@ async page => {
       const resetValue = await resumedControl.inputValue()
       if (tag !== 'select' && resetValue !== '') failures.push({ workflow_id: id, failure: 'Reset did not clear exact value' })
       else reset += 1
-      await page.goto(`${base}/#/beta/workflows/${id}`)
+      await page.goto(`${base}/${cache}#/beta/workflows/${id}`)
       await page.waitForLoadState('networkidle')
       if (await page.getByText('Saved draft found').count()) failures.push({ workflow_id: id, failure: 'Reset left stale saved draft' })
     }

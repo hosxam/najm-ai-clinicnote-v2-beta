@@ -1,5 +1,6 @@
 async page => {
   const base = 'https://hosxam.github.io/najm-ai-clinicnote-v2-beta'
+  const cache = '?deploy=a6f277c'
   const errors = []
   const failed = []
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()) })
@@ -39,15 +40,16 @@ async page => {
     return `Clinician-entered ${field.label.toLowerCase()} fact for the encounter ${marker}`
   }
   const sectionName = (value) => value.replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
-  await page.goto(`${base}/#/beta`)
+  await page.goto(`${base}/${cache}#/beta`, { waitUntil: 'domcontentloaded', timeout: 30000 })
   await page.evaluate(() => localStorage.clear())
   for (const id of ids) {
-    await page.goto(`${base}/#/beta/workflows/${id}`)
-    await page.waitForLoadState('networkidle')
+    await page.goto(`${base}/${cache}#/beta/workflows/${id}`, { waitUntil: 'domcontentloaded', timeout: 30000 })
+    await page.waitForTimeout(250)
     if (await page.getByRole('button', { name: 'Start fresh' }).count()) await page.getByRole('button', { name: 'Start fresh' }).click()
     const workflow = await page.evaluate(async (workflowId) => fetch(`https://hosxam.github.io/najm-ai-clinicnote-v2-beta/data-beta/interactive-workflows/workflows/${encodeURIComponent(workflowId)}.json`).then((response) => response.json()), id)
     const values = workflow.fields.map((field, index) => ({ field, value: valueFor(workflow, field, index) }))
     const advanced = page.getByRole('button', { name: 'Advanced', exact: true })
+    await advanced.waitFor({ state: 'visible', timeout: 15000 }).catch(() => undefined)
     if (await advanced.count() !== 1) { failures.push({ workflow_id: id, failure: 'Advanced button missing' }); continue }
     await advanced.click()
     const rail = page.locator('nav[aria-label="Advanced workflow sections"] button')
@@ -64,6 +66,7 @@ async page => {
       }
     }
     const generate = page.getByRole('button', { name: 'Generate', exact: true })
+    await generate.waitFor({ state: 'visible', timeout: 15000 }).catch(() => undefined)
     if (await generate.count() !== 1 || await generate.isDisabled()) { failures.push({ workflow_id: id, failure: 'Generate unavailable after full fixture entry' }); continue }
     await generate.click()
     const output = await page.locator('textarea[aria-label="Draft output"]').inputValue()

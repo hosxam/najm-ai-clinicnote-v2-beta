@@ -1,5 +1,6 @@
 async page => {
   const base = 'https://hosxam.github.io/najm-ai-clinicnote-v2-beta'
+  const cache = '?deploy=a6f277c'
   const errors = []
   const failed = []
   page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()) })
@@ -8,11 +9,11 @@ async page => {
   const ids = catalog.workflows.map((workflow) => workflow.workflow_id)
   const routeResults = []
   await page.evaluate(() => localStorage.clear())
-  await page.goto(`${base}/#/beta`)
+  await page.goto(`${base}/${cache}#/beta`)
   await page.waitForLoadState('networkidle')
   const catalogueLoaded = await page.getByRole('textbox', { name: 'Search interactive workflows' }).count() === 1 && await page.getByText('3,720').count() === 1
   for (const id of ids) {
-    await page.goto(`${base}/#/beta/workflows/${id}`)
+    await page.goto(`${base}/${cache}#/beta/workflows/${id}`)
     await page.waitForLoadState('networkidle')
     const title = (await page.locator('h1').first().textContent())?.trim() ?? ''
     const quickButton = page.getByRole('button', { name: 'Quick', exact: true })
@@ -29,11 +30,11 @@ async page => {
   const viewportResults = []
   for (const [name, width, height] of [['desktop', 1440, 900], ['tablet', 1024, 768], ['mobile', 390, 844]]) {
     await page.setViewportSize({ width, height })
-    await page.goto(`${base}/#/beta`)
+    await page.goto(`${base}/${cache}#/beta`)
     await page.waitForLoadState('networkidle')
     await page.evaluate(() => localStorage.clear())
     for (const id of sample) {
-      await page.goto(`${base}/#/beta/workflows/${id}`)
+      await page.goto(`${base}/${cache}#/beta/workflows/${id}`)
       await page.waitForLoadState('domcontentloaded')
       await page.locator('h1').first().waitFor({ state: 'visible', timeout: 15000 })
       viewportResults.push({ viewport: name, workflow_id: id, loaded: await page.locator('h1').count() === 1, overflow: await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1) })

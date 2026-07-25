@@ -2,7 +2,7 @@
 
 ## Status
 
-Implementation proof is complete on `beta-all-workflow-clinical-proof-and-repair-v1`. The beta build completed, but the Pages deploy job was rejected by the `github-pages` environment branch protection because this new branch is not in the environment's permitted deployment list. No stable-production deployment is permitted.
+Implementation proof is complete on `beta-all-workflow-clinical-proof-and-repair-v1`. The beta-only Pages deployment and live verification completed successfully. No stable-production deployment was made.
 
 ## Scope and provenance
 
@@ -90,19 +90,20 @@ The accepted active schemas currently expose no selectable option arrays or cont
 
 ## Protected-state boundary
 
-No mappings or candidates were created; no clinician approvals were created; exclusions remain 12; canonical and signed state remain unchanged; `public/data` and `public/data-beta` remain unchanged; no stable production route was touched. Deployment, when recorded below, is beta-only and uses the proof branch.
+No mappings or candidates were created; no clinician approvals were created; exclusions remain 12; canonical and signed state remain unchanged; `public/data` and `public/data-beta` remain unchanged; no stable production route was touched. Deployment below is beta-only and uses the proof branch.
 
 ## Deployment record
 
 - Pushed branch: `beta-all-workflow-clinical-proof-and-repair-v1`
-- Workflow run: [30174256113](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30174256113)
-- Build job: passed (`89720372924`); data validation and build passed.
-- Deploy job: rejected (`89720483964`). Exact reason: `Branch "beta-all-workflow-clinical-proof-and-repair-v1" is not allowed to deploy to github-pages due to environment protection rules.`
-- Verification rerun: [30174466168](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30174466168), build passed (`89720912982`), deploy rejected (`89721029203`) with the identical environment-protection reason.
-- Deployed source SHA: none (the environment rejected the deployment).
-- Live verification timestamp: not performed because no new deployment occurred.
-- Live verification: not claimable. The existing beta URL remains on its prior deployment and was not changed by this run.
+- Workflow run: [30175221571](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30175221571)
+- Build job: passed (`89722793360`); data validation and build passed.
+- Deploy job: passed (`89722898745`).
+- Deployed source SHA: `a6f277cac6a7316367fe27abe5b5429ee282ce54`
+- Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Displayed build SHA: `a6f277c`
+- Live verification timestamp: `2026-07-26T01:39:22+04:00` (cache-busted request to avoid stale CDN content)
+- Live verification: passed. The canonical final-catalogue manifest loaded; all expected catalogue counts matched; no obsolete `curated-workflows` request occurred; all 15 representative Quick/Advanced routes opened; full 416-workflow generated-output proof passed; console errors and failed requests were zero; state/resume/reset and Start Fresh isolation passed for all 416 workflows.
 
-The final proof-only branch tip is `4ed2307648f5f2710c6441d2e834b6e33cd65a08`; the attempted deployment run used the earlier implementation/docs tip `1f906fc247d82d01aa6d95f74d3861c53da7c0ea` before the later artifact-only documentation correction. No application or clinical data changed between those commits.
+The final proof branch tip is `a6f277cac6a7316367fe27abe5b5429ee282ce54` at deployment time; later documentation-only verification artifacts are recorded on the branch tip. No application or clinical data changed between those commits.
 
-The branch must be explicitly authorized by the repository owner in the `github-pages` environment before the same workflow can deploy. No alternate branch, stable production route, protection bypass, merge, or force-push was used.
+The earlier rejected runs (30174256113 and 30174466168) were superseded when the environment authorization became available. No alternate branch, stable production route, protection bypass, merge, or force-push was used.
