@@ -101,7 +101,7 @@ No mappings or candidates were created; no clinician approvals were created; exc
 - Deployed source SHA: `a6f277cac6a7316367fe27abe5b5429ee282ce54`
 - Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
 - Displayed build SHA: `a6f277c`
-- Live verification timestamp: `2026-07-26T01:39:22+04:00` (cache-busted request to avoid stale CDN content)
+- Live verification timestamp: `2026-07-26T01:42:23+04:00` (cache-busted request to avoid stale CDN content)
 - Live verification: passed. The canonical final-catalogue manifest loaded; all expected catalogue counts matched; no obsolete `curated-workflows` request occurred; all 15 representative Quick/Advanced routes opened; full 416-workflow generated-output proof passed; console errors and failed requests were zero; state/resume/reset and Start Fresh isolation passed for all 416 workflows.
 
 The final proof branch tip is `a6f277cac6a7316367fe27abe5b5429ee282ce54` at deployment time; later documentation-only verification artifacts are recorded on the branch tip. No application or clinical data changed between those commits.
