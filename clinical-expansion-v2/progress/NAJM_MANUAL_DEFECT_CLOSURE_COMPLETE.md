@@ -5,12 +5,13 @@
 This closure run started from `beta-manual-defect-closure-v1` at
 `59de3805db9a60734fe4547e4e99ff69ceafa3e3`, preserving all prior proof reports
 and artifacts. The deployed implementation used for reproduction was
-`a6f277cac6a7316367fe27abe5b5429ee282ce54` (`a6f277c`). No stable-production
+`7893c1700bc0fb7ce62c207d7838d246847f2f30` (`7893c17`). No stable-production
 route, canonical source data, mappings, approvals, signed state, or exclusions
 were modified.
 
-Implementation checkpoint commit: `ee573da7259ae96b260e16026fc3fb7b2b9d2351`.
-Final documentation commit/end SHA: `7aa2e2e4afa5d168017f98f11a4888034eaa57ca`.
+Implementation commit: `94d9f414dbbf601aed33a57cb6752c9abceafb4d`.
+Closure output commit: `7893c1700bc0fb7ce62c207d7838d246847f2f30`.
+Final documentation commit/end SHA: pending (this documentation update).
 
 The authoritative ledger produced 433 independent closure records: numbered
 defects 1–370 plus 41 pre-anaesthetic and 22 procedure additions. Every record
@@ -86,26 +87,34 @@ The complete machine-readable results are in
 
 ## Deployment status
 
-This report is a closure evidence checkpoint. The branch has not been claimed as
-live-deployed by this report until a beta workflow run succeeds and the deployed
-source SHA is independently verified. The remaining 376 defects must remain
-visible in the unresolved artifact and must not be presented as clinically
-complete. The unresolved set is 376 records: 155 partially fixed and 221 still
-present.
+This report records the completed beta deployment and independent post-deployment
+verification. The remaining 376 defects remain visible in the unresolved
+artifact and are not presented as clinically complete: 155 are
+`partially_fixed` and 221 are `still_present`.
 
-The requested beta workflow was run from `beta-manual-defect-closure-v1`:
+The first deployment attempt (`30193554836`) was rejected because the branch was
+not authorized for the `github-pages` environment. After authorization was
+granted, the workflow was rerun from `beta-manual-defect-closure-v1` and
+completed successfully:
 
-- Run: `30193554836`
-- URL: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30193554836
-- Build job: passed (ID `89770962827`), including install, data validation,
-  build, and Pages artifact upload.
-- Deploy job: rejected (ID `89771078279`). GitHub Pages reported that branch
-  `beta-manual-defect-closure-v1` is not allowed to deploy to the `github-pages`
-  environment. No live deployment occurred and no live SHA is claimed for this
-  closure branch.
+- Run: `30194168684`
+- URL: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30194168684
+- Build job: passed (ID `89772595577`)
+- Deploy job: passed (ID `89772695150`)
+- Deployed source SHA: `7893c1700bc0fb7ce62c207d7838d246847f2f30` (`7893c17`)
+- Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Live verification: 2026-07-26 12:22:29 Asia/Dubai
 
-The exact branch requiring environment authorization is therefore
-`beta-manual-defect-closure-v1`; no protection rule was bypassed.
+Post-deployment browser verification loaded the catalogue and all 15 audited
+workflow routes in Quick and Advanced modes (30 cases). The deployed structured
+fields rendered and their entered markers appeared in generated output; there
+were zero marker failures, console errors, or failed requests. The
+selectable-control audit found zero rendered select/checkbox/radio controls in
+the 30 mode cases, so selected/unselected option tests are not applicable. The
+catalogue verification confirms 1,500 original, 416 active, 1,084 inactive,
+6,290 clinician-facing, and 75,484 internal evidence records. Live data
+requests were independently cache-busted to the deployed SHA so the browser did
+not reuse the prior beta schema response.
 
 ## Protected-state confirmation
 

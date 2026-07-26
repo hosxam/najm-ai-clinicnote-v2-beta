@@ -1,8 +1,13 @@
 async page => {
   const base = 'https://hosxam.github.io/najm-ai-clinicnote-v2-beta'
-  const cache = '?closure=a6f277c'
+  const cache = '?closure=7893c17'
   const ids = ['cardio-chest-pain', 'gp-fever-urti', 'ent-recurrent-tonsillitis', 'cardio-dyspnea', 'gp-abdominal-pain', 'gp-headache', 'cardio-hypertension-followup', 'gp-medication-adherence-review', 'cardio-anticoagulation-documentation', 'gp-medication-review', 'cardio-ecg-result-review', 'ed-pediatric-fever-documentation', 'ed-observation-unit-review', 'surg-bariatric-pre-operative-documentation', 'surg-stoma-appliance-issue-documentation']
   const errors = []; const failed = []; const controls = []
+  await page.route('**/data-beta/interactive-workflows/**', async route => {
+    const requestUrl = route.request().url()
+    const separator = requestUrl.includes('?') ? '&' : '?'
+    await route.continue({ url: `${requestUrl}${separator}closure=7893c17` })
+  })
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
   page.on('requestfailed', request => failed.push(`${request.url()} :: ${request.failure()?.errorText ?? 'failed'}`))
   for (const workflowId of ids) for (const mode of ['quick', 'advanced']) {

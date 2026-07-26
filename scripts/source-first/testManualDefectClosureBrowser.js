@@ -1,9 +1,14 @@
 async page => {
   const base = 'https://hosxam.github.io/najm-ai-clinicnote-v2-beta'
-  const cache = '?closure=a6f277c'
+  const cache = '?closure=7893c17'
   const ids = ['cardio-chest-pain', 'gp-fever-urti', 'ent-recurrent-tonsillitis', 'cardio-dyspnea', 'gp-abdominal-pain', 'gp-headache', 'cardio-hypertension-followup', 'gp-medication-adherence-review', 'cardio-anticoagulation-documentation', 'gp-medication-review', 'cardio-ecg-result-review', 'ed-pediatric-fever-documentation', 'ed-observation-unit-review', 'surg-bariatric-pre-operative-documentation', 'surg-stoma-appliance-issue-documentation']
   const errors = []
   const failed = []
+  await page.route('**/data-beta/interactive-workflows/**', async route => {
+    const requestUrl = route.request().url()
+    const separator = requestUrl.includes('?') ? '&' : '?'
+    await route.continue({ url: `${requestUrl}${separator}closure=7893c17` })
+  })
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
   page.on('requestfailed', request => failed.push(`${request.url()} :: ${request.failure()?.errorText ?? 'failed'}`))
   const valueFor = (workflow, field, index) => {
@@ -64,5 +69,5 @@ async page => {
       results.push({ workflow_id: workflowId, mode, rendered_fields: rendered.length, output, missing_markers: missing })
     }
   }
-  return { deployed_source_sha: 'a6f277cac6a7316367fe27abe5b5429ee282ce54', workflows: ids.length, mode_cases: results.length, results, failures: results.flatMap(result => result.missing_markers.map(item => ({ workflow_id: result.workflow_id, mode: result.mode, field_id: item.field_id }))), console_errors: errors, failed_requests: failed }
+  return { deployed_source_sha: '7893c1700bc0fb7ce62c207d7838d246847f2f30', workflows: ids.length, mode_cases: results.length, cases: results.map(result => ({ workflow_id: result.workflow_id, mode: result.mode, rendered_fields: result.rendered_fields, missing_markers: result.missing_markers.length })), failures: results.flatMap(result => result.missing_markers.map(item => ({ workflow_id: result.workflow_id, mode: result.mode, field_id: item.field_id }))), console_errors: errors, failed_requests: failed }
 }
