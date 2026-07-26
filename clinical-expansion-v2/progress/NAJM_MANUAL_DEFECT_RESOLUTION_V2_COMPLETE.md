@@ -92,12 +92,21 @@ The production source-metadata reproducibility check remained PASS with 236 regi
 ## Deployment gate
 
 - Branch pushed: `beta-manual-defect-resolution-v2`
-- Attempted Pages run: `30206150062` — [workflow run](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30206150062)
-- Build job: PASS; artifact upload: PASS; head SHA: `e4e19234e890fcdd8b15f2b6fcdf8fbe60328c2c` (run predates the final implementation checkpoint `b96f207fc0a3a7f4be614abe6b581442f8bb5489`)
-- Deploy job: REJECTED before execution by the `github-pages` environment branch policy.
-- Exact failure: `Branch "beta-manual-defect-resolution-v2" is not allowed to deploy to github-pages due to environment protection rules.`
-- No environment rule was changed or bypassed. No stable production route was touched.
-- The live URL therefore still reflects the previously authorized deployment and cannot be claimed as verification of this repair SHA.
-- Read-only live check on 2026-07-26 observed `Beta build: 7893c17`; it is the prior authorized deployment, not this branch.
+- Historical blocked run: `30206150062` — [workflow run](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30206150062); it was rejected before execution while the branch was absent from the environment allowlist.
+- Successful beta run: `30209799445` — [workflow run](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30209799445)
+- Deployment source SHA: `ae0832161cb61f2ae3384c0ac657a1f55312ec91` (exact run head SHA)
+- Build and artifact upload: PASS; Pages deploy: PASS
+- Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Live verification timestamp: `2026-07-26T20:15:08+04:00`
+- Displayed live build: `ae08321`, matching the deployed source SHA.
 
-After an owner-authorized environment policy update adds this branch, rerun only the existing Pages workflow on this same branch, verify the deployed SHA and live browser behavior, then append the successful run and verification timestamp here. Until then, this report is implementation-complete but deployment-blocked by external protection.
+### Post-deployment verification
+
+- Catalogue loaded; canonical interactive manifest returned HTTP 200 with 416 workflows, 4,147 fields, and 75,484 retained evidence records.
+- Chest pain, ECG result review, paediatric fever, emergency assessment, pre-anaesthetic assessment, and procedure documentation schemas loaded in Quick and Advanced routes; all representative routes rendered without fail-closed errors.
+- Draft isolation passed: chest-pain content did not appear in ECG; Start fresh cleared the saved field and output.
+- Responsive checks passed at desktop (1440px), tablet (768px), and mobile (390px); no horizontal overflow.
+- Beta console errors: 0. Failed beta requests/responses: 0. Local filesystem paths exposed: no.
+- Stable production isolation: the stable URL did not contain the repair SHA and was not modified or deployed to.
+
+No environment rule was bypassed, no stable production route was touched, and no approval, signing, merge, rebase, or force-push was performed.
