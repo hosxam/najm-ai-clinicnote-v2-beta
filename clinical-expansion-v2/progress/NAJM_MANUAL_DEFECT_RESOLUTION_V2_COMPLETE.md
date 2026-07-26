@@ -5,7 +5,8 @@
 - Branch: `beta-manual-defect-resolution-v2`
 - Starting checkpoint: `c2258b5b6b07cc88e04adbaea77359576f6add6c`
 - Current implementation checkpoint: `b96f207fc0a3a7f4be614abe6b581442f8bb5489`
-- Ending branch SHA after browser-test stabilization: `04d0bff4fd489e74a91b84b1a3a1e04a210318c2`
+- Implementation end SHA after browser-test stabilization: `04d0bff4fd489e74a91b84b1a3a1e04a210318c2`
+- Final documentation end SHA: `f26e6d63938a947c0d93a7b4cdfa59b6db927e37`
 - Prior deployed implementation used as reproduction baseline: `7893c1700bc0fb7ce62c207d7838d246847f2f30`
 - Existing 433-record closure matrix was retained as the authoritative defect ledger and updated in place with resolution evidence.
 - Workflow research and queue continuation were not used.
@@ -86,6 +87,7 @@ The production source-metadata reproducibility check remained PASS with 236 regi
 - `e525cf4d` — `test(beta): prove fifteen final outputs and matrix assertions`
 - `b96f207f` — `fix(beta): deduplicate structured resolution controls`
 - `04d0bff4` — `test(beta): stabilize manual resolution browser matrix`
+- `f26e6d63` — `docs(beta): record browser matrix stabilization`
 
 ## Deployment gate
 
@@ -96,5 +98,6 @@ The production source-metadata reproducibility check remained PASS with 236 regi
 - Exact failure: `Branch "beta-manual-defect-resolution-v2" is not allowed to deploy to github-pages due to environment protection rules.`
 - No environment rule was changed or bypassed. No stable production route was touched.
 - The live URL therefore still reflects the previously authorized deployment and cannot be claimed as verification of this repair SHA.
+- Read-only live check on 2026-07-26 observed `Beta build: 7893c17`; it is the prior authorized deployment, not this branch.
 
 After an owner-authorized environment policy update adds this branch, rerun only the existing Pages workflow on this same branch, verify the deployed SHA and live browser behavior, then append the successful run and verification timestamp here. Until then, this report is implementation-complete but deployment-blocked by external protection.
