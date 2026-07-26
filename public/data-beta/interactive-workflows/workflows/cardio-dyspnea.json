@@ -801,7 +801,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Vital signs: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "vital_sign",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-dyspnea"
@@ -928,7 +928,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Focused examination findings: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "examination",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-dyspnea"
@@ -1055,7 +1055,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Investigation results reviewed: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-dyspnea"
@@ -2021,55 +2021,6 @@
     },
     {
       "workflow_id": "cardio-dyspnea",
-      "field_id": "cardio_dyspnea__onset",
-      "archetype": "acute_symptom_assessment",
-      "section": "history",
-      "label": "Onset",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "text",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 22,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Onset: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": false,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "onset|sudden|gradual",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-dyspnea"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-dyspnea--statement-00006",
-          "family-cardio-dyspnea--statement-00009",
-          "family-cardio-dyspnea--statement-00019",
-          "family-cardio-dyspnea--statement-00055",
-          "family-cardio-dyspnea--statement-00092"
-        ],
-        "source_ids": [
-          "nhs-cheshire-merseyside-heart-failure-pathway-2022",
-          "nhs-england-adult-breathlessness-pathway-2023",
-          "nice-chronic-heart-failure-ng106-2025"
-        ],
-        "population": "Adults with diagnosed or suspected heart failure requiring assessment, monitoring, or escalation.",
-        "setting": "Primary, community, acute, and specialist heart-failure services.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-dyspnea",
       "field_id": "cardio_dyspnea__duration",
       "archetype": "acute_symptom_assessment",
       "section": "history",
@@ -2079,7 +2030,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 23,
+      "display_order": 22,
       "visibility": {
         "type": "always"
       },
@@ -2139,7 +2090,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 24,
+      "display_order": 23,
       "visibility": {
         "type": "always"
       },
@@ -2199,7 +2150,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 25,
+      "display_order": 24,
       "visibility": {
         "type": "always"
       },
@@ -2278,7 +2229,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 26,
+      "display_order": 25,
       "visibility": {
         "type": "always"
       },
@@ -2357,7 +2308,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 27,
+      "display_order": 26,
       "visibility": {
         "type": "always"
       },
@@ -2428,7 +2379,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 28,
+      "display_order": 27,
       "visibility": {
         "type": "always"
       },
@@ -2483,7 +2434,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 29,
+      "display_order": 28,
       "visibility": {
         "type": "always"
       },
@@ -2536,7 +2487,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 30,
+      "display_order": 29,
       "visibility": {
         "type": "always"
       },
@@ -2577,75 +2528,6 @@
     },
     {
       "workflow_id": "cardio-dyspnea",
-      "field_id": "cardio_dyspnea__associated_symptoms_detail",
-      "archetype": "acute_symptom_assessment",
-      "section": "history",
-      "label": "Associated symptoms",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "textarea",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 31,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Associated symptoms: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": false,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "associated symptom|symptoms",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-dyspnea"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-dyspnea--statement-00004",
-          "family-cardio-dyspnea--statement-00013",
-          "family-cardio-dyspnea--statement-00017",
-          "family-cardio-dyspnea--statement-00019",
-          "family-cardio-dyspnea--statement-00021",
-          "family-cardio-dyspnea--statement-00023",
-          "family-cardio-dyspnea--statement-00026",
-          "family-cardio-dyspnea--statement-00027",
-          "family-cardio-dyspnea--statement-00031",
-          "family-cardio-dyspnea--statement-00045",
-          "family-cardio-dyspnea--statement-00046",
-          "family-cardio-dyspnea--statement-00053",
-          "family-cardio-dyspnea--statement-00055",
-          "family-cardio-dyspnea--statement-00056",
-          "family-cardio-dyspnea--statement-00072",
-          "family-cardio-dyspnea--statement-00079",
-          "family-cardio-dyspnea--statement-00095",
-          "family-cardio-dyspnea--statement-00096",
-          "family-cardio-dyspnea--statement-00097",
-          "family-cardio-dyspnea--statement-00109",
-          "family-cardio-dyspnea--statement-00123",
-          "family-cardio-dyspnea--statement-00128",
-          "family-cardio-dyspnea--statement-00136",
-          "family-cardio-dyspnea--statement-00152",
-          "family-cardio-dyspnea--statement-00159"
-        ],
-        "source_ids": [
-          "nhs-cheshire-merseyside-heart-failure-pathway-2022",
-          "nhs-england-adult-breathlessness-pathway-2023",
-          "nice-chronic-heart-failure-ng106-2025"
-        ],
-        "population": "Adults with diagnosed or suspected heart failure requiring assessment, monitoring, or escalation.",
-        "setting": "Primary, community, acute, and specialist heart-failure services.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-dyspnea",
       "field_id": "cardio_dyspnea__red_flag_assessment",
       "archetype": "acute_symptom_assessment",
       "section": "history",
@@ -2659,7 +2541,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 32,
+      "display_order": 30,
       "visibility": {
         "type": "always"
       },
@@ -2698,109 +2580,6 @@
     },
     {
       "workflow_id": "cardio-dyspnea",
-      "field_id": "cardio_dyspnea__vital_signs_structured",
-      "archetype": "acute_symptom_assessment",
-      "section": "examination",
-      "label": "Vital signs",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "vital_sign",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 33,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "objective",
-      "note_template": "Vital signs: {{value}}",
-      "value_formatter": "vital_sign",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "vital|temperature|heart rate|blood pressure|oxygen|respiratory rate",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-dyspnea"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-dyspnea--statement-00006",
-          "family-cardio-dyspnea--statement-00008",
-          "family-cardio-dyspnea--statement-00021",
-          "family-cardio-dyspnea--statement-00028",
-          "family-cardio-dyspnea--statement-00029",
-          "family-cardio-dyspnea--statement-00055",
-          "family-cardio-dyspnea--statement-00122",
-          "family-cardio-dyspnea--statement-00123",
-          "family-cardio-dyspnea--statement-00125",
-          "family-cardio-dyspnea--statement-00126",
-          "family-cardio-dyspnea--statement-00127",
-          "family-cardio-dyspnea--statement-00157"
-        ],
-        "source_ids": [
-          "nhs-cheshire-merseyside-heart-failure-pathway-2022",
-          "nhs-england-adult-breathlessness-pathway-2023",
-          "nice-chronic-heart-failure-ng106-2025"
-        ],
-        "population": "Adults with diagnosed or suspected heart failure requiring assessment, monitoring, or escalation.",
-        "setting": "Primary, community, acute, and specialist heart-failure services.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-dyspnea",
-      "field_id": "cardio_dyspnea__examination_findings_structured",
-      "archetype": "acute_symptom_assessment",
-      "section": "examination",
-      "label": "Examination findings",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "examination_finding",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 34,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "objective",
-      "note_template": "Examination findings: {{value}}",
-      "value_formatter": "examination",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "examination|physical finding|clinical finding",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-dyspnea"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-dyspnea--statement-00048",
-          "family-cardio-dyspnea--statement-00053",
-          "family-cardio-dyspnea--statement-00055",
-          "family-cardio-dyspnea--statement-00074"
-        ],
-        "source_ids": [
-          "nhs-england-adult-breathlessness-pathway-2023",
-          "nice-chronic-heart-failure-ng106-2025"
-        ],
-        "population": "Adults with chronic persistent breathlessness, primarily symptoms lasting more than eight weeks.",
-        "setting": "Primary care pre-diagnosis pathway.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-dyspnea",
       "field_id": "cardio_dyspnea__investigation_value",
       "archetype": "acute_symptom_assessment",
       "section": "examination",
@@ -2810,7 +2589,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 35,
+      "display_order": 31,
       "visibility": {
         "type": "always"
       },
@@ -2861,7 +2640,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 36,
+      "display_order": 32,
       "visibility": {
         "type": "always"
       },
@@ -2988,7 +2767,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 37,
+      "display_order": 33,
       "visibility": {
         "type": "always"
       },
@@ -3048,7 +2827,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 38,
+      "display_order": 34,
       "visibility": {
         "type": "always"
       },
@@ -3096,7 +2875,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 39,
+      "display_order": 35,
       "visibility": {
         "type": "always"
       },

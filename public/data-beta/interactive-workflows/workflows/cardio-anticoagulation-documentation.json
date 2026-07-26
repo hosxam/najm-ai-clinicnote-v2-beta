@@ -35,7 +35,7 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Medication and indication: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "medication",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-anticoagulation"
@@ -460,7 +460,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Monitoring results reviewed: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-anticoagulation"
@@ -1941,52 +1941,6 @@
     },
     {
       "workflow_id": "cardio-anticoagulation-documentation",
-      "field_id": "cardio_anticoagulation_documentation__inr",
-      "archetype": "medication_review",
-      "section": "examination",
-      "label": "INR result",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "investigation_result",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 31,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "objective",
-      "note_template": "INR result: {{value}}",
-      "value_formatter": "investigation",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "INR|therapeutic range",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-anticoagulation"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-anticoagulation--statement-00008",
-          "family-cardio-anticoagulation--statement-00022",
-          "family-cardio-anticoagulation--statement-00026",
-          "family-cardio-anticoagulation--statement-00027"
-        ],
-        "source_ids": [
-          "nice-atrial-fibrillation-ng196-2021"
-        ],
-        "population": "Adults with suspected, diagnosed, or previously treated atrial fibrillation or atrial flutter.",
-        "setting": "Primary, outpatient, acute, and specialist cardiovascular care.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-anticoagulation-documentation",
       "field_id": "cardio_anticoagulation_documentation__bleeding",
       "archetype": "medication_review",
       "section": "examination",
@@ -1996,7 +1950,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 32,
+      "display_order": 31,
       "visibility": {
         "type": "always"
       },
@@ -2045,54 +1999,6 @@
     },
     {
       "workflow_id": "cardio-anticoagulation-documentation",
-      "field_id": "cardio_anticoagulation_documentation__thrombosis",
-      "archetype": "medication_review",
-      "section": "history",
-      "label": "Thrombotic symptoms",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "textarea",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 33,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Thrombotic symptoms: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": false,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "thrombo|leg swelling|chest pain|shortness",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-anticoagulation"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-anticoagulation--statement-00010",
-          "family-cardio-anticoagulation--statement-00013",
-          "family-cardio-anticoagulation--statement-00033",
-          "family-cardio-anticoagulation--statement-00036",
-          "family-cardio-anticoagulation--statement-00072",
-          "family-cardio-anticoagulation--statement-00083"
-        ],
-        "source_ids": [
-          "nice-atrial-fibrillation-ng196-2021"
-        ],
-        "population": "Adults with suspected, diagnosed, or previously treated atrial fibrillation or atrial flutter.",
-        "setting": "Primary, outpatient, acute, and specialist cardiovascular care.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-anticoagulation-documentation",
       "field_id": "cardio_anticoagulation_documentation__interaction_review",
       "archetype": "medication_review",
       "section": "history",
@@ -2102,7 +2008,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 34,
+      "display_order": 32,
       "visibility": {
         "type": "always"
       },
@@ -2147,7 +2053,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 35,
+      "display_order": 33,
       "visibility": {
         "type": "always"
       },
@@ -2198,7 +2104,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 36,
+      "display_order": 34,
       "visibility": {
         "type": "always"
       },
@@ -2248,7 +2154,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 37,
+      "display_order": 35,
       "visibility": {
         "type": "always"
       },
@@ -2322,7 +2228,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 38,
+      "display_order": 36,
       "visibility": {
         "type": "always"
       },
@@ -2356,52 +2262,6 @@
     },
     {
       "workflow_id": "cardio-anticoagulation-documentation",
-      "field_id": "cardio_anticoagulation_documentation__intended_duration",
-      "archetype": "medication_review",
-      "section": "history",
-      "label": "Intended duration",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "duration",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 39,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Intended duration: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "duration|long-term|indefinite",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-cardio-anticoagulation"
-        ],
-        "evidence_statement_ids": [
-          "family-cardio-anticoagulation--statement-00044",
-          "family-cardio-anticoagulation--statement-00050",
-          "family-cardio-anticoagulation--statement-00056",
-          "family-cardio-anticoagulation--statement-00070"
-        ],
-        "source_ids": [
-          "nice-atrial-fibrillation-ng196-2021"
-        ],
-        "population": "Adults with suspected, diagnosed, or previously treated atrial fibrillation or atrial flutter.",
-        "setting": "Primary, outpatient, acute, and specialist cardiovascular care.",
-        "restrictions": [],
-        "uae_applicability": "international_requires_uae_adaptation"
-      }
-    },
-    {
-      "workflow_id": "cardio-anticoagulation-documentation",
       "field_id": "cardio_anticoagulation_documentation__time_in_range",
       "archetype": "medication_review",
       "section": "examination",
@@ -2411,7 +2271,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 40,
+      "display_order": 37,
       "visibility": {
         "type": "always"
       },
@@ -2460,7 +2320,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 41,
+      "display_order": 38,
       "visibility": {
         "type": "always"
       },

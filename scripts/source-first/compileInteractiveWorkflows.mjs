@@ -115,6 +115,19 @@ function safeId(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
 }
 
+function normaliseLabel(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+}
+
+function semanticallyDuplicate(fields, fieldType, label) {
+  const candidate = normaliseLabel(label)
+  return fields.some((field) => {
+    if (field.field_type !== fieldType) return false
+    const existing = normaliseLabel(field.label)
+    return existing === candidate || existing.includes(candidate) || candidate.includes(existing)
+  })
+}
+
 function normaliseSpec(spec) {
   if (Array.isArray(spec)) {
     const [field_id, label, field_type, soap_destination, anchor] = spec
@@ -163,7 +176,7 @@ function compileWorkflow(detail) {
       setting_restrictions: [],
       soap_destination: destination,
       note_template: `${label}: {{value}}`,
-      value_formatter: 'trimmed_text',
+      value_formatter: fieldType === 'vital_sign' ? 'vital_sign' : fieldType === 'examination_finding' ? 'examination' : fieldType === 'investigation_result' ? 'investigation' : fieldType === 'medication_entry' ? 'medication' : fieldType === 'allergy_entry' ? 'allergy' : 'trimmed_text',
       provenance: provenanceFor(detail, section),
     }
   })
@@ -176,7 +189,7 @@ function compileWorkflow(detail) {
   const existingIds = new Set(fields.map((field) => field.field_id))
   for (const spec of manualSpecs) {
     const { field_id: fieldId, label, field_type: fieldType, soap_destination: destination, anchor } = spec
-    if (existingIds.has(`${safeId(detail.workflow_id)}__${fieldId}`)) continue
+    if (existingIds.has(`${safeId(detail.workflow_id)}__${fieldId}`) || semanticallyDuplicate(fields, fieldType, label)) continue
     const matched = []
     for (const packId of detail.evidence_pack_ids ?? []) {
       let pack = packCache.get(packId)

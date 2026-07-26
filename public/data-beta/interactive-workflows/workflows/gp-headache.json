@@ -703,7 +703,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Vital signs: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "vital_sign",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-headache"
@@ -814,7 +814,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Focused examination findings: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "examination",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-headache"
@@ -925,7 +925,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Investigation results reviewed: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-headache"
@@ -1896,62 +1896,6 @@
     },
     {
       "workflow_id": "gp-headache",
-      "field_id": "gp_headache__onset",
-      "archetype": "acute_symptom_assessment",
-      "section": "history",
-      "label": "Onset",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "text",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 24,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Onset: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": false,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "onset|sudden|gradual",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-headache"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-headache--statement-00008",
-          "family-gp-headache--statement-00012",
-          "family-gp-headache--statement-00015",
-          "family-gp-headache--statement-00017",
-          "family-gp-headache--statement-00018",
-          "family-gp-headache--statement-00019",
-          "family-gp-headache--statement-00022",
-          "family-gp-headache--statement-00025",
-          "family-gp-headache--statement-00030",
-          "family-gp-headache--statement-00040",
-          "family-gp-headache--statement-00041",
-          "family-gp-headache--statement-00045",
-          "family-gp-headache--statement-00095"
-        ],
-        "source_ids": [
-          "dha-telehealth-headache-adults-v2-2024",
-          "nice-headaches-cg150-2025"
-        ],
-        "population": "Adults with headache.",
-        "setting": "Telehealth services in DHA-licensed health facilities.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-headache",
       "field_id": "gp_headache__duration",
       "archetype": "acute_symptom_assessment",
       "section": "history",
@@ -1961,7 +1905,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 25,
+      "display_order": 24,
       "visibility": {
         "type": "always"
       },
@@ -2033,7 +1977,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 26,
+      "display_order": 25,
       "visibility": {
         "type": "always"
       },
@@ -2089,7 +2033,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 27,
+      "display_order": 26,
       "visibility": {
         "type": "always"
       },
@@ -2174,7 +2118,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 28,
+      "display_order": 27,
       "visibility": {
         "type": "always"
       },
@@ -2223,7 +2167,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 29,
+      "display_order": 28,
       "visibility": {
         "type": "always"
       },
@@ -2275,7 +2219,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 30,
+      "display_order": 29,
       "visibility": {
         "type": "always"
       },
@@ -2343,7 +2287,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 31,
+      "display_order": 30,
       "visibility": {
         "type": "always"
       },
@@ -2397,7 +2341,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 32,
+      "display_order": 31,
       "visibility": {
         "type": "always"
       },
@@ -2448,7 +2392,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 33,
+      "display_order": 32,
       "visibility": {
         "type": "always"
       },
@@ -2495,69 +2439,6 @@
     },
     {
       "workflow_id": "gp-headache",
-      "field_id": "gp_headache__associated_symptoms_detail",
-      "archetype": "acute_symptom_assessment",
-      "section": "history",
-      "label": "Associated symptoms",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "textarea",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 34,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Associated symptoms: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": false,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "associated symptom|symptoms",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-headache"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-headache--statement-00005",
-          "family-gp-headache--statement-00011",
-          "family-gp-headache--statement-00012",
-          "family-gp-headache--statement-00014",
-          "family-gp-headache--statement-00015",
-          "family-gp-headache--statement-00017",
-          "family-gp-headache--statement-00018",
-          "family-gp-headache--statement-00019",
-          "family-gp-headache--statement-00032",
-          "family-gp-headache--statement-00040",
-          "family-gp-headache--statement-00043",
-          "family-gp-headache--statement-00045",
-          "family-gp-headache--statement-00046",
-          "family-gp-headache--statement-00047",
-          "family-gp-headache--statement-00050",
-          "family-gp-headache--statement-00093",
-          "family-gp-headache--statement-00096",
-          "family-gp-headache--statement-00101",
-          "family-gp-headache--statement-00105",
-          "family-gp-headache--statement-00109"
-        ],
-        "source_ids": [
-          "dha-telehealth-headache-adults-v2-2024",
-          "nice-headaches-cg150-2025"
-        ],
-        "population": "Adults with headache.",
-        "setting": "Telehealth services in DHA-licensed health facilities.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-headache",
       "field_id": "gp_headache__red_flag_assessment",
       "archetype": "acute_symptom_assessment",
       "section": "history",
@@ -2571,7 +2452,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 35,
+      "display_order": 33,
       "visibility": {
         "type": "always"
       },
@@ -2609,96 +2490,6 @@
     },
     {
       "workflow_id": "gp-headache",
-      "field_id": "gp_headache__vital_signs_structured",
-      "archetype": "acute_symptom_assessment",
-      "section": "examination",
-      "label": "Vital signs",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "vital_sign",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 36,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "objective",
-      "note_template": "Vital signs: {{value}}",
-      "value_formatter": "vital_sign",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "vital|temperature|heart rate|blood pressure|oxygen|respiratory rate",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-headache"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-headache--statement-00029",
-          "family-gp-headache--statement-00086",
-          "family-gp-headache--statement-00087"
-        ],
-        "source_ids": [
-          "dha-telehealth-headache-adults-v2-2024",
-          "nice-headaches-cg150-2025"
-        ],
-        "population": "Adults with headache.",
-        "setting": "Telehealth services in DHA-licensed health facilities.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-headache",
-      "field_id": "gp_headache__examination_findings_structured",
-      "archetype": "acute_symptom_assessment",
-      "section": "examination",
-      "label": "Examination findings",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "examination_finding",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 37,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "objective",
-      "note_template": "Examination findings: {{value}}",
-      "value_formatter": "examination",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "examination|physical finding|clinical finding",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-headache"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-headache--statement-00006",
-          "family-gp-headache--statement-00016"
-        ],
-        "source_ids": [
-          "dha-telehealth-headache-adults-v2-2024"
-        ],
-        "population": "Adults with headache.",
-        "setting": "Telehealth services in DHA-licensed health facilities.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-headache",
       "field_id": "gp_headache__investigation_value",
       "archetype": "acute_symptom_assessment",
       "section": "examination",
@@ -2708,7 +2499,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 38,
+      "display_order": 34,
       "visibility": {
         "type": "always"
       },
@@ -2765,7 +2556,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 39,
+      "display_order": 35,
       "visibility": {
         "type": "always"
       },
@@ -2862,7 +2653,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 40,
+      "display_order": 36,
       "visibility": {
         "type": "always"
       },
@@ -2916,7 +2707,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 41,
+      "display_order": 37,
       "visibility": {
         "type": "always"
       },
@@ -2965,7 +2756,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 42,
+      "display_order": 38,
       "visibility": {
         "type": "always"
       },
@@ -3015,7 +2806,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 43,
+      "display_order": 39,
       "visibility": {
         "type": "always"
       },
@@ -3067,7 +2858,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 44,
+      "display_order": 40,
       "visibility": {
         "type": "always"
       },

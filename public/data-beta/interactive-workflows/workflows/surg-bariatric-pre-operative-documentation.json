@@ -241,7 +241,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Procedure or airway findings: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "examination",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -445,7 +445,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Relevant investigations reviewed: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -1825,56 +1825,6 @@
     },
     {
       "workflow_id": "surg-bariatric-pre-operative-documentation",
-      "field_id": "surg_bariatric_pre_operative_documentation__weight_height_bmi",
-      "archetype": "anaesthetic_assessment",
-      "section": "examination",
-      "label": "Weight, height and BMI",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "vital_sign",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 27,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "objective",
-      "note_template": "Weight, height and BMI: {{value}}",
-      "value_formatter": "vital_sign",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "weight|height|BMI",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-surg-bariatric"
-        ],
-        "evidence_statement_ids": [
-          "family-surg-bariatric--statement-00014",
-          "family-surg-bariatric--statement-00015",
-          "family-surg-bariatric--statement-00016",
-          "family-surg-bariatric--statement-00017",
-          "family-surg-bariatric--statement-00023",
-          "family-surg-bariatric--statement-00027",
-          "family-surg-bariatric--statement-00029",
-          "family-surg-bariatric--statement-00037"
-        ],
-        "source_ids": [
-          "nice-nutrition-support-cg32-2017"
-        ],
-        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
-        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "surg-bariatric-pre-operative-documentation",
       "field_id": "surg_bariatric_pre_operative_documentation__asa_classification",
       "archetype": "anaesthetic_assessment",
       "section": "assessment",
@@ -1891,7 +1841,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 28,
+      "display_order": 27,
       "visibility": {
         "type": "always"
       },
@@ -1937,7 +1887,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 29,
+      "display_order": 28,
       "visibility": {
         "type": "always"
       },
@@ -1984,7 +1934,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 30,
+      "display_order": 29,
       "visibility": {
         "type": "always"
       },
@@ -2029,7 +1979,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 31,
+      "display_order": 30,
       "visibility": {
         "type": "always"
       },
@@ -2093,7 +2043,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 32,
+      "display_order": 31,
       "visibility": {
         "type": "always"
       },
@@ -2140,7 +2090,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 33,
+      "display_order": 32,
       "visibility": {
         "type": "always"
       },
@@ -2185,7 +2135,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 34,
+      "display_order": 33,
       "visibility": {
         "type": "always"
       },
@@ -2228,7 +2178,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 35,
+      "display_order": 34,
       "visibility": {
         "type": "always"
       },
@@ -2266,59 +2216,6 @@
     },
     {
       "workflow_id": "surg-bariatric-pre-operative-documentation",
-      "field_id": "surg_bariatric_pre_operative_documentation__asa",
-      "archetype": "anaesthetic_assessment",
-      "section": "assessment",
-      "label": "Clinician-entered ASA classification",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "single_select",
-      "options": [
-        "ASA I",
-        "ASA II",
-        "ASA III",
-        "ASA IV",
-        "ASA V",
-        "Not assigned"
-      ],
-      "free_text_allowed": false,
-      "required": false,
-      "display_order": 36,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "assessment",
-      "note_template": "Clinician-entered ASA classification: {{value}}",
-      "value_formatter": "option",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "ASA|physical status",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-surg-bariatric"
-        ],
-        "evidence_statement_ids": [
-          "family-surg-bariatric--statement-00037",
-          "family-surg-bariatric--statement-00098",
-          "family-surg-bariatric--statement-00099"
-        ],
-        "source_ids": [
-          "nice-nutrition-support-cg32-2017",
-          "nice-surgical-site-infections-ng125-2023"
-        ],
-        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
-        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "surg-bariatric-pre-operative-documentation",
       "field_id": "surg_bariatric_pre_operative_documentation__anaesthetic_technique",
       "archetype": "anaesthetic_assessment",
       "section": "plan",
@@ -2328,7 +2225,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 37,
+      "display_order": 35,
       "visibility": {
         "type": "always"
       },
@@ -2373,7 +2270,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 38,
+      "display_order": 36,
       "visibility": {
         "type": "always"
       },
@@ -2417,7 +2314,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 39,
+      "display_order": 37,
       "visibility": {
         "type": "always"
       },
@@ -2466,7 +2363,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 40,
+      "display_order": 38,
       "visibility": {
         "type": "always"
       },

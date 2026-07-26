@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-07-26T14:38:44.294Z",
-  "test_count": 116,
+  "generated_at": "2026-07-26T14:50:22.204Z",
+  "test_count": 111,
   "tests": [
     {
       "workflow_id": "cardio-anticoagulation-documentation",
@@ -808,25 +808,6 @@
       }
     },
     {
-      "workflow_id": "ed-observation-unit-review",
-      "field_id": "ed_observation_unit_review__handover_disposition",
-      "label": "Handover and disposition",
-      "contradiction_group": [
-        "single-select:Continue observation|Senior review|Admit|Transfer|Discharge|Unknown",
-        "Continue observation",
-        "Senior review",
-        "Admit",
-        "Transfer",
-        "Discharge",
-        "Unknown"
-      ],
-      "test": {
-        "selecting": "Continue observation",
-        "then_selecting": "Senior review",
-        "expected": "only one option is persisted and no contradictory option is emitted"
-      }
-    },
-    {
       "workflow_id": "ed-pediatric-fever-documentation",
       "field_id": "ed_pediatric_fever_documentation__age_unit",
       "label": "Age unit",
@@ -928,24 +909,6 @@
       "test": {
         "selecting": "Continue outpatient care",
         "then_selecting": "Urgent review",
-        "expected": "only one option is persisted and no contradictory option is emitted"
-      }
-    },
-    {
-      "workflow_id": "ed-pediatric-fever-documentation",
-      "field_id": "ed_pediatric_fever_documentation__paediatric_disposition",
-      "label": "Paediatric disposition",
-      "contradiction_group": [
-        "single-select:Observe|Discharge with safety-net|Urgent paediatric review|Admit|Unknown",
-        "Observe",
-        "Discharge with safety-net",
-        "Urgent paediatric review",
-        "Admit",
-        "Unknown"
-      ],
-      "test": {
-        "selecting": "Observe",
-        "then_selecting": "Discharge with safety-net",
         "expected": "only one option is persisted and no contradictory option is emitted"
       }
     },
@@ -1092,23 +1055,6 @@
     },
     {
       "workflow_id": "ent-recurrent-tonsillitis",
-      "field_id": "ent_recurrent_tonsillitis__sore_throat_severity",
-      "label": "Sore-throat severity",
-      "contradiction_group": [
-        "single-select:Mild|Moderate|Severe|Unknown",
-        "Mild",
-        "Moderate",
-        "Severe",
-        "Unknown"
-      ],
-      "test": {
-        "selecting": "Mild",
-        "then_selecting": "Moderate",
-        "expected": "only one option is persisted and no contradictory option is emitted"
-      }
-    },
-    {
-      "workflow_id": "ent-recurrent-tonsillitis",
       "field_id": "ent_recurrent_tonsillitis__swallowing",
       "label": "Swallowing difficulty",
       "contradiction_group": [
@@ -1244,26 +1190,6 @@
       "test": {
         "selecting": "Yes",
         "then_selecting": "No",
-        "expected": "only one option is persisted and no contradictory option is emitted"
-      }
-    },
-    {
-      "workflow_id": "gp-abdominal-pain",
-      "field_id": "gp_abdominal_pain__abdominal_quadrant",
-      "label": "Abdominal location and laterality",
-      "contradiction_group": [
-        "single-select:Right upper|Left upper|Right lower|Left lower|Central|Diffuse|Unknown",
-        "Right upper",
-        "Left upper",
-        "Right lower",
-        "Left lower",
-        "Central",
-        "Diffuse",
-        "Unknown"
-      ],
-      "test": {
-        "selecting": "Right upper",
-        "then_selecting": "Left upper",
         "expected": "only one option is persisted and no contradictory option is emitted"
       }
     },
@@ -1888,25 +1814,6 @@
       "test": {
         "selecting": "Elective",
         "then_selecting": "Urgent",
-        "expected": "only one option is persisted and no contradictory option is emitted"
-      }
-    },
-    {
-      "workflow_id": "surg-bariatric-pre-operative-documentation",
-      "field_id": "surg_bariatric_pre_operative_documentation__asa",
-      "label": "Clinician-entered ASA classification",
-      "contradiction_group": [
-        "single-select:ASA I|ASA II|ASA III|ASA IV|ASA V|Not assigned",
-        "ASA I",
-        "ASA II",
-        "ASA III",
-        "ASA IV",
-        "ASA V",
-        "Not assigned"
-      ],
-      "test": {
-        "selecting": "ASA I",
-        "then_selecting": "ASA II",
         "expected": "only one option is persisted and no contradictory option is emitted"
       }
     },

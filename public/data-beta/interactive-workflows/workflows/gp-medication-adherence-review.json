@@ -37,7 +37,7 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Medication and indication: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "medication",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -752,7 +752,7 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Monitoring results reviewed: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -1314,60 +1314,6 @@
     },
     {
       "workflow_id": "gp-medication-adherence-review",
-      "field_id": "gp_medication_adherence_review__adverse_effects_structured",
-      "archetype": "medication_review",
-      "section": "history",
-      "label": "Adverse effects",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "textarea",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 12,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Adverse effects: {{value}}",
-      "value_formatter": "trimmed_text",
-      "quick_priority": false,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "adverse",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-medication"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-medication--statement-00016",
-          "family-gp-medication--statement-00058",
-          "family-gp-medication--statement-00062",
-          "family-gp-medication--statement-00066",
-          "family-gp-medication--statement-00075",
-          "family-gp-medication--statement-00078",
-          "family-gp-medication--statement-00103",
-          "family-gp-medication--statement-00133",
-          "family-gp-medication--statement-00136",
-          "family-gp-medication--statement-00159"
-        ],
-        "source_ids": [
-          "nice-drug-allergy-cg183-2014",
-          "nice-medicines-adherence-cg76-2009",
-          "nice-medicines-optimisation-ng5-2015"
-        ],
-        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
-        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-medication-adherence-review",
       "field_id": "gp_medication_adherence_review__dose_route_frequency",
       "archetype": "medication_review",
       "section": "history",
@@ -1377,7 +1323,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 13,
+      "display_order": 12,
       "visibility": {
         "type": "always"
       },
@@ -1429,7 +1375,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 14,
+      "display_order": 13,
       "visibility": {
         "type": "always"
       },
@@ -1502,7 +1448,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 15,
+      "display_order": 14,
       "visibility": {
         "type": "always"
       },
@@ -1568,7 +1514,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 16,
+      "display_order": 15,
       "visibility": {
         "type": "always"
       },
@@ -1635,7 +1581,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 17,
+      "display_order": 16,
       "visibility": {
         "type": "always"
       },
@@ -1696,7 +1642,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 18,
+      "display_order": 17,
       "visibility": {
         "type": "always"
       },
@@ -1740,7 +1686,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 19,
+      "display_order": 18,
       "visibility": {
         "type": "always"
       },
@@ -1792,7 +1738,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 20,
+      "display_order": 19,
       "visibility": {
         "type": "always"
       },
@@ -1841,7 +1787,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 21,
+      "display_order": 20,
       "visibility": {
         "type": "always"
       },
@@ -1930,7 +1876,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 22,
+      "display_order": 21,
       "visibility": {
         "type": "always"
       },
@@ -2012,7 +1958,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 23,
+      "display_order": 22,
       "visibility": {
         "type": "always"
       },
@@ -2085,7 +2031,7 @@
       ],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 24,
+      "display_order": 23,
       "visibility": {
         "type": "always"
       },
@@ -2152,179 +2098,6 @@
     },
     {
       "workflow_id": "gp-medication-adherence-review",
-      "field_id": "gp_medication_adherence_review__medication_name",
-      "archetype": "medication_review",
-      "section": "history",
-      "label": "Medication name",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "medication_entry",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 25,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Medication name: {{value}}",
-      "value_formatter": "medication",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "medication|drug|medicine",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-medication"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-medication--statement-00004",
-          "family-gp-medication--statement-00005",
-          "family-gp-medication--statement-00006",
-          "family-gp-medication--statement-00007",
-          "family-gp-medication--statement-00008",
-          "family-gp-medication--statement-00011",
-          "family-gp-medication--statement-00012",
-          "family-gp-medication--statement-00013",
-          "family-gp-medication--statement-00014",
-          "family-gp-medication--statement-00015",
-          "family-gp-medication--statement-00016",
-          "family-gp-medication--statement-00017",
-          "family-gp-medication--statement-00018",
-          "family-gp-medication--statement-00019",
-          "family-gp-medication--statement-00021",
-          "family-gp-medication--statement-00022",
-          "family-gp-medication--statement-00024",
-          "family-gp-medication--statement-00025",
-          "family-gp-medication--statement-00027",
-          "family-gp-medication--statement-00028",
-          "family-gp-medication--statement-00029",
-          "family-gp-medication--statement-00030",
-          "family-gp-medication--statement-00031",
-          "family-gp-medication--statement-00032",
-          "family-gp-medication--statement-00034",
-          "family-gp-medication--statement-00036",
-          "family-gp-medication--statement-00037",
-          "family-gp-medication--statement-00038",
-          "family-gp-medication--statement-00039",
-          "family-gp-medication--statement-00041",
-          "family-gp-medication--statement-00042",
-          "family-gp-medication--statement-00043",
-          "family-gp-medication--statement-00044",
-          "family-gp-medication--statement-00051",
-          "family-gp-medication--statement-00052",
-          "family-gp-medication--statement-00053",
-          "family-gp-medication--statement-00057",
-          "family-gp-medication--statement-00058",
-          "family-gp-medication--statement-00059",
-          "family-gp-medication--statement-00062",
-          "family-gp-medication--statement-00063",
-          "family-gp-medication--statement-00064",
-          "family-gp-medication--statement-00065",
-          "family-gp-medication--statement-00066",
-          "family-gp-medication--statement-00067",
-          "family-gp-medication--statement-00068",
-          "family-gp-medication--statement-00069",
-          "family-gp-medication--statement-00070",
-          "family-gp-medication--statement-00072",
-          "family-gp-medication--statement-00073",
-          "family-gp-medication--statement-00074",
-          "family-gp-medication--statement-00075",
-          "family-gp-medication--statement-00078",
-          "family-gp-medication--statement-00079",
-          "family-gp-medication--statement-00080",
-          "family-gp-medication--statement-00081",
-          "family-gp-medication--statement-00082",
-          "family-gp-medication--statement-00083",
-          "family-gp-medication--statement-00084",
-          "family-gp-medication--statement-00086",
-          "family-gp-medication--statement-00088",
-          "family-gp-medication--statement-00089",
-          "family-gp-medication--statement-00091",
-          "family-gp-medication--statement-00092",
-          "family-gp-medication--statement-00093",
-          "family-gp-medication--statement-00094",
-          "family-gp-medication--statement-00095",
-          "family-gp-medication--statement-00096",
-          "family-gp-medication--statement-00097",
-          "family-gp-medication--statement-00098",
-          "family-gp-medication--statement-00099",
-          "family-gp-medication--statement-00101",
-          "family-gp-medication--statement-00102",
-          "family-gp-medication--statement-00103",
-          "family-gp-medication--statement-00104",
-          "family-gp-medication--statement-00105",
-          "family-gp-medication--statement-00106",
-          "family-gp-medication--statement-00107",
-          "family-gp-medication--statement-00108",
-          "family-gp-medication--statement-00109",
-          "family-gp-medication--statement-00110",
-          "family-gp-medication--statement-00111",
-          "family-gp-medication--statement-00112",
-          "family-gp-medication--statement-00113",
-          "family-gp-medication--statement-00114",
-          "family-gp-medication--statement-00115",
-          "family-gp-medication--statement-00116",
-          "family-gp-medication--statement-00117",
-          "family-gp-medication--statement-00118",
-          "family-gp-medication--statement-00119",
-          "family-gp-medication--statement-00120",
-          "family-gp-medication--statement-00121",
-          "family-gp-medication--statement-00122",
-          "family-gp-medication--statement-00123",
-          "family-gp-medication--statement-00124",
-          "family-gp-medication--statement-00125",
-          "family-gp-medication--statement-00126",
-          "family-gp-medication--statement-00127",
-          "family-gp-medication--statement-00128",
-          "family-gp-medication--statement-00129",
-          "family-gp-medication--statement-00130",
-          "family-gp-medication--statement-00131",
-          "family-gp-medication--statement-00132",
-          "family-gp-medication--statement-00133",
-          "family-gp-medication--statement-00134",
-          "family-gp-medication--statement-00135",
-          "family-gp-medication--statement-00136",
-          "family-gp-medication--statement-00138",
-          "family-gp-medication--statement-00139",
-          "family-gp-medication--statement-00140",
-          "family-gp-medication--statement-00141",
-          "family-gp-medication--statement-00142",
-          "family-gp-medication--statement-00143",
-          "family-gp-medication--statement-00144",
-          "family-gp-medication--statement-00145",
-          "family-gp-medication--statement-00146",
-          "family-gp-medication--statement-00148",
-          "family-gp-medication--statement-00149",
-          "family-gp-medication--statement-00151",
-          "family-gp-medication--statement-00155",
-          "family-gp-medication--statement-00156",
-          "family-gp-medication--statement-00157",
-          "family-gp-medication--statement-00158",
-          "family-gp-medication--statement-00159",
-          "family-gp-medication--statement-00160",
-          "family-gp-medication--statement-00162",
-          "family-gp-medication--statement-00164",
-          "family-gp-medication--statement-00165",
-          "family-gp-medication--statement-00167"
-        ],
-        "source_ids": [
-          "nice-drug-allergy-cg183-2014",
-          "nice-medicines-adherence-cg76-2009",
-          "nice-medicines-optimisation-ng5-2015"
-        ],
-        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
-        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-medication-adherence-review",
       "field_id": "gp_medication_adherence_review__adverse_effect",
       "archetype": "medication_review",
       "section": "history",
@@ -2334,7 +2107,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 26,
+      "display_order": 24,
       "visibility": {
         "type": "always"
       },
@@ -2381,82 +2154,6 @@
     },
     {
       "workflow_id": "gp-medication-adherence-review",
-      "field_id": "gp_medication_adherence_review__allergy_reaction_detail",
-      "archetype": "medication_review",
-      "section": "history",
-      "label": "Allergy and reaction detail",
-      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
-      "field_type": "allergy_entry",
-      "options": [],
-      "free_text_allowed": true,
-      "required": false,
-      "display_order": 27,
-      "visibility": {
-        "type": "always"
-      },
-      "contradictory_option_rules": [],
-      "population_restrictions": [],
-      "setting_restrictions": [],
-      "soap_destination": "subjective",
-      "note_template": "Allergy and reaction detail: {{value}}",
-      "value_formatter": "allergy",
-      "quick_priority": true,
-      "suggested": false,
-      "preselected_value": null,
-      "resolution_wave": true,
-      "source_spec_anchor": "allerg|reaction",
-      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
-      "provenance": {
-        "evidence_pack_ids": [
-          "family-gp-medication"
-        ],
-        "evidence_statement_ids": [
-          "family-gp-medication--statement-00004",
-          "family-gp-medication--statement-00005",
-          "family-gp-medication--statement-00006",
-          "family-gp-medication--statement-00007",
-          "family-gp-medication--statement-00008",
-          "family-gp-medication--statement-00011",
-          "family-gp-medication--statement-00012",
-          "family-gp-medication--statement-00013",
-          "family-gp-medication--statement-00014",
-          "family-gp-medication--statement-00015",
-          "family-gp-medication--statement-00016",
-          "family-gp-medication--statement-00017",
-          "family-gp-medication--statement-00018",
-          "family-gp-medication--statement-00021",
-          "family-gp-medication--statement-00022",
-          "family-gp-medication--statement-00025",
-          "family-gp-medication--statement-00027",
-          "family-gp-medication--statement-00028",
-          "family-gp-medication--statement-00029",
-          "family-gp-medication--statement-00030",
-          "family-gp-medication--statement-00031",
-          "family-gp-medication--statement-00032",
-          "family-gp-medication--statement-00033",
-          "family-gp-medication--statement-00034",
-          "family-gp-medication--statement-00036",
-          "family-gp-medication--statement-00037",
-          "family-gp-medication--statement-00038",
-          "family-gp-medication--statement-00039",
-          "family-gp-medication--statement-00062",
-          "family-gp-medication--statement-00118",
-          "family-gp-medication--statement-00133",
-          "family-gp-medication--statement-00136"
-        ],
-        "source_ids": [
-          "nice-drug-allergy-cg183-2014",
-          "nice-medicines-adherence-cg76-2009",
-          "nice-medicines-optimisation-ng5-2015"
-        ],
-        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
-        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
-        "restrictions": [],
-        "uae_applicability": "explicit_uae_source"
-      }
-    },
-    {
-      "workflow_id": "gp-medication-adherence-review",
       "field_id": "gp_medication_adherence_review__diagnosis_date",
       "archetype": "medication_review",
       "section": "history",
@@ -2466,7 +2163,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 28,
+      "display_order": 25,
       "visibility": {
         "type": "always"
       },
@@ -2524,7 +2221,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 29,
+      "display_order": 26,
       "visibility": {
         "type": "always"
       },
@@ -2578,7 +2275,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 30,
+      "display_order": 27,
       "visibility": {
         "type": "always"
       },
@@ -2622,7 +2319,7 @@
       "options": [],
       "free_text_allowed": true,
       "required": false,
-      "display_order": 31,
+      "display_order": 28,
       "visibility": {
         "type": "always"
       },
@@ -2730,7 +2427,7 @@
       ],
       "free_text_allowed": false,
       "required": false,
-      "display_order": 32,
+      "display_order": 29,
       "visibility": {
         "type": "always"
       },
