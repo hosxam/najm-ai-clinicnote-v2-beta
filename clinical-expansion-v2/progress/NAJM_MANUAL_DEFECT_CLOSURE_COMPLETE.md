@@ -59,10 +59,11 @@ invent source-free clinical fields.
 - Contradiction groups: 0; contradiction tests: 0.
 - Internal evidence records retained: 75,484; clinician-facing items: 6,290.
 
-The selectable-control check inspected rendered `select`, checkbox, and radio
-elements in Quick Mode and every Advanced section. Current controls are free
-entry/text, numeric, examination, investigation, medication, and related inputs;
-no option-bearing DOM controls were found.
+The selectable-control check inspected rendered `select`, checkbox, radio,
+role-based option controls, and non-navigation chip-like buttons in Quick Mode
+and every Advanced section. Current controls are free entry/text, numeric,
+examination, investigation, medication, and related inputs; no option-bearing
+DOM controls or legacy clinical chips were found.
 
 ## Reproduction and validation
 
