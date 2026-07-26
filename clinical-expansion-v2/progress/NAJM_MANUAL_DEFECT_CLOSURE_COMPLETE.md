@@ -80,6 +80,20 @@ source SHA is independently verified. The remaining 376 defects must remain
 visible in the unresolved artifact and must not be presented as clinically
 complete.
 
+The requested beta workflow was run from `beta-manual-defect-closure-v1`:
+
+- Run: `30193554836`
+- URL: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30193554836
+- Build job: passed (ID `89770962827`), including install, data validation,
+  build, and Pages artifact upload.
+- Deploy job: rejected (ID `89771078279`). GitHub Pages reported that branch
+  `beta-manual-defect-closure-v1` is not allowed to deploy to the `github-pages`
+  environment. No live deployment occurred and no live SHA is claimed for this
+  closure branch.
+
+The exact branch requiring environment authorization is therefore
+`beta-manual-defect-closure-v1`; no protection rule was bypassed.
+
 ## Protected-state confirmation
 
 Mappings and candidates remain 0/0; clinician approvals remain 0; exclusions
