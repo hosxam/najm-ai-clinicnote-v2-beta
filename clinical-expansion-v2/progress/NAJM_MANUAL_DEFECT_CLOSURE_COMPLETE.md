@@ -11,7 +11,8 @@ were modified.
 
 Implementation commit: `94d9f414dbbf601aed33a57cb6752c9abceafb4d`.
 Closure output commit: `7893c1700bc0fb7ce62c207d7838d246847f2f30`.
-Final documentation commit/end SHA: pending (this documentation update).
+Final documentation commit/end SHA: the final committed report revision is the
+branch HEAD returned in the handoff immediately after this report update.
 
 The authoritative ledger produced 433 independent closure records: numbered
 defects 1–370 plus 41 pre-anaesthetic and 22 procedure additions. Every record
