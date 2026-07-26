@@ -97,22 +97,30 @@ workflow regression remains green.
 ## Deployment
 
 - Deployment branch: `beta-inactive-workflow-expansion-v1`
-- Implementation end SHA: `dfdb1bfc9f17e3aa2c64197d20c840d774063c95`
+- Implementation end SHA: `9e2e3b9e439eeb825395974aefc3e3afb6bf8fa0`
 - Branch pushed: yes, beta branch only
-- Workflow run: [30210814651](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30210814651)
+- Workflow run: [30211042953](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30211042953)
 - Build job: PASS
-- Deploy job: BLOCKED/FAIL
-- Exact failure: `Branch "beta-inactive-workflow-expansion-v1" is not allowed to deploy to github-pages due to environment protection rules.`
-- Deployed SHA: none; no live deployment occurred
-- Live verification: not performed because the deployment was rejected
+- Deploy job: PASS
+- Deployed SHA: `9e2e3b9e439eeb825395974aefc3e3afb6bf8fa0` (displayed build `9e2e3b9`)
+- Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Live verification: PASS (2026-07-26T16:50:00Z UTC)
+- Live catalogue: canonical manifest HTTP 200; 1,500 original, 416 active,
+  1,084 inactive, 6,290 clinician-facing items, 75,484 evidence records
+- Obsolete `data-beta/curated-workflows` dataset: not requested by the app
+- Search/filter smoke test: PASS (Chest pain search; specialty and archetype
+  filters returned expected result sets)
+- Quick/Advanced smoke test: PASS for Chest pain and 15 representative active
+  workflows
+- Inactive route isolation: PASS (`anes-airway-plan-documentation-review`
+  showed the inactive message and zero usable form controls)
+- State isolation: PASS (workflow-scoped localStorage; cross-workflow marker did
+  not persist; Start Fresh cleared the draft)
+- Desktop/tablet/mobile: PASS; no horizontal overflow
+- Console errors: 0; failed requests: 0
 - Stable production: untouched
 - No merge, rebase, force-push, signing, approval, mapping, candidate, or
   canonical-state changes
-
-The required branch was pushed and the beta-only workflow was run. GitHub Pages
-rejected the deploy job before deployment because the branch is not currently
-allowlisted by the `github-pages` environment. This report does not claim beta
-completion or live verification until that external protection rule is resolved.
 
 ## Protected-state confirmation
 
