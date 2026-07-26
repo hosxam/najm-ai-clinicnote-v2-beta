@@ -14,7 +14,7 @@ production deployment was attempted.
 - Baseline HEAD: `9bf5dc4f8526193c182402e90295574053af1cb7`
 - Working branch: `beta-inactive-source-acceptance-and-wave1-v1`
 - Implementation end HEAD: `a5a02d8a8292f02d704cabb2fc91bb5d2f70f823`
-- Final documentation HEAD: `4e13702d469dfe5f5113d73416b0e4823ec9b51c`
+- Documentation commits include `4e13702d` and subsequent report/test verification corrections.
 - Commits:
   - `423c6c0f` — `fix(research): repair source candidate acceptance and access classification`
   - `35a296a1` — `data(wave1): activate sourced sore throat workflow`
@@ -73,6 +73,7 @@ The required evidence and status artefacts are under
 - Search and specialty/archetype filter controls rendered. All 25 Wave-1 target routes were checked: `gp-sore-throat` opened with Quick and Advanced modes; the other 24 remained fail-closed as inactive. No route failures occurred.
 - The `gp-sore-throat` evidence panel opened and displayed the accepted DHA source identifier and locator page. Start Fresh cleared the workflow-scoped draft gate before rendering the form.
 - Desktop (1440px), tablet (1024px), and mobile (390px) active-route checks had no horizontal overflow; Quick and Advanced controls rendered at all three sizes.
+- Accessibility smoke checks covered all 25 Wave-1 routes and 74 rendered controls; no unnamed controls were found.
 - Browser smoke tests recorded zero console errors and zero failed assets.
 - Stable production: unchanged.
 
