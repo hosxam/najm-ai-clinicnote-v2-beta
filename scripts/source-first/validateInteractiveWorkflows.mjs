@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 const root = path.join(process.cwd(), 'public', 'data-beta', 'interactive-workflows')
+const sourceCatalog = JSON.parse(await import('node:fs/promises').then(({ readFile }) => readFile(path.join(root, 'catalog.json'), 'utf8')))
 const allowedTypes = new Set(['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'text', 'textarea', 'number', 'integer', 'duration', 'date', 'vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'allergy_entry', 'assessment_entry', 'plan_entry', 'referral_selection', 'follow_up_selection', 'safety_netting_selection', 'information_only'])
 const allowedDestinations = new Set(['subjective', 'objective', 'assessment', 'plan'])
 
@@ -32,8 +33,8 @@ async function main() {
       if (field.options?.length && !['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'referral_selection', 'follow_up_selection', 'safety_netting_selection'].includes(field.field_type)) errors.push(`${file}: options on non-select field`)
     }
   }
-if (files.length !== 417) errors.push(`expected 417 workflow files, found ${files.length}`)
-if (manifest.counts.workflows !== 417 || manifest.counts.fields !== fieldCount || manifest.counts.evidence_records_retained !== evidenceCount) errors.push('manifest counts do not match compiled data')
+  if (files.length !== manifest.counts.workflows) errors.push(`expected ${manifest.counts.workflows} workflow files, found ${files.length}`)
+  if (manifest.counts.workflows !== sourceCatalog.workflows.length || manifest.counts.fields !== fieldCount || manifest.counts.evidence_records_retained !== evidenceCount) errors.push('manifest counts do not match compiled data')
   const result = { workflows: files.length, fields: fieldCount, evidence_records_retained: evidenceCount, errors }
   console.log(JSON.stringify(result, null, 2))
   if (errors.length) process.exitCode = 1

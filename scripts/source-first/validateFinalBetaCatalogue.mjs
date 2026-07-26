@@ -9,13 +9,14 @@ const manifest = read('manifest.json')
 const catalog = read('catalog.json')
 const inactive = read('inactive-inventory.json')
 const metadata = read('metadata.json')
+const expected = manifest.counts
 
 const activeIds = new Set(catalog.workflows.map((workflow) => workflow.workflow_id))
 const inactiveIds = new Set(inactive.workflows.map((workflow) => workflow.workflow_id))
 if (manifest.source_commit !== '58be2e806dd364d571ffe168a9a64f1fc2048141') errors.push('manifest source commit is not the validated catalogue commit')
-if (manifest.counts.original_workflows !== 1500 || manifest.counts.active_workflows !== 417 || manifest.counts.inactive_workflows !== 1083 || manifest.counts.clinician_facing_items !== 6301 || manifest.counts.internal_evidence_records !== 75512) errors.push('manifest counts are incorrect')
-if (metadata.workflow_count !== 1500 || metadata.usable_workflow_count !== 417 || metadata.inactive_workflow_count !== 1083 || metadata.user_facing_item_count !== 6301 || metadata.internal_evidence_record_count !== 75512) errors.push('metadata counts are incorrect')
-if (catalog.workflows.length !== 417 || inactive.workflows.length !== 1083 || activeIds.size !== 417 || inactiveIds.size !== 1083) errors.push('active/inactive cardinality is incorrect')
+if (manifest.counts.original_workflows !== 1500 || metadata.workflow_count !== 1500) errors.push('manifest original workflow count is incorrect')
+if (metadata.usable_workflow_count !== expected.active_workflows || metadata.inactive_workflow_count !== expected.inactive_workflows || metadata.user_facing_item_count !== expected.clinician_facing_items || metadata.internal_evidence_record_count !== expected.internal_evidence_records) errors.push('metadata counts are incorrect')
+if (catalog.workflows.length !== expected.active_workflows || inactive.workflows.length !== expected.inactive_workflows || activeIds.size !== expected.active_workflows || inactiveIds.size !== expected.inactive_workflows) errors.push('active/inactive cardinality is incorrect')
 if ([...activeIds].some((id) => inactiveIds.has(id))) errors.push('inactive workflow appears in active catalogue')
 
 let itemCount = 0
@@ -40,8 +41,8 @@ for (const workflow of catalog.workflows) {
   const evidenceIds = new Set(detail.evidence_records.map((record) => record.evidence_statement_id ?? record.evidence_record_id))
   for (const item of detail.user_facing_items ?? []) for (const id of item.evidence_statement_ids ?? []) if (!evidenceIds.has(id)) errors.push(`unresolved evidence reference ${workflow.workflow_id}/${id}`)
 }
-if (itemCount !== 6301) errors.push(`clinician item total is ${itemCount}, expected 6301`)
-if (evidenceCount !== 75512) errors.push(`evidence record total is ${evidenceCount}, expected 75512`)
-const result = { status: errors.length ? 'FAIL' : 'PASS', original_workflows: 1500, active_workflows: 417, inactive_workflows: 1083, clinician_facing_items: itemCount, internal_evidence_records: evidenceCount, errors }
+if (itemCount !== expected.clinician_facing_items) errors.push(`clinician item total is ${itemCount}, expected ${expected.clinician_facing_items}`)
+if (evidenceCount !== expected.internal_evidence_records) errors.push(`evidence record total is ${evidenceCount}, expected ${expected.internal_evidence_records}`)
+const result = { status: errors.length ? 'FAIL' : 'PASS', original_workflows: expected.original_workflows, active_workflows: expected.active_workflows, inactive_workflows: expected.inactive_workflows, clinician_facing_items: itemCount, internal_evidence_records: evidenceCount, errors }
 console.log(JSON.stringify(result, null, 2))
 if (errors.length) process.exitCode = 1

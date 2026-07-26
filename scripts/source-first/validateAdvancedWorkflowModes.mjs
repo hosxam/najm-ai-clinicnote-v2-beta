@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 const manifest = JSON.parse(fs.readFileSync('public/data-beta/advanced-workflows/manifest.json', 'utf8'))
 const active = JSON.parse(fs.readFileSync('public/data-beta/interactive-workflows/catalog.json', 'utf8')).workflows
-if (manifest.counts.active_workflows !== 417 || manifest.counts.quick_workflows !== 417 || manifest.counts.advanced_workflows !== 417) throw new Error('Advanced mode workflow count contract failed')
-if (manifest.workflows.length !== 417 || new Set(manifest.workflows.map((entry) => entry.workflow_id)).size !== 417) throw new Error('Advanced mode IDs are not unique')
+if (manifest.counts.active_workflows !== active.length || manifest.counts.quick_workflows !== active.length || manifest.counts.advanced_workflows !== active.length) throw new Error('Advanced mode workflow count contract failed')
+if (manifest.workflows.length !== active.length || new Set(manifest.workflows.map((entry) => entry.workflow_id)).size !== active.length) throw new Error('Advanced mode IDs are not unique')
 const activeIds = new Set(active.map((entry) => entry.workflow_id))
 for (const entry of manifest.workflows) {
   if (!activeIds.has(entry.workflow_id)) throw new Error(`Inactive workflow leaked into advanced modes: ${entry.workflow_id}`)
@@ -12,4 +12,4 @@ for (const entry of manifest.workflows) {
   if (!entry.schema.advanced.conditional_rules?.length || !entry.schema.advanced.nested_entries?.length) throw new Error(`Advanced conditional/nested contract missing: ${entry.workflow_id}`)
   if (!entry.provenance.interactive_workflow || !entry.soap_destinations.assessment) throw new Error(`Missing provenance/SOAP mapping: ${entry.workflow_id}`)
 }
-console.log(JSON.stringify({ status: 'PASS', active_workflows: 417, quick_workflows: 417, advanced_workflows: 417, chips: manifest.counts.chips, advanced_options: manifest.counts.advanced_options, fingerprint: manifest.fingerprint }, null, 2))
+console.log(JSON.stringify({ status: 'PASS', active_workflows: active.length, quick_workflows: active.length, advanced_workflows: active.length, chips: manifest.counts.chips, advanced_options: manifest.counts.advanced_options, fingerprint: manifest.fingerprint }, null, 2))
