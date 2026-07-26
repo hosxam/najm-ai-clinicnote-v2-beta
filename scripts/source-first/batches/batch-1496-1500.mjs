@@ -37,4 +37,41 @@ const workflows = [
   noExact({ workflow_id: 'uro-urology-referral-documentation', topic: 'urology referral documentation', gap: 'Referral reason, symptoms, duration, red flags, examination, investigations and results, prior treatment, urgency, destination, attachments, patient discussion and follow-up remain unsupported.' }),
   noExact({ workflow_id: 'uro-vasectomy-counseling-documentation', topic: 'vasectomy counseling documentation', gap: 'Eligibility, reproductive goals, permanence, alternatives, failure, complications, consent, contraception until clearance, semen-analysis timing and criteria, procedure details, recovery, regulation and follow-up remain unsupported.' }),
 ]
-export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-1496-1500', description: 'Workflow-specific urology research and targeted acute-cough source expansion; research only.', sources: [targetedExpansionSource], workflows, interruption_reason: 'Source-first research reaches terminal status for all 1,500 workflows after workflow 1500; no next workflow exists.' }
+const targetedTaxonomySource = {
+  registry_file: 'international_clinical_sources.json',
+  source: {
+    source_id: 'nice-atopic-eczema-under-12s-cg57-2025',
+    issuing_organisation: 'National Institute for Health and Care Excellence',
+    exact_document_title: 'Atopic eczema in under 12s: diagnosis and management',
+    exact_official_url: 'https://www.nice.org.uk/guidance/cg57/chapter/Recommendations',
+    publication_date: null,
+    effective_date: null,
+    revision_date: null,
+    version: 'NICE clinical guideline CG57; last updated 2025-09-22',
+    jurisdiction: 'England, United Kingdom; international guidance requiring UAE adaptation',
+    population: 'Children from birth up to 12 years with suspected or diagnosed atopic eczema.',
+    clinical_setting: 'Primary, community and specialist assessment and management of paediatric atopic eczema.',
+    applicability_note: 'Supports documenting paediatric atopic-eczema diagnosis features, severity and quality-of-life assessment, trigger review, education, adherence, treatment discussion and referral criteria. It does not generate a diagnosis, medicine, dose or UAE pathway.',
+    recency_verification: { verified_on: '2026-07-16', status: 'official_NICE_CG57_recommendations_page_opened_last_updated_2025-09-22', revision_due: null },
+    superseded_status_check: { checked_on: '2026-07-16', status: 'NICE_CG57_current_official_guideline_no_superseding_guideline_identified' },
+    exact_sections: [
+      { section_id: 'nice-cg57-diagnosis-assessment', heading: 'Recommendations 1.1 — diagnosis and assessment', locator: 'https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#diagnosis', evidence_summary: 'Supports recording itch, visible dermatitis pattern, previous flexural dermatitis, dry skin, atopic history and age at onset as diagnosis-assessment context without autonomous diagnosis.' },
+      { section_id: 'nice-cg57-severity-quality-of-life', heading: 'Recommendations 1.2 — assessing severity, psychological and psychosocial wellbeing and quality of life', locator: 'https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#assessing-severity', evidence_summary: 'Supports clinician-documented severity, sleep, psychosocial and quality-of-life impact review.' },
+      { section_id: 'nice-cg57-trigger-management', heading: 'Recommendations 1.3 and 1.4 — trigger factors and education', locator: 'https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#trigger-factors', evidence_summary: 'Supports documenting trigger or irritant review, education, adherence discussion and agreed follow-up.' },
+      { section_id: 'nice-cg57-referral', heading: 'Recommendations 1.7 — indications for referral', locator: 'https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#referral', evidence_summary: 'Supports clinician-recorded referral consideration for severe, refractory or diagnostically uncertain paediatric eczema.' },
+    ],
+    source_recency: { schema_version: '1.0.0', policy_version: '1.0.0', evaluated_on: '2026-07-16', recency_basis: 'access_verification_only', recency_outcome: 'access_verification_current', basis_field: 'recency_verification.verified_on', basis_value: '2026-07-16', basis_precision: 'day', basis_comparison_date: '2026-07-16', verification_date: '2026-07-16', verification_age_days: 0, maximum_verification_age_days: 30, routine_recheck_due_on: '2026-08-15', recheck_warning_starts_on: '2026-08-08', next_required_recheck_date: '2026-08-15', remains_available: true, appears_superseded: false, recorded_recency_gap: false },
+    source_metadata_replay_ref: { manifest_path: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', manifest_version: '2.0.0', source_id: 'nice-atopic-eczema-under-12s-cg57-2025', entry_digest: null },
+  },
+}
+const targetedNhsSource = {
+  registry_file: 'international_clinical_sources.json',
+  source: {
+    source_id: 'nhs-atopic-eczema-overview-2026', issuing_organisation: 'National Health Service', exact_document_title: 'Atopic eczema', exact_official_url: 'https://www.nhs.uk/conditions/atopic-eczema/', publication_date: null, effective_date: null, revision_date: null, version: 'NHS condition overview page accessed 2026-07-16', jurisdiction: 'England, United Kingdom; public health information requiring clinician and UAE adaptation', population: 'People with atopic eczema, including children and adults.', clinical_setting: 'Public-facing condition information for symptom recognition, self-care and when to seek clinical advice.', applicability_note: 'Supports documenting patient-reported eczema symptoms, flare context, self-care information and advice-seeking prompts. It is not a diagnostic or prescribing guideline and does not generate treatment or referral decisions.', recency_verification: { verified_on: '2026-07-16', status: 'official_NHS_atopic_eczema_page_opened', revision_due: null }, superseded_status_check: { checked_on: '2026-07-16', status: 'current_NHS_condition_page_reviewed' }, exact_sections: [
+      { section_id: 'nhs-eczema-symptoms', heading: 'Symptoms of atopic eczema', locator: 'https://www.nhs.uk/conditions/atopic-eczema/#symptoms', evidence_summary: 'Supports recording itch, dry or cracked skin, rash distribution and flare symptoms as patient-reported context.' },
+      { section_id: 'nhs-eczema-triggers', heading: 'Atopic eczema triggers', locator: 'https://www.nhs.uk/conditions/atopic-eczema/#triggers', evidence_summary: 'Supports documenting reported irritants, trigger context and flare pattern without inferring causation.' },
+      { section_id: 'nhs-eczema-help', heading: 'When to get medical help', locator: 'https://www.nhs.uk/conditions/atopic-eczema/#when-to-get-medical-help', evidence_summary: 'Supports documenting advice-seeking and clinician review prompts for worsening or infected eczema symptoms.' },
+    ], source_recency: { schema_version: '1.0.0', policy_version: '1.0.0', evaluated_on: '2026-07-16', recency_basis: 'access_verification_only', recency_outcome: 'access_verification_current', basis_field: 'recency_verification.verified_on', basis_value: '2026-07-16', basis_precision: 'day', basis_comparison_date: '2026-07-16', verification_date: '2026-07-16', verification_age_days: 0, maximum_verification_age_days: 30, routine_recheck_due_on: '2026-08-15', recheck_warning_starts_on: '2026-08-08', next_required_recheck_date: '2026-08-15', remains_available: true, appears_superseded: false, recorded_recency_gap: false }, source_metadata_replay_ref: { manifest_path: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', manifest_version: '2.0.0', source_id: 'nhs-atopic-eczema-overview-2026', entry_digest: null },
+  },
+}
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-1496-1500', description: 'Workflow-specific urology research and targeted acute-cough and paediatric eczema source expansion; research only.', sources: [targetedExpansionSource, targetedTaxonomySource, targetedNhsSource], workflows, interruption_reason: 'Source-first research reaches terminal status for all 1,500 workflows after workflow 1500; no next workflow exists.' }

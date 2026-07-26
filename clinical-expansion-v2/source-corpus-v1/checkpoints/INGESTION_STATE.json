@@ -128,6 +128,7 @@
     "mohap-medical-leave-attestation-2026",
     "mohap-tobacco-dependence-guideline-2024",
     "monash-international-pcos-guideline-2023",
+    "nhs-atopic-eczema-overview-2026",
     "nhs-cheshire-merseyside-heart-failure-pathway-2022",
     "nhs-diabetic-eye-screening-pathway-2025",
     "nhs-england-adult-breathlessness-pathway-2023",
@@ -136,6 +137,7 @@
     "nice-acute-cough-ng120-2019",
     "nice-acute-otitis-media-ng91-2022",
     "nice-asthma-ng245-2025",
+    "nice-atopic-eczema-under-12s-cg57-2025",
     "nice-atrial-fibrillation-ng196-2021",
     "nice-b12-deficiency-ng239-2024",
     "nice-cataracts-adults-ng77-2025",
@@ -474,7 +476,9 @@
     "who-scabies-fact-sheet-2023",
     "who-stress-related-conditions-2013",
     "who-surgical-safety-checklist-2009",
-    "nice-acute-cough-ng120-2019"
+    "nice-acute-cough-ng120-2019",
+    "nhs-atopic-eczema-overview-2026",
+    "nice-atopic-eczema-under-12s-cg57-2025"
   ],
   "active_source_id": null,
   "pending_source_ids": [],
@@ -3828,9 +3832,56 @@
       "output_fingerprint": "e59d1a68601e35bcbc1fead34b45a2912a8c16f615e519fe0e07f2fbf4c7075f",
       "errors": [],
       "completed_at": "2026-07-18T19:56:53.904Z"
+    },
+    "nice-atopic-eczema-under-12s-cg57-2025": {
+      "stage": "completed",
+      "ingestion_status": "blocked_source_access",
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-07-26T19:53:19.853Z",
+          "url": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations",
+          "finished_at": "2026-07-26T19:53:20.462Z"
+        },
+        {
+          "attempt": 2,
+          "started_at": "2026-07-26T19:53:20.717Z",
+          "url": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations",
+          "finished_at": "2026-07-26T19:53:20.848Z"
+        }
+      ],
+      "output_fingerprint": "1348ee67948dba913d0291a1e89fc480508535ecec68b3145c6788be3427b855",
+      "errors": [
+        {
+          "attempt": 1,
+          "code": "BLOCKED_SOURCE_ACCESS",
+          "message": "Official source returned HTTP 403",
+          "at": "2026-07-26T19:53:20.462Z"
+        },
+        {
+          "attempt": 2,
+          "code": "BLOCKED_SOURCE_ACCESS",
+          "message": "Official source returned HTTP 403",
+          "at": "2026-07-26T19:53:20.848Z"
+        }
+      ]
+    },
+    "nhs-atopic-eczema-overview-2026": {
+      "stage": "completed",
+      "ingestion_status": "ingested_complete",
+      "attempts": [
+        {
+          "attempt": 1,
+          "started_at": "2026-07-26T19:51:57.423Z",
+          "url": "https://www.nhs.uk/conditions/atopic-eczema/"
+        }
+      ],
+      "output_fingerprint": "dad463b5a49b4aee444fb3af72205906e3416887387f64627f9830ecfef67054",
+      "errors": [],
+      "completed_at": "2026-07-26T19:51:57.970Z"
     }
   },
-  "last_successful_checkpoint": "2026-07-18T20:18:07.992Z",
-  "corpus_fingerprint": "9377495369b84412d0b0b265d86311264b01abc6865b69e1c1ebfdd017134e02",
-  "state_fingerprint": "5d1ec5da4a96faa4fc2fd49922dc044bb4ed8cc7d49c3646e54dca4a887675d2"
+  "last_successful_checkpoint": "2026-07-26T19:53:21.779Z",
+  "corpus_fingerprint": "e57039fdbf388b28441e2795597127e29ac1699262e003cd4b4599aefa8920c7",
+  "state_fingerprint": "d03771ef1a7783f055404477f196dfd43b113fd1bbc2e1c3ba0bb9b9b93a8fad"
 }

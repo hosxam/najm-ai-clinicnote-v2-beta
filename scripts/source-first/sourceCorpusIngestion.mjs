@@ -200,6 +200,9 @@ async function ingestOne(source, state) {
     try {
       record.stage = 'downloading'; record.attempts.push({ attempt, started_at: now(), url: source.exact_official_url }); saveState(state)
       const retrieval = await retrieve(source.exact_official_url); record.stage = 'validating_download'; saveState(state)
+      if (retrieval.response.status < 200 || retrieval.response.status >= 300) {
+        throw Object.assign(new Error(`Official source returned HTTP ${retrieval.response.status}`), { code: 'BLOCKED_SOURCE_ACCESS', retrieval })
+      }
       const type = (retrieval.response.headers.get('content-type') ?? '').toLowerCase(); const isPdf = type.includes('pdf') || retrieval.buffer.subarray(0, 4).toString() === '%PDF'; const isHtml = type.includes('html') || /<html|<body|<title/i.test(retrieval.buffer.toString('utf8', 0, Math.min(retrieval.buffer.length, 5000)))
       if (!isPdf && !isHtml) throw Object.assign(new Error(`Unsupported source content type: ${type || 'unknown'}`), { code: 'INVALID_SOURCE_TARGET', retrieval })
       const rawExt = isPdf ? '.pdf' : '.html'; const rawFile = path.join(cache, 'raw', `${id}${rawExt}`); fs.writeFileSync(rawFile, retrieval.buffer); record.stage = 'extracting'; saveState(state)
