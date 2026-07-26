@@ -1,10 +1,10 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-07-26T14:23:05.657Z",
+  "generated_at": "2026-07-26T14:38:44.293Z",
   "workflow_count": 416,
-  "control_count": 124,
-  "selected_option_tests": 124,
-  "unselected_option_tests": 124,
+  "control_count": 132,
+  "selected_option_tests": 132,
+  "unselected_option_tests": 132,
   "controls": [
     {
       "workflow_id": "cardio-anticoagulation-documentation",
@@ -320,6 +320,38 @@
           "Adjust dose",
           "Interrupt",
           "Urgent review",
+          "Unknown"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
+      "workflow_id": "cardio-anticoagulation-documentation",
+      "field_id": "cardio_anticoagulation_documentation__falls_head_trauma",
+      "label": "Falls or head trauma",
+      "options": [
+        {
+          "label": "Yes",
+          "stored_value": "Yes"
+        },
+        {
+          "label": "No",
+          "stored_value": "No"
+        },
+        {
+          "label": "Unknown",
+          "stored_value": "Unknown"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "Yes",
+        "output_label": "Falls or head trauma"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "No",
           "Unknown"
         ],
         "output_absent": true
@@ -2419,6 +2451,48 @@
       "preselected_value": null
     },
     {
+      "workflow_id": "ed-pediatric-fever-documentation",
+      "field_id": "ed_pediatric_fever_documentation__clinician_escalation",
+      "label": "Clinician-entered escalation",
+      "options": [
+        {
+          "label": "No escalation documented",
+          "stored_value": "No escalation documented"
+        },
+        {
+          "label": "Senior review",
+          "stored_value": "Senior review"
+        },
+        {
+          "label": "Urgent paediatric review",
+          "stored_value": "Urgent paediatric review"
+        },
+        {
+          "label": "Emergency referral",
+          "stored_value": "Emergency referral"
+        },
+        {
+          "label": "Admit",
+          "stored_value": "Admit"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "No escalation documented",
+        "output_label": "Clinician-entered escalation"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "Senior review",
+          "Urgent paediatric review",
+          "Emergency referral",
+          "Admit"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
       "workflow_id": "ent-recurrent-tonsillitis",
       "field_id": "ent_recurrent_tonsillitis__age_unit",
       "label": "Age unit",
@@ -4169,6 +4243,43 @@
       "preselected_value": null
     },
     {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__glycaemic_control",
+      "label": "Glycaemic-control classification",
+      "options": [
+        {
+          "label": "At target",
+          "stored_value": "At target"
+        },
+        {
+          "label": "Above target",
+          "stored_value": "Above target"
+        },
+        {
+          "label": "Below target",
+          "stored_value": "Below target"
+        },
+        {
+          "label": "Unknown",
+          "stored_value": "Unknown"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "At target",
+        "output_label": "Glycaemic-control classification"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "Above target",
+          "Below target",
+          "Unknown"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
       "workflow_id": "gp-medication-review",
       "field_id": "gp_medication_review__age_unit",
       "label": "Age unit",
@@ -4403,6 +4514,43 @@
           "Adjust",
           "Switch",
           "Stop",
+          "Unknown"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__missed_doses",
+      "label": "Missed doses",
+      "options": [
+        {
+          "label": "None reported",
+          "stored_value": "None reported"
+        },
+        {
+          "label": "Occasional",
+          "stored_value": "Occasional"
+        },
+        {
+          "label": "Frequent",
+          "stored_value": "Frequent"
+        },
+        {
+          "label": "Unknown",
+          "stored_value": "Unknown"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "None reported",
+        "output_label": "Missed doses"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "Occasional",
+          "Frequent",
           "Unknown"
         ],
         "output_absent": true
@@ -4658,6 +4806,132 @@
       "preselected_value": null
     },
     {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__procedure_urgency",
+      "label": "Procedure urgency",
+      "options": [
+        {
+          "label": "Elective",
+          "stored_value": "Elective"
+        },
+        {
+          "label": "Urgent",
+          "stored_value": "Urgent"
+        },
+        {
+          "label": "Emergency",
+          "stored_value": "Emergency"
+        },
+        {
+          "label": "Unknown",
+          "stored_value": "Unknown"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "Elective",
+        "output_label": "Procedure urgency"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "Urgent",
+          "Emergency",
+          "Unknown"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__asa",
+      "label": "Clinician-entered ASA classification",
+      "options": [
+        {
+          "label": "ASA I",
+          "stored_value": "ASA I"
+        },
+        {
+          "label": "ASA II",
+          "stored_value": "ASA II"
+        },
+        {
+          "label": "ASA III",
+          "stored_value": "ASA III"
+        },
+        {
+          "label": "ASA IV",
+          "stored_value": "ASA IV"
+        },
+        {
+          "label": "ASA V",
+          "stored_value": "ASA V"
+        },
+        {
+          "label": "Not assigned",
+          "stored_value": "Not assigned"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "ASA I",
+        "output_label": "Clinician-entered ASA classification"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "ASA II",
+          "ASA III",
+          "ASA IV",
+          "ASA V",
+          "Not assigned"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__postoperative_destination",
+      "label": "Postoperative destination",
+      "options": [
+        {
+          "label": "Ward",
+          "stored_value": "Ward"
+        },
+        {
+          "label": "Recovery unit",
+          "stored_value": "Recovery unit"
+        },
+        {
+          "label": "ICU/HDU",
+          "stored_value": "ICU/HDU"
+        },
+        {
+          "label": "Discharge",
+          "stored_value": "Discharge"
+        },
+        {
+          "label": "Unknown",
+          "stored_value": "Unknown"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "Ward",
+        "output_label": "Postoperative destination"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "Recovery unit",
+          "ICU/HDU",
+          "Discharge",
+          "Unknown"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
       "workflow_id": "surg-stoma-appliance-issue-documentation",
       "field_id": "surg_stoma_appliance_issue_documentation__age_unit",
       "label": "Age unit",
@@ -4893,6 +5167,38 @@
           "Infection",
           "Other documented complication",
           "Unknown"
+        ],
+        "output_absent": true
+      },
+      "suggested": false,
+      "preselected_value": null
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__site_verification",
+      "label": "Identity, site and laterality verification",
+      "options": [
+        {
+          "label": "Verified",
+          "stored_value": "Verified"
+        },
+        {
+          "label": "Not verified",
+          "stored_value": "Not verified"
+        },
+        {
+          "label": "Not applicable",
+          "stored_value": "Not applicable"
+        }
+      ],
+      "selected_option_test": {
+        "selected": "Verified",
+        "output_label": "Identity, site and laterality verification"
+      },
+      "unselected_option_test": {
+        "unselected": [
+          "Not verified",
+          "Not applicable"
         ],
         "output_absent": true
       },

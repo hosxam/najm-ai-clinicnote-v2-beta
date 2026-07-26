@@ -30,12 +30,17 @@ All 433 records contain a root cause, a resolution evidence object, an automated
 ## Dataset and provenance
 
 - Active interactive workflows: 416
-- Compiled fields: 4,129
+- Compiled fields: 4,191
 - Evidence records retained separately: 75,484
-- Resolution-wave structured fields: 409
-- Selectable controls tested: 124
-- Contradiction tests: 108
+- Resolution-wave structured fields: 471
+- Selectable controls tested: 132
+- Contradiction tests: 116
 - Dedicated final-output cases: 15 workflow archetypes
+- Fields added: 471 evidence-gated structured fields; fields removed: 0; fields relabelled: 0
+- Structured components: age/unit, sex, pregnancy, onset/duration/severity/laterality, state selectors, vitals, examinations, investigations with value/unit/date/comparison/interpretation, medication/allergy entries, follow-up, disposition, procedure details
+- Selectable tests: 132 selected and 132 unselected; suggestion-unconfirmed behavior is asserted as no preselection
+- Workflow activations: 0; workflow deactivations: 0; exact unsupported routes remain fail-closed
+- New source acquisitions: 0; all added controls use existing accepted evidence packs and statements
 - Mappings/candidates changed: no
 - Canonical, signed, exclusions, and `public/data` state changed: no
 

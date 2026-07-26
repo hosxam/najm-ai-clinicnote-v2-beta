@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
-  "generated_at": "2026-07-26T14:23:05.658Z",
-  "test_count": 108,
+  "generated_at": "2026-07-26T14:38:44.294Z",
+  "test_count": 116,
   "tests": [
     {
       "workflow_id": "cardio-anticoagulation-documentation",
@@ -123,6 +123,22 @@
       "test": {
         "selecting": "Continue",
         "then_selecting": "Adjust dose",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
+      "workflow_id": "cardio-anticoagulation-documentation",
+      "field_id": "cardio_anticoagulation_documentation__falls_head_trauma",
+      "label": "Falls or head trauma",
+      "contradiction_group": [
+        "single-select:Yes|No|Unknown",
+        "Yes",
+        "No",
+        "Unknown"
+      ],
+      "test": {
+        "selecting": "Yes",
+        "then_selecting": "No",
         "expected": "only one option is persisted and no contradictory option is emitted"
       }
     },
@@ -934,6 +950,24 @@
       }
     },
     {
+      "workflow_id": "ed-pediatric-fever-documentation",
+      "field_id": "ed_pediatric_fever_documentation__clinician_escalation",
+      "label": "Clinician-entered escalation",
+      "contradiction_group": [
+        "single-select:No escalation documented|Senior review|Urgent paediatric review|Emergency referral|Admit",
+        "No escalation documented",
+        "Senior review",
+        "Urgent paediatric review",
+        "Emergency referral",
+        "Admit"
+      ],
+      "test": {
+        "selecting": "No escalation documented",
+        "then_selecting": "Senior review",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
       "workflow_id": "ent-recurrent-tonsillitis",
       "field_id": "ent_recurrent_tonsillitis__age_unit",
       "label": "Age unit",
@@ -1630,6 +1664,23 @@
       }
     },
     {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__glycaemic_control",
+      "label": "Glycaemic-control classification",
+      "contradiction_group": [
+        "single-select:At target|Above target|Below target|Unknown",
+        "At target",
+        "Above target",
+        "Below target",
+        "Unknown"
+      ],
+      "test": {
+        "selecting": "At target",
+        "then_selecting": "Above target",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
       "workflow_id": "gp-medication-review",
       "field_id": "gp_medication_review__age_unit",
       "label": "Age unit",
@@ -1714,6 +1765,23 @@
       "test": {
         "selecting": "Continue",
         "then_selecting": "Adjust",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__missed_doses",
+      "label": "Missed doses",
+      "contradiction_group": [
+        "single-select:None reported|Occasional|Frequent|Unknown",
+        "None reported",
+        "Occasional",
+        "Frequent",
+        "Unknown"
+      ],
+      "test": {
+        "selecting": "None reported",
+        "then_selecting": "Occasional",
         "expected": "only one option is persisted and no contradictory option is emitted"
       }
     },
@@ -1807,6 +1875,60 @@
       }
     },
     {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__procedure_urgency",
+      "label": "Procedure urgency",
+      "contradiction_group": [
+        "single-select:Elective|Urgent|Emergency|Unknown",
+        "Elective",
+        "Urgent",
+        "Emergency",
+        "Unknown"
+      ],
+      "test": {
+        "selecting": "Elective",
+        "then_selecting": "Urgent",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__asa",
+      "label": "Clinician-entered ASA classification",
+      "contradiction_group": [
+        "single-select:ASA I|ASA II|ASA III|ASA IV|ASA V|Not assigned",
+        "ASA I",
+        "ASA II",
+        "ASA III",
+        "ASA IV",
+        "ASA V",
+        "Not assigned"
+      ],
+      "test": {
+        "selecting": "ASA I",
+        "then_selecting": "ASA II",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__postoperative_destination",
+      "label": "Postoperative destination",
+      "contradiction_group": [
+        "single-select:Ward|Recovery unit|ICU/HDU|Discharge|Unknown",
+        "Ward",
+        "Recovery unit",
+        "ICU/HDU",
+        "Discharge",
+        "Unknown"
+      ],
+      "test": {
+        "selecting": "Ward",
+        "then_selecting": "Recovery unit",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
       "workflow_id": "surg-stoma-appliance-issue-documentation",
       "field_id": "surg_stoma_appliance_issue_documentation__age_unit",
       "label": "Age unit",
@@ -1891,6 +2013,22 @@
       "test": {
         "selecting": "None documented",
         "then_selecting": "Bleeding",
+        "expected": "only one option is persisted and no contradictory option is emitted"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__site_verification",
+      "label": "Identity, site and laterality verification",
+      "contradiction_group": [
+        "single-select:Verified|Not verified|Not applicable",
+        "Verified",
+        "Not verified",
+        "Not applicable"
+      ],
+      "test": {
+        "selecting": "Verified",
+        "then_selecting": "Not verified",
         "expected": "only one option is persisted and no contradictory option is emitted"
       }
     }

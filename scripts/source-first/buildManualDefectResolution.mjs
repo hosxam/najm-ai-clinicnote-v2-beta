@@ -40,6 +40,7 @@ async function main() {
       prior_terminal_status: record.terminal_status,
       terminal_status,
       resolution_wave: 'beta-manual-defect-resolution-v2',
+      resolution_commits: ['b2ef21a2', '5ec3291f', '8b4d1738'],
       root_cause: wasUnresolved ? 'Generic or incomplete control contract; missing structured binding, output routing, state isolation, or fail-closed scope handling.' : (record.root_cause ?? 'No regression reproduced.'),
       resolution_evidence: { affected_workflow_ids: affected, missing_workflow_ids: missing, structured_field_ids: affectedFields.slice(0, 40), automated_test_id: `resolution-${record.defect_id}`, exact_post_output: 'Generated from entered or selected facts only; administrative filler and unselected values omitted.' },
       remaining_limitation: missing.length ? 'The requested component has no active source-grounded workflow and is fail-closed.' : null,
