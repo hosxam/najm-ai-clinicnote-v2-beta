@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 const root = path.join(process.cwd(), 'public', 'data-beta', 'interactive-workflows')
-const allowedTypes = new Set(['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'text', 'textarea', 'number', 'duration', 'date', 'vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'assessment_entry', 'plan_entry', 'referral_selection', 'follow_up_selection', 'safety_netting_selection', 'information_only'])
+const allowedTypes = new Set(['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'text', 'textarea', 'number', 'duration', 'date', 'vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'allergy_entry', 'assessment_entry', 'plan_entry', 'referral_selection', 'follow_up_selection', 'safety_netting_selection', 'information_only'])
 const allowedDestinations = new Set(['subjective', 'objective', 'assessment', 'plan'])
 
 async function main() {

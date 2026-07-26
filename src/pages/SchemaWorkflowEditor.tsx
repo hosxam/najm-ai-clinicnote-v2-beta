@@ -78,7 +78,7 @@ function quickFields(workflow: InteractiveWorkflow) {
   const chosen = new Set<string>()
   const bySection = new Map<string, InteractiveField[]>()
   for (const field of workflow.fields) bySection.set(field.section, [...(bySection.get(field.section) ?? []), field])
-  for (const field of workflow.fields) if (field.required || ['vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'assessment_entry', 'plan_entry', 'safety_netting_selection', 'referral_selection'].includes(field.field_type)) chosen.add(field.field_id)
+  for (const field of workflow.fields) if (field.quick_priority || field.required || ['vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'assessment_entry', 'plan_entry', 'safety_netting_selection', 'referral_selection'].includes(field.field_type)) chosen.add(field.field_id)
   for (const fields of bySection.values()) for (let index = 0; index < fields.length && index < 2; index += 1) chosen.add(fields[index].field_id)
   return workflow.fields.filter((field) => chosen.has(field.field_id)).sort((a, b) => a.display_order - b.display_order)
 }

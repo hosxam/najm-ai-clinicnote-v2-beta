@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
+import fsSync from 'node:fs'
+import { manualStructuredFieldSpecs } from './manualStructuredFieldSpecs.mjs'
 
 const repo = process.cwd()
 const sourceRoot = path.join(repo, 'public', 'data-beta', 'final-catalogue')
@@ -156,6 +158,59 @@ function compileWorkflow(detail) {
       provenance: provenanceFor(detail, section),
     }
   })
+  const manualSpecs = manualStructuredFieldSpecs[detail.workflow_id] ?? []
+  const evidenceById = new Map(detail.evidence_records.map((record) => [record.evidence_statement_id ?? record.evidence_record_id, record]))
+  const packCache = new Map()
+  for (const [fieldId, label, fieldType, destination, anchor] of manualSpecs) {
+    const matched = []
+    for (const packId of detail.evidence_pack_ids ?? []) {
+      let pack = packCache.get(packId)
+      if (pack === undefined) {
+        const file = path.join(repo, 'clinical-expansion-v2', 'guideline-evidence-packs-v1', 'packs', `${packId}.json`)
+        pack = fsSync.existsSync(file) ? JSON.parse(fsSync.readFileSync(file, 'utf8')) : null
+        packCache.set(packId, pack)
+      }
+      for (const statement of pack?.evidence_statements ?? []) {
+        if (!new RegExp(anchor, 'i').test(statement.faithful_clinical_statement ?? '')) continue
+        const record = evidenceById.get(statement.evidence_statement_id)
+        if (record) matched.push({ statement, record })
+      }
+    }
+    const unique = [...new Map(matched.map((item) => [item.statement.evidence_statement_id, item])).values()]
+    if (!unique.length) continue
+    const first = unique[0].statement
+    const section = destination === 'subjective' ? 'history' : destination === 'objective' ? 'examination' : destination
+    fields.push({
+      workflow_id: detail.workflow_id,
+      field_id: `${safeId(detail.workflow_id)}__${fieldId}`,
+      archetype: detail.archetype,
+      section,
+      label,
+      helper_text: 'Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.',
+      field_type: fieldType,
+      options: [],
+      free_text_allowed: true,
+      required: false,
+      display_order: fields.length + 1,
+      visibility: { type: 'always' },
+      contradictory_option_rules: [],
+      population_restrictions: [],
+      setting_restrictions: [],
+      soap_destination: destination,
+      note_template: `${label}: {{value}}`,
+      value_formatter: 'trimmed_text',
+      quick_priority: !['text', 'textarea'].includes(fieldType),
+      provenance: {
+        evidence_pack_ids: [...new Set(unique.map(({ record }) => record.normalised_evidence_pack_id ?? record.evidence_pack_id ?? detail.evidence_pack_ids[0]))],
+        evidence_statement_ids: unique.map(({ statement }) => statement.evidence_statement_id).sort(),
+        source_ids: [...new Set(unique.map(({ statement }) => statement.source_id))].sort(),
+        population: first.population ?? null,
+        setting: first.setting ?? null,
+        restrictions: first.exclusions ?? [],
+        uae_applicability: first.uae_applicability ?? null,
+      },
+    })
+  }
   return {
     workflow_id: detail.workflow_id,
     title: detail.title,

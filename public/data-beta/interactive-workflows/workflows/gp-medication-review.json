@@ -1201,6 +1201,270 @@
         "restrictions": [],
         "uae_applicability": "explicit_uae_source"
       }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__medication_entry",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Medication name and regimen",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication name and regimen: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": true,
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00082",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00103",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00131",
+          "family-gp-medication--statement-00132",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00164"
+        ],
+        "source_ids": [
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People prescribed medicines and healthcare professionals who prescribe, dispense, or review medicines.",
+        "setting": "Shared medicine decisions, adherence assessment, support, and periodic medicine review.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__adherence_structured",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Medication adherence",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication adherence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00041",
+          "family-gp-medication--statement-00043",
+          "family-gp-medication--statement-00079",
+          "family-gp-medication--statement-00080",
+          "family-gp-medication--statement-00081",
+          "family-gp-medication--statement-00082",
+          "family-gp-medication--statement-00083",
+          "family-gp-medication--statement-00084",
+          "family-gp-medication--statement-00085",
+          "family-gp-medication--statement-00086",
+          "family-gp-medication--statement-00087",
+          "family-gp-medication--statement-00088",
+          "family-gp-medication--statement-00091",
+          "family-gp-medication--statement-00094",
+          "family-gp-medication--statement-00099",
+          "family-gp-medication--statement-00115"
+        ],
+        "source_ids": [
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People prescribed medicines and healthcare professionals who prescribe, dispense, or review medicines.",
+        "setting": "Shared medicine decisions, adherence assessment, support, and periodic medicine review.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__adverse_effects_structured",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Adverse effects",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 12,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Adverse effects: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00058",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00066",
+          "family-gp-medication--statement-00075",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00103",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00159"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__allergy_history",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Allergy history",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "allergy_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 13,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Allergy history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": true,
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00004",
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00006",
+          "family-gp-medication--statement-00007",
+          "family-gp-medication--statement-00011",
+          "family-gp-medication--statement-00012",
+          "family-gp-medication--statement-00013",
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00017",
+          "family-gp-medication--statement-00018",
+          "family-gp-medication--statement-00021",
+          "family-gp-medication--statement-00022",
+          "family-gp-medication--statement-00025",
+          "family-gp-medication--statement-00027",
+          "family-gp-medication--statement-00028",
+          "family-gp-medication--statement-00029",
+          "family-gp-medication--statement-00030",
+          "family-gp-medication--statement-00031",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00034",
+          "family-gp-medication--statement-00036",
+          "family-gp-medication--statement-00037",
+          "family-gp-medication--statement-00038",
+          "family-gp-medication--statement-00039",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00136"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__dose_route_frequency",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Dose, route and frequency",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 14,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Dose, route and frequency: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": true,
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00075",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00081",
+          "family-gp-medication--statement-00095",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00136"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
     }
   ],
   "evidence": [
