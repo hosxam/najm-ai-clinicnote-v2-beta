@@ -185,6 +185,19 @@ const specs = {
 // gated and are intentionally separate from the generic controls above so the
 // provenance report can distinguish workflow-specific repairs.
 const completeness = {
+  'derm-eczema': [
+    s('reported_symptoms', 'Reported eczema symptoms', 'textarea', 'subjective', 'itchy skin|dry, cracked|skin changes'),
+    s('affected_distribution', 'Affected skin distribution', 'text', 'subjective', 'elbows, knees and hands|face|affected areas'),
+    s('flare_trigger_context', 'Flare and trigger context', 'textarea', 'subjective', 'flare-ups|allergen or irritant'),
+    s('urgent_infection_features', 'Urgent or infection features', 'yes_no_unknown', 'subjective', 'blistered|crusty|leaking fluid|spots filled with pus', { options: ['Yes', 'No', 'Unknown'], value_formatter: 'option' }),
+    s('skin_findings', 'Skin findings documented', 'examination_finding', 'objective', 'pruritic skin|flexural dermatitis|skin folds', { value_formatter: 'examination' }),
+    s('clinical_criteria', 'Clinical criteria considered', 'textarea', 'assessment', 'diagnostic criteria|history of an itchy skin condition'),
+    s('management_plan', 'Eczema management plan', 'plan_entry', 'plan', 'multipronged approach|skin barrier function|hydration|patient education', { value_formatter: 'plan' }),
+    s('self_care_advice', 'Self-care advice', 'textarea', 'plan', 'emollients|bathing practices|avoid things that make your eczema worse', { value_formatter: 'plan' }),
+    s('safety_netting_plan', 'Eczema safety-netting plan', 'textarea', 'plan', 'urgent GP appointment|medical help|treatments are not helping', { value_formatter: 'plan' }),
+    s('referral_or_escalation', 'Referral or escalation', 'referral_selection', 'plan', 'urgent GP appointment|medical help|worsening|failure to respond', { value_formatter: 'option' }),
+    s('follow_up_plan', 'Follow-up plan', 'follow_up_selection', 'plan', 'treatments are not helping|urgent review|see a GP', { value_formatter: 'option' }),
+  ],
   'cardio-ecg-result-review': [
     s('ecg_source', 'ECG source and date', 'text', 'objective', 'source|date|ECG'),
     s('ventricular_rate', 'Ventricular rate', 'vital_sign', 'objective', 'ventricular rate|heart rate|bpm', { value_formatter: 'vital_sign' }),
