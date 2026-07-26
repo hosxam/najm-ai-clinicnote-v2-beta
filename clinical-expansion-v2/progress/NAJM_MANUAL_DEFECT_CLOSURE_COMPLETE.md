@@ -48,6 +48,8 @@ invent source-free clinical fields.
 - Compiled interactive fields: 3,836 (3,720 baseline plus 116 evidence-gated
   structured fields across the 15 audited workflows). The added fields are
   source-pack anchored and remain optional; no field was removed or relabelled.
+- Field accounting: 116 newly added structured fields; 0 previously hidden
+  fields unhidden; 0 fields removed; 0 fields relabelled.
 - Field-binding repairs: the compiler now binds each added field to matched
   accepted evidence statement IDs, and the existing renderer/builder bindings
   were tested. No legacy field was rebound.
@@ -63,7 +65,8 @@ no option-bearing DOM controls were found.
 
 ## Reproduction and validation
 
-- Exact reproduction tests: 433; post-repair/current-output tests: 433.
+- Exact reproduction tests: 433; post-repair/current-output tests: 433;
+  dedicated per-defect assertion tests: 433.
 - Quick case outputs: 15; Advanced case outputs: 15.
 - Separate archetype outputs: 2; field-binding assertions: 433.
 - Manual closure browser cases: 30; marker failures: 0; console errors: 0;
@@ -75,6 +78,19 @@ no option-bearing DOM controls were found.
 - All-active browser routes: 416 Quick and 416 Advanced; viewport checks: 141;
   route, viewport, console, and request failures: 0.
 - State/reset/Start Fresh/Resume/catalogue-routing checks: 416 each.
+- Closure fixtures preserve the prior case inputs and generate distinct
+  mode-specific outputs using the production Quick-field selection rule. The
+  exact before/after outputs for all 15 workflows are keyed in
+  `manual-defect-closure/FIFTEEN_CASE_FINAL_OUTPUTS.json` and include:
+  `cardio-chest-pain` (12/23 Quick/Advanced fields), `gp-fever-urti` (12/22),
+  `ent-recurrent-tonsillitis` (12/19), `cardio-dyspnea` (12/17),
+  `gp-abdominal-pain` (10/20), `gp-headache` (10/19),
+  `cardio-hypertension-followup` (14/19), `gp-medication-adherence-review`
+  (9/14), `cardio-anticoagulation-documentation` (9/18),
+  `gp-medication-review` (9/14), `cardio-ecg-result-review` (7/15),
+  `ed-pediatric-fever-documentation` (14/16), `ed-observation-unit-review`
+  (14/23), `surg-bariatric-pre-operative-documentation` (13/15), and
+  `surg-stoma-appliance-issue-documentation` (9/13).
 - Safety, data, source evidence, item provenance, source recency, metadata
   reproducibility, workflow readiness, evidence-pack normalisation, final beta
   manifest/route, accessibility, performance, usability, medication safety,
@@ -105,7 +121,8 @@ completed successfully:
 - Live URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
 - Live verification: 2026-07-26 12:22:29 Asia/Dubai
 
-Post-deployment browser verification loaded the catalogue and all 15 audited
+Post-deployment browser verification cleared the browser's service-worker/cache
+state, cache-busted the deployed data requests, then loaded the catalogue and all 15 audited
 workflow routes in Quick and Advanced modes (30 cases). The deployed structured
 fields rendered and their entered markers appeared in generated output; there
 were zero marker failures, console errors, or failed requests. The

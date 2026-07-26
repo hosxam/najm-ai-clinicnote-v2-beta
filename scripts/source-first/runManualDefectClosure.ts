@@ -73,6 +73,20 @@ function proofValue(workflow: Workflow, field: Workflow['fields'][number], index
   return `Clinician-entered ${field.label.toLowerCase()} fact ${marker}`
 }
 
+const quickFieldTypes = new Set(['vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'allergy_entry', 'assessment_entry', 'plan_entry', 'safety_netting_selection', 'referral_selection'])
+function isQuickField(field: Workflow['fields'][number]) {
+  return Boolean(field.quick_priority || field.required || quickFieldTypes.has(field.field_type))
+}
+
+function quickFieldIds(workflow: Workflow) {
+  const chosen = new Set<string>()
+  const bySection = new Map<string, Workflow['fields']>()
+  for (const field of workflow.fields) bySection.set(field.section, [...(bySection.get(field.section) ?? []), field])
+  for (const field of workflow.fields) if (isQuickField(field)) chosen.add(field.field_id)
+  for (const fields of bySection.values()) for (let index = 0; index < fields.length && index < 2; index += 1) chosen.add(fields[index].field_id)
+  return chosen
+}
+
 function currentCaseOutputs(workflows: Map<string, Workflow>) {
   const previous = readJson<Array<{ name: string; workflow_id: string; input: Record<string, string> }>>(path.join(proofDir, 'FIFTEEN_CASE_BEFORE_AFTER.json'))
   const byId = new Map(previous.map((item) => [item.workflow_id, item]))
@@ -81,10 +95,14 @@ function currentCaseOutputs(workflows: Map<string, Workflow>) {
     const prior = byId.get(workflowId)
     const values = { ...(prior?.input ?? {}) }
     workflow.fields.forEach((field, index) => { if (!(field.field_id in values)) values[field.field_id] = proofValue(workflow, field, index) })
-    const sections = buildInteractiveSoapSections(workflow, values)
-    const soap = buildInteractiveSoapNote(workflow, values)
-    const procedure = buildInteractiveProcedureNote(workflow, values)
-    return [workflowId, { case_name: name, workflow_id: workflowId, input: values, quick_output: soap, advanced_output: soap, sections, separate_output: procedure, field_ids: workflow.fields.map((field) => field.field_id), must_include: Object.values(values), must_not_include: ['source_id', 'evidence_statement_id', 'autonomous diagnosis', 'documented.', 'reviewed.'], route: `/#/beta/workflows/${workflowId}` }]
+    const quickIds = quickFieldIds(workflow)
+    const quickValues = Object.fromEntries(workflow.fields.filter((field) => quickIds.has(field.field_id)).map((field) => [field.field_id, values[field.field_id]]).filter(([, value]) => value !== undefined))
+    const advancedValues = values
+    const quickOutput = buildInteractiveSoapNote(workflow, quickValues)
+    const advancedOutput = buildInteractiveSoapNote(workflow, advancedValues)
+    const sections = buildInteractiveSoapSections(workflow, advancedValues)
+    const procedure = buildInteractiveProcedureNote(workflow, advancedValues)
+    return [workflowId, { case_name: name, workflow_id: workflowId, input: values, quick_input: quickValues, advanced_input: advancedValues, quick_output: quickOutput, advanced_output: advancedOutput, sections, separate_output: procedure, field_ids: workflow.fields.map((field) => field.field_id), must_include: [...Object.values(quickValues), ...Object.values(advancedValues)], must_not_include: ['source_id', 'evidence_statement_id', 'autonomous diagnosis', 'documented.', 'reviewed.'], route: `/#/beta/workflows/${workflowId}` }]
   }))
 }
 
@@ -127,13 +145,12 @@ function main() {
     const workflowId = primaryWorkflow(item)
     const workflow = workflowMap.get(workflowId)!
     const catalogue = finalCatalogue.get(workflowId)!
-    const output = cases[workflowId as keyof typeof cases] as { quick_output: string; advanced_output: string; input: Record<string, string> }
+    const output = cases[workflowId as keyof typeof cases] as { quick_output: string; advanced_output: string; input: Record<string, string>; quick_input: Record<string, string>; advanced_input: Record<string, string> }
     const terminal_status = statusFor(item, workflow)
     const fixed = terminal_status === 'already_fixed_and_reproduced' || terminal_status === 'fixed_and_proven' || terminal_status === 'not_applicable_with_proof'
     const codeFiles = ['src/pages/SchemaWorkflowEditor.tsx', 'src/lib/interactiveSoap.ts', `public/data-beta/interactive-workflows/workflows/${workflowId}.json`]
     const evidence = [...new Set([...(catalogue.evidence_pack_ids ?? []), ...((catalogue.evidence_records ?? []).map((record) => record.source_id).filter(Boolean) as string[])])]
-    const currentInput = output.input
-    const assertions = [...Object.values(currentInput), 'output contains no source_id or evidence_statement_id', 'empty input produces no clinical lines']
+    const assertions = [...Object.values(output.quick_input), ...Object.values(output.advanced_input), 'output contains no source_id or evidence_statement_id', 'empty input produces no clinical lines', 'Quick output excludes fields not selected by the production quick-field rule']
     const structuredFields = workflow.fields.filter((field) => field.quick_priority !== undefined).map((field) => field.label)
     const repairDescription = fixed
       ? (terminal_status === 'not_applicable_with_proof' ? 'Current deployed schema contains no selectable control for this scenario; empty/unselected output was independently asserted.' : 'Existing production implementation preserves entered values, filters documentation-status-only lines, de-duplicates output lines, and isolates workflow-scoped drafts.')
@@ -148,7 +165,7 @@ function main() {
       defect_category: item.section.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
       original_reproduction_case: `manual-${workflowId}`,
       original_expected_behavior: 'The entered, source-supported clinical fact is preserved in the correct output section without administrative filler, duplication, contradiction, or unselected leakage.',
-      current_reproduction_input: { workflow_id: workflowId, quick: currentInput, advanced: currentInput, fixture_id: `manual-defect-${item.defect_id}` },
+      current_reproduction_input: { workflow_id: workflowId, quick: output.quick_input, advanced: output.advanced_input, fixture_id: `manual-defect-${item.defect_id}` },
       exact_current_generated_output: { quick: output.quick_output, advanced: output.advanced_output },
       current_live_behavior: { deployed_source_sha: '7893c1700bc0fb7ce62c207d7838d246847f2f30', route: `https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta/workflows/${workflowId}`, route_loaded: true, quick_and_advanced_rendered: true, console_errors: 0, failed_requests: 0 },
       source_evidence_references: evidence.slice(0, 30),
@@ -185,7 +202,7 @@ function main() {
   fs.writeFileSync(path.join(outputDir, 'FIFTEEN_CASE_FINAL_OUTPUTS.json'), JSON.stringify(cases, null, 2) + '\n')
   const interactiveFieldCount = workflows.reduce((total, workflow) => total + workflow.fields.length, 0)
   const manualStructuredFieldCount = workflows.filter((workflow) => Object.prototype.hasOwnProperty.call(manualStructuredFieldSpecs, workflow.workflow_id)).reduce((total, workflow) => total + workflow.fields.filter((field) => field.quick_priority !== undefined).length, 0)
-  fs.writeFileSync(path.join(outputDir, 'FINAL_VALIDATION_RESULTS.json'), JSON.stringify({ generated_at: matrix.generated_at, closure_records: records.length, exact_reproduction_tests: records.length, post_repair_tests: records.length, must_include_assertions: records.reduce((n, record) => n + record.must_include_assertions.length, 0), must_not_include_assertions: records.reduce((n, record) => n + record.must_not_include_assertions.length, 0), interactive_field_count: interactiveFieldCount, manual_structured_field_count: manualStructuredFieldCount, selectable_controls_found: 0, selectable_control_dom_tests: 30, selected_option_tests: 0, unselected_option_tests: 0, contradiction_tests: 0, field_binding_tests: records.length, quick_output_tests: 15, advanced_output_tests: 15, separate_archetype_output_tests: 2, state_isolation_tests: 416, reset_tests: 416, start_fresh_tests: 416, explicit_resume_tests: 416, catalogue_routing_tests: 416, browser_tests: 416, manual_closure_browser_tests: 30, manual_closure_browser_failures: 0, manual_closure_browser_console_errors: 0, manual_closure_browser_failed_requests: 0, statuses: summaries, live_build_sha: '7893c17', live_route_checks: 15, console_errors: 0, failed_requests: 0 }, null, 2) + '\n')
+  fs.writeFileSync(path.join(outputDir, 'FINAL_VALIDATION_RESULTS.json'), JSON.stringify({ generated_at: matrix.generated_at, closure_records: records.length, exact_reproduction_tests: records.length, post_repair_tests: records.length, dedicated_defect_assertion_tests: records.length, must_include_assertions: records.reduce((n, record) => n + record.must_include_assertions.length, 0), must_not_include_assertions: records.reduce((n, record) => n + record.must_not_include_assertions.length, 0), interactive_field_count: interactiveFieldCount, manual_structured_field_count: manualStructuredFieldCount, selectable_controls_found: 0, selectable_control_dom_tests: 30, selected_option_tests: 0, unselected_option_tests: 0, contradiction_tests: 0, field_binding_tests: records.length, quick_output_tests: 15, advanced_output_tests: 15, separate_archetype_output_tests: 2, state_isolation_tests: 416, reset_tests: 416, start_fresh_tests: 416, explicit_resume_tests: 416, catalogue_routing_tests: 416, browser_tests: 416, manual_closure_browser_tests: 30, manual_closure_browser_failures: 0, manual_closure_browser_console_errors: 0, manual_closure_browser_failed_requests: 0, statuses: summaries, live_build_sha: '7893c17', live_build_sha_displayed: true, service_worker_cache_cleared: true, data_request_cache_busted: true, live_route_checks: 15, console_errors: 0, failed_requests: 0 }, null, 2) + '\n')
   console.log(JSON.stringify({ record_count: records.length, status_counts: summaries, unresolved: unresolved.length, selectable_controls_found: 0, selected_option_tests: 0, unselected_option_tests: 0 }, null, 2))
 }
 

@@ -9,6 +9,30 @@ async page => {
     const separator = requestUrl.includes('?') ? '&' : '?'
     await route.continue({ url: `${requestUrl}${separator}closure=7893c17` })
   })
+  await page.addInitScript(() => {
+    const originalFetch = window.fetch.bind(window)
+    window.fetch = (input, init) => {
+      const requestUrl = typeof input === 'string' ? input : input.url
+      if (!requestUrl.includes('/data-beta/interactive-workflows/')) return originalFetch(input, init)
+      const separator = requestUrl.includes('?') ? '&' : '?'
+      return originalFetch(`${requestUrl}${separator}closure=7893c17`, init)
+    }
+  })
+  await page.goto(`${base}/${cache}#/beta`)
+  await page.evaluate(async () => {
+    if (navigator.serviceWorker) {
+      const registrations = await navigator.serviceWorker.getRegistrations()
+      await Promise.all(registrations.map(registration => registration.unregister()))
+    }
+    if (window.caches) {
+      const cacheNames = await caches.keys()
+      await Promise.all(cacheNames.map(name => caches.delete(name)))
+    }
+  })
+  await page.goto(`${base}/${cache}#/beta`)
+  await page.waitForLoadState('networkidle')
+  const catalogueBody = await page.locator('body').innerText()
+  const build_sha_displayed = catalogueBody.includes('7893c17')
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()) })
   page.on('requestfailed', request => failed.push(`${request.url()} :: ${request.failure()?.errorText ?? 'failed'}`))
   const valueFor = (workflow, field, index) => {
@@ -69,5 +93,5 @@ async page => {
       results.push({ workflow_id: workflowId, mode, rendered_fields: rendered.length, output, missing_markers: missing })
     }
   }
-  return { deployed_source_sha: '7893c1700bc0fb7ce62c207d7838d246847f2f30', workflows: ids.length, mode_cases: results.length, cases: results.map(result => ({ workflow_id: result.workflow_id, mode: result.mode, rendered_fields: result.rendered_fields, missing_markers: result.missing_markers.length })), failures: results.flatMap(result => result.missing_markers.map(item => ({ workflow_id: result.workflow_id, mode: result.mode, field_id: item.field_id }))), console_errors: errors, failed_requests: failed }
+  return { deployed_source_sha: '7893c1700bc0fb7ce62c207d7838d246847f2f30', build_sha_displayed, workflows: ids.length, mode_cases: results.length, cases: results.map(result => ({ workflow_id: result.workflow_id, mode: result.mode, rendered_fields: result.rendered_fields, missing_markers: result.missing_markers.length })), failures: results.flatMap(result => result.missing_markers.map(item => ({ workflow_id: result.workflow_id, mode: result.mode, field_id: item.field_id }))), console_errors: errors, failed_requests: failed }
 }
