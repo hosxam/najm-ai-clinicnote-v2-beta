@@ -9,6 +9,9 @@ and artifacts. The deployed implementation used for reproduction was
 route, canonical source data, mappings, approvals, signed state, or exclusions
 were modified.
 
+Implementation checkpoint commit: `ee573da7259ae96b260e16026fc3fb7b2b9d2351`.
+Final documentation commit/end SHA: `7aa2e2e4afa5d168017f98f11a4888034eaa57ca`.
+
 The authoritative ledger produced 433 independent closure records: numbered
 defects 1–370 plus 41 pre-anaesthetic and 22 procedure additions. Every record
 contains the original description, workflow/mode/category, reproduction input,
