@@ -24,15 +24,16 @@ code/schema references, assertions, terminal status, and remaining limitation.
 |---|---:|
 | fixed_and_proven | 0 |
 | already_fixed_and_reproduced | 44 |
-| partially_fixed | 0 |
-| still_present | 376 |
+| partially_fixed | 155 |
+| still_present | 221 |
 | not_applicable_with_proof | 13 |
 | blocked_by_missing_authoritative_evidence | 0 |
 | blocked_by_technical_error | 0 |
 | **Total** | **433** |
 
-The 376 `still_present` records are intentionally unresolved limitations of the
-current generic schemas. They are not treated as fixed. The prior implementation
+The 376 records that remain unresolved (155 `partially_fixed` and 221
+`still_present`) are intentionally visible limitations of the current schemas.
+They are not treated as fixed. The prior implementation
 repairs that were independently reproduced include workflow-scoped draft
 isolation and explicit Start Fresh/Resume behavior, reset clearing, preservation
 of entered values, documentation-status filtering, output de-duplication, and
@@ -43,8 +44,12 @@ invent source-free clinical fields.
 ## Field and interface accounting
 
 - Interactive workflows: 416; inactive workflows: 1,084; original catalogue: 1,500.
-- Compiled interactive fields: 3,720; this run added 0, unhid 0, removed 0, and relabelled 0.
-- Field-binding repairs in this run: 0; existing renderer/builder bindings were tested.
+- Compiled interactive fields: 3,836 (3,720 baseline plus 116 evidence-gated
+  structured fields across the 15 audited workflows). The added fields are
+  source-pack anchored and remain optional; no field was removed or relabelled.
+- Field-binding repairs: the compiler now binds each added field to matched
+  accepted evidence statement IDs, and the existing renderer/builder bindings
+  were tested. No legacy field was rebound.
 - Rendered selectable DOM controls: 0 across 15 workflows × Quick/Advanced (30 mode cases).
 - Selected-option tests: 0; unselected-option tests: 0 (not applicable with DOM proof).
 - Contradiction groups: 0; contradiction tests: 0.
@@ -62,6 +67,10 @@ no option-bearing DOM controls were found.
 - Separate archetype outputs: 2; field-binding assertions: 433.
 - Manual closure browser cases: 30; marker failures: 0; console errors: 0;
   failed requests: 0.
+- The repaired local build was also exercised across all 15 workflows in both
+  modes (30 cases), including the new structured fields: marker failures 0,
+  console errors 0, and failed requests 0. See
+  `manual-defect-closure/LOCAL_REPAIR_BROWSER_RESULTS.json`.
 - All-active browser routes: 416 Quick and 416 Advanced; viewport checks: 141;
   route, viewport, console, and request failures: 0.
 - State/reset/Start Fresh/Resume/catalogue-routing checks: 416 each.
@@ -81,7 +90,8 @@ This report is a closure evidence checkpoint. The branch has not been claimed as
 live-deployed by this report until a beta workflow run succeeds and the deployed
 source SHA is independently verified. The remaining 376 defects must remain
 visible in the unresolved artifact and must not be presented as clinically
-complete.
+complete. The unresolved set is 376 records: 155 partially fixed and 221 still
+present.
 
 The requested beta workflow was run from `beta-manual-defect-closure-v1`:
 

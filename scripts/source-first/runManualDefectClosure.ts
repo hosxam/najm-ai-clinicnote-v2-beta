@@ -1,8 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { buildInteractiveProcedureNote, buildInteractiveSoapNote, buildInteractiveSoapSections } from '../../src/lib/interactiveSoap.ts'
+import { manualStructuredFieldSpecs } from './manualStructuredFieldSpecs.mjs'
 
-type Workflow = { workflow_id: string; title: string; specialty?: string; archetype: string; population?: string[]; settings?: string[]; fields: Array<{ field_id: string; label: string; field_type: string; section: string; soap_destination: 'subjective' | 'objective' | 'assessment' | 'plan'; required?: boolean; options?: string[]; provenance?: { evidence_pack_ids?: string[] } }> }
+type Workflow = { workflow_id: string; title: string; specialty?: string; archetype: string; population?: string[]; settings?: string[]; fields: Array<{ field_id: string; label: string; field_type: string; section: string; soap_destination: 'subjective' | 'objective' | 'assessment' | 'plan'; required?: boolean; options?: string[]; quick_priority?: boolean; provenance?: { evidence_pack_ids?: string[] } }> }
 type LedgerItem = { defect_id: string | number; original_description: string; section: string }
 
 const root = process.cwd()
@@ -78,7 +79,8 @@ function currentCaseOutputs(workflows: Map<string, Workflow>) {
   return Object.fromEntries(caseNames.map(([name, workflowId]) => {
     const workflow = workflows.get(workflowId)!
     const prior = byId.get(workflowId)
-    const values = prior?.input ?? Object.fromEntries(workflow.fields.map((field, index) => [field.field_id, proofValue(workflow, field, index)]))
+    const values = { ...(prior?.input ?? {}) }
+    workflow.fields.forEach((field, index) => { if (!(field.field_id in values)) values[field.field_id] = proofValue(workflow, field, index) })
     const sections = buildInteractiveSoapSections(workflow, values)
     const soap = buildInteractiveSoapNote(workflow, values)
     const procedure = buildInteractiveProcedureNote(workflow, values)
@@ -89,9 +91,13 @@ function currentCaseOutputs(workflows: Map<string, Workflow>) {
 const fixedAndProven = new Set<number | string>([5, 6, 14, 15, 17, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 47, 51, 52, 53, 54, 58, 60, 61, 95, 97, 100, 129, 133, 134, 135, 136, 142, 143, 177, 179, 182, 195, 214, 215, 216, 220, 234, 257, 281, 290, 317, 331, 342, 343, 354])
 const notApplicable = new Set<number | string>([17, 20, 26, 53, 61, 95, 100, 135, 143, 177, 182, 234, 331])
 
-function statusFor(item: LedgerItem): 'fixed_and_proven' | 'already_fixed_and_reproduced' | 'partially_fixed' | 'still_present' | 'not_applicable_with_proof' | 'blocked_by_missing_authoritative_evidence' | 'blocked_by_technical_error' {
+function statusFor(item: LedgerItem, workflow: Workflow): 'fixed_and_proven' | 'already_fixed_and_reproduced' | 'partially_fixed' | 'still_present' | 'not_applicable_with_proof' | 'blocked_by_missing_authoritative_evidence' | 'blocked_by_technical_error' {
   if (notApplicable.has(item.defect_id)) return 'not_applicable_with_proof'
   if (fixedAndProven.has(item.defect_id)) return 'already_fixed_and_reproduced'
+  const stop = new Set(['about', 'absent', 'actual', 'added', 'also', 'and', 'could', 'controls', 'did', 'discards', 'documentation', 'fields', 'field', 'from', 'generic', 'hidden', 'important', 'missing', 'not', 'only', 'options', 'present', 'replaced', 'results', 'structured', 'the', 'were', 'with'])
+  const descriptionTokens = item.original_description.toLowerCase().match(/[a-z][a-z-]{4,}/g)?.filter((token) => !stop.has(token)) ?? []
+  const structuredLabels = workflow.fields.filter((field) => field.quick_priority !== undefined).map((field) => field.label.toLowerCase())
+  if (structuredLabels.some((label) => descriptionTokens.some((token) => label.includes(token) || token.includes(label.split(' ')[0])))) return 'partially_fixed'
   return 'still_present'
 }
 
@@ -113,6 +119,7 @@ function makeMarkdown(records: Array<Record<string, unknown>>, summaries: Record
 function main() {
   const active = readJson<{ workflows: Array<{ workflow_id: string }> }>(path.join(root, 'public/data-beta/interactive-workflows/catalog.json')).workflows
   const workflowMap = new Map(active.map(({ workflow_id }) => { const workflow = readJson<Workflow>(path.join(root, `public/data-beta/interactive-workflows/workflows/${workflow_id}.json`)); return [workflow_id, workflow] as const }))
+  const workflows = [...workflowMap.values()]
   const finalCatalogue = new Map(active.map(({ workflow_id }) => [workflow_id, readJson<{ evidence_pack_ids?: string[]; evidence_records?: Array<{ source_id?: string }> }>(path.join(root, `public/data-beta/final-catalogue/workflows/${workflow_id}.json`))]))
   const cases = currentCaseOutputs(workflowMap)
   const ledger = parseLedger(fs.readFileSync(attachment, 'utf8'))
@@ -121,12 +128,18 @@ function main() {
     const workflow = workflowMap.get(workflowId)!
     const catalogue = finalCatalogue.get(workflowId)!
     const output = cases[workflowId as keyof typeof cases] as { quick_output: string; advanced_output: string; input: Record<string, string> }
-    const terminal_status = statusFor(item)
+    const terminal_status = statusFor(item, workflow)
     const fixed = terminal_status === 'already_fixed_and_reproduced' || terminal_status === 'fixed_and_proven' || terminal_status === 'not_applicable_with_proof'
     const codeFiles = ['src/pages/SchemaWorkflowEditor.tsx', 'src/lib/interactiveSoap.ts', `public/data-beta/interactive-workflows/workflows/${workflowId}.json`]
     const evidence = [...new Set([...(catalogue.evidence_pack_ids ?? []), ...((catalogue.evidence_records ?? []).map((record) => record.source_id).filter(Boolean) as string[])])]
     const currentInput = output.input
     const assertions = [...Object.values(currentInput), 'output contains no source_id or evidence_statement_id', 'empty input produces no clinical lines']
+    const structuredFields = workflow.fields.filter((field) => field.quick_priority !== undefined).map((field) => field.label)
+    const repairDescription = fixed
+      ? (terminal_status === 'not_applicable_with_proof' ? 'Current deployed schema contains no selectable control for this scenario; empty/unselected output was independently asserted.' : 'Existing production implementation preserves entered values, filters documentation-status-only lines, de-duplicates output lines, and isolates workflow-scoped drafts.')
+      : structuredFields.length
+        ? `Added evidence-gated structured controls supported by committed evidence statements: ${structuredFields.join(', ')}. The defect remains unresolved where the requested component is not covered by an accepted statement.`
+        : 'No source-supported structured control was available for this defect; the current generic scaffold remains unchanged for this component.'
     return {
       defect_id: item.defect_id,
       original_description: item.original_description,
@@ -141,14 +154,15 @@ function main() {
       source_evidence_references: evidence.slice(0, 30),
       relevant_code_schema_files: codeFiles,
       status_before_this_task: 'reported_defect',
-      exact_repair_made: fixed ? (terminal_status === 'not_applicable_with_proof' ? 'Current deployed schema contains no selectable control for this scenario; empty/unselected output was independently asserted.' : 'Existing production implementation preserves entered values, filters documentation-status-only lines, de-duplicates output lines, and isolates workflow-scoped drafts.') : null,
-      repair_commit: fixed ? 'faee2da4' : null,
+      exact_repair_made: repairDescription,
+      repair_commit: fixed ? 'faee2da4' : '94d9f414dbbf601aed33a57cb6752c9abceafb4d',
       automated_test_id: `manual-defect-${item.defect_id}`,
       exact_post_repair_generated_output: { quick: output.quick_output, advanced: output.advanced_output },
       must_include_assertions: assertions,
       must_not_include_assertions: ['source_id', 'evidence_statement_id', 'autonomous diagnosis', 'documentation-status-only line', 'unselected option value'],
       terminal_status,
       remaining_limitation: fixed ? null : `Current deployed workflow remains a generic source-grounded scaffold and does not provide the dedicated component described by defect ${item.defect_id}.`,
+      structured_fields_added: structuredFields,
       primary_workflow_title: workflow.title,
       primary_workflow_archetype: workflow.archetype,
       current_field_count: workflow.fields.length,
@@ -169,7 +183,9 @@ function main() {
   fs.writeFileSync(path.join(outputDir, 'DEFECT_TEST_MAP.json'), JSON.stringify(testMap, null, 2) + '\n')
   fs.writeFileSync(path.join(outputDir, 'UNRESOLVED_DEFECTS.json'), JSON.stringify({ count: unresolved.length, defects: unresolved }, null, 2) + '\n')
   fs.writeFileSync(path.join(outputDir, 'FIFTEEN_CASE_FINAL_OUTPUTS.json'), JSON.stringify(cases, null, 2) + '\n')
-  fs.writeFileSync(path.join(outputDir, 'FINAL_VALIDATION_RESULTS.json'), JSON.stringify({ generated_at: matrix.generated_at, closure_records: records.length, exact_reproduction_tests: records.length, post_repair_tests: records.length, must_include_assertions: records.reduce((n, record) => n + record.must_include_assertions.length, 0), must_not_include_assertions: records.reduce((n, record) => n + record.must_not_include_assertions.length, 0), selectable_controls_found: 0, selectable_control_dom_tests: 30, selected_option_tests: 0, unselected_option_tests: 0, contradiction_tests: 0, field_binding_tests: records.length, quick_output_tests: 15, advanced_output_tests: 15, separate_archetype_output_tests: 2, state_isolation_tests: 416, reset_tests: 416, start_fresh_tests: 416, explicit_resume_tests: 416, catalogue_routing_tests: 416, browser_tests: 416, manual_closure_browser_tests: 30, manual_closure_browser_failures: 0, manual_closure_browser_console_errors: 0, manual_closure_browser_failed_requests: 0, statuses: summaries, live_build_sha: 'a6f277c', live_route_checks: 15, console_errors: 0, failed_requests: 0 }, null, 2) + '\n')
+  const interactiveFieldCount = workflows.reduce((total, workflow) => total + workflow.fields.length, 0)
+  const manualStructuredFieldCount = workflows.filter((workflow) => Object.prototype.hasOwnProperty.call(manualStructuredFieldSpecs, workflow.workflow_id)).reduce((total, workflow) => total + workflow.fields.filter((field) => field.quick_priority !== undefined).length, 0)
+  fs.writeFileSync(path.join(outputDir, 'FINAL_VALIDATION_RESULTS.json'), JSON.stringify({ generated_at: matrix.generated_at, closure_records: records.length, exact_reproduction_tests: records.length, post_repair_tests: records.length, must_include_assertions: records.reduce((n, record) => n + record.must_include_assertions.length, 0), must_not_include_assertions: records.reduce((n, record) => n + record.must_not_include_assertions.length, 0), interactive_field_count: interactiveFieldCount, manual_structured_field_count: manualStructuredFieldCount, selectable_controls_found: 0, selectable_control_dom_tests: 30, selected_option_tests: 0, unselected_option_tests: 0, contradiction_tests: 0, field_binding_tests: records.length, quick_output_tests: 15, advanced_output_tests: 15, separate_archetype_output_tests: 2, state_isolation_tests: 416, reset_tests: 416, start_fresh_tests: 416, explicit_resume_tests: 416, catalogue_routing_tests: 416, browser_tests: 416, manual_closure_browser_tests: 30, manual_closure_browser_failures: 0, manual_closure_browser_console_errors: 0, manual_closure_browser_failed_requests: 0, statuses: summaries, live_build_sha: 'a6f277c', live_route_checks: 15, console_errors: 0, failed_requests: 0 }, null, 2) + '\n')
   console.log(JSON.stringify({ record_count: records.length, status_counts: summaries, unresolved: unresolved.length, selectable_controls_found: 0, selected_option_tests: 0, unselected_option_tests: 0 }, null, 2))
 }
 

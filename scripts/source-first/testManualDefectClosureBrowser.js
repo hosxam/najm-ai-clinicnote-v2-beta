@@ -21,7 +21,7 @@ async page => {
   }
   const results = []
   for (const workflowId of ids) {
-    const workflow = await page.evaluate(async id => fetch(`https://hosxam.github.io/najm-ai-clinicnote-v2-beta/data-beta/interactive-workflows/workflows/${encodeURIComponent(id)}.json`).then(response => response.json()), workflowId)
+    const workflow = await page.evaluate(async ({ base, id }) => fetch(`${base}/data-beta/interactive-workflows/workflows/${encodeURIComponent(id)}.json`).then(response => response.json()), { base, id: workflowId })
     for (const mode of ['quick', 'advanced']) {
       await page.evaluate(() => localStorage.clear())
       await page.goto(`${base}/${cache}#/beta/workflows/${workflowId}?mode=${mode}`)
