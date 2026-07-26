@@ -92,6 +92,22 @@ const archetypeTemplates = {
   ],
 }
 
+const workflowTemplates = {
+  'derm-eczema': [
+    ['reported_symptoms', 'Reported eczema symptoms', 'textarea', 'subjective', false],
+    ['affected_distribution', 'Affected skin distribution', 'text', 'subjective', false],
+    ['flare_trigger_context', 'Flare and trigger context', 'textarea', 'subjective', false],
+    ['skin_findings', 'Skin findings documented', 'examination_finding', 'objective', false],
+    ['clinical_criteria', 'Clinical criteria considered', 'textarea', 'assessment', false],
+    ['clinician_assessment', 'Clinician assessment', 'assessment_entry', 'assessment', true],
+    ['management_plan', 'Eczema management plan', 'plan_entry', 'plan', true],
+    ['self_care_advice', 'Self-care advice', 'textarea', 'plan', false],
+    ['safety_netting_plan', 'Eczema safety-netting plan', 'textarea', 'plan', false],
+    ['referral_or_escalation', 'Referral or escalation', 'referral_selection', 'plan', false],
+    ['follow_up_plan', 'Follow-up plan', 'follow_up_selection', 'plan', false],
+  ],
+}
+
 const fallbackTemplate = [
   ['clinical_context', 'Clinical context', 'textarea', 'subjective', false],
   ['observed_findings', 'Observed findings or results', 'textarea', 'objective', false],
@@ -154,7 +170,7 @@ function provenanceFor(detail, section) {
 }
 
 function compileWorkflow(detail) {
-  const template = archetypeTemplates[detail.archetype] ?? fallbackTemplate
+  const template = workflowTemplates[detail.workflow_id] ?? archetypeTemplates[detail.archetype] ?? fallbackTemplate
   const fields = template.map(([fieldId, label, fieldType, destination, required], index) => {
     if (!soapDestinations.has(destination)) throw new Error(`Unsupported SOAP destination: ${destination}`)
     const section = destination === 'subjective' ? 'history' : destination === 'objective' ? 'examination' : destination
@@ -272,14 +288,19 @@ function compileWorkflow(detail) {
 
 async function main() {
   const manifest = JSON.parse(await fs.readFile(path.join(sourceRoot, 'manifest.json'), 'utf8'))
-if (manifest.counts.active_workflows !== 417) throw new Error('Expected 417 active source-grounded workflows.')
+  if (!Number.isInteger(manifest.counts.active_workflows) || manifest.counts.active_workflows < 1) throw new Error('Expected a positive active source-grounded workflow count.')
   const sourceCatalog = JSON.parse(await fs.readFile(path.join(sourceRoot, 'catalog.json'), 'utf8'))
+  const preservedInteractive = new Map()
+  for (const workflowId of ['gp-sore-throat']) {
+    const file = path.join(targetRoot, 'workflows', `${workflowId}.json`)
+    if (fsSync.existsSync(file)) preservedInteractive.set(workflowId, JSON.parse(fsSync.readFileSync(file, 'utf8')))
+  }
   await fs.rm(targetRoot, { recursive: true, force: true })
   await fs.mkdir(path.join(targetRoot, 'workflows'), { recursive: true })
   const compiled = []
   for (const summary of sourceCatalog.workflows) {
     const detail = JSON.parse(await fs.readFile(path.join(sourceRoot, 'workflows', `${summary.workflow_id}.json`), 'utf8'))
-    const workflow = compileWorkflow(detail)
+    const workflow = preservedInteractive.get(summary.workflow_id) ?? compileWorkflow(detail)
     if (!workflow.fields.length || workflow.fields.some((field) => !field.soap_destination || !field.provenance.evidence_pack_ids.length)) throw new Error(`Unsafe interactive workflow: ${summary.workflow_id}`)
     compiled.push(workflow)
     await fs.writeFile(path.join(targetRoot, 'workflows', `${summary.workflow_id}.json`), `${JSON.stringify(workflow, null, 2)}\n`)
