@@ -1,22 +1,23 @@
 # NAJM inactive-source acceptance and Wave-1 report
 
-Status: **BLOCKED AT BETA DEPLOYMENT ENVIRONMENT PROTECTION**
+Status: **COMPLETE — BETA DEPLOYED AND VERIFIED**
 
 The implementation and repository validations completed on branch
 `beta-inactive-source-acceptance-and-wave1-v1`. GitHub Pages built the branch
-successfully, but the deploy job was rejected because that branch is not
-allowlisted for the `github-pages` environment. No protection rule was changed
-or bypassed, and no stable production deployment was attempted.
+successfully after the owner added the exact branch to the existing
+`github-pages` allowlist. No protection rule was bypassed, and no stable
+production deployment was attempted.
 
 ## Baseline and commits
 
 - Baseline branch: `beta-inactive-workflow-expansion-v1`
 - Baseline HEAD: `9bf5dc4f8526193c182402e90295574053af1cb7`
 - Working branch: `beta-inactive-source-acceptance-and-wave1-v1`
-- End HEAD: `35a296a1d3b05db6a805c5550004bd3b8c16f522`
+- End HEAD: `a5a02d8a8292f02d704cabb2fc91bb5d2f70f823`
 - Commits:
   - `423c6c0f` — `fix(research): repair source candidate acceptance and access classification`
   - `35a296a1` — `data(wave1): activate sourced sore throat workflow`
+  - `a5a02d8a` — `docs(wave1): record source acceptance deployment blocker`
 
 ## Root-cause and source-access results
 
@@ -59,13 +60,18 @@ The required evidence and status artefacts are under
 ## Deployment
 
 - Deployment workflow: `Deploy beta to GitHub Pages`
-- Run: [30213087724](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30213087724)
-- Build job: PASS (uploaded Pages artifact).
-- Deploy job: FAIL/REJECTED by environment protection.
-- Exact failure: `Branch "beta-inactive-source-acceptance-and-wave1-v1" is not allowed to deploy to github-pages due to environment protection rules.`
-- Required authorization: add only `beta-inactive-source-acceptance-and-wave1-v1` to the existing `github-pages` branch allowlist.
-- Deployed beta SHA: not available for this Wave-1 branch. The live site remains the prior beta deployment (`9e2e3b9`).
-- Live verification: not performed for Wave 1 because the new branch was not deployed; no live claims are made.
+- Prior blocked run: [30213087724](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30213087724)
+- Successful run: [30216289674](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30216289674)
+- Build job: PASS. Deploy job: PASS.
+- Deployed source SHA: `a5a02d8a8292f02d704cabb2fc91bb5d2f70f823` (exact branch HEAD).
+- Live beta: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
+- Displayed build SHA: `a5a02d8`, matching the deployed source.
+- Live catalogue: 417 active interactive workflows, 4,186 fields, 75,512 retained evidence records; final manifest confirms 1,500 original, 417 active, 1,083 inactive, 6,301 clinician-facing items, and 75,512 internal evidence records.
+- Canonical manifest was requested by the live route; no `data-beta/curated-workflows` request occurred.
+- Search and specialty/archetype filter controls rendered. All 25 Wave-1 target routes were checked: `gp-sore-throat` opened with Quick and Advanced modes; the other 24 remained fail-closed as inactive. No route failures occurred.
+- The `gp-sore-throat` evidence panel opened and displayed the accepted DHA source identifier and locator page. Start Fresh cleared the workflow-scoped draft gate before rendering the form.
+- Desktop (1440px), tablet (1024px), and mobile (390px) active-route checks had no horizontal overflow; Quick and Advanced controls rendered at all three sizes.
+- Browser smoke tests recorded zero console errors and zero failed assets.
 - Stable production: unchanged.
 
 ## Protected-state confirmation
@@ -77,7 +83,6 @@ The required evidence and status artefacts are under
 - Exclusions unchanged at 12.
 - No merge, rebase, amend, squash, force-push, signing, approval, or protection-rule bypass occurred.
 
-Wave-1 implementation is ready for a rerun of the existing beta deployment
-workflow after the repository owner authorizes this exact branch in
-`github-pages`. Until then, the inactive-source acceptance and Wave-1 live
-deployment objective is not complete.
+Wave-1 implementation and beta deployment are complete. The remaining
+inactive workflows are intentionally fail-closed with documented evidence
+gaps; no unsupported activation or substitute routing was introduced.
