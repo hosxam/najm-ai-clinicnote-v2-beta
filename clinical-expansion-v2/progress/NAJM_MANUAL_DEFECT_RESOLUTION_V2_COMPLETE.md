@@ -5,6 +5,7 @@
 - Branch: `beta-manual-defect-resolution-v2`
 - Starting checkpoint: `c2258b5b6b07cc88e04adbaea77359576f6add6c`
 - Current implementation checkpoint: `b96f207fc0a3a7f4be614abe6b581442f8bb5489`
+- Ending branch SHA after browser-test stabilization: `04d0bff4fd489e74a91b84b1a3a1e04a210318c2`
 - Prior deployed implementation used as reproduction baseline: `7893c1700bc0fb7ce62c207d7838d246847f2f30`
 - Existing 433-record closure matrix was retained as the authoritative defect ledger and updated in place with resolution evidence.
 - Workflow research and queue continuation were not used.
@@ -84,6 +85,7 @@ The production source-metadata reproducibility check remained PASS with 236 regi
 - `6565cb4b` — `test(beta): update resolution evidence after archetype completion`
 - `e525cf4d` — `test(beta): prove fifteen final outputs and matrix assertions`
 - `b96f207f` — `fix(beta): deduplicate structured resolution controls`
+- `04d0bff4` — `test(beta): stabilize manual resolution browser matrix`
 
 ## Deployment gate
 
