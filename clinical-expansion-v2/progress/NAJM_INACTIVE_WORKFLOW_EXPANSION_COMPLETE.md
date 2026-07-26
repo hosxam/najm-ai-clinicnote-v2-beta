@@ -9,7 +9,7 @@
 - Original active/inactive: 416 / 1,084
 - Final active/inactive: 416 / 1,084
 - Inactive workflows processed: 1,084 / 1,084
-- Expansion fingerprint: `f785293347dca4d9252d48ae01f76d78efc8847001ae4d71c5ad98f670328cb4`
+- Expansion fingerprint: `6d43e93af5641e833818fd279977d5513c69e33817a3ce24fabdd8e083c7cee4`
 
 Every inactive workflow has exactly one terminal state. No partial, queued,
 sampled, assumed-unsupported, or manual-review state remains.
@@ -82,6 +82,14 @@ substitute an unrelated active workflow. Detailed per-workflow records are in
 - Lint: PASS with existing repository warnings
 - Build: PASS
 
+Additional required checks: `test:safety`, `test:all-workflows`,
+`test:output-safety`, `validate:source-evidence`, `validate:item-provenance`,
+`audit:no-generic-templates`, `audit:clinical-item-diff`,
+`audit:research-claims`, `test:research-queue`, `test:source-acceptance`,
+`validate:workflow-readiness`, `validate:final-status-reconciliation`,
+`validate:final-beta-manifest`, `validate:final-beta-route`,
+`verify:source-evidence-hashes`, and `test:exclusions`: PASS.
+
 No newly activated workflow exists, so newly activated field/option/state/
 browser/accessibility fixture totals are zero by design. Existing active
 workflow regression remains green.
@@ -89,10 +97,22 @@ workflow regression remains green.
 ## Deployment
 
 - Deployment branch: `beta-inactive-workflow-expansion-v1`
-- Deployment status: pending final beta-only workflow run
+- Implementation end SHA: `dfdb1bfc9f17e3aa2c64197d20c840d774063c95`
+- Branch pushed: yes, beta branch only
+- Workflow run: [30210814651](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30210814651)
+- Build job: PASS
+- Deploy job: BLOCKED/FAIL
+- Exact failure: `Branch "beta-inactive-workflow-expansion-v1" is not allowed to deploy to github-pages due to environment protection rules.`
+- Deployed SHA: none; no live deployment occurred
+- Live verification: not performed because the deployment was rejected
 - Stable production: untouched
 - No merge, rebase, force-push, signing, approval, mapping, candidate, or
   canonical-state changes
+
+The required branch was pushed and the beta-only workflow was run. GitHub Pages
+rejected the deploy job before deployment because the branch is not currently
+allowlisted by the `github-pages` environment. This report does not claim beta
+completion or live verification until that external protection rule is resolved.
 
 ## Protected-state confirmation
 
