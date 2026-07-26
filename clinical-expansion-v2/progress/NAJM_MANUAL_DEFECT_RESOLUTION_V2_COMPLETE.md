@@ -4,7 +4,7 @@
 
 - Branch: `beta-manual-defect-resolution-v2`
 - Starting checkpoint: `c2258b5b6b07cc88e04adbaea77359576f6add6c`
-- Current implementation checkpoint: `8b4d1738ccc3c9bd9ec440c65295251c20ab3e6e`
+- Current implementation checkpoint: `b96f207fc0a3a7f4be614abe6b581442f8bb5489`
 - Prior deployed implementation used as reproduction baseline: `7893c1700bc0fb7ce62c207d7838d246847f2f30`
 - Existing 433-record closure matrix was retained as the authoritative defect ledger and updated in place with resolution evidence.
 - Workflow research and queue continuation were not used.
@@ -31,13 +31,13 @@ All 433 records contain a root cause, a resolution evidence object, an automated
 ## Dataset and provenance
 
 - Active interactive workflows: 416
-- Compiled fields: 4,191
+- Compiled fields: 4,147
 - Evidence records retained separately: 75,484
-- Resolution-wave structured fields: 471
-- Selectable controls tested: 132
-- Contradiction tests: 116
+- Resolution-wave structured fields: 427 (semantic duplicates are suppressed)
+- Selectable controls tested: 127
+- Contradiction tests: 111
 - Dedicated final-output cases: 15 workflow archetypes
-- Fields added: 471 evidence-gated structured fields; fields removed: 0; fields relabelled: 0
+- Fields added: 427 evidence-gated structured fields; fields removed: 0; fields relabelled: 0
 - Structured components: age/unit, sex, pregnancy, onset/duration/severity/laterality, state selectors, vitals, examinations, investigations with value/unit/date/comparison/interpretation, medication/allergy entries, follow-up, disposition, procedure details
 - Selectable tests: 132 selected and 132 unselected; suggestion-unconfirmed behavior is asserted as no preselection
 - Workflow activations: 0; workflow deactivations: 0; exact unsupported routes remain fail-closed
@@ -73,6 +73,7 @@ Passed on the resolution branch:
 - `npm run test:resolution-selectable-controls`
 - `npm run test:resolution-contradictions`
 - `npm run test:resolution-structured-soap`
+- `npm run test:manual-resolution-browser` (15 workflows × Quick/Advanced; production preview; zero console errors and failed requests; inactive route failed closed)
 
 The production source-metadata reproducibility check remained PASS with 236 registered sources, 151 replay modules, and matching stored/active/replay fingerprints.
 
@@ -80,12 +81,15 @@ The production source-metadata reproducibility check remained PASS with 236 regi
 
 - `b2ef21a2` — `fix(beta): add evidence-gated structured defect controls`
 - `5ec3291f` — `test(beta): close manual defect resolution matrix`
+- `6565cb4b` — `test(beta): update resolution evidence after archetype completion`
+- `e525cf4d` — `test(beta): prove fifteen final outputs and matrix assertions`
+- `b96f207f` — `fix(beta): deduplicate structured resolution controls`
 
 ## Deployment gate
 
 - Branch pushed: `beta-manual-defect-resolution-v2`
 - Attempted Pages run: `30206150062` — [workflow run](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30206150062)
-- Build job: PASS; artifact upload: PASS; head SHA: `e4e19234e890fcdd8b15f2b6fcdf8fbe60328c2c`
+- Build job: PASS; artifact upload: PASS; head SHA: `e4e19234e890fcdd8b15f2b6fcdf8fbe60328c2c` (run predates the final implementation checkpoint `b96f207fc0a3a7f4be614abe6b581442f8bb5489`)
 - Deploy job: REJECTED before execution by the `github-pages` environment branch policy.
 - Exact failure: `Branch "beta-manual-defect-resolution-v2" is not allowed to deploy to github-pages due to environment protection rules.`
 - No environment rule was changed or bypassed. No stable production route was touched.
