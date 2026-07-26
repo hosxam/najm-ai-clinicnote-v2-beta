@@ -24,13 +24,13 @@
     "inactive_route_policy": "fail_closed"
   },
   "counts": {
-    "active_workflows": 416,
-    "quick_workflows": 416,
-    "advanced_workflows": 416,
-    "chips": 9935,
-    "advanced_options": 5001
+    "active_workflows": 417,
+    "quick_workflows": 417,
+    "advanced_workflows": 417,
+    "chips": 9972,
+    "advanced_options": 5022
   },
-  "source_manifest_fingerprint": "b8231fd8e0edead473b010314e279643b03a9d184c5a6db6f197d07ebcea841a",
+  "source_manifest_fingerprint": "4580e06394d7401ac8506a95a82b70bcf8d4393069e2ac32b14ff7a79ecdd990",
   "workflows": [
     {
       "workflow_id": "anes-post-anesthesia-recovery-documentation",
@@ -20019,6 +20019,121 @@
         "quick_fields": 8,
         "advanced_sections": 10,
         "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "gp-sore-throat",
+      "title": "Sore throat",
+      "specialty": "General Medicine / GP",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
+          ],
+          "suggested_chip_count": 9,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
+          ],
+          "history_placeholders": [
+            "[duration]",
+            "[throat symptoms]",
+            "[swallowing context]",
+            "[fever context]",
+            "[associated respiratory symptoms]",
+            "[relevant negatives]",
+            "[additional history]"
+          ],
+          "exam_groups": 3,
+          "exam_prompts": 13,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 4,
+          "plan_options": 5,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/gp-sore-throat.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 37,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 21
       }
     },
     {
@@ -46035,5 +46150,5 @@
       }
     }
   ],
-  "fingerprint": "58c61efaee395ba246f1effeb2c70a9b34a9760268c0502061363703a012441d"
+  "fingerprint": "7eaacded80972ada7b82416bbd76bf5fc06533ef80100af591193b8ae13750c2"
 }
