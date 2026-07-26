@@ -4,6 +4,7 @@
 
 - Branch: `beta-manual-defect-resolution-v2`
 - Starting checkpoint: `c2258b5b6b07cc88e04adbaea77359576f6add6c`
+- Current implementation checkpoint: `8b4d1738ccc3c9bd9ec440c65295251c20ab3e6e`
 - Prior deployed implementation used as reproduction baseline: `7893c1700bc0fb7ce62c207d7838d246847f2f30`
 - Existing 433-record closure matrix was retained as the authoritative defect ledger and updated in place with resolution evidence.
 - Workflow research and queue continuation were not used.
