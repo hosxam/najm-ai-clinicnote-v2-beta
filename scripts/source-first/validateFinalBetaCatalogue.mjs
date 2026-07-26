@@ -13,9 +13,9 @@ const metadata = read('metadata.json')
 const activeIds = new Set(catalog.workflows.map((workflow) => workflow.workflow_id))
 const inactiveIds = new Set(inactive.workflows.map((workflow) => workflow.workflow_id))
 if (manifest.source_commit !== '58be2e806dd364d571ffe168a9a64f1fc2048141') errors.push('manifest source commit is not the validated catalogue commit')
-if (manifest.counts.original_workflows !== 1500 || manifest.counts.active_workflows !== 416 || manifest.counts.inactive_workflows !== 1084 || manifest.counts.clinician_facing_items !== 6290 || manifest.counts.internal_evidence_records !== 75484) errors.push('manifest counts are incorrect')
-if (metadata.workflow_count !== 1500 || metadata.usable_workflow_count !== 416 || metadata.inactive_workflow_count !== 1084 || metadata.user_facing_item_count !== 6290 || metadata.internal_evidence_record_count !== 75484) errors.push('metadata counts are incorrect')
-if (catalog.workflows.length !== 416 || inactive.workflows.length !== 1084 || activeIds.size !== 416 || inactiveIds.size !== 1084) errors.push('active/inactive cardinality is incorrect')
+if (manifest.counts.original_workflows !== 1500 || manifest.counts.active_workflows !== 417 || manifest.counts.inactive_workflows !== 1083 || manifest.counts.clinician_facing_items !== 6301 || manifest.counts.internal_evidence_records !== 75512) errors.push('manifest counts are incorrect')
+if (metadata.workflow_count !== 1500 || metadata.usable_workflow_count !== 417 || metadata.inactive_workflow_count !== 1083 || metadata.user_facing_item_count !== 6301 || metadata.internal_evidence_record_count !== 75512) errors.push('metadata counts are incorrect')
+if (catalog.workflows.length !== 417 || inactive.workflows.length !== 1083 || activeIds.size !== 417 || inactiveIds.size !== 1083) errors.push('active/inactive cardinality is incorrect')
 if ([...activeIds].some((id) => inactiveIds.has(id))) errors.push('inactive workflow appears in active catalogue')
 
 let itemCount = 0
@@ -40,8 +40,8 @@ for (const workflow of catalog.workflows) {
   const evidenceIds = new Set(detail.evidence_records.map((record) => record.evidence_statement_id ?? record.evidence_record_id))
   for (const item of detail.user_facing_items ?? []) for (const id of item.evidence_statement_ids ?? []) if (!evidenceIds.has(id)) errors.push(`unresolved evidence reference ${workflow.workflow_id}/${id}`)
 }
-if (itemCount !== 6290) errors.push(`clinician item total is ${itemCount}, expected 6290`)
-if (evidenceCount !== 75484) errors.push(`evidence record total is ${evidenceCount}, expected 75484`)
-const result = { status: errors.length ? 'FAIL' : 'PASS', original_workflows: 1500, active_workflows: 416, inactive_workflows: 1084, clinician_facing_items: itemCount, internal_evidence_records: evidenceCount, errors }
+if (itemCount !== 6301) errors.push(`clinician item total is ${itemCount}, expected 6301`)
+if (evidenceCount !== 75512) errors.push(`evidence record total is ${evidenceCount}, expected 75512`)
+const result = { status: errors.length ? 'FAIL' : 'PASS', original_workflows: 1500, active_workflows: 417, inactive_workflows: 1083, clinician_facing_items: itemCount, internal_evidence_records: evidenceCount, errors }
 console.log(JSON.stringify(result, null, 2))
 if (errors.length) process.exitCode = 1

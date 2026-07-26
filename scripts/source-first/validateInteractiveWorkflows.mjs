@@ -32,8 +32,8 @@ async function main() {
       if (field.options?.length && !['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'referral_selection', 'follow_up_selection', 'safety_netting_selection'].includes(field.field_type)) errors.push(`${file}: options on non-select field`)
     }
   }
-  if (files.length !== 416) errors.push(`expected 416 workflow files, found ${files.length}`)
-  if (manifest.counts.workflows !== 416 || manifest.counts.fields !== fieldCount || manifest.counts.evidence_records_retained !== evidenceCount) errors.push('manifest counts do not match compiled data')
+if (files.length !== 417) errors.push(`expected 417 workflow files, found ${files.length}`)
+if (manifest.counts.workflows !== 417 || manifest.counts.fields !== fieldCount || manifest.counts.evidence_records_retained !== evidenceCount) errors.push('manifest counts do not match compiled data')
   const result = { workflows: files.length, fields: fieldCount, evidence_records_retained: evidenceCount, errors }
   console.log(JSON.stringify(result, null, 2))
   if (errors.length) process.exitCode = 1

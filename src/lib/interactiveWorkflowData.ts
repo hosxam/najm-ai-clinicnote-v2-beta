@@ -116,8 +116,8 @@ export const interactiveWorkflowData = {
         return response.json() as Promise<DiagnosisIndex>
       }),
     ]).then(([manifest, catalog, finalCatalogueManifest, diagnosisIndex]) => {
-      if (manifest.counts.workflows !== 416) throw new Error('Interactive workflow count contract failed.')
-      if (finalCatalogueManifest.counts?.original_workflows !== 1500 || finalCatalogueManifest.counts?.active_workflows !== 416 || finalCatalogueManifest.counts?.inactive_workflows !== 1084) throw new Error('Final catalogue manifest count contract failed.')
+if (manifest.counts.workflows !== 417) throw new Error('Interactive workflow count contract failed.')
+if (finalCatalogueManifest.counts?.original_workflows !== 1500 || finalCatalogueManifest.counts?.active_workflows !== 417 || finalCatalogueManifest.counts?.inactive_workflows !== 1083) throw new Error('Final catalogue manifest count contract failed.')
       const aliasesByWorkflow = new Map<string, string[]>()
       for (const entry of diagnosisIndex.entries ?? []) {
         const aliases = [entry.label, ...(entry.aliases ?? [])].filter((value): value is string => Boolean(value?.trim()))

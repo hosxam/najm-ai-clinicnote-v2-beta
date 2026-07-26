@@ -40,3 +40,34 @@ export function classifySourceAcceptance(candidate, context = {}) {
 export function isAcceptedAuthoritativeSource(candidate, context = {}) {
   return classifySourceAcceptance(candidate, context).accepted
 }
+
+/**
+ * Evidence acceptance is evaluated before workflow mapping. A workflow family
+ * may be supported by several authoritative documents, each contributing a
+ * different section. This deliberately does not infer missing sections: the
+ * caller must provide explicit section coverage for each accepted source.
+ */
+export function composeEvidenceCoverage({ sources = [], requiredSections = [], population = null, setting = null, archetype = null } = {}) {
+  const accepted = sources.filter((source) => classifySourceAcceptance(source, {
+    populationMatch: source.population_match !== false,
+    settingMatch: source.setting_match !== false,
+  }).accepted)
+  const sectionSources = new Map()
+  for (const source of accepted) {
+    for (const section of source.coverage_sections ?? []) {
+      if (!sectionSources.has(section)) sectionSources.set(section, [])
+      sectionSources.get(section).push(source.source_id ?? source.official_url ?? null)
+    }
+  }
+  const missingSections = requiredSections.filter((section) => !sectionSources.has(section))
+  return {
+    accepted_sources: accepted.map((source) => source.source_id ?? source.official_url ?? null).filter(Boolean),
+    coverage_by_section: Object.fromEntries([...sectionSources.entries()].map(([section, ids]) => [section, [...new Set(ids)]])),
+    missing_sections: missingSections,
+    complete: missingSections.length === 0,
+    population,
+    setting,
+    archetype,
+    mapping_required: accepted.length > 0,
+  }
+}

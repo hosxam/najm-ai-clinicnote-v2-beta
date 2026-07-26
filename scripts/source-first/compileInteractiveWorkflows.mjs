@@ -272,7 +272,7 @@ function compileWorkflow(detail) {
 
 async function main() {
   const manifest = JSON.parse(await fs.readFile(path.join(sourceRoot, 'manifest.json'), 'utf8'))
-  if (manifest.counts.active_workflows !== 416) throw new Error('Expected 416 active source-grounded workflows.')
+if (manifest.counts.active_workflows !== 417) throw new Error('Expected 417 active source-grounded workflows.')
   const sourceCatalog = JSON.parse(await fs.readFile(path.join(sourceRoot, 'catalog.json'), 'utf8'))
   await fs.rm(targetRoot, { recursive: true, force: true })
   await fs.mkdir(path.join(targetRoot, 'workflows'), { recursive: true })

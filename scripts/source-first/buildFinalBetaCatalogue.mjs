@@ -16,10 +16,10 @@ const catalog = read('catalog.json')
 const inactiveInventory = read('inactive-inventory.json')
 const compactionManifest = read('compaction-manifest.json')
 
-if (metadata.workflow_count !== 1500 || metadata.usable_workflow_count !== 416 || metadata.inactive_workflow_count !== 1084 || metadata.user_facing_item_count !== 6290 || metadata.internal_evidence_record_count !== 75484) {
+if (metadata.workflow_count !== 1500 || metadata.usable_workflow_count !== 417 || metadata.inactive_workflow_count !== 1083 || metadata.user_facing_item_count !== 6301 || metadata.internal_evidence_record_count !== 75512) {
   throw new Error('Validated compact beta source artifacts do not have the required counts.')
 }
-if (catalog.workflows.length !== 416 || inactiveInventory.workflows.length !== 1084 || catalog.workflows.some((workflow) => !workflow.usable)) {
+if (catalog.workflows.length !== 417 || inactiveInventory.workflows.length !== 1083 || catalog.workflows.some((workflow) => !workflow.usable)) {
   throw new Error('Validated compact beta source artifacts have invalid active/inactive separation.')
 }
 
@@ -28,7 +28,7 @@ fs.mkdirSync(path.join(target, 'workflows'), { recursive: true })
 
 const activeIds = new Set(catalog.workflows.map((workflow) => workflow.workflow_id))
 const inactiveIds = new Set(inactiveInventory.workflows.map((workflow) => workflow.workflow_id))
-if (activeIds.size !== 416 || inactiveIds.size !== 1084 || [...activeIds].some((id) => inactiveIds.has(id))) throw new Error('Active and inactive IDs overlap.')
+if (activeIds.size !== 417 || inactiveIds.size !== 1083 || [...activeIds].some((id) => inactiveIds.has(id))) throw new Error('Active and inactive IDs overlap.')
 
 for (const workflow of catalog.workflows) {
   const detail = read(path.join('workflows', `${workflow.workflow_id}.json`))
