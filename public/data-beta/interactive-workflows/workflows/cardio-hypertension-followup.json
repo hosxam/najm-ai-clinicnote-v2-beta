@@ -2782,6 +2782,379 @@
         "restrictions": [],
         "uae_applicability": "explicit_uae_source"
       }
+    },
+    {
+      "workflow_id": "cardio-hypertension-followup",
+      "field_id": "cardio_hypertension_followup__diagnosis_date",
+      "archetype": "chronic_disease_follow_up",
+      "section": "history",
+      "label": "Hypertension diagnosis date",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "date",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 37,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Hypertension diagnosis date: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "diagnos|date",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-hypertension"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-hypertension--statement-00001",
+          "family-cardio-hypertension--statement-00002",
+          "family-cardio-hypertension--statement-00003",
+          "family-cardio-hypertension--statement-00004",
+          "family-cardio-hypertension--statement-00005",
+          "family-cardio-hypertension--statement-00006",
+          "family-cardio-hypertension--statement-00007",
+          "family-cardio-hypertension--statement-00008",
+          "family-cardio-hypertension--statement-00010",
+          "family-cardio-hypertension--statement-00015",
+          "family-cardio-hypertension--statement-00017",
+          "family-cardio-hypertension--statement-00018",
+          "family-cardio-hypertension--statement-00019",
+          "family-cardio-hypertension--statement-00021",
+          "family-cardio-hypertension--statement-00022",
+          "family-cardio-hypertension--statement-00024",
+          "family-cardio-hypertension--statement-00025",
+          "family-cardio-hypertension--statement-00026",
+          "family-cardio-hypertension--statement-00027",
+          "family-cardio-hypertension--statement-00028",
+          "family-cardio-hypertension--statement-00031",
+          "family-cardio-hypertension--statement-00037",
+          "family-cardio-hypertension--statement-00039",
+          "family-cardio-hypertension--statement-00040",
+          "family-cardio-hypertension--statement-00041",
+          "family-cardio-hypertension--statement-00042",
+          "family-cardio-hypertension--statement-00043",
+          "family-cardio-hypertension--statement-00044",
+          "family-cardio-hypertension--statement-00045",
+          "family-cardio-hypertension--statement-00046",
+          "family-cardio-hypertension--statement-00047",
+          "family-cardio-hypertension--statement-00048",
+          "family-cardio-hypertension--statement-00049",
+          "family-cardio-hypertension--statement-00055",
+          "family-cardio-hypertension--statement-00074",
+          "family-cardio-hypertension--statement-00075",
+          "family-cardio-hypertension--statement-00081",
+          "family-cardio-hypertension--statement-00082",
+          "family-cardio-hypertension--statement-00086",
+          "family-cardio-hypertension--statement-00110",
+          "family-cardio-hypertension--statement-00122"
+        ],
+        "source_ids": [
+          "dha-telehealth-hypertension-v2-2024",
+          "nice-hypertension-ng136-2026"
+        ],
+        "population": "Adults with suspected or established hypertension.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-hypertension-followup",
+      "field_id": "cardio_hypertension_followup__target_bp",
+      "archetype": "chronic_disease_follow_up",
+      "section": "assessment",
+      "label": "Target blood pressure",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 38,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Target blood pressure: {{value}}",
+      "value_formatter": "vital_sign",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "target blood pressure|target BP",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-hypertension"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-hypertension--statement-00075"
+        ],
+        "source_ids": [
+          "nice-hypertension-ng136-2026"
+        ],
+        "population": "Adults undergoing blood-pressure measurement, hypertension assessment, or monitoring, including adults with type 2 diabetes where specified.",
+        "setting": "Primary care, outpatient review, home or ambulatory monitoring, and specialist referral pathways.",
+        "restrictions": [],
+        "uae_applicability": "international_requires_uae_adaptation"
+      }
+    },
+    {
+      "workflow_id": "cardio-hypertension-followup",
+      "field_id": "cardio_hypertension_followup__dose_changes",
+      "archetype": "chronic_disease_follow_up",
+      "section": "plan",
+      "label": "Dose changes",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 39,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Dose changes: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "dose|change|adjust",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-hypertension"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-hypertension--statement-00012",
+          "family-cardio-hypertension--statement-00016",
+          "family-cardio-hypertension--statement-00023",
+          "family-cardio-hypertension--statement-00024",
+          "family-cardio-hypertension--statement-00056",
+          "family-cardio-hypertension--statement-00062",
+          "family-cardio-hypertension--statement-00066",
+          "family-cardio-hypertension--statement-00071",
+          "family-cardio-hypertension--statement-00081",
+          "family-cardio-hypertension--statement-00101",
+          "family-cardio-hypertension--statement-00103",
+          "family-cardio-hypertension--statement-00106",
+          "family-cardio-hypertension--statement-00109"
+        ],
+        "source_ids": [
+          "dha-telehealth-hypertension-v2-2024",
+          "nice-hypertension-ng136-2026"
+        ],
+        "population": "Adults with suspected or established hypertension.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-hypertension-followup",
+      "field_id": "cardio_hypertension_followup__diet_exercise",
+      "archetype": "chronic_disease_follow_up",
+      "section": "history",
+      "label": "Diet and exercise",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 40,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Diet and exercise: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "diet|exercise|lifestyle",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-hypertension"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-hypertension--statement-00009",
+          "family-cardio-hypertension--statement-00012",
+          "family-cardio-hypertension--statement-00013",
+          "family-cardio-hypertension--statement-00048",
+          "family-cardio-hypertension--statement-00055",
+          "family-cardio-hypertension--statement-00056",
+          "family-cardio-hypertension--statement-00059",
+          "family-cardio-hypertension--statement-00062",
+          "family-cardio-hypertension--statement-00064",
+          "family-cardio-hypertension--statement-00065",
+          "family-cardio-hypertension--statement-00066",
+          "family-cardio-hypertension--statement-00067",
+          "family-cardio-hypertension--statement-00068",
+          "family-cardio-hypertension--statement-00071",
+          "family-cardio-hypertension--statement-00080",
+          "family-cardio-hypertension--statement-00115"
+        ],
+        "source_ids": [
+          "dha-telehealth-hypertension-v2-2024",
+          "nice-hypertension-ng136-2026"
+        ],
+        "population": "Adults with suspected or established hypertension.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-hypertension-followup",
+      "field_id": "cardio_hypertension_followup__comorbidities",
+      "archetype": "chronic_disease_follow_up",
+      "section": "history",
+      "label": "Cardiovascular or renal comorbidities",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 41,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Cardiovascular or renal comorbidities: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "cardiovascular|CKD|comorbid",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-hypertension"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-hypertension--statement-00007",
+          "family-cardio-hypertension--statement-00009",
+          "family-cardio-hypertension--statement-00010",
+          "family-cardio-hypertension--statement-00012",
+          "family-cardio-hypertension--statement-00014",
+          "family-cardio-hypertension--statement-00016",
+          "family-cardio-hypertension--statement-00024",
+          "family-cardio-hypertension--statement-00027",
+          "family-cardio-hypertension--statement-00041",
+          "family-cardio-hypertension--statement-00051",
+          "family-cardio-hypertension--statement-00052",
+          "family-cardio-hypertension--statement-00054",
+          "family-cardio-hypertension--statement-00065",
+          "family-cardio-hypertension--statement-00066",
+          "family-cardio-hypertension--statement-00067",
+          "family-cardio-hypertension--statement-00078",
+          "family-cardio-hypertension--statement-00079",
+          "family-cardio-hypertension--statement-00082",
+          "family-cardio-hypertension--statement-00088",
+          "family-cardio-hypertension--statement-00115"
+        ],
+        "source_ids": [
+          "dha-telehealth-hypertension-v2-2024",
+          "nice-hypertension-ng136-2026"
+        ],
+        "population": "Adults with suspected or established hypertension.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-hypertension-followup",
+      "field_id": "cardio_hypertension_followup__target_organ",
+      "archetype": "chronic_disease_follow_up",
+      "section": "examination",
+      "label": "Target-organ assessment",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 42,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Target-organ assessment: {{value}}",
+      "value_formatter": "examination",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "target organ|retin|neurolog|kidney",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-hypertension"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-hypertension--statement-00007",
+          "family-cardio-hypertension--statement-00009",
+          "family-cardio-hypertension--statement-00011",
+          "family-cardio-hypertension--statement-00014",
+          "family-cardio-hypertension--statement-00015",
+          "family-cardio-hypertension--statement-00016",
+          "family-cardio-hypertension--statement-00017",
+          "family-cardio-hypertension--statement-00021",
+          "family-cardio-hypertension--statement-00027",
+          "family-cardio-hypertension--statement-00028",
+          "family-cardio-hypertension--statement-00041",
+          "family-cardio-hypertension--statement-00045",
+          "family-cardio-hypertension--statement-00050",
+          "family-cardio-hypertension--statement-00053",
+          "family-cardio-hypertension--statement-00059",
+          "family-cardio-hypertension--statement-00065",
+          "family-cardio-hypertension--statement-00070",
+          "family-cardio-hypertension--statement-00076",
+          "family-cardio-hypertension--statement-00077",
+          "family-cardio-hypertension--statement-00083",
+          "family-cardio-hypertension--statement-00110",
+          "family-cardio-hypertension--statement-00111",
+          "family-cardio-hypertension--statement-00114",
+          "family-cardio-hypertension--statement-00115",
+          "family-cardio-hypertension--statement-00121"
+        ],
+        "source_ids": [
+          "dha-telehealth-hypertension-v2-2024",
+          "nice-hypertension-ng136-2026"
+        ],
+        "population": "Adults with suspected or established hypertension.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
     }
   ],
   "evidence": [

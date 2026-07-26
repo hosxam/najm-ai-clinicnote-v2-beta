@@ -2454,6 +2454,316 @@
         "restrictions": [],
         "uae_applicability": "explicit_uae_source"
       }
+    },
+    {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__diagnosis_date",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Diabetes diagnosis date",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "date",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 28,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Diabetes diagnosis date: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "diagnos|date|duration",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00011",
+          "family-gp-medication--statement-00013",
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00017",
+          "family-gp-medication--statement-00018",
+          "family-gp-medication--statement-00021",
+          "family-gp-medication--statement-00027",
+          "family-gp-medication--statement-00028",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00094",
+          "family-gp-medication--statement-00115",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00155"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__insulin_regimen",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Insulin regimen",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 29,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Insulin regimen: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "insulin|regimen|dose",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00075",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00081",
+          "family-gp-medication--statement-00083",
+          "family-gp-medication--statement-00088",
+          "family-gp-medication--statement-00095",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00136"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__acr_result",
+      "archetype": "medication_review",
+      "section": "examination",
+      "label": "Urine ACR result",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 30,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Urine ACR result: {{value}}",
+      "value_formatter": "investigation",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "albumin|ACR|urine",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00114",
+          "family-gp-medication--statement-00156"
+        ],
+        "source_ids": [
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "Adults, children, and young people using medicines, with specific transfer, reconciliation, and decision-involvement recommendations.",
+        "setting": "Transfers between care settings and clinician-led medicines consultations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__liver_result",
+      "archetype": "medication_review",
+      "section": "examination",
+      "label": "Liver-function result",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 31,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Liver-function result: {{value}}",
+      "value_formatter": "investigation",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "liver|ALT|AST",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00002",
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00007",
+          "family-gp-medication--statement-00008",
+          "family-gp-medication--statement-00009",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00025",
+          "family-gp-medication--statement-00027",
+          "family-gp-medication--statement-00033",
+          "family-gp-medication--statement-00034",
+          "family-gp-medication--statement-00035",
+          "family-gp-medication--statement-00037",
+          "family-gp-medication--statement-00041",
+          "family-gp-medication--statement-00042",
+          "family-gp-medication--statement-00043",
+          "family-gp-medication--statement-00044",
+          "family-gp-medication--statement-00050",
+          "family-gp-medication--statement-00056",
+          "family-gp-medication--statement-00057",
+          "family-gp-medication--statement-00058",
+          "family-gp-medication--statement-00068",
+          "family-gp-medication--statement-00079",
+          "family-gp-medication--statement-00081",
+          "family-gp-medication--statement-00085",
+          "family-gp-medication--statement-00088",
+          "family-gp-medication--statement-00095",
+          "family-gp-medication--statement-00096",
+          "family-gp-medication--statement-00097",
+          "family-gp-medication--statement-00099",
+          "family-gp-medication--statement-00105",
+          "family-gp-medication--statement-00107",
+          "family-gp-medication--statement-00109",
+          "family-gp-medication--statement-00110",
+          "family-gp-medication--statement-00111",
+          "family-gp-medication--statement-00114",
+          "family-gp-medication--statement-00115",
+          "family-gp-medication--statement-00116",
+          "family-gp-medication--statement-00117",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00119",
+          "family-gp-medication--statement-00122",
+          "family-gp-medication--statement-00126",
+          "family-gp-medication--statement-00127",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00132",
+          "family-gp-medication--statement-00135",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00138",
+          "family-gp-medication--statement-00140",
+          "family-gp-medication--statement-00148",
+          "family-gp-medication--statement-00150",
+          "family-gp-medication--statement-00151",
+          "family-gp-medication--statement-00154",
+          "family-gp-medication--statement-00155",
+          "family-gp-medication--statement-00156",
+          "family-gp-medication--statement-00159",
+          "family-gp-medication--statement-00160",
+          "family-gp-medication--statement-00161"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-adherence-review",
+      "field_id": "gp_medication_adherence_review__glycaemic_control",
+      "archetype": "medication_review",
+      "section": "assessment",
+      "label": "Glycaemic-control classification",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "At target",
+        "Above target",
+        "Below target",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 32,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Glycaemic-control classification: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "control|target|HbA1c",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00088",
+          "family-gp-medication--statement-00114",
+          "family-gp-medication--statement-00149"
+        ],
+        "source_ids": [
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People prescribed medicines and healthcare professionals who prescribe, dispense, or review medicines.",
+        "setting": "Shared medicine decisions, adherence assessment, support, and periodic medicine review.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
     }
   ],
   "evidence": [
