@@ -42,6 +42,10 @@ async page => {
       await page.evaluate(() => localStorage.clear())
       await page.goto(`${base}/#/beta/workflows/${workflowId}?mode=${mode}`)
       await page.waitForLoadState('networkidle')
+      await page.waitForFunction((ids) => ids.some((id) => {
+        const element = document.getElementById(id)
+        return Boolean(element && element.offsetParent !== null)
+      }), workflow.fields.map((field) => field.field_id), { timeout: 15000 })
       const fresh = page.getByRole('button', { name: 'Start fresh', exact: true })
       if (await fresh.count()) await fresh.click()
       const rendered = []
@@ -59,6 +63,11 @@ async page => {
       const generate = page.getByRole('button', { name: 'Generate', exact: true })
       if (await generate.count() && !(await generate.isDisabled())) await generate.click()
       const outputControl = page.locator('textarea[aria-label="Draft output"]')
+      await outputControl.waitFor({ state: 'visible', timeout: 10000 })
+      await page.waitForFunction(() => {
+        const output = document.querySelector('textarea[aria-label="Draft output"]')
+        return Boolean(output && output.value.trim())
+      }, null, { timeout: 10000 }).catch(() => {})
       const output = await outputControl.inputValue()
       const checked = rendered.slice(0, 4).map(item => ({ field_id: item.field_id, present: output.length > 0 }))
       results.push({ workflow_id: workflowId, mode, rendered_fields: rendered.length, checked, output_non_empty: output.trim().length > 0, output_has_clinical_value: output.includes('5.4') || output.includes('120') || output.includes('42') || output.includes('FACT') })
