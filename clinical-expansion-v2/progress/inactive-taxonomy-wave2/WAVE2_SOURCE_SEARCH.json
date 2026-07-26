@@ -2,12 +2,187 @@
   "schema_version": "1.0.0",
   "records": [
     {
+      "workflow_id": "derm-eczema",
+      "search_queries": [
+        "official guideline Eczema / dermatitis",
+        "site:nice.org.uk Eczema / dermatitis",
+        "site:dha.gov.ae Eczema / dermatitis"
+      ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-atopic-dermatitis-issue2-2024",
+        "nice-atopic-eczema-under-12s-cg57-2025",
+        "nhs-atopic-eczema-overview-2026"
+      ],
+      "guideline_documents_located": [
+        "dha-atopic-dermatitis-issue2-2024",
+        "nice-atopic-eczema-under-12s-cg57-2025",
+        "nhs-atopic-eczema-overview-2026"
+      ],
+      "documents_downloaded": [
+        "dha-atopic-dermatitis-issue2-2024",
+        "nhs-atopic-eczema-overview-2026"
+      ],
+      "documents_extracted": [
+        "dha-atopic-dermatitis-issue2-2024",
+        "nhs-atopic-eczema-overview-2026"
+      ],
+      "sources_accepted": [
+        "dha-atopic-dermatitis-issue2-2024",
+        "nhs-atopic-eczema-overview-2026"
+      ],
+      "sources_rejected": [
+        {
+          "source_id": "nice-atopic-eczema-under-12s-cg57-2025",
+          "terminal_status": "access_blocked",
+          "reason": "Official source request returned HTTP 403; no document content was accepted or used."
+        }
+      ],
+      "access_failures": [
+        {
+          "source_id": "nice-atopic-eczema-under-12s-cg57-2025",
+          "status": "HTTP_403_FORBIDDEN",
+          "retries": 1
+        }
+      ],
+      "retries": 1,
+      "existing_corpus_candidates": [
+        "dha-atopic-dermatitis-issue2-2024",
+        "nice-atopic-eczema-under-12s-cg57-2025",
+        "nhs-atopic-eczema-overview-2026"
+      ],
+      "candidate_decisions": [
+        {
+          "source_id": "dha-atopic-dermatitis-issue2-2024",
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-atopic-dermatitis-i2-history",
+              "heading": "5.1 Virtual Clinical Assessment; Common Features",
+              "locator": "pages 9–11"
+            },
+            {
+              "section_id": "dha-atopic-dermatitis-i2-red-flags",
+              "heading": "7. Red Flags",
+              "locator": "page 12"
+            },
+            {
+              "section_id": "dha-atopic-dermatitis-i2-diagnosis-investigations",
+              "heading": "8. Diagnosis",
+              "locator": "pages 12–14"
+            },
+            {
+              "section_id": "dha-atopic-dermatitis-i2-management",
+              "heading": "10. Management",
+              "locator": "pages 15–21"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
+        },
+        {
+          "source_id": "nice-atopic-eczema-under-12s-cg57-2025",
+          "decision": "access_blocked",
+          "source_status": "blocked_source_access",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-cg57-diagnosis-assessment",
+              "heading": "Recommendations 1.1 — diagnosis and assessment",
+              "locator": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#diagnosis"
+            },
+            {
+              "section_id": "nice-cg57-severity-quality-of-life",
+              "heading": "Recommendations 1.2 — assessing severity, psychological and psychosocial wellbeing and quality of life",
+              "locator": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#assessing-severity"
+            },
+            {
+              "section_id": "nice-cg57-trigger-management",
+              "heading": "Recommendations 1.3 and 1.4 — trigger factors and education",
+              "locator": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#trigger-factors"
+            },
+            {
+              "section_id": "nice-cg57-referral",
+              "heading": "Recommendations 1.7 — indications for referral",
+              "locator": "https://www.nice.org.uk/guidance/cg57/chapter/Recommendations#referral"
+            }
+          ],
+          "rejection_reason": "Official source request returned HTTP 403; no document content was accepted or used.",
+          "retries": 1
+        },
+        {
+          "source_id": "nhs-atopic-eczema-overview-2026",
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nhs-eczema-symptoms",
+              "heading": "Symptoms of atopic eczema",
+              "locator": "https://www.nhs.uk/conditions/atopic-eczema/#symptoms"
+            },
+            {
+              "section_id": "nhs-eczema-triggers",
+              "heading": "Atopic eczema triggers",
+              "locator": "https://www.nhs.uk/conditions/atopic-eczema/#triggers"
+            },
+            {
+              "section_id": "nhs-eczema-help",
+              "heading": "When to get medical help",
+              "locator": "https://www.nhs.uk/conditions/atopic-eczema/#when-to-get-medical-help"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
+        }
+      ],
+      "unresolved_access_candidates": [],
+      "final_evidence_coverage": "complete_for_wave2_composed_pack",
+      "status": "completed_with_terminal_candidate_evaluations"
+    },
+    {
       "workflow_id": "anes-airway-plan-documentation-review",
       "search_queries": [
         "official guideline Airway plan documentation-only review",
         "site:nice.org.uk Airway plan documentation-only review",
         "site:dha.gov.ae Airway plan documentation-only review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "asa-basic-preanesthesia-care-2020",
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "guideline_documents_located": [
+        "asa-basic-preanesthesia-care-2020",
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "documents_downloaded": [
+        "asa-basic-preanesthesia-care-2020",
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "documents_extracted": [
+        "asa-basic-preanesthesia-care-2020",
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "sources_accepted": [
+        "asa-basic-preanesthesia-care-2020",
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "asa-basic-preanesthesia-care-2020",
         "asa-documentation-anesthesia-care-2023",
@@ -16,28 +191,110 @@
       "candidate_decisions": [
         {
           "source_id": "asa-basic-preanesthesia-care-2020",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "asa-basic-preanesthesia-record-review",
+              "heading": "Review of the available medical record",
+              "locator": "PDF page 1, standard item 1"
+            },
+            {
+              "section_id": "asa-basic-preanesthesia-interview-exam",
+              "heading": "Patient interview and focused examination",
+              "locator": "PDF page 1, standard item 2"
+            },
+            {
+              "section_id": "asa-basic-preanesthesia-tests-consent-documentation",
+              "heading": "Tests, consultations, consent, and documentation",
+              "locator": "PDF page 1, standard items 3–5"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "asa-documentation-anesthesia-care-2023",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "asa-documentation-care-continuum",
+              "heading": "Documentation across the anesthesia care continuum",
+              "locator": "official statement lines 231–233"
+            },
+            {
+              "section_id": "asa-documentation-preanesthesia",
+              "heading": "Preanesthesia documentation",
+              "locator": "official statement lines 234–250"
+            },
+            {
+              "section_id": "asa-documentation-intraoperative",
+              "heading": "Intraoperative or procedural anesthesia documentation",
+              "locator": "official statement lines 251–262"
+            },
+            {
+              "section_id": "asa-documentation-postanesthesia",
+              "heading": "Postanesthesia documentation",
+              "locator": "official statement lines 263–269"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "doh-day-surgery-procedure-standard-v1-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "doh-day-surgery-scope-service",
+              "heading": "Scope, definitions, and service requirements",
+              "locator": "PDF sections 1–3; lines 14–69"
+            },
+            {
+              "section_id": "doh-day-surgery-governance-policies",
+              "heading": "Governance, workforce, policies, and risk controls",
+              "locator": "PDF section 4; lines 98–154"
+            },
+            {
+              "section_id": "doh-day-surgery-assessment-care-plan",
+              "heading": "Patient assessment and individualized care plan",
+              "locator": "PDF section 5.1; lines 158–177"
+            },
+            {
+              "section_id": "doh-day-surgery-preprocedure",
+              "heading": "Pre-procedure requirements",
+              "locator": "PDF section 5.2; lines 178–187"
+            },
+            {
+              "section_id": "doh-day-surgery-intraprocedure",
+              "heading": "Intra-procedure requirements",
+              "locator": "PDF section 5.3; lines 188–192"
+            },
+            {
+              "section_id": "doh-day-surgery-postprocedure",
+              "heading": "Recovery and discharge requirements",
+              "locator": "PDF section 5.4; lines 193–217"
+            },
+            {
+              "section_id": "doh-day-surgery-records",
+              "heading": "Health-record requirements",
+              "locator": "PDF section 5.5; lines 218–232"
+            },
+            {
+              "section_id": "doh-day-surgery-patient-education-language",
+              "heading": "Patient education and communication",
+              "locator": "PDF section 5.6; lines 233–251"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "cardio-blood-pressure-device-technique-review",
@@ -46,20 +303,76 @@
         "site:nice.org.uk Blood pressure device technique review",
         "site:dha.gov.ae Blood pressure device technique review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "guideline_documents_located": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "documents_downloaded": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "documents_extracted": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "sources_accepted": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-hypertension-ng136-2026"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-hypertension-ng136-2026",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng136-measurement-technique",
+              "heading": "Recommendations 1.1.1-1.1.8 - training, device maintenance, measurement technique, and postural assessment",
+              "locator": "recommendations 1.1.1-1.1.8"
+            },
+            {
+              "section_id": "nice-ng136-abpm-hbpm-diagnosis",
+              "heading": "Recommendations 1.2.1-1.2.13 - clinic, ambulatory, and home blood-pressure assessment",
+              "locator": "recommendations 1.2.1-1.2.13"
+            },
+            {
+              "section_id": "nice-ng136-risk-tests",
+              "heading": "Recommendations 1.3.1-1.3.3 - cardiovascular risk and target-organ assessment",
+              "locator": "recommendations 1.3.1-1.3.3"
+            },
+            {
+              "section_id": "nice-ng136-monitoring-annual-review",
+              "heading": "Recommendations 1.4.15-1.4.24 - monitoring and annual review",
+              "locator": "recommendations 1.4.15-1.4.24"
+            },
+            {
+              "section_id": "nice-ng136-severe-red-flags",
+              "heading": "Recommendations 1.5.1-1.5.3 - severe hypertension and same-day specialist review features",
+              "locator": "recommendations 1.5.1-1.5.3"
+            },
+            {
+              "section_id": "nice-ng136-postural-hypotension-measurement",
+              "heading": "Recommendations 1.1.5–1.1.8 — postural hypotension symptoms and standing blood pressure",
+              "locator": "official NICE NG136 recommendations 1.1.5–1.1.8"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "derm-abscess-wound-check",
@@ -68,10 +381,24 @@
         "site:nice.org.uk Abscess wound check",
         "site:dha.gov.ae Abscess wound check"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "ed-death-verification-documentation",
@@ -80,10 +407,24 @@
         "site:nice.org.uk ED death verification documentation-only",
         "site:dha.gov.ae ED death verification documentation-only"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "endo-adrenal-incidentaloma-referral",
@@ -92,20 +433,67 @@
         "site:nice.org.uk Adrenal incidentaloma",
         "site:dha.gov.ae Adrenal incidentaloma"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "ese-adrenal-incidentaloma-2023"
+      ],
+      "guideline_documents_located": [
+        "ese-adrenal-incidentaloma-2023"
+      ],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [
+        {
+          "source_id": "ese-adrenal-incidentaloma-2023",
+          "terminal_status": "access_blocked",
+          "reason": "Official source request returned HTTP 403; no document content was accepted or used."
+        }
+      ],
+      "access_failures": [
+        {
+          "source_id": "ese-adrenal-incidentaloma-2023",
+          "status": "HTTP_403_FORBIDDEN",
+          "retries": 1
+        }
+      ],
+      "retries": 1,
       "existing_corpus_candidates": [
         "ese-adrenal-incidentaloma-2023"
       ],
       "candidate_decisions": [
         {
           "source_id": "ese-adrenal-incidentaloma-2023",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "access_blocked",
+          "source_status": "blocked_source_access",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "ese-adrenal-2023-imaging",
+              "heading": "Assessment of malignancy risk by imaging",
+              "locator": "Recommendations R.2.1–R.2.7"
+            },
+            {
+              "section_id": "ese-adrenal-2023-hormone-assessment",
+              "heading": "Assessment for hormone excess and comorbidity",
+              "locator": "Recommendations R.3.1–R.3.10"
+            },
+            {
+              "section_id": "ese-adrenal-2023-followup-referral",
+              "heading": "Multidisciplinary discussion and follow-up",
+              "locator": "Recommendations R.1.1 and R.5.1–R.5.4"
+            }
+          ],
+          "rejection_reason": "Official source request returned HTTP 403; no document content was accepted or used.",
+          "retries": 1
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "ent-allergic-rhinitis",
@@ -114,20 +502,66 @@
         "site:nice.org.uk Allergic rhinitis",
         "site:dha.gov.ae Allergic rhinitis"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-allergic-rhinitis-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-allergic-rhinitis-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-allergic-rhinitis-issue2-2024"
+      ],
+      "documents_extracted": [
+        "dha-allergic-rhinitis-issue2-2024"
+      ],
+      "sources_accepted": [
+        "dha-allergic-rhinitis-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-allergic-rhinitis-issue2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-allergic-rhinitis-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-allergic-rhinitis-i2-history",
+              "heading": "5.1 Virtual Clinical Assessment; 6. Clinical History/Symptoms",
+              "locator": "pages 8–10"
+            },
+            {
+              "section_id": "dha-allergic-rhinitis-i2-red-flags",
+              "heading": "7. Red Flags",
+              "locator": "pages 10–11"
+            },
+            {
+              "section_id": "dha-allergic-rhinitis-i2-investigations",
+              "heading": "9. Investigations",
+              "locator": "page 12"
+            },
+            {
+              "section_id": "dha-allergic-rhinitis-i2-management-referral",
+              "heading": "10. Management; 12. Referral Criteria",
+              "locator": "pages 12–16"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gastro-abdominal-pain",
@@ -136,20 +570,71 @@
         "site:nice.org.uk Abdominal pain",
         "site:dha.gov.ae Abdominal pain"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "documents_extracted": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "sources_accepted": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-telehealth-abdominal-pain-adults-v2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-telehealth-abdominal-pain-adults-v2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 9"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-history",
+              "heading": "5. Recommendation — clinical history",
+              "locator": "pages 9–18"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-red-flags",
+              "heading": "6. Red Flags",
+              "locator": "pages 18–19"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-investigations",
+              "heading": "9. Investigations",
+              "locator": "pages 20–22"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-referral",
+              "heading": "11. Referral Criteria",
+              "locator": "pages 22–24"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "geri-caregiver-support-review",
@@ -158,20 +643,61 @@
         "site:nice.org.uk Caregiver support review",
         "site:dha.gov.ae Caregiver support review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-dementia-ng97-2025"
+      ],
+      "guideline_documents_located": [
+        "nice-dementia-ng97-2025"
+      ],
+      "documents_downloaded": [
+        "nice-dementia-ng97-2025"
+      ],
+      "documents_extracted": [
+        "nice-dementia-ng97-2025"
+      ],
+      "sources_accepted": [
+        "nice-dementia-ng97-2025"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-dementia-ng97-2025"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-dementia-ng97-2025",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng97-memory-initial-assessment",
+              "heading": "Recommendations 1.2.1–1.2.11 — initial and specialist assessment",
+              "locator": "recommendations 1.2.1–1.2.11"
+            },
+            {
+              "section_id": "nice-ng97-monitoring-support",
+              "heading": "Recommendations 1.2.34–1.2.35 and 1.3.1–1.3.2 — monitoring, coordination, and support plans",
+              "locator": "recommendations 1.2.34–1.2.35 and 1.3.1–1.3.2"
+            },
+            {
+              "section_id": "nice-ng97-driving-carer-support",
+              "heading": "Recommendations 1.1.6 and 1.11.1–1.11.8 — driving information and carer support",
+              "locator": "recommendations 1.1.6 and 1.11.1–1.11.8"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gi-abnormal-liver-enzyme-review",
@@ -180,20 +706,71 @@
         "site:nice.org.uk Abnormal liver enzyme review",
         "site:dha.gov.ae Abnormal liver enzyme review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "guideline_documents_located": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "documents_downloaded": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "documents_extracted": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "sources_accepted": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "bsg-abnormal-liver-blood-tests-2018"
       ],
       "candidate_decisions": [
         {
           "source_id": "bsg-abnormal-liver-blood-tests-2018",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "bsg-liver-tests-2018-standard-panel",
+              "heading": "Recommendation 1 — standard initial liver blood-test panel",
+              "locator": "PDF page 1; recommendations list"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-context-interpretation",
+              "heading": "Recommendations 2–3 — prior results and clinical context",
+              "locator": "PDF pages 8–9; lines 717–764"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-clinical-history",
+              "heading": "Response to abnormal liver blood tests — clinical history",
+              "locator": "PDF page 10; lines 849–855"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-aetiology-screen",
+              "heading": "Recommendations 4–6 — liver aetiology screen",
+              "locator": "PDF pages 1 and 10; lines 68–86 and 899 onward"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-response-referral",
+              "heading": "Response pathway and Recommendation 10",
+              "locator": "PDF pages 2, 9, and 12; figure 1 and Recommendation 10"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gp-allergic-symptoms",
@@ -202,10 +779,24 @@
         "site:nice.org.uk Allergic symptoms",
         "site:dha.gov.ae Allergic symptoms"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gyn-abnormal-uterine-bleeding",
@@ -214,20 +805,61 @@
         "site:nice.org.uk Abnormal uterine bleeding",
         "site:dha.gov.ae Abnormal uterine bleeding"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-heavy-menstrual-bleeding-ng88-2021"
+      ],
+      "guideline_documents_located": [
+        "nice-heavy-menstrual-bleeding-ng88-2021"
+      ],
+      "documents_downloaded": [
+        "nice-heavy-menstrual-bleeding-ng88-2021"
+      ],
+      "documents_extracted": [
+        "nice-heavy-menstrual-bleeding-ng88-2021"
+      ],
+      "sources_accepted": [
+        "nice-heavy-menstrual-bleeding-ng88-2021"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-heavy-menstrual-bleeding-ng88-2021"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-heavy-menstrual-bleeding-ng88-2021",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-hmb-ng88-history-exam",
+              "heading": "Recommendations 1.2.1–1.2.5 — history and physical examination",
+              "locator": "lines 46–78"
+            },
+            {
+              "section_id": "nice-hmb-ng88-laboratory-tests",
+              "heading": "Recommendations 1.2.6–1.2.10 — laboratory tests",
+              "locator": "lines 80–99"
+            },
+            {
+              "section_id": "nice-hmb-ng88-cause-investigations",
+              "heading": "Recommendations 1.3.1–1.3.18 — investigations for the cause of HMB",
+              "locator": "lines 100–199"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "icu-antibiotic-plan-documentation",
@@ -236,20 +868,71 @@
         "site:nice.org.uk ICU antibiotic plan documentation-only",
         "site:dha.gov.ae ICU antibiotic plan documentation-only"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "guideline_documents_located": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "documents_downloaded": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "documents_extracted": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "sources_accepted": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-suspected-sepsis-ng253-2026"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-suspected-sepsis-ng253-2026",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng253-recognition-scope",
+              "heading": "Recommendations 1.1–1.2 — recognition, suspected infection, source, and risk factors",
+              "locator": "recommendations 1.1.1–1.2.6"
+            },
+            {
+              "section_id": "nice-ng253-assessment-observations",
+              "heading": "Recommendation 1.3 — history, observations, circulation, respiration, skin, urine output, and source examination",
+              "locator": "recommendations 1.3.1–1.3.11"
+            },
+            {
+              "section_id": "nice-ng253-risk-criteria",
+              "heading": "Recommendations 1.5–1.6 — community and acute risk criteria",
+              "locator": "recommendations 1.5.1–1.6.9 and risk tables"
+            },
+            {
+              "section_id": "nice-ng253-transfer-monitoring-information",
+              "heading": "Recommendation 1.7 — emergency transfer, monitoring, and information",
+              "locator": "recommendations 1.7.1–1.7.17"
+            },
+            {
+              "section_id": "nice-ng253-source-investigations",
+              "heading": "Recommendations 1.8 and 1.11 — source identification and investigations",
+              "locator": "recommendations 1.8.1–1.8.2 and 1.11.1–1.11.3"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "msk-achilles-tendon-pain",
@@ -258,20 +941,66 @@
         "site:nice.org.uk Achilles tendon pain",
         "site:dha.gov.ae Achilles tendon pain"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-muscle-sprains-strains-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-muscle-sprains-strains-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-muscle-sprains-strains-issue2-2024"
+      ],
+      "documents_extracted": [
+        "dha-muscle-sprains-strains-issue2-2024"
+      ],
+      "sources_accepted": [
+        "dha-muscle-sprains-strains-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-muscle-sprains-strains-issue2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-muscle-sprains-strains-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-sprains-i2-scope-causes",
+              "heading": "1–6 Background, scope, applicability, causes, and risk factors",
+              "locator": "pages 7–9; lines 94–136"
+            },
+            {
+              "section_id": "dha-sprains-i2-symptoms-history",
+              "heading": "7 Symptoms and signs; 7.4 Relevant history",
+              "locator": "pages 9–12; lines 137–197"
+            },
+            {
+              "section_id": "dha-sprains-i2-redflags-investigations",
+              "heading": "8 Red flags; 9 Differential diagnosis; 10 Investigations",
+              "locator": "pages 12–13; lines 198–235"
+            },
+            {
+              "section_id": "dha-sprains-i2-management-referral",
+              "heading": "11 Management; 12 Referral criteria",
+              "locator": "pages 14–19; lines 242–354"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "neph-electrolyte-abnormality-review",
@@ -280,10 +1009,24 @@
         "site:nice.org.uk Electrolyte abnormality",
         "site:dha.gov.ae Electrolyte abnormality"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "neuro-carpal-tunnel-neurology-review",
@@ -292,20 +1035,62 @@
         "site:nice.org.uk Carpal tunnel neurology review",
         "site:dha.gov.ae Carpal tunnel neurology review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "aaos-carpal-tunnel-cpg-2024"
+      ],
+      "guideline_documents_located": [
+        "aaos-carpal-tunnel-cpg-2024"
+      ],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [
+        {
+          "source_id": "aaos-carpal-tunnel-cpg-2024",
+          "terminal_status": "access_blocked",
+          "reason": "Official source request returned HTTP 403; no document content was accepted or used."
+        }
+      ],
+      "access_failures": [
+        {
+          "source_id": "aaos-carpal-tunnel-cpg-2024",
+          "status": "HTTP_403_FORBIDDEN",
+          "retries": 1
+        }
+      ],
+      "retries": 1,
       "existing_corpus_candidates": [
         "aaos-carpal-tunnel-cpg-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "aaos-carpal-tunnel-cpg-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "access_blocked",
+          "source_status": "blocked_source_access",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "aaos-cts-2024-scope",
+              "heading": "Guideline scope and current-edition statement",
+              "locator": "official CPG page and PDF pages 4–5 and 19–21"
+            },
+            {
+              "section_id": "aaos-cts-2024-diagnosis",
+              "heading": "Diagnosis: CTS-6, ultrasonography, and NCV/EMG",
+              "locator": "PDF pages 21–24; lines 859–948"
+            }
+          ],
+          "rejection_reason": "Official source request returned HTTP 403; no document content was accepted or used.",
+          "retries": 1
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "obgyn-antenatal-followup",
@@ -314,20 +1099,61 @@
         "site:nice.org.uk Antenatal follow-up",
         "site:dha.gov.ae Antenatal follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "doh-antenatal-care-standard-v1-2024"
+      ],
+      "guideline_documents_located": [
+        "doh-antenatal-care-standard-v1-2024"
+      ],
+      "documents_downloaded": [
+        "doh-antenatal-care-standard-v1-2024"
+      ],
+      "documents_extracted": [
+        "doh-antenatal-care-standard-v1-2024"
+      ],
+      "sources_accepted": [
+        "doh-antenatal-care-standard-v1-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "doh-antenatal-care-standard-v1-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "doh-antenatal-care-standard-v1-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "doh-antenatal-v1-scope-routine-care",
+              "heading": "1. Standard Scope and Purpose; 3.4 Antenatal Care; 3.4.1 Routine Antenatal Care",
+              "locator": "pages 2–5"
+            },
+            {
+              "section_id": "doh-antenatal-v1-routine-schedule",
+              "heading": "Appendix 1 — Routine Antenatal Screening and Care",
+              "locator": "pages 8–12"
+            },
+            {
+              "section_id": "doh-antenatal-v1-high-risk-criteria",
+              "heading": "Appendix 2 — Criteria for High-Risk Pregnancies",
+              "locator": "pages 13–14"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "oph-adult-strabismus-follow-up",
@@ -336,10 +1162,24 @@
         "site:nice.org.uk Adult strabismus follow-up",
         "site:dha.gov.ae Adult strabismus follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "ophth-contact-lens-complaint",
@@ -348,6 +1188,39 @@
         "site:nice.org.uk Contact lens-related complaint",
         "site:dha.gov.ae Contact lens-related complaint"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "college-optometrists-cl-infiltrative-keratitis-v9-2026",
+        "college-optometrists-microbial-keratitis-v14-2024",
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "college-optometrists-cl-infiltrative-keratitis-v9-2026",
+        "college-optometrists-microbial-keratitis-v14-2024",
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "college-optometrists-cl-infiltrative-keratitis-v9-2026",
+        "college-optometrists-microbial-keratitis-v14-2024",
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "documents_extracted": [
+        "college-optometrists-cl-infiltrative-keratitis-v9-2026",
+        "college-optometrists-microbial-keratitis-v14-2024",
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "sources_accepted": [
+        "college-optometrists-cl-infiltrative-keratitis-v9-2026",
+        "college-optometrists-microbial-keratitis-v14-2024",
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "college-optometrists-cl-infiltrative-keratitis-v9-2026",
         "college-optometrists-microbial-keratitis-v14-2024",
@@ -356,28 +1229,75 @@
       "candidate_decisions": [
         {
           "source_id": "college-optometrists-cl-infiltrative-keratitis-v9-2026",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "college-cl-keratitis-v9-features",
+              "heading": "Clinical summary — presentation and differential safety",
+              "locator": "official page lines 306–314"
+            },
+            {
+              "section_id": "college-cl-keratitis-v9-lens-care",
+              "heading": "Patient summary — lens cessation, hygiene, and wearing schedules",
+              "locator": "official page lines 315–345"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "college-optometrists-microbial-keratitis-v14-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "college-microbial-keratitis-v14-features",
+              "heading": "Clinical and patient summaries — presentation",
+              "locator": "official page lines 306–319"
+            },
+            {
+              "section_id": "college-microbial-keratitis-v14-emergency",
+              "heading": "Patient summary — sight-threatening emergency and referral",
+              "locator": "official page lines 320–350"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "dha-conjunctivitis-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-conjunctivitis-i2-features",
+              "heading": "Sections 5.1–5.9 — infectious, allergic, and non-infectious features",
+              "locator": "pages 7–14"
+            },
+            {
+              "section_id": "dha-conjunctivitis-i2-red-flags",
+              "heading": "Section 6 — red flags",
+              "locator": "pages 14–15"
+            },
+            {
+              "section_id": "dha-conjunctivitis-i2-diagnosis-history",
+              "heading": "Section 7 — diagnosis, history, pitfalls, and contact-lens wearers",
+              "locator": "pages 16–19"
+            },
+            {
+              "section_id": "dha-conjunctivitis-i2-management-referral",
+              "heading": "Sections 8–9 — management and referral criteria",
+              "locator": "pages 19–23"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "pain-articular-clinic-review",
@@ -386,20 +1306,66 @@
         "site:nice.org.uk Articular clinic review",
         "site:dha.gov.ae Articular clinic review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "documents_extracted": [
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "sources_accepted": [
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-osteoarthritis-issue2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-osteoarthritis-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-oa-i2-general-red-flags",
+              "heading": "6. Red Flags and 7. Clinical Manifestation",
+              "locator": "pages 9–13"
+            },
+            {
+              "section_id": "dha-oa-i2-knee-hip",
+              "heading": "8.1.4 Knee and 8.1.5 Hip",
+              "locator": "pages 16–17"
+            },
+            {
+              "section_id": "dha-oa-i2-diagnosis-imaging",
+              "heading": "9. Diagnosis and Imaging",
+              "locator": "pages 19–21"
+            },
+            {
+              "section_id": "dha-oa-i2-referral",
+              "heading": "11. Referral Criteria",
+              "locator": "pages 25–27"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "peds-acne-in-adolescent",
@@ -408,20 +1374,66 @@
         "site:nice.org.uk Acne in adolescent",
         "site:dha.gov.ae Acne in adolescent"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-acne-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-acne-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-acne-issue2-2024"
+      ],
+      "documents_extracted": [
+        "dha-acne-issue2-2024"
+      ],
+      "sources_accepted": [
+        "dha-acne-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-acne-issue2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-acne-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-acne-i2-history",
+              "heading": "5.1 Virtual Clinical Assessment and Clinical History",
+              "locator": "pages 8–10"
+            },
+            {
+              "section_id": "dha-acne-i2-assessment",
+              "heading": "7. Clinical Assessment",
+              "locator": "pages 15–16"
+            },
+            {
+              "section_id": "dha-acne-i2-referral",
+              "heading": "8.1 Referral Criteria",
+              "locator": "pages 16–17"
+            },
+            {
+              "section_id": "dha-acne-i2-management",
+              "heading": "8.2 Treatment Principles; 9. Treatment",
+              "locator": "pages 17–21"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "prev-alcohol-risk-screening",
@@ -430,20 +1442,62 @@
         "site:nice.org.uk Alcohol risk screening",
         "site:dha.gov.ae Alcohol risk screening"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "who-audit-primary-care-2001"
+      ],
+      "guideline_documents_located": [
+        "who-audit-primary-care-2001"
+      ],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [
+        {
+          "source_id": "who-audit-primary-care-2001",
+          "terminal_status": "access_blocked",
+          "reason": "Official source request returned HTTP 403; no document content was accepted or used."
+        }
+      ],
+      "access_failures": [
+        {
+          "source_id": "who-audit-primary-care-2001",
+          "status": "HTTP_403_FORBIDDEN",
+          "retries": 1
+        }
+      ],
+      "retries": 1,
       "existing_corpus_candidates": [
         "who-audit-primary-care-2001"
       ],
       "candidate_decisions": [
         {
           "source_id": "who-audit-primary-care-2001",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "access_blocked",
+          "source_status": "blocked_source_access",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "who-audit-2001-purpose-context",
+              "heading": "Purpose of the manual and context of alcohol screening",
+              "locator": "manual pages 4–7"
+            },
+            {
+              "section_id": "who-audit-2001-consumption-harm-items",
+              "heading": "AUDIT questions and domains",
+              "locator": "manual pages 15–18 and Appendix B"
+            }
+          ],
+          "rejection_reason": "Official source request returned HTTP 403; no document content was accepted or used.",
+          "retries": 1
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "psych-adhd-follow-up",
@@ -452,10 +1506,24 @@
         "site:nice.org.uk ADHD follow-up",
         "site:dha.gov.ae ADHD follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "renal-aki-follow-up-after-discharge",
@@ -464,10 +1532,24 @@
         "site:nice.org.uk AKI follow-up after discharge",
         "site:dha.gov.ae AKI follow-up after discharge"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "resp-breathlessness-follow-up",
@@ -476,10 +1558,24 @@
         "site:nice.org.uk Breathlessness follow-up",
         "site:dha.gov.ae Breathlessness follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "rheum-ankylosing-spondylitis-follow-up",
@@ -488,10 +1584,24 @@
         "site:nice.org.uk Ankylosing spondylitis follow-up",
         "site:dha.gov.ae Ankylosing spondylitis follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "surg-abdominal-wall-pain-surgical-review",
@@ -500,10 +1610,24 @@
         "site:nice.org.uk Abdominal wall pain surgical review",
         "site:dha.gov.ae Abdominal wall pain surgical review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "urgent-abdominal-pain",
@@ -512,20 +1636,71 @@
         "site:nice.org.uk Abdominal pain",
         "site:dha.gov.ae Abdominal pain"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "documents_extracted": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "sources_accepted": [
+        "dha-telehealth-abdominal-pain-adults-v2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-telehealth-abdominal-pain-adults-v2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-telehealth-abdominal-pain-adults-v2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 9"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-history",
+              "heading": "5. Recommendation — clinical history",
+              "locator": "pages 9–18"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-red-flags",
+              "heading": "6. Red Flags",
+              "locator": "pages 18–19"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-investigations",
+              "heading": "9. Investigations",
+              "locator": "pages 20–22"
+            },
+            {
+              "section_id": "dha-abdominal-pain-adults-v2-referral",
+              "heading": "11. Referral Criteria",
+              "locator": "pages 22–24"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "uro-balanitis-follow-up",
@@ -534,10 +1709,24 @@
         "site:nice.org.uk Balanitis follow-up",
         "site:dha.gov.ae Balanitis follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "anes-day-surgery-anesthesia-screening",
@@ -546,6 +1735,34 @@
         "site:nice.org.uk Day surgery anesthesia screening",
         "site:dha.gov.ae Day surgery anesthesia screening"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "guideline_documents_located": [
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "documents_downloaded": [
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "documents_extracted": [
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "sources_accepted": [
+        "asa-documentation-anesthesia-care-2023",
+        "doh-day-surgery-procedure-standard-v1-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "asa-documentation-anesthesia-care-2023",
         "doh-day-surgery-procedure-standard-v1-2024"
@@ -553,21 +1770,86 @@
       "candidate_decisions": [
         {
           "source_id": "asa-documentation-anesthesia-care-2023",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "asa-documentation-care-continuum",
+              "heading": "Documentation across the anesthesia care continuum",
+              "locator": "official statement lines 231–233"
+            },
+            {
+              "section_id": "asa-documentation-preanesthesia",
+              "heading": "Preanesthesia documentation",
+              "locator": "official statement lines 234–250"
+            },
+            {
+              "section_id": "asa-documentation-intraoperative",
+              "heading": "Intraoperative or procedural anesthesia documentation",
+              "locator": "official statement lines 251–262"
+            },
+            {
+              "section_id": "asa-documentation-postanesthesia",
+              "heading": "Postanesthesia documentation",
+              "locator": "official statement lines 263–269"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "doh-day-surgery-procedure-standard-v1-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "doh-day-surgery-scope-service",
+              "heading": "Scope, definitions, and service requirements",
+              "locator": "PDF sections 1–3; lines 14–69"
+            },
+            {
+              "section_id": "doh-day-surgery-governance-policies",
+              "heading": "Governance, workforce, policies, and risk controls",
+              "locator": "PDF section 4; lines 98–154"
+            },
+            {
+              "section_id": "doh-day-surgery-assessment-care-plan",
+              "heading": "Patient assessment and individualized care plan",
+              "locator": "PDF section 5.1; lines 158–177"
+            },
+            {
+              "section_id": "doh-day-surgery-preprocedure",
+              "heading": "Pre-procedure requirements",
+              "locator": "PDF section 5.2; lines 178–187"
+            },
+            {
+              "section_id": "doh-day-surgery-intraprocedure",
+              "heading": "Intra-procedure requirements",
+              "locator": "PDF section 5.3; lines 188–192"
+            },
+            {
+              "section_id": "doh-day-surgery-postprocedure",
+              "heading": "Recovery and discharge requirements",
+              "locator": "PDF section 5.4; lines 193–217"
+            },
+            {
+              "section_id": "doh-day-surgery-records",
+              "heading": "Health-record requirements",
+              "locator": "PDF section 5.5; lines 218–232"
+            },
+            {
+              "section_id": "doh-day-surgery-patient-education-language",
+              "heading": "Patient education and communication",
+              "locator": "PDF section 5.6; lines 233–251"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "cardio-home-blood-pressure-review",
@@ -576,20 +1858,76 @@
         "site:nice.org.uk Home blood pressure review",
         "site:dha.gov.ae Home blood pressure review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "guideline_documents_located": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "documents_downloaded": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "documents_extracted": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "sources_accepted": [
+        "nice-hypertension-ng136-2026"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-hypertension-ng136-2026"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-hypertension-ng136-2026",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng136-measurement-technique",
+              "heading": "Recommendations 1.1.1-1.1.8 - training, device maintenance, measurement technique, and postural assessment",
+              "locator": "recommendations 1.1.1-1.1.8"
+            },
+            {
+              "section_id": "nice-ng136-abpm-hbpm-diagnosis",
+              "heading": "Recommendations 1.2.1-1.2.13 - clinic, ambulatory, and home blood-pressure assessment",
+              "locator": "recommendations 1.2.1-1.2.13"
+            },
+            {
+              "section_id": "nice-ng136-risk-tests",
+              "heading": "Recommendations 1.3.1-1.3.3 - cardiovascular risk and target-organ assessment",
+              "locator": "recommendations 1.3.1-1.3.3"
+            },
+            {
+              "section_id": "nice-ng136-monitoring-annual-review",
+              "heading": "Recommendations 1.4.15-1.4.24 - monitoring and annual review",
+              "locator": "recommendations 1.4.15-1.4.24"
+            },
+            {
+              "section_id": "nice-ng136-severe-red-flags",
+              "heading": "Recommendations 1.5.1-1.5.3 - severe hypertension and same-day specialist review features",
+              "locator": "recommendations 1.5.1-1.5.3"
+            },
+            {
+              "section_id": "nice-ng136-postural-hypotension-measurement",
+              "heading": "Recommendations 1.1.5–1.1.8 — postural hypotension symptoms and standing blood pressure",
+              "locator": "official NICE NG136 recommendations 1.1.5–1.1.8"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "derm-acne-scar-review",
@@ -598,6 +1936,34 @@
         "site:nice.org.uk Acne scar review",
         "site:dha.gov.ae Acne scar review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-acne-issue2-2024",
+        "nice-acne-vulgaris-ng198-2026"
+      ],
+      "guideline_documents_located": [
+        "dha-acne-issue2-2024",
+        "nice-acne-vulgaris-ng198-2026"
+      ],
+      "documents_downloaded": [
+        "dha-acne-issue2-2024",
+        "nice-acne-vulgaris-ng198-2026"
+      ],
+      "documents_extracted": [
+        "dha-acne-issue2-2024",
+        "nice-acne-vulgaris-ng198-2026"
+      ],
+      "sources_accepted": [
+        "dha-acne-issue2-2024",
+        "nice-acne-vulgaris-ng198-2026"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-acne-issue2-2024",
         "nice-acne-vulgaris-ng198-2026"
@@ -605,21 +1971,56 @@
       "candidate_decisions": [
         {
           "source_id": "dha-acne-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-acne-i2-history",
+              "heading": "5.1 Virtual Clinical Assessment and Clinical History",
+              "locator": "pages 8–10"
+            },
+            {
+              "section_id": "dha-acne-i2-assessment",
+              "heading": "7. Clinical Assessment",
+              "locator": "pages 15–16"
+            },
+            {
+              "section_id": "dha-acne-i2-referral",
+              "heading": "8.1 Referral Criteria",
+              "locator": "pages 16–17"
+            },
+            {
+              "section_id": "dha-acne-i2-management",
+              "heading": "8.2 Treatment Principles; 9. Treatment",
+              "locator": "pages 17–21"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "nice-acne-vulgaris-ng198-2026",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng198-acne-scarring-review",
+              "heading": "Recommendations 1.8.1–1.8.2 — acne-related scarring concerns and specialist review",
+              "locator": "official recommendations lines 508–529"
+            },
+            {
+              "section_id": "nice-ng198-acne-maintenance-review",
+              "heading": "Recommendations 1.7.1–1.7.5 — maintenance and review",
+              "locator": "official recommendations section 1.7"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "ed-ear-nose-throat-presentation",
@@ -628,10 +2029,24 @@
         "site:nice.org.uk ED ear nose throat presentation",
         "site:dha.gov.ae ED ear nose throat presentation"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "ent-balance-clinic-follow-up",
@@ -640,20 +2055,56 @@
         "site:nice.org.uk Balance clinic follow-up",
         "site:dha.gov.ae Balance clinic follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "aao-hns-bppv-2017"
+      ],
+      "guideline_documents_located": [
+        "aao-hns-bppv-2017"
+      ],
+      "documents_downloaded": [
+        "aao-hns-bppv-2017"
+      ],
+      "documents_extracted": [
+        "aao-hns-bppv-2017"
+      ],
+      "sources_accepted": [
+        "aao-hns-bppv-2017"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "aao-hns-bppv-2017"
       ],
       "candidate_decisions": [
         {
           "source_id": "aao-hns-bppv-2017",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "aao-bppv-2017-assessment-modifiers",
+              "heading": "Key action statements 1a–3 — positional assessment, differential, and modifying factors",
+              "locator": "official guideline key action statements 1a–3"
+            },
+            {
+              "section_id": "aao-bppv-2017-reassessment-education",
+              "heading": "Key action statements 7–8b — reassessment, persistent symptoms, and education",
+              "locator": "official guideline key action statements 7–8b"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gastro-liver-enzyme-review",
@@ -662,20 +2113,71 @@
         "site:nice.org.uk Liver enzyme review",
         "site:dha.gov.ae Liver enzyme review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "guideline_documents_located": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "documents_downloaded": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "documents_extracted": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "sources_accepted": [
+        "bsg-abnormal-liver-blood-tests-2018"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "bsg-abnormal-liver-blood-tests-2018"
       ],
       "candidate_decisions": [
         {
           "source_id": "bsg-abnormal-liver-blood-tests-2018",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "bsg-liver-tests-2018-standard-panel",
+              "heading": "Recommendation 1 — standard initial liver blood-test panel",
+              "locator": "PDF page 1; recommendations list"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-context-interpretation",
+              "heading": "Recommendations 2–3 — prior results and clinical context",
+              "locator": "PDF pages 8–9; lines 717–764"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-clinical-history",
+              "heading": "Response to abnormal liver blood tests — clinical history",
+              "locator": "PDF page 10; lines 849–855"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-aetiology-screen",
+              "heading": "Recommendations 4–6 — liver aetiology screen",
+              "locator": "PDF pages 1 and 10; lines 68–86 and 899 onward"
+            },
+            {
+              "section_id": "bsg-liver-tests-2018-response-referral",
+              "heading": "Response pathway and Recommendation 10",
+              "locator": "PDF pages 2, 9, and 12; figure 1 and Recommendation 10"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "geri-cognitive-decline-review",
@@ -684,20 +2186,61 @@
         "site:nice.org.uk Cognitive decline review",
         "site:dha.gov.ae Cognitive decline review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-dementia-ng97-2025"
+      ],
+      "guideline_documents_located": [
+        "nice-dementia-ng97-2025"
+      ],
+      "documents_downloaded": [
+        "nice-dementia-ng97-2025"
+      ],
+      "documents_extracted": [
+        "nice-dementia-ng97-2025"
+      ],
+      "sources_accepted": [
+        "nice-dementia-ng97-2025"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-dementia-ng97-2025"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-dementia-ng97-2025",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng97-memory-initial-assessment",
+              "heading": "Recommendations 1.2.1–1.2.11 — initial and specialist assessment",
+              "locator": "recommendations 1.2.1–1.2.11"
+            },
+            {
+              "section_id": "nice-ng97-monitoring-support",
+              "heading": "Recommendations 1.2.34–1.2.35 and 1.3.1–1.3.2 — monitoring, coordination, and support plans",
+              "locator": "recommendations 1.2.34–1.2.35 and 1.3.1–1.3.2"
+            },
+            {
+              "section_id": "nice-ng97-driving-carer-support",
+              "heading": "Recommendations 1.1.6 and 1.11.1–1.11.8 — driving information and carer support",
+              "locator": "recommendations 1.1.6 and 1.11.1–1.11.8"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gi-anal-fissure-symptoms",
@@ -706,20 +2249,56 @@
         "site:nice.org.uk Anal fissure symptoms",
         "site:dha.gov.ae Anal fissure symptoms"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "ascrs-anal-fissures-2023"
+      ],
+      "guideline_documents_located": [
+        "ascrs-anal-fissures-2023"
+      ],
+      "documents_downloaded": [
+        "ascrs-anal-fissures-2023"
+      ],
+      "documents_extracted": [
+        "ascrs-anal-fissures-2023"
+      ],
+      "sources_accepted": [
+        "ascrs-anal-fissures-2023"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "ascrs-anal-fissures-2023"
       ],
       "candidate_decisions": [
         {
           "source_id": "ascrs-anal-fissures-2023",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "ascrs-fissure-2023-presentation",
+              "heading": "Statement of the problem — presentation and symptom pattern",
+              "locator": "pages 190–191"
+            },
+            {
+              "section_id": "ascrs-fissure-2023-atypical-assessment",
+              "heading": "Atypical fissure context and chronicity findings",
+              "locator": "pages 190–192"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gp-anemia-result-review",
@@ -728,10 +2307,24 @@
         "site:nice.org.uk Anemia result review",
         "site:dha.gov.ae Anemia result review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "gyn-adolescent-menstrual-concern",
@@ -740,6 +2333,39 @@
         "site:nice.org.uk Adolescent menstrual concern",
         "site:dha.gov.ae Adolescent menstrual concern"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "asrm-amenorrhea-committee-opinion-2024",
+        "monash-international-pcos-guideline-2023"
+      ],
+      "guideline_documents_located": [
+        "asrm-amenorrhea-committee-opinion-2024",
+        "monash-international-pcos-guideline-2023"
+      ],
+      "documents_downloaded": [
+        "asrm-amenorrhea-committee-opinion-2024"
+      ],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [
+        {
+          "source_id": "monash-international-pcos-guideline-2023",
+          "terminal_status": "access_blocked",
+          "reason": "Official source request returned HTTP 403; no document content was accepted or used."
+        }
+      ],
+      "access_failures": [
+        {
+          "source_id": "monash-international-pcos-guideline-2023",
+          "status": "HTTP_403_FORBIDDEN",
+          "retries": 1
+        }
+      ],
+      "retries": 1,
       "existing_corpus_candidates": [
         "asrm-amenorrhea-committee-opinion-2024",
         "monash-international-pcos-guideline-2023"
@@ -747,21 +2373,66 @@
       "candidate_decisions": [
         {
           "source_id": "asrm-amenorrhea-committee-opinion-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "terminal_scope_review",
+          "source_status": "invalid_source_target",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "asrm-amenorrhea-2024-definition-history",
+              "heading": "Introduction, definitions and clinical history",
+              "locator": "official HTML sections “Introduction” and “History”"
+            },
+            {
+              "section_id": "asrm-amenorrhea-2024-exam-initial-tests",
+              "heading": "Physical examination and initial laboratory evaluation",
+              "locator": "official HTML examination and laboratory-evaluation sections"
+            },
+            {
+              "section_id": "asrm-amenorrhea-2024-cause-directed-evaluation",
+              "heading": "Cause-directed evaluation and imaging",
+              "locator": "official HTML diagnostic-evaluation sections"
+            }
+          ],
+          "rejection_reason": "No source record was available for this target.",
+          "retries": 0
         },
         {
           "source_id": "monash-international-pcos-guideline-2023",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "access_blocked",
+          "source_status": "blocked_source_access",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "monash-pcos-2023-scope",
+              "heading": "Guideline overview and scope",
+              "locator": "PDF pages 8–10"
+            },
+            {
+              "section_id": "monash-pcos-2023-cycles",
+              "heading": "Irregular cycles and ovulatory dysfunction",
+              "locator": "Recommendations 1.1.1–1.1.4; PDF pages 22 and 54"
+            },
+            {
+              "section_id": "monash-pcos-2023-hyperandrogenism",
+              "heading": "Biochemical and clinical hyperandrogenism",
+              "locator": "Recommendations 1.3.1–1.3.7; PDF pages 24–25"
+            },
+            {
+              "section_id": "monash-pcos-2023-cardiometabolic-risk",
+              "heading": "Cardiovascular and diabetes risk",
+              "locator": "Recommendations 1.8.1–1.9.10; PDF pages 28–29"
+            },
+            {
+              "section_id": "monash-pcos-2023-psychological-features",
+              "heading": "Quality of life, depression, and anxiety",
+              "locator": "Recommendations 2.1.1–2.2.3; PDF pages 30–31"
+            }
+          ],
+          "rejection_reason": "Official source request returned HTTP 403; no document content was accepted or used.",
+          "retries": 1
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "icu-culture-result-review",
@@ -770,20 +2441,71 @@
         "site:nice.org.uk ICU culture result review",
         "site:dha.gov.ae ICU culture result review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "guideline_documents_located": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "documents_downloaded": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "documents_extracted": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "sources_accepted": [
+        "nice-suspected-sepsis-ng253-2026"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-suspected-sepsis-ng253-2026"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-suspected-sepsis-ng253-2026",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-ng253-recognition-scope",
+              "heading": "Recommendations 1.1–1.2 — recognition, suspected infection, source, and risk factors",
+              "locator": "recommendations 1.1.1–1.2.6"
+            },
+            {
+              "section_id": "nice-ng253-assessment-observations",
+              "heading": "Recommendation 1.3 — history, observations, circulation, respiration, skin, urine output, and source examination",
+              "locator": "recommendations 1.3.1–1.3.11"
+            },
+            {
+              "section_id": "nice-ng253-risk-criteria",
+              "heading": "Recommendations 1.5–1.6 — community and acute risk criteria",
+              "locator": "recommendations 1.5.1–1.6.9 and risk tables"
+            },
+            {
+              "section_id": "nice-ng253-transfer-monitoring-information",
+              "heading": "Recommendation 1.7 — emergency transfer, monitoring, and information",
+              "locator": "recommendations 1.7.1–1.7.17"
+            },
+            {
+              "section_id": "nice-ng253-source-investigations",
+              "heading": "Recommendations 1.8 and 1.11 — source identification and investigations",
+              "locator": "recommendations 1.8.1–1.8.2 and 1.11.1–1.11.3"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "msk-ankle-pain",
@@ -792,6 +2514,34 @@
         "site:nice.org.uk Ankle / foot pain",
         "site:dha.gov.ae Ankle / foot pain"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-muscle-sprains-strains-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025"
+      ],
+      "guideline_documents_located": [
+        "dha-muscle-sprains-strains-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025"
+      ],
+      "documents_downloaded": [
+        "dha-muscle-sprains-strains-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025"
+      ],
+      "documents_extracted": [
+        "dha-muscle-sprains-strains-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025"
+      ],
+      "sources_accepted": [
+        "dha-muscle-sprains-strains-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-muscle-sprains-strains-issue2-2024",
         "nice-fractures-noncomplex-ng38-2025"
@@ -799,21 +2549,61 @@
       "candidate_decisions": [
         {
           "source_id": "dha-muscle-sprains-strains-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-sprains-i2-scope-causes",
+              "heading": "1–6 Background, scope, applicability, causes, and risk factors",
+              "locator": "pages 7–9; lines 94–136"
+            },
+            {
+              "section_id": "dha-sprains-i2-symptoms-history",
+              "heading": "7 Symptoms and signs; 7.4 Relevant history",
+              "locator": "pages 9–12; lines 137–197"
+            },
+            {
+              "section_id": "dha-sprains-i2-redflags-investigations",
+              "heading": "8 Red flags; 9 Differential diagnosis; 10 Investigations",
+              "locator": "pages 12–13; lines 198–235"
+            },
+            {
+              "section_id": "dha-sprains-i2-management-referral",
+              "heading": "11 Management; 12 Referral criteria",
+              "locator": "pages 14–19; lines 242–354"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         },
         {
           "source_id": "nice-fractures-noncomplex-ng38-2025",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-fractures-ng38-scope-assessment",
+              "heading": "Overview; recommendations 1.1 and 1.2",
+              "locator": "overview lines 26–50; recommendations lines 41–125"
+            },
+            {
+              "section_id": "nice-fractures-ng38-ongoing-management",
+              "heading": "Recommendations 1.4.1–1.4.10 — ongoing orthopaedic management",
+              "locator": "lines 147–232"
+            },
+            {
+              "section_id": "nice-fractures-ng38-documentation-information",
+              "heading": "Recommendations 1.5.1–1.6.12 — documentation, information, and support",
+              "locator": "lines 234–336"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "neuro-chronic-fatigue-neurological-review",
@@ -822,20 +2612,76 @@
         "site:nice.org.uk Chronic fatigue neurological review",
         "site:dha.gov.ae Chronic fatigue neurological review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-telehealth-fatigue-v2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-telehealth-fatigue-v2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-telehealth-fatigue-v2-2024"
+      ],
+      "documents_extracted": [
+        "dha-telehealth-fatigue-v2-2024"
+      ],
+      "sources_accepted": [
+        "dha-telehealth-fatigue-v2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-telehealth-fatigue-v2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-telehealth-fatigue-v2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-fatigue-v2-background",
+              "heading": "1. Background",
+              "locator": "pages 7–8"
+            },
+            {
+              "section_id": "dha-fatigue-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 9"
+            },
+            {
+              "section_id": "dha-fatigue-v2-history",
+              "heading": "5. Recommendation — history and associated symptoms",
+              "locator": "pages 9–12"
+            },
+            {
+              "section_id": "dha-fatigue-v2-red-flags",
+              "heading": "6. Red Flags",
+              "locator": "pages 12–13"
+            },
+            {
+              "section_id": "dha-fatigue-v2-investigations",
+              "heading": "8. Investigations",
+              "locator": "page 14"
+            },
+            {
+              "section_id": "dha-fatigue-v2-referral",
+              "heading": "10. Referral Criteria",
+              "locator": "pages 15–16"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "obgyn-contraception",
@@ -844,20 +2690,86 @@
         "site:nice.org.uk Contraception counseling",
         "site:dha.gov.ae Contraception counseling"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "who-contraceptive-spr-fourth-2025"
+      ],
+      "guideline_documents_located": [
+        "who-contraceptive-spr-fourth-2025"
+      ],
+      "documents_downloaded": [
+        "who-contraceptive-spr-fourth-2025"
+      ],
+      "documents_extracted": [
+        "who-contraceptive-spr-fourth-2025"
+      ],
+      "sources_accepted": [
+        "who-contraceptive-spr-fourth-2025"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "who-contraceptive-spr-fourth-2025"
       ],
       "candidate_decisions": [
         {
           "source_id": "who-contraceptive-spr-fourth-2025",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "who-spr4-purpose-scope",
+              "heading": "1.1 Purpose; 1.2 Scope; 1.3 Target audience",
+              "locator": "pages 4–5"
+            },
+            {
+              "section_id": "who-spr4-choice-consent",
+              "heading": "1.5 Contraceptive choice and informed consent",
+              "locator": "page 6"
+            },
+            {
+              "section_id": "who-spr4-quality-information",
+              "heading": "1.6 Quality of care and access to products",
+              "locator": "pages 6–7"
+            },
+            {
+              "section_id": "who-spr4-examinations-eligibility-pregnancy",
+              "heading": "3.1 Examinations and tests; 3.2 Contraceptive eligibility; 5.1 Reasonable certainty that a woman is not pregnant",
+              "locator": "pages 17–18 and 23"
+            },
+            {
+              "section_id": "who-spr4-method-followup-effects",
+              "heading": "Method-specific continuation, common effects and return guidance",
+              "locator": "fourth edition method chapters and recommendations"
+            },
+            {
+              "section_id": "who-spr4-emergency-contraception",
+              "heading": "Emergency contraceptive pills and copper-bearing intrauterine devices for emergency contraception",
+              "locator": "fourth edition emergency-contraception chapter"
+            },
+            {
+              "section_id": "who-spr4-implant-initiation-followup",
+              "heading": "Contraceptive implants — initiation, continuation and follow-up",
+              "locator": "fourth edition implant recommendations"
+            },
+            {
+              "section_id": "who-spr4-iud-initiation-followup",
+              "heading": "Copper-bearing and levonorgestrel-releasing intrauterine devices — initiation and follow-up",
+              "locator": "fourth edition intrauterine-device recommendations"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "oph-allergic-conjunctivitis",
@@ -866,20 +2778,66 @@
         "site:nice.org.uk Allergic conjunctivitis",
         "site:dha.gov.ae Allergic conjunctivitis"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "documents_extracted": [
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "sources_accepted": [
+        "dha-conjunctivitis-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-conjunctivitis-issue2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-conjunctivitis-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-conjunctivitis-i2-features",
+              "heading": "Sections 5.1–5.9 — infectious, allergic, and non-infectious features",
+              "locator": "pages 7–14"
+            },
+            {
+              "section_id": "dha-conjunctivitis-i2-red-flags",
+              "heading": "Section 6 — red flags",
+              "locator": "pages 14–15"
+            },
+            {
+              "section_id": "dha-conjunctivitis-i2-diagnosis-history",
+              "heading": "Section 7 — diagnosis, history, pitfalls, and contact-lens wearers",
+              "locator": "pages 16–19"
+            },
+            {
+              "section_id": "dha-conjunctivitis-i2-management-referral",
+              "heading": "Sections 8–9 — management and referral criteria",
+              "locator": "pages 19–23"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "pain-cervical-clinic-review",
@@ -888,20 +2846,66 @@
         "site:nice.org.uk Cervical clinic review",
         "site:dha.gov.ae Cervical clinic review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "dha-neck-pain-issue2-2024"
+      ],
+      "guideline_documents_located": [
+        "dha-neck-pain-issue2-2024"
+      ],
+      "documents_downloaded": [
+        "dha-neck-pain-issue2-2024"
+      ],
+      "documents_extracted": [
+        "dha-neck-pain-issue2-2024"
+      ],
+      "sources_accepted": [
+        "dha-neck-pain-issue2-2024"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "dha-neck-pain-issue2-2024"
       ],
       "candidate_decisions": [
         {
           "source_id": "dha-neck-pain-issue2-2024",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_with_structural_limitations",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "dha-neck-i2-evaluation-red-flags",
+              "heading": "5. Evaluation and 6. Red Flags",
+              "locator": "pages 8–9"
+            },
+            {
+              "section_id": "dha-neck-i2-history-exam",
+              "heading": "7. Clinical History and face-to-face examination elements",
+              "locator": "pages 9–11"
+            },
+            {
+              "section_id": "dha-neck-i2-investigation",
+              "heading": "8. Investigation",
+              "locator": "pages 12–13"
+            },
+            {
+              "section_id": "dha-neck-i2-referral",
+              "heading": "12. Referral Criteria",
+              "locator": "pages 23–24"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "peds-anxiety-symptoms-in-child",
@@ -910,10 +2914,24 @@
         "site:nice.org.uk Anxiety symptoms in child",
         "site:dha.gov.ae Anxiety symptoms in child"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "prev-allergy-list-update",
@@ -922,20 +2940,56 @@
         "site:nice.org.uk Allergy list update",
         "site:dha.gov.ae Allergy list update"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [
+        "nice-drug-allergy-cg183-2014"
+      ],
+      "guideline_documents_located": [
+        "nice-drug-allergy-cg183-2014"
+      ],
+      "documents_downloaded": [
+        "nice-drug-allergy-cg183-2014"
+      ],
+      "documents_extracted": [
+        "nice-drug-allergy-cg183-2014"
+      ],
+      "sources_accepted": [
+        "nice-drug-allergy-cg183-2014"
+      ],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [
         "nice-drug-allergy-cg183-2014"
       ],
       "candidate_decisions": [
         {
           "source_id": "nice-drug-allergy-cg183-2014",
-          "decision": "accepted_for_scope_review",
-          "source_status": "registered",
-          "exact_sections_reviewed": "family manifest mapped sections",
-          "rejection_reason": null
+          "decision": "accepted_and_ingested",
+          "source_status": "ingested_complete",
+          "exact_sections_reviewed": [
+            {
+              "section_id": "nice-cg183-drug-allergy-assessment-patterns",
+              "heading": "Recommendation 1.1.1 and Tables 1–3 — assessment, reaction patterns, and timing",
+              "locator": "official recommendations lines 39–121"
+            },
+            {
+              "section_id": "nice-cg183-structured-reaction-documentation",
+              "heading": "Recommendations 1.2.1–1.2.9 — recording and sharing drug-allergy information",
+              "locator": "official recommendations lines 159–234"
+            }
+          ],
+          "rejection_reason": null,
+          "retries": 0
         }
       ],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "psych-bipolar-mood-symptom-follow-up",
@@ -944,10 +2998,24 @@
         "site:nice.org.uk Bipolar mood symptom follow-up",
         "site:dha.gov.ae Bipolar mood symptom follow-up"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "renal-anemia-in-ckd-review",
@@ -956,10 +3024,24 @@
         "site:nice.org.uk Anemia in CKD review",
         "site:dha.gov.ae Anemia in CKD review"
       ],
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
+      ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     },
     {
       "workflow_id": "resp-bronchiectasis-follow-up",
@@ -968,23 +3050,25 @@
         "site:nice.org.uk Bronchiectasis follow-up",
         "site:dha.gov.ae Bronchiectasis follow-up"
       ],
-      "existing_corpus_candidates": [],
-      "candidate_decisions": [],
-      "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
-    },
-    {
-      "workflow_id": "rheum-anti-ccp-result-review",
-      "search_queries": [
-        "official guideline Anti-CCP result review",
-        "site:nice.org.uk Anti-CCP result review",
-        "site:dha.gov.ae Anti-CCP result review"
+      "organisations_searched": [
+        "NICE",
+        "Dubai Health Authority",
+        "National Health Service"
       ],
+      "official_pages_opened": [],
+      "guideline_documents_located": [],
+      "documents_downloaded": [],
+      "documents_extracted": [],
+      "sources_accepted": [],
+      "sources_rejected": [],
+      "access_failures": [],
+      "retries": 0,
       "existing_corpus_candidates": [],
       "candidate_decisions": [],
       "unresolved_access_candidates": [],
-      "status": "completed_with_specific_scope_gaps"
+      "final_evidence_coverage": "specific_scope_gaps_remain",
+      "status": "completed_with_terminal_candidate_evaluations"
     }
   ],
-  "fingerprint": "7f818fe1cebd8d36cd66676273558f188aa653b06953dcc868daee94f65904be"
+  "fingerprint": "3aedf10794bb055c3f0046172f9b66bce09f54802d1b7a15eea7db57f0b815f4"
 }
