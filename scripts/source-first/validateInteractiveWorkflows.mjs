@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 const root = path.join(process.cwd(), 'public', 'data-beta', 'interactive-workflows')
-const allowedTypes = new Set(['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'text', 'textarea', 'number', 'duration', 'date', 'vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'allergy_entry', 'assessment_entry', 'plan_entry', 'referral_selection', 'follow_up_selection', 'safety_netting_selection', 'information_only'])
+const allowedTypes = new Set(['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'text', 'textarea', 'number', 'integer', 'duration', 'date', 'vital_sign', 'examination_finding', 'investigation_result', 'medication_entry', 'allergy_entry', 'assessment_entry', 'plan_entry', 'referral_selection', 'follow_up_selection', 'safety_netting_selection', 'information_only'])
 const allowedDestinations = new Set(['subjective', 'objective', 'assessment', 'plan'])
 
 async function main() {
@@ -29,7 +29,7 @@ async function main() {
       if (!field.provenance?.evidence_pack_ids?.length || !field.provenance?.evidence_statement_ids?.length) errors.push(`${file}: field lacks provenance`)
       if (field.provenance?.evidence_statement_ids?.some((id) => !evidenceIds.has(id))) errors.push(`${file}: field references invalid evidence`)
       if (field.label.length > 90 || /evidence record|source statement|guideline text/i.test(field.label)) errors.push(`${file}: evidence paragraph used as label`)
-      if (field.options?.length && !['single_select', 'multi_select', 'yes_no', 'yes_no_unknown'].includes(field.field_type)) errors.push(`${file}: options on non-select field`)
+      if (field.options?.length && !['single_select', 'multi_select', 'yes_no', 'yes_no_unknown', 'referral_selection', 'follow_up_selection', 'safety_netting_selection'].includes(field.field_type)) errors.push(`${file}: options on non-select field`)
     }
   }
   if (files.length !== 416) errors.push(`expected 416 workflow files, found ${files.length}`)

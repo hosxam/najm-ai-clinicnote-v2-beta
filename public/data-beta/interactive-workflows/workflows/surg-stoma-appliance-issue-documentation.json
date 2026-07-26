@@ -658,6 +658,11 @@
       "note_template": "Procedure identity: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "procedure",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-stoma"
@@ -696,6 +701,11 @@
       "note_template": "Consent documentation: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "consent",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-stoma"
@@ -733,8 +743,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Procedure complications: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "examination",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "complication",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-stoma"
@@ -774,12 +789,594 @@
       "note_template": "Procedure site: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "site",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-stoma"
         ],
         "evidence_statement_ids": [
           "family-surg-stoma--statement-00047"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__age",
+      "archetype": "procedure_documentation",
+      "section": "history",
+      "label": "Age",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "integer",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 14,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age: {{value}}",
+      "value_formatter": "age",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|years|months",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00002",
+          "family-surg-stoma--statement-00003",
+          "family-surg-stoma--statement-00004",
+          "family-surg-stoma--statement-00005",
+          "family-surg-stoma--statement-00008",
+          "family-surg-stoma--statement-00009",
+          "family-surg-stoma--statement-00010",
+          "family-surg-stoma--statement-00018",
+          "family-surg-stoma--statement-00026",
+          "family-surg-stoma--statement-00029",
+          "family-surg-stoma--statement-00033",
+          "family-surg-stoma--statement-00040",
+          "family-surg-stoma--statement-00046",
+          "family-surg-stoma--statement-00054",
+          "family-surg-stoma--statement-00057",
+          "family-surg-stoma--statement-00062",
+          "family-surg-stoma--statement-00063"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__age_unit",
+      "archetype": "procedure_documentation",
+      "section": "history",
+      "label": "Age unit",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "years",
+        "months",
+        "weeks",
+        "days"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 15,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age unit: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|months|years",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00002",
+          "family-surg-stoma--statement-00003",
+          "family-surg-stoma--statement-00004",
+          "family-surg-stoma--statement-00005",
+          "family-surg-stoma--statement-00008",
+          "family-surg-stoma--statement-00009",
+          "family-surg-stoma--statement-00010",
+          "family-surg-stoma--statement-00018",
+          "family-surg-stoma--statement-00026",
+          "family-surg-stoma--statement-00029",
+          "family-surg-stoma--statement-00033",
+          "family-surg-stoma--statement-00040",
+          "family-surg-stoma--statement-00046",
+          "family-surg-stoma--statement-00054",
+          "family-surg-stoma--statement-00057",
+          "family-surg-stoma--statement-00062",
+          "family-surg-stoma--statement-00063"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__encounter_setting",
+      "archetype": "procedure_documentation",
+      "section": "history",
+      "label": "Encounter setting",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Outpatient",
+        "Urgent assessment",
+        "Emergency",
+        "Inpatient",
+        "Telephone"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 16,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Encounter setting: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "setting|primary care|emergency|outpatient",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00013",
+          "family-surg-stoma--statement-00055",
+          "family-surg-stoma--statement-00057"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__severity",
+      "archetype": "procedure_documentation",
+      "section": "history",
+      "label": "Severity",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Not assessed"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 17,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Severity: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "severity|mild|moderate|severe",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00046"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__medication_reconciliation",
+      "archetype": "procedure_documentation",
+      "section": "history",
+      "label": "Medication reconciliation",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 18,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication reconciliation: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication|prescri|dose|route|frequency",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00003",
+          "family-surg-stoma--statement-00004",
+          "family-surg-stoma--statement-00009",
+          "family-surg-stoma--statement-00026",
+          "family-surg-stoma--statement-00055"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__follow_up_interval",
+      "archetype": "procedure_documentation",
+      "section": "plan",
+      "label": "Follow-up interval",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "follow_up_selection",
+      "options": [
+        "Within 24 hours",
+        "Within 48 hours",
+        "Within 7 days",
+        "Routine review",
+        "As needed"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 19,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Follow-up interval: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "follow-up|review|reassess",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00004",
+          "family-surg-stoma--statement-00011",
+          "family-surg-stoma--statement-00013",
+          "family-surg-stoma--statement-00016",
+          "family-surg-stoma--statement-00018",
+          "family-surg-stoma--statement-00022",
+          "family-surg-stoma--statement-00023",
+          "family-surg-stoma--statement-00025",
+          "family-surg-stoma--statement-00027",
+          "family-surg-stoma--statement-00031",
+          "family-surg-stoma--statement-00050",
+          "family-surg-stoma--statement-00052",
+          "family-surg-stoma--statement-00053",
+          "family-surg-stoma--statement-00054",
+          "family-surg-stoma--statement-00057"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__disposition",
+      "archetype": "procedure_documentation",
+      "section": "plan",
+      "label": "Disposition",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "referral_selection",
+      "options": [
+        "Continue outpatient care",
+        "Urgent review",
+        "Emergency referral",
+        "Admit",
+        "Discharge with advice"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 20,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Disposition: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "disposition|refer|escalat|admit|discharge",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00001",
+          "family-surg-stoma--statement-00008",
+          "family-surg-stoma--statement-00011",
+          "family-surg-stoma--statement-00023",
+          "family-surg-stoma--statement-00026",
+          "family-surg-stoma--statement-00029",
+          "family-surg-stoma--statement-00053",
+          "family-surg-stoma--statement-00063"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__site_laterality",
+      "archetype": "procedure_documentation",
+      "section": "history",
+      "label": "Site and laterality",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 21,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Site and laterality: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "site|left|right|location",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00003",
+          "family-surg-stoma--statement-00012",
+          "family-surg-stoma--statement-00013",
+          "family-surg-stoma--statement-00047"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__stoma_findings",
+      "archetype": "procedure_documentation",
+      "section": "examination",
+      "label": "Stoma or wound findings",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 22,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Stoma or wound findings: {{value}}",
+      "value_formatter": "examination",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "stoma|wound|examination|finding",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00006",
+          "family-surg-stoma--statement-00008",
+          "family-surg-stoma--statement-00014",
+          "family-surg-stoma--statement-00063"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__complication",
+      "archetype": "procedure_documentation",
+      "section": "assessment",
+      "label": "Complication",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "None documented",
+        "Bleeding",
+        "Infection",
+        "Other documented complication",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 23,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Complication: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "complication|bleed|infection",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00008",
+          "family-surg-stoma--statement-00014",
+          "family-surg-stoma--statement-00046"
+        ],
+        "source_ids": [
+          "nice-colorectal-cancer-ng151-2021"
+        ],
+        "population": "Adults with established colorectal cancer and people receiving colorectal-cancer care; screening and undiagnosed symptoms require separate pathways.",
+        "setting": "Primary and specialist care as qualified by the cited recommendations.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-stoma-appliance-issue-documentation",
+      "field_id": "surg_stoma_appliance_issue_documentation__procedure_result",
+      "archetype": "procedure_documentation",
+      "section": "plan",
+      "label": "Procedure result and aftercare",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 24,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Procedure result and aftercare: {{value}}",
+      "value_formatter": "plan",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "aftercare|follow-up|result|outcome",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-stoma"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-stoma--statement-00021",
+          "family-surg-stoma--statement-00025",
+          "family-surg-stoma--statement-00054",
+          "family-surg-stoma--statement-00062"
         ],
         "source_ids": [
           "nice-colorectal-cancer-ng151-2021"

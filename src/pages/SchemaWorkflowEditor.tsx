@@ -48,7 +48,29 @@ function isLong(field: InteractiveField) {
   return ['textarea', 'examination_finding', 'investigation_result', 'medication_entry', 'allergy_entry', 'assessment_entry', 'plan_entry', 'safety_netting_selection', 'referral_selection', 'follow_up_selection', 'repeated_structured_rows'].includes(field.field_type)
 }
 
+function structuredFields(field: InteractiveField) {
+  if (field.field_type === 'vital_sign') return [{ key: 'name', label: 'Observation' }, { key: 'value', label: 'Value' }, { key: 'unit', label: 'Unit' }, { key: 'date', label: 'Date/time' }]
+  if (field.field_type === 'examination_finding') return [{ key: 'site', label: 'Site/finding' }, { key: 'status', label: 'Status' }, { key: 'detail', label: 'Detail' }]
+  if (field.field_type === 'investigation_result') return [{ key: 'test', label: 'Test' }, { key: 'value', label: 'Value/result' }, { key: 'unit', label: 'Unit' }, { key: 'date', label: 'Date' }, { key: 'comparison', label: 'Comparison' }, { key: 'interpretation', label: 'Interpretation' }]
+  if (field.field_type === 'medication_entry') return [{ key: 'name', label: 'Medicine/agent' }, { key: 'dose', label: 'Dose' }, { key: 'route', label: 'Route' }, { key: 'frequency', label: 'Frequency' }, { key: 'indication', label: 'Indication' }]
+  if (field.field_type === 'allergy_entry') return [{ key: 'allergen', label: 'Allergen' }, { key: 'reaction', label: 'Reaction' }, { key: 'certainty', label: 'Certainty' }]
+  if (field.field_type === 'duration') return [{ key: 'value', label: 'Duration' }, { key: 'unit', label: 'Unit' }]
+  return []
+}
+
+function StructuredFieldControl({ field, value, onChange }: { field: InteractiveField; value: string; onChange: (value: string) => void }) {
+  const schema = structuredFields(field)
+  if (!schema.length) return null
+  let current: Record<string, string> = {}
+  try { const parsed = JSON.parse(value); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) current = Object.fromEntries(Object.entries(parsed).map(([key, item]) => [key, String(item ?? '')])) } catch { /* start empty; scalar text remains available below */ }
+  const update = (key: string, next: string) => onChange(JSON.stringify({ ...current, [key]: next }))
+  return <div className="grid gap-2 sm:grid-cols-2" id={field.field_id} role="group" aria-label={field.label}>
+    {schema.map(({ key, label }) => <label key={key} className="grid gap-1 text-xs text-slate-600"><span>{label}</span>{key === 'status' || key === 'certainty' || key === 'comparison' || key === 'unit' ? <select className="field-input" value={current[key] ?? ''} onChange={(event) => update(key, event.target.value)} aria-label={`${field.label} ${label}`}><option value="">Not assessed</option>{(key === 'status' ? ['Normal', 'Abnormal', 'Present', 'Absent', 'Not assessed', 'Unknown'] : key === 'comparison' ? ['No prior result', 'Stable', 'Improved', 'Worsened', 'New', 'Unknown'] : key === 'unit' && field.field_type === 'duration' ? ['hours', 'days', 'weeks', 'months', 'years'] : []).map((option) => <option key={option} value={option}>{option}</option>)}</select> : <Input value={current[key] ?? ''} placeholder={label} aria-label={`${field.label} ${label}`} onChange={(event) => update(key, event.target.value)} />}</label>)}
+  </div>
+}
+
 function FieldControl({ field, value, onChange }: { field: InteractiveField; value: string; onChange: (value: string) => void }) {
+  if (structuredFields(field).length) return <StructuredFieldControl field={field} value={value} onChange={onChange} />
   if (isMulti(field)) {
     const selected = parseOptions(value)
     return <div id={field.field_id} className="grid gap-2" role="group" aria-label={field.label}>{field.options.map((option, index) => { const optionId = `${field.field_id}__${index}`; return <label key={option} htmlFor={optionId} className="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-2 text-sm"><input id={optionId} name={field.field_id} type="checkbox" checked={selected.includes(option)} onChange={() => onChange(setOptionValue(value, option))} /><span>{option}</span></label> })}</div>

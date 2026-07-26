@@ -1222,8 +1222,13 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Medication name and regimen: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "medication",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -1270,6 +1275,11 @@
       "note_template": "Medication adherence: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "adherence",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -1324,6 +1334,11 @@
       "note_template": "Adverse effects: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "adverse",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -1371,8 +1386,13 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Allergy history: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "allergy",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -1439,8 +1459,13 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Dose, route and frequency: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "medication",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "dose|frequency",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-medication"
@@ -1454,6 +1479,1005 @@
           "family-gp-medication--statement-00095",
           "family-gp-medication--statement-00118",
           "family-gp-medication--statement-00136"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__age",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Age",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "integer",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 15,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age: {{value}}",
+      "value_formatter": "age",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|years|months",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00002",
+          "family-gp-medication--statement-00035",
+          "family-gp-medication--statement-00046",
+          "family-gp-medication--statement-00047",
+          "family-gp-medication--statement-00060",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00089",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00104",
+          "family-gp-medication--statement-00111",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00134",
+          "family-gp-medication--statement-00135",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00137",
+          "family-gp-medication--statement-00151",
+          "family-gp-medication--statement-00159"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__age_unit",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Age unit",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "years",
+        "months",
+        "weeks",
+        "days"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 16,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age unit: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|months|years",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00002",
+          "family-gp-medication--statement-00035",
+          "family-gp-medication--statement-00046",
+          "family-gp-medication--statement-00047",
+          "family-gp-medication--statement-00060",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00089",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00104",
+          "family-gp-medication--statement-00111",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00134",
+          "family-gp-medication--statement-00135",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00137",
+          "family-gp-medication--statement-00151",
+          "family-gp-medication--statement-00159"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__encounter_setting",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Encounter setting",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Outpatient",
+        "Urgent assessment",
+        "Emergency",
+        "Inpatient",
+        "Telephone"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 17,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Encounter setting: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "setting|primary care|emergency|outpatient",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00010",
+          "family-gp-medication--statement-00011",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00033",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00115",
+          "family-gp-medication--statement-00116",
+          "family-gp-medication--statement-00117",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00122",
+          "family-gp-medication--statement-00123",
+          "family-gp-medication--statement-00125",
+          "family-gp-medication--statement-00126",
+          "family-gp-medication--statement-00134",
+          "family-gp-medication--statement-00151",
+          "family-gp-medication--statement-00156"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__onset",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Onset",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 18,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Onset: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "onset|sudden|gradual",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00014"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__duration",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Duration",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "duration",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 19,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Duration: {{value}}",
+      "value_formatter": "duration",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "duration|days|hours|weeks",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00117",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00123"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__severity",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Severity",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Not assessed"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 20,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Severity: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "severity|mild|moderate|severe",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00013",
+          "family-gp-medication--statement-00029",
+          "family-gp-medication--statement-00030",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00033",
+          "family-gp-medication--statement-00034"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__medication_reconciliation",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Medication reconciliation",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 21,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication reconciliation: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication|prescri|dose|route|frequency",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00017",
+          "family-gp-medication--statement-00025",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00042",
+          "family-gp-medication--statement-00051",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00064",
+          "family-gp-medication--statement-00065",
+          "family-gp-medication--statement-00066",
+          "family-gp-medication--statement-00070",
+          "family-gp-medication--statement-00075",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00079",
+          "family-gp-medication--statement-00080",
+          "family-gp-medication--statement-00081",
+          "family-gp-medication--statement-00082",
+          "family-gp-medication--statement-00090",
+          "family-gp-medication--statement-00091",
+          "family-gp-medication--statement-00093",
+          "family-gp-medication--statement-00095",
+          "family-gp-medication--statement-00096",
+          "family-gp-medication--statement-00097",
+          "family-gp-medication--statement-00099",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00102",
+          "family-gp-medication--statement-00103",
+          "family-gp-medication--statement-00112",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00123",
+          "family-gp-medication--statement-00125",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00131",
+          "family-gp-medication--statement-00132",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00151",
+          "family-gp-medication--statement-00152",
+          "family-gp-medication--statement-00154",
+          "family-gp-medication--statement-00155",
+          "family-gp-medication--statement-00162",
+          "family-gp-medication--statement-00164",
+          "family-gp-medication--statement-00166"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__allergy_reaction",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Allergy and reaction",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "allergy_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 22,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Allergy and reaction: {{value}}",
+      "value_formatter": "allergy",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg|reaction|hypersens",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00004",
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00006",
+          "family-gp-medication--statement-00007",
+          "family-gp-medication--statement-00008",
+          "family-gp-medication--statement-00011",
+          "family-gp-medication--statement-00012",
+          "family-gp-medication--statement-00013",
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00017",
+          "family-gp-medication--statement-00018",
+          "family-gp-medication--statement-00021",
+          "family-gp-medication--statement-00022",
+          "family-gp-medication--statement-00025",
+          "family-gp-medication--statement-00027",
+          "family-gp-medication--statement-00028",
+          "family-gp-medication--statement-00029",
+          "family-gp-medication--statement-00030",
+          "family-gp-medication--statement-00031",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00033",
+          "family-gp-medication--statement-00034",
+          "family-gp-medication--statement-00036",
+          "family-gp-medication--statement-00037",
+          "family-gp-medication--statement-00038",
+          "family-gp-medication--statement-00039",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__follow_up_interval",
+      "archetype": "medication_review",
+      "section": "plan",
+      "label": "Follow-up interval",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "follow_up_selection",
+      "options": [
+        "Within 24 hours",
+        "Within 48 hours",
+        "Within 7 days",
+        "Routine review",
+        "As needed"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 23,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Follow-up interval: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "follow-up|review|reassess",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00041",
+          "family-gp-medication--statement-00042",
+          "family-gp-medication--statement-00065",
+          "family-gp-medication--statement-00066",
+          "family-gp-medication--statement-00080",
+          "family-gp-medication--statement-00091",
+          "family-gp-medication--statement-00092",
+          "family-gp-medication--statement-00093",
+          "family-gp-medication--statement-00094",
+          "family-gp-medication--statement-00096",
+          "family-gp-medication--statement-00097",
+          "family-gp-medication--statement-00099",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00107",
+          "family-gp-medication--statement-00116",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00131",
+          "family-gp-medication--statement-00132",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00137",
+          "family-gp-medication--statement-00144",
+          "family-gp-medication--statement-00149",
+          "family-gp-medication--statement-00153"
+        ],
+        "source_ids": [
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People prescribed medicines and healthcare professionals who prescribe, dispense, or review medicines.",
+        "setting": "Shared medicine decisions, adherence assessment, support, and periodic medicine review.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__disposition",
+      "archetype": "medication_review",
+      "section": "plan",
+      "label": "Disposition",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "referral_selection",
+      "options": [
+        "Continue outpatient care",
+        "Urgent review",
+        "Emergency referral",
+        "Admit",
+        "Discharge with advice"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 24,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Disposition: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "disposition|refer|escalat|admit|discharge",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00001",
+          "family-gp-medication--statement-00002",
+          "family-gp-medication--statement-00018",
+          "family-gp-medication--statement-00019",
+          "family-gp-medication--statement-00020",
+          "family-gp-medication--statement-00026",
+          "family-gp-medication--statement-00030",
+          "family-gp-medication--statement-00034",
+          "family-gp-medication--statement-00036",
+          "family-gp-medication--statement-00037",
+          "family-gp-medication--statement-00038",
+          "family-gp-medication--statement-00039",
+          "family-gp-medication--statement-00040",
+          "family-gp-medication--statement-00053",
+          "family-gp-medication--statement-00055",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00086",
+          "family-gp-medication--statement-00100",
+          "family-gp-medication--statement-00115",
+          "family-gp-medication--statement-00120",
+          "family-gp-medication--statement-00121",
+          "family-gp-medication--statement-00123",
+          "family-gp-medication--statement-00124",
+          "family-gp-medication--statement-00125",
+          "family-gp-medication--statement-00135",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00138",
+          "family-gp-medication--statement-00140",
+          "family-gp-medication--statement-00141",
+          "family-gp-medication--statement-00142",
+          "family-gp-medication--statement-00147",
+          "family-gp-medication--statement-00166"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__current_medication",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Current medication",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 25,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Current medication: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication|drug|prescrib",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00004",
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00006",
+          "family-gp-medication--statement-00007",
+          "family-gp-medication--statement-00008",
+          "family-gp-medication--statement-00011",
+          "family-gp-medication--statement-00012",
+          "family-gp-medication--statement-00013",
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00017",
+          "family-gp-medication--statement-00018",
+          "family-gp-medication--statement-00021",
+          "family-gp-medication--statement-00022",
+          "family-gp-medication--statement-00024",
+          "family-gp-medication--statement-00025",
+          "family-gp-medication--statement-00027",
+          "family-gp-medication--statement-00028",
+          "family-gp-medication--statement-00029",
+          "family-gp-medication--statement-00030",
+          "family-gp-medication--statement-00031",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00034",
+          "family-gp-medication--statement-00036",
+          "family-gp-medication--statement-00037",
+          "family-gp-medication--statement-00038",
+          "family-gp-medication--statement-00039",
+          "family-gp-medication--statement-00042",
+          "family-gp-medication--statement-00051",
+          "family-gp-medication--statement-00064",
+          "family-gp-medication--statement-00065",
+          "family-gp-medication--statement-00066",
+          "family-gp-medication--statement-00070",
+          "family-gp-medication--statement-00079",
+          "family-gp-medication--statement-00080",
+          "family-gp-medication--statement-00082",
+          "family-gp-medication--statement-00091",
+          "family-gp-medication--statement-00093",
+          "family-gp-medication--statement-00095",
+          "family-gp-medication--statement-00096",
+          "family-gp-medication--statement-00097",
+          "family-gp-medication--statement-00099",
+          "family-gp-medication--statement-00101",
+          "family-gp-medication--statement-00102",
+          "family-gp-medication--statement-00103",
+          "family-gp-medication--statement-00114",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00123",
+          "family-gp-medication--statement-00130",
+          "family-gp-medication--statement-00131",
+          "family-gp-medication--statement-00132",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00151",
+          "family-gp-medication--statement-00152",
+          "family-gp-medication--statement-00154",
+          "family-gp-medication--statement-00155",
+          "family-gp-medication--statement-00164",
+          "family-gp-medication--statement-00166"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__indication",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Medication indication",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 26,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication indication: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "indication|reason",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00159"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__adverse_effect",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Adverse effect and linked medicine",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 27,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Adverse effect and linked medicine: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "adverse|side effect",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00057",
+          "family-gp-medication--statement-00058",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00066",
+          "family-gp-medication--statement-00075",
+          "family-gp-medication--statement-00078",
+          "family-gp-medication--statement-00089",
+          "family-gp-medication--statement-00103",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136",
+          "family-gp-medication--statement-00159"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__allergy_reaction_detail",
+      "archetype": "medication_review",
+      "section": "history",
+      "label": "Allergy and reaction",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "allergy_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 28,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Allergy and reaction: {{value}}",
+      "value_formatter": "allergy",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg|reaction",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00004",
+          "family-gp-medication--statement-00005",
+          "family-gp-medication--statement-00006",
+          "family-gp-medication--statement-00007",
+          "family-gp-medication--statement-00008",
+          "family-gp-medication--statement-00011",
+          "family-gp-medication--statement-00012",
+          "family-gp-medication--statement-00013",
+          "family-gp-medication--statement-00014",
+          "family-gp-medication--statement-00015",
+          "family-gp-medication--statement-00016",
+          "family-gp-medication--statement-00017",
+          "family-gp-medication--statement-00018",
+          "family-gp-medication--statement-00021",
+          "family-gp-medication--statement-00022",
+          "family-gp-medication--statement-00025",
+          "family-gp-medication--statement-00027",
+          "family-gp-medication--statement-00028",
+          "family-gp-medication--statement-00029",
+          "family-gp-medication--statement-00030",
+          "family-gp-medication--statement-00031",
+          "family-gp-medication--statement-00032",
+          "family-gp-medication--statement-00033",
+          "family-gp-medication--statement-00034",
+          "family-gp-medication--statement-00036",
+          "family-gp-medication--statement-00037",
+          "family-gp-medication--statement-00038",
+          "family-gp-medication--statement-00039",
+          "family-gp-medication--statement-00062",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00133",
+          "family-gp-medication--statement-00136"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014",
+          "nice-medicines-adherence-cg76-2009",
+          "nice-medicines-optimisation-ng5-2015"
+        ],
+        "population": "People of all ages with a possible or established drug allergy or suspected drug-related reaction.",
+        "setting": "Primary, emergency, inpatient, outpatient, and specialist-allergy documentation.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-medication-review",
+      "field_id": "gp_medication_review__medication_plan",
+      "archetype": "medication_review",
+      "section": "plan",
+      "label": "Medication continuation or change",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Continue",
+        "Adjust",
+        "Switch",
+        "Stop",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 29,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Medication continuation or change: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "continue|adjust|switch|stop",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-medication"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-medication--statement-00029",
+          "family-gp-medication--statement-00058",
+          "family-gp-medication--statement-00068",
+          "family-gp-medication--statement-00081",
+          "family-gp-medication--statement-00089",
+          "family-gp-medication--statement-00095",
+          "family-gp-medication--statement-00112",
+          "family-gp-medication--statement-00118",
+          "family-gp-medication--statement-00146"
         ],
         "source_ids": [
           "nice-drug-allergy-cg183-2014",

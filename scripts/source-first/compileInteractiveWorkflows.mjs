@@ -3,6 +3,7 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 import fsSync from 'node:fs'
 import { manualStructuredFieldSpecs } from './manualStructuredFieldSpecs.mjs'
+import { resolutionStructuredFieldSpecs } from './resolutionStructuredFieldSpecs.mjs'
 
 const repo = process.cwd()
 const sourceRoot = path.join(repo, 'public', 'data-beta', 'final-catalogue')
@@ -114,6 +115,14 @@ function safeId(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')
 }
 
+function normaliseSpec(spec) {
+  if (Array.isArray(spec)) {
+    const [field_id, label, field_type, soap_destination, anchor] = spec
+    return { field_id, label, field_type, soap_destination, anchor }
+  }
+  return spec
+}
+
 function provenanceFor(detail, section) {
   const sectionItems = detail.user_facing_items.filter((item) => item.section === section)
   const items = sectionItems.length ? sectionItems : detail.user_facing_items
@@ -158,10 +167,16 @@ function compileWorkflow(detail) {
       provenance: provenanceFor(detail, section),
     }
   })
-  const manualSpecs = manualStructuredFieldSpecs[detail.workflow_id] ?? []
+  const manualSpecs = [
+    ...(manualStructuredFieldSpecs[detail.workflow_id] ?? []),
+    ...(resolutionStructuredFieldSpecs[detail.workflow_id] ?? []),
+  ].map(normaliseSpec)
   const evidenceById = new Map(detail.evidence_records.map((record) => [record.evidence_statement_id ?? record.evidence_record_id, record]))
   const packCache = new Map()
-  for (const [fieldId, label, fieldType, destination, anchor] of manualSpecs) {
+  const existingIds = new Set(fields.map((field) => field.field_id))
+  for (const spec of manualSpecs) {
+    const { field_id: fieldId, label, field_type: fieldType, soap_destination: destination, anchor } = spec
+    if (existingIds.has(`${safeId(detail.workflow_id)}__${fieldId}`)) continue
     const matched = []
     for (const packId of detail.evidence_pack_ids ?? []) {
       let pack = packCache.get(packId)
@@ -188,18 +203,23 @@ function compileWorkflow(detail) {
       label,
       helper_text: 'Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.',
       field_type: fieldType,
-      options: [],
-      free_text_allowed: true,
+      options: spec.options ?? [],
+      free_text_allowed: spec.free_text_allowed ?? !['single_select', 'yes_no', 'yes_no_unknown'].includes(fieldType),
       required: false,
       display_order: fields.length + 1,
       visibility: { type: 'always' },
-      contradictory_option_rules: [],
+      contradictory_option_rules: spec.contradictory_option_rules ?? [],
       population_restrictions: [],
       setting_restrictions: [],
       soap_destination: destination,
       note_template: `${label}: {{value}}`,
-      value_formatter: 'trimmed_text',
-      quick_priority: !['text', 'textarea'].includes(fieldType),
+      value_formatter: spec.value_formatter ?? (fieldType === 'vital_sign' ? 'vital_sign' : fieldType === 'examination_finding' ? 'examination' : fieldType === 'investigation_result' ? 'investigation' : fieldType === 'medication_entry' ? 'medication' : fieldType === 'allergy_entry' ? 'allergy' : 'trimmed_text'),
+      quick_priority: spec.quick_priority ?? !['text', 'textarea'].includes(fieldType),
+      suggested: false,
+      preselected_value: null,
+      resolution_wave: true,
+      source_spec_anchor: anchor,
+      transformation_reason: 'Evidence-gated structured field emitted from an accepted source statement.',
       provenance: {
         evidence_pack_ids: [...new Set(unique.map(({ record }) => record.normalised_evidence_pack_id ?? record.evidence_pack_id ?? detail.evidence_pack_ids[0]))],
         evidence_statement_ids: unique.map(({ statement }) => statement.evidence_statement_id).sort(),
@@ -210,6 +230,7 @@ function compileWorkflow(detail) {
         uae_applicability: first.uae_applicability ?? null,
       },
     })
+    existingIds.add(`${safeId(detail.workflow_id)}__${fieldId}`)
   }
   return {
     workflow_id: detail.workflow_id,

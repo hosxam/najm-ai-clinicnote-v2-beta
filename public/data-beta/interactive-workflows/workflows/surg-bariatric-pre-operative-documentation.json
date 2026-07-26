@@ -892,6 +892,11 @@
       "note_template": "Previous anaesthetic history: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "anaesth",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -928,8 +933,13 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Allergy history: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "allergy",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -966,8 +976,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Body-mass index: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "vital_sign",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "BMI",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -1008,8 +1023,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Weight: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "vital_sign",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "weight",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -1054,6 +1074,11 @@
       "note_template": "ASA assessment: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "ASA",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -1093,8 +1118,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Laboratory results: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "laboratory",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-surg-bariatric"
@@ -1106,6 +1136,940 @@
         ],
         "source_ids": [
           "nice-nutrition-support-cg32-2017"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__age",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Age",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "integer",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 16,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age: {{value}}",
+      "value_formatter": "age",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|years|months",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00006",
+          "family-surg-bariatric--statement-00008",
+          "family-surg-bariatric--statement-00016",
+          "family-surg-bariatric--statement-00017",
+          "family-surg-bariatric--statement-00027",
+          "family-surg-bariatric--statement-00034",
+          "family-surg-bariatric--statement-00035",
+          "family-surg-bariatric--statement-00036",
+          "family-surg-bariatric--statement-00037",
+          "family-surg-bariatric--statement-00039",
+          "family-surg-bariatric--statement-00041",
+          "family-surg-bariatric--statement-00059",
+          "family-surg-bariatric--statement-00062",
+          "family-surg-bariatric--statement-00063",
+          "family-surg-bariatric--statement-00064",
+          "family-surg-bariatric--statement-00066",
+          "family-surg-bariatric--statement-00083",
+          "family-surg-bariatric--statement-00084",
+          "family-surg-bariatric--statement-00086",
+          "family-surg-bariatric--statement-00089",
+          "family-surg-bariatric--statement-00093",
+          "family-surg-bariatric--statement-00126",
+          "family-surg-bariatric--statement-00131",
+          "family-surg-bariatric--statement-00133",
+          "family-surg-bariatric--statement-00141",
+          "family-surg-bariatric--statement-00142",
+          "family-surg-bariatric--statement-00143",
+          "family-surg-bariatric--statement-00144",
+          "family-surg-bariatric--statement-00146",
+          "family-surg-bariatric--statement-00147",
+          "family-surg-bariatric--statement-00148",
+          "family-surg-bariatric--statement-00153"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__age_unit",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Age unit",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "years",
+        "months",
+        "weeks",
+        "days"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 17,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age unit: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|months|years",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00006",
+          "family-surg-bariatric--statement-00008",
+          "family-surg-bariatric--statement-00016",
+          "family-surg-bariatric--statement-00017",
+          "family-surg-bariatric--statement-00027",
+          "family-surg-bariatric--statement-00034",
+          "family-surg-bariatric--statement-00035",
+          "family-surg-bariatric--statement-00036",
+          "family-surg-bariatric--statement-00037",
+          "family-surg-bariatric--statement-00039",
+          "family-surg-bariatric--statement-00041",
+          "family-surg-bariatric--statement-00059",
+          "family-surg-bariatric--statement-00062",
+          "family-surg-bariatric--statement-00063",
+          "family-surg-bariatric--statement-00064",
+          "family-surg-bariatric--statement-00066",
+          "family-surg-bariatric--statement-00083",
+          "family-surg-bariatric--statement-00084",
+          "family-surg-bariatric--statement-00086",
+          "family-surg-bariatric--statement-00089",
+          "family-surg-bariatric--statement-00093",
+          "family-surg-bariatric--statement-00126",
+          "family-surg-bariatric--statement-00131",
+          "family-surg-bariatric--statement-00133",
+          "family-surg-bariatric--statement-00141",
+          "family-surg-bariatric--statement-00142",
+          "family-surg-bariatric--statement-00143",
+          "family-surg-bariatric--statement-00144",
+          "family-surg-bariatric--statement-00146",
+          "family-surg-bariatric--statement-00147",
+          "family-surg-bariatric--statement-00148",
+          "family-surg-bariatric--statement-00153"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__encounter_setting",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Encounter setting",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Outpatient",
+        "Urgent assessment",
+        "Emergency",
+        "Inpatient",
+        "Telephone"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 18,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Encounter setting: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "setting|primary care|emergency|outpatient",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00005",
+          "family-surg-bariatric--statement-00012",
+          "family-surg-bariatric--statement-00030",
+          "family-surg-bariatric--statement-00059",
+          "family-surg-bariatric--statement-00063",
+          "family-surg-bariatric--statement-00067",
+          "family-surg-bariatric--statement-00086",
+          "family-surg-bariatric--statement-00089",
+          "family-surg-bariatric--statement-00102",
+          "family-surg-bariatric--statement-00153"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__onset",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Onset",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 19,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Onset: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "onset|sudden|gradual",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00081"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__duration",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Duration",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "duration",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 20,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Duration: {{value}}",
+      "value_formatter": "duration",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "duration|days|hours|weeks",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00018",
+          "family-surg-bariatric--statement-00022",
+          "family-surg-bariatric--statement-00025",
+          "family-surg-bariatric--statement-00026",
+          "family-surg-bariatric--statement-00027",
+          "family-surg-bariatric--statement-00029",
+          "family-surg-bariatric--statement-00030",
+          "family-surg-bariatric--statement-00047",
+          "family-surg-bariatric--statement-00048",
+          "family-surg-bariatric--statement-00054",
+          "family-surg-bariatric--statement-00057",
+          "family-surg-bariatric--statement-00058",
+          "family-surg-bariatric--statement-00061",
+          "family-surg-bariatric--statement-00069",
+          "family-surg-bariatric--statement-00071",
+          "family-surg-bariatric--statement-00076",
+          "family-surg-bariatric--statement-00077",
+          "family-surg-bariatric--statement-00078",
+          "family-surg-bariatric--statement-00081",
+          "family-surg-bariatric--statement-00138",
+          "family-surg-bariatric--statement-00139",
+          "family-surg-bariatric--statement-00140",
+          "family-surg-bariatric--statement-00150",
+          "family-surg-bariatric--statement-00153"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__severity",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Severity",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Not assessed"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 21,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Severity: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "severity|mild|moderate|severe",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00023",
+          "family-surg-bariatric--statement-00064",
+          "family-surg-bariatric--statement-00079",
+          "family-surg-bariatric--statement-00122",
+          "family-surg-bariatric--statement-00152"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__medication_reconciliation",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Medication reconciliation",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 22,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication reconciliation: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication|prescri|dose|route|frequency",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00022",
+          "family-surg-bariatric--statement-00023",
+          "family-surg-bariatric--statement-00024",
+          "family-surg-bariatric--statement-00029",
+          "family-surg-bariatric--statement-00030",
+          "family-surg-bariatric--statement-00033",
+          "family-surg-bariatric--statement-00036",
+          "family-surg-bariatric--statement-00040",
+          "family-surg-bariatric--statement-00070",
+          "family-surg-bariatric--statement-00084",
+          "family-surg-bariatric--statement-00087",
+          "family-surg-bariatric--statement-00092",
+          "family-surg-bariatric--statement-00111",
+          "family-surg-bariatric--statement-00112",
+          "family-surg-bariatric--statement-00123"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__allergy_reaction",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Allergy and reaction",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "allergy_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 23,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Allergy and reaction: {{value}}",
+      "value_formatter": "allergy",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg|reaction|hypersens",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00118"
+        ],
+        "source_ids": [
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults, young people, and children having a surgical procedure involving a skin incision.",
+        "setting": "Perioperative, postoperative, community, and specialist wound-care services.",
+        "restrictions": [],
+        "uae_applicability": "international_requires_uae_adaptation"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__follow_up_interval",
+      "archetype": "anaesthetic_assessment",
+      "section": "plan",
+      "label": "Follow-up interval",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "follow_up_selection",
+      "options": [
+        "Within 24 hours",
+        "Within 48 hours",
+        "Within 7 days",
+        "Routine review",
+        "As needed"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 24,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Follow-up interval: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "follow-up|review|reassess",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00024",
+          "family-surg-bariatric--statement-00030",
+          "family-surg-bariatric--statement-00034",
+          "family-surg-bariatric--statement-00040",
+          "family-surg-bariatric--statement-00041",
+          "family-surg-bariatric--statement-00069",
+          "family-surg-bariatric--statement-00099",
+          "family-surg-bariatric--statement-00124",
+          "family-surg-bariatric--statement-00133",
+          "family-surg-bariatric--statement-00135"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__disposition",
+      "archetype": "anaesthetic_assessment",
+      "section": "plan",
+      "label": "Disposition",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "referral_selection",
+      "options": [
+        "Continue outpatient care",
+        "Urgent review",
+        "Emergency referral",
+        "Admit",
+        "Discharge with advice"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 25,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Disposition: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "disposition|refer|escalat|admit|discharge",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00001",
+          "family-surg-bariatric--statement-00020",
+          "family-surg-bariatric--statement-00032",
+          "family-surg-bariatric--statement-00033",
+          "family-surg-bariatric--statement-00037",
+          "family-surg-bariatric--statement-00044",
+          "family-surg-bariatric--statement-00049",
+          "family-surg-bariatric--statement-00060",
+          "family-surg-bariatric--statement-00079",
+          "family-surg-bariatric--statement-00090",
+          "family-surg-bariatric--statement-00093",
+          "family-surg-bariatric--statement-00094",
+          "family-surg-bariatric--statement-00095",
+          "family-surg-bariatric--statement-00148"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__planned_procedure",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Planned procedure",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 26,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Planned procedure: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "procedure|operation|surgery",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00038",
+          "family-surg-bariatric--statement-00047",
+          "family-surg-bariatric--statement-00048",
+          "family-surg-bariatric--statement-00053",
+          "family-surg-bariatric--statement-00054",
+          "family-surg-bariatric--statement-00067",
+          "family-surg-bariatric--statement-00086",
+          "family-surg-bariatric--statement-00089",
+          "family-surg-bariatric--statement-00096",
+          "family-surg-bariatric--statement-00097",
+          "family-surg-bariatric--statement-00098",
+          "family-surg-bariatric--statement-00101",
+          "family-surg-bariatric--statement-00102",
+          "family-surg-bariatric--statement-00103",
+          "family-surg-bariatric--statement-00106",
+          "family-surg-bariatric--statement-00107",
+          "family-surg-bariatric--statement-00108",
+          "family-surg-bariatric--statement-00109",
+          "family-surg-bariatric--statement-00111",
+          "family-surg-bariatric--statement-00112",
+          "family-surg-bariatric--statement-00113",
+          "family-surg-bariatric--statement-00114",
+          "family-surg-bariatric--statement-00115",
+          "family-surg-bariatric--statement-00116",
+          "family-surg-bariatric--statement-00117",
+          "family-surg-bariatric--statement-00119",
+          "family-surg-bariatric--statement-00126",
+          "family-surg-bariatric--statement-00127",
+          "family-surg-bariatric--statement-00128",
+          "family-surg-bariatric--statement-00133",
+          "family-surg-bariatric--statement-00134",
+          "family-surg-bariatric--statement-00136",
+          "family-surg-bariatric--statement-00138",
+          "family-surg-bariatric--statement-00139",
+          "family-surg-bariatric--statement-00149",
+          "family-surg-bariatric--statement-00150",
+          "family-surg-bariatric--statement-00153"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__weight_height_bmi",
+      "archetype": "anaesthetic_assessment",
+      "section": "examination",
+      "label": "Weight, height and BMI",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 27,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Weight, height and BMI: {{value}}",
+      "value_formatter": "vital_sign",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "weight|height|BMI",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00014",
+          "family-surg-bariatric--statement-00015",
+          "family-surg-bariatric--statement-00016",
+          "family-surg-bariatric--statement-00017",
+          "family-surg-bariatric--statement-00023",
+          "family-surg-bariatric--statement-00027",
+          "family-surg-bariatric--statement-00029",
+          "family-surg-bariatric--statement-00037"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__asa_classification",
+      "archetype": "anaesthetic_assessment",
+      "section": "assessment",
+      "label": "ASA classification",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "ASA I",
+        "ASA II",
+        "ASA III",
+        "ASA IV",
+        "ASA V",
+        "Not assigned"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 28,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "ASA classification: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "ASA|classification",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00037",
+          "family-surg-bariatric--statement-00098",
+          "family-surg-bariatric--statement-00099"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__preop_investigation",
+      "archetype": "anaesthetic_assessment",
+      "section": "examination",
+      "label": "Pre-operative investigation result",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 29,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Pre-operative investigation result: {{value}}",
+      "value_formatter": "investigation",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "investigation|ECG|laboratory|result",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00006",
+          "family-surg-bariatric--statement-00033",
+          "family-surg-bariatric--statement-00035",
+          "family-surg-bariatric--statement-00145"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__consent_and_fasting",
+      "archetype": "anaesthetic_assessment",
+      "section": "history",
+      "label": "Consent and fasting status",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 30,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Consent and fasting status: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "consent|fasting",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00020",
+          "family-surg-bariatric--statement-00092"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
+        ],
+        "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
+        "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "surg-bariatric-pre-operative-documentation",
+      "field_id": "surg_bariatric_pre_operative_documentation__anaesthetic_plan",
+      "archetype": "anaesthetic_assessment",
+      "section": "plan",
+      "label": "Anaesthetic plan",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 31,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Anaesthetic plan: {{value}}",
+      "value_formatter": "plan",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "anaesthetic plan|airway plan|monitor",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-surg-bariatric"
+        ],
+        "evidence_statement_ids": [
+          "family-surg-bariatric--statement-00002",
+          "family-surg-bariatric--statement-00026",
+          "family-surg-bariatric--statement-00029",
+          "family-surg-bariatric--statement-00031",
+          "family-surg-bariatric--statement-00032",
+          "family-surg-bariatric--statement-00033",
+          "family-surg-bariatric--statement-00034",
+          "family-surg-bariatric--statement-00035",
+          "family-surg-bariatric--statement-00036",
+          "family-surg-bariatric--statement-00041",
+          "family-surg-bariatric--statement-00048",
+          "family-surg-bariatric--statement-00069",
+          "family-surg-bariatric--statement-00082",
+          "family-surg-bariatric--statement-00085",
+          "family-surg-bariatric--statement-00088",
+          "family-surg-bariatric--statement-00128"
+        ],
+        "source_ids": [
+          "nice-nutrition-support-cg32-2017",
+          "nice-surgical-site-infections-ng125-2023"
         ],
         "population": "Adults in hospital and community settings with clinical concern for malnutrition or impaired intake.",
         "setting": "General practice, community, hospital, nutrition, and multidisciplinary assessment.",

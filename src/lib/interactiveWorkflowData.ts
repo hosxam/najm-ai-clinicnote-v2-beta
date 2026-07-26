@@ -41,6 +41,11 @@ export type InteractiveField = {
   soap_destination: 'subjective' | 'objective' | 'assessment' | 'plan'
   note_template: string
   value_formatter: string
+  suggested?: boolean
+  preselected_value?: string | null
+  resolution_wave?: boolean
+  source_spec_anchor?: string | null
+  transformation_reason?: string | null
   quick_priority?: boolean
   provenance: InteractiveProvenance
 }

@@ -954,6 +954,11 @@
       "note_template": "Fever features and pattern: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "fever",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1021,8 +1026,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Temperature measurement: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "vital_sign",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "temperature",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1068,6 +1078,11 @@
       "note_template": "Cough features: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "cough",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1110,8 +1125,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Hydration status: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "examination",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "hydration",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1152,6 +1172,11 @@
       "note_template": "Travel context: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "travel",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1193,6 +1218,11 @@
       "note_template": "Vaccination status: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "vaccin",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1233,6 +1263,11 @@
       "note_template": "Pregnancy context: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "pregnan",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1269,8 +1304,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Rash findings: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "examination",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "rash",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1316,6 +1356,11 @@
       "note_template": "Breathing symptoms: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "shortness of breath",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1353,8 +1398,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Fever investigation results: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "investig",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-gp-fever"
@@ -1370,6 +1420,1536 @@
         "source_ids": [
           "dha-telehealth-common-cold-v2-2024",
           "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__age",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Age",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "integer",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 23,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age: {{value}}",
+      "value_formatter": "age",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|years|months",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00001",
+          "family-gp-fever--statement-00002",
+          "family-gp-fever--statement-00003",
+          "family-gp-fever--statement-00004",
+          "family-gp-fever--statement-00005",
+          "family-gp-fever--statement-00006",
+          "family-gp-fever--statement-00007",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00016",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00023",
+          "family-gp-fever--statement-00024",
+          "family-gp-fever--statement-00025",
+          "family-gp-fever--statement-00026",
+          "family-gp-fever--statement-00027",
+          "family-gp-fever--statement-00028",
+          "family-gp-fever--statement-00029",
+          "family-gp-fever--statement-00030",
+          "family-gp-fever--statement-00031",
+          "family-gp-fever--statement-00034",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00036",
+          "family-gp-fever--statement-00037",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00040",
+          "family-gp-fever--statement-00042",
+          "family-gp-fever--statement-00043",
+          "family-gp-fever--statement-00044",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00046",
+          "family-gp-fever--statement-00047",
+          "family-gp-fever--statement-00048",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00050",
+          "family-gp-fever--statement-00051",
+          "family-gp-fever--statement-00052",
+          "family-gp-fever--statement-00053",
+          "family-gp-fever--statement-00054",
+          "family-gp-fever--statement-00055"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__age_unit",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Age unit",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "years",
+        "months",
+        "weeks",
+        "days"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 24,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age unit: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|months|years",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00001",
+          "family-gp-fever--statement-00002",
+          "family-gp-fever--statement-00003",
+          "family-gp-fever--statement-00004",
+          "family-gp-fever--statement-00005",
+          "family-gp-fever--statement-00006",
+          "family-gp-fever--statement-00007",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00016",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00023",
+          "family-gp-fever--statement-00024",
+          "family-gp-fever--statement-00025",
+          "family-gp-fever--statement-00026",
+          "family-gp-fever--statement-00027",
+          "family-gp-fever--statement-00028",
+          "family-gp-fever--statement-00029",
+          "family-gp-fever--statement-00030",
+          "family-gp-fever--statement-00031",
+          "family-gp-fever--statement-00034",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00036",
+          "family-gp-fever--statement-00037",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00040",
+          "family-gp-fever--statement-00042",
+          "family-gp-fever--statement-00043",
+          "family-gp-fever--statement-00044",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00046",
+          "family-gp-fever--statement-00047",
+          "family-gp-fever--statement-00048",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00050",
+          "family-gp-fever--statement-00051",
+          "family-gp-fever--statement-00052",
+          "family-gp-fever--statement-00053",
+          "family-gp-fever--statement-00054",
+          "family-gp-fever--statement-00055"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__pregnancy_status",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Pregnancy or postpartum status",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Pregnant",
+        "Not pregnant",
+        "Postpartum",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 25,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        "pregnancy_status=Pregnant"
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Pregnancy or postpartum status: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "pregnan|postpartum",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00023"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__encounter_setting",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Encounter setting",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Outpatient",
+        "Urgent assessment",
+        "Emergency",
+        "Inpatient",
+        "Telephone"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 26,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Encounter setting: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "setting|primary care|emergency|outpatient",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00006",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00030",
+          "family-gp-fever--statement-00032",
+          "family-gp-fever--statement-00040"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__onset",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Onset",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 27,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Onset: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "onset|sudden|gradual",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00009",
+          "family-gp-fever--statement-00019"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__duration",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Duration",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "duration",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 28,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Duration: {{value}}",
+      "value_formatter": "duration",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "duration|days|hours|weeks",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00007",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00017",
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00021",
+          "family-gp-fever--statement-00022",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00044",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00046",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00054",
+          "family-gp-fever--statement-00055"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__severity",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Severity",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Not assessed"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 29,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Severity: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "severity|mild|moderate|severe",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00007",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00021",
+          "family-gp-fever--statement-00033",
+          "family-gp-fever--statement-00048"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__medication_reconciliation",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Medication reconciliation",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 30,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication reconciliation: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication|prescri|dose|route|frequency",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00002",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00016",
+          "family-gp-fever--statement-00017",
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00022",
+          "family-gp-fever--statement-00026",
+          "family-gp-fever--statement-00032",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00042",
+          "family-gp-fever--statement-00043",
+          "family-gp-fever--statement-00054",
+          "family-gp-fever--statement-00055"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__allergy_reaction",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Allergy and reaction",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "allergy_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 31,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Allergy and reaction: {{value}}",
+      "value_formatter": "allergy",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg|reaction|hypersens",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00011",
+          "family-gp-fever--statement-00020"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__follow_up_interval",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Follow-up interval",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "follow_up_selection",
+      "options": [
+        "Within 24 hours",
+        "Within 48 hours",
+        "Within 7 days",
+        "Routine review",
+        "As needed"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 32,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Follow-up interval: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "follow-up|review|reassess",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00017",
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00040"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__disposition",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Disposition",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "referral_selection",
+      "options": [
+        "Continue outpatient care",
+        "Urgent review",
+        "Emergency referral",
+        "Admit",
+        "Discharge with advice"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 33,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Disposition: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "disposition|refer|escalat|admit|discharge",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00004",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00009",
+          "family-gp-fever--statement-00011",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00023",
+          "family-gp-fever--statement-00028",
+          "family-gp-fever--statement-00031",
+          "family-gp-fever--statement-00032",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00040",
+          "family-gp-fever--statement-00041",
+          "family-gp-fever--statement-00043",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00047",
+          "family-gp-fever--statement-00048"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__symptom_location",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Symptom location",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 34,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Symptom location: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "location|site|localis",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00031",
+          "family-gp-fever--statement-00039"
+        ],
+        "source_ids": [
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Children with fever.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__symptom_laterality",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Laterality",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Left",
+        "Right",
+        "Bilateral",
+        "Midline",
+        "Not applicable",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 35,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Laterality: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "left|right|unilateral|bilateral|laterality",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00002",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00026",
+          "family-gp-fever--statement-00038"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__symptom_character",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Symptom character",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 36,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Symptom character: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "character|quality|nature",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00002",
+          "family-gp-fever--statement-00003",
+          "family-gp-fever--statement-00021",
+          "family-gp-fever--statement-00026",
+          "family-gp-fever--statement-00027",
+          "family-gp-fever--statement-00031"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__associated_symptoms_detail",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Associated symptoms",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 37,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Associated symptoms: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "associated symptom|symptoms",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00005",
+          "family-gp-fever--statement-00007",
+          "family-gp-fever--statement-00008",
+          "family-gp-fever--statement-00009",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00011",
+          "family-gp-fever--statement-00013",
+          "family-gp-fever--statement-00014",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00016",
+          "family-gp-fever--statement-00017",
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00021",
+          "family-gp-fever--statement-00022",
+          "family-gp-fever--statement-00028",
+          "family-gp-fever--statement-00033",
+          "family-gp-fever--statement-00034",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00040",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00050"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__red_flag_assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Red-flag assessment",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "yes_no_unknown",
+      "options": [
+        "Yes",
+        "No",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 38,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Red-flag assessment: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "red flag|warning sign|urgent",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00004",
+          "family-gp-fever--statement-00005",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00032"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__vital_signs_structured",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Vital signs",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 39,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs: {{value}}",
+      "value_formatter": "vital_sign",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "vital|temperature|heart rate|blood pressure|oxygen|respiratory rate",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00031",
+          "family-gp-fever--statement-00033",
+          "family-gp-fever--statement-00034",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00037",
+          "family-gp-fever--statement-00042",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00048",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00050"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__examination_findings_structured",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Examination findings",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 40,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Examination findings: {{value}}",
+      "value_formatter": "examination",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "examination|physical finding|clinical finding",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00006",
+          "family-gp-fever--statement-00009",
+          "family-gp-fever--statement-00030"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__investigation_value",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Investigation result and comparison",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 41,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Investigation result and comparison: {{value}}",
+      "value_formatter": "investigation",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "investigation|result|value|comparison",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00004",
+          "family-gp-fever--statement-00005",
+          "family-gp-fever--statement-00006",
+          "family-gp-fever--statement-00013",
+          "family-gp-fever--statement-00014",
+          "family-gp-fever--statement-00023",
+          "family-gp-fever--statement-00030",
+          "family-gp-fever--statement-00031"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__plan_action",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Plan action",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 42,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Plan action: {{value}}",
+      "value_formatter": "plan",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "plan|management|treatment|action",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00001",
+          "family-gp-fever--statement-00002",
+          "family-gp-fever--statement-00003",
+          "family-gp-fever--statement-00004",
+          "family-gp-fever--statement-00005",
+          "family-gp-fever--statement-00006",
+          "family-gp-fever--statement-00007",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00011",
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00016",
+          "family-gp-fever--statement-00017",
+          "family-gp-fever--statement-00019",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00024",
+          "family-gp-fever--statement-00025",
+          "family-gp-fever--statement-00026",
+          "family-gp-fever--statement-00027",
+          "family-gp-fever--statement-00028",
+          "family-gp-fever--statement-00029",
+          "family-gp-fever--statement-00030",
+          "family-gp-fever--statement-00034",
+          "family-gp-fever--statement-00036",
+          "family-gp-fever--statement-00037",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00040",
+          "family-gp-fever--statement-00042",
+          "family-gp-fever--statement-00046",
+          "family-gp-fever--statement-00047",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00051",
+          "family-gp-fever--statement-00052",
+          "family-gp-fever--statement-00053",
+          "family-gp-fever--statement-00054"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__temperature",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Measured temperature",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 43,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Measured temperature: {{value}}",
+      "value_formatter": "vital_sign",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "temperature|fever",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00009",
+          "family-gp-fever--statement-00011",
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00025",
+          "family-gp-fever--statement-00027",
+          "family-gp-fever--statement-00028",
+          "family-gp-fever--statement-00029",
+          "family-gp-fever--statement-00030",
+          "family-gp-fever--statement-00031",
+          "family-gp-fever--statement-00032",
+          "family-gp-fever--statement-00033",
+          "family-gp-fever--statement-00034",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00036",
+          "family-gp-fever--statement-00037",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00040",
+          "family-gp-fever--statement-00041",
+          "family-gp-fever--statement-00042",
+          "family-gp-fever--statement-00043",
+          "family-gp-fever--statement-00044",
+          "family-gp-fever--statement-00045",
+          "family-gp-fever--statement-00046",
+          "family-gp-fever--statement-00047",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00050",
+          "family-gp-fever--statement-00051",
+          "family-gp-fever--statement-00052",
+          "family-gp-fever--statement-00053",
+          "family-gp-fever--statement-00054"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__fever_pattern",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Fever pattern",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Intermittent",
+        "Continuous",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 44,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Fever pattern: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "pattern|intermittent|continuous",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00033",
+          "family-gp-fever--statement-00035",
+          "family-gp-fever--statement-00048"
+        ],
+        "source_ids": [
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Children with fever.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__cough",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Cough",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Present",
+        "Absent",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 45,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Cough: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "cough",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00009",
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00014",
+          "family-gp-fever--statement-00015",
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00019"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__hydration",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Hydration and oral intake",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 46,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Hydration and oral intake: {{value}}",
+      "value_formatter": "examination",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "hydration|intake|dehydrat",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00018",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00035"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__rash",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Rash findings",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 47,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Rash findings: {{value}}",
+      "value_formatter": "examination",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "rash",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00020",
+          "family-gp-fever--statement-00036",
+          "family-gp-fever--statement-00038",
+          "family-gp-fever--statement-00046",
+          "family-gp-fever--statement-00049",
+          "family-gp-fever--statement-00050"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__travel_and_contacts",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Travel or sick-contact history",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 48,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Travel or sick-contact history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "travel|contact|outbreak",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00012",
+          "family-gp-fever--statement-00022",
+          "family-gp-fever--statement-00039",
+          "family-gp-fever--statement-00041",
+          "family-gp-fever--statement-00046"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024",
+          "dha-telehealth-fever-children-v2-2024"
+        ],
+        "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "gp-fever-urti",
+      "field_id": "gp_fever_urti__respiratory_red_flags",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Breathing difficulty",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "yes_no_unknown",
+      "options": [
+        "Yes",
+        "No",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 49,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Breathing difficulty: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "shortness of breath|breathing difficulty|respiratory distress",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-gp-fever"
+        ],
+        "evidence_statement_ids": [
+          "family-gp-fever--statement-00010",
+          "family-gp-fever--statement-00020"
+        ],
+        "source_ids": [
+          "dha-telehealth-common-cold-v2-2024"
         ],
         "population": "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
         "setting": "Telehealth services in DHA-licensed health facilities.",

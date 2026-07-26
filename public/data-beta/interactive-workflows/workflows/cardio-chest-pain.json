@@ -1593,6 +1593,11 @@
       "note_template": "Pain location: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "location",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1633,6 +1638,11 @@
       "note_template": "Pain radiation: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "radiat",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1679,6 +1689,11 @@
       "note_template": "Pain severity: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "severity",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1721,6 +1736,11 @@
       "note_template": "Exertional versus rest context: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "exertional",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1763,6 +1783,11 @@
       "note_template": "Associated respiratory symptoms: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "dyspnea",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1809,6 +1834,11 @@
       "note_template": "Chest-pain red-flag findings: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "red flags",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1847,8 +1877,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Haemodynamic observations: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "vital_sign",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "haemodynamic",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1886,8 +1921,13 @@
       "setting_restrictions": [],
       "soap_destination": "objective",
       "note_template": "Cardiac investigation results: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "investigation",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "troponin|ECG",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1957,8 +1997,13 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Medication history: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "medication",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -1999,8 +2044,13 @@
       "setting_restrictions": [],
       "soap_destination": "subjective",
       "note_template": "Allergy history: {{value}}",
-      "value_formatter": "trimmed_text",
+      "value_formatter": "allergy",
       "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -2040,6 +2090,11 @@
       "note_template": "Pregnancy context: {{value}}",
       "value_formatter": "trimmed_text",
       "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "pregnan",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
       "provenance": {
         "evidence_pack_ids": [
           "family-cardio-chest"
@@ -2049,6 +2104,1531 @@
         ],
         "source_ids": [
           "dha-telehealth-chest-pain-v2-2024"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__age",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Age",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "integer",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 24,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age: {{value}}",
+      "value_formatter": "age",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|years|months",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00001",
+          "family-cardio-chest--statement-00002",
+          "family-cardio-chest--statement-00003",
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00006",
+          "family-cardio-chest--statement-00010",
+          "family-cardio-chest--statement-00011",
+          "family-cardio-chest--statement-00015",
+          "family-cardio-chest--statement-00018",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00029",
+          "family-cardio-chest--statement-00030",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00033",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00035",
+          "family-cardio-chest--statement-00036",
+          "family-cardio-chest--statement-00037",
+          "family-cardio-chest--statement-00039",
+          "family-cardio-chest--statement-00040",
+          "family-cardio-chest--statement-00041",
+          "family-cardio-chest--statement-00042",
+          "family-cardio-chest--statement-00048",
+          "family-cardio-chest--statement-00049",
+          "family-cardio-chest--statement-00052",
+          "family-cardio-chest--statement-00055",
+          "family-cardio-chest--statement-00067",
+          "family-cardio-chest--statement-00077",
+          "family-cardio-chest--statement-00079",
+          "family-cardio-chest--statement-00082",
+          "family-cardio-chest--statement-00105",
+          "family-cardio-chest--statement-00110",
+          "family-cardio-chest--statement-00130",
+          "family-cardio-chest--statement-00131"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__age_unit",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Age unit",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "years",
+        "months",
+        "weeks",
+        "days"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 25,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Age unit: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "age|months|years",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00001",
+          "family-cardio-chest--statement-00002",
+          "family-cardio-chest--statement-00003",
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00006",
+          "family-cardio-chest--statement-00010",
+          "family-cardio-chest--statement-00011",
+          "family-cardio-chest--statement-00015",
+          "family-cardio-chest--statement-00018",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00029",
+          "family-cardio-chest--statement-00030",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00033",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00035",
+          "family-cardio-chest--statement-00036",
+          "family-cardio-chest--statement-00037",
+          "family-cardio-chest--statement-00039",
+          "family-cardio-chest--statement-00040",
+          "family-cardio-chest--statement-00041",
+          "family-cardio-chest--statement-00042",
+          "family-cardio-chest--statement-00048",
+          "family-cardio-chest--statement-00049",
+          "family-cardio-chest--statement-00052",
+          "family-cardio-chest--statement-00055",
+          "family-cardio-chest--statement-00067",
+          "family-cardio-chest--statement-00077",
+          "family-cardio-chest--statement-00079",
+          "family-cardio-chest--statement-00082",
+          "family-cardio-chest--statement-00105",
+          "family-cardio-chest--statement-00110",
+          "family-cardio-chest--statement-00130",
+          "family-cardio-chest--statement-00131"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__sex",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Sex",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Female",
+        "Male",
+        "Intersex",
+        "Not recorded"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 26,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sex: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "\\bsex\\b|female|male",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00014",
+          "family-cardio-chest--statement-00105",
+          "family-cardio-chest--statement-00110"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__pregnancy_status",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Pregnancy or postpartum status",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Pregnant",
+        "Not pregnant",
+        "Postpartum",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 27,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        "pregnancy_status=Pregnant"
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Pregnancy or postpartum status: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "pregnan|postpartum",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00040"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__encounter_setting",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Encounter setting",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Outpatient",
+        "Urgent assessment",
+        "Emergency",
+        "Inpatient",
+        "Telephone"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 28,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Encounter setting: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "setting|primary care|emergency|outpatient",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00006",
+          "family-cardio-chest--statement-00013",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00017",
+          "family-cardio-chest--statement-00021",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00023",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00035",
+          "family-cardio-chest--statement-00055",
+          "family-cardio-chest--statement-00062",
+          "family-cardio-chest--statement-00063",
+          "family-cardio-chest--statement-00064",
+          "family-cardio-chest--statement-00066"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__onset",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Onset",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 29,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Onset: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "onset|sudden|gradual",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00018",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00023",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00036",
+          "family-cardio-chest--statement-00058",
+          "family-cardio-chest--statement-00092"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__duration",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Duration",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "duration",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 30,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Duration: {{value}}",
+      "value_formatter": "duration",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "duration|days|hours|weeks",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00010",
+          "family-cardio-chest--statement-00013",
+          "family-cardio-chest--statement-00021",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00031",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00033",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00049",
+          "family-cardio-chest--statement-00056",
+          "family-cardio-chest--statement-00062",
+          "family-cardio-chest--statement-00063",
+          "family-cardio-chest--statement-00065",
+          "family-cardio-chest--statement-00105"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__severity",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Severity",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Not assessed"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 31,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Severity: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "severity|mild|moderate|severe",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00009",
+          "family-cardio-chest--statement-00015",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00026",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00033",
+          "family-cardio-chest--statement-00036",
+          "family-cardio-chest--statement-00040",
+          "family-cardio-chest--statement-00087",
+          "family-cardio-chest--statement-00105",
+          "family-cardio-chest--statement-00106",
+          "family-cardio-chest--statement-00136"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__medication_reconciliation",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Medication reconciliation",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "medication_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 32,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication reconciliation: {{value}}",
+      "value_formatter": "medication",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "medication|prescri|dose|route|frequency",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00002",
+          "family-cardio-chest--statement-00014",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00018",
+          "family-cardio-chest--statement-00029",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00033",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00045",
+          "family-cardio-chest--statement-00079",
+          "family-cardio-chest--statement-00105"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__allergy_reaction",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Allergy and reaction",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "allergy_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 33,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Allergy and reaction: {{value}}",
+      "value_formatter": "allergy",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "allerg|reaction|hypersens",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00079",
+          "family-cardio-chest--statement-00121"
+        ],
+        "source_ids": [
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "Adults with recent-onset acute or stable chest pain or discomfort suspected to be cardiac in origin.",
+        "setting": "Initial, urgent, primary, outpatient, and specialist assessment of recent-onset chest pain.",
+        "restrictions": [],
+        "uae_applicability": "international_requires_uae_adaptation"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__follow_up_interval",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Follow-up interval",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "follow_up_selection",
+      "options": [
+        "Within 24 hours",
+        "Within 48 hours",
+        "Within 7 days",
+        "Routine review",
+        "As needed"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 34,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Follow-up interval: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "follow-up|review|reassess",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00074",
+          "family-cardio-chest--statement-00075",
+          "family-cardio-chest--statement-00094",
+          "family-cardio-chest--statement-00097"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__disposition",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Disposition",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "referral_selection",
+      "options": [
+        "Continue outpatient care",
+        "Urgent review",
+        "Emergency referral",
+        "Admit",
+        "Discharge with advice"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 35,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Disposition: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "disposition|refer|escalat|admit|discharge",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00011",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00019",
+          "family-cardio-chest--statement-00021",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00027",
+          "family-cardio-chest--statement-00029",
+          "family-cardio-chest--statement-00031",
+          "family-cardio-chest--statement-00033",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00035",
+          "family-cardio-chest--statement-00043",
+          "family-cardio-chest--statement-00048",
+          "family-cardio-chest--statement-00053",
+          "family-cardio-chest--statement-00062",
+          "family-cardio-chest--statement-00063",
+          "family-cardio-chest--statement-00064",
+          "family-cardio-chest--statement-00065",
+          "family-cardio-chest--statement-00066",
+          "family-cardio-chest--statement-00069",
+          "family-cardio-chest--statement-00093",
+          "family-cardio-chest--statement-00125",
+          "family-cardio-chest--statement-00130"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__symptom_location",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Symptom location",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 36,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Symptom location: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "location|site|localis",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00012",
+          "family-cardio-chest--statement-00105"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__symptom_laterality",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Laterality",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Left",
+        "Right",
+        "Bilateral",
+        "Midline",
+        "Not applicable",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 37,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Laterality: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "left|right|unilateral|bilateral|laterality",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00002",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00037",
+          "family-cardio-chest--statement-00045",
+          "family-cardio-chest--statement-00070",
+          "family-cardio-chest--statement-00135",
+          "family-cardio-chest--statement-00136"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__symptom_character",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Symptom character",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "text",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 38,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Symptom character: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "character|quality|nature",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00002",
+          "family-cardio-chest--statement-00003",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00019",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00030",
+          "family-cardio-chest--statement-00037",
+          "family-cardio-chest--statement-00038",
+          "family-cardio-chest--statement-00085",
+          "family-cardio-chest--statement-00105"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__associated_symptoms_detail",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Associated symptoms",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "textarea",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 39,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Associated symptoms: {{value}}",
+      "value_formatter": "trimmed_text",
+      "quick_priority": false,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "associated symptom|symptoms",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00009",
+          "family-cardio-chest--statement-00010",
+          "family-cardio-chest--statement-00012",
+          "family-cardio-chest--statement-00014",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00017",
+          "family-cardio-chest--statement-00018",
+          "family-cardio-chest--statement-00019",
+          "family-cardio-chest--statement-00021",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00023",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00026",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00038",
+          "family-cardio-chest--statement-00047",
+          "family-cardio-chest--statement-00058",
+          "family-cardio-chest--statement-00060",
+          "family-cardio-chest--statement-00061",
+          "family-cardio-chest--statement-00081",
+          "family-cardio-chest--statement-00085",
+          "family-cardio-chest--statement-00092",
+          "family-cardio-chest--statement-00093",
+          "family-cardio-chest--statement-00105",
+          "family-cardio-chest--statement-00111",
+          "family-cardio-chest--statement-00122"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__red_flag_assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Red-flag assessment",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "yes_no_unknown",
+      "options": [
+        "Yes",
+        "No",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 40,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Red-flag assessment: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "red flag|warning sign|urgent",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00021",
+          "family-cardio-chest--statement-00063",
+          "family-cardio-chest--statement-00064",
+          "family-cardio-chest--statement-00065"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__vital_signs_structured",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Vital signs",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 41,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs: {{value}}",
+      "value_formatter": "vital_sign",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "vital|temperature|heart rate|blood pressure|oxygen|respiratory rate",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00013",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00017",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00031",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00080",
+          "family-cardio-chest--statement-00081",
+          "family-cardio-chest--statement-00136"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__examination_findings_structured",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Examination findings",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 42,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Examination findings: {{value}}",
+      "value_formatter": "examination",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "examination|physical finding|clinical finding",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00006",
+          "family-cardio-chest--statement-00011",
+          "family-cardio-chest--statement-00012",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00084",
+          "family-cardio-chest--statement-00106"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__investigation_value",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Investigation result and comparison",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 43,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Investigation result and comparison: {{value}}",
+      "value_formatter": "investigation",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "investigation|result|value|comparison",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00006",
+          "family-cardio-chest--statement-00013",
+          "family-cardio-chest--statement-00027",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00035",
+          "family-cardio-chest--statement-00048",
+          "family-cardio-chest--statement-00049",
+          "family-cardio-chest--statement-00053",
+          "family-cardio-chest--statement-00057",
+          "family-cardio-chest--statement-00069",
+          "family-cardio-chest--statement-00074",
+          "family-cardio-chest--statement-00085",
+          "family-cardio-chest--statement-00093",
+          "family-cardio-chest--statement-00097",
+          "family-cardio-chest--statement-00104",
+          "family-cardio-chest--statement-00119",
+          "family-cardio-chest--statement-00122",
+          "family-cardio-chest--statement-00124",
+          "family-cardio-chest--statement-00129",
+          "family-cardio-chest--statement-00140"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__plan_action",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Plan action",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 44,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Plan action: {{value}}",
+      "value_formatter": "plan",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "plan|management|treatment|action",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00001",
+          "family-cardio-chest--statement-00002",
+          "family-cardio-chest--statement-00003",
+          "family-cardio-chest--statement-00004",
+          "family-cardio-chest--statement-00005",
+          "family-cardio-chest--statement-00006",
+          "family-cardio-chest--statement-00012",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00029",
+          "family-cardio-chest--statement-00030",
+          "family-cardio-chest--statement-00031",
+          "family-cardio-chest--statement-00032",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00035",
+          "family-cardio-chest--statement-00036",
+          "family-cardio-chest--statement-00040",
+          "family-cardio-chest--statement-00041",
+          "family-cardio-chest--statement-00042",
+          "family-cardio-chest--statement-00047",
+          "family-cardio-chest--statement-00052",
+          "family-cardio-chest--statement-00055",
+          "family-cardio-chest--statement-00057",
+          "family-cardio-chest--statement-00067",
+          "family-cardio-chest--statement-00077",
+          "family-cardio-chest--statement-00085",
+          "family-cardio-chest--statement-00127",
+          "family-cardio-chest--statement-00130"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__pain_onset_pattern",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Pain onset pattern",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Sudden",
+        "Gradual",
+        "Intermittent",
+        "Continuous",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 45,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Pain onset pattern: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "onset|sudden|gradual",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00018",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00023",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00034",
+          "family-cardio-chest--statement-00036",
+          "family-cardio-chest--statement-00058",
+          "family-cardio-chest--statement-00092"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__pain_exertional_context",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Exertional or rest context",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "single_select",
+      "options": [
+        "Exertional",
+        "At rest",
+        "Both",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 46,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Exertional or rest context: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "exertional|rest",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00009",
+          "family-cardio-chest--statement-00017",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00030",
+          "family-cardio-chest--statement-00062",
+          "family-cardio-chest--statement-00063",
+          "family-cardio-chest--statement-00065",
+          "family-cardio-chest--statement-00067",
+          "family-cardio-chest--statement-00069",
+          "family-cardio-chest--statement-00070",
+          "family-cardio-chest--statement-00071",
+          "family-cardio-chest--statement-00072",
+          "family-cardio-chest--statement-00073",
+          "family-cardio-chest--statement-00074",
+          "family-cardio-chest--statement-00075",
+          "family-cardio-chest--statement-00076",
+          "family-cardio-chest--statement-00080",
+          "family-cardio-chest--statement-00081",
+          "family-cardio-chest--statement-00083",
+          "family-cardio-chest--statement-00085",
+          "family-cardio-chest--statement-00092",
+          "family-cardio-chest--statement-00097",
+          "family-cardio-chest--statement-00107",
+          "family-cardio-chest--statement-00116",
+          "family-cardio-chest--statement-00117",
+          "family-cardio-chest--statement-00118",
+          "family-cardio-chest--statement-00119",
+          "family-cardio-chest--statement-00126"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__dyspnoea",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Shortness of breath",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "yes_no_unknown",
+      "options": [
+        "Yes",
+        "No",
+        "Unknown"
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 47,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Shortness of breath: {{value}}",
+      "value_formatter": "option",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "dyspnea|shortness of breath",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00010",
+          "family-cardio-chest--statement-00014",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00017",
+          "family-cardio-chest--statement-00022",
+          "family-cardio-chest--statement-00023",
+          "family-cardio-chest--statement-00024",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00026"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024"
+        ],
+        "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
+        "setting": "Telehealth services in DHA-licensed health facilities.",
+        "restrictions": [],
+        "uae_applicability": "explicit_uae_source"
+      }
+    },
+    {
+      "workflow_id": "cardio-chest-pain",
+      "field_id": "cardio_chest_pain__cardiac_investigation_value",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "ECG/troponin result",
+      "helper_text": "Enter only the patient-specific fact assessed for this evidence-supported component; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 48,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ECG/troponin result: {{value}}",
+      "value_formatter": "investigation",
+      "quick_priority": true,
+      "suggested": false,
+      "preselected_value": null,
+      "resolution_wave": true,
+      "source_spec_anchor": "ECG|troponin|cardiac",
+      "transformation_reason": "Evidence-gated structured field emitted from an accepted source statement.",
+      "provenance": {
+        "evidence_pack_ids": [
+          "family-cardio-chest"
+        ],
+        "evidence_statement_ids": [
+          "family-cardio-chest--statement-00008",
+          "family-cardio-chest--statement-00011",
+          "family-cardio-chest--statement-00015",
+          "family-cardio-chest--statement-00016",
+          "family-cardio-chest--statement-00020",
+          "family-cardio-chest--statement-00023",
+          "family-cardio-chest--statement-00025",
+          "family-cardio-chest--statement-00028",
+          "family-cardio-chest--statement-00030",
+          "family-cardio-chest--statement-00041",
+          "family-cardio-chest--statement-00053",
+          "family-cardio-chest--statement-00057",
+          "family-cardio-chest--statement-00062",
+          "family-cardio-chest--statement-00063",
+          "family-cardio-chest--statement-00065",
+          "family-cardio-chest--statement-00067",
+          "family-cardio-chest--statement-00069",
+          "family-cardio-chest--statement-00070",
+          "family-cardio-chest--statement-00071",
+          "family-cardio-chest--statement-00072",
+          "family-cardio-chest--statement-00073",
+          "family-cardio-chest--statement-00074",
+          "family-cardio-chest--statement-00075",
+          "family-cardio-chest--statement-00076",
+          "family-cardio-chest--statement-00081",
+          "family-cardio-chest--statement-00083",
+          "family-cardio-chest--statement-00085",
+          "family-cardio-chest--statement-00086",
+          "family-cardio-chest--statement-00087",
+          "family-cardio-chest--statement-00088",
+          "family-cardio-chest--statement-00089",
+          "family-cardio-chest--statement-00092",
+          "family-cardio-chest--statement-00093",
+          "family-cardio-chest--statement-00094",
+          "family-cardio-chest--statement-00095",
+          "family-cardio-chest--statement-00097",
+          "family-cardio-chest--statement-00098",
+          "family-cardio-chest--statement-00116",
+          "family-cardio-chest--statement-00117",
+          "family-cardio-chest--statement-00118",
+          "family-cardio-chest--statement-00119",
+          "family-cardio-chest--statement-00126",
+          "family-cardio-chest--statement-00127",
+          "family-cardio-chest--statement-00134"
+        ],
+        "source_ids": [
+          "dha-telehealth-chest-pain-v2-2024",
+          "nice-chest-pain-cg95-2016"
         ],
         "population": "People presenting with chest pain; no precise age range is stated in the applicability section.",
         "setting": "Telehealth services in DHA-licensed health facilities.",

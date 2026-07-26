@@ -34,6 +34,57 @@ function displayValue(value: string) {
   return [trimmed]
 }
 
+function structuredValue(field: InteractiveField, value: string) {
+  const raw = clean(value)
+  if (!raw) return []
+  let parsed: unknown
+  try { parsed = JSON.parse(raw) } catch { return [raw] }
+  const rows = Array.isArray(parsed) ? parsed : [parsed]
+  const rendered = rows.flatMap((row) => {
+    if (!row || typeof row !== 'object') return [String(row)]
+    const record = row as Record<string, unknown>
+    const get = (...keys: string[]) => keys.map((key) => record[key]).find((item) => item !== undefined && item !== null && String(item).trim() !== '')
+    if (field.value_formatter === 'vital_sign') {
+      const name = get('name', 'observation', 'component')
+      const valuePart = get('value', 'reading')
+      const unit = get('unit')
+      const date = get('date', 'time')
+      return [`${name ? `${name}: ` : ''}${valuePart ?? ''}${unit ? ` ${unit}` : ''}${date ? ` (${date})` : ''}`.trim()]
+    }
+    if (field.value_formatter === 'examination') {
+      const finding = get('finding', 'site', 'examination')
+      const status = get('status', 'result')
+      const detail = get('detail', 'description')
+      return [`${finding ?? 'Examination'}${status ? `: ${status}` : ''}${detail ? ` — ${detail}` : ''}`]
+    }
+    if (field.value_formatter === 'investigation') {
+      const test = get('test', 'name', 'investigation')
+      const result = get('value', 'result', 'finding')
+      const unit = get('unit')
+      const date = get('date')
+      const comparison = get('comparison', 'previous')
+      const interpretation = get('interpretation')
+      return [`${test ?? 'Investigation'}${result !== undefined ? `: ${result}${unit ? ` ${unit}` : ''}` : ''}${date ? ` (${date})` : ''}${comparison ? `; compared with ${comparison}` : ''}${interpretation ? `; ${interpretation}` : ''}`]
+    }
+    if (field.value_formatter === 'medication') {
+      const name = get('name', 'medicine', 'agent')
+      const dose = get('dose')
+      const route = get('route')
+      const frequency = get('frequency')
+      const indication = get('indication')
+      return [`${name ?? 'Medication'}${dose ? ` ${dose}` : ''}${route ? ` ${route}` : ''}${frequency ? ` ${frequency}` : ''}${indication ? ` — ${indication}` : ''}`]
+    }
+    if (field.value_formatter === 'allergy') {
+      const allergen = get('allergen', 'name', 'substance')
+      const reaction = get('reaction')
+      const certainty = get('certainty', 'status')
+      return [`${allergen ?? 'Allergy'}${reaction ? `: ${reaction}` : ''}${certainty ? ` (${certainty})` : ''}`]
+    }
+    return [Object.entries(record).filter(([, item]) => item !== null && item !== undefined && String(item).trim() !== '').map(([key, item]) => `${key}: ${item}`).join('; ')]
+  }).map((item) => item.trim()).filter(Boolean)
+  return rendered.length ? rendered : [raw]
+}
+
 function visible(field: InteractiveField, values: InteractiveValues) {
   if (!field.visibility || field.visibility.type === 'always') return true
   return clean(values[field.visibility.field_id]) === field.visibility.value
@@ -68,7 +119,7 @@ export function buildInteractiveSoapSections(workflow: InteractiveWorkflow, valu
   const sections: Record<keyof InteractiveSoapSections, string[]> = { subjective: [], objective: [], assessment: [], plan: [] }
   for (const field of [...workflow.fields].sort((a, b) => a.display_order - b.display_order)) {
     if (!visible(field, values)) continue
-    for (const value of displayValue(values[field.field_id])) {
+    for (const value of (field.value_formatter && field.value_formatter !== 'trimmed_text' && field.value_formatter !== 'option' ? structuredValue(field, values[field.field_id] ?? '') : displayValue(values[field.field_id] ?? ''))) {
       const line = labelLine(field, value)
       if (line) sections[field.soap_destination].push(line)
     }
@@ -114,7 +165,7 @@ export function buildInteractiveProcedureNote(workflow: InteractiveWorkflow, val
     const matching = workflow.fields.filter((field) => `${field.label} ${field.section}`.toLocaleLowerCase().includes(token))
     const sectionLines: string[] = []
     for (const field of matching) {
-      for (const value of displayValue(values[field.field_id])) {
+      for (const value of (field.value_formatter && field.value_formatter !== 'trimmed_text' && field.value_formatter !== 'option' ? structuredValue(field, values[field.field_id] ?? '') : displayValue(values[field.field_id] ?? ''))) {
         const line = labelLine(field, value)
         if (line) sectionLines.push(line)
       }
