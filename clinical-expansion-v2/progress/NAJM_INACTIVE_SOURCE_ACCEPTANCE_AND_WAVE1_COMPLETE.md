@@ -13,11 +13,13 @@ production deployment was attempted.
 - Baseline branch: `beta-inactive-workflow-expansion-v1`
 - Baseline HEAD: `9bf5dc4f8526193c182402e90295574053af1cb7`
 - Working branch: `beta-inactive-source-acceptance-and-wave1-v1`
-- End HEAD: `a5a02d8a8292f02d704cabb2fc91bb5d2f70f823`
+- Implementation end HEAD: `a5a02d8a8292f02d704cabb2fc91bb5d2f70f823`
+- Final documentation HEAD: `4e13702d469dfe5f5113d73416b0e4823ec9b51c`
 - Commits:
   - `423c6c0f` — `fix(research): repair source candidate acceptance and access classification`
   - `35a296a1` — `data(wave1): activate sourced sore throat workflow`
   - `a5a02d8a` — `docs(wave1): record source acceptance deployment blocker`
+  - `4e13702d` — `docs(wave1): record successful beta deployment and verification`
 
 ## Root-cause and source-access results
 
