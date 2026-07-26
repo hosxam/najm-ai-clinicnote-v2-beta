@@ -75,5 +75,14 @@ The production source-metadata reproducibility check remained PASS with 236 regi
 - `b2ef21a2` — `fix(beta): add evidence-gated structured defect controls`
 - `5ec3291f` — `test(beta): close manual defect resolution matrix`
 
-Deployment and live-browser verification are recorded below only after the new branch is pushed and the beta deployment succeeds. Stable production remains untouched.
+## Deployment gate
 
+- Branch pushed: `beta-manual-defect-resolution-v2`
+- Attempted Pages run: `30206150062` — [workflow run](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30206150062)
+- Build job: PASS; artifact upload: PASS; head SHA: `e4e19234e890fcdd8b15f2b6fcdf8fbe60328c2c`
+- Deploy job: REJECTED before execution by the `github-pages` environment branch policy.
+- Exact failure: `Branch "beta-manual-defect-resolution-v2" is not allowed to deploy to github-pages due to environment protection rules.`
+- No environment rule was changed or bypassed. No stable production route was touched.
+- The live URL therefore still reflects the previously authorized deployment and cannot be claimed as verification of this repair SHA.
+
+After an owner-authorized environment policy update adds this branch, rerun only the existing Pages workflow on this same branch, verify the deployed SHA and live browser behavior, then append the successful run and verification timestamp here. Until then, this report is implementation-complete but deployment-blocked by external protection.
