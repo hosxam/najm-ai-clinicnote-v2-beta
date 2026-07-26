@@ -6,6 +6,7 @@ const root = process.cwd()
 const beta = path.join(root, 'public', 'data-beta', 'final-catalogue')
 const catalog = JSON.parse(fs.readFileSync(path.join(beta, 'catalog.json'), 'utf8'))
 const metadata = JSON.parse(fs.readFileSync(path.join(beta, 'metadata.json'), 'utf8'))
+const manifest = JSON.parse(fs.readFileSync(path.join(beta, 'manifest.json'), 'utf8'))
 const errors = []
 let evidenceRecords = 0
 let hiddenAuditRecords = 0
@@ -29,7 +30,7 @@ for (const summary of catalog.workflows) {
   }
   for (const evidence of detail.evidence_records ?? []) if (!evidence.source_id || !evidence.exact_locator || !evidence.locator_fingerprint) errors.push(`${summary.workflow_id}: internal evidence record lacks exact provenance`)
 }
-if (catalog.workflow_count !== 1500 || catalog.usable_workflow_count !== 417 || catalog.inactive_workflow_count !== 1083) errors.push('catalogue status totals do not match authoritative state')
+if (catalog.workflow_count !== manifest.counts.original_workflows || catalog.usable_workflow_count !== manifest.counts.active_workflows || catalog.inactive_workflow_count !== manifest.counts.inactive_workflows) errors.push('catalogue status totals do not match authoritative state')
 if (metadata.production_public_data_changed) errors.push('production public data changed')
 const result = { status: errors.length ? 'FAIL' : 'PASS', workflow_count: catalog.workflow_count, usable_workflows: catalog.usable_workflow_count, inactive_workflows: catalog.inactive_workflow_count, clinician_facing_items: catalog.user_facing_item_count, evidence_records: evidenceRecords, hidden_audit_records: hiddenAuditRecords, errors }
 console.log(JSON.stringify(result, null, 2))

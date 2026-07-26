@@ -92,12 +92,13 @@ const inactive = read(path.join(beta, 'inactive-inventory.json'))
 const summary = { workflow_id: detail.workflow_id, title: detail.title, specialty: detail.specialty, archetype: detail.archetype, final_status: detail.final_status, usable: true, evidence_pack_ids: detail.evidence_pack_ids, sections: detail.sections, metadata_sections: detail.metadata_sections, internal_evidence_record_count: evidenceRecords.length, provenance_only_record_count: 0, exact_duplicates_removed: 0, near_duplicates_consolidated: 0, repeated_source_paraphrases: 0, concept_groups_consolidated: 0, hidden_audit_records: 0, additions_count: detail.additions_count, rewrites_count: 0, removals_count: 0, limitations: detail.limitations, missing_required_sections: [], user_facing_item_count: userItems.length }
 catalog.workflows = [...catalog.workflows.filter((workflow) => workflow.workflow_id !== detail.workflow_id), summary].sort((a, b) => a.workflow_id.localeCompare(b.workflow_id))
 catalog.usable_workflow_count = catalog.workflows.length
-catalog.inactive_workflow_count = inactive.workflows.length - 1
+catalog.inactive_workflow_count = inactive.workflows.length
 catalog.user_facing_item_count = catalog.workflows.reduce((sum, workflow) => sum + workflow.user_facing_item_count, 0)
 catalog.internal_evidence_record_count = catalog.workflows.reduce((sum, workflow) => sum + workflow.internal_evidence_record_count, 0)
 catalog.catalogue_fingerprint = hash(catalog.workflows)
 inactive.workflows = inactive.workflows.filter((workflow) => workflow.workflow_id !== detail.workflow_id)
 inactive.workflow_count = inactive.workflows.length
+catalog.inactive_workflow_count = inactive.workflow_count
 inactive.inventory_fingerprint = hash(inactive.workflows)
 write(path.join(beta, 'catalog.json'), catalog)
 write(path.join(beta, 'inactive-inventory.json'), inactive)
