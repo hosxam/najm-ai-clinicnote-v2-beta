@@ -58,12 +58,13 @@ The exact machine-readable results are in `clinical-expansion-v2/progress/catalo
 ## Beta deployment and live verification
 
 - Deployment workflow: `Deploy beta to GitHub Pages`.
-- Successful run: `30294822822`.
-- Deployed source: `ef4acedb` (displayed build `ef4aced`).
+- Successful run: `30296610289`.
+- Deployed source: `4b177ed0952bee8cd0e7f3d0d1ed223e749cf4ed` (displayed build `4b177ed`).
 - Canonical manifest loaded: `public/data-beta/final-catalogue/manifest.json`.
 - Obsolete `curated-workflows` dataset was not requested.
 - Automated browser checks passed for catalogue load, totals, search, specialty filtering, Wave 9 workflow opening, Quick and Advanced modes, evidence panel, inactive fail-closed isolation, and desktop/tablet/mobile layouts with no horizontal overflow.
 - Direct route smoke testing recorded zero console errors and zero failed requests. A combined navigation run observed one `ERR_ABORTED` diagnosis-index request during route teardown; the same resource returns HTTP 200 and direct route verification had no failed assets.
+- Fresh post-correction landing and direct workflow smoke checks rendered the deployed build, opened Quick/Advanced controls and the guideline-evidence panel, and recorded no console errors.
 - Browser draft prompt and workflow-scoped localStorage behavior were exercised; no clinician approval or mapping state is exposed.
 
 The detailed machine-readable live result is `clinical-expansion-v2/progress/catalogue-wave9/LIVE_VERIFICATION_WAVE9.json`.
@@ -83,5 +84,7 @@ The detailed machine-readable live result is `clinical-expansion-v2/progress/cat
 11. `21dd895a` — `test(wave9): reconcile expanded source recency totals`
 12. `3fb0eb54` — `test(wave9): record regression and lint results`
 13. `ef4acedb` — `fix(wave9): preserve evidence locator objects`
+
+14. `4b177ed0` — `fix(wave9): enforce compact clinician-facing wording and denominator classes`
 
 The repository is clean after deployment documentation is committed. No stable deployment, merge, rebase, force-push, signing, approval, or queue continuation was performed.
