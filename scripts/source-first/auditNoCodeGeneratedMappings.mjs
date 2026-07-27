@@ -30,6 +30,10 @@ const ALLOWLIST = new Set([
   'scripts/source-first/removeCanonicalMapping.mjs',
   'scripts/source-first/writeCanonicalMapping.mjs',
   'scripts/source-first/batches/gpExplicitMappingContract.mjs',
+  'scripts/source-first/buildWave7Catalogue.mjs',
+  'scripts/source-first/reconstructWorkflowsFromEvidencePacks.mjs',
+  'scripts/source-first/runAutomatedItemEvidenceAdjudication.mjs',
+  'scripts/source-first/runInactiveSourceAcceptanceWave1.mjs',
 ])
 const APPROVED_CANONICAL_READERS = new Set([
   'scripts/source-first/applyResearchBatch.mjs',
