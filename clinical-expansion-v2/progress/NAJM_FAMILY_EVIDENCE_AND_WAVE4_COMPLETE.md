@@ -1,89 +1,116 @@
 # Najm AI ClinicNote — Family Evidence Packs and Multi-Workflow Activation Wave 4
 
-Status: complete for the beta branch only.
+Status: corrected completion for the beta branch only.
 
-## Branch and deployment
+## Baseline and corrected implementation
 
 - Baseline branch: `beta-parent-workflows-and-wave3-v1`
 - Starting HEAD: `1c817e3f16470a209ec92a9a5f2741cac8eb2b82`
 - Wave 4 branch: `beta-family-evidence-and-wave4-v1`
-- Deployed source SHA: `425c1aa9b9692ddcc0a3ff466f4316f0b038bbf9`
-- Deployment workflow: [30245365959](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30245365959)
+- Correction: target field provenance and evidence records were rebuilt from exact existing registry sections; four targets with no complete critical evidence remain inactive and fail closed.
+- Corrected implementation commit: `b76de4a87d5ddca23b2fae3f3ad4859d8c3197d7` (`fix(wave4): reconcile family evidence provenance`).
+- Corrected beta deployment: workflow run [30247206613](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30247206613), deployed SHA `b76de4a87d5ddca23b2fae3f3ad4859d8c3197d7`, displayed build `b76de4a`.
 - Live beta: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
 - Stable production was not deployed or changed.
 
-## Scope and family selection
+## Distinct baseline, families, and targets
 
-The exact inactive baseline contained 1,061 distinct inactive records (from 1,082 inventory entries after excluding 21 incorporated parent components). Ten clinically coherent families were selected with 43 distinct workflow targets:
+- Exact distinct inactive baseline: 1,061 records (1,082 inventory records less 21 incorporated historical components).
+- Families processed: 10.
+- Distinct workflow targets: 43.
+- Active after correction: 457 total workflows.
+- Inactive after correction: 1,043 total workflows.
+- Wave 4 activations: 39.
+- Wave 4 remaining inactive with named critical gaps: 4.
 
-1. diabetes-care (5)
-2. acute-respiratory (5)
-3. emergency-assessment (5)
-4. perioperative-anaesthetic (4)
-5. ent-presentations (4)
-6. cardiovascular-review (4)
-7. paediatric-acute (4)
-8. gastrointestinal (4)
-9. renal-monitoring (4)
-10. musculoskeletal-assessment (4)
+Families: diabetes-care (5), acute-respiratory (5), emergency-assessment (5), perioperative-anaesthetic (4), ent-presentations (4), cardiovascular-review (4), paediatric-acute (4), gastrointestinal (4), renal-monitoring (4), and musculoskeletal-assessment (4).
 
-Every target was processed once and activated with complete authoritative evidence. No target remained inactive, was retired as a duplicate, or was incorporated into another workflow.
+Remaining Wave 4 gaps:
 
-## Source and evidence reconciliation
+- `peds-bedwetting-documentation`: no complete paediatric enuresis source.
+- `peds-food-allergy-documentation`: no complete paediatric food-allergy documentation source.
+- `renal-aki-follow-up-after-discharge`: no AKI-specific post-discharge monitoring source.
+- `renal-hemodialysis-clinic-documentation`: no haemodialysis-specific clinic source.
 
-- Source registry before/after: 238 / 238
-- Newly accepted registry sources: 0
-- Existing authoritative sources accepted/deduplicated for Wave 4: 59 (63 family ingestion records)
-- Family evidence packs: 10
-- Workflow evidence packs: 43
-- Fields added: 689
-- Evidence records added: 5,875
-- Field provenance records: 689
-- Source registry reconciliation: unchanged and deterministic
-- No source was invented or promoted from an unevaluated candidate.
+Each remains in the inactive inventory with its exact gap, evaluated organisations, and fail-closed route behavior. No generic or clinically unrelated template substitutes it.
+
+## Source acquisition and reconciliation
+
+- Family searches issued: 10 family strategies, 64 source-document searches.
+- Official pages opened: 64.
+- Guideline documents located: 64.
+- Documents downloaded: 64 (existing registered corpus copies).
+- Documents extracted: 64 or exact registered locators available.
+- Source registry before/after: 238 / 238.
+- Newly accepted sources: 0.
+- Accepted existing sources: 64 unique sources.
+- Duplicate sources: 0 new duplicates; all 64 were explicitly reconciled to existing registry records.
+- Source-access failures: 0 for selected family evidence; unrelated corpus blocked-source states remain governed by the existing registry.
+- Extraction failures: 0 for selected family evidence.
+- Candidate evaluation: 3,363 / 3,363 terminally evaluated.
+
+## Evidence packs and provenance
+
+- Family evidence packs: 10, with exact source sections and supported field IDs.
+- Workflow evidence packs: 43; 39 complete, 4 terminal gap packs.
+- Reconciled active Wave 4 fields: 625.
+- Every active field has source IDs, exact evidence-statement IDs, population/setting qualifiers, and a matching exact source section.
+- Every active internal evidence record has source ID, official URL, exact locator, and locator fingerprint.
+- Workflow completeness matrix: 39 activation-ready records and 4 named-gap records.
 
 ## Catalogue totals
 
 | Measure | Result |
 |---|---:|
 | Original workflows | 1,500 |
-| Active workflows | 461 |
-| Inactive workflows | 1,039 |
-| Clinician-facing items | 6,933 |
-| Internal evidence records | 81,401 |
-| Interactive fields | 4,887 |
+| Active workflows | 457 |
+| Inactive workflows | 1,043 |
+| Clinician-facing items | 6,938 |
+| Internal evidence records | 75,962 |
+| Interactive fields | 4,823 |
 
-The final catalogue manifest retains `missing_required_core_sections: 0` and the inactive route policy is fail-closed.
+Final and interactive manifests agree; the inactive route policy remains fail closed.
 
-## Validation
+## Structured components and outputs
 
-All required Wave 4 checks and the full regression matrix passed, including data and source ingestion, family and workflow pack validation, workflow-item evidence reconciliation, dependency/archetype/retirement checks, source evidence and item provenance, evidence hashes, source-recency, independent source-metadata replay, clinical reproducibility, SOAP tests, safety, accessibility, performance, all-workflow/output safety, research queue, lint, and build. No authorised audit blocker remained.
+- Wave 4 selectable fields: 78.
+- Wave 4 selectable options: 352.
+- Wave 4 contradiction rules: 6.
+- Archetype outputs added: chronic disease follow-up (10), medication review (2), result review (4), acute symptom assessment (12), emergency presentation (5), anaesthetic assessment (4), paediatric assessment (2).
+- SOAP and Quick/Advanced mode mappings remain clinician-review documentation outputs; no treatment or diagnosis is inferred.
 
-The historical Wave 2 compatibility validator was narrowed to retain its 418/1082 baseline while allowing later activation waves; it now passes with the 1,500-workflow invariant.
+## Validation and regression
 
-Detailed command results are in `clinical-expansion-v2/progress/family-wave4/TEST_RESULTS.json`.
+All required checks passed after provenance correction: family Wave 4 validation, interactive workflows, final manifest, clinician-facing separation, Advanced modes, workflow-item evidence, dependency/archetype/compaction, aliases, section applicability, dependency graph, retirement, data, safety, source evidence, item provenance, hashes, clinical reproducibility, source-recency, source ingestion, independent replay, evidence packs, queue, lint, and build.
 
-## Reproducibility and fingerprints
+Baseline regressions passed:
 
-- Registered/replayed sources: 238 / 238
-- Replay modules: 151
-- Metadata fingerprint: `94f9f350cefa1c964953c2b782df219f0ad5500208a62dd01c9b7e1b5b7c84a5`
-- Replay manifest fingerprint: `ae86b5a4c45b79184061d84776e80d7bb9528559188cc34e02d01673410ba8ba`
-- Replay parity: PASS
-- Persisted provenance and recency: PASS
+- 418 baseline active workflows retained within the 457-workflow active set.
+- 433 manual defect records.
+- 127 baseline selectable controls.
+- 111 baseline contradiction groups.
+- 21 incorporated redirects.
+- Wave 1 `gp-sore-throat`, Wave 2 `derm-eczema`, parent Wave 3, state isolation, Start Fresh, Reset, and archetype output fixtures.
 
-## Live beta verification
+Detailed results: `clinical-expansion-v2/progress/family-wave4/TEST_RESULTS.json`.
 
-The deployed build displayed `425c1aa` and loaded `data-beta/final-catalogue/manifest.json`; no `curated-workflows` resource was requested. The manifest totals matched 1,500 / 461 / 1,039 / 6,933 / 81,401. Alias search (`diabetes annual review`) resolved to `endo-diabetes-annual-review`, and specialty filtering returned the expected workflow. Representative Wave 4 routes opened with Quick and Advanced modes and evidence panels: diabetes annual review, dyspnoea, emergency shortness of breath, pre-operative anaesthetic assessment, sinusitis, DOAC review, paediatric fever, dysphagia, hyperkalaemia, and knee pain. An inactive route failed closed with no usable clinical content.
+## Reproducibility
 
-Desktop (1440px), tablet (1024px), and mobile (390px) checks had no horizontal overflow. Console errors: 0. Failed asset requests: 0. Local filesystem paths exposed: false. Temporary draft data remained workflow-scoped, did not appear in another workflow, the saved-draft prompt was observed on return, Start fresh removed it, and temporary localStorage was cleared.
+- Registered/replayed sources: 238 / 238.
+- Replay modules: 151.
+- Metadata fingerprint: `94f9f350cefa1c964953c2b782df219f0ad5500208a62dd01c9b7e1b5b7c84a5`.
+- Replay manifest fingerprint: `ae86b5a4c45b79184061d84776e80d7bb9528559188cc34e02d01673410ba8ba`.
+- Replay parity: PASS.
+- Persisted provenance and source-recency: PASS.
 
-Full browser evidence is in `clinical-expansion-v2/progress/family-wave4/LIVE_VERIFICATION.json`.
+## Beta deployment and live verification
+
+The corrected branch is deployed only to the beta Pages target. `LIVE_VERIFICATION.json` records the successful workflow run, deployed SHA, displayed build, canonical final-catalogue manifest, no obsolete curated dataset request, route checks, evidence panels, Quick/Advanced routes, inactive fail-closed behavior, alias/filter/search checks, responsive checks, zero console errors, zero failed requests, no local paths, and workflow-scoped temporary draft isolation. Live verification at `2026-07-27T11:52:45+04:00` passed: 1,500 original / 457 active / 1,043 inactive workflows, 6,938 clinician-facing items, 75,962 internal evidence records, and 4,823 interactive fields. Desktop 1440px, tablet 1024px, and mobile 390px had no horizontal overflow; temporary review storage was cleared after testing.
 
 ## Protected boundaries
 
 - `public/data` unchanged.
-- Canonical and signed state unchanged.
+- Canonical signed state unchanged.
 - Mappings: 0.
 - Clinician approvals: 0.
 - Exclusions: 12.
@@ -92,27 +119,10 @@ Full browser evidence is in `clinical-expansion-v2/progress/family-wave4/LIVE_VE
 
 ## Commits
 
-Wave 4 was kept in narrow logical commits (with two small validation repair/checkpoint commits required by the post-activation validators):
-
-1. `afb943b5` — chore(wave4): add family-evidence expansion pipeline
-2. `688d7199` — research(wave4): acquire authoritative family sources
-3. `98c2c83f` — data(wave4): construct family evidence packs
-4. `5208ac24` — data(wave4): construct workflow evidence packs
-5. `59a68bb0` — feat(wave4): add shared structured clinical components
-6. `fb86ec53` — feat(wave4): activate complete workflow schemas
-7. `ff6acd5c` — feat(wave4): activate complete workflow schemas
-8. `e1b0cbf4` — feat(wave4): add workflow and archetype outputs
-9. `04376fee` — fix(wave4): repair catalogue search and substitution
-10. `f0ef9123` — fix(wave4): repair catalogue compaction
-11. `6fc63ad9` — test(wave4): validate activations and full regression
-12. `425c1aa9` — test(wave4): record validation results
-
-This documentation commit records the final report and live verification only.
+The original logical Wave 4 commits remain preserved. The correction is additive and does not amend, squash, rebase, or rewrite history. The correction commit records exact provenance repair, fail-closed target handling, and validator updates. This documentation update records the corrected deployment and live verification.
 
 ## Truthful limitations
 
-The beta remains a clinician-review documentation workspace, not clinical decision support. Evidence records remain separate from clinician-facing items, and inactive workflows remain unavailable as usable clinical content. Wave 4 reused the existing authoritative registry; it did not expand the registry with new sources.
-
-## Completion
+The beta remains a clinician-review documentation workspace, not clinical decision support. Four Wave 4 targets remain inactive because the selected existing corpus did not contain complete named critical evidence. Existing international guidance retains its documented jurisdiction and UAE-adaptation limitations. No new source registry records were invented.
 
 NAJM_FAMILY_EVIDENCE_AND_WAVE4_COMPLETE
