@@ -20,7 +20,9 @@ if (components.records.length !== 451 || micro.records.length !== 77) errors.pus
 if (targets.targets.length !== 50 || new Set(targets.targets.map((target) => target.workflow_id)).size !== 50) errors.push('target count or uniqueness failed')
 if (!targets.targets.every((target) => target.archetype && Number.isFinite(target.clinical_priority_score) && target.current_status)) errors.push('target priority/archetype fields incomplete')
 if (!catalog.workflows.some((entry) => entry.workflow_id === 'derm-eczema' && entry.usable) || inactive.workflows.some((entry) => entry.workflow_id === 'derm-eczema')) errors.push('activated workflow separation failed')
-if (finalManifest.counts.active_workflows !== 418 || finalManifest.counts.inactive_workflows !== 1082) errors.push('Wave-2 catalogue counts failed')
+// Wave 2 established a 418/1082 baseline; later activation waves legitimately
+// increase the active count while preserving the 1,500-workflow catalogue.
+if (finalManifest.counts.active_workflows < 418 || finalManifest.counts.inactive_workflows > 1082 || finalManifest.counts.active_workflows + finalManifest.counts.inactive_workflows !== 1500) errors.push('Wave-2 catalogue baseline/counts failed')
 if (activations.activated.length !== 1 || activations.activated[0].workflow_id !== 'derm-eczema' || activations.retained_inactive.length !== 49) errors.push('activation artifact counts failed')
 if (pack.pack_status !== 'completed' || pack.completion_status !== 'complete_for_mapped_archetypes' || pack.completion_blockers.length || pack.source_ids.length !== 2) errors.push('composed pack is not complete and bounded')
 if (pack.evidence_statements.length !== 14 || pack.evidence_statements.some((statement) => !statement.source_id || !statement.exact_locator || !statement.official_url)) errors.push('composed pack provenance incomplete')
