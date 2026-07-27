@@ -1,0 +1,478 @@
+{
+  "workflow_id": "peds-medication-allergy-documentation-child",
+  "title": "Medication allergy documentation child",
+  "specialty": "peds",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_complete",
+  "evidence_pack_ids": [
+    "wave8-wave8-peds",
+    "wave8-workflow-peds-medication-allergy-documentation-child"
+  ],
+  "evidence_statement_count": 7,
+  "fields": [
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Medication allergy documentation child — history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication allergy documentation child — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Medication allergy documentation child — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        "Not assessed",
+        "Absent on assessment"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "peds-medication-allergy-documentation-child__negatives",
+          "mutually_exclusive_values": [
+            "Not assessed",
+            "Absent on assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication allergy documentation child — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Medication allergy documentation child — focused findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Medication allergy documentation child — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Medication allergy documentation child — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Medication allergy documentation child — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Medication allergy documentation child — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Medication allergy documentation child — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__specific_history",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_history",
+      "label": "Medication allergy documentation child — workflow-specific history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Medication allergy documentation child — workflow-specific history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__specific_findings",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_findings",
+      "label": "Medication allergy documentation child — workflow-specific findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Medication allergy documentation child — workflow-specific findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "field_id": "peds_medication_allergy_documentation_child__specific_result_or_plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_result_or_plan",
+      "label": "Medication allergy documentation child — workflow-specific result or plan",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Medication allergy documentation child — workflow-specific result or plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-peds-medication-allergy-documentation-child"
+        ],
+        "evidence_statement_ids": [
+          "wave8-peds-medication-allergy-documentation-child--generated-0001"
+        ],
+        "source_ids": [
+          "nice-drug-allergy-cg183-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "peds-medication-allergy-documentation-child",
+      "evidence_statement_id": "wave8-peds-medication-allergy-documentation-child--generated-0001",
+      "source_id": "nice-drug-allergy-cg183-2014",
+      "exact_locator": {
+        "section_id": "nice-cg183-drug-allergy-assessment-patterns",
+        "heading": "Recommendation 1.1.1 and Tables 1–3 — assessment, reaction patterns, and timing",
+        "locator": "official recommendations lines 39–121"
+      },
+      "final_wording": "Supports structured recording of drug name, reaction signs, symptoms, severity, date and time, indication, number of doses or days before onset, route, status, and specialist-investigation results already available."
+    }
+  ],
+  "transformation_audit": {
+    "additions_count": 287,
+    "rewrites_count": 0,
+    "removals_count": 52,
+    "wave6": {
+      "source_id": "dha-telehealth-chest-pain-v2-2024",
+      "exact_section_id": "dha-chest-pain-v2-scope-applicability",
+      "workflow_specific_fields": [
+        "anes-airway-plan-documentation-review__specific_history",
+        "anes-airway-plan-documentation-review__specific_findings",
+        "anes-airway-plan-documentation-review__specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    },
+    "wave7": {
+      "family_id": "wave7-anes",
+      "source_id": "asa-basic-anesthetic-monitoring-2025",
+      "exact_section_id": "asa-monitoring-qualified-personnel",
+      "workflow_specific_fields": [
+        "workflow_specific_history",
+        "workflow_specific_findings",
+        "workflow_specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    }
+  }
+}

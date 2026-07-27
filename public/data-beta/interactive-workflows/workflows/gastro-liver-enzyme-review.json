@@ -1,0 +1,588 @@
+{
+  "workflow_id": "gastro-liver-enzyme-review",
+  "title": "Liver enzyme review",
+  "specialty": "gastro",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_complete",
+  "evidence_pack_ids": [
+    "wave8-wave8-gastro",
+    "wave8-workflow-gastro-liver-enzyme-review"
+  ],
+  "evidence_statement_count": 7,
+  "fields": [
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Liver enzyme review — history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Liver enzyme review — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Liver enzyme review — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        "Not assessed",
+        "Absent on assessment"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "gastro-liver-enzyme-review__negatives",
+          "mutually_exclusive_values": [
+            "Not assessed",
+            "Absent on assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Liver enzyme review — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Liver enzyme review — focused findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Liver enzyme review — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Liver enzyme review — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Liver enzyme review — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Liver enzyme review — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Liver enzyme review — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__specific_history",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_history",
+      "label": "Liver enzyme review — workflow-specific history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Liver enzyme review — workflow-specific history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__specific_findings",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_findings",
+      "label": "Liver enzyme review — workflow-specific findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Liver enzyme review — workflow-specific findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "field_id": "gastro_liver_enzyme_review__specific_result_or_plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_result_or_plan",
+      "label": "Liver enzyme review — workflow-specific result or plan",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Liver enzyme review — workflow-specific result or plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-liver-enzyme-review"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-liver-enzyme-review--generated-0001",
+          "wave8-gastro-liver-enzyme-review--generated-0002",
+          "wave8-gastro-liver-enzyme-review--generated-0003",
+          "wave8-gastro-liver-enzyme-review--generated-0004",
+          "wave8-gastro-liver-enzyme-review--generated-0005",
+          "wave8-gastro-liver-enzyme-review--generated-0006"
+        ],
+        "source_ids": [
+          "bsg-abnormal-liver-blood-tests-2018"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "evidence_statement_id": "wave8-gastro-liver-enzyme-review--generated-0001",
+      "source_id": "bsg-abnormal-liver-blood-tests-2018",
+      "exact_locator": {
+        "section_id": "bsg-liver-tests-2018-standard-panel",
+        "heading": "Recommendation 1 — standard initial liver blood-test panel",
+        "locator": "PDF page 1; recommendations list"
+      },
+      "final_wording": "PRN"
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "evidence_statement_id": "wave8-gastro-liver-enzyme-review--generated-0002",
+      "source_id": "bsg-abnormal-liver-blood-tests-2018",
+      "exact_locator": {
+        "section_id": "bsg-liver-tests-2018-standard-panel",
+        "heading": "Recommendation 1 — standard initial liver blood-test panel",
+        "locator": "PDF page 1; recommendations list"
+      },
+      "final_wording": "Supports age, hepatitis-risk context, jaundice, abdominal pain, weight loss, pruritus, comorbidity, prescribed or non-prescribed drug history, travel or exposure context, and alcohol history."
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "evidence_statement_id": "wave8-gastro-liver-enzyme-review--generated-0003",
+      "source_id": "bsg-abnormal-liver-blood-tests-2018",
+      "exact_locator": {
+        "section_id": "bsg-liver-tests-2018-standard-panel",
+        "heading": "Recommendation 1 — standard initial liver blood-test panel",
+        "locator": "PDF page 1; recommendations list"
+      },
+      "final_wording": "Supports clinician review of bilirubin and standard liver blood-test components; it does not provide patient-specific interpretation or diagnosis."
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "evidence_statement_id": "wave8-gastro-liver-enzyme-review--generated-0004",
+      "source_id": "bsg-abnormal-liver-blood-tests-2018",
+      "exact_locator": {
+        "section_id": "bsg-liver-tests-2018-context-interpretation",
+        "heading": "Recommendations 2–3 — prior results and clinical context",
+        "locator": "PDF pages 8–9; lines 717–764"
+      },
+      "final_wording": "Requires review of previous results, past medical history, current condition, the specific abnormal analyte, and clinical context rather than inferring significance from magnitude alone."
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "evidence_statement_id": "wave8-gastro-liver-enzyme-review--generated-0005",
+      "source_id": "bsg-abnormal-liver-blood-tests-2018",
+      "exact_locator": {
+        "section_id": "bsg-liver-tests-2018-aetiology-screen",
+        "heading": "Recommendations 4–6 — liver aetiology screen",
+        "locator": "PDF pages 1 and 10; lines 68–86 and 899 onward"
+      },
+      "final_wording": "Supports clinician-reviewed abdominal ultrasound and hepatitis B or C testing in the recommendation-qualified adult liver-aetiology-screen context; investigation choice remains clinician-led."
+    },
+    {
+      "workflow_id": "gastro-liver-enzyme-review",
+      "evidence_statement_id": "wave8-gastro-liver-enzyme-review--generated-0006",
+      "source_id": "bsg-abnormal-liver-blood-tests-2018",
+      "exact_locator": {
+        "section_id": "bsg-liver-tests-2018-response-referral",
+        "heading": "Response pathway and Recommendation 10",
+        "locator": "PDF pages 2, 9, and 12; figure 1 and Recommendation 10"
+      },
+      "final_wording": "Supports clinician-led further investigation or referral based on synthetic failure, suspicious symptoms or signs, analyte pattern, persistence, risk factors, and clinical context without automatically assigning urgency."
+    }
+  ],
+  "transformation_audit": {
+    "additions_count": 287,
+    "rewrites_count": 0,
+    "removals_count": 52,
+    "wave6": {
+      "source_id": "dha-telehealth-chest-pain-v2-2024",
+      "exact_section_id": "dha-chest-pain-v2-scope-applicability",
+      "workflow_specific_fields": [
+        "anes-airway-plan-documentation-review__specific_history",
+        "anes-airway-plan-documentation-review__specific_findings",
+        "anes-airway-plan-documentation-review__specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    },
+    "wave7": {
+      "family_id": "wave7-anes",
+      "source_id": "asa-basic-anesthetic-monitoring-2025",
+      "exact_section_id": "asa-monitoring-qualified-personnel",
+      "workflow_specific_fields": [
+        "workflow_specific_history",
+        "workflow_specific_findings",
+        "workflow_specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    }
+  }
+}

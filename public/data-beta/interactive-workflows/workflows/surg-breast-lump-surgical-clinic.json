@@ -1,0 +1,500 @@
+{
+  "workflow_id": "surg-breast-lump-surgical-clinic",
+  "title": "Breast lump surgical clinic",
+  "specialty": "surg",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_complete",
+  "evidence_pack_ids": [
+    "wave8-wave8-surg",
+    "wave8-workflow-surg-breast-lump-surgical-clinic"
+  ],
+  "evidence_statement_count": 7,
+  "fields": [
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Breast lump surgical clinic — history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Breast lump surgical clinic — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Breast lump surgical clinic — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        "Not assessed",
+        "Absent on assessment"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "surg-breast-lump-surgical-clinic__negatives",
+          "mutually_exclusive_values": [
+            "Not assessed",
+            "Absent on assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Breast lump surgical clinic — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Breast lump surgical clinic — focused findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Breast lump surgical clinic — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Breast lump surgical clinic — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Breast lump surgical clinic — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Breast lump surgical clinic — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Breast lump surgical clinic — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__specific_history",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_history",
+      "label": "Breast lump surgical clinic — workflow-specific history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Breast lump surgical clinic — workflow-specific history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__specific_findings",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_findings",
+      "label": "Breast lump surgical clinic — workflow-specific findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Breast lump surgical clinic — workflow-specific findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "field_id": "surg_breast_lump_surgical_clinic__specific_result_or_plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_result_or_plan",
+      "label": "Breast lump surgical clinic — workflow-specific result or plan",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Breast lump surgical clinic — workflow-specific result or plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-surg-breast-lump-surgical-clinic"
+        ],
+        "evidence_statement_ids": [
+          "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+          "wave8-surg-breast-lump-surgical-clinic--generated-0002"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "evidence_statement_id": "wave8-surg-breast-lump-surgical-clinic--generated-0001",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "exact_locator": {
+        "section_id": "nice-ng12-breast-symptoms-referral",
+        "heading": "Recommendations 1.4.1–1.4.3 — breast cancer recognition and referral",
+        "locator": "recommendations organised by site, breast cancer section"
+      },
+      "final_wording": "Supports clinician recognition of an unexplained breast lump and age-qualified nipple or skin changes for referral consideration; it does not assert cancer or generate a referral decision."
+    },
+    {
+      "workflow_id": "surg-breast-lump-surgical-clinic",
+      "evidence_statement_id": "wave8-surg-breast-lump-surgical-clinic--generated-0002",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "exact_locator": {
+        "section_id": "nice-ng12-safety-netting-review",
+        "heading": "Recommendations 1.14.6–1.15.2 — information and safety netting",
+        "locator": "safety-netting page lines 75–96"
+      },
+      "final_wording": "Supports documenting warning symptoms, when to return for re-evaluation, agreed review, and patient-initiated review if symptoms recur, persist, worsen, or cause concern."
+    }
+  ],
+  "transformation_audit": {
+    "additions_count": 287,
+    "rewrites_count": 0,
+    "removals_count": 52,
+    "wave6": {
+      "source_id": "dha-telehealth-chest-pain-v2-2024",
+      "exact_section_id": "dha-chest-pain-v2-scope-applicability",
+      "workflow_specific_fields": [
+        "anes-airway-plan-documentation-review__specific_history",
+        "anes-airway-plan-documentation-review__specific_findings",
+        "anes-airway-plan-documentation-review__specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    },
+    "wave7": {
+      "family_id": "wave7-anes",
+      "source_id": "asa-basic-anesthetic-monitoring-2025",
+      "exact_section_id": "asa-monitoring-qualified-personnel",
+      "workflow_specific_fields": [
+        "workflow_specific_history",
+        "workflow_specific_findings",
+        "workflow_specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    }
+  }
+}

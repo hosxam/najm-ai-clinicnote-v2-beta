@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "gastro-post-endoscopy-followup",
+  "title": "Post-endoscopy follow-up",
+  "specialty": "gastro",
+  "archetype": "acute_symptom_assessment",
+  "fields": [
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Post-endoscopy follow-up — history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Post-endoscopy follow-up — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Post-endoscopy follow-up — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        "Not assessed",
+        "Absent on assessment"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "gastro-post-endoscopy-followup__negatives",
+          "mutually_exclusive_values": [
+            "Not assessed",
+            "Absent on assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Post-endoscopy follow-up — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Post-endoscopy follow-up — focused findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Post-endoscopy follow-up — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Post-endoscopy follow-up — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Post-endoscopy follow-up — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Post-endoscopy follow-up — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Post-endoscopy follow-up — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__specific_history",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_history",
+      "label": "Post-endoscopy follow-up — workflow-specific history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Post-endoscopy follow-up — workflow-specific history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__specific_findings",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_findings",
+      "label": "Post-endoscopy follow-up — workflow-specific findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Post-endoscopy follow-up — workflow-specific findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "field_id": "gastro_post_endoscopy_followup__specific_result_or_plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_result_or_plan",
+      "label": "Post-endoscopy follow-up — workflow-specific result or plan",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Post-endoscopy follow-up — workflow-specific result or plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-gastro-post-endoscopy-followup"
+        ],
+        "evidence_statement_ids": [
+          "wave8-gastro-post-endoscopy-followup--generated-0001",
+          "wave8-gastro-post-endoscopy-followup--generated-0002",
+          "wave8-gastro-post-endoscopy-followup--generated-0003"
+        ],
+        "source_ids": [
+          "bsg-endoscopy-sedation-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "evidence_statement_id": "wave8-gastro-post-endoscopy-followup--generated-0001",
+      "source_id": "bsg-endoscopy-sedation-2023",
+      "exact_locator": {
+        "section_id": "bsg-endoscopy-sedation-2023-procedure-context",
+        "heading": "Pre-assessment — indication, intended aim, and procedure context",
+        "locator": "PDF page 9; lines 861–870"
+      },
+      "final_wording": "PRN"
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "evidence_statement_id": "wave8-gastro-post-endoscopy-followup--generated-0002",
+      "source_id": "bsg-endoscopy-sedation-2023",
+      "exact_locator": {
+        "section_id": "bsg-endoscopy-sedation-2023-procedure-context",
+        "heading": "Pre-assessment — indication, intended aim, and procedure context",
+        "locator": "PDF page 9; lines 861–870"
+      },
+      "final_wording": "Supports documenting recovery progress, baseline consciousness or function, vital monitoring, complications during recovery, information exchange, follow-up planning, and discharge advice."
+    },
+    {
+      "workflow_id": "gastro-post-endoscopy-followup",
+      "evidence_statement_id": "wave8-gastro-post-endoscopy-followup--generated-0003",
+      "source_id": "bsg-endoscopy-sedation-2023",
+      "exact_locator": {
+        "section_id": "bsg-endoscopy-sedation-2023-procedure-context",
+        "heading": "Pre-assessment — indication, intended aim, and procedure context",
+        "locator": "PDF page 9; lines 861–870"
+      },
+      "final_wording": "Supports documenting the endoscopic procedure context and indication or intended aim as known clinical-record information."
+    }
+  ]
+}

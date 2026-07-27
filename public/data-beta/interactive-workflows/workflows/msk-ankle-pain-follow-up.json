@@ -1,0 +1,500 @@
+{
+  "workflow_id": "msk-ankle-pain-follow-up",
+  "title": "Ankle pain follow-up",
+  "specialty": "msk",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_complete",
+  "evidence_pack_ids": [
+    "wave8-wave8-msk",
+    "wave8-workflow-msk-ankle-pain-follow-up"
+  ],
+  "evidence_statement_count": 7,
+  "fields": [
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Ankle pain follow-up — history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Ankle pain follow-up — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Ankle pain follow-up — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        "Not assessed",
+        "Absent on assessment"
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "msk-ankle-pain-follow-up__negatives",
+          "mutually_exclusive_values": [
+            "Not assessed",
+            "Absent on assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Ankle pain follow-up — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Ankle pain follow-up — focused findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Ankle pain follow-up — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Ankle pain follow-up — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Ankle pain follow-up — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Ankle pain follow-up — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Ankle pain follow-up — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__specific_history",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_history",
+      "label": "Ankle pain follow-up — workflow-specific history",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Ankle pain follow-up — workflow-specific history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__specific_findings",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_findings",
+      "label": "Ankle pain follow-up — workflow-specific findings",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Ankle pain follow-up — workflow-specific findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "field_id": "msk_ankle_pain_follow_up__specific_result_or_plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_result_or_plan",
+      "label": "Ankle pain follow-up — workflow-specific result or plan",
+      "helper_text": "Enter only clinician-assessed information for this workflow; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Ankle pain follow-up — workflow-specific result or plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave8-workflow-msk-ankle-pain-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave8-msk-ankle-pain-follow-up--generated-0001",
+          "wave8-msk-ankle-pain-follow-up--generated-0002"
+        ],
+        "source_ids": [
+          "dha-muscle-sprains-strains-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "evidence_statement_id": "wave8-msk-ankle-pain-follow-up--generated-0001",
+      "source_id": "dha-muscle-sprains-strains-issue2-2024",
+      "exact_locator": {
+        "section_id": "dha-sprains-i2-symptoms-history",
+        "heading": "7 Symptoms and signs; 7.4 Relevant history",
+        "locator": "pages 9–12; lines 137–197"
+      },
+      "final_wording": "Supports pain, swelling, bruising, restricted movement, weight-bearing difficulty, instability, loss of function, mechanism, timing, force, direction, pop or snap, aggravating conditions, and previous episodes."
+    },
+    {
+      "workflow_id": "msk-ankle-pain-follow-up",
+      "evidence_statement_id": "wave8-msk-ankle-pain-follow-up--generated-0002",
+      "source_id": "dha-muscle-sprains-strains-issue2-2024",
+      "exact_locator": {
+        "section_id": "dha-sprains-i2-redflags-investigations",
+        "heading": "8 Red flags; 9 Differential diagnosis; 10 Investigations",
+        "locator": "pages 12–13; lines 198–235"
+      },
+      "final_wording": "Identifies severe pain or swelling, discoloration, weakness, movement loss, numbness, coldness, deformity, persistent symptoms, fracture or dislocation concern, and clinician-selected radiography, ultrasound, or MRI."
+    }
+  ],
+  "transformation_audit": {
+    "additions_count": 287,
+    "rewrites_count": 0,
+    "removals_count": 52,
+    "wave6": {
+      "source_id": "dha-telehealth-chest-pain-v2-2024",
+      "exact_section_id": "dha-chest-pain-v2-scope-applicability",
+      "workflow_specific_fields": [
+        "anes-airway-plan-documentation-review__specific_history",
+        "anes-airway-plan-documentation-review__specific_findings",
+        "anes-airway-plan-documentation-review__specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    },
+    "wave7": {
+      "family_id": "wave7-anes",
+      "source_id": "asa-basic-anesthetic-monitoring-2025",
+      "exact_section_id": "asa-monitoring-qualified-personnel",
+      "workflow_specific_fields": [
+        "workflow_specific_history",
+        "workflow_specific_findings",
+        "workflow_specific_result_or_plan"
+      ],
+      "no_autonomous_clinical_inference": true
+    }
+  }
+}
