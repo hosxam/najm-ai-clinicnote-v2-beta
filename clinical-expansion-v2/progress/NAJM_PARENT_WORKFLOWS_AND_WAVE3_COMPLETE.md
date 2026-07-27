@@ -2,7 +2,7 @@
 
 ## Result
 
-Implementation and validation completed on branch `beta-parent-workflows-and-wave3-v1`. Beta deployment was attempted, but GitHub Pages rejected the deploy job because this branch is not authorized by the `github-pages` environment. The live beta was therefore not attributed to this build and live verification was not claimed.
+Implementation, validation, beta deployment, and live verification completed on branch `beta-parent-workflows-and-wave3-v1`.
 
 ## Reconciliation and construction
 
@@ -24,15 +24,19 @@ The validated catalogue remains 1,500 original workflows, 418 active, 1,082 inac
 
 All required implementation and regression checks passed, including parent-wave3 validation (528 terminal, 49 closures, 10 parents, 21 incorporations, 507 retained, 5 Wave 3 targets, 0 activations), inactive-taxonomy Wave 2 checks, final beta manifest and clinician-facing separation, source ingestion, replay parity, source-metadata reproducibility, source recency, evidence packs, interactive SOAP, advanced SOAP, interactive repair, accessibility, performance, data, safety, lint, build, manual-defect closure (433), selectable controls (127), contradiction tests (111), all-workflows, output safety, workflow evidence/provenance, dependency/archetype/compaction/alias/retirement checks, hashes, and the research queue.
 
-## Deployment attempt
+## Deployment and live verification
 
 - Branch pushed: `beta-parent-workflows-and-wave3-v1`.
-- Deployment workflow: [run 30242770647](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30242770647).
-- Build job succeeded at source SHA `8abf72e123fd4bd9dcdac48f45e758d1e41ae4d1`.
-- Deploy job was rejected by `github-pages`: `Branch "beta-parent-workflows-and-wave3-v1" is not allowed to deploy to github-pages due to environment protection rules.`
+- Deployment workflow: [run 30243282300](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30243282300).
+- Build and deploy jobs succeeded at source SHA `9d898e7d682f11c5c1af0baa50738fd04c66d956`.
+- Live beta: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta.
+- Displayed build identifier: `9d898e7`, matching the deployed source SHA.
+- The canonical final-catalogue manifest loaded; the obsolete curated-workflows dataset was not requested.
+- Ten existing parent routes loaded, Quick and Advanced modes rendered, the incorporated-parent alias manifest resolved, and an inactive Wave 3 target failed closed.
+- Workflow-scoped draft isolation and Start Fresh clearing passed using temporary browser state, which was cleared after testing.
+- Desktop (1440x900), tablet (1024x768), and mobile (390x844) had no horizontal overflow. Console errors: 0. Failed static assets: 0. Local filesystem paths exposed: false.
 - No protection rule was changed. No stable production deployment, merge, rebase, force-push, signing, or approval occurred.
-- Live verification: not performed for this build because no deployment was published. See `clinical-expansion-v2/progress/parent-wave3/LIVE_VERIFICATION.json`.
-- GitHub's deployment records show the beta remains published from the prior Wave 2 SHA `a758d31b7623af24614d83647745bee3416a29e8`; it does not match the Wave 3 implementation SHA.
+- Detailed evidence is recorded in `clinical-expansion-v2/progress/parent-wave3/LIVE_VERIFICATION.json`.
 
 ## Remaining limitations
 
