@@ -41,7 +41,7 @@ for (const target of targets) {
     seen.add(key); selected.push({ ...item, final_wording: wording })
   }
   const statementIds = selected.slice(0, 12).map((_, i) => `wave9-${id}--generated-${String(i + 1).padStart(4, '0')}`)
-  const specific = selected.slice(0, 3).map((item, i) => ({ section: item.section || 'workflow_specific', label: `${target.exact_title} — ${item.section || 'workflow-specific'} evidence`, item, i }))
+  const specific = selected.slice(0, 3).map((item, i) => ({ section: item.section || 'workflow_specific', label: `Workflow-specific ${item.section || 'finding'}`, item, i }))
   const fields = [
     makeField(id, target, 'demographics', 'Demographics and encounter context', 'text', 'subjective', statementIds, 1),
     makeField(id, target, 'history', `${target.exact_title} — history`, 'textarea', 'subjective', statementIds, 2),
