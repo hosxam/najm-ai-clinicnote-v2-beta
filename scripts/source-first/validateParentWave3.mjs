@@ -1,0 +1,48 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const wave2 = path.join(root, 'clinical-expansion-v2', 'progress', 'inactive-taxonomy-wave2');
+const dir = path.join(root, 'clinical-expansion-v2', 'progress', 'parent-wave3');
+const beta = path.join(root, 'public', 'data-beta', 'final-catalogue');
+const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+const errors = [];
+const component = read(path.join(wave2, 'COMPONENT_DISPOSITIONS.json')).records;
+const micro = read(path.join(wave2, 'MICRO_WORKFLOW_DISPOSITIONS.json')).records;
+const allPending = [...component, ...micro];
+const dispositions = read(path.join(dir, 'PENDING_RECORD_DISPOSITIONS.json'));
+const closure = read(path.join(dir, 'WAVE2_TARGET_CLOSURE.json'));
+const accounting = read(path.join(dir, 'SOURCE_ACCOUNTING_RECONCILIATION.json'));
+const parents = read(path.join(dir, 'PARENT_WORKFLOW_TARGETS.json'));
+const construction = read(path.join(dir, 'PARENT_CONSTRUCTION_RESULTS.json'));
+const incorporation = read(path.join(dir, 'INCORPORATIONS_AND_REDIRECTS.json'));
+const wave3 = read(path.join(dir, 'WAVE3_TARGETS.json'));
+const activations = read(path.join(dir, 'WAVE3_ACTIVATIONS.json'));
+const aliases = read(path.join(beta, 'aliases.json')).aliases;
+const inactive = read(path.join(beta, 'inactive-inventory.json')).workflows;
+const ids = allPending.map(x => x.workflow_id);
+const dispositionIds = dispositions.records.map(x => x.historical_workflow_id);
+if (allPending.length !== 528) errors.push(`expected 528 pending inputs, got ${allPending.length}`);
+if (new Set(ids).size !== ids.length) errors.push('pending input IDs are not unique');
+if (dispositions.records.length !== 528 || new Set(dispositionIds).size !== 528) errors.push('disposition coverage is not exactly 528 unique records');
+if (dispositions.pending_parent_evidence_remaining !== 0) errors.push('pending_parent_evidence_remaining is not zero');
+if (dispositions.records.some(x => x.disposition === 'pending_parent_evidence' || x.disposition === 'remains_inactive_pending_parent_evidence')) errors.push('pending disposition remains');
+if (closure.target_count !== 49 || closure.targets.length !== 49) errors.push('Wave2 closure is not exactly 49 targets');
+if (accounting.accepted_unique_documents !== 27 || accounting.documents.length !== 27) errors.push('source accounting is not exactly 27 documents');
+if (accounting.documents.some(x => !x.source_registry_id || (!x.created_new_registry_record && !x.deduplicated_into_existing_source))) errors.push('accepted document lacks registry or deduplication explanation');
+if (parents.parent_count !== 10 || parents.parents.length !== 10) errors.push('parent family count is not 10');
+if (construction.completed_existing_parents !== 10) errors.push('not all parent families have terminal construction outcomes');
+if (incorporation.incorporated_count !== incorporation.records.length) errors.push('incorporation count mismatch');
+if (incorporation.records.some(x => !x.parent_workflow_id || !x.fields_transferred?.length || !x.redirect?.to)) errors.push('incorporation lacks parent field or redirect evidence');
+if (wave3.target_count > 30 || wave3.targets.length > 30) errors.push('Wave3 target count exceeds 30');
+if (activations.activated.length !== 0 && activations.activated.some(x => !x.evidence_pack_ids?.length)) errors.push('activation lacks evidence pack');
+const incorporatedIds = new Set(incorporation.records.map(x => x.historical_workflow_id));
+for (const id of incorporatedIds) {
+  const alias = aliases.find(x => x.alias === id && x.redirect_type === 'incorporated_into_existing_active_parent');
+  const record = inactive.find(x => x.workflow_id === id);
+  if (!alias) errors.push(`missing catalogue redirect for ${id}`);
+  if (!record || record.final_status !== 'incorporated_as_optional_parent_section') errors.push(`missing inactive overlay status for ${id}`);
+}
+const result = { status: errors.length ? 'FAIL' : 'PASS', pending_inputs: allPending.length, terminal_dispositions: dispositions.records.length, pending_parent_evidence_remaining: dispositions.pending_parent_evidence_remaining, wave2_targets_closed: closure.targets.length, parent_families: parents.parents.length, incorporated_records: incorporation.records.length, retained_records: dispositions.records.length - incorporation.records.length, wave3_targets: wave3.targets.length, activated_wave3: activations.activated.length, errors };
+console.log(JSON.stringify(result, null, 2));
+if (errors.length) process.exitCode = 1;
