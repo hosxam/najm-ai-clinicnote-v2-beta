@@ -132,7 +132,14 @@ export const interactiveWorkflowData = {
       if (!workflows.some((workflow) => workflow.workflow_id === workflowId)) {
         throw new Error('This workflow is inactive and is not available as usable clinical content.')
       }
-      return load<InteractiveWorkflow>(`workflows/${encodeURIComponent(workflowId)}.json`)
+      return load<InteractiveWorkflow>(`workflows/${encodeURIComponent(workflowId)}.json`).then((workflow) => ({
+        ...workflow,
+        fields: workflow.fields.map((field) => ({
+          ...field,
+          options: (field.options ?? []).map((option) => typeof option === 'string' ? option : String((option as { label?: unknown; value?: unknown }).label ?? (option as { value?: unknown }).value ?? '')),
+          contradictory_option_rules: (field.contradictory_option_rules ?? []).filter((rule): rule is string => typeof rule === 'string'),
+        })),
+      }) as InteractiveWorkflow)
     })
   },
 }

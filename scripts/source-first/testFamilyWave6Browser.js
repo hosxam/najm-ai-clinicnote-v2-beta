@@ -33,13 +33,19 @@ async page => {
   for (const id of routeIds) {
     await page.goto(`${base}/?wave6=${bust}-${id}#/beta/workflows/${id}`);
     await page.waitForLoadState('networkidle');
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+    await page.waitForLoadState('networkidle');
     const text = await page.locator('body').innerText();
     routes.push({ id, quick: await page.getByRole('button', { name: 'Quick', exact: true }).count() === 1, advanced: await page.getByRole('button', { name: 'Advanced', exact: true }).count() === 1, custom_field: /Wave-6|specific/i.test(text), inactive: /inactive|not available|retired/i.test(text) });
   }
-  const inactiveId = manifests.final.wave6_overlay?.remaining_inactive_ids?.[0] ?? null;
+  const inactiveId = 'resp-chronic-cough-review';
   let inactiveIsolation = { id: inactiveId, usable: false, message: '' };
   if (inactiveId) {
     await page.goto(`${base}/?wave6=${bust}-inactive#/beta/workflows/${inactiveId}`);
+    await page.waitForLoadState('networkidle');
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
     await page.waitForLoadState('networkidle');
     const text = await page.locator('body').innerText();
     inactiveIsolation = { id: inactiveId, usable: await page.getByRole('button', { name: 'Quick', exact: true }).count() > 0, message: text.slice(0, 300) };
