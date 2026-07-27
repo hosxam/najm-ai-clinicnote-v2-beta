@@ -23,8 +23,8 @@ for (const id of [...wave5, ...wave6]) {
     if (field.field_id.includes('__workflow_specific_result_or_plan') || field.field_id.includes('__specific_result_or_plan')) {
       const token = id.split('-').slice(1, 4).join('-')
       field.field_type = 'single_select'
-      field.options = [{ label: `Clinician-entered ${token} context`, value: `${token}_documented` }, { label: 'Not assessed', value: 'not_assessed' }]
-      field.contradictory_option_rules = [{ group_id: `${id}__specific_state`, mutually_exclusive_values: [`${token}_documented`, 'not_assessed'] }]
+      field.options = [`Clinician-entered ${token} context`, 'Not assessed']
+      field.contradictory_option_rules = [{ group_id: `${id}__specific_state`, mutually_exclusive_values: [`Clinician-entered ${token} context`, 'Not assessed'] }]
     }
   }
   fs.writeFileSync(file, `${JSON.stringify(workflow, null, 2)}\n`)
