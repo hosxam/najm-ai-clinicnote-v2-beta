@@ -58,8 +58,8 @@ The exact machine-readable results are in `clinical-expansion-v2/progress/catalo
 ## Beta deployment and live verification
 
 - Deployment workflow: `Deploy beta to GitHub Pages`.
-- Successful run: `30296610289`.
-- Deployed source: `4b177ed0952bee8cd0e7f3d0d1ed223e749cf4ed` (displayed build `4b177ed`).
+- Successful run: `30297143395`.
+- Deployed source: `97e387a108a1ba5ec37ecf373bda03e3890b4039` (displayed build `97e387a`).
 - Canonical manifest loaded: `public/data-beta/final-catalogue/manifest.json`.
 - Obsolete `curated-workflows` dataset was not requested.
 - Automated browser checks passed for catalogue load, totals, search, specialty filtering, Wave 9 workflow opening, Quick and Advanced modes, evidence panel, inactive fail-closed isolation, and desktop/tablet/mobile layouts with no horizontal overflow.
@@ -86,5 +86,7 @@ The detailed machine-readable live result is `clinical-expansion-v2/progress/cat
 13. `ef4acedb` — `fix(wave9): preserve evidence locator objects`
 
 14. `4b177ed0` — `fix(wave9): enforce compact clinician-facing wording and denominator classes`
+
+15. `97e387a1` — `fix(wave9): reconcile advanced and interactive beta manifests`
 
 The repository is clean after deployment documentation is committed. No stable deployment, merge, rebase, force-push, signing, approval, or queue continuation was performed.
