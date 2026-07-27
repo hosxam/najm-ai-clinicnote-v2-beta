@@ -8,7 +8,7 @@ Branch: `beta-family-evidence-and-wave5-v1`
 Baseline branch: `beta-family-evidence-and-wave4-v1`  
 Starting HEAD: `63fd7d8339ba99aaf178d91b8bfc1dc0d2b810b9`  
 Implementation ending HEAD: `3bcaf1c7`  
-Final documentation HEAD: `ddeaaa11` (documentation only; not redeployed)  
+Final documentation HEAD before this line-only correction: `dae94e2f` (documentation only; not redeployed)  
 Beta URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta  
 Deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30277066368  
 
