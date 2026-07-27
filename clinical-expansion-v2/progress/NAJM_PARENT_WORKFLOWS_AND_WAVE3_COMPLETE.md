@@ -32,6 +32,7 @@ All required implementation and regression checks passed, including parent-wave3
 - Deploy job was rejected by `github-pages`: `Branch "beta-parent-workflows-and-wave3-v1" is not allowed to deploy to github-pages due to environment protection rules.`
 - No protection rule was changed. No stable production deployment, merge, rebase, force-push, signing, or approval occurred.
 - Live verification: not performed for this build because no deployment was published. See `clinical-expansion-v2/progress/parent-wave3/LIVE_VERIFICATION.json`.
+- GitHub's deployment records show the beta remains published from the prior Wave 2 SHA `a758d31b7623af24614d83647745bee3416a29e8`; it does not match the Wave 3 implementation SHA.
 
 ## Remaining limitations
 
