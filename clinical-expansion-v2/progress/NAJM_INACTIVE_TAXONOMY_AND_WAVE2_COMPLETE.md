@@ -44,6 +44,13 @@ deterministic priority and specialty-diversity rule. Existing source families
 were searched first and every candidate reached a terminal evaluation. No
 unresolved access candidate was treated as evidence.
 
+The source-search quality gate recorded 150 exact search-query entries across
+50 targets, 43 official-page/document locations, 38 downloads, 37 extracted
+documents, and 37 accepted source uses. Five candidate evaluations reached a
+terminal access-blocked result (five retries); there were no unresolved access
+records. At the unique-source level this represents 33 located documents, 28
+downloaded, 27 extracted/accepted, and 5 access-blocked candidates.
+
 Two genuinely new official source registrations were added and replay-owned in
 the existing `batch-1496-1500.mjs` module:
 
@@ -79,12 +86,15 @@ validated interactive schema. It was activated with 12 clinician-facing fields,
 remaining 49 targets remain inactive pending complete evidence and schema
 validation. No legacy fallback schema was used.
 
+No fragment was incorporated into an active parent or a newly created parent;
+the record-level disposition is retained as an auditable pending/retained
+decision. Retired duplicate count is 1, retired alias count is 0, and one
+historical redirect was added.
+
 Catalogue counts changed from 417 active / 1,083 inactive to 418 active /
 1,082 inactive. Final beta catalogue totals are 1,500 original workflows,
 6,313 clinician-facing items, and 75,526 internal evidence records. The
 interactive compiler contains 418 workflows and 4,198 rendered fields.
-
-## Validation
 
 ## Validation
 
@@ -143,3 +153,5 @@ Stable production was not deployed. Mappings and candidates remain zero,
 exclusions remain 12, public/data and canonical/signed state are unchanged,
 and no merge, rebase, force-push, signing, approval, or queue continuation was
 performed. The deployed source is `a758d31b7623af24614d83647745bee3416a29e8`.
+The final documentation-only commit is
+`5cc1ee3ab2200033d87d0ff565552514422a527d`.
