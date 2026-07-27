@@ -1,4 +1,5 @@
 import { publicPath } from './publicPath'
+import { buildMarker } from './buildInfo'
 
 export type InteractiveManifest = {
   schema_version: string
@@ -97,8 +98,9 @@ export type InteractiveInactive = { workflow_id: string; title: string; final_st
 const base = 'data-beta/interactive-workflows/'
 const cache = new Map<string, Promise<unknown>>()
 function load<T>(relative: string) {
-  if (!cache.has(relative)) cache.set(relative, fetch(publicPath(`${base}${relative}`)).then(async (response) => { if (!response.ok) throw new Error(`Interactive workflow asset failed: ${relative} (${response.status})`); return response.json() }))
-  return cache.get(relative) as Promise<T>
+  const cacheKey = `${relative}?build=${encodeURIComponent(buildMarker)}`
+  if (!cache.has(cacheKey)) cache.set(cacheKey, fetch(publicPath(`${base}${cacheKey}`)).then(async (response) => { if (!response.ok) throw new Error(`Interactive workflow asset failed: ${relative} (${response.status})`); return response.json() }))
+  return cache.get(cacheKey) as Promise<T>
 }
 
 let datasetPromise: Promise<{ manifest: InteractiveManifest; workflows: InteractiveWorkflowSummary[]; finalCatalogueManifest: FinalCatalogueManifest }> | null = null
@@ -107,11 +109,11 @@ export const interactiveWorkflowData = {
     if (!datasetPromise) datasetPromise = Promise.all([
       load<InteractiveManifest>('manifest.json'),
       load<{ workflows: Array<Omit<InteractiveWorkflowSummary, 'aliases'>> }>('catalog.json'),
-      fetch(publicPath('data-beta/final-catalogue/manifest.json')).then(async (response) => {
+      fetch(publicPath(`data-beta/final-catalogue/manifest.json?build=${encodeURIComponent(buildMarker)}`)).then(async (response) => {
         if (!response.ok) throw new Error(`Final catalogue manifest failed: ${response.status}`)
         return response.json() as Promise<FinalCatalogueManifest>
       }),
-      fetch(publicPath('data/diagnosis_index.json')).then(async (response) => {
+      fetch(publicPath(`data/diagnosis_index.json?build=${encodeURIComponent(buildMarker)}`)).then(async (response) => {
         if (!response.ok) throw new Error(`Diagnosis alias index failed: ${response.status}`)
         return response.json() as Promise<DiagnosisIndex>
       }),
