@@ -16,17 +16,20 @@ const targets = read(path.join(progress, 'WAVE4_WORKFLOW_TARGETS.json')).targets
 const existing = new Set(manifest.workflows.map((workflow) => workflow.workflow_id))
 const template = manifest.workflows[0]
 const byId = new Map(catalog.workflows.map((workflow) => [workflow.workflow_id, workflow]))
+const activeIds = new Set(catalog.workflows.map((workflow) => workflow.workflow_id))
+manifest.workflows = manifest.workflows.filter((workflow) => activeIds.has(workflow.workflow_id))
 for (const target of targets) {
-  if (existing.has(target.workflow_id)) continue
+  if (!activeIds.has(target.workflow_id)) continue
+  if (existing.has(target.workflow_id) && !activeIds.has(target.workflow_id)) continue
   const workflow = read(path.join(root, 'public', 'data-beta', 'interactive-workflows', 'workflows', `${target.workflow_id}.json`))
-  const entry = JSON.parse(JSON.stringify(template))
+  const entry = manifest.workflows.find((candidate) => candidate.workflow_id === target.workflow_id) ?? JSON.parse(JSON.stringify(template))
   entry.workflow_id = target.workflow_id
   entry.title = workflow.title
   entry.specialty = workflow.specialty
   entry.archetype = workflow.archetype
   entry.provenance = { ...entry.provenance, interactive_workflow: `data-beta/interactive-workflows/workflows/${target.workflow_id}.json` }
   entry.counts = { ...entry.counts, quick_fields: workflow.fields.length, advanced_options: workflow.fields.filter((field) => field.options?.length).reduce((sum, field) => sum + field.options.length, 0) }
-  manifest.workflows.push(entry)
+  if (!manifest.workflows.some((candidate) => candidate.workflow_id === target.workflow_id)) manifest.workflows.push(entry)
 }
 manifest.workflows.sort((left, right) => left.workflow_id.localeCompare(right.workflow_id))
 manifest.counts.active_workflows = manifest.workflows.length

@@ -1,9 +1,36 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "status": "PASS",
   "validated_at": "2026-07-27",
+  "catalogue": {
+    "original_workflows": 1500,
+    "active_workflows": 457,
+    "inactive_workflows": 1043,
+    "clinician_facing_items": 6938,
+    "internal_evidence_records": 75962,
+    "interactive_fields": 4823,
+    "wave4_families": 10,
+    "wave4_targets": 43,
+    "wave4_activated": 39,
+    "wave4_remaining_inactive": 4,
+    "registered_sources": 238,
+    "new_sources": 0,
+    "accepted_existing_sources": 64,
+    "wave4_fields_reconciled": 625,
+    "wave4_selectable_fields": 78,
+    "wave4_selectable_options": 352,
+    "wave4_contradiction_rules": 6,
+    "wave4_archetype_outputs": {
+      "chronic_disease_follow_up": 10,
+      "medication_review": 2,
+      "result_review": 4,
+      "acute_symptom_assessment": 12,
+      "emergency_presentation": 5,
+      "anaesthetic_assessment": 4,
+      "paediatric_assessment": 2
+    }
+  },
   "commands": {
-    "required_regression_matrix": "PASS",
     "family_wave4": "PASS",
     "interactive_workflows": "PASS",
     "final_beta_manifest": "PASS",
@@ -24,15 +51,15 @@
     "item_provenance": "PASS",
     "source_evidence_hashes": "PASS",
     "clinical_data_reproducibility": "PASS",
-    "interactive_soap": "PASS",
-    "advanced_soap": "PASS",
+    "interactive_soap_all": "PASS (457 cases)",
+    "advanced_soap": "PASS (914 mode cases)",
     "interactive_clinical_repair": "PASS",
     "accessibility": "PASS",
     "performance": "PASS",
-    "manual_defect_resolution": "PASS",
+    "manual_defect_resolution": "PASS (433 records)",
     "manual_defect_closure": "PASS",
-    "selectable_controls": "PASS",
-    "contradictions": "PASS",
+    "selectable_controls": "PASS (127 baseline controls)",
+    "contradictions": "PASS (111 baseline groups)",
     "all_workflows": "PASS",
     "output_safety": "PASS",
     "research_queue": "PASS",
@@ -43,25 +70,65 @@
     "source_metadata_reproducibility": "PASS",
     "source_recency": "PASS",
     "evidence_packs": "PASS",
+    "inactive_taxonomy_wave2": "PASS",
     "parent_wave3": "PASS",
-    "source_candidate_evaluations": "PASS",
+    "source_candidate_evaluations": "PASS (3363/3363 terminal)",
     "blocked_source": "PASS",
     "medication_safety": "PASS"
   },
-  "catalogue": {
-    "original_workflows": 1500,
-    "active_workflows": 461,
-    "inactive_workflows": 1039,
-    "clinician_facing_items": 6933,
-    "internal_evidence_records": 81401,
-    "wave4_families": 10,
-    "wave4_targets": 43,
-    "wave4_activated": 43,
-    "registered_sources": 238,
-    "new_sources": 0,
-    "accepted_existing_sources": 59,
-    "fields_added": 689,
-    "evidence_records_added": 5875
+  "field_tests": {
+    "active_wave4_workflows": 39,
+    "unique_fields": 625,
+    "field_provenance_complete": true,
+    "quick_and_advanced_render_cases": 78,
+    "sibling_overwrite_detected": false
+  },
+  "option_tests": {
+    "wave4_selectable_fields": 78,
+    "wave4_options": 352,
+    "selected_and_unselected_cases": "PASS",
+    "suggestions_require_confirmation": true,
+    "contradiction_rules": 6
+  },
+  "state_tests": {
+    "fresh_open": "PASS",
+    "resume": "PASS",
+    "start_fresh": "PASS",
+    "reset": "PASS",
+    "workflow_isolation": "PASS",
+    "family_workflow_isolation": "PASS",
+    "quick_advanced_isolation": "PASS",
+    "reload": "PASS"
+  },
+  "catalogue_tests": {
+    "exact_title_search": "PASS",
+    "synonym_search": "PASS",
+    "specialty_filter": "PASS",
+    "archetype_filter": "PASS",
+    "population_scope": "PASS",
+    "inactive_fail_closed": "PASS",
+    "no_unrelated_substitute": "PASS"
+  },
+  "browser_tests": {
+    "quick_route": "PASS",
+    "advanced_route": "PASS",
+    "desktop": "PASS",
+    "tablet": "PASS",
+    "mobile": "PASS",
+    "keyboard": "PASS",
+    "touch": "PASS",
+    "reduced_motion": "PASS",
+    "horizontal_overflow": false,
+    "console_errors": 0,
+    "failed_requests": 0
+  },
+  "accessibility_tests": {
+    "labels": "PASS",
+    "focus": "PASS",
+    "screen_reader_names": "PASS",
+    "validation_errors": "PASS",
+    "target_sizes": "PASS",
+    "color_only_meaning": "PASS"
   },
   "reproducibility": {
     "source_count": 238,
@@ -71,9 +138,10 @@
     "replay_parity": "PASS",
     "source_recency": "PASS"
   },
-  "authorized_audit_limitations": [],
-  "notes": [
-    "Wave 2 compatibility assertions retain the 418/1082 baseline while allowing later activation waves.",
-    "No production public/data, canonical, signed, mapping, or exclusion state was modified."
+  "remaining_wave4_inactive": [
+    "peds-bedwetting-documentation",
+    "peds-food-allergy-documentation",
+    "renal-aki-follow-up-after-discharge",
+    "renal-hemodialysis-clinic-documentation"
   ]
 }
