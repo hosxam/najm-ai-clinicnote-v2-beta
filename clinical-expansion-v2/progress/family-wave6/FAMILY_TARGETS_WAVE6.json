@@ -1,0 +1,2352 @@
+{
+  "schema_version": "1.0.0",
+  "family_count": 15,
+  "scoring": {
+    "frequency": 0.2,
+    "safety_value": 0.2,
+    "catalogue_gap": 0.15,
+    "substitution_risk": 0.15,
+    "evidence_reuse": 0.15,
+    "distinctness": 0.15
+  },
+  "families": [
+    {
+      "family_id": "cardiovascular-acute-wave6",
+      "title": "Acute cardiovascular presentations",
+      "target_workflow_ids": [
+        "cardio-blood-pressure-device-technique-review",
+        "cardio-bradycardia-documentation",
+        "cardio-diabetes-cardiac-risk-documentation",
+        "cardio-dizziness-cardiac-screening-documentation",
+        "cardio-icd-clinic-documentation",
+        "cardio-kidney-disease-cardiac-risk-documentation",
+        "cardio-leg-swelling-differential-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "cardio-lifestyle-counseling-cardiac-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-murmur-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-orthostatic-bp-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-pacemaker-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-pre-operative-cardiac-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-pregnancy-cardiac-history-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-presyncope-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-statin-tolerance-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-syncope-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-tachycardia-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-valvular-disease-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "cardio-white-coat-hypertension-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Cardiology"
+      ],
+      "populations": [
+        "Adults with cardiovascular symptoms requiring structured assessment."
+      ],
+      "settings": [
+        "Outpatient and urgent cardiovascular assessment."
+      ],
+      "archetypes": [
+        "acute_symptom_assessment"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-telehealth-chest-pain-v2-2024",
+        "nice-atrial-fibrillation-ng196-2021",
+        "nice-chest-pain-cg95-2016",
+        "nice-hypertension-ng136-2026",
+        "nice-pneumonia-ng250-2026"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "acute_symptom_assessment"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "respiratory-chronic-wave6",
+      "title": "Chronic respiratory monitoring",
+      "target_workflow_ids": [
+        "resp-bronchiectasis-follow-up",
+        "resp-chronic-cough-documentation",
+        "resp-chronic-cough-review",
+        "resp-cough-follow-up",
+        "resp-cough-red-flag-screening-documentation",
+        "resp-exercise-induced-bronchospasm-documentation",
+        "resp-interstitial-lung-disease-follow-up-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "resp-latent-tb-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-long-covid-breathlessness-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-occupational-exposure-respiratory-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-pediatric-to-adult-asthma-transition-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-pleural-effusion-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-pneumococcal-vaccine-respiratory-risk",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-safety-net-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-sleep-apnea-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-snoring-respiratory-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-sputum-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-travel-related-respiratory-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-tuberculosis-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-vaccine-counseling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "resp-vaping-related-respiratory-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Respiratory medicine"
+      ],
+      "populations": [
+        "Adults with chronic respiratory symptoms or monitoring needs."
+      ],
+      "settings": [
+        "Respiratory outpatient follow-up."
+      ],
+      "archetypes": [
+        "chronic_disease_follow_up"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-telehealth-asthma-v2-2024",
+        "dha-telehealth-cough-v2-2024",
+        "nice-acute-cough-ng120-2019",
+        "nice-asthma-ng245-2025",
+        "nice-copd-ng115-2025"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "chronic_disease_follow_up"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "gastrointestinal-hepatology-wave6",
+      "title": "Gastrointestinal and hepatology monitoring",
+      "target_workflow_ids": [
+        "gi-abnormal-liver-enzyme-review",
+        "gi-alcohol-related-liver-risk-documentation",
+        "gi-anal-fissure-symptoms",
+        "gi-ascites-follow-up-documentation",
+        "gi-belching-and-burping-documentation",
+        "gi-biliary-colic-follow-up",
+        "gi-bowel-cancer-screening-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "gi-celiac-screening-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-change-in-bowel-habit-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-chronic-nausea-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-constipation-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-crohn-disease-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-diarrhea-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-dyspepsia-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-early-satiety-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-endoscopy-result-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-fecal-incontinence-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-fit-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-food-intolerance-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-functional-abdominal-pain-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-gallstone-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-gastroenterology-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-h-pylori-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-hemorrhoid-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-inflammatory-bowel-disease-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-iron-deficiency-gi-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-jaundice-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-lactose-intolerance-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-liver-ultrasound-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-nausea-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-nsaid-gi-risk-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-nutritional-counseling-gi-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-perianal-symptoms-gi-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-portal-hypertension-clinic-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-reflux-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-stool-test-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gi-ulcerative-colitis-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Gastroenterology"
+      ],
+      "populations": [
+        "Adults requiring gastrointestinal symptom, liver or result review."
+      ],
+      "settings": [
+        "Gastroenterology outpatient and result review."
+      ],
+      "archetypes": [
+        "result_review"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-telehealth-gastroenteritis-adults-v2-2024",
+        "dha-telehealth-gastroenteritis-children-v2-2024",
+        "nice-colorectal-cancer-ng151-2021",
+        "nice-crohns-ng129-2019",
+        "nice-end-of-life-ng142-2019"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "result_review"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "endocrine-monitoring-wave6",
+      "title": "Endocrine and metabolic monitoring",
+      "target_workflow_ids": [
+        "endo-adrenal-incidentaloma-referral",
+        "endo-adrenal-incidentaloma-result-review",
+        "endo-b12-deficiency-endocrine-review",
+        "endo-cold-intolerance-endocrine-documentation",
+        "endo-continuous-glucose-monitor-review",
+        "endo-cortisol-result-discussion-documentation",
+        "endo-erectile-dysfunction-endocrine-review"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "endo-excessive-sweating-endocrine-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-fracture-risk-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-growth-hormone-concern-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-heat-intolerance-endocrine-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-hirsutism-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-home-glucose-log-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-hyperglycemia-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-hypoglycemia-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-insulin-initiation-documentation-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-metabolic-syndrome-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-obesity-counseling-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-pcos-metabolic-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-pituitary-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-pituitary-symptoms-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-polyuria-polydipsia-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-prediabetes-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-prediabetes-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-prolactin-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-testosterone-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "endo-vitamin-d-deficiency-endocrine-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Endocrinology"
+      ],
+      "populations": [
+        "Adults and adolescents requiring endocrine assessment or monitoring."
+      ],
+      "settings": [
+        "Endocrine outpatient assessment and follow-up."
+      ],
+      "archetypes": [
+        "chronic_disease_follow_up"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "ada-standards-care-hypoglycemia-2026",
+        "nice-hyperparathyroidism-ng132-2019",
+        "nice-thyroid-ng145-2023",
+        "ada-standards-diabetes-technology-2026",
+        "asrm-amenorrhea-committee-opinion-2024"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "American Diabetes Association Professional Practice Committee",
+        "National Institute for Health and Care Excellence",
+        "American Diabetes Association Professional Practice Committee for Diabetes",
+        "American Society for Reproductive Medicine Practice Committee"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "chronic_disease_follow_up"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "ent-focused-wave6",
+      "title": "Focused ENT presentations",
+      "target_workflow_ids": [
+        "ent-adenoid-symptom-documentation",
+        "ent-allergic-rhinitis",
+        "ent-audiology-referral-documentation",
+        "ent-balance-clinic-follow-up",
+        "ent-barotrauma-ear-symptoms",
+        "ent-bppv-follow-up",
+        "ent-deviated-septum-symptoms"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "ent-dizziness-vertigo",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-dysphonia-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-epistaxis-recurrence-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-facial-pressure-ent-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-foreign-body-sensation-throat",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-globus-sensation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-hoarseness-red-flag-screening",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-laryngopharyngeal-reflux-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-mouth-breathing",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-neck-mass-ent-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-non-allergic-rhinitis",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-nosebleed-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-oral-lesion-ent-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-otitis-externa-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-post-procedure-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-post-septoplasty-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-post-tonsillectomy-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-reflux-related-throat-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-salivary-gland-swelling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-sinus-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-sleep-disordered-breathing-ent-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-smell-loss",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-snoring-ent-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-sudden-hearing-change-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-swallowing-symptom-ent-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-throat-clearing",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-tmj-related-ear-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-tongue-lesion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-tonsil-size-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "ent-tonsil-stone-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "ENT"
+      ],
+      "populations": [
+        "Adults and children with focused ear, nose or throat symptoms."
+      ],
+      "settings": [
+        "ENT outpatient and primary-care assessment."
+      ],
+      "archetypes": [
+        "acute_symptom_assessment"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-acute-rhinosinusitis-issue2-2024",
+        "dha-seborrheic-dermatitis-issue2-2024",
+        "dha-telehealth-sore-throat-v2-2024",
+        "ebi-tonsillectomy-recurrent-2024",
+        "nhs-cheshire-merseyside-heart-failure-pathway-2022"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "Academy of Medical Royal Colleges Evidence-Based Interventions programme",
+        "NHS Cheshire and Merseyside"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "acute_symptom_assessment"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "surgical-clinic-wave6",
+      "title": "Surgical clinic and postoperative review",
+      "target_workflow_ids": [
+        "surg-abdominal-wall-pain-surgical-review",
+        "surg-anal-fissure-surgical-review",
+        "surg-anorectal-pain-documentation",
+        "surg-axillary-lump-surgical-review",
+        "surg-benign-breast-clinic-follow-up",
+        "surg-biliary-colic-follow-up",
+        "surg-biopsy-result-discussion"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "surg-breast-lump-surgical-clinic",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-breast-pain-surgical-clinic",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-carotid-clinic-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-colorectal-clinic-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-consent-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-day-surgery-follow-up-call-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-drain-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-drain-removal-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-fissure-follow-up-surgical",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-fistula-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-gallbladder-imaging-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-gallstone-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-groin-pain-surgical-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-handover-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-hematoma-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-hemorrhoid-surgical-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-hernia-imaging-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-hiatal-hernia-surgical-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-hidradenitis-surgical-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-incisional-hernia-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-inguinal-hernia-clinic-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-lipoma-surgical-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-lump-recurrence-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-nutritional-status-surgical-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-oncology-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-parathyroid-clinic-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-peripheral-vascular-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-pilonidal-sinus-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-pre-operative-general-surgery-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "surg-rectal-bleeding-surgical-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "General Surgery"
+      ],
+      "populations": [
+        "Adults requiring surgical clinic, wound or postoperative review."
+      ],
+      "settings": [
+        "Surgical outpatient clinic and postoperative follow-up."
+      ],
+      "archetypes": [
+        "procedure_documentation"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-vaginal-candidiasis-v2-2024",
+        "doh-day-surgery-procedure-standard-v1-2024",
+        "doh-postnatal-care-program-v1-2025",
+        "cdc-yellow-book-posttravel-ill-traveler-2026",
+        "nice-acute-coronary-syndromes-ng185-2020"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "Department of Health – Abu Dhabi",
+        "United States Centers for Disease Control and Prevention",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "procedure_documentation"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "pain-medicine-wave6",
+      "title": "Pain medicine assessment and monitoring",
+      "target_workflow_ids": [
+        "pain-activity-pacing-discussion-documentation",
+        "pain-articular-clinic-review",
+        "pain-cancer-pain-documentation",
+        "pain-cervical-clinic-review",
+        "pain-chronic-pain-review",
+        "pain-clinic-referral-documentation",
+        "pain-complex-regional-pain-symptoms"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "pain-controlled-drug-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-diary-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-fibromyalgia-pain-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-flare-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-functional-impact-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-headache-pain-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-injection-follow-up-pain-clinic",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-lumbar-clinic-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-medication-adherence-pain-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-medication-side-effect-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-mood-impact-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-multidisciplinary-pain-plan-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-nerve-block-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-neuropathic-pain-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-opioid-medication-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-post-discharge-pain-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-post-operative-pain-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-procedure-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-safety-net-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-self-management-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-sleep-impact-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-substance-risk-screening-pain-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "pain-work-impact-pain-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Pain Medicine"
+      ],
+      "populations": [
+        "Adults with persistent pain or pain-management review needs."
+      ],
+      "settings": [
+        "Pain clinic and outpatient review."
+      ],
+      "archetypes": [
+        "medication_review"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-acute-low-back-pain-issue2-2024",
+        "dha-acute-rhinosinusitis-issue2-2024",
+        "dha-conjunctivitis-issue2-2024",
+        "dha-neck-pain-issue2-2024",
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "medication_review"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "preventive-screening-wave6",
+      "title": "Preventive screening and health review",
+      "target_workflow_ids": [
+        "prev-advance-directive-documentation",
+        "prev-alcohol-risk-screening",
+        "prev-allergy-list-update",
+        "prev-annual-health-check",
+        "prev-blood-pressure-screening",
+        "prev-breast-cancer-screening-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "prev-cancer-screening-counseling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-cardiovascular-risk-screening",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-care-coordination-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-cervical-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-colon-cancer-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-diabetes-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-diet-counseling-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-domestic-safety-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-exercise-counseling-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-family-history-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-financial-stress-health-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-fitness-to-fly-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-fitness-to-work-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-flu-vaccine-counseling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-genetic-risk-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-hpv-vaccine-counseling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-insurance-medical-report",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-lipid-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-medical-summary-letter",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-obesity-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-occupational-health-screening",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-patient-requested-report",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-pneumococcal-vaccine-counseling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-pre-employment-medical",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-preventive-care-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-problem-list-reconciliation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-prostate-screening-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-referral-letter-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-results-explanation-visit",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "prev-return-to-work-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Preventive Medicine"
+      ],
+      "populations": [
+        "Adults requiring preventive screening or health review documentation."
+      ],
+      "settings": [
+        "Primary-care preventive assessment."
+      ],
+      "archetypes": [
+        "chronic_disease_follow_up"
+      ],
+      "priority_score": 86,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-acne-issue2-2024",
+        "dha-acute-low-back-pain-issue2-2024",
+        "dha-acute-rhinosinusitis-issue2-2024",
+        "dha-allergic-contact-dermatitis-issue2-2024",
+        "dha-allergic-rhinitis-issue2-2024"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "chronic_disease_follow_up"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "gynaecology-specific-wave6",
+      "title": "Gynaecology-specific presentations",
+      "target_workflow_ids": [
+        "gyn-breastfeeding-concern-documentation",
+        "gyn-cervical-screening-result-review",
+        "gyn-colposcopy-follow-up-documentation",
+        "gyn-dysmenorrhea-follow-up",
+        "gyn-dyspareunia-documentation",
+        "gyn-early-pregnancy-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "gyn-emergency-contraception-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-endometriosis-symptom-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-family-planning-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-fertility-concern-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-fibroid-symptom-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-genital-ulcer-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-genital-wart-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-gynecology-imaging-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-heavy-menstrual-bleeding-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-hpv-result-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-hrt-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-implant-contraception-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-irregular-periods",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-iud-check-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-mastitis-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-menstrual-migraine-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-miscarriage-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-nausea-in-pregnancy-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-nipple-discharge-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-pcos-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-post-procedure-gynecology-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-postnatal-check",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-preconception-counseling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-premenstrual-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-sexual-health-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-urinary-symptoms-in-pregnancy",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-vaginal-bleeding-after-menopause",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-vaginal-discharge-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "gyn-vulval-itching-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Gynaecology"
+      ],
+      "populations": [
+        "People requiring gynaecology symptom, screening or follow-up review."
+      ],
+      "settings": [
+        "Gynaecology outpatient assessment."
+      ],
+      "archetypes": [
+        "acute_symptom_assessment"
+      ],
+      "priority_score": 86,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-dysmenorrhoea-issue2-2024",
+        "dha-vaginal-candidiasis-v2-2024",
+        "monash-international-pcos-guideline-2023",
+        "nice-ectopic-miscarriage-ng126-2026",
+        "nice-heavy-menstrual-bleeding-ng88-2021"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "Monash University and the International PCOS Network",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "acute_symptom_assessment"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "paediatric-chronic-wave6",
+      "title": "Paediatric chronic and developmental care",
+      "target_workflow_ids": [
+        "peds-developmental-milestone-review",
+        "peds-diaper-rash-follow-up",
+        "peds-growing-pains-documentation",
+        "peds-infant-colic-documentation",
+        "peds-infant-reflux-symptoms",
+        "peds-menstrual-concern-in-adolescent",
+        "peds-mood-concern-in-adolescent"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "peds-newborn-feeding-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-newborn-jaundice-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-post-viral-pediatric-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-puberty-concern",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-rash",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-routine-followup",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-school-absence-note",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-school-note",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-short-stature-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-speech-delay-concern",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-sports-clearance-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-tall-stature-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-toilet-training-concern",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "peds-vomiting-diarrhea",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Pediatrics"
+      ],
+      "populations": [
+        "Children and adolescents requiring chronic, developmental or follow-up assessment."
+      ],
+      "settings": [
+        "Paediatric outpatient follow-up."
+      ],
+      "archetypes": [
+        "chronic_disease_follow_up"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-dysmenorrhoea-issue2-2024",
+        "dha-immunization-best-practice-issue4-2026",
+        "dha-telehealth-fever-children-v2-2024",
+        "dha-telehealth-gastroenteritis-children-v2-2024",
+        "dha-telehealth-rashes-children-v2-2024"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "chronic_disease_follow_up"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "critical-care-specific-wave6",
+      "title": "Critical-care monitoring and handover",
+      "target_workflow_ids": [
+        "icu-culture-result-review",
+        "icu-daily-review-documentation",
+        "icu-delirium-review-documentation",
+        "icu-discharge-summary-documentation",
+        "icu-drain-output-review-icu",
+        "icu-dvt-prophylaxis-documentation",
+        "icu-electrolyte-issue-icu-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "icu-end-of-life-care-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-family-meeting-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-family-update-icu-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-fluid-balance-documentation-icu",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-glycemic-control-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-goals-of-care-icu-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-handover-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-hemodynamic-instability-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-infection-review-icu-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-lactate-trend-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-lines-tubes-drains-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-mobility-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-neurological-observation-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-nutrition-review-icu-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-obstetric-critical-care-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-organ-support-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-pain-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-pediatric-handover-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-physiotherapy-progress-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-readmission-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-renal-replacement-therapy-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-respiratory-deterioration-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-restraint-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-sedation-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-sepsis-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-shock-review-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-skin-pressure-area-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-sleep-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-step-down-readiness-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "icu-stress-ulcer-prophylaxis-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Critical Care"
+      ],
+      "populations": [
+        "Patients requiring ICU monitoring, handover or discharge documentation."
+      ],
+      "settings": [
+        "Critical-care unit assessment and handover."
+      ],
+      "archetypes": [
+        "emergency_presentation"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-dysuria-issue2-2024",
+        "nice-bedwetting-under-19s-cg111-2010",
+        "nice-delirium-cg103-2023",
+        "nice-hearing-loss-adults-ng98-2023",
+        "asa-osa-perioperative-2014"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence",
+        "American Society of Anesthesiologists"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "emergency_presentation"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "specialist-mental-health-wave6",
+      "title": "Specialist mental-health review",
+      "target_workflow_ids": [
+        "psych-body-image-concern-documentation",
+        "psych-caffeine-and-anxiety-documentation",
+        "psych-cannabis-use-discussion-documentation",
+        "psych-caregiver-burnout-mental-health",
+        "psych-digital-overuse-mental-health-documentation",
+        "psych-eating-pattern-concern"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "psych-exam-stress-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-family-conflict-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-functional-impairment-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-generalized-worry-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-grief-and-bereavement-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-health-anxiety-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-irritability-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-loneliness-and-social-isolation-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-mindfulness-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-mood-diary-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-neurodiversity-accommodations-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-ocd-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-panic-symptoms",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-perinatal-anxiety-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-psychiatry-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-psychology-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-psychosis-symptom-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-relapse-prevention-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-relationship-stress-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-return-to-work-mental-health-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-safety-plan-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-school-stress-adolescent",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-social-anxiety-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-substance-use-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-suicidality-screening-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "psych-work-related-stress-mental-health",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Mental Health"
+      ],
+      "populations": [
+        "People requiring structured mental-health symptom or risk review."
+      ],
+      "settings": [
+        "Mental-health outpatient assessment."
+      ],
+      "archetypes": [
+        "acute_symptom_assessment"
+      ],
+      "priority_score": 86,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "doh-well-child-visits-v10-2025",
+        "nice-delirium-cg103-2023",
+        "nice-depression-ng222-2026",
+        "nice-gad-cg113-2020",
+        "nice-medicines-adherence-cg76-2009"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Department of Health – Abu Dhabi; Abu Dhabi Public Health Centre",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "acute_symptom_assessment"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "neurology-specialist-wave6",
+      "title": "Specialist neurology and seizure review",
+      "target_workflow_ids": [
+        "neuro-dizziness-neurology-review",
+        "neuro-driving-advice-documentation-neurological",
+        "neuro-dystonia-documentation",
+        "neuro-eeg-result-review",
+        "neuro-epilepsy-medication-review",
+        "neuro-facial-weakness-follow-up",
+        "neuro-first-seizure-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "neuro-functional-neurological-symptom-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-gait-disturbance-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-imaging-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-medication-side-effect-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-memory-concern",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-memory-concern-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-mri-brain-result-discussion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-multiple-sclerosis-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-myopathy-symptom-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-nerve-conduction-result-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-neuralgia-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-neuropathic-pain-neurology-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-neuropathy-followup",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-numbness-and-tingling-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-numbness-tingling",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-optic-neuritis-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-parkinson-symptoms-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-peripheral-neuropathy-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-referral-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-restless-legs-neurology-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-safety-net-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-sciatica-neurology-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-second-opinion-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-seizure-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-seizure-followup",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-sleep-disorder-neurology-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-speech-disturbance-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-syncope-neurology-follow-up",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-tension-headache-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "neuro-tremor",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Neurology"
+      ],
+      "populations": [
+        "Adults requiring focused neurological symptom, seizure or result review."
+      ],
+      "settings": [
+        "Neurology outpatient assessment and follow-up."
+      ],
+      "archetypes": [
+        "result_review"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-minor-head-injury-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025",
+        "nice-gallstone-cg188-2014",
+        "nice-melanoma-ng14-2022",
+        "nice-pancreatitis-ng104-2020"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "result_review"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "renal-dialysis-wave6",
+      "title": "Renal and dialysis monitoring",
+      "target_workflow_ids": [
+        "renal-electrolyte-abnormality-review",
+        "renal-fluid-status-renal-review",
+        "renal-hematuria-renal-review",
+        "renal-hyponatremia-documentation",
+        "renal-kidney-stone-metabolic-review",
+        "renal-nephrology-referral-documentation",
+        "renal-nsaid-renal-risk-documentation"
+      ],
+      "excluded_related_records": [
+        {
+          "workflow_id": "renal-peritoneal-dialysis-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "renal-recurrent-uti-renal-risk-review",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "renal-safety-net-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "renal-transplant-kidney-follow-up-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        },
+        {
+          "workflow_id": "renal-urine-output-documentation",
+          "reason": "selection cap; retained in inactive baseline for later evidence review"
+        }
+      ],
+      "specialties": [
+        "Nephrology"
+      ],
+      "populations": [
+        "Adults requiring renal, electrolyte or dialysis monitoring."
+      ],
+      "settings": [
+        "Nephrology outpatient and dialysis follow-up."
+      ],
+      "archetypes": [
+        "chronic_disease_follow_up"
+      ],
+      "priority_score": 87,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-dysuria-issue2-2024",
+        "nice-acute-kidney-injury-ng148-2019",
+        "nice-hyperparathyroidism-ng132-2019",
+        "nice-renal-ureteric-stones-ng118-2026",
+        "asa-postanesthetic-care-guideline-2013"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence",
+        "American Society of Anesthesiologists"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "chronic_disease_follow_up"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    },
+    {
+      "family_id": "urgent-care-wave6",
+      "title": "Urgent-care presentations",
+      "target_workflow_ids": [
+        "urgent-abdominal-pain",
+        "urgent-fever-suspected-infection",
+        "urgent-head-injury",
+        "urgent-shortness-of-breath",
+        "urgent-wound-care-laceration"
+      ],
+      "excluded_related_records": [],
+      "specialties": [
+        "Urgent Care"
+      ],
+      "populations": [
+        "Adults requiring urgent symptom assessment and disposition documentation."
+      ],
+      "settings": [
+        "Urgent-care assessment."
+      ],
+      "archetypes": [
+        "emergency_presentation"
+      ],
+      "priority_score": 85,
+      "evidence_reuse_score": 85,
+      "substitution_risk_score": 80,
+      "existing_accepted_sources": [
+        "dha-acute-low-back-pain-issue2-2024",
+        "dha-acute-rhinosinusitis-issue2-2024",
+        "dha-minor-head-injury-issue2-2024",
+        "dha-muscle-sprains-strains-issue2-2024",
+        "dha-osteoarthritis-issue2-2024"
+      ],
+      "existing_family_packs": [],
+      "missing_shared_evidence": [],
+      "missing_workflow_specific_evidence": [
+        "workflow-specific section mapping requires target review"
+      ],
+      "official_organisations_to_search": [
+        "Dubai Health Authority"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "history",
+        "red_flags",
+        "vitals",
+        "examination",
+        "investigations",
+        "assessment",
+        "plan",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_workflow_specific_components": [
+        "condition_specific_history",
+        "focused_examination",
+        "workflow_specific_result_or_plan"
+      ],
+      "expected_outputs": [
+        "SOAP",
+        "EMR",
+        "emergency_presentation"
+      ],
+      "activation_feasibility": "review_named_sections_before_activation"
+    }
+  ],
+  "fingerprint": "8f515b62c353cb4386f693f3ef0872bc2647a4013750aac6199b07eee7741157"
+}
