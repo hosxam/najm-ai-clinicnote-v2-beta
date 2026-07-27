@@ -66,12 +66,12 @@ test('policy exposes exact snake-case basis and outcome precedence', () => {
 test('all registered sources reconcile to mutually exclusive basis and outcome totals', () => {
   const summary = summarizeSourceRecency(activeSources)
   assert.deepEqual(summary, {
-    total_sources: 238,
+    total_sources: 242,
     recency_basis_counts: {
       explicit_stronger_date: 25,
       approved_unknown: 3,
       weaker_metadata: 69,
-      access_verification_only: 141,
+      access_verification_only: 145,
     },
     recency_outcome_counts: {
       unavailable: 0,
@@ -82,10 +82,10 @@ test('all registered sources reconcile to mutually exclusive basis and outcome t
       explicit_stronger_date_current: 24,
       approved_unknown_current_by_verification: 3,
       weaker_metadata_current: 65,
-      access_verification_current: 122,
+      access_verification_current: 126,
     },
     date_precision_counts: {
-      day: 229,
+      day: 233,
       month: 4,
       year: 2,
       unknown: 3,
