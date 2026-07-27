@@ -13,7 +13,11 @@ const interactiveDir = path.join(root, 'public/data-beta/interactive-workflows/w
 const finalDir = path.join(root, 'public/data-beta/final-catalogue/workflows')
 const workflowMeta = id => read(`clinical-expansion-v2/workflows/${id}.json`)
 const generated = id => read(path.relative(root, path.join(generatedDir, `${id}.json`)))
-const compact = value => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, 240)
+const compact = value => {
+  const wording = String(value ?? '').replace(/\s+/g, ' ').trim()
+  if (wording.length <= 220) return wording
+  return `${wording.slice(0, 217).replace(/\s+\S*$/, '')}…`
+}
 const makeField = (id, target, section, label, type, soap, statements, order, options = undefined) => ({
   workflow_id: id, field_id: `${id.replaceAll('-', '_')}__${section}`, archetype: target.archetype, section, label,
   helper_text: 'Enter only clinician-assessed information; leave blank when not assessed.', field_type: type,

@@ -28,5 +28,33 @@
     "lint": "PASS_WITH_PREEXISTING_WARNINGS",
     "build": "PASS"
   },
-  "authorized_blockers": []
+  "authorized_blockers": [
+    {
+      "command": "audit:exact-source-coverage",
+      "status": "FAIL",
+      "clinical_blockers": 1500,
+      "source_status_counts": {
+        "exact_workflow_source_verified": 0,
+        "partial_exact_source_verified": 1099,
+        "no_authoritative_source_found": 401,
+        "conflicting_authoritative_sources": 0,
+        "source_access_failed": 0,
+        "research_interrupted": 0
+      }
+    },
+    {
+      "command": "audit:uae-applicability",
+      "status": "FAIL",
+      "evidenced_workflows": 1099,
+      "affected_workflows": 1401,
+      "structured_findings": 1426,
+      "partial_applicability_findings": 1099,
+      "missing_explicit_uae_evidence_findings": 327
+    },
+    {
+      "command": "audit:unsupported-legacy-content",
+      "status": "FAIL",
+      "unsupported_legacy_items": 83303
+    }
+  ]
 }

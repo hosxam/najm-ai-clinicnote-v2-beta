@@ -4,7 +4,7 @@
 
 - Starting branch/HEAD: `beta-quality-reconciliation-and-wave8-v1` / `4aef772fb08cb0a81a2bf1bcb874f562de4d393f`
 - Delivery branch: `beta-catalogue-endgame-and-wave9-v1`
-- Ending implementation HEAD: `ef4acedb`; final documentation HEAD: `0c9c9061`
+- Ending implementation HEAD: `ef4acedb`; subsequent documentation heads: `0c9c9061`, `9e710c8e`
 - Beta only: `https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta`
 - Stable production, `main`, canonical approval/signature state, mappings, candidates, exclusions, and `public/data` were not modified.
 
@@ -16,14 +16,15 @@ The final 1,500-record denominator is:
 
 | Classification | Count |
 | --- | ---: |
-| Active distinct clinical workflows | 829 |
-| Inactive distinct missing authoritative evidence | 642 |
+| Active distinct clinical workflows | 902 |
+| Inactive distinct targetable workflows | 517 |
+| Inactive distinct missing authoritative evidence | 53 |
 | Blocked by source access | 15 |
 | Incorporated component | 13 |
 | Retired duplicate | 1 |
 | **Original records** | **1,500** |
 
-The Wave 9 selection contains 20 families and 160 distinct target workflows. No alias, incorporated component, or retired duplicate was selected as an independent activation target.
+The Wave 9 selection contains 20 families and 160 distinct target workflows. No alias, incorporated component, or retired duplicate was selected as an independent activation target. The denominator validator confirms one allowed classification per original record (1,500/1,500; true distinct denominator 1,487; 570 remaining targetable distinct records including 517 reconciled targetable records and 53 evidence-missing records).
 
 ## Evidence and activation
 
@@ -50,7 +51,7 @@ The Wave 9 selection contains 20 families and 160 distinct target workflows. No 
 
 ## Automated validation
 
-Focused Wave 9 artifact, schema, interactive-workflow, final-manifest, final-route, recency, date-precision, replay-parity, recheck-isolation, metadata-fingerprint, and reproducibility checks passed. The complete regression matrix passed: data validation, source evidence, item provenance, no-generic-templates, clinical-item diff, research claims, all-workflows, output safety, exclusions, evidence hashes, reproducibility, research queue, interactive validation, final beta manifest, final route wiring, lint (exit 0 with 210 pre-existing warnings), and production build. No authorized audit blocker was introduced.
+Focused Wave 9 artifact, schema, interactive-workflow, final-manifest, final-route, recency, date-precision, replay-parity, recheck-isolation, metadata-fingerprint, and reproducibility checks passed. The complete regression matrix passed: data validation, source evidence, item provenance, no-generic-templates, clinical-item diff, research claims, all-workflows, output safety, exclusions, evidence hashes, reproducibility, research queue, interactive validation, final beta manifest, final route wiring, lint (exit 0 with 210 pre-existing warnings), and production build. The three explicitly authorized audits remain the only blockers: exact-source coverage (1,500 clinical blockers; 0 exact, 1,099 partial, 401 no-authoritative), UAE applicability (1,426 structured findings across 1,401 affected workflows; 1,099 partial and 327 missing explicit UAE evidence), and unsupported legacy content (83,303 historical items). No other validation blocker is present.
 
 The exact machine-readable results are in `clinical-expansion-v2/progress/catalogue-wave9/TEST_RESULTS_WAVE9.json`, `LINT_WARNING_INVENTORY_WAVE9.json`, `WORKFLOW_COMPLETENESS_MATRIX_WAVE9.json`, `SCHEMA_DIFFERENTIATION_MATRIX_WAVE9.json`, and `FIELD_PROVENANCE_WAVE9.json`.
 
