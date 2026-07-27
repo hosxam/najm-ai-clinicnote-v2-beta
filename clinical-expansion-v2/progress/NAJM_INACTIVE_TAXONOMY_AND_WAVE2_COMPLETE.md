@@ -1,8 +1,6 @@
 # NAJM inactive taxonomy and Wave-2 source-research report
 
-> Status: implementation complete and beta build passed, but the authorized
-> beta deployment was rejected by GitHub Pages environment protection. This is
-> not a live-completion claim.
+> Status: implementation, beta deployment, and live verification complete.
 
 ## Scope and branch
 
@@ -120,22 +118,28 @@ manifest fingerprint
 ## Deployment result
 
 The branch was pushed without force and only the beta workflow was dispatched.
-Run `30218994764`
-([workflow URL](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30218994764))
-checked out source SHA `07949e43cdeb0b9f06ae65e29e2762b73b22cea2`. Its build job
-`89838016107` passed, including data validation and Vite build. Its deploy job
-`89838153358` was rejected before publication because GitHub Pages reported:
+Run `30241059111`
+([workflow URL](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30241059111))
+checked out source SHA `a758d31b7623af24614d83647745bee3416a29e8`. Its build job
+`89898180157` and deploy job `89898369266` both passed. The live beta is
+`https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta` and displays build
+`a758d31`.
 
-`Branch "beta-inactive-taxonomy-and-wave2-v1" is not allowed to deploy to github-pages due to environment protection rules.`
+Automated browser verification passed: the canonical
+`/data-beta/final-catalogue/manifest.json` was requested and no
+`curated-workflows` resource was requested; the page displayed 418 active
+interactive workflows, 4,198 interactive fields, and 75,526 retained evidence
+records; alias search, specialty and archetype filters worked; active routes
+opened; `urgent-abdominal-pain` failed closed as inactive; the eczema evidence
+panel showed DHA and NHS source links; desktop (1440 px), tablet (1024 px),
+and mobile (390 px) layouts had no horizontal overflow; and zero console
+errors or failed requests were observed. Workflow-scoped localStorage drafts
+were isolated and temporary test data was cleared.
 
-Therefore no new live beta was published and browser verification was not
-performed. The exact machine-readable record is
-`progress/inactive-taxonomy-wave2/LIVE_VERIFICATION.json`. The required next
-step is authorization of this exact branch by the `github-pages` environment;
-no protection rule was changed and no alternate branch was used.
+The exact machine-readable record is
+`progress/inactive-taxonomy-wave2/LIVE_VERIFICATION.json`.
 
 Stable production was not deployed. Mappings and candidates remain zero,
 exclusions remain 12, public/data and canonical/signed state are unchanged,
 and no merge, rebase, force-push, signing, approval, or queue continuation was
-performed. The implementation branch is clean at
-`07949e43cdeb0b9f06ae65e29e2762b73b22cea2`.
+performed. The deployed source is `a758d31b7623af24614d83647745bee3416a29e8`.
