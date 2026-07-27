@@ -1,0 +1,541 @@
+{
+  "schema_version": "1.0.0",
+  "scoring": {
+    "frequency": 0.15,
+    "safety_importance": 0.2,
+    "catalogue_gap": 0.15,
+    "substitution_risk": 0.1,
+    "guideline_availability": 0.1,
+    "related_record_count": 0.1,
+    "evidence_reuse": 0.1,
+    "archetype_diversity": 0.05,
+    "population_breadth": 0.025,
+    "schema_feasibility": 0.025
+  },
+  "families": [
+    {
+      "family_id": "diabetes-care",
+      "family_title": "Comprehensive diabetes care",
+      "specialties": [
+        "Endocrinology / Diabetes / Metabolic",
+        "General Medicine / GP"
+      ],
+      "population": "People with diabetes requiring initial, follow-up or annual review.",
+      "setting": "Clinician-led outpatient diabetes assessment and result review.",
+      "included_target_workflows": [
+        "endo-diabetes-annual-review",
+        "endo-diabetes-followup",
+        "endo-diabetes-medication-review",
+        "endo-diabetes-technology-documentation",
+        "endo-hba1c-result-review"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 100,
+      "evidence_reuse_score": 100,
+      "existing_accepted_sources": [
+        "ada-standards-comprehensive-evaluation-2026",
+        "ada-standards-pharmacologic-treatment-2026",
+        "ada-standards-care-hypoglycemia-2026",
+        "ada-standards-diabetes-technology-2026",
+        "nice-diabetic-foot-ng19-2019",
+        "nice-multimorbidity-ng56-2016"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "American Diabetes Association Professional Practice Committee for Diabetes",
+        "American Diabetes Association Professional Practice Committee",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "acute-respiratory",
+      "family_title": "Acute respiratory assessment and follow-up",
+      "specialties": [
+        "Respiratory outpatient",
+        "Cardiology outpatient"
+      ],
+      "population": "Adults and children presenting with respiratory symptoms or requiring respiratory review.",
+      "setting": "Outpatient, urgent assessment and respiratory follow-up.",
+      "included_target_workflows": [
+        "resp-breathlessness-follow-up",
+        "resp-chronic-cough",
+        "resp-dyspnea",
+        "resp-hemoptysis-documentation",
+        "resp-ct-chest-result-discussion-documentation"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 99,
+      "evidence_reuse_score": 99,
+      "existing_accepted_sources": [
+        "bts-chronic-cough-adults-2023",
+        "nice-asthma-ng245-2025",
+        "nice-copd-ng115-2025",
+        "nice-pneumonia-ng250-2026",
+        "nice-long-covid-ng188-2024",
+        "dha-telehealth-asthma-v2-2024"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "British Thoracic Society",
+        "National Institute for Health and Care Excellence",
+        "Dubai Health Authority"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "emergency-assessment",
+      "family_title": "Emergency assessment and disposition",
+      "specialties": [
+        "Emergency / Urgent Care",
+        "Emergency Medicine documentation-only"
+      ],
+      "population": "Adults and children requiring emergency presentation assessment, investigation, escalation or disposition documentation.",
+      "setting": "Emergency and urgent-care assessment.",
+      "included_target_workflows": [
+        "ed-abdominal-pain-documentation",
+        "ed-admission-documentation",
+        "ed-asthma-exacerbation-documentation",
+        "ed-discharge-documentation",
+        "ed-shortness-of-breath-documentation"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 98,
+      "evidence_reuse_score": 98,
+      "existing_accepted_sources": [
+        "who-icrc-basic-emergency-care-2018",
+        "nice-suspected-sepsis-ng253-2026",
+        "rcem-discharge-gp-2022",
+        "rcem-investigation-results-ed-2023",
+        "rcem-invasive-procedures-ed-2023",
+        "nice-chest-pain-cg95-2016"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "World Health Organization and International Committee of the Red Cross",
+        "National Institute for Health and Care Excellence",
+        "Royal College of Emergency Medicine and Royal College of General Practitioners",
+        "Royal College of Emergency Medicine"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "perioperative-anaesthetic",
+      "family_title": "Perioperative and anaesthetic assessment",
+      "specialties": [
+        "Anesthesia / Perioperative Medicine",
+        "General Surgery"
+      ],
+      "population": "Adults and children undergoing procedural or perioperative assessment.",
+      "setting": "Preoperative, procedural and postoperative anesthesia care.",
+      "included_target_workflows": [
+        "anes-day-surgery-anesthesia-screening",
+        "anes-pre-operative-anesthesia-assessment",
+        "anes-pre-op-anticoagulation-documentation",
+        "anes-medication-reconciliation"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 97,
+      "evidence_reuse_score": 97,
+      "existing_accepted_sources": [
+        "asa-basic-preanesthesia-care-2020",
+        "asa-preanesthesia-evaluation-advisory-2012",
+        "asa-preoperative-fasting-2017",
+        "asa-documentation-anesthesia-care-2023",
+        "asa-basic-anesthetic-monitoring-2025",
+        "rcoa-gpas-elective-urgent-perioperative-2025",
+        "rcoa-gpas-paediatric-anesthesia-2025"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "American Society of Anesthesiologists",
+        "Royal College of Anaesthetists"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "ent-presentations",
+      "family_title": "Common ENT presentations",
+      "specialties": [
+        "ENT"
+      ],
+      "population": "Adults and children presenting with common ear, nose and throat symptoms.",
+      "setting": "Outpatient ENT and primary-care referral assessment.",
+      "included_target_workflows": [
+        "ent-sore-throat",
+        "ent-sinusitis",
+        "ent-otitis-externa",
+        "ent-hoarseness"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 96,
+      "evidence_reuse_score": 96,
+      "existing_accepted_sources": [
+        "aao-hns-adult-sinusitis-2025",
+        "aao-hns-acute-otitis-externa-2014",
+        "aao-hns-epistaxis-2020",
+        "aao-hns-dysphonia-cpg-2018",
+        "aao-hns-tonsillectomy-children-2019",
+        "aao-hnsf-cerumen-impaction-2017",
+        "nice-tinnitus-ng155-2020"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "cardiovascular-review",
+      "family_title": "Cardiovascular assessment and follow-up",
+      "specialties": [
+        "Cardiology",
+        "Cardiology outpatient"
+      ],
+      "population": "Adults requiring cardiovascular symptom assessment, risk review or medication follow-up.",
+      "setting": "Outpatient cardiology and urgent cardiovascular assessment.",
+      "included_target_workflows": [
+        "cardio-doac-review-documentation",
+        "cardio-home-blood-pressure-review",
+        "cardio-syncope",
+        "cardio-stable-angina-follow-up"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 95,
+      "evidence_reuse_score": 95,
+      "existing_accepted_sources": [
+        "nice-chest-pain-cg95-2016",
+        "nice-acute-coronary-syndromes-ng185-2020",
+        "nice-atrial-fibrillation-ng196-2021",
+        "nice-hypertension-ng136-2026",
+        "nice-stable-angina-cg126-2016",
+        "acc-aha-hrs-bradycardia-gms-2018",
+        "nice-venous-thromboembolic-diseases-ng158-2023"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "National Institute for Health and Care Excellence",
+        "American College of Cardiology, American Heart Association, and Heart Rhythm Society"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "paediatric-acute",
+      "family_title": "Common paediatric acute presentations",
+      "specialties": [
+        "Pediatrics"
+      ],
+      "population": "Infants, children and adolescents requiring acute assessment or follow-up.",
+      "setting": "Paediatric primary care, urgent assessment and follow-up.",
+      "included_target_workflows": [
+        "peds-fever",
+        "peds-acne-in-adolescent",
+        "peds-bedwetting-documentation",
+        "peds-food-allergy-documentation"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 94,
+      "evidence_reuse_score": 94,
+      "existing_accepted_sources": [
+        "dha-telehealth-fever-children-v2-2024",
+        "doh-well-child-visits-v10-2025",
+        "rch-pic-acute-abdominal-pain-children-2024",
+        "dha-telehealth-rashes-children-v2-2024",
+        "aao-hns-tonsillectomy-children-2019",
+        "nice-faltering-growth-ng75-2017"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "Department of Health – Abu Dhabi; Abu Dhabi Public Health Centre",
+        "Royal Children’s Hospital Melbourne; Paediatric Improvement Collaborative",
+        "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "gastrointestinal",
+      "family_title": "Gastrointestinal presentations and result review",
+      "specialties": [
+        "Gastroenterology outpatient",
+        "Gastroenterology"
+      ],
+      "population": "Adults requiring gastrointestinal symptom assessment, follow-up or result review.",
+      "setting": "Outpatient gastroenterology and primary-care referral review.",
+      "included_target_workflows": [
+        "gi-celiac-disease-follow-up",
+        "gi-colonoscopy-result-discussion-documentation",
+        "gi-dysphagia-documentation",
+        "gi-rectal-bleeding-documentation"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 93,
+      "evidence_reuse_score": 93,
+      "existing_accepted_sources": [
+        "nice-ibs-cg61-2025",
+        "nice-coeliac-ng20-2015",
+        "nice-crohns-ng129-2019",
+        "nice-ulcerative-colitis-ng130-2019",
+        "nice-pancreatitis-ng104-2020",
+        "bsg-chronic-diarrhoea-2018",
+        "bsg-abnormal-liver-blood-tests-2018",
+        "dha-telehealth-gastroenteritis-adults-v2-2024"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "National Institute for Health and Care Excellence",
+        "British Society of Gastroenterology",
+        "Dubai Health Authority"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "renal-monitoring",
+      "family_title": "Renal monitoring and electrolyte review",
+      "specialties": [
+        "Nephrology outpatient",
+        "General Medicine / GP"
+      ],
+      "population": "Adults requiring kidney-function, electrolyte, fluid or renal medication review.",
+      "setting": "Outpatient nephrology and primary-care monitoring.",
+      "included_target_workflows": [
+        "renal-hyperkalemia-documentation",
+        "renal-aki-follow-up-after-discharge",
+        "renal-hemodialysis-clinic-documentation",
+        "renal-ultrasound-result-review"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 92,
+      "evidence_reuse_score": 92,
+      "existing_accepted_sources": [
+        "kdigo-ckd-evaluation-management-2024",
+        "nice-renal-ureteric-stones-ng118-2026",
+        "nice-hypertension-ng136-2026",
+        "nice-medicines-optimisation-ng5-2015",
+        "nice-multimorbidity-ng56-2016"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "Kidney Disease: Improving Global Outcomes",
+        "National Institute for Health and Care Excellence"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    },
+    {
+      "family_id": "musculoskeletal-assessment",
+      "family_title": "Musculoskeletal assessment and follow-up",
+      "specialties": [
+        "MSK / Orthopedics",
+        "Orthopedics / MSK"
+      ],
+      "population": "Adults and children with musculoskeletal pain, injury or rehabilitation needs.",
+      "setting": "Primary care, musculoskeletal clinic and orthopaedic follow-up.",
+      "included_target_workflows": [
+        "msk-knee-pain",
+        "msk-low-back-pain",
+        "msk-fracture-followup",
+        "msk-shoulder-pain"
+      ],
+      "excluded_related_workflows_and_reasons": [],
+      "clinical_priority_score": 91,
+      "evidence_reuse_score": 91,
+      "existing_accepted_sources": [
+        "dha-acute-low-back-pain-issue2-2024",
+        "nice-fractures-noncomplex-ng38-2025",
+        "nice-joint-replacement-ng157-2024",
+        "bess-shoulder-pain-guidelines-2021",
+        "nice-neuropathic-pain-cg173-2020"
+      ],
+      "missing_family_level_evidence": [],
+      "missing_workflow_specific_evidence": [],
+      "official_organisations_to_search": [
+        "Dubai Health Authority",
+        "National Institute for Health and Care Excellence",
+        "British Elbow and Shoulder Society"
+      ],
+      "expected_shared_structured_components": [
+        "demographics",
+        "symptoms",
+        "vitals",
+        "examination",
+        "investigation_result",
+        "medication",
+        "escalation",
+        "disposition",
+        "follow_up",
+        "safety_netting"
+      ],
+      "expected_archetype_outputs": [
+        "SOAP",
+        "EMR",
+        "follow-up summary"
+      ],
+      "activation_feasibility": "complete_after_existing_source_reconciliation"
+    }
+  ],
+  "fingerprint": "b3e0c3c4e933cb6d54e3692e7194b41282446da2fa0d5fbd13ceecfb86e83052"
+}
