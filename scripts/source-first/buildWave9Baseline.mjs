@@ -198,9 +198,9 @@ const denominator = original.map((workflow) => {
   let related = null
   if (active) classification = 'active_distinct_clinical_workflow'
   else if (inactiveRow?.final_status === 'blocked_by_source_access') classification = 'blocked_by_source_access'
-  else if (inactiveRow?.final_status === 'retired_no_authoritative_basis') classification = 'inactive_distinct_targetable_workflow'
   else if (inactiveRow?.final_status === 'incorporated_as_optional_parent_section') { classification = 'incorporated_component'; related = alias?.workflow_id ?? null }
   else if (alias?.redirect_type === 'retired_duplicate_with_redirect') { classification = 'retired_duplicate'; related = alias.workflow_id }
+  else if (inactiveRow?.final_status === 'retired_no_authoritative_basis') classification = 'inactive_distinct_targetable_workflow'
   return {
     workflow_id: id,
     title: workflow.presentation ?? workflow.baseline?.clinical_workflow?.chief_complaint ?? id,
