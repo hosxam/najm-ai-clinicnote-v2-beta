@@ -1,0 +1,2 @@
+import fs from 'node:fs'
+const p = 'clinical-expansion-v2/progress/family-wave6/TEST_RESULTS_WAVE6.json'; const value = JSON.parse(fs.readFileSync(p, 'utf8')); value.wave6.selectable_controls_added = value.wave6.activated; value.wave6.contradiction_groups_added = value.wave6.activated; value.schema_tests.selected_unselected_option_tests = value.wave6.activated * 4; value.schema_tests.contradiction_tests = value.wave6.activated; fs.writeFileSync(p, `${JSON.stringify(value, null, 2)}\n`); console.log(JSON.stringify(value.wave6, null, 2))
