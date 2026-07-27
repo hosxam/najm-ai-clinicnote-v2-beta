@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "ent-swallowing-symptom-ent-review",
+  "title": "Swallowing symptom ENT review",
+  "fields": [
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Swallowing symptom ENT review — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Swallowing symptom ENT review — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Swallowing symptom ENT review — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "ent-swallowing-symptom-ent-review__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Swallowing symptom ENT review — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Swallowing symptom ENT review — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Swallowing symptom ENT review — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Swallowing symptom ENT review — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Swallowing symptom ENT review — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Swallowing symptom ENT review — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Swallowing symptom ENT review — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Swallowing symptom ENT review — nice-ng12-upper-gi-dysphagia-jaundice evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Swallowing symptom ENT review — nice-ng12-upper-gi-dysphagia-jaundice evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Swallowing symptom ENT review — nice-ng12-head-neck-features evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Swallowing symptom ENT review — nice-ng12-head-neck-features evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "field_id": "ent_swallowing_symptom_ent_review__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Swallowing symptom ENT review — nice-ng12-safety-netting-review evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Swallowing symptom ENT review — nice-ng12-safety-netting-review evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-swallowing-symptom-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-swallowing-symptom-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-suspected-cancer-ng12-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "item_id": "ent-swallowing-symptom-ent-review--evidence--wave9-ent-swallowing-symptom-ent-review--generated-0001",
+      "stable_item_id": "ent-swallowing-symptom-ent-review--evidence--wave9-ent-swallowing-symptom-ent-review--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng12-upper-gi-dysphagia-jaundice",
+      "final_wording": "Supports clinician recognition of dysphagia, weight-loss combinations, and jaundice in recommendation-specific age and symptom contexts; it does not assert cancer or an automatic referral decision.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ent-swallowing-symptom-ent-review",
+      "evidence_statement_id": "wave9-ent-swallowing-symptom-ent-review--generated-0001",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer",
+      "exact_locator": {
+        "source_id": "nice-suspected-cancer-ng12-2026",
+        "section_id": "nice-ng12-upper-gi-dysphagia-jaundice",
+        "section_heading": "Recommendations 1.2.1–1.2.7 — oesophageal, stomach, and pancreatic cancer features",
+        "locator": "recommendations 1.2.1–1.2.7"
+      },
+      "population": "Children, young people, and adults with symptoms or signs that may indicate cancer, subject to recommendation-specific age criteria.",
+      "setting": "Primary care recognition, safety netting, investigation, and referral.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected suspicious skin-lesion, safety-netting, and age- or risk-qualified respiratory recommendations; international suspected-cancer pathways require UAE clinician review. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch additionally reviews recommendation-qualified head-and-neck features; no cancer diagnosis or automatic referral text is generated. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact dysphagia section supports documenting swallowing symptoms, duration, impact, associated symptoms, relevant negatives and clinician concern in recommendation-qualified contexts without asserting cancer or referral.",
+      "record_type": "evidence",
+      "locator_fingerprint": "d4b2ecd936162c2212ecbe180f5e97f296533b38d0592e32645af1d02694ea71"
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "item_id": "ent-swallowing-symptom-ent-review--evidence--wave9-ent-swallowing-symptom-ent-review--generated-0002",
+      "stable_item_id": "ent-swallowing-symptom-ent-review--evidence--wave9-ent-swallowing-symptom-ent-review--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng12-head-neck-features",
+      "final_wording": "Supports clinician recognition of recommendation-qualified persistent unexplained hoarseness, unexplained or persistent neck lump, oral ulceration lasting more than 3 weeks, lip or oral-cavity lump, red or red-and-white oral patch, and unex",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ent-swallowing-symptom-ent-review",
+      "evidence_statement_id": "wave9-ent-swallowing-symptom-ent-review--generated-0002",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer",
+      "exact_locator": {
+        "source_id": "nice-suspected-cancer-ng12-2026",
+        "section_id": "nice-ng12-head-neck-features",
+        "section_heading": "Recommendations 1.8.1–1.8.5 — laryngeal, oral, and thyroid cancer recognition features",
+        "locator": "recommendations 1.8.1–1.8.5"
+      },
+      "population": "Children, young people, and adults with symptoms or signs that may indicate cancer, subject to recommendation-specific age criteria.",
+      "setting": "Primary care recognition, safety netting, investigation, and referral.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected suspicious skin-lesion, safety-netting, and age- or risk-qualified respiratory recommendations; international suspected-cancer pathways require UAE clinician review. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch additionally reviews recommendation-qualified head-and-neck features; no cancer diagnosis or automatic referral text is generated. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact head-and-neck section supports clinician-performed ENT and neck assessment and review of voice, oral, or neck features without asserting malignancy.",
+      "record_type": "evidence",
+      "locator_fingerprint": "9ed9d20d8fb73ae6711ba12e05886de94b22788bfd589efc019e65d0d4491e4c"
+    },
+    {
+      "workflow_id": "ent-swallowing-symptom-ent-review",
+      "item_id": "ent-swallowing-symptom-ent-review--evidence--wave9-ent-swallowing-symptom-ent-review--generated-0003",
+      "stable_item_id": "ent-swallowing-symptom-ent-review--evidence--wave9-ent-swallowing-symptom-ent-review--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng12-safety-netting-review",
+      "final_wording": "Supports documenting warning symptoms, when to return for re-evaluation, agreed review, and patient-initiated review if symptoms recur, persist, worsen, or cause concern.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ent-swallowing-symptom-ent-review",
+      "evidence_statement_id": "wave9-ent-swallowing-symptom-ent-review--generated-0003",
+      "source_id": "nice-suspected-cancer-ng12-2026",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng12/chapter/recommendations-organised-by-site-of-cancer",
+      "exact_locator": {
+        "source_id": "nice-suspected-cancer-ng12-2026",
+        "section_id": "nice-ng12-safety-netting-review",
+        "section_heading": "Recommendations 1.14.6–1.15.2 — information and safety netting",
+        "locator": "safety-netting page lines 75–96"
+      },
+      "population": "Children, young people, and adults with symptoms or signs that may indicate cancer, subject to recommendation-specific age criteria.",
+      "setting": "Primary care recognition, safety netting, investigation, and referral.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected suspicious skin-lesion, safety-netting, and age- or risk-qualified respiratory recommendations; international suspected-cancer pathways require UAE clinician review. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch also reviews recommendation-qualified upper-GI dysphagia, jaundice, and colorectal rectal-bleeding fields; no cancer diagnosis or automatic referral text is generated. This batch additionally reviews recommendation-qualified head-and-neck features; no cancer diagnosis or automatic referral text is generated. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence. This batch also reviews the breast-cancer recognition section for clinician-assessed breast lumps and qualified nipple or skin changes; generic breast pain is not treated as equivalent evidence."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact safety-net section supports documenting an entered plan, safety net, review, and questions without generating a referral or interval.",
+      "record_type": "evidence",
+      "locator_fingerprint": "afe42f8b612381306f1158b963cfba782eb2193393d6f1205449535b1125118e"
+    }
+  ],
+  "specialty": "ENT",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-ent-swallowing-symptom-ent-review"
+  ]
+}

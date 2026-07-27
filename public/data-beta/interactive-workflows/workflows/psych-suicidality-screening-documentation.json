@@ -1,0 +1,563 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "psych-suicidality-screening-documentation",
+  "title": "Suicidality screening documentation",
+  "fields": [
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Suicidality screening documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Suicidality screening documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Suicidality screening documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "psych-suicidality-screening-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Suicidality screening documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Suicidality screening documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Suicidality screening documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Suicidality screening documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Suicidality screening documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Suicidality screening documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Suicidality screening documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Suicidality screening documentation — nice-ng222-risk-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Suicidality screening documentation — nice-ng222-risk-assessment evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0001",
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Suicidality screening documentation — nice-ng225-self-harm-psychosocial-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Suicidality screening documentation — nice-ng225-self-harm-psychosocial-assessment evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0002",
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "field_id": "psych_suicidality_screening_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Suicidality screening documentation — nice-ng225-self-harm-safeguarding-discharge evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Suicidality screening documentation — nice-ng225-self-harm-safeguarding-discharge evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-suicidality-screening-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-suicidality-screening-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-depression-ng222-2026",
+          "nice-self-harm-ng225-2022"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "item_id": "psych-suicidality-screening-documentation--evidence--wave9-psych-suicidality-screening-documentation--generated-0001",
+      "stable_item_id": "psych-suicidality-screening-documentation--evidence--wave9-psych-suicidality-screening-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng222-risk-assessment",
+      "final_wording": "Supports recording that suicidal ideation, intent, support and immediate risk were directly assessed by a competent clinician; it does not populate a negative, assign risk, or generate escalation.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-suicidality-screening-documentation",
+      "evidence_statement_id": "wave9-psych-suicidality-screening-documentation--generated-0001",
+      "source_id": "nice-depression-ng222-2026",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng222/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-depression-ng222-2026",
+        "section_id": "nice-ng222-risk-assessment",
+        "section_heading": "Recommendations 1.2.8–1.2.12 — clinician-completed risk assessment",
+        "locator": "official recommendations 1.2.8–1.2.12"
+      },
+      "population": "Adults with possible or diagnosed depression; communication and carer involvement are qualified.",
+      "setting": "Primary and mental healthcare recognition and assessment.",
+      "jurisdiction": "England and Wales; international evidence requiring UAE mental-health, crisis, referral, and legal adaptation",
+      "restrictions": [
+        "Exact for documenting mood and interest screening, duration, course, function, social and interpersonal context, sleep, substances, medicines, loneliness and clinician-completed risk assessment. It does not diagnose depression or generate a referral or treatment."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports clinician-completed self-harm and suicide risk assessment for suicidality screening; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "a18f7d559e6261a333ea89b523e02bee32870de07a4800346577b9a9bead824f"
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "item_id": "psych-suicidality-screening-documentation--evidence--wave9-psych-suicidality-screening-documentation--generated-0002",
+      "stable_item_id": "psych-suicidality-screening-documentation--evidence--wave9-psych-suicidality-screening-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng225-self-harm-psychosocial-assessment",
+      "final_wording": "Supports recording the person’s needs, concerns, strengths, vulnerabilities, context and clinician-performed psychosocial assessment without using a prediction score.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-suicidality-screening-documentation",
+      "evidence_statement_id": "wave9-psych-suicidality-screening-documentation--generated-0002",
+      "source_id": "nice-self-harm-ng225-2022",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng225/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-self-harm-ng225-2022",
+        "section_id": "nice-ng225-self-harm-psychosocial-assessment",
+        "section_heading": "Recommendations 1.5.1–1.5.17 — psychosocial assessment and care",
+        "locator": "NICE recommendations 1.5.1–1.5.17"
+      },
+      "population": "Children, young people and adults who have self-harmed, unless a recommendation is age-specific.",
+      "setting": "Community, emergency department, hospital and mental-health care following self-harm.",
+      "jurisdiction": "England and Wales; requires UAE legal and pathway adaptation",
+      "restrictions": [
+        "Exact for compassionate psychosocial assessment, emergency-department initial assessment, immediate safety, safeguarding, willingness for physical and mental care, care-plan status, observation and discharge documentation after self-harm. It does not apply a risk score, predict suicide or generate treatment."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports collaborative psychosocial assessment after self-harm for suicidality screening; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "891d14d743bbf40f07da74d9434e18f4f08bbc491bb35103b2d0c472d1e82d50"
+    },
+    {
+      "workflow_id": "psych-suicidality-screening-documentation",
+      "item_id": "psych-suicidality-screening-documentation--evidence--wave9-psych-suicidality-screening-documentation--generated-0003",
+      "stable_item_id": "psych-suicidality-screening-documentation--evidence--wave9-psych-suicidality-screening-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng225-self-harm-safeguarding-discharge",
+      "final_wording": "Supports recording safeguarding consideration and clinician-confirmed assessment, plan, communication and follow-up before discharge after self-harm.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-suicidality-screening-documentation",
+      "evidence_statement_id": "wave9-psych-suicidality-screening-documentation--generated-0003",
+      "source_id": "nice-self-harm-ng225-2022",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng225/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-self-harm-ng225-2022",
+        "section_id": "nice-ng225-self-harm-safeguarding-discharge",
+        "section_heading": "Recommendations 1.3.1–1.3.2 and 1.9.6 — safeguarding and discharge",
+        "locator": "NICE recommendations 1.3.1–1.3.2 and 1.9.6"
+      },
+      "population": "Children, young people and adults who have self-harmed, unless a recommendation is age-specific.",
+      "setting": "Community, emergency department, hospital and mental-health care following self-harm.",
+      "jurisdiction": "England and Wales; requires UAE legal and pathway adaptation",
+      "restrictions": [
+        "Exact for compassionate psychosocial assessment, emergency-department initial assessment, immediate safety, safeguarding, willingness for physical and mental care, care-plan status, observation and discharge documentation after self-harm. It does not apply a risk score, predict suicide or generate treatment."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports safeguarding and qualified discharge context for suicidality screening; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "31ff0011341895dfb7adef840b79731e08abc9e3fe88541d64471faa21ab492a"
+    }
+  ],
+  "specialty": "Psychiatry / Mental Health outpatient",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-psych-suicidality-screening-documentation"
+  ]
+}

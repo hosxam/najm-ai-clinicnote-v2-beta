@@ -1,0 +1,777 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "psych-panic-symptoms",
+  "title": "Panic symptoms",
+  "fields": [
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Panic symptoms — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Panic symptoms — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Panic symptoms — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "psych-panic-symptoms__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Panic symptoms — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Panic symptoms — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Panic symptoms — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Panic symptoms — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Panic symptoms — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Panic symptoms — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Panic symptoms — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005",
+          "wave9-psych-panic-symptoms--generated-0006",
+          "wave9-psych-panic-symptoms--generated-0007",
+          "wave9-psych-panic-symptoms--generated-0008",
+          "wave9-psych-panic-symptoms--generated-0009"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Panic symptoms — nice-cg113-panic-diagnosis-physical-exclusion evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Panic symptoms — nice-cg113-panic-diagnosis-physical-exclusion evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0001",
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Panic symptoms — nice-cg113-panic-diagnosis-physical-exclusion evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Panic symptoms — nice-cg113-panic-diagnosis-physical-exclusion evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0002",
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "field_id": "psych_panic_symptoms__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Panic symptoms — nice-cg113-panic-diagnosis-physical-exclusion evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Panic symptoms — nice-cg113-panic-diagnosis-physical-exclusion evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-psych-panic-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-psych-panic-symptoms--generated-0003",
+          "wave9-psych-panic-symptoms--generated-0004",
+          "wave9-psych-panic-symptoms--generated-0005"
+        ],
+        "source_ids": [
+          "nice-gad-cg113-2020"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0001",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "Panic disorder",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0001",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0002",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "panic attack",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0002",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0003",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "panic attacks",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0003",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0004",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "sweating",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0004",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0005",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0005",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "dizziness",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0005",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0006",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0006",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "chest pain",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0006",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0007",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0007",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "Supports structured adult panic-disorder diagnosis, history, comorbidity review, panic presentations, and proportionate investigation to exclude acute physical problems before primary-care follow-up.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0007",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0008",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0008",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-diagnosis-physical-exclusion",
+      "final_wording": "Supports clinician-documented discussion of psychological and medication options, patient preference, information, monitoring, self-help, referral, and follow-up without autonomous treatment output or doses.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0008",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-diagnosis-physical-exclusion",
+        "section_heading": "Recommendations 1.3.1–1.3.5 — diagnosis, presentation, and exclusion of acute physical problems",
+        "locator": "lines 431–473"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "378587dd37de79c53f9c9aa507ff0f7ed7f65f498bc4907ac61034fa0e55131c"
+    },
+    {
+      "workflow_id": "psych-panic-symptoms",
+      "item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0009",
+      "stable_item_id": "psych-panic-symptoms--evidence--wave9-psych-panic-symptoms--generated-0009",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg113-panic-specialist-reassessment-risk",
+      "final_wording": "Supports reassessment of prior treatment and concordance, substance use, comorbidity, function, social support, stressors, avoidance, comprehensive risk, side effects, efficacy, and a shared care plan.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-psych-panic-symptoms",
+      "evidence_statement_id": "wave9-psych-panic-symptoms--generated-0009",
+      "source_id": "nice-gad-cg113-2020",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg113/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-gad-cg113-2020",
+        "section_id": "nice-cg113-panic-specialist-reassessment-risk",
+        "section_heading": "Recommendations 1.3.26–1.3.33 — reassessment, risk, and specialist care",
+        "locator": "lines 628–686"
+      },
+      "population": "Adults with known or suspected generalised anxiety disorder or panic disorder.",
+      "setting": "Primary, community, and specialist mental-health care.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for adult GAD identification, assessment, stepped care, risk, and clinician-led management; not exact for children, every anxiety subtype, or UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports mapped self-harm or suicide risk, substance use, severe functional impact, avoidance, support, side-effect, efficacy, and shared-plan fields.",
+      "record_type": "evidence",
+      "locator_fingerprint": "bbf35bed6e0031e62a68fc572cf4548c7f90ad3b241d394541b9a53258b96047"
+    }
+  ],
+  "specialty": "Psychiatry / Mental Health",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-psych-panic-symptoms"
+  ]
+}

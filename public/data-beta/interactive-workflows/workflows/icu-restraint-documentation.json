@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "icu-restraint-documentation",
+  "title": "ICU restraint documentation",
+  "fields": [
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "ICU restraint documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ICU restraint documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "ICU restraint documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "icu-restraint-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ICU restraint documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "ICU restraint documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ICU restraint documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "ICU restraint documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ICU restraint documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "ICU restraint documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "ICU restraint documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "ICU restraint documentation — nice-ng10-risk-deescalation evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ICU restraint documentation — nice-ng10-risk-deescalation evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0001",
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "ICU restraint documentation — nice-ng10-risk-deescalation evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ICU restraint documentation — nice-ng10-risk-deescalation evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0002",
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "field_id": "icu_restraint_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "ICU restraint documentation — nice-ng10-incident-monitoring evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ICU restraint documentation — nice-ng10-incident-monitoring evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-icu-restraint-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-icu-restraint-documentation--generated-0003",
+          "wave9-icu-restraint-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-violence-aggression-ng10-2015"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0001",
+      "stable_item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng10-risk-deescalation",
+      "final_wording": "10 min",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-icu-restraint-documentation",
+      "evidence_statement_id": "wave9-icu-restraint-documentation--generated-0001",
+      "source_id": "nice-violence-aggression-ng10-2015",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng10/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-violence-aggression-ng10-2015",
+        "section_id": "nice-ng10-risk-deescalation",
+        "section_heading": "Recommendations 1.2.8–1.2.14 and 1.3.12–1.3.20 — risk assessment and de-escalation",
+        "locator": "recommendations 1.2.8–1.2.14 and 1.3.12–1.3.20"
+      },
+      "population": "Adults, children and young people at risk of or involved in violence or aggression, with age- and setting-specific recommendations.",
+      "setting": "Mental health, general health, community and emergency-department settings, including post-incident review.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected objective risk-context, de-escalation, restrictive-intervention monitoring and post-incident documentation. It does not authorise restraint, tranquillisation, seclusion or any medicine and requires UAE legal and facility adaptation."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "a94d0b2952dd84701ae5c18fc5139e998fd28eacce6f8e69d4c99f260c94c4fe"
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0002",
+      "stable_item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng10-risk-deescalation",
+      "final_wording": "Supports objective multidisciplinary risk assessment, prior incident and trigger context, service-user involvement, previously effective de-escalation and transfer of an existing risk assessment.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-icu-restraint-documentation",
+      "evidence_statement_id": "wave9-icu-restraint-documentation--generated-0002",
+      "source_id": "nice-violence-aggression-ng10-2015",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng10/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-violence-aggression-ng10-2015",
+        "section_id": "nice-ng10-risk-deescalation",
+        "section_heading": "Recommendations 1.2.8–1.2.14 and 1.3.12–1.3.20 — risk assessment and de-escalation",
+        "locator": "recommendations 1.2.8–1.2.14 and 1.3.12–1.3.20"
+      },
+      "population": "Adults, children and young people at risk of or involved in violence or aggression, with age- and setting-specific recommendations.",
+      "setting": "Mental health, general health, community and emergency-department settings, including post-incident review.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected objective risk-context, de-escalation, restrictive-intervention monitoring and post-incident documentation. It does not authorise restraint, tranquillisation, seclusion or any medicine and requires UAE legal and facility adaptation."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "a94d0b2952dd84701ae5c18fc5139e998fd28eacce6f8e69d4c99f260c94c4fe"
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0003",
+      "stable_item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng10-incident-monitoring",
+      "final_wording": "Supports documenting airway, breathing, circulation, vital signs, physical and psychological monitoring and clinician review only when a restrictive intervention actually occurred. Medicine instructions and doses are excluded.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-icu-restraint-documentation",
+      "evidence_statement_id": "wave9-icu-restraint-documentation--generated-0003",
+      "source_id": "nice-violence-aggression-ng10-2015",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng10/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-violence-aggression-ng10-2015",
+        "section_id": "nice-ng10-incident-monitoring",
+        "section_heading": "Recommendations 1.4.23–1.4.45 — restrictive-intervention safety and monitoring",
+        "locator": "recommendations 1.4.23–1.4.45"
+      },
+      "population": "Adults, children and young people at risk of or involved in violence or aggression, with age- and setting-specific recommendations.",
+      "setting": "Mental health, general health, community and emergency-department settings, including post-incident review.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected objective risk-context, de-escalation, restrictive-intervention monitoring and post-incident documentation. It does not authorise restraint, tranquillisation, seclusion or any medicine and requires UAE legal and facility adaptation."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports safety monitoring during restrictive intervention for ICU restraint documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "130456b033b265400b7de5d2cebf298d29b5ca7309676135fca5530543ab423e"
+    },
+    {
+      "workflow_id": "icu-restraint-documentation",
+      "item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0004",
+      "stable_item_id": "icu-restraint-documentation--evidence--wave9-icu-restraint-documentation--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng10-post-incident-review",
+      "final_wording": "Supports recording harm, ongoing risk, emotional impact, contributing factors, patient and witness perspectives, completed documentation, handover and formal review after an incident.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-icu-restraint-documentation",
+      "evidence_statement_id": "wave9-icu-restraint-documentation--generated-0004",
+      "source_id": "nice-violence-aggression-ng10-2015",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng10/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-violence-aggression-ng10-2015",
+        "section_id": "nice-ng10-post-incident-review",
+        "section_heading": "Recommendations 1.4.53–1.4.63 — post-incident debrief, documentation and review",
+        "locator": "recommendations 1.4.53–1.4.63"
+      },
+      "population": "Adults, children and young people at risk of or involved in violence or aggression, with age- and setting-specific recommendations.",
+      "setting": "Mental health, general health, community and emergency-department settings, including post-incident review.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected objective risk-context, de-escalation, restrictive-intervention monitoring and post-incident documentation. It does not authorise restraint, tranquillisation, seclusion or any medicine and requires UAE legal and facility adaptation."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports post-incident review and documentation for ICU restraint documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "f5529752b9475822b1c7abcf843d969939622164233d1421a9decc37385e637e"
+    }
+  ],
+  "specialty": "ICU / Critical Care",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-icu-restraint-documentation"
+  ]
+}

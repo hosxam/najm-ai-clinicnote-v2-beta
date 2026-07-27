@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "surg-smoking-status-surgical-documentation",
+  "title": "Smoking status surgical documentation",
+  "fields": [
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Smoking status surgical documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Smoking status surgical documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Smoking status surgical documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "surg-smoking-status-surgical-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Smoking status surgical documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Smoking status surgical documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Smoking status surgical documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Smoking status surgical documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Smoking status surgical documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Smoking status surgical documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Smoking status surgical documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Smoking status surgical documentation — mohap-tobacco-guide-users-scope evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Smoking status surgical documentation — mohap-tobacco-guide-users-scope evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Smoking status surgical documentation — mohap-tobacco-guide-identify-assess evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Smoking status surgical documentation — mohap-tobacco-guide-identify-assess evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "field_id": "surg_smoking_status_surgical_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Smoking status surgical documentation — mohap-tobacco-guide-assist-arrange evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Smoking status surgical documentation — mohap-tobacco-guide-assist-arrange evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-surg-smoking-status-surgical-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-surg-smoking-status-surgical-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "mohap-tobacco-dependence-guideline-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "item_id": "surg-smoking-status-surgical-documentation--evidence--wave9-surg-smoking-status-surgical-documentation--generated-0001",
+      "stable_item_id": "surg-smoking-status-surgical-documentation--evidence--wave9-surg-smoking-status-surgical-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "mohap-tobacco-guide-users-scope",
+      "final_wording": "Supports healthcare-provider use, tobacco-status identification and documentation, cessation support, and second-hand-smoke exposure context.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-surg-smoking-status-surgical-documentation",
+      "evidence_statement_id": "wave9-surg-smoking-status-surgical-documentation--generated-0001",
+      "source_id": "mohap-tobacco-dependence-guideline-2024",
+      "official_source_url": "https://mohap.gov.ae/en/assets/98c292b7/practical-guideline-for-management-of-tobacco-dependence-2024.aspx",
+      "exact_locator": {
+        "source_id": "mohap-tobacco-dependence-guideline-2024",
+        "section_id": "mohap-tobacco-guide-users-scope",
+        "section_heading": "Who Can Use this Guide and Basic and Essential Facts",
+        "locator": "pages 4–5"
+      },
+      "population": "People who use tobacco, recently stopped tobacco, do not currently use tobacco, or may be exposed to second-hand smoke.",
+      "setting": "Clinical and public-health tobacco-use identification, assessment, cessation support, and follow-up.",
+      "jurisdiction": "United Arab Emirates",
+      "restrictions": [
+        "Direct UAE source for documenting tobacco status, exposure, quit readiness, prior attempts, barriers, clinician-discussed support, referral, and follow-up; medicine names, doses, and autonomous cessation instructions are not mapped."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports tobacco-status identification and documentation for surgical smoking status documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "c45cf7338cfd21e00453f8517e070e17221e34db653916feaa1d300bd19ea7ba"
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "item_id": "surg-smoking-status-surgical-documentation--evidence--wave9-surg-smoking-status-surgical-documentation--generated-0002",
+      "stable_item_id": "surg-smoking-status-surgical-documentation--evidence--wave9-surg-smoking-status-surgical-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "mohap-tobacco-guide-identify-assess",
+      "final_wording": "Supports current and former tobacco status, product use, willingness and readiness to quit, previous attempts, motivation, confidence, barriers, and dependence assessment including smoking rate and time to first cigarette.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-surg-smoking-status-surgical-documentation",
+      "evidence_statement_id": "wave9-surg-smoking-status-surgical-documentation--generated-0002",
+      "source_id": "mohap-tobacco-dependence-guideline-2024",
+      "official_source_url": "https://mohap.gov.ae/en/assets/98c292b7/practical-guideline-for-management-of-tobacco-dependence-2024.aspx",
+      "exact_locator": {
+        "source_id": "mohap-tobacco-dependence-guideline-2024",
+        "section_id": "mohap-tobacco-guide-identify-assess",
+        "section_heading": "The 5 As and Identification and Assessment of Tobacco Use Status",
+        "locator": "pages 9–14"
+      },
+      "population": "People who use tobacco, recently stopped tobacco, do not currently use tobacco, or may be exposed to second-hand smoke.",
+      "setting": "Clinical and public-health tobacco-use identification, assessment, cessation support, and follow-up.",
+      "jurisdiction": "United Arab Emirates",
+      "restrictions": [
+        "Direct UAE source for documenting tobacco status, exposure, quit readiness, prior attempts, barriers, clinician-discussed support, referral, and follow-up; medicine names, doses, and autonomous cessation instructions are not mapped."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports product use, smoking rate, dependence, quit attempts, readiness and barriers for surgical smoking status documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "6949dce6746efbec829dfd33bee36243a3baeb6eaa32c667c81628b10e9a2069"
+    },
+    {
+      "workflow_id": "surg-smoking-status-surgical-documentation",
+      "item_id": "surg-smoking-status-surgical-documentation--evidence--wave9-surg-smoking-status-surgical-documentation--generated-0003",
+      "stable_item_id": "surg-smoking-status-surgical-documentation--evidence--wave9-surg-smoking-status-surgical-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "mohap-tobacco-guide-assist-arrange",
+      "final_wording": "Supports clinician-documented counselling, support, pharmacotherapy discussion, referral, and arranged follow-up without mapping medicine names or doses.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-surg-smoking-status-surgical-documentation",
+      "evidence_statement_id": "wave9-surg-smoking-status-surgical-documentation--generated-0003",
+      "source_id": "mohap-tobacco-dependence-guideline-2024",
+      "official_source_url": "https://mohap.gov.ae/en/assets/98c292b7/practical-guideline-for-management-of-tobacco-dependence-2024.aspx",
+      "exact_locator": {
+        "source_id": "mohap-tobacco-dependence-guideline-2024",
+        "section_id": "mohap-tobacco-guide-assist-arrange",
+        "section_heading": "Assist and Arrange follow-up",
+        "locator": "pages 15–20"
+      },
+      "population": "People who use tobacco, recently stopped tobacco, do not currently use tobacco, or may be exposed to second-hand smoke.",
+      "setting": "Clinical and public-health tobacco-use identification, assessment, cessation support, and follow-up.",
+      "jurisdiction": "United Arab Emirates",
+      "restrictions": [
+        "Direct UAE source for documenting tobacco status, exposure, quit readiness, prior attempts, barriers, clinician-discussed support, referral, and follow-up; medicine names, doses, and autonomous cessation instructions are not mapped."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports clinician-documented counselling, referral and follow-up for surgical smoking status documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "c27c86502dcf3b38d0c864b2cba8901fcfb462d70ffc5fe581220b82a1059905"
+    }
+  ],
+  "specialty": "General Surgery",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-surg-smoking-status-surgical-documentation"
+  ]
+}

@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "prev-sleep-counseling-documentation",
+  "title": "Sleep counseling documentation",
+  "fields": [
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Sleep counseling documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep counseling documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Sleep counseling documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "prev-sleep-counseling-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep counseling documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Sleep counseling documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Sleep counseling documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Sleep counseling documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Sleep counseling documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Sleep counseling documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Sleep counseling documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Sleep counseling documentation — dha-insomnia-i2-history-daytime-function evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep counseling documentation — dha-insomnia-i2-history-daytime-function evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0001",
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Sleep counseling documentation — dha-insomnia-i2-history-daytime-function evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Sleep counseling documentation — dha-insomnia-i2-history-daytime-function evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0002",
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "field_id": "prev_sleep_counseling_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Sleep counseling documentation — dha-insomnia-i2-causes-investigations evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep counseling documentation — dha-insomnia-i2-causes-investigations evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-prev-sleep-counseling-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-prev-sleep-counseling-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-insomnia-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "item_id": "prev-sleep-counseling-documentation--evidence--wave9-prev-sleep-counseling-documentation--generated-0001",
+      "stable_item_id": "prev-sleep-counseling-documentation--evidence--wave9-prev-sleep-counseling-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-insomnia-i2-history-daytime-function",
+      "final_wording": "Supports clinician-documented discussion of sleep routine or hygiene, lifestyle context, psychological or medication plans, reassessment, questions, monitoring, and referral without autonomous advice or doses.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-prev-sleep-counseling-documentation",
+      "evidence_statement_id": "wave9-prev-sleep-counseling-documentation--generated-0001",
+      "source_id": "dha-insomnia-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/24%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Insomnia2024313354.pdf",
+      "exact_locator": {
+        "source_id": "dha-insomnia-issue2-2024",
+        "section_id": "dha-insomnia-i2-history-daytime-function",
+        "section_heading": "Sections 5–7 — sleep history and daytime consequences",
+        "locator": "pages 7–12; extracted lines 79–180"
+      },
+      "population": "Adults with difficulty initiating or maintaining sleep or early waking with daytime impact.",
+      "setting": "Telehealth services in DHA-licensed health facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for Dubai telehealth insomnia history, red flags, causes, and clinician-led management; fixed follow-up intervals and autonomous medication choices are not supported."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "adce7d4040293a04fe22415603f3e6a90b119e9f78d438ed3a2e1942b7faeba4"
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "item_id": "prev-sleep-counseling-documentation--evidence--wave9-prev-sleep-counseling-documentation--generated-0002",
+      "stable_item_id": "prev-sleep-counseling-documentation--evidence--wave9-prev-sleep-counseling-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-insomnia-i2-history-daytime-function",
+      "final_wording": "Supports sleep initiation or maintenance difficulty, early waking, non-restorative sleep, adequate opportunity, fatigue, concentration, mood, irritability, daytime sleepiness, motivation, duration, stress, and functional impact.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-prev-sleep-counseling-documentation",
+      "evidence_statement_id": "wave9-prev-sleep-counseling-documentation--generated-0002",
+      "source_id": "dha-insomnia-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/24%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Insomnia2024313354.pdf",
+      "exact_locator": {
+        "source_id": "dha-insomnia-issue2-2024",
+        "section_id": "dha-insomnia-i2-history-daytime-function",
+        "section_heading": "Sections 5–7 — sleep history and daytime consequences",
+        "locator": "pages 7–12; extracted lines 79–180"
+      },
+      "population": "Adults with difficulty initiating or maintaining sleep or early waking with daytime impact.",
+      "setting": "Telehealth services in DHA-licensed health facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for Dubai telehealth insomnia history, red flags, causes, and clinician-led management; fixed follow-up intervals and autonomous medication choices are not supported."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports sleep-pattern and daytime-function history for sleep counselling documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "adce7d4040293a04fe22415603f3e6a90b119e9f78d438ed3a2e1942b7faeba4"
+    },
+    {
+      "workflow_id": "prev-sleep-counseling-documentation",
+      "item_id": "prev-sleep-counseling-documentation--evidence--wave9-prev-sleep-counseling-documentation--generated-0003",
+      "stable_item_id": "prev-sleep-counseling-documentation--evidence--wave9-prev-sleep-counseling-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-insomnia-i2-causes-investigations",
+      "final_wording": "Supports caffeine, nicotine, medication, substance, sleep-apnoea, restless-legs, pain, withdrawal, thyroid, dyspnoea, mood, anxiety, life-stress, bedtime-worry, environmental, and sleep-habit review plus selected tests when clinically indic",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-prev-sleep-counseling-documentation",
+      "evidence_statement_id": "wave9-prev-sleep-counseling-documentation--generated-0003",
+      "source_id": "dha-insomnia-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/24%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Insomnia2024313354.pdf",
+      "exact_locator": {
+        "source_id": "dha-insomnia-issue2-2024",
+        "section_id": "dha-insomnia-i2-causes-investigations",
+        "section_heading": "Section 7 — substances, medicines, comorbidity, environment, and selected tests",
+        "locator": "pages 14–16; extracted lines 213–249"
+      },
+      "population": "Adults with difficulty initiating or maintaining sleep or early waking with daytime impact.",
+      "setting": "Telehealth services in DHA-licensed health facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for Dubai telehealth insomnia history, red flags, causes, and clinician-led management; fixed follow-up intervals and autonomous medication choices are not supported."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports substance, medicine, comorbidity and environment context for sleep counselling documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "22e41fc4095756bb4f4577289ce750f0c85f1e35f22fd3b39382c65436cb5d6d"
+    }
+  ],
+  "specialty": "Preventive care / screening / counseling / administrative documentation",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-prev-sleep-counseling-documentation"
+  ]
+}

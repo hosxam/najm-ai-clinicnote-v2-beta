@@ -1,0 +1,574 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "resp-referral-documentation",
+  "title": "Respiratory referral documentation",
+  "fields": [
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Respiratory referral documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Respiratory referral documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Respiratory referral documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "resp-referral-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Respiratory referral documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Respiratory referral documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Respiratory referral documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Respiratory referral documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Respiratory referral documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Respiratory referral documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Respiratory referral documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Respiratory referral documentation — dha-cough-v2-referral-criteria evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Respiratory referral documentation — dha-cough-v2-referral-criteria evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0001",
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Respiratory referral documentation — dha-asthma-v2-review-referral evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Respiratory referral documentation — dha-asthma-v2-review-referral evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0002",
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "field_id": "resp_referral_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Respiratory referral documentation — bts-cc-2023-investigation-referral evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Respiratory referral documentation — bts-cc-2023-investigation-referral evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-referral-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-referral-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "dha-telehealth-asthma-v2-2024",
+          "dha-telehealth-cough-v2-2024",
+          "bts-chronic-cough-adults-2023"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "resp-referral-documentation",
+      "item_id": "resp-referral-documentation--evidence--wave9-resp-referral-documentation--generated-0001",
+      "stable_item_id": "resp-referral-documentation--evidence--wave9-resp-referral-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-cough-v2-referral-criteria",
+      "final_wording": "Supports clinician-led emergency, family-medicine, and pulmonary referral according to the documented cough context.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-referral-documentation",
+      "evidence_statement_id": "wave9-resp-referral-documentation--generated-0001",
+      "source_id": "dha-telehealth-cough-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/46%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Cough2024321176.pdf",
+      "exact_locator": {
+        "source_id": "dha-telehealth-cough-v2-2024",
+        "section_id": "dha-cough-v2-referral-criteria",
+        "section_heading": "9. Referral criteria",
+        "locator": "pages 25–27"
+      },
+      "population": "People presenting with cough; age limits are not stated in the applicability section.",
+      "setting": "Telehealth services in DHA-licensed health facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for Dubai telehealth cough documentation; only partial for a general in-person workflow and for chronic-cough investigation pathways."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "e84631bfcd126cbe015e184bbe4e83a44147800946763c553ab8307fd3e761bd"
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "item_id": "resp-referral-documentation--evidence--wave9-resp-referral-documentation--generated-0002",
+      "stable_item_id": "resp-referral-documentation--evidence--wave9-resp-referral-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-asthma-v2-review-referral",
+      "final_wording": "Supports review of alternative or comorbid causes, adherence, inhaler technique, smoking, occupational, psychosocial and environmental factors, treatment response, device review, and clinician-led referral.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-referral-documentation",
+      "evidence_statement_id": "wave9-resp-referral-documentation--generated-0002",
+      "source_id": "dha-telehealth-asthma-v2-2024",
+      "official_source_url": "https://www.dha.gov.ae/uploads/032024/38%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Asthma2024332757.pdf",
+      "exact_locator": {
+        "source_id": "dha-telehealth-asthma-v2-2024",
+        "section_id": "dha-asthma-v2-review-referral",
+        "section_heading": "11.8 Uncontrolled asthma and 12. Referral criteria",
+        "locator": "pages 24–28"
+      },
+      "population": "People presenting with suspected or established asthma in the populations specified by the guideline.",
+      "setting": "Telehealth services in DHA-licensed health facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for Dubai telehealth asthma documentation; emergency management and controlled-medicine prescribing are excluded and in-person use remains partial."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports uncontrolled-asthma review and referral context for respiratory referral documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "28b017b23975b43cbc348887f74b7531ad1b84f3064d22cacef769e4d99c42b2"
+    },
+    {
+      "workflow_id": "resp-referral-documentation",
+      "item_id": "resp-referral-documentation--evidence--wave9-resp-referral-documentation--generated-0003",
+      "stable_item_id": "resp-referral-documentation--evidence--wave9-resp-referral-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "bts-cc-2023-investigation-referral",
+      "final_wording": "Supports chest radiography, spirometry with reversibility, sputum testing where infection is suspected, selected inflammatory markers, specialist referral for persistent or unclear cough, and upper-airway specialist assessment when indicate",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-referral-documentation",
+      "evidence_statement_id": "wave9-resp-referral-documentation--generated-0003",
+      "source_id": "bts-chronic-cough-adults-2023",
+      "official_source_url": "https://www.brit-thoracic.org.uk/document-library/clinical-statements/cough-in-adults/chronic-cough-in-adults/",
+      "exact_locator": {
+        "source_id": "bts-chronic-cough-adults-2023",
+        "section_id": "bts-cc-2023-investigation-referral",
+        "section_heading": "Basic investigations and referral",
+        "locator": "pages 7–9"
+      },
+      "population": "Adults with chronic cough lasting more than 8 weeks.",
+      "setting": "Primary and specialist assessment of chronic cough.",
+      "jurisdiction": "United Kingdom",
+      "restrictions": [
+        "Exact for adult chronic cough assessment and referral; not applicable to children and not directly validated for UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports adult chronic-cough investigation and referral context for respiratory referral documentation; no decision is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "ba2f5215a83c9eb47970055b76f6d10f81e8df6eb01411bc5cf8112c4d14b77e"
+    }
+  ],
+  "specialty": "Respiratory outpatient",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-resp-referral-documentation"
+  ]
+}

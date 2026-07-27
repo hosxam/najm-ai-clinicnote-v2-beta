@@ -1,0 +1,629 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "obgyn-dysmenorrhea",
+  "title": "Dysmenorrhea",
+  "fields": [
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Dysmenorrhea — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Dysmenorrhea — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Dysmenorrhea — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "obgyn-dysmenorrhea__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Dysmenorrhea — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Dysmenorrhea — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Dysmenorrhea — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Dysmenorrhea — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Dysmenorrhea — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Dysmenorrhea — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Dysmenorrhea — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Dysmenorrhea — dha-dysmen-i2-scope-history evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Dysmenorrhea — dha-dysmen-i2-scope-history evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0001",
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Dysmenorrhea — dha-dysmen-i2-scope-history evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Dysmenorrhea — dha-dysmen-i2-scope-history evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0002",
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "field_id": "obgyn_dysmenorrhea__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Dysmenorrhea — dha-dysmen-i2-scope-history evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Dysmenorrhea — dha-dysmen-i2-scope-history evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-obgyn-dysmenorrhea"
+        ],
+        "evidence_statement_ids": [
+          "wave9-obgyn-dysmenorrhea--generated-0003",
+          "wave9-obgyn-dysmenorrhea--generated-0004",
+          "wave9-obgyn-dysmenorrhea--generated-0005"
+        ],
+        "source_ids": [
+          "dha-dysmenorrhoea-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0001",
+      "stable_item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-dysmen-i2-scope-history",
+      "final_wording": "Dysmenorrhea",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-obgyn-dysmenorrhea",
+      "evidence_statement_id": "wave9-obgyn-dysmenorrhea--generated-0001",
+      "source_id": "dha-dysmenorrhoea-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/26%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dysmenorrhoea2024316629.pdf",
+      "exact_locator": {
+        "source_id": "dha-dysmenorrhoea-issue2-2024",
+        "section_id": "dha-dysmen-i2-scope-history",
+        "section_heading": "2. Scope; 3. Purpose; 4. Applicability; 5.1 Virtual Clinical Assessment and Clinical History",
+        "locator": "pages 10–12"
+      },
+      "population": "Adults presenting with dysmenorrhoea complaints.",
+      "setting": "Telehealth services in DHA-licensed healthcare facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for adult dysmenorrhoea documentation in Dubai telehealth; partial for adolescents, face-to-face examination, pregnancy complications, and non-Dubai settings."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "47b6a53f922e25fe9c3e61ea5cb99a252da4afb118ed1fcc8725d24beaae0452"
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0002",
+      "stable_item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-dysmen-i2-scope-history",
+      "final_wording": "Lists sudden or constant severe pain, peritonism, fever, abnormal bleeding or discharge, instability, anaemia, weight loss, infertility, dyspareunia, non-midline pain, and progressive symptoms as concern features.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-obgyn-dysmenorrhea",
+      "evidence_statement_id": "wave9-obgyn-dysmenorrhea--generated-0002",
+      "source_id": "dha-dysmenorrhoea-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/26%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dysmenorrhoea2024316629.pdf",
+      "exact_locator": {
+        "source_id": "dha-dysmenorrhoea-issue2-2024",
+        "section_id": "dha-dysmen-i2-scope-history",
+        "section_heading": "2. Scope; 3. Purpose; 4. Applicability; 5.1 Virtual Clinical Assessment and Clinical History",
+        "locator": "pages 10–12"
+      },
+      "population": "Adults presenting with dysmenorrhoea complaints.",
+      "setting": "Telehealth services in DHA-licensed healthcare facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for adult dysmenorrhoea documentation in Dubai telehealth; partial for adolescents, face-to-face examination, pregnancy complications, and non-Dubai settings."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "47b6a53f922e25fe9c3e61ea5cb99a252da4afb118ed1fcc8725d24beaae0452"
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0003",
+      "stable_item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-dysmen-i2-scope-history",
+      "final_wording": "Defines the Dubai telehealth setting and menstrual, pain, associated symptom, functional impact, contraception, medical, surgical, and sexual history required for dysmenorrhoea assessment.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-obgyn-dysmenorrhea",
+      "evidence_statement_id": "wave9-obgyn-dysmenorrhea--generated-0003",
+      "source_id": "dha-dysmenorrhoea-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/26%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dysmenorrhoea2024316629.pdf",
+      "exact_locator": {
+        "source_id": "dha-dysmenorrhoea-issue2-2024",
+        "section_id": "dha-dysmen-i2-scope-history",
+        "section_heading": "2. Scope; 3. Purpose; 4. Applicability; 5.1 Virtual Clinical Assessment and Clinical History",
+        "locator": "pages 10–12"
+      },
+      "population": "Adults presenting with dysmenorrhoea complaints.",
+      "setting": "Telehealth services in DHA-licensed healthcare facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for adult dysmenorrhoea documentation in Dubai telehealth; partial for adolescents, face-to-face examination, pregnancy complications, and non-Dubai settings."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "47b6a53f922e25fe9c3e61ea5cb99a252da4afb118ed1fcc8725d24beaae0452"
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0004",
+      "stable_item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-dysmen-i2-scope-history",
+      "final_wording": "Defines emergency and specialist referral contexts for sudden or severe pain, peritonism, pregnancy concern, abnormal bleeding, fever or discharge, progressive symptoms, and suspected secondary pathology.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-obgyn-dysmenorrhea",
+      "evidence_statement_id": "wave9-obgyn-dysmenorrhea--generated-0004",
+      "source_id": "dha-dysmenorrhoea-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/26%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dysmenorrhoea2024316629.pdf",
+      "exact_locator": {
+        "source_id": "dha-dysmenorrhoea-issue2-2024",
+        "section_id": "dha-dysmen-i2-scope-history",
+        "section_heading": "2. Scope; 3. Purpose; 4. Applicability; 5.1 Virtual Clinical Assessment and Clinical History",
+        "locator": "pages 10–12"
+      },
+      "population": "Adults presenting with dysmenorrhoea complaints.",
+      "setting": "Telehealth services in DHA-licensed healthcare facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for adult dysmenorrhoea documentation in Dubai telehealth; partial for adolescents, face-to-face examination, pregnancy complications, and non-Dubai settings."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "47b6a53f922e25fe9c3e61ea5cb99a252da4afb118ed1fcc8725d24beaae0452"
+    },
+    {
+      "workflow_id": "obgyn-dysmenorrhea",
+      "item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0005",
+      "stable_item_id": "obgyn-dysmenorrhea--evidence--wave9-obgyn-dysmenorrhea--generated-0005",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-dysmen-i2-management-followup",
+      "final_wording": "Describes lifestyle measures and follow-up after teleconsultation; medication doses were reviewed but are not mapped into the workflow.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-obgyn-dysmenorrhea",
+      "evidence_statement_id": "wave9-obgyn-dysmenorrhea--generated-0005",
+      "source_id": "dha-dysmenorrhoea-issue2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/26%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Dysmenorrhoea2024316629.pdf",
+      "exact_locator": {
+        "source_id": "dha-dysmenorrhoea-issue2-2024",
+        "section_id": "dha-dysmen-i2-management-followup",
+        "section_heading": "8. Management — non-pharmacological measures and follow-up",
+        "locator": "pages 17–19"
+      },
+      "population": "Adults presenting with dysmenorrhoea complaints.",
+      "setting": "Telehealth services in DHA-licensed healthcare facilities.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for adult dysmenorrhoea documentation in Dubai telehealth; partial for adolescents, face-to-face examination, pregnancy complications, and non-Dubai settings."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports mapped lifestyle and clinician-documented follow-up discussion without importing medication doses.",
+      "record_type": "evidence",
+      "locator_fingerprint": "de9039f8da6d661264201283a7bff0c18e98be7974d87031c74c43f557ec2f78"
+    }
+  ],
+  "specialty": "OB/GYN",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-obgyn-dysmenorrhea"
+  ]
+}

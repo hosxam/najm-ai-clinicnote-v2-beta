@@ -1,0 +1,666 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "resp-sleep-apnea-symptoms",
+  "title": "Sleep apnea symptoms",
+  "fields": [
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Sleep apnea symptoms — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep apnea symptoms — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Sleep apnea symptoms — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "resp-sleep-apnea-symptoms__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep apnea symptoms — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Sleep apnea symptoms — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Sleep apnea symptoms — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Sleep apnea symptoms — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Sleep apnea symptoms — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Sleep apnea symptoms — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Sleep apnea symptoms — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005",
+          "wave9-resp-sleep-apnea-symptoms--generated-0006"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Sleep apnea symptoms — nice-ng202-osahs-initial-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep apnea symptoms — nice-ng202-osahs-initial-assessment evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0001",
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Sleep apnea symptoms — nice-ng202-osahs-initial-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Sleep apnea symptoms — nice-ng202-osahs-initial-assessment evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0002",
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "field_id": "resp_sleep_apnea_symptoms__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Sleep apnea symptoms — nice-ng202-osahs-initial-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Sleep apnea symptoms — nice-ng202-osahs-initial-assessment evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-resp-sleep-apnea-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave9-resp-sleep-apnea-symptoms--generated-0003",
+          "wave9-resp-sleep-apnea-symptoms--generated-0004",
+          "wave9-resp-sleep-apnea-symptoms--generated-0005"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0001",
+      "stable_item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-initial-assessment",
+      "final_wording": "snoring",
+      "action": "retain",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-sleep-apnea-symptoms",
+      "evidence_statement_id": "wave9-resp-sleep-apnea-symptoms--generated-0001",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-initial-assessment",
+        "section_heading": "Recommendations 1.1.1–1.1.4 — initial assessment for OSAHS",
+        "locator": "recommendations 1.1.1–1.1.4"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Exact phrase located in inspected full source.",
+      "record_type": "evidence",
+      "locator_fingerprint": "38a05a7877bcfcc7be45bf093dd46e47edcc3e3aeda4e1d61d3b92ff8bbbd4f7"
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0002",
+      "stable_item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-initial-assessment",
+      "final_wording": "Supports snoring, witnessed apnoeas, unrefreshing or fragmented sleep, waking headache, sleepiness or fatigue, nocturia, choking, cognitive symptoms, obesity context, Epworth Sleepiness Scale, and STOP-Bang, while prohibiting use of Epworth",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-sleep-apnea-symptoms",
+      "evidence_statement_id": "wave9-resp-sleep-apnea-symptoms--generated-0002",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-initial-assessment",
+        "section_heading": "Recommendations 1.1.1–1.1.4 — initial assessment for OSAHS",
+        "locator": "recommendations 1.1.1–1.1.4"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "38a05a7877bcfcc7be45bf093dd46e47edcc3e3aeda4e1d61d3b92ff8bbbd4f7"
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0003",
+      "stable_item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-initial-assessment",
+      "final_wording": "Supports tailored follow-up, CPAP review, annual review after optimisation, symptoms, Epworth score, vigilance and driving, AHI or ODI, adherence, treatment experience, sleep hygiene, and clinician-reviewed sleep-study follow-up.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-sleep-apnea-symptoms",
+      "evidence_statement_id": "wave9-resp-sleep-apnea-symptoms--generated-0003",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-initial-assessment",
+        "section_heading": "Recommendations 1.1.1–1.1.4 — initial assessment for OSAHS",
+        "locator": "recommendations 1.1.1–1.1.4"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "38a05a7877bcfcc7be45bf093dd46e47edcc3e3aeda4e1d61d3b92ff8bbbd4f7"
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0004",
+      "stable_item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-referral-priority",
+      "final_wording": "Supports referral information on assessment scores, functional sleepiness, comorbidities, occupational or driving risk, and oxygen saturation or blood gases if available.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-sleep-apnea-symptoms",
+      "evidence_statement_id": "wave9-resp-sleep-apnea-symptoms--generated-0004",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-referral-priority",
+        "section_heading": "Recommendations 1.2.1–1.2.2 — prioritising sleep-service assessment",
+        "locator": "recommendations 1.2.1–1.2.2"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports mapped severe sleepiness, driving-risk, oxygen information, referral, and driving-discussion documentation.",
+      "record_type": "evidence",
+      "locator_fingerprint": "a80d86f90626aacee7223215bca1d03da3b43c0c308afcdb2b2083cfabc1ef85"
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0005",
+      "stable_item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0005",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-diagnostic-tests",
+      "final_wording": "Supports clinician-reviewed respiratory polygraphy, home oximetry where appropriate, polysomnography in the specified context, and use of sleep-study results by clinicians to diagnose and grade OSAHS.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-sleep-apnea-symptoms",
+      "evidence_statement_id": "wave9-resp-sleep-apnea-symptoms--generated-0005",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-diagnostic-tests",
+        "section_heading": "Recommendations 1.3.1–1.3.6 — diagnostic tests for OSAHS",
+        "locator": "recommendations 1.3.1–1.3.6"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports mapped clinician-reviewed sleep-study and oximetry fields.",
+      "record_type": "evidence",
+      "locator_fingerprint": "4238adb04b4001f3024acbd5e514ab9e2ed76d842e99316bdace2f6d5b9b84ac"
+    },
+    {
+      "workflow_id": "resp-sleep-apnea-symptoms",
+      "item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0006",
+      "stable_item_id": "resp-sleep-apnea-symptoms--evidence--wave9-resp-sleep-apnea-symptoms--generated-0006",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-lifestyle-treatment",
+      "final_wording": "Supports tailored clinician discussion of weight, smoking, alcohol, sleep hygiene, and CPAP in recommendation-qualified diagnosed OSAHS contexts; no medicine, device setting, or autonomous treatment output is mapped.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-resp-sleep-apnea-symptoms",
+      "evidence_statement_id": "wave9-resp-sleep-apnea-symptoms--generated-0006",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-lifestyle-treatment",
+        "section_heading": "Recommendations 1.4.1 and 1.5.1–1.6.7 — lifestyle and treatment discussion",
+        "locator": "recommendation 1.4.1 and recommendations 1.5.1–1.6.7"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Supports mapped clinician-discussed weight, sleep-hygiene, CPAP, and lifestyle fields only in recommendation-qualified OSAHS contexts.",
+      "record_type": "evidence",
+      "locator_fingerprint": "8840e3b69dfe103e0bfd1f9d75e7b3bf9ef21cf829e1b78589b10e3d56f4c84b"
+    }
+  ],
+  "specialty": "Respiratory / Pulmonology",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-resp-sleep-apnea-symptoms"
+  ]
+}

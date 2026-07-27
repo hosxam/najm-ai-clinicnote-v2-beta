@@ -1,0 +1,563 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "ent-snoring-ent-review",
+  "title": "Snoring ENT review",
+  "fields": [
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Snoring ENT review — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Snoring ENT review — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Snoring ENT review — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "ent-snoring-ent-review__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Snoring ENT review — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Snoring ENT review — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Snoring ENT review — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Snoring ENT review — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Snoring ENT review — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Snoring ENT review — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Snoring ENT review — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Snoring ENT review — nice-ng202-osahs-initial-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Snoring ENT review — nice-ng202-osahs-initial-assessment evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0001",
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Snoring ENT review — aao-tonsillectomy-2019-sleep-comorbidity evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Snoring ENT review — aao-tonsillectomy-2019-sleep-comorbidity evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0002",
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "field_id": "ent_snoring_ent_review__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Snoring ENT review — nice-ng202-osahs-followup-monitoring evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Snoring ENT review — nice-ng202-osahs-followup-monitoring evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ent-snoring-ent-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ent-snoring-ent-review--generated-0003"
+        ],
+        "source_ids": [
+          "nice-osahs-ng202-2021",
+          "aao-hns-tonsillectomy-children-2019"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "item_id": "ent-snoring-ent-review--evidence--wave9-ent-snoring-ent-review--generated-0001",
+      "stable_item_id": "ent-snoring-ent-review--evidence--wave9-ent-snoring-ent-review--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-initial-assessment",
+      "final_wording": "Supports snoring, witnessed apnoeas, unrefreshing or fragmented sleep, waking headache, sleepiness or fatigue, nocturia, choking, cognitive symptoms, obesity context, Epworth Sleepiness Scale, and STOP-Bang, while prohibiting use of Epworth",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-ent-snoring-ent-review",
+      "evidence_statement_id": "wave9-ent-snoring-ent-review--generated-0001",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-initial-assessment",
+        "section_heading": "Recommendations 1.1.1–1.1.4 — initial assessment for OSAHS",
+        "locator": "recommendations 1.1.1–1.1.4"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "38a05a7877bcfcc7be45bf093dd46e47edcc3e3aeda4e1d61d3b92ff8bbbd4f7"
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "item_id": "ent-snoring-ent-review--evidence--wave9-ent-snoring-ent-review--generated-0002",
+      "stable_item_id": "ent-snoring-ent-review--evidence--wave9-ent-snoring-ent-review--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "aao-tonsillectomy-2019-sleep-comorbidity",
+      "final_wording": "Supports documenting sleep symptoms and selected comorbidity context in children without diagnosing obstructive sleep apnoea or ordering polysomnography.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ent-snoring-ent-review",
+      "evidence_statement_id": "wave9-ent-snoring-ent-review--generated-0002",
+      "source_id": "aao-hns-tonsillectomy-children-2019",
+      "official_source_url": "https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/tonsillectomy-in-children-update/",
+      "exact_locator": {
+        "source_id": "aao-hns-tonsillectomy-children-2019",
+        "section_id": "aao-tonsillectomy-2019-sleep-comorbidity",
+        "section_heading": "Key action statements 4–6 — sleep-disordered breathing and comorbidity context",
+        "locator": "official guideline key action statements 4–6"
+      },
+      "population": "Children aged 1 to 18 years being considered for or followed after tonsillectomy.",
+      "setting": "Any clinician setting involved in paediatric tonsillectomy assessment, perioperative education, and postoperative outcome review.",
+      "jurisdiction": "United States specialty guideline; international evidence requiring UAE paediatric ENT, anaesthesia, analgesia, and postoperative adaptation",
+      "restrictions": [
+        "Exact for recurrent throat-infection documentation, modifying factors, sleep-related comorbidity context, perioperative education, postoperative pain or bleeding review, and outcome assessment. It does not generate surgery, analgesia, antibiotic, steroid, dose, admission, or discharge instructions."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "The paediatric exact section supports caregiver-reported snoring and sleep-related comorbidity context plus ENT examination without recommending tonsillectomy or polysomnography.",
+      "record_type": "evidence",
+      "locator_fingerprint": "3c12c52dd359f9bc3232a239a69947a016fdd58a203e586e99feede8bd22d626"
+    },
+    {
+      "workflow_id": "ent-snoring-ent-review",
+      "item_id": "ent-snoring-ent-review--evidence--wave9-ent-snoring-ent-review--generated-0003",
+      "stable_item_id": "ent-snoring-ent-review--evidence--wave9-ent-snoring-ent-review--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng202-osahs-followup-monitoring",
+      "final_wording": "Supports tailored follow-up, CPAP review, annual review after optimisation, symptoms, Epworth score, vigilance and driving, AHI or ODI, adherence, treatment experience, sleep hygiene, and clinician-reviewed sleep-study follow-up.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ent-snoring-ent-review",
+      "evidence_statement_id": "wave9-ent-snoring-ent-review--generated-0003",
+      "source_id": "nice-osahs-ng202-2021",
+      "official_source_url": "https://www.nice.org.uk/guidance/NG202/chapter/1-obstructive-sleep-apnoeahypopnoea-syndrome",
+      "exact_locator": {
+        "source_id": "nice-osahs-ng202-2021",
+        "section_id": "nice-ng202-osahs-followup-monitoring",
+        "section_heading": "Recommendations 1.9.1–1.9.11 — follow-up and monitoring",
+        "locator": "recommendations 1.9.1–1.9.11"
+      },
+      "population": "People aged over 16 years with suspected or diagnosed obstructive sleep apnoea/hypopnoea syndrome.",
+      "setting": "Initial assessment, sleep-service referral, diagnostic testing, treatment discussion, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult OSAHS symptom, assessment, sleep-study, referral, driving-risk, treatment-discussion, and monitoring fields; not applicable to children and not directly validated for UAE sleep-service or driving pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact adult follow-up section supports documenting clinician-entered review plans and follow-up without creating device, testing, or restriction advice.",
+      "record_type": "evidence",
+      "locator_fingerprint": "a873f73193321b43c4296788ad707aadc7c1e394f9853c0e6137a0ac3cf22fa2"
+    }
+  ],
+  "specialty": "ENT",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-ent-snoring-ent-review"
+  ]
+}

@@ -1,0 +1,640 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "ed-pelvic-pain-documentation",
+  "title": "ED pelvic pain documentation",
+  "fields": [
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "ED pelvic pain documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED pelvic pain documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "ED pelvic pain documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "ed-pelvic-pain-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED pelvic pain documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "ED pelvic pain documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ED pelvic pain documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "ED pelvic pain documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ED pelvic pain documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "ED pelvic pain documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "ED pelvic pain documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "ED pelvic pain documentation — rcog-gtg41-history-examination evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED pelvic pain documentation — rcog-gtg41-history-examination evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0001",
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "ED pelvic pain documentation — rcog-gtg41-history-examination evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ED pelvic pain documentation — rcog-gtg41-history-examination evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0002",
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "field_id": "ed_pelvic_pain_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "ED pelvic pain documentation — nice-ng126-symptoms-assessment evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED pelvic pain documentation — nice-ng126-symptoms-assessment evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-pelvic-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-pelvic-pain-documentation--generated-0003",
+          "wave9-ed-pelvic-pain-documentation--generated-0004",
+          "wave9-ed-pelvic-pain-documentation--generated-0005"
+        ],
+        "source_ids": [
+          "rcog-chronic-pelvic-pain-gtg41-2012",
+          "nice-ectopic-miscarriage-ng126-2026"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0001",
+      "stable_item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "rcog-gtg41-history-examination",
+      "final_wording": "Specifies pain pattern, menstrual, bladder, bowel, movement, posture, function and medication history plus abdominal and pelvic examination for focal tenderness or structural findings.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-pelvic-pain-documentation",
+      "evidence_statement_id": "wave9-ed-pelvic-pain-documentation--generated-0001",
+      "source_id": "rcog-chronic-pelvic-pain-gtg41-2012",
+      "official_source_url": "https://www.rcog.org.uk/media/muab2gj2/gtg_41.pdf",
+      "exact_locator": {
+        "source_id": "rcog-chronic-pelvic-pain-gtg41-2012",
+        "section_id": "rcog-gtg41-history-examination",
+        "section_heading": "5.1 History; 5.2 Examination",
+        "locator": "pages 6–7"
+      },
+      "population": "Women presenting for the first time with chronic pelvic pain of at least 6 months that is not pregnancy-related.",
+      "setting": "General gynaecology and primary-care referral assessment.",
+      "jurisdiction": "United Kingdom",
+      "restrictions": [
+        "Exact for the chronic non-pregnancy subset only; old, international, and partial for acute, pregnancy-related, infectious, or emergency pelvic-pain presentations."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "b757dbf6eca622d93a540820a222fe5ee6ce1d7c74839460395c77bd0d6c11a2"
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0002",
+      "stable_item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "rcog-gtg41-history-examination",
+      "final_wording": "Defines chronic pelvic pain as a symptom rather than a diagnosis and frames initial assessment around the woman’s concerns, function, and multifactorial context.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-pelvic-pain-documentation",
+      "evidence_statement_id": "wave9-ed-pelvic-pain-documentation--generated-0002",
+      "source_id": "rcog-chronic-pelvic-pain-gtg41-2012",
+      "official_source_url": "https://www.rcog.org.uk/media/muab2gj2/gtg_41.pdf",
+      "exact_locator": {
+        "source_id": "rcog-chronic-pelvic-pain-gtg41-2012",
+        "section_id": "rcog-gtg41-history-examination",
+        "section_heading": "5.1 History; 5.2 Examination",
+        "locator": "pages 6–7"
+      },
+      "population": "Women presenting for the first time with chronic pelvic pain of at least 6 months that is not pregnancy-related.",
+      "setting": "General gynaecology and primary-care referral assessment.",
+      "jurisdiction": "United Kingdom",
+      "restrictions": [
+        "Exact for the chronic non-pregnancy subset only; old, international, and partial for acute, pregnancy-related, infectious, or emergency pelvic-pain presentations."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "b757dbf6eca622d93a540820a222fe5ee6ce1d7c74839460395c77bd0d6c11a2"
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0003",
+      "stable_item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng126-symptoms-assessment",
+      "final_wording": "Lists pain, amenorrhoea, bleeding, gastrointestinal symptoms, dizziness or syncope, shoulder-tip pain, urinary symptoms, tenderness, haemodynamic signs, pregnancy testing, and escalation criteria.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-pelvic-pain-documentation",
+      "evidence_statement_id": "wave9-ed-pelvic-pain-documentation--generated-0003",
+      "source_id": "nice-ectopic-miscarriage-ng126-2026",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng126",
+      "exact_locator": {
+        "source_id": "nice-ectopic-miscarriage-ng126-2026",
+        "section_id": "nice-ng126-symptoms-assessment",
+        "section_heading": "Recommendations 1.4.1–1.4.12 — presentation, assessment and referral",
+        "locator": "symptoms-and-signs-of-ectopic-pregnancy-and-initial-assessment chapter"
+      },
+      "population": "Women, trans men, and non-binary people with pain, bleeding, or other complications in early pregnancy up to 13 completed weeks.",
+      "setting": "Primary, emergency, gynaecology, and early pregnancy assessment services.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for early-pregnancy pain, bleeding, ectopic-pregnancy warning signs, ultrasound, and hCG assessment; partial for uncomplicated pregnancy symptoms and not directly validated for UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "When pregnancy is possible or known, the exact NICE section supports recording vital data, time-critical symptoms and clinician-decided escalation without asserting ectopic pregnancy or miscarriage.",
+      "record_type": "evidence",
+      "locator_fingerprint": "dc78ee3f67a7f4750272042c580ee20be09ede79d06b64c200663ae9c461923d"
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0004",
+      "stable_item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng126-ultrasound",
+      "final_wording": "Defines clinician-performed transvaginal or selected transabdominal ultrasound and cautions against overinterpreting one early scan or LMP alone.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-pelvic-pain-documentation",
+      "evidence_statement_id": "wave9-ed-pelvic-pain-documentation--generated-0004",
+      "source_id": "nice-ectopic-miscarriage-ng126-2026",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng126",
+      "exact_locator": {
+        "source_id": "nice-ectopic-miscarriage-ng126-2026",
+        "section_id": "nice-ng126-ultrasound",
+        "section_heading": "Recommendations 1.5.1–1.7.6 — ultrasound for pregnancy location and viability",
+        "locator": "diagnosis-of-viable-intrauterine-pregnancy-and-of-tubal-ectopic-pregnancy chapter"
+      },
+      "population": "Women, trans men, and non-binary people with pain, bleeding, or other complications in early pregnancy up to 13 completed weeks.",
+      "setting": "Primary, emergency, gynaecology, and early pregnancy assessment services.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for early-pregnancy pain, bleeding, ectopic-pregnancy warning signs, ultrasound, and hCG assessment; partial for uncomplicated pregnancy symptoms and not directly validated for UAE pathways."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "When early pregnancy applies, the exact ultrasound section supports recording imaging or test results already performed or reviewed, without recommending or interpreting them.",
+      "record_type": "evidence",
+      "locator_fingerprint": "344bd011c352e5f18297baafe02726a8adee197f40a6ce59f1d6f48823d4d2a8"
+    },
+    {
+      "workflow_id": "ed-pelvic-pain-documentation",
+      "item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0005",
+      "stable_item_id": "ed-pelvic-pain-documentation--evidence--wave9-ed-pelvic-pain-documentation--generated-0005",
+      "archetype": "acute_symptom_assessment",
+      "section": "rcog-gtg41-investigations",
+      "final_wording": "Supports clinician-selected STI sampling when PID is suspected and transvaginal ultrasound for adnexal masses and selected chronic pelvic-pain pathology.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-pelvic-pain-documentation",
+      "evidence_statement_id": "wave9-ed-pelvic-pain-documentation--generated-0005",
+      "source_id": "rcog-chronic-pelvic-pain-gtg41-2012",
+      "official_source_url": "https://www.rcog.org.uk/media/muab2gj2/gtg_41.pdf",
+      "exact_locator": {
+        "source_id": "rcog-chronic-pelvic-pain-gtg41-2012",
+        "section_id": "rcog-gtg41-investigations",
+        "section_heading": "6.1 Screening for Infection; 6.2 Transvaginal Scanning and MRI",
+        "locator": "pages 7–8"
+      },
+      "population": "Women presenting for the first time with chronic pelvic pain of at least 6 months that is not pregnancy-related.",
+      "setting": "General gynaecology and primary-care referral assessment.",
+      "jurisdiction": "United Kingdom",
+      "restrictions": [
+        "Exact for the chronic non-pregnancy subset only; old, international, and partial for acute, pregnancy-related, infectious, or emergency pelvic-pain presentations."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "Investigation recommendations were reviewed but not mapped to automatic tests.",
+      "record_type": "evidence",
+      "locator_fingerprint": "44efa5fb3e1e050e621aa529227795271b5e39f963fb73cb5918d9542aa368ab"
+    }
+  ],
+  "specialty": "Emergency Medicine documentation-only",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-ed-pelvic-pain-documentation"
+  ]
+}

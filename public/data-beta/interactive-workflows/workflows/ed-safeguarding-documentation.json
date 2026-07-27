@@ -1,0 +1,602 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "ed-safeguarding-documentation",
+  "title": "ED safeguarding documentation",
+  "fields": [
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "ED safeguarding documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED safeguarding documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "ED safeguarding documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "ed-safeguarding-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED safeguarding documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "ED safeguarding documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ED safeguarding documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "ED safeguarding documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ED safeguarding documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "ED safeguarding documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "ED safeguarding documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "ED safeguarding documentation — who-ipv-2014-documentation evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED safeguarding documentation — who-ipv-2014-documentation evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0001",
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "ED safeguarding documentation — nice-ng76-child-communication-record evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "ED safeguarding documentation — nice-ng76-child-communication-record evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0002",
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "field_id": "ed_safeguarding_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "ED safeguarding documentation — nice-ng76-child-recognition-response evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "ED safeguarding documentation — nice-ng76-child-recognition-response evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-ed-safeguarding-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-ed-safeguarding-documentation--generated-0003",
+          "wave9-ed-safeguarding-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-child-abuse-neglect-ng76-2017",
+          "who-ipv-clinical-handbook-2014"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0001",
+      "stable_item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "who-ipv-2014-documentation",
+      "final_wording": "Supports asking permission to document and recording complaints, symptoms, signs, injuries and relevant history in the person’s words without interpretation.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-safeguarding-documentation",
+      "evidence_statement_id": "wave9-ed-safeguarding-documentation--generated-0001",
+      "source_id": "who-ipv-clinical-handbook-2014",
+      "official_source_url": "https://www.who.int/publications/i/item/WHO-RHR-14.26",
+      "exact_locator": {
+        "source_id": "who-ipv-clinical-handbook-2014",
+        "section_id": "who-ipv-2014-documentation",
+        "section_heading": "Documenting partner violence",
+        "locator": "Handbook pages 12–13 (PDF pages 20–21)"
+      },
+      "population": "Women subjected to intimate partner violence or sexual violence; the handbook does not directly address people under 18 or men.",
+      "setting": "Health-care encounters including first-line support, history, examination and documentation.",
+      "jurisdiction": "International guidance requiring UAE legal, safeguarding and referral adaptation",
+      "restrictions": [
+        "Exact for survivor-centred first-line support, consent to documentation, recording complaints, symptoms, signs and injuries, and history or examination only when clinically performed. It is not authority for universal screening or automatic reporting in the UAE."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "e4e86c7409bf8243a95d462efbc4820fdfdb641252a711aa523c79c017bc1f09"
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0002",
+      "stable_item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng76-child-communication-record",
+      "final_wording": "Supports child-centred, private and accessible communication, consent to examination, and recording actual words and disagreements.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-safeguarding-documentation",
+      "evidence_statement_id": "wave9-ed-safeguarding-documentation--generated-0002",
+      "source_id": "nice-child-abuse-neglect-ng76-2017",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng76/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-child-abuse-neglect-ng76-2017",
+        "section_id": "nice-ng76-child-communication-record",
+        "section_heading": "Recommendations 1.1.1–1.1.9 — communication, consent and records",
+        "locator": "NICE recommendations 1.1.1–1.1.9"
+      },
+      "population": "Children and young people under 18, including unborn babies, who may be at risk of or experiencing abuse or neglect, and their parents or carers.",
+      "setting": "Health, emergency, social-care and other services encountering children and families.",
+      "jurisdiction": "England and Wales; UAE safeguarding law and pathways govern local use",
+      "restrictions": [
+        "Exact for child-centred communication, consent to examination, recording actual words, non-leading exploration, observing the child and relationships, and clinician-led safeguarding action. It does not assert abuse or replace UAE reporting requirements."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "For children and young people, the exact NICE section supports recording patient concerns, consent-based assessment and completed risk or consent discussion in the child’s actual words where appropriate.",
+      "record_type": "evidence",
+      "locator_fingerprint": "1f21f769d32c14c1f0fdb6af78bbbbacdf0cf36dbc8805413c4af696efffe1e9"
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0003",
+      "stable_item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng76-child-recognition-response",
+      "final_wording": "Supports recognising indirect disclosure, using open non-leading questions, explaining next steps and recording local safeguarding referral when clinician-completed.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-safeguarding-documentation",
+      "evidence_statement_id": "wave9-ed-safeguarding-documentation--generated-0003",
+      "source_id": "nice-child-abuse-neglect-ng76-2017",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng76/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-child-abuse-neglect-ng76-2017",
+        "section_id": "nice-ng76-child-recognition-response",
+        "section_heading": "Recommendations 1.3.1–1.3.8 — recognising disclosure and responding",
+        "locator": "NICE recommendations 1.3.1–1.3.8"
+      },
+      "population": "Children and young people under 18, including unborn babies, who may be at risk of or experiencing abuse or neglect, and their parents or carers.",
+      "setting": "Health, emergency, social-care and other services encountering children and families.",
+      "jurisdiction": "England and Wales; UAE safeguarding law and pathways govern local use",
+      "restrictions": [
+        "Exact for child-centred communication, consent to examination, recording actual words, non-leading exploration, observing the child and relationships, and clinician-led safeguarding action. It does not assert abuse or replace UAE reporting requirements."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "For children and young people, the exact recognition section supports associated context, relevant negatives, clinician risk context, safeguarding concern and clinician-completed action without asserting abuse.",
+      "record_type": "evidence",
+      "locator_fingerprint": "d76d9ec932ca6d3bed5fb19b586322ab697ed58ae1864db429531486cb2d79df"
+    },
+    {
+      "workflow_id": "ed-safeguarding-documentation",
+      "item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0004",
+      "stable_item_id": "ed-safeguarding-documentation--evidence--wave9-ed-safeguarding-documentation--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-ng76-child-assessment-safeguarding",
+      "final_wording": "Supports observing the child and interactions, communicating directly and privately where appropriate, non-leading exploration and structured family or care-environment context.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-ed-safeguarding-documentation",
+      "evidence_statement_id": "wave9-ed-safeguarding-documentation--generated-0004",
+      "source_id": "nice-child-abuse-neglect-ng76-2017",
+      "official_source_url": "https://www.nice.org.uk/guidance/ng76/chapter/Recommendations",
+      "exact_locator": {
+        "source_id": "nice-child-abuse-neglect-ng76-2017",
+        "section_id": "nice-ng76-child-assessment-safeguarding",
+        "section_heading": "Recommendations 1.4.1–1.4.8 — assessment",
+        "locator": "NICE recommendations 1.4.1–1.4.8"
+      },
+      "population": "Children and young people under 18, including unborn babies, who may be at risk of or experiencing abuse or neglect, and their parents or carers.",
+      "setting": "Health, emergency, social-care and other services encountering children and families.",
+      "jurisdiction": "England and Wales; UAE safeguarding law and pathways govern local use",
+      "restrictions": [
+        "Exact for child-centred communication, consent to examination, recording actual words, non-leading exploration, observing the child and relationships, and clinician-led safeguarding action. It does not assert abuse or replace UAE reporting requirements."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "The exact child-assessment section supports focused assessment, appearance, clinician plan, specialist discussion and arranged handover only when performed.",
+      "record_type": "evidence",
+      "locator_fingerprint": "86f40157abf42b7c4f0a216663ce8fa5703fd0e0201920c4d5ede6e8544ebe74"
+    }
+  ],
+  "specialty": "Emergency Medicine documentation-only",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-ed-safeguarding-documentation"
+  ]
+}

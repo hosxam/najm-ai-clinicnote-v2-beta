@@ -1,0 +1,552 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "gyn-mastitis-follow-up",
+  "title": "Mastitis follow-up",
+  "fields": [
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Mastitis follow-up — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Mastitis follow-up — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Mastitis follow-up — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "gyn-mastitis-follow-up__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Mastitis follow-up — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Mastitis follow-up — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Mastitis follow-up — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Mastitis follow-up — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Mastitis follow-up — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Mastitis follow-up — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Mastitis follow-up — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Mastitis follow-up — doh-postnatal-v1-core-maternal evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Mastitis follow-up — doh-postnatal-v1-core-maternal evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0001",
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Mastitis follow-up — doh-postnatal-v1-core-maternal evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Mastitis follow-up — doh-postnatal-v1-core-maternal evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0002",
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "field_id": "gyn_mastitis_follow_up__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Mastitis follow-up — doh-postnatal-v1-high-risk-signs evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Mastitis follow-up — doh-postnatal-v1-high-risk-signs evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gyn-mastitis-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gyn-mastitis-follow-up--generated-0003"
+        ],
+        "source_ids": [
+          "doh-postnatal-care-program-v1-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "item_id": "gyn-mastitis-follow-up--evidence--wave9-gyn-mastitis-follow-up--generated-0001",
+      "stable_item_id": "gyn-mastitis-follow-up--evidence--wave9-gyn-mastitis-follow-up--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "doh-postnatal-v1-core-maternal",
+      "final_wording": "Specifies vital signs, uterine involution, lochia, wound healing, bladder and bowel function, feeding, mood, support, family planning, pelvic floor, indicated tests, and documented follow-up.",
+      "action": "rewrite",
+      "normalised_evidence_pack_id": "wave9-workflow-gyn-mastitis-follow-up",
+      "evidence_statement_id": "wave9-gyn-mastitis-follow-up--generated-0001",
+      "source_id": "doh-postnatal-care-program-v1-2025",
+      "official_source_url": "https://www.doh.gov.ae/-/media/B164DC4D53DF4640A1DB640CBEED6228.ashx",
+      "exact_locator": {
+        "source_id": "doh-postnatal-care-program-v1-2025",
+        "section_id": "doh-postnatal-v1-core-maternal",
+        "section_heading": "3.1 Core Components — maternal physical and emotional health, education, support, and continuity",
+        "locator": "pages 4–7"
+      },
+      "population": "Postpartum women and newborns during the first six weeks following childbirth.",
+      "setting": "DoH-licensed facility, outpatient, home-visit, and teleconsultation postnatal services in Abu Dhabi.",
+      "jurisdiction": "Abu Dhabi, United Arab Emirates",
+      "restrictions": [
+        "Direct for Abu Dhabi postnatal follow-up during the first six weeks; partial for later postpartum care and settings outside Abu Dhabi."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Rewritten to narrower supported wording.",
+      "record_type": "evidence",
+      "locator_fingerprint": "049e6153c0eee714c7dc7d56868f1b0fdf71cd2486c09cc294033c2e83bf89c2"
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "item_id": "gyn-mastitis-follow-up--evidence--wave9-gyn-mastitis-follow-up--generated-0002",
+      "stable_item_id": "gyn-mastitis-follow-up--evidence--wave9-gyn-mastitis-follow-up--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "doh-postnatal-v1-core-maternal",
+      "final_wording": "Requires maternal physical and emotional assessment, postpartum haemorrhage and hypertensive-risk screening, feeding support, family planning discussion, continuity, and EMR documentation.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-gyn-mastitis-follow-up",
+      "evidence_statement_id": "wave9-gyn-mastitis-follow-up--generated-0002",
+      "source_id": "doh-postnatal-care-program-v1-2025",
+      "official_source_url": "https://www.doh.gov.ae/-/media/B164DC4D53DF4640A1DB640CBEED6228.ashx",
+      "exact_locator": {
+        "source_id": "doh-postnatal-care-program-v1-2025",
+        "section_id": "doh-postnatal-v1-core-maternal",
+        "section_heading": "3.1 Core Components — maternal physical and emotional health, education, support, and continuity",
+        "locator": "pages 4–7"
+      },
+      "population": "Postpartum women and newborns during the first six weeks following childbirth.",
+      "setting": "DoH-licensed facility, outpatient, home-visit, and teleconsultation postnatal services in Abu Dhabi.",
+      "jurisdiction": "Abu Dhabi, United Arab Emirates",
+      "restrictions": [
+        "Direct for Abu Dhabi postnatal follow-up during the first six weeks; partial for later postpartum care and settings outside Abu Dhabi."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports actual maternal recovery and feeding context.",
+      "record_type": "evidence",
+      "locator_fingerprint": "049e6153c0eee714c7dc7d56868f1b0fdf71cd2486c09cc294033c2e83bf89c2"
+    },
+    {
+      "workflow_id": "gyn-mastitis-follow-up",
+      "item_id": "gyn-mastitis-follow-up--evidence--wave9-gyn-mastitis-follow-up--generated-0003",
+      "stable_item_id": "gyn-mastitis-follow-up--evidence--wave9-gyn-mastitis-follow-up--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "doh-postnatal-v1-high-risk-signs",
+      "final_wording": "Lists thromboembolic symptoms, heavy bleeding, wound infection signs, fever, abdominal pain, wound discharge, severe headache, visual symptoms, and postpartum hypertensive complications.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-gyn-mastitis-follow-up",
+      "evidence_statement_id": "wave9-gyn-mastitis-follow-up--generated-0003",
+      "source_id": "doh-postnatal-care-program-v1-2025",
+      "official_source_url": "https://www.doh.gov.ae/-/media/B164DC4D53DF4640A1DB640CBEED6228.ashx",
+      "exact_locator": {
+        "source_id": "doh-postnatal-care-program-v1-2025",
+        "section_id": "doh-postnatal-v1-high-risk-signs",
+        "section_heading": "Appendix 1 — medical risk indicators for mothers",
+        "locator": "pages 18–19"
+      },
+      "population": "Postpartum women and newborns during the first six weeks following childbirth.",
+      "setting": "DoH-licensed facility, outpatient, home-visit, and teleconsultation postnatal services in Abu Dhabi.",
+      "jurisdiction": "Abu Dhabi, United Arab Emirates",
+      "restrictions": [
+        "Direct for Abu Dhabi postnatal follow-up during the first six weeks; partial for later postpartum care and settings outside Abu Dhabi."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Supports clinician-assessed fever or infection concern only.",
+      "record_type": "evidence",
+      "locator_fingerprint": "8467a96f1b9948b0179bf25e136883dabcb283a1d5aa97cec78670e1e0ba3133"
+    }
+  ],
+  "specialty": "Women�s Health / OB-GYN outpatient",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-gyn-mastitis-follow-up"
+  ]
+}

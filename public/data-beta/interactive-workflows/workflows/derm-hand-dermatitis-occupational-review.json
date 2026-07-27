@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "derm-hand-dermatitis-occupational-review",
+  "title": "Hand dermatitis occupational review",
+  "fields": [
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Hand dermatitis occupational review — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Hand dermatitis occupational review — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Hand dermatitis occupational review — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "derm-hand-dermatitis-occupational-review__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Hand dermatitis occupational review — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Hand dermatitis occupational review — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Hand dermatitis occupational review — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Hand dermatitis occupational review — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Hand dermatitis occupational review — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Hand dermatitis occupational review — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Hand dermatitis occupational review — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Hand dermatitis occupational review — dha-contact-dermatitis-i2-history-features evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Hand dermatitis occupational review — dha-contact-dermatitis-i2-history-features evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Hand dermatitis occupational review — dha-contact-dermatitis-i2-red-flags evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Hand dermatitis occupational review — dha-contact-dermatitis-i2-red-flags evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "field_id": "derm_hand_dermatitis_occupational_review__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Hand dermatitis occupational review — dha-contact-dermatitis-i2-investigations evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Hand dermatitis occupational review — dha-contact-dermatitis-i2-investigations evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-derm-hand-dermatitis-occupational-review"
+        ],
+        "evidence_statement_ids": [
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+          "wave9-derm-hand-dermatitis-occupational-review--generated-0004"
+        ],
+        "source_ids": [
+          "dha-allergic-contact-dermatitis-issue2-2024"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+      "stable_item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-contact-dermatitis-i2-history-features",
+      "final_wording": "Supports contact-dermatitis terminology, itch, burning, erythema, scale, vesicles, blistering, edema, weeping, distribution, exposure, occupation, products, temporal course, atopy, and clinician-observed morphology.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-derm-hand-dermatitis-occupational-review",
+      "evidence_statement_id": "wave9-derm-hand-dermatitis-occupational-review--generated-0001",
+      "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+      "official_source_url": "https://www.dha.gov.ae/uploads/032024/36%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Allergic%20Contact%20Dermatitis2024330325.pdf",
+      "exact_locator": {
+        "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+        "section_id": "dha-contact-dermatitis-i2-history-features",
+        "section_heading": "Sections 1, 5, 6 and 9 — risks, morphology, distribution, symptoms, diagnosis, and history",
+        "locator": "pages 7–15"
+      },
+      "population": "People with suspected or clinician-diagnosed allergic contact dermatitis, including occupational, home, hobby, topical-product, and age-related exposure contexts.",
+      "setting": "DHA-licensed telehealth assessment with face-to-face, family-physician, or dermatology referral where indicated.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for selected allergic contact-dermatitis history, morphology, exposure, investigation, red-flag, and documentation-only management fields. Irritant dermatitis, diagnosis, treatment, medicine, dose, referral urgency, and fixed follow-up remain clinician responsibilities."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "The UAE DHA contact-dermatitis guideline supports documenting hand distribution, morphology, itch or burning, occupational products and tasks, glove or wet-work exposure, temporal relationship, recurrence, atopy, and interval change without assigning occupational causation.",
+      "record_type": "evidence",
+      "locator_fingerprint": "ba9c3be4fb66a9c0611ed7a7257551139a3381d9c811e91d863c0c159f16c9ec"
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+      "stable_item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-contact-dermatitis-i2-red-flags",
+      "final_wording": "Supports fever or systemic illness, respiratory distress, rapidly worsening painful eczema, recurrent or spreading infection, extensive involvement, pregnancy, and clinician-led return or referral documentation.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-derm-hand-dermatitis-occupational-review",
+      "evidence_statement_id": "wave9-derm-hand-dermatitis-occupational-review--generated-0002",
+      "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+      "official_source_url": "https://www.dha.gov.ae/uploads/032024/36%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Allergic%20Contact%20Dermatitis2024330325.pdf",
+      "exact_locator": {
+        "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+        "section_id": "dha-contact-dermatitis-i2-red-flags",
+        "section_heading": "Sections 7 and 13 — red flags and referral criteria",
+        "locator": "pages 11–12 and 26–27"
+      },
+      "population": "People with suspected or clinician-diagnosed allergic contact dermatitis, including occupational, home, hobby, topical-product, and age-related exposure contexts.",
+      "setting": "DHA-licensed telehealth assessment with face-to-face, family-physician, or dermatology referral where indicated.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for selected allergic contact-dermatitis history, morphology, exposure, investigation, red-flag, and documentation-only management fields. Irritant dermatitis, diagnosis, treatment, medicine, dose, referral urgency, and fixed follow-up remain clinician responsibilities."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "The red-flag section supports recording severe, rapidly worsening, infected, widespread, respiratory, systemic, or pregnancy concern only when assessed and recording clinician decisions without generating workplace action or referral.",
+      "record_type": "evidence",
+      "locator_fingerprint": "13eef5d5f569cde6d65158d2f41fa5e5a0ddf7f34e4e0576ab33248d54f8c295"
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+      "stable_item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-contact-dermatitis-i2-investigations",
+      "final_wording": "Supports clinician-reviewed exposure history, photographs, patch testing, KOH or culture, and selected tests when diagnosis is uncertain, without recommending testing automatically.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-derm-hand-dermatitis-occupational-review",
+      "evidence_statement_id": "wave9-derm-hand-dermatitis-occupational-review--generated-0003",
+      "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+      "official_source_url": "https://www.dha.gov.ae/uploads/032024/36%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Allergic%20Contact%20Dermatitis2024330325.pdf",
+      "exact_locator": {
+        "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+        "section_id": "dha-contact-dermatitis-i2-investigations",
+        "section_heading": "Section 9 — patch testing, laboratory tests, photographs, and histopathology",
+        "locator": "pages 13–16"
+      },
+      "population": "People with suspected or clinician-diagnosed allergic contact dermatitis, including occupational, home, hobby, topical-product, and age-related exposure contexts.",
+      "setting": "DHA-licensed telehealth assessment with face-to-face, family-physician, or dermatology referral where indicated.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for selected allergic contact-dermatitis history, morphology, exposure, investigation, red-flag, and documentation-only management fields. Irritant dermatitis, diagnosis, treatment, medicine, dose, referral urgency, and fixed follow-up remain clinician responsibilities."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Patch testing, photographs, and selected tests were reviewed for clinician-documented investigation context; no test is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "b3171e710a8d87939aa0da8a29d0ead291cc441eee879e2c8c1bf0f1aa3d006e"
+    },
+    {
+      "workflow_id": "derm-hand-dermatitis-occupational-review",
+      "item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0004",
+      "stable_item_id": "derm-hand-dermatitis-occupational-review--evidence--wave9-derm-hand-dermatitis-occupational-review--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "dha-contact-dermatitis-i2-management",
+      "final_wording": "Supports documenting trigger avoidance, skin-care or emollient discussion, and clinician-stated topical treatment without mapping medicine names, doses, frequency, duration, or autonomous advice.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-derm-hand-dermatitis-occupational-review",
+      "evidence_statement_id": "wave9-derm-hand-dermatitis-occupational-review--generated-0004",
+      "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+      "official_source_url": "https://www.dha.gov.ae/uploads/032024/36%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Allergic%20Contact%20Dermatitis2024330325.pdf",
+      "exact_locator": {
+        "source_id": "dha-allergic-contact-dermatitis-issue2-2024",
+        "section_id": "dha-contact-dermatitis-i2-management",
+        "section_heading": "Sections 11–12 — clinician-led avoidance, skin care, and treatment",
+        "locator": "pages 18–25"
+      },
+      "population": "People with suspected or clinician-diagnosed allergic contact dermatitis, including occupational, home, hobby, topical-product, and age-related exposure contexts.",
+      "setting": "DHA-licensed telehealth assessment with face-to-face, family-physician, or dermatology referral where indicated.",
+      "jurisdiction": "Dubai, United Arab Emirates",
+      "restrictions": [
+        "Direct for selected allergic contact-dermatitis history, morphology, exposure, investigation, red-flag, and documentation-only management fields. Irritant dermatitis, diagnosis, treatment, medicine, dose, referral urgency, and fixed follow-up remain clinician responsibilities."
+      ],
+      "uae_applicability": "direct_uae_source",
+      "rationale": "Avoidance and skin-care sections were reviewed, but no product, medicine, workplace restriction, or treatment instruction is generated.",
+      "record_type": "evidence",
+      "locator_fingerprint": "12ba782917b1abd9a18df67ff28f608eefd78aa60dd3cd7ad20f2c866ab450d1"
+    }
+  ],
+  "specialty": "Dermatology",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-derm-hand-dermatitis-occupational-review"
+  ]
+}

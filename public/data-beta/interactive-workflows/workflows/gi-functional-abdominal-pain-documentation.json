@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "gi-functional-abdominal-pain-documentation",
+  "title": "Functional abdominal pain documentation",
+  "fields": [
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__demographics",
+      "archetype": "acute_symptom_assessment",
+      "section": "demographics",
+      "label": "Demographics and encounter context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "text",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 1,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Demographics and encounter context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__history",
+      "archetype": "acute_symptom_assessment",
+      "section": "history",
+      "label": "Functional abdominal pain documentation — history",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 2,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Functional abdominal pain documentation — history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__relevant_negatives",
+      "archetype": "acute_symptom_assessment",
+      "section": "relevant_negatives",
+      "label": "Functional abdominal pain documentation — relevant negatives",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "multi_select",
+      "options": [
+        {
+          "label": "Not assessed",
+          "value": "not_assessed"
+        },
+        {
+          "label": "Absent on assessment",
+          "value": "absent_on_assessment"
+        }
+      ],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [
+        {
+          "group_id": "gi-functional-abdominal-pain-documentation__relevant_negatives",
+          "mutually_exclusive_values": [
+            "not_assessed",
+            "absent_on_assessment"
+          ]
+        }
+      ],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Functional abdominal pain documentation — relevant negatives: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__vital_signs",
+      "archetype": "acute_symptom_assessment",
+      "section": "vital_signs",
+      "label": "Vital signs and observations",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "vital_sign",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 4,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs and observations: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__examination",
+      "archetype": "acute_symptom_assessment",
+      "section": "examination",
+      "label": "Functional abdominal pain documentation — focused findings",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Functional abdominal pain documentation — focused findings: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__investigation_result",
+      "archetype": "acute_symptom_assessment",
+      "section": "investigation_result",
+      "label": "Functional abdominal pain documentation — investigation or result context",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "investigation_result",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Functional abdominal pain documentation — investigation or result context: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__assessment",
+      "archetype": "acute_symptom_assessment",
+      "section": "assessment",
+      "label": "Clinician assessment",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "assessment_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 7,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__plan",
+      "archetype": "acute_symptom_assessment",
+      "section": "plan",
+      "label": "Functional abdominal pain documentation — confirmed plan and follow-up",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "plan_entry",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "plan",
+      "note_template": "Functional abdominal pain documentation — confirmed plan and follow-up: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__specific_1",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_1",
+      "label": "Functional abdominal pain documentation — nice-cg61-ibs-symptom-profile evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 9,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Functional abdominal pain documentation — nice-cg61-ibs-symptom-profile evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__specific_2",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_2",
+      "label": "Functional abdominal pain documentation — nice-cg61-ibs-red-flags evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "examination_finding",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 10,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "objective",
+      "note_template": "Functional abdominal pain documentation — nice-cg61-ibs-red-flags evidence: {{value}}",
+      "value_formatter": "examination",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "field_id": "gi_functional_abdominal_pain_documentation__specific_3",
+      "archetype": "acute_symptom_assessment",
+      "section": "specific_3",
+      "label": "Functional abdominal pain documentation — nice-cg61-ibs-diagnostic-tests evidence",
+      "helper_text": "Enter only clinician-assessed information; leave blank when not assessed.",
+      "field_type": "textarea",
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 11,
+      "visibility": {
+        "type": "always"
+      },
+      "contradictory_option_rules": [],
+      "population_restrictions": [],
+      "setting_restrictions": [],
+      "soap_destination": "subjective",
+      "note_template": "Functional abdominal pain documentation — nice-cg61-ibs-diagnostic-tests evidence: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave9-workflow-gi-functional-abdominal-pain-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+          "wave9-gi-functional-abdominal-pain-documentation--generated-0004"
+        ],
+        "source_ids": [
+          "nice-ibs-cg61-2025"
+        ],
+        "population": "Declared workflow population",
+        "setting": "Declared workflow setting",
+        "restrictions": [],
+        "support_level": "source_grounded_documentation_support",
+        "transformation_explanation": "Documentation-only field derived from exact committed evidence sections; no diagnosis or treatment is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+      "stable_item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg61-ibs-symptom-profile",
+      "final_wording": "Supports at least 6 months of abdominal pain or discomfort, bloating, bowel-habit change, relation to defaecation or stool frequency or form, straining, urgency, incomplete evacuation, food association, mucus, and selected extra-intestinal ",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-gi-functional-abdominal-pain-documentation",
+      "evidence_statement_id": "wave9-gi-functional-abdominal-pain-documentation--generated-0001",
+      "source_id": "nice-ibs-cg61-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg61/chapter/recommendations",
+      "exact_locator": {
+        "source_id": "nice-ibs-cg61-2025",
+        "section_id": "nice-cg61-ibs-symptom-profile",
+        "section_heading": "Recommendations 1.1.1.1 and 1.1.1.4 — IBS symptom profile",
+        "locator": "recommendations 1.1.1.1 and 1.1.1.4"
+      },
+      "population": "Adults with suspected or confirmed irritable bowel syndrome.",
+      "setting": "Primary-care assessment, investigation, management, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult IBS symptom-profile, investigation, lifestyle-discussion, and follow-up fields; the legacy workflow does not enforce adult age or the required symptom duration and diagnostic criteria."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact adult IBS section supports chronic abdominal pain, relation to defaecation, bowel pattern, bloating, food association, urgency, incomplete evacuation, mucus, and impact without diagnosing IBS or functional pain.",
+      "record_type": "evidence",
+      "locator_fingerprint": "487b51e17e5eadd9a9df5b748c5fdaf3068df7715ef4d89fa17d96697bcac9f1"
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+      "stable_item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg61-ibs-red-flags",
+      "final_wording": "Requires clinical assessment and examination for suspected-cancer features and inflammatory markers for inflammatory bowel disease, with referral when present; specific cancer-feature fields require their own exact source.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-gi-functional-abdominal-pain-documentation",
+      "evidence_statement_id": "wave9-gi-functional-abdominal-pain-documentation--generated-0002",
+      "source_id": "nice-ibs-cg61-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg61/chapter/recommendations",
+      "exact_locator": {
+        "source_id": "nice-ibs-cg61-2025",
+        "section_id": "nice-cg61-ibs-red-flags",
+        "section_heading": "Recommendation 1.1.1.2 — red-flag assessment",
+        "locator": "recommendation 1.1.1.2"
+      },
+      "population": "Adults with suspected or confirmed irritable bowel syndrome.",
+      "setting": "Primary-care assessment, investigation, management, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult IBS symptom-profile, investigation, lifestyle-discussion, and follow-up fields; the legacy workflow does not enforce adult age or the required symptom duration and diagnostic criteria."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact red-flag recommendation supports clinician assessment and examination for concerning context without populating negatives.",
+      "record_type": "evidence",
+      "locator_fingerprint": "2ec163b6a737d5de493228bffeecb771ca06f823a422025907df7572d24f6d0d"
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+      "stable_item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg61-ibs-diagnostic-tests",
+      "final_wording": "Supports full blood count, ESR or plasma viscosity, CRP, and coeliac antibodies in people meeting IBS criteria and identifies tests not required solely to confirm IBS.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-gi-functional-abdominal-pain-documentation",
+      "evidence_statement_id": "wave9-gi-functional-abdominal-pain-documentation--generated-0003",
+      "source_id": "nice-ibs-cg61-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg61/chapter/recommendations",
+      "exact_locator": {
+        "source_id": "nice-ibs-cg61-2025",
+        "section_id": "nice-cg61-ibs-diagnostic-tests",
+        "section_heading": "Recommendations 1.1.2.1–1.1.2.2 — diagnostic tests",
+        "locator": "recommendations 1.1.2.1–1.1.2.2"
+      },
+      "population": "Adults with suspected or confirmed irritable bowel syndrome.",
+      "setting": "Primary-care assessment, investigation, management, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult IBS symptom-profile, investigation, lifestyle-discussion, and follow-up fields; the legacy workflow does not enforce adult age or the required symptom duration and diagnostic criteria."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact diagnostic-test section supports recording already reviewed blood or coeliac testing in appropriately assessed adults without ordering tests.",
+      "record_type": "evidence",
+      "locator_fingerprint": "3a2eca9a5a3c812ec5c2ada38edf4bc0d53e57d050e3beadaee74e2f52399bc5"
+    },
+    {
+      "workflow_id": "gi-functional-abdominal-pain-documentation",
+      "item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0004",
+      "stable_item_id": "gi-functional-abdominal-pain-documentation--evidence--wave9-gi-functional-abdominal-pain-documentation--generated-0004",
+      "archetype": "acute_symptom_assessment",
+      "section": "nice-cg61-ibs-followup",
+      "final_wording": "Supports agreed symptom-response-based follow-up, annual review, and investigation or referral when new red-flag symptoms emerge.",
+      "action": "add",
+      "normalised_evidence_pack_id": "wave9-workflow-gi-functional-abdominal-pain-documentation",
+      "evidence_statement_id": "wave9-gi-functional-abdominal-pain-documentation--generated-0004",
+      "source_id": "nice-ibs-cg61-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg61/chapter/recommendations",
+      "exact_locator": {
+        "source_id": "nice-ibs-cg61-2025",
+        "section_id": "nice-cg61-ibs-followup",
+        "section_heading": "Recommendation 1.2.5.1 — follow-up",
+        "locator": "recommendation 1.2.5.1"
+      },
+      "population": "Adults with suspected or confirmed irritable bowel syndrome.",
+      "setting": "Primary-care assessment, investigation, management, and follow-up.",
+      "jurisdiction": "England, United Kingdom",
+      "restrictions": [
+        "Exact for selected adult IBS symptom-profile, investigation, lifestyle-discussion, and follow-up fields; the legacy workflow does not enforce adult age or the required symptom duration and diagnostic criteria."
+      ],
+      "uae_applicability": "international_requires_uae_adaptation",
+      "rationale": "The exact follow-up section supports clinician-entered review, follow-up, and safety net without generating treatment.",
+      "record_type": "evidence",
+      "locator_fingerprint": "72697ab9fd7f13e7fd93a6c9fec0fd0258a04d1ae674ae479a6013b43b53b17a"
+    }
+  ],
+  "specialty": "Gastroenterology outpatient",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "reconstructed_with_documented_limitations",
+  "evidence_pack_ids": [
+    "wave9-workflow-gi-functional-abdominal-pain-documentation"
+  ]
+}
