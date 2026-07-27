@@ -8,7 +8,7 @@ Branch: `beta-family-evidence-and-wave5-v1`
 Baseline branch: `beta-family-evidence-and-wave4-v1`  
 Starting HEAD: `63fd7d8339ba99aaf178d91b8bfc1dc0d2b810b9`  
 Implementation ending HEAD: `3bcaf1c7`  
-Final documentation HEAD: `e3c04d3f` (documentation only; not redeployed)  
+Final documentation HEAD: `34df1514` (follow-up artifact-audit commits; beta UI was not redeployed because public/data was unchanged)  
 Beta URL: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta  
 Deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30277066368  
 
@@ -26,6 +26,10 @@ Deployment workflow: https://github.com/hosxam/najm-ai-clinicnote-v2-beta/action
 - `ddeaaa11` docs(wave5): complete Wave-5 report
 - `dae94e2f` docs(wave5): note final documentation head
 - `e3c04d3f` docs(wave5): clarify documentation-only deployment boundary
+- `7c439a78` fix(wave5): reconcile family evidence contracts
+- `8a6da349` test(wave5): record artifact and regression validation
+- `d85fcb07` docs(wave5): document evidence contract audit
+- `34df1514` chore(wave5): remove artifact builder lint warning
 
 ## Counts and evidence
 
