@@ -4,7 +4,7 @@
 
 - Starting branch/HEAD: `beta-quality-reconciliation-and-wave8-v1` / `4aef772fb08cb0a81a2bf1bcb874f562de4d393f`
 - Delivery branch: `beta-catalogue-endgame-and-wave9-v1`
-- Ending implementation HEAD: `ef4acedb`; subsequent documentation heads: `0c9c9061`, `9e710c8e`
+- Ending implementation HEAD: `ef4acedb`; subsequent documentation/correction commits: `0c9c9061`, `9e710c8e`, `753dd9f9`, `37a2ce63`.
 - Beta only: `https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta`
 - Stable production, `main`, canonical approval/signature state, mappings, candidates, exclusions, and `public/data` were not modified.
 
