@@ -53,15 +53,42 @@
     "source_candidate_evaluations": "PASS (3363/3363 terminal)",
     "advanced_soap": "PASS (1062 mode cases)",
     "lint": "PASS_WITH_EXISTING_WARNINGS",
-    "build": "PASS"
+    "build": "PASS",
+    "manual_defect_resolution": "PASS (433 records)",
+    "manual_defect_closure": "PASS (433 records)",
+    "manual_defect_closure_assertions": "PASS",
+    "wave4_baseline_regression": "PASS (457 active workflows; baseline TEST_RESULTS retained; Wave-5 gap closure intentionally changes four inactive states)",
+    "wave5_artifact_contracts": "PASS (gap, family, target, source-search, pack and field-provenance required keys)"
   },
   "reproducibility": {
     "source_count": 242,
     "replay_module_count": 151,
-    "metadata_fingerprint": "0971a07ca2008bd506d9d136e54f1f89f843176358b300bfce82a01c701b8b07",
-    "replay_manifest_fingerprint": "50e6e89715e68aa4ed1d3cdf599f23012550afb86568be04dc572788ce4981ca",
+    "metadata_fingerprint": "e9efd82ddfbeef8bc057271bb8fb8e42ba5745a918e19efc84f023daf676bf1f",
+    "replay_manifest_fingerprint": "6efb37d2aa8271aac771781b8c6f185181c07682df0c1f0075b98a22ac2f77f9",
     "replay_parity": "PASS",
     "source_recency": "PASS"
   },
-  "browser_tests": { "pending_beta_deployment": false, "status": "PASS", "deployment_run": "30277066368", "deployed_sha": "3bcaf1c7", "console_errors": 0, "failed_requests": 0, "desktop": "PASS", "tablet": "PASS", "mobile": "PASS", "quick_routes": "PASS", "advanced_routes": "PASS", "evidence_panels": "PASS" }
+  "browser_tests": {
+    "pending_beta_deployment": false,
+    "status": "PASS",
+    "deployment_run": "30277066368",
+    "deployed_sha": "3bcaf1c7",
+    "console_errors": 0,
+    "failed_requests": 0,
+    "desktop": "PASS",
+    "tablet": "PASS",
+    "mobile": "PASS",
+    "quick_routes": "PASS",
+    "advanced_routes": "PASS",
+    "evidence_panels": "PASS"
+  },
+  "regression": {
+    "wave4_active_workflows_replayed": 457,
+    "wave4_field_provenance_records": 625,
+    "wave4_selectable_controls": 127,
+    "wave4_contradiction_groups": 111,
+    "manual_defect_records": 433,
+    "expected_wave5_state_change": "four named Wave-4 gaps move from fail-closed inactive to activated only after named source closure",
+    "protected_regression": "PASS"
+  }
 }
