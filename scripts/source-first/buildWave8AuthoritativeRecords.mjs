@@ -100,7 +100,16 @@ for (const target of targets) {
   interactive.specialty = target.specialty
   interactive.archetype = target.archetype
   interactive.fields = fields
-  interactive.evidence = selectedItems.slice(0, 8).map((item, index) => ({ workflow_id: id, evidence_statement_id: statements[index], source_id: item.source.source_id, exact_locator: item.source.exact_location, final_wording: item.final_wording }))
+  interactive.evidence = selectedItems.slice(0, 8).map((item, index) => {
+    const exactLocator = item.source.exact_location
+    const locator = exactLocator ? {
+      source_id: item.source.source_id,
+      section_id: exactLocator.section_id,
+      section_heading: exactLocator.heading,
+      locator: exactLocator.locator,
+    } : { source_id: item.source.source_id }
+    return { workflow_id: id, evidence_statement_id: statements[index], source_id: item.source.source_id, official_source_url: item.source.url, locator, exact_locator: exactLocator, final_wording: item.final_wording }
+  })
   fs.writeFileSync(interactivePath, `${JSON.stringify(interactive, null, 2)}\n`)
 
   const userItems = selectedItems.map((item, index) => {
