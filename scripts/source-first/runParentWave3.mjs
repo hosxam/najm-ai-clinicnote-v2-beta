@@ -18,13 +18,11 @@ const write = (name, value) => {
   fs.writeFileSync(p, `${JSON.stringify(value, null, 2)}\n`);
 };
 const digest = value => crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const slug = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
 
 const components = read(path.join(wave2, 'COMPONENT_DISPOSITIONS.json')).records;
 const micros = read(path.join(wave2, 'MICRO_WORKFLOW_DISPOSITIONS.json')).records;
 const pending = [...components, ...micros];
 const wave2Targets = read(path.join(wave2, 'WAVE2_TARGETS.json')).targets;
-const wave2Packs = read(path.join(wave2, 'WAVE2_EVIDENCE_PACKS.json')).records;
 const sourceSearch = read(path.join(wave2, 'WAVE2_SOURCE_SEARCH.json')).records;
 const registry = read(registryPath).sources;
 const corpus = read(corpusPath).source_records;
