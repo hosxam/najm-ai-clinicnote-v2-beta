@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "derm-molluscum-contagiosum-review",
+  "title": "Molluscum contagiosum review",
+  "specialty": "Dermatology",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave12-pack-derm-molluscum-contagiosum-review"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__workflow_context",
+      "label": "Molluscum contagiosum review: workflow context",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Molluscum contagiosum review: workflow context: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-001"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-clinical-features-2025",
+              "heading": "Clinical features",
+              "locator": "official HCP page, Clinical features section"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__history",
+      "label": "Molluscum contagiosum review: focused history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Molluscum contagiosum review: focused history: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-002"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-population-complications-2025",
+              "heading": "Key points and clinical-features risk context",
+              "locator": "official HCP page, Key points and Clinical features"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__relevant_negatives",
+      "label": "Molluscum contagiosum review: relevant negatives",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No relevant negative recorded",
+          "value": "none_recorded"
+        },
+        {
+          "label": "Relevant positive requires clinician detail",
+          "value": "positive_requires_detail"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 3,
+      "section": "subjective",
+      "visibility": {
+        "type": "conditional",
+        "rules": [
+          {
+            "when": "derm_molluscum_contagiosum_review__relevant_negatives contains positive_requires_detail",
+            "show": "derm_molluscum_contagiosum_review__positive_detail"
+          }
+        ]
+      },
+      "conditional_rules": [
+        {
+          "when": "derm_molluscum_contagiosum_review__relevant_negatives contains positive_requires_detail",
+          "show": "derm_molluscum_contagiosum_review__positive_detail"
+        }
+      ],
+      "contradictory_option_rules": [
+        {
+          "group_id": "derm_molluscum_contagiosum_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Molluscum contagiosum review: relevant negatives: {{value}}",
+      "value_formatter": "multi_select",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-003"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-clinical-features-2025",
+              "heading": "Clinical features",
+              "locator": "official HCP page, Clinical features section"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__observations",
+      "label": "Molluscum contagiosum review: observations and vital measurements",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Molluscum contagiosum review: observations and vital measurements: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-004"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-population-complications-2025",
+              "heading": "Key points and clinical-features risk context",
+              "locator": "official HCP page, Key points and Clinical features"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__focused_examination",
+      "label": "Molluscum contagiosum review: focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Molluscum contagiosum review: focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-005"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-clinical-features-2025",
+              "heading": "Clinical features",
+              "locator": "official HCP page, Clinical features section"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__investigation_result",
+      "label": "Molluscum contagiosum review: selected investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Molluscum contagiosum review: selected investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-006"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-population-complications-2025",
+              "heading": "Key points and clinical-features risk context",
+              "locator": "official HCP page, Key points and Clinical features"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__assessment",
+      "label": "Molluscum contagiosum review: clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Molluscum contagiosum review: clinician assessment: {{value}}",
+      "value_formatter": "assessment_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-007"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-clinical-features-2025",
+              "heading": "Clinical features",
+              "locator": "official HCP page, Clinical features section"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "field_id": "derm_molluscum_contagiosum_review__plan",
+      "label": "Molluscum contagiosum review: clinician-confirmed plan and follow-up",
+      "field_type": "plan_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Molluscum contagiosum review: clinician-confirmed plan and follow-up: {{value}}",
+      "value_formatter": "plan_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-molluscum-contagiosum-review"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-molluscum-contagiosum-review-statement-008"
+        ],
+        "source_ids": [
+          "cdc-molluscum-clinical-overview-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-molluscum-clinical-overview-2025",
+            "organisation": "US Centers for Disease Control and Prevention",
+            "document_title": "Clinical Overview of Molluscum Contagiosum",
+            "exact_section": {
+              "section_id": "cdc-molluscum-population-complications-2025",
+              "heading": "Key points and clinical-features risk context",
+              "locator": "official HCP page, Key points and Clinical features"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-001",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Clinical features section",
+      "locator": {
+        "section_id": "cdc-molluscum-clinical-features-2025",
+        "heading": "Clinical features",
+        "locator": "official HCP page, Clinical features section"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-002",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Key points and Clinical features",
+      "locator": {
+        "section_id": "cdc-molluscum-population-complications-2025",
+        "heading": "Key points and clinical-features risk context",
+        "locator": "official HCP page, Key points and Clinical features"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-003",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Clinical features section",
+      "locator": {
+        "section_id": "cdc-molluscum-clinical-features-2025",
+        "heading": "Clinical features",
+        "locator": "official HCP page, Clinical features section"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-004",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Key points and Clinical features",
+      "locator": {
+        "section_id": "cdc-molluscum-population-complications-2025",
+        "heading": "Key points and clinical-features risk context",
+        "locator": "official HCP page, Key points and Clinical features"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-005",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Clinical features section",
+      "locator": {
+        "section_id": "cdc-molluscum-clinical-features-2025",
+        "heading": "Clinical features",
+        "locator": "official HCP page, Clinical features section"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-006",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Key points and Clinical features",
+      "locator": {
+        "section_id": "cdc-molluscum-population-complications-2025",
+        "heading": "Key points and clinical-features risk context",
+        "locator": "official HCP page, Key points and Clinical features"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-007",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Clinical features section",
+      "locator": {
+        "section_id": "cdc-molluscum-clinical-features-2025",
+        "heading": "Clinical features",
+        "locator": "official HCP page, Clinical features section"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-molluscum-contagiosum-review-statement-008",
+      "source_id": "cdc-molluscum-clinical-overview-2025",
+      "official_source_url": "official HCP page, Key points and Clinical features",
+      "locator": {
+        "section_id": "cdc-molluscum-population-complications-2025",
+        "heading": "Key points and clinical-features risk context",
+        "locator": "official HCP page, Key points and Clinical features"
+      }
+    }
+  ]
+}

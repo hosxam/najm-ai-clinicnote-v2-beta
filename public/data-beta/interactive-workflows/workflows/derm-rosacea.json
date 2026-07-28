@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "derm-rosacea",
+  "title": "Rosacea",
+  "specialty": "Dermatology",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave12-pack-derm-rosacea"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__workflow_context",
+      "label": "Rosacea: workflow context",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Rosacea: workflow context: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-001"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-clinical-features",
+              "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+              "locator": "publisher full text lines 333–338 and 400–419"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__history",
+      "label": "Rosacea: focused history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Rosacea: focused history: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-002"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+              "heading": "Section 5.9 — perioral and periocular dermatitis",
+              "locator": "publisher full text lines 464–468"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__relevant_negatives",
+      "label": "Rosacea: relevant negatives",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No relevant negative recorded",
+          "value": "none_recorded"
+        },
+        {
+          "label": "Relevant positive requires clinician detail",
+          "value": "positive_requires_detail"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 3,
+      "section": "subjective",
+      "visibility": {
+        "type": "conditional",
+        "rules": [
+          {
+            "when": "derm_rosacea__relevant_negatives contains positive_requires_detail",
+            "show": "derm_rosacea__positive_detail"
+          }
+        ]
+      },
+      "conditional_rules": [
+        {
+          "when": "derm_rosacea__relevant_negatives contains positive_requires_detail",
+          "show": "derm_rosacea__positive_detail"
+        }
+      ],
+      "contradictory_option_rules": [
+        {
+          "group_id": "derm_rosacea__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Rosacea: relevant negatives: {{value}}",
+      "value_formatter": "multi_select",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-003"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-clinical-features",
+              "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+              "locator": "publisher full text lines 333–338 and 400–419"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__observations",
+      "label": "Rosacea: observations and vital measurements",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Rosacea: observations and vital measurements: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-004"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+              "heading": "Section 5.9 — perioral and periocular dermatitis",
+              "locator": "publisher full text lines 464–468"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__focused_examination",
+      "label": "Rosacea: focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Rosacea: focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-005"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-clinical-features",
+              "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+              "locator": "publisher full text lines 333–338 and 400–419"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__investigation_result",
+      "label": "Rosacea: selected investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Rosacea: selected investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-006"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+              "heading": "Section 5.9 — perioral and periocular dermatitis",
+              "locator": "publisher full text lines 464–468"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__assessment",
+      "label": "Rosacea: clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Rosacea: clinician assessment: {{value}}",
+      "value_formatter": "assessment_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-007"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-clinical-features",
+              "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+              "locator": "publisher full text lines 333–338 and 400–419"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "field_id": "derm_rosacea__plan",
+      "label": "Rosacea: clinician-confirmed plan and follow-up",
+      "field_type": "plan_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Rosacea: clinician-confirmed plan and follow-up: {{value}}",
+      "value_formatter": "plan_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-derm-rosacea"
+        ],
+        "evidence_statement_ids": [
+          "wave12-derm-rosacea-statement-008"
+        ],
+        "source_ids": [
+          "bad-rosacea-guideline-2021"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "bad-rosacea-guideline-2021",
+            "organisation": "British Association of Dermatologists",
+            "document_title": "British Association of Dermatologists guidelines for the management of people with rosacea 2021",
+            "exact_section": {
+              "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+              "heading": "Section 5.9 — perioral and periocular dermatitis",
+              "locator": "publisher full text lines 464–468"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-001",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 333–338 and 400–419",
+      "locator": {
+        "section_id": "bad-rosacea-2021-clinical-features",
+        "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+        "locator": "publisher full text lines 333–338 and 400–419"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-002",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 464–468",
+      "locator": {
+        "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+        "heading": "Section 5.9 — perioral and periocular dermatitis",
+        "locator": "publisher full text lines 464–468"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-003",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 333–338 and 400–419",
+      "locator": {
+        "section_id": "bad-rosacea-2021-clinical-features",
+        "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+        "locator": "publisher full text lines 333–338 and 400–419"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-004",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 464–468",
+      "locator": {
+        "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+        "heading": "Section 5.9 — perioral and periocular dermatitis",
+        "locator": "publisher full text lines 464–468"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-005",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 333–338 and 400–419",
+      "locator": {
+        "section_id": "bad-rosacea-2021-clinical-features",
+        "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+        "locator": "publisher full text lines 333–338 and 400–419"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-006",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 464–468",
+      "locator": {
+        "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+        "heading": "Section 5.9 — perioral and periocular dermatitis",
+        "locator": "publisher full text lines 464–468"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-007",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 333–338 and 400–419",
+      "locator": {
+        "section_id": "bad-rosacea-2021-clinical-features",
+        "heading": "Recommendations R3–R4 and background — clinical signs, symptoms, distribution, and ocular context",
+        "locator": "publisher full text lines 333–338 and 400–419"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-derm-rosacea-statement-008",
+      "source_id": "bad-rosacea-guideline-2021",
+      "official_source_url": "publisher full text lines 464–468",
+      "locator": {
+        "section_id": "bad-rosacea-2021-periorificial-dermatitis",
+        "heading": "Section 5.9 — perioral and periocular dermatitis",
+        "locator": "publisher full text lines 464–468"
+      }
+    }
+  ]
+}

@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "gp-epistaxis-review-in-gp",
+  "title": "Epistaxis review in GP",
+  "specialty": "General Medicine / GP",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave12-pack-gp-epistaxis-review-in-gp"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__workflow_context",
+      "label": "Epistaxis review in GP: workflow context",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Epistaxis review in GP: workflow context: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-001"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-history-severity",
+              "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+              "locator": "official fact sheet key action statements 1–5"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__history",
+      "label": "Epistaxis review in GP: focused history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Epistaxis review in GP: focused history: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-002"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+              "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+              "locator": "official fact sheet key action statements 6–14"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__relevant_negatives",
+      "label": "Epistaxis review in GP: relevant negatives",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No relevant negative recorded",
+          "value": "none_recorded"
+        },
+        {
+          "label": "Relevant positive requires clinician detail",
+          "value": "positive_requires_detail"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 3,
+      "section": "subjective",
+      "visibility": {
+        "type": "conditional",
+        "rules": [
+          {
+            "when": "gp_epistaxis_review_in_gp__relevant_negatives contains positive_requires_detail",
+            "show": "gp_epistaxis_review_in_gp__positive_detail"
+          }
+        ]
+      },
+      "conditional_rules": [
+        {
+          "when": "gp_epistaxis_review_in_gp__relevant_negatives contains positive_requires_detail",
+          "show": "gp_epistaxis_review_in_gp__positive_detail"
+        }
+      ],
+      "contradictory_option_rules": [
+        {
+          "group_id": "gp_epistaxis_review_in_gp__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Epistaxis review in GP: relevant negatives: {{value}}",
+      "value_formatter": "multi_select",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-003"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-history-severity",
+              "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+              "locator": "official fact sheet key action statements 1–5"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__observations",
+      "label": "Epistaxis review in GP: observations and vital measurements",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Epistaxis review in GP: observations and vital measurements: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-004"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+              "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+              "locator": "official fact sheet key action statements 6–14"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__focused_examination",
+      "label": "Epistaxis review in GP: focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Epistaxis review in GP: focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-005"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-history-severity",
+              "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+              "locator": "official fact sheet key action statements 1–5"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__investigation_result",
+      "label": "Epistaxis review in GP: selected investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Epistaxis review in GP: selected investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-006"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+              "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+              "locator": "official fact sheet key action statements 6–14"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__assessment",
+      "label": "Epistaxis review in GP: clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Epistaxis review in GP: clinician assessment: {{value}}",
+      "value_formatter": "assessment_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-007"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-history-severity",
+              "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+              "locator": "official fact sheet key action statements 1–5"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "field_id": "gp_epistaxis_review_in_gp__plan",
+      "label": "Epistaxis review in GP: clinician-confirmed plan and follow-up",
+      "field_type": "plan_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Epistaxis review in GP: clinician-confirmed plan and follow-up: {{value}}",
+      "value_formatter": "plan_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-gp-epistaxis-review-in-gp"
+        ],
+        "evidence_statement_ids": [
+          "wave12-gp-epistaxis-review-in-gp-statement-008"
+        ],
+        "source_ids": [
+          "aao-hns-epistaxis-2020"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "aao-hns-epistaxis-2020",
+            "organisation": "American Academy of Otolaryngology–Head and Neck Surgery Foundation",
+            "document_title": "Clinical Practice Guideline: Nosebleed (Epistaxis)",
+            "exact_section": {
+              "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+              "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+              "locator": "official fact sheet key action statements 6–14"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-001",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 1–5",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-history-severity",
+        "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+        "locator": "official fact sheet key action statements 1–5"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-002",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 6–14",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+        "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+        "locator": "official fact sheet key action statements 6–14"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-003",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 1–5",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-history-severity",
+        "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+        "locator": "official fact sheet key action statements 1–5"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-004",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 6–14",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+        "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+        "locator": "official fact sheet key action statements 6–14"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-005",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 1–5",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-history-severity",
+        "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+        "locator": "official fact sheet key action statements 1–5"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-006",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 6–14",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+        "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+        "locator": "official fact sheet key action statements 6–14"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-007",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 1–5",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-history-severity",
+        "heading": "Key action statements 1–5 — prompt assessment, bleeding site, and risk factors",
+        "locator": "official fact sheet key action statements 1–5"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-gp-epistaxis-review-in-gp-statement-008",
+      "source_id": "aao-hns-epistaxis-2020",
+      "official_source_url": "official fact sheet key action statements 6–14",
+      "locator": {
+        "section_id": "aao-epistaxis-2020-recurrent-exam-education",
+        "heading": "Key action statements 6–14 — recurrent bleed assessment, examination, risk factors, education, and outcomes",
+        "locator": "official fact sheet key action statements 6–14"
+      }
+    }
+  ]
+}

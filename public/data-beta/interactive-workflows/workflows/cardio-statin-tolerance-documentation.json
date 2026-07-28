@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "cardio-statin-tolerance-documentation",
+  "title": "Statin tolerance documentation",
+  "specialty": "Cardiology outpatient",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave12-pack-cardio-statin-tolerance-documentation"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__workflow_context",
+      "label": "Statin tolerance documentation: workflow context",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Statin tolerance documentation: workflow context: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-001"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-risk-lifestyle-review",
+              "heading": "Recommendations 1.1.1–1.3.12 — cardiovascular risk and lifestyle review",
+              "locator": "recommendations 1.1.1–1.3.12"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__history",
+      "label": "Statin tolerance documentation: focused history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Statin tolerance documentation: focused history: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-002"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-lipid-assessment-baseline-tests",
+              "heading": "Recommendations 1.4.1–1.5.7 — lipid assessment and baseline tests",
+              "locator": "recommendations 1.4.1–1.5.7"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__relevant_negatives",
+      "label": "Statin tolerance documentation: relevant negatives",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No relevant negative recorded",
+          "value": "none_recorded"
+        },
+        {
+          "label": "Relevant positive requires clinician detail",
+          "value": "positive_requires_detail"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 3,
+      "section": "subjective",
+      "visibility": {
+        "type": "conditional",
+        "rules": [
+          {
+            "when": "cardio_statin_tolerance_documentation__relevant_negatives contains positive_requires_detail",
+            "show": "cardio_statin_tolerance_documentation__positive_detail"
+          }
+        ]
+      },
+      "conditional_rules": [
+        {
+          "when": "cardio_statin_tolerance_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "cardio_statin_tolerance_documentation__positive_detail"
+        }
+      ],
+      "contradictory_option_rules": [
+        {
+          "group_id": "cardio_statin_tolerance_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Statin tolerance documentation: relevant negatives: {{value}}",
+      "value_formatter": "multi_select",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-003"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-lipid-response-annual-review",
+              "heading": "Recommendations 1.9.1–1.11.12 — treatment response and annual review",
+              "locator": "recommendations 1.9.1–1.11.12"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__observations",
+      "label": "Statin tolerance documentation: observations and vital measurements",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Statin tolerance documentation: observations and vital measurements: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-004"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-risk-lifestyle-review",
+              "heading": "Recommendations 1.1.1–1.3.12 — cardiovascular risk and lifestyle review",
+              "locator": "recommendations 1.1.1–1.3.12"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__focused_examination",
+      "label": "Statin tolerance documentation: focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Statin tolerance documentation: focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-005"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-lipid-assessment-baseline-tests",
+              "heading": "Recommendations 1.4.1–1.5.7 — lipid assessment and baseline tests",
+              "locator": "recommendations 1.4.1–1.5.7"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__investigation_result",
+      "label": "Statin tolerance documentation: selected investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Statin tolerance documentation: selected investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-006"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-lipid-response-annual-review",
+              "heading": "Recommendations 1.9.1–1.11.12 — treatment response and annual review",
+              "locator": "recommendations 1.9.1–1.11.12"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__assessment",
+      "label": "Statin tolerance documentation: clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Statin tolerance documentation: clinician assessment: {{value}}",
+      "value_formatter": "assessment_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-007"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-risk-lifestyle-review",
+              "heading": "Recommendations 1.1.1–1.3.12 — cardiovascular risk and lifestyle review",
+              "locator": "recommendations 1.1.1–1.3.12"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "field_id": "cardio_statin_tolerance_documentation__plan",
+      "label": "Statin tolerance documentation: clinician-confirmed plan and follow-up",
+      "field_type": "plan_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Statin tolerance documentation: clinician-confirmed plan and follow-up: {{value}}",
+      "value_formatter": "plan_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-cardio-statin-tolerance-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-cardio-statin-tolerance-documentation-statement-008"
+        ],
+        "source_ids": [
+          "nice-cvd-lipid-modification-ng238-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-cvd-lipid-modification-ng238-2023",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Cardiovascular disease: risk assessment and reduction, including lipid modification",
+            "exact_section": {
+              "section_id": "nice-ng238-lipid-assessment-baseline-tests",
+              "heading": "Recommendations 1.4.1–1.5.7 — lipid assessment and baseline tests",
+              "locator": "recommendations 1.4.1–1.5.7"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-001",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.1.1–1.3.12",
+      "locator": {
+        "section_id": "nice-ng238-risk-lifestyle-review",
+        "heading": "Recommendations 1.1.1–1.3.12 — cardiovascular risk and lifestyle review",
+        "locator": "recommendations 1.1.1–1.3.12"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-002",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.4.1–1.5.7",
+      "locator": {
+        "section_id": "nice-ng238-lipid-assessment-baseline-tests",
+        "heading": "Recommendations 1.4.1–1.5.7 — lipid assessment and baseline tests",
+        "locator": "recommendations 1.4.1–1.5.7"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-003",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.9.1–1.11.12",
+      "locator": {
+        "section_id": "nice-ng238-lipid-response-annual-review",
+        "heading": "Recommendations 1.9.1–1.11.12 — treatment response and annual review",
+        "locator": "recommendations 1.9.1–1.11.12"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-004",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.1.1–1.3.12",
+      "locator": {
+        "section_id": "nice-ng238-risk-lifestyle-review",
+        "heading": "Recommendations 1.1.1–1.3.12 — cardiovascular risk and lifestyle review",
+        "locator": "recommendations 1.1.1–1.3.12"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-005",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.4.1–1.5.7",
+      "locator": {
+        "section_id": "nice-ng238-lipid-assessment-baseline-tests",
+        "heading": "Recommendations 1.4.1–1.5.7 — lipid assessment and baseline tests",
+        "locator": "recommendations 1.4.1–1.5.7"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-006",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.9.1–1.11.12",
+      "locator": {
+        "section_id": "nice-ng238-lipid-response-annual-review",
+        "heading": "Recommendations 1.9.1–1.11.12 — treatment response and annual review",
+        "locator": "recommendations 1.9.1–1.11.12"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-007",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.1.1–1.3.12",
+      "locator": {
+        "section_id": "nice-ng238-risk-lifestyle-review",
+        "heading": "Recommendations 1.1.1–1.3.12 — cardiovascular risk and lifestyle review",
+        "locator": "recommendations 1.1.1–1.3.12"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-cardio-statin-tolerance-documentation-statement-008",
+      "source_id": "nice-cvd-lipid-modification-ng238-2023",
+      "official_source_url": "recommendations 1.4.1–1.5.7",
+      "locator": {
+        "section_id": "nice-ng238-lipid-assessment-baseline-tests",
+        "heading": "Recommendations 1.4.1–1.5.7 — lipid assessment and baseline tests",
+        "locator": "recommendations 1.4.1–1.5.7"
+      }
+    }
+  ]
+}

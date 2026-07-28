@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "ed-ecg-documentation",
+  "title": "ED ECG documentation",
+  "specialty": "Emergency Medicine documentation-only",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave12-pack-ed-ecg-documentation"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__workflow_context",
+      "label": "ED ECG documentation: workflow context",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "ED ECG documentation: workflow context: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-001"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-technology-selection",
+              "heading": "Section 3.1.6 - selection of appropriate ambulatory ECG technology",
+              "locator": "official PDF pages 4-6, section 3.1.6"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__history",
+      "label": "ED ECG documentation: focused history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "ED ECG documentation: focused history: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-002"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-syncope-palpitations",
+              "heading": "Sections 4.1-4.2 - syncope and palpitations",
+              "locator": "official PDF pages 8-11, sections 4.1-4.2"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__relevant_negatives",
+      "label": "ED ECG documentation: relevant negatives",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No relevant negative recorded",
+          "value": "none_recorded"
+        },
+        {
+          "label": "Relevant positive requires clinician detail",
+          "value": "positive_requires_detail"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 3,
+      "section": "subjective",
+      "visibility": {
+        "type": "conditional",
+        "rules": [
+          {
+            "when": "ed_ecg_documentation__relevant_negatives contains positive_requires_detail",
+            "show": "ed_ecg_documentation__positive_detail"
+          }
+        ]
+      },
+      "conditional_rules": [
+        {
+          "when": "ed_ecg_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_ecg_documentation__positive_detail"
+        }
+      ],
+      "contradictory_option_rules": [
+        {
+          "group_id": "ed_ecg_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "soap_destination": "subjective",
+      "note_template": "ED ECG documentation: relevant negatives: {{value}}",
+      "value_formatter": "multi_select",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-003"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-selection-recommendations",
+              "heading": "Recommendations table - selection of ambulatory ECG",
+              "locator": "official PDF pages 30-31, selection-of-AECG recommendations"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__observations",
+      "label": "ED ECG documentation: observations and vital measurements",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "ED ECG documentation: observations and vital measurements: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-004"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-technology-selection",
+              "heading": "Section 3.1.6 - selection of appropriate ambulatory ECG technology",
+              "locator": "official PDF pages 4-6, section 3.1.6"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__focused_examination",
+      "label": "ED ECG documentation: focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "ED ECG documentation: focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-005"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-syncope-palpitations",
+              "heading": "Sections 4.1-4.2 - syncope and palpitations",
+              "locator": "official PDF pages 8-11, sections 4.1-4.2"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__investigation_result",
+      "label": "ED ECG documentation: selected investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "ED ECG documentation: selected investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-006"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-selection-recommendations",
+              "heading": "Recommendations table - selection of ambulatory ECG",
+              "locator": "official PDF pages 30-31, selection-of-AECG recommendations"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__assessment",
+      "label": "ED ECG documentation: clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "ED ECG documentation: clinician assessment: {{value}}",
+      "value_formatter": "assessment_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-007"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-technology-selection",
+              "heading": "Section 3.1.6 - selection of appropriate ambulatory ECG technology",
+              "locator": "official PDF pages 4-6, section 3.1.6"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "field_id": "ed_ecg_documentation__plan",
+      "label": "ED ECG documentation: clinician-confirmed plan and follow-up",
+      "field_type": "plan_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "ED ECG documentation: clinician-confirmed plan and follow-up: {{value}}",
+      "value_formatter": "plan_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-ed-ecg-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave12-ed-ecg-documentation-statement-008"
+        ],
+        "source_ids": [
+          "hrs-ishne-ambulatory-ecg-2017"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "hrs-ishne-ambulatory-ecg-2017",
+            "organisation": "International Society for Holter and Noninvasive Electrocardiology and Heart Rhythm Society",
+            "document_title": "2017 ISHNE-HRS expert consensus statement on ambulatory ECG and external cardiac monitoring/telemetry",
+            "exact_section": {
+              "section_id": "hrs-aecg-syncope-palpitations",
+              "heading": "Sections 4.1-4.2 - syncope and palpitations",
+              "locator": "official PDF pages 8-11, sections 4.1-4.2"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-001",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 4-6, section 3.1.6",
+      "locator": {
+        "section_id": "hrs-aecg-technology-selection",
+        "heading": "Section 3.1.6 - selection of appropriate ambulatory ECG technology",
+        "locator": "official PDF pages 4-6, section 3.1.6"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-002",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 8-11, sections 4.1-4.2",
+      "locator": {
+        "section_id": "hrs-aecg-syncope-palpitations",
+        "heading": "Sections 4.1-4.2 - syncope and palpitations",
+        "locator": "official PDF pages 8-11, sections 4.1-4.2"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-003",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 30-31, selection-of-AECG recommendations",
+      "locator": {
+        "section_id": "hrs-aecg-selection-recommendations",
+        "heading": "Recommendations table - selection of ambulatory ECG",
+        "locator": "official PDF pages 30-31, selection-of-AECG recommendations"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-004",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 4-6, section 3.1.6",
+      "locator": {
+        "section_id": "hrs-aecg-technology-selection",
+        "heading": "Section 3.1.6 - selection of appropriate ambulatory ECG technology",
+        "locator": "official PDF pages 4-6, section 3.1.6"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-005",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 8-11, sections 4.1-4.2",
+      "locator": {
+        "section_id": "hrs-aecg-syncope-palpitations",
+        "heading": "Sections 4.1-4.2 - syncope and palpitations",
+        "locator": "official PDF pages 8-11, sections 4.1-4.2"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-006",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 30-31, selection-of-AECG recommendations",
+      "locator": {
+        "section_id": "hrs-aecg-selection-recommendations",
+        "heading": "Recommendations table - selection of ambulatory ECG",
+        "locator": "official PDF pages 30-31, selection-of-AECG recommendations"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-007",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 4-6, section 3.1.6",
+      "locator": {
+        "section_id": "hrs-aecg-technology-selection",
+        "heading": "Section 3.1.6 - selection of appropriate ambulatory ECG technology",
+        "locator": "official PDF pages 4-6, section 3.1.6"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-ed-ecg-documentation-statement-008",
+      "source_id": "hrs-ishne-ambulatory-ecg-2017",
+      "official_source_url": "official PDF pages 8-11, sections 4.1-4.2",
+      "locator": {
+        "section_id": "hrs-aecg-syncope-palpitations",
+        "heading": "Sections 4.1-4.2 - syncope and palpitations",
+        "locator": "official PDF pages 8-11, sections 4.1-4.2"
+      }
+    }
+  ]
+}

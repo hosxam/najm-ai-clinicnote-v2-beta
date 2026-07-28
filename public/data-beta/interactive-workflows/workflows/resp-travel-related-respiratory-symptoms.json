@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0.0",
+  "workflow_id": "resp-travel-related-respiratory-symptoms",
+  "title": "Travel-related respiratory symptoms",
+  "specialty": "Respiratory outpatient",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "Declared workflow population"
+  ],
+  "settings": [
+    "Declared workflow setting"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave12-pack-resp-travel-related-respiratory-symptoms"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__workflow_context",
+      "label": "Travel-related respiratory symptoms: workflow context",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Travel-related respiratory symptoms: workflow context: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-001"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-triage",
+              "heading": "Introduction and triage of the ill returned traveler",
+              "locator": "official chapter sections “Introduction” and “Triage”"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__history",
+      "label": "Travel-related respiratory symptoms: focused history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "subjective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Travel-related respiratory symptoms: focused history: {{value}}",
+      "value_formatter": "textarea",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-002"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-history-exposures",
+              "heading": "The post-travel evaluation — association with travel and exposures",
+              "locator": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__relevant_negatives",
+      "label": "Travel-related respiratory symptoms: relevant negatives",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No relevant negative recorded",
+          "value": "none_recorded"
+        },
+        {
+          "label": "Relevant positive requires clinician detail",
+          "value": "positive_requires_detail"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 3,
+      "section": "subjective",
+      "visibility": {
+        "type": "conditional",
+        "rules": [
+          {
+            "when": "resp_travel_related_respiratory_symptoms__relevant_negatives contains positive_requires_detail",
+            "show": "resp_travel_related_respiratory_symptoms__positive_detail"
+          }
+        ]
+      },
+      "conditional_rules": [
+        {
+          "when": "resp_travel_related_respiratory_symptoms__relevant_negatives contains positive_requires_detail",
+          "show": "resp_travel_related_respiratory_symptoms__positive_detail"
+        }
+      ],
+      "contradictory_option_rules": [
+        {
+          "group_id": "resp_travel_related_respiratory_symptoms__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Travel-related respiratory symptoms: relevant negatives: {{value}}",
+      "value_formatter": "multi_select",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-003"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-host-syndrome",
+              "heading": "Clinical evaluation — host factors, syndromic approach and incubation context",
+              "locator": "official chapter clinical-evaluation and incubation-period sections"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__observations",
+      "label": "Travel-related respiratory symptoms: observations and vital measurements",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Travel-related respiratory symptoms: observations and vital measurements: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-004"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-triage",
+              "heading": "Introduction and triage of the ill returned traveler",
+              "locator": "official chapter sections “Introduction” and “Triage”"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__focused_examination",
+      "label": "Travel-related respiratory symptoms: focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Travel-related respiratory symptoms: focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-005"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-history-exposures",
+              "heading": "The post-travel evaluation — association with travel and exposures",
+              "locator": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__investigation_result",
+      "label": "Travel-related respiratory symptoms: selected investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Travel-related respiratory symptoms: selected investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-006"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-host-syndrome",
+              "heading": "Clinical evaluation — host factors, syndromic approach and incubation context",
+              "locator": "official chapter clinical-evaluation and incubation-period sections"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__assessment",
+      "label": "Travel-related respiratory symptoms: clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Travel-related respiratory symptoms: clinician assessment: {{value}}",
+      "value_formatter": "assessment_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-007"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-triage",
+              "heading": "Introduction and triage of the ill returned traveler",
+              "locator": "official chapter sections “Introduction” and “Triage”"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "field_id": "resp_travel_related_respiratory_symptoms__plan",
+      "label": "Travel-related respiratory symptoms: clinician-confirmed plan and follow-up",
+      "field_type": "plan_entry",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Travel-related respiratory symptoms: clinician-confirmed plan and follow-up: {{value}}",
+      "value_formatter": "plan_entry",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave12-pack-resp-travel-related-respiratory-symptoms"
+        ],
+        "evidence_statement_ids": [
+          "wave12-resp-travel-related-respiratory-symptoms-statement-008"
+        ],
+        "source_ids": [
+          "cdc-yellow-book-posttravel-ill-traveler-2026"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+            "organisation": "United States Centers for Disease Control and Prevention",
+            "document_title": "Post-Travel Evaluation of the Ill Traveler",
+            "exact_section": {
+              "section_id": "cdc-yellow-book-2026-posttravel-history-exposures",
+              "heading": "The post-travel evaluation — association with travel and exposures",
+              "locator": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”"
+            },
+            "population_qualifier": "Declared workflow population",
+            "setting_qualifier": "Declared workflow setting",
+            "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+          }
+        ],
+        "transformation_explanation": "Clinician-entered documentation only; no diagnosis, treatment, dose, or referral is inferred."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-001",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter sections “Introduction” and “Triage”",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-triage",
+        "heading": "Introduction and triage of the ill returned traveler",
+        "locator": "official chapter sections “Introduction” and “Triage”"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-002",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-history-exposures",
+        "heading": "The post-travel evaluation — association with travel and exposures",
+        "locator": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-003",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter clinical-evaluation and incubation-period sections",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-host-syndrome",
+        "heading": "Clinical evaluation — host factors, syndromic approach and incubation context",
+        "locator": "official chapter clinical-evaluation and incubation-period sections"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-004",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter sections “Introduction” and “Triage”",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-triage",
+        "heading": "Introduction and triage of the ill returned traveler",
+        "locator": "official chapter sections “Introduction” and “Triage”"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-005",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-history-exposures",
+        "heading": "The post-travel evaluation — association with travel and exposures",
+        "locator": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-006",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter clinical-evaluation and incubation-period sections",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-host-syndrome",
+        "heading": "Clinical evaluation — host factors, syndromic approach and incubation context",
+        "locator": "official chapter clinical-evaluation and incubation-period sections"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-007",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter sections “Introduction” and “Triage”",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-triage",
+        "heading": "Introduction and triage of the ill returned traveler",
+        "locator": "official chapter sections “Introduction” and “Triage”"
+      }
+    },
+    {
+      "evidence_statement_id": "wave12-resp-travel-related-respiratory-symptoms-statement-008",
+      "source_id": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "official_source_url": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”",
+      "locator": {
+        "section_id": "cdc-yellow-book-2026-posttravel-history-exposures",
+        "heading": "The post-travel evaluation — association with travel and exposures",
+        "locator": "official chapter sections “Association of the traveler’s illness with (recent) travel” and “Exposures”"
+      }
+    }
+  ]
+}
