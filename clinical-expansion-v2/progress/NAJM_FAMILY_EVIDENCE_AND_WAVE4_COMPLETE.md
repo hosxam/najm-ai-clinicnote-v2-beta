@@ -9,7 +9,7 @@ Status: corrected completion for the beta branch only.
 - Wave 4 branch: `beta-family-evidence-and-wave4-v1`
 - Correction: target field provenance and evidence records were rebuilt from exact existing registry sections; four targets with no complete critical evidence remain inactive and fail closed.
 - Corrected implementation commit: `b76de4a87d5ddca23b2fae3f3ad4859d8c3197d7` (`fix(wave4): reconcile family evidence provenance`).
-- Corrected beta deployment: workflow run [30247206613](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30247206613), deployed SHA `b76de4a87d5ddca23b2fae3f3ad4859d8c3197d7`, displayed build `b76de4a`.
+- Corrected beta deployment: workflow run [30375258914](https://github.com/hosxam/najm-ai-clinicnote-v2-beta/actions/runs/30375258914), deployed SHA `63fd7d8339ba99aaf178d91b8bfc1dc0d2b810b9`, displayed build `63fd7d8`.
 - Live beta: https://hosxam.github.io/najm-ai-clinicnote-v2-beta/#/beta
 - Stable production was not deployed or changed.
 
@@ -105,7 +105,7 @@ Detailed results: `clinical-expansion-v2/progress/family-wave4/TEST_RESULTS.json
 
 ## Beta deployment and live verification
 
-The corrected branch is deployed only to the beta Pages target. `LIVE_VERIFICATION.json` records the successful workflow run, deployed SHA, displayed build, canonical final-catalogue manifest, no obsolete curated dataset request, route checks, evidence panels, Quick/Advanced routes, inactive fail-closed behavior, alias/filter/search checks, responsive checks, zero console errors, zero failed requests, no local paths, and workflow-scoped temporary draft isolation. Live verification at `2026-07-27T11:52:45+04:00` passed: 1,500 original / 457 active / 1,043 inactive workflows, 6,938 clinician-facing items, 75,962 internal evidence records, and 4,823 interactive fields. Desktop 1440px, tablet 1024px, and mobile 390px had no horizontal overflow; temporary review storage was cleared after testing.
+The corrected branch is deployed only to the beta Pages target. `LIVE_VERIFICATION.json` records the successful workflow run, deployed SHA, displayed build, canonical final-catalogue manifest, no obsolete curated dataset request, route checks, evidence panels, Quick/Advanced routes, inactive fail-closed behavior, alias/filter/search checks, responsive checks, zero console errors, zero failed requests, no local paths, and workflow-scoped temporary draft isolation. Live verification at `2026-07-28T19:54:00+04:00` passed: 1,500 original / 457 active / 1,043 inactive workflows, 6,938 clinician-facing items, 75,962 internal evidence records, and 4,823 interactive fields. Desktop 1440px, tablet 1024px, and mobile 390px had no horizontal overflow; temporary review storage was cleared after testing.
 
 ## Protected boundaries
 
