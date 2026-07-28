@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "status": "PASS_RECONCILED",
+  "exact_prior_evidence_count": 132424,
+  "exact_current_evidence_count": 116856,
+  "exact_difference": 15568,
+  "responsible_datasets": [
+    "clinical-expansion-v2/progress/catalogue-wave9/CATALOGUE_METADATA_WAVE9.json",
+    "public/data-beta/final-catalogue/manifest.json",
+    "public/data-beta/final-catalogue/metadata.json",
+    "public/data-beta/final-catalogue/compaction-manifest.json"
+  ],
+  "change_classification": "implementation_time_compaction_between_wave9_catalogue_and_current_deep_pilot_beta_build",
+  "record_types": {
+    "removed_or_compacted": "duplicate, non-clinician-facing and superseded legacy evidence records",
+    "archived": "historical records retained in source and progress artifacts",
+    "excluded": "unsupported legacy records excluded from clinician-facing beta catalogue"
+  },
+  "unsupported_legacy_records_involved": true,
+  "duplicate_evidence_removed": true,
+  "accepted_source_evidence_removed": false,
+  "active_workflow_provenance_changed": false,
+  "affected_source_ids": [],
+  "affected_evidence_pack_ids": [],
+  "affected_workflow_ids": [],
+  "runtime_size_impact": {
+    "records_removed": 15568,
+    "active_manifest_core_sections_missing": 0
+  },
+  "reproducibility_impact": "none; current manifest and interactive catalogue are reproducible from committed source artifacts",
+  "safety_impact": "none identified; unsupported and duplicate records were excluded, while active field provenance remains exact",
+  "required_assertions": {
+    "every_active_field_exact_provenance": true,
+    "no_accepted_source_section_silently_lost": true,
+    "no_active_workflow_relies_on_removed_evidence": true,
+    "replay_parity_deterministic": true
+  },
+  "explanation": "The earlier Wave 9 count included retained internal records before final catalogue compaction. The current count is lower because compaction removed duplicate, non-clinician-facing and unsupported legacy records; accepted source sections and active provenance remain present."
+}
