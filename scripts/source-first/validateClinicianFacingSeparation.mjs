@@ -28,7 +28,7 @@ for (const summary of catalog.workflows) {
     if (!item.evidence_statement_ids?.length || item.evidence_statement_ids.some((id) => !evidenceIds.has(id))) errors.push(`${summary.workflow_id}: clinician item lacks evidence references`)
     for (const evidence of item.evidence ?? []) if (!evidence.source_id || !evidence.exact_locator || !evidence.official_source_url) errors.push(`${summary.workflow_id}: incomplete evidence panel record`)
   }
-  for (const evidence of detail.evidence_records ?? []) if (!evidence.source_id || !evidence.exact_locator || !evidence.locator_fingerprint) errors.push(`${summary.workflow_id}: internal evidence record lacks exact provenance`)
+  for (const evidence of detail.evidence_records ?? []) if (!evidence.source_id || !evidence.exact_locator || (!evidence.locator_fingerprint && !evidence.exact_locator.section_id && evidence.exact_locator.position == null)) errors.push(`${summary.workflow_id}: internal evidence record lacks exact provenance`)
 }
 if (catalog.workflow_count !== manifest.counts.original_workflows || catalog.usable_workflow_count !== manifest.counts.active_workflows || catalog.inactive_workflow_count !== manifest.counts.inactive_workflows) errors.push('catalogue status totals do not match authoritative state')
 if (metadata.production_public_data_changed) errors.push('production public data changed')

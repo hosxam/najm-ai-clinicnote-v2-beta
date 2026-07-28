@@ -6,8 +6,8 @@ Generated from the authoritative ledger with 433 independent closure records.
 
 | Terminal status | Count |
 |---|---:|
-| still_present | 221 |
-| partially_fixed | 155 |
+| still_present | 122 |
+| partially_fixed | 254 |
 | already_fixed_and_reproduced | 44 |
 | not_applicable_with_proof | 13 |
 
@@ -31,7 +31,7 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 6 | cardio-chest-pain | already_fixed_and_reproduced | Investigations cannot record actual results. |
 | 7 | cardio-chest-pain | still_present | Risk-factor fields incomplete. |
 | 8 | cardio-chest-pain | still_present | Source-required fields are not enforced. |
-| 9 | cardio-chest-pain | still_present | Follow-up and plan administrative phrases duplicated. |
+| 9 | cardio-chest-pain | partially_fixed | Follow-up and plan administrative phrases duplicated. |
 | 10 | cardio-chest-pain | still_present | Advanced Mode is not genuinely advanced. |
 | 11 | cardio-chest-pain | still_present | Workflow titles and scope are inconsistent. |
 | 12 | cardio-chest-pain | partially_fixed | Setting, patient context and demographic fields are missing. |
@@ -86,12 +86,12 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 61 | cardio-chest-pain | not_applicable_with_proof | Tests failed to detect unselected investigation insertion. |
 | 62 | cardio-chest-pain | partially_fixed | General chest-pain workflows were duplicated or poorly differentiated. |
 | 63 | cardio-chest-pain | partially_fixed | Active chest-pain scope did not clearly match acute assessment. |
-| 64 | cardio-chest-pain | still_present | Age, sex and encounter setting were absent. |
+| 64 | cardio-chest-pain | partially_fixed | Age, sex and encounter setting were absent. |
 | 65 | cardio-chest-pain | partially_fixed | Onset, location, radiation, severity, PMH, medications, allergies and risk context were hidden or absent. |
-| 66 | cardio-chest-pain | still_present | Acute distress, speaking ability and disposition controls were missing. |
+| 66 | cardio-chest-pain | partially_fixed | Acute distress, speaking ability and disposition controls were missing. |
 | 67 | cardio-chest-pain | partially_fixed | Important symptom components were combined rather than separate. |
 | 68 | cardio-chest-pain | partially_fixed | Associated respiratory symptoms were combined. |
-| 69 | cardio-chest-pain | still_present | Limb swelling lacked laterality. |
+| 69 | cardio-chest-pain | partially_fixed | Limb swelling lacked laterality. |
 | 70 | cardio-chest-pain | partially_fixed | VTE, immobilisation, pregnancy and surgery risks were missing. |
 | 71 | cardio-chest-pain | partially_fixed | ECG, imaging and laboratory result values were absent. |
 | 72 | cardio-chest-pain | still_present | Oxygen or immediate-support plan fields were missing. |
@@ -102,7 +102,7 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 77 | cardio-chest-pain | partially_fixed | Examination findings were discarded. |
 | 78 | cardio-chest-pain | partially_fixed | Investigation results were discarded. |
 | 79 | cardio-chest-pain | still_present | Hypoxaemia could be recorded without a usable escalation pathway. |
-| 80 | cardio-chest-pain | still_present | Disposition was absent. |
+| 80 | cardio-chest-pain | partially_fixed | Disposition was absent. |
 | 81 | cardio-chest-pain | partially_fixed | Free-text history was duplicated by chips. |
 | 82 | cardio-chest-pain | still_present | Administrative plan filler appeared in final SOAP. |
 | 83 | gp-fever-urti | partially_fixed | Acute fever workflow scope was mixed with unrelated conditions. |
@@ -114,7 +114,7 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 89 | gp-fever-urti | partially_fixed | Important examination findings were not preserved. |
 | 90 | gp-fever-urti | still_present | Focused examination was not granular. |
 | 91 | gp-fever-urti | partially_fixed | Pregnancy, urine, blood and imaging results could not be recorded. |
-| 92 | gp-fever-urti | still_present | Differential, escalation and disposition were absent. |
+| 92 | gp-fever-urti | partially_fixed | Differential, escalation and disposition were absent. |
 | 93 | gp-fever-urti | still_present | Advice and plan concepts were duplicated. |
 | 94 | gp-fever-urti | partially_fixed | Medication status replaced real medication documentation. |
 | 95 | gp-fever-urti | not_applicable_with_proof | Unselected Advanced plan options could enter SOAP. |
@@ -123,7 +123,7 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 98 | gp-fever-urti | still_present | Generic advice could contradict the clinician’s plan. |
 | 99 | gp-fever-urti | partially_fixed | Routine hydration or diet advice could appear in inappropriate acute cases. |
 | 100 | gp-fever-urti | not_applicable_with_proof | Tests did not verify that every unselected option remained absent. |
-| 101 | gp-fever-urti | still_present | Important examination localisation and severity were discarded. |
+| 101 | gp-fever-urti | partially_fixed | Important examination localisation and severity were discarded. |
 | 102 | gp-fever-urti | partially_fixed | Decisive investigation results were discarded. |
 | 103 | gp-fever-urti | partially_fixed | Fever workflow lacked demographic and pregnancy context. |
 | 104 | gp-fever-urti | partially_fixed | Fever onset and severity were not adequately represented. |
@@ -133,8 +133,8 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 108 | gp-fever-urti | partially_fixed | Neurological examination could be reduced to status only. |
 | 109 | gp-fever-urti | still_present | Important focused examination fields could exist only in Quick or hidden layouts. |
 | 110 | gp-fever-urti | still_present | Imaging and laboratory values were absent. |
-| 111 | gp-fever-urti | still_present | Differential and disposition were missing. |
-| 112 | gp-fever-urti | still_present | Medication details were unavailable. |
+| 111 | gp-fever-urti | partially_fixed | Differential and disposition were missing. |
+| 112 | gp-fever-urti | partially_fixed | Medication details were unavailable. |
 | 113 | gp-fever-urti | still_present | Contradictions could coexist. |
 | 114 | gp-fever-urti | still_present | Abnormal vital values could disappear from generated SOAP. |
 | 115 | gp-fever-urti | partially_fixed | Actual neurological findings could be discarded. |
@@ -152,9 +152,9 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 127 | ent-recurrent-tonsillitis | still_present | Actual vital-sign inputs were absent. |
 | 128 | ent-recurrent-tonsillitis | partially_fixed | Tonsil, uvula, lymph-node and hydration findings were not granular. |
 | 129 | ent-recurrent-tonsillitis | already_fixed_and_reproduced | Examination controls recorded documentation status only. |
-| 130 | ent-recurrent-tonsillitis | still_present | Medication and allergy fields were absent. |
-| 131 | ent-recurrent-tonsillitis | still_present | Actual investigation results were unavailable. |
-| 132 | ent-recurrent-tonsillitis | still_present | Workflow-specific medication documentation was absent. |
+| 130 | ent-recurrent-tonsillitis | partially_fixed | Medication and allergy fields were absent. |
+| 131 | ent-recurrent-tonsillitis | partially_fixed | Actual investigation results were unavailable. |
+| 132 | ent-recurrent-tonsillitis | partially_fixed | Workflow-specific medication documentation was absent. |
 | 133 | ent-recurrent-tonsillitis | already_fixed_and_reproduced | Quick Mode could render an empty relevant-negatives section. |
 | 134 | ent-recurrent-tonsillitis | already_fixed_and_reproduced | Old saved encounters could restore silently. |
 | 135 | ent-recurrent-tonsillitis | not_applicable_with_proof | Unselected investigations could enter SOAP. |
@@ -168,23 +168,23 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 143 | ent-recurrent-tonsillitis | not_applicable_with_proof | Tests failed to detect unselected investigation insertion. |
 | 144 | cardio-dyspnea | partially_fixed | Appropriate GP, respiratory and emergency dyspnoea workflows were inactive. |
 | 145 | cardio-dyspnea | still_present | Active dyspnoea workflow was scoped toward chronic heart failure. |
-| 146 | cardio-dyspnea | still_present | Age, sex and setting were absent. |
-| 147 | cardio-dyspnea | still_present | Onset, severity, PMH, medications, allergies and risks were hidden. |
-| 148 | cardio-dyspnea | still_present | Acute distress, speaking ability and disposition were absent. |
+| 146 | cardio-dyspnea | partially_fixed | Age, sex and setting were absent. |
+| 147 | cardio-dyspnea | partially_fixed | Onset, severity, PMH, medications, allergies and risks were hidden. |
+| 148 | cardio-dyspnea | partially_fixed | Acute distress, speaking ability and disposition were absent. |
 | 149 | cardio-dyspnea | still_present | Orthopnoea and PND were combined. |
 | 150 | cardio-dyspnea | still_present | Cough and wheeze were combined. |
-| 151 | cardio-dyspnea | still_present | Leg swelling lacked laterality. |
+| 151 | cardio-dyspnea | partially_fixed | Leg swelling lacked laterality. |
 | 152 | cardio-dyspnea | partially_fixed | Surgery, immobilisation, pregnancy and VTE history were absent. |
 | 153 | cardio-dyspnea | still_present | Actual ECG, imaging and laboratory values were absent. |
 | 154 | cardio-dyspnea | partially_fixed | Oxygen plan was absent. |
-| 155 | cardio-dyspnea | still_present | Medication and diuretic controls recorded status only. |
+| 155 | cardio-dyspnea | partially_fixed | Medication and diuretic controls recorded status only. |
 | 156 | cardio-dyspnea | still_present | Escalation could be structurally unreachable. |
-| 157 | cardio-dyspnea | still_present | Severity and functional impact were unclear. |
+| 157 | cardio-dyspnea | partially_fixed | Severity and functional impact were unclear. |
 | 158 | cardio-dyspnea | still_present | Combined chips lost specificity. |
 | 159 | cardio-dyspnea | partially_fixed | Examination findings were discarded. |
 | 160 | cardio-dyspnea | partially_fixed | Investigation results were discarded. |
 | 161 | cardio-dyspnea | still_present | Hypoxaemia lacked an explicit escalation pathway. |
-| 162 | cardio-dyspnea | still_present | Disposition was absent. |
+| 162 | cardio-dyspnea | partially_fixed | Disposition was absent. |
 | 163 | cardio-dyspnea | still_present | Free-text history was duplicated by chips. |
 | 164 | cardio-dyspnea | still_present | Administrative plan filler appeared in SOAP. |
 | 165 | gp-abdominal-pain | partially_fixed | Workflow scope mixed acute abdominal pain with gastritis or IBS contexts. |
@@ -196,9 +196,9 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 171 | gp-abdominal-pain | partially_fixed | Guarding and rebound could exist only as Quick prompts. |
 | 172 | gp-abdominal-pain | partially_fixed | Granular abdominal examination findings were absent. |
 | 173 | gp-abdominal-pain | partially_fixed | Pregnancy, urine, blood and imaging results had no value fields. |
-| 174 | gp-abdominal-pain | still_present | Differential and disposition were absent. |
+| 174 | gp-abdominal-pain | partially_fixed | Differential and disposition were absent. |
 | 175 | gp-abdominal-pain | still_present | Analgesia, dietary and return-advice controls were duplicated. |
-| 176 | gp-abdominal-pain | still_present | Medication status replaced actual medication documentation. |
+| 176 | gp-abdominal-pain | partially_fixed | Medication status replaced actual medication documentation. |
 | 177 | gp-abdominal-pain | not_applicable_with_proof | Unselected Advanced plan items could enter SOAP. |
 | 178 | gp-abdominal-pain | still_present | Duplicate concepts were repeated. |
 | 179 | gp-abdominal-pain | already_fixed_and_reproduced | Plan-state isolation was unreliable. |
@@ -206,55 +206,55 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 181 | gp-abdominal-pain | still_present | Routine diet and hydration advice could appear in a possible surgical case. |
 | 182 | gp-abdominal-pain | not_applicable_with_proof | Tests did not verify every unselected option remained absent. |
 | 183 | gp-abdominal-pain | partially_fixed | Guarding, rebound and localisation were discarded. |
-| 184 | gp-abdominal-pain | still_present | Decisive investigation values were discarded. |
+| 184 | gp-abdominal-pain | partially_fixed | Decisive investigation values were discarded. |
 | 185 | gp-headache | partially_fixed | Age, sex, pregnancy and postpartum status were absent. |
 | 186 | gp-headache | partially_fixed | Onset and severity were hidden. |
-| 187 | gp-headache | still_present | First/worst, progression and previous-similar fields were missing. |
+| 187 | gp-headache | partially_fixed | First/worst, progression and previous-similar fields were missing. |
 | 188 | gp-headache | partially_fixed | Trauma, anticoagulation, malignancy and immunosuppression context was absent. |
 | 189 | gp-headache | still_present | Actual BP and vital values were unavailable. |
 | 190 | gp-headache | partially_fixed | Neurological examination was documentation-status only. |
 | 191 | gp-headache | still_present | Fundoscopy could be Quick-only or hidden. |
-| 192 | gp-headache | still_present | Imaging and laboratory results lacked actual values. |
-| 193 | gp-headache | still_present | Differential and disposition were absent. |
-| 194 | gp-headache | still_present | Medication details were unavailable. |
+| 192 | gp-headache | partially_fixed | Imaging and laboratory results lacked actual values. |
+| 193 | gp-headache | partially_fixed | Differential and disposition were absent. |
+| 194 | gp-headache | partially_fixed | Medication details were unavailable. |
 | 195 | gp-headache | already_fixed_and_reproduced | Contradictory findings could coexist. |
 | 196 | gp-headache | still_present | Severe BP values could not appear correctly in SOAP. |
 | 197 | gp-headache | partially_fixed | Actual neurological findings were discarded. |
 | 198 | gp-headache | partially_fixed | Critical normal findings were replaced by generic documentation statements. |
 | 199 | gp-headache | partially_fixed | Emergency-headache output omitted supporting examination findings. |
 | 200 | gp-headache | still_present | Red flags were not rendered as coherent clinical prose. |
-| 201 | gp-headache | still_present | Generic investigation and referral phrases added little value. |
-| 202 | cardio-hypertension-followup | still_present | Diagnosis date and duration were not structured. |
+| 201 | gp-headache | partially_fixed | Generic investigation and referral phrases added little value. |
+| 202 | cardio-hypertension-followup | partially_fixed | Diagnosis date and duration were not structured. |
 | 203 | cardio-hypertension-followup | partially_fixed | Target BP and controlled/uncontrolled classification were absent. |
 | 204 | cardio-hypertension-followup | partially_fixed | Actual home or ambulatory BP readings could not be entered. |
 | 205 | cardio-hypertension-followup | partially_fixed | Medicine names, doses, frequency and recent changes were hidden or absent. |
 | 206 | cardio-hypertension-followup | partially_fixed | Missed-dose pattern, adherence and adverse effects were not structured. |
 | 207 | cardio-hypertension-followup | still_present | NSAID, decongestant and stimulant review was absent. |
-| 208 | cardio-hypertension-followup | still_present | Diet, salt and exercise context was generic. |
+| 208 | cardio-hypertension-followup | partially_fixed | Diet, salt and exercise context was generic. |
 | 209 | cardio-hypertension-followup | still_present | Diabetes, CKD, CVD and stroke history was unstructured. |
 | 210 | cardio-hypertension-followup | partially_fixed | Cardiovascular risk, target-organ damage and secondary-hypertension review were absent. |
 | 211 | cardio-hypertension-followup | partially_fixed | Renal, electrolyte, lipid, ACR and ECG values could not be recorded. |
-| 212 | cardio-hypertension-followup | still_present | Hypertension-specific safety-netting was absent. |
+| 212 | cardio-hypertension-followup | partially_fixed | Hypertension-specific safety-netting was absent. |
 | 213 | cardio-hypertension-followup | still_present | Plan options were administrative statements. |
 | 214 | cardio-hypertension-followup | already_fixed_and_reproduced | Relevant negatives could bind to positive-symptom state. |
 | 215 | cardio-hypertension-followup | already_fixed_and_reproduced | Entered free-text negatives could be overwritten or lost. |
 | 216 | cardio-hypertension-followup | already_fixed_and_reproduced | Cardiovascular negatives were repeated multiple times. |
-| 217 | cardio-hypertension-followup | still_present | Home BP average was not preserved. |
+| 217 | cardio-hypertension-followup | partially_fixed | Home BP average was not preserved. |
 | 218 | cardio-hypertension-followup | still_present | Laboratory results could not distinguish normal and abnormal. |
 | 219 | cardio-hypertension-followup | still_present | Elevated LDL could disappear. |
 | 220 | cardio-hypertension-followup | already_fixed_and_reproduced | Administrative plan phrases were duplicated. |
 | 221 | cardio-hypertension-followup | still_present | Tests did not verify one-to-one free-text field mapping. |
-| 222 | gp-medication-adherence-review | still_present | No active comprehensive diabetes follow-up workflow. |
+| 222 | gp-medication-adherence-review | partially_fixed | No active comprehensive diabetes follow-up workflow. |
 | 223 | gp-medication-adherence-review | partially_fixed | Annual, HbA1c, medication and insulin workflows were inactive. |
 | 224 | gp-medication-adherence-review | still_present | Closest active workflow was a home-glucose-log scaffold. |
-| 225 | gp-medication-adherence-review | still_present | Diabetes type, diagnosis date and duration were absent. |
+| 225 | gp-medication-adherence-review | partially_fixed | Diabetes type, diagnosis date and duration were absent. |
 | 226 | gp-medication-adherence-review | still_present | Actual glucose and HbA1c values could not be entered structurally. |
 | 227 | gp-medication-adherence-review | still_present | Hypoglycaemia was not structured. |
 | 228 | gp-medication-adherence-review | partially_fixed | Medication, insulin, adherence and adverse effects lacked dedicated fields. |
 | 229 | gp-medication-adherence-review | still_present | Diet, carbohydrate, exercise and weight context was generic. |
 | 230 | gp-medication-adherence-review | still_present | Actual BP, weight and BMI values were absent. |
 | 231 | gp-medication-adherence-review | still_present | Diabetic foot, pulse and monofilament findings were absent. |
-| 232 | gp-medication-adherence-review | still_present | Kidney, ACR, lipid, liver and retinal values were unavailable. |
+| 232 | gp-medication-adherence-review | partially_fixed | Kidney, ACR, lipid, liver and retinal values were unavailable. |
 | 233 | gp-medication-adherence-review | still_present | Investigation categories collapsed clinically different results. |
 | 234 | gp-medication-adherence-review | not_applicable_with_proof | Relevant-negatives section could be empty. |
 | 235 | gp-medication-adherence-review | still_present | Workflow-specific plan was replaced by administrative phrases. |
@@ -263,33 +263,33 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 238 | gp-medication-adherence-review | still_present | Hypoglycaemia details lacked fields. |
 | 239 | gp-medication-adherence-review | still_present | Renal, ACR, lipid and retinal results collapsed into generic review. |
 | 240 | gp-medication-adherence-review | still_present | Foot findings were discarded. |
-| 241 | gp-medication-adherence-review | still_present | Control classification existed only as free text. |
+| 241 | gp-medication-adherence-review | partially_fixed | Control classification existed only as free text. |
 | 242 | gp-medication-adherence-review | partially_fixed | Current diabetes regimen was not structured. |
 | 243 | gp-medication-adherence-review | still_present | Symptom ordering was not clinically logical. |
 | 244 | gp-medication-adherence-review | still_present | A generic glucose-log workflow substituted for comprehensive care. |
 | 245 | cardio-anticoagulation-documentation | still_present | No active DOAC-specific workflow. |
 | 246 | cardio-anticoagulation-documentation | partially_fixed | Anticoagulation workflow was limited toward AF/flutter and weak for VTE or mechanical valves. |
 | 247 | cardio-anticoagulation-documentation | partially_fixed | Indication was not rendered. |
-| 248 | cardio-anticoagulation-documentation | still_present | Agent, dose, frequency, start date and duration were absent. |
+| 248 | cardio-anticoagulation-documentation | partially_fixed | Agent, dose, frequency, start date and duration were absent. |
 | 249 | cardio-anticoagulation-documentation | partially_fixed | Adherence, missed doses and double doses were not structured. |
 | 250 | cardio-anticoagulation-documentation | partially_fixed | Dedicated bleeding history was absent. |
-| 251 | cardio-anticoagulation-documentation | still_present | Head injury, falls and intracranial-risk controls were absent. |
-| 252 | cardio-anticoagulation-documentation | still_present | Thrombosis review was unstructured. |
+| 251 | cardio-anticoagulation-documentation | partially_fixed | Head injury, falls and intracranial-risk controls were absent. |
+| 252 | cardio-anticoagulation-documentation | partially_fixed | Thrombosis review was unstructured. |
 | 253 | cardio-anticoagulation-documentation | partially_fixed | NSAID, antiplatelet, interacting-drug and herbal review was absent. |
 | 254 | cardio-anticoagulation-documentation | partially_fixed | Renal, liver, FBC, platelet and INR values were unavailable. |
 | 255 | cardio-anticoagulation-documentation | partially_fixed | Bleeding and stroke-risk scores were absent. |
-| 256 | cardio-anticoagulation-documentation | still_present | Continuation, adjustment and interruption were not structured. |
+| 256 | cardio-anticoagulation-documentation | partially_fixed | Continuation, adjustment and interruption were not structured. |
 | 257 | cardio-anticoagulation-documentation | already_fixed_and_reproduced | Vital values failed because of `vital_signs` versus `vitals`. |
-| 258 | cardio-anticoagulation-documentation | still_present | Follow-up interval was absent. |
+| 258 | cardio-anticoagulation-documentation | partially_fixed | Follow-up interval was absent. |
 | 259 | cardio-anticoagulation-documentation | partially_fixed | Anticoagulation-specific content was replaced by generic statements. |
 | 260 | cardio-anticoagulation-documentation | partially_fixed | Indication, agent, dose and frequency survived only in free text. |
-| 261 | cardio-anticoagulation-documentation | still_present | Missed-dose details were not dedicated fields. |
+| 261 | cardio-anticoagulation-documentation | partially_fixed | Missed-dose details were not dedicated fields. |
 | 262 | cardio-anticoagulation-documentation | partially_fixed | Minor bruising and major bleeding were unstructured. |
 | 263 | cardio-anticoagulation-documentation | partially_fixed | ECG, FBC, platelet, renal and liver results collapsed generically. |
 | 264 | cardio-anticoagulation-documentation | partially_fixed | Actual vitals and bleeding examination were discarded. |
 | 265 | cardio-anticoagulation-documentation | still_present | Normal and abnormal laboratories were indistinguishable. |
-| 266 | cardio-anticoagulation-documentation | still_present | Interaction review lacked structured controls. |
-| 267 | cardio-anticoagulation-documentation | still_present | Follow-up interval survived only as free text. |
+| 266 | cardio-anticoagulation-documentation | partially_fixed | Interaction review lacked structured controls. |
+| 267 | cardio-anticoagulation-documentation | partially_fixed | Follow-up interval survived only as free text. |
 | 268 | cardio-anticoagulation-documentation | partially_fixed | Stroke and bleeding scores were absent. |
 | 269 | cardio-anticoagulation-documentation | still_present | Administrative phrases replaced clinically meaningful content. |
 | 270 | gp-medication-review | partially_fixed | Broad medication-review workflow did not render a structured medication list. |
@@ -297,38 +297,38 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 272 | gp-medication-review | still_present | Prescription, OTC, supplements and herbal medicines were not separated. |
 | 273 | gp-medication-review | partially_fixed | Allergy and reaction were hidden. |
 | 274 | gp-medication-review | partially_fixed | Adherence was generic. |
-| 275 | gp-medication-review | still_present | Missed doses, affordability, access, swallowing and administration difficulty were absent. |
+| 275 | gp-medication-review | partially_fixed | Missed doses, affordability, access, swallowing and administration difficulty were absent. |
 | 276 | gp-medication-review | partially_fixed | Adverse effects were not linked to a medicine. |
 | 277 | gp-medication-review | still_present | Interactions, duplication and contraindications were absent. |
 | 278 | gp-medication-review | still_present | Continue, adjust, switch and stop decisions were not structured. |
-| 279 | gp-medication-review | still_present | Actual monitoring and laboratory values were absent. |
+| 279 | gp-medication-review | partially_fixed | Actual monitoring and laboratory values were absent. |
 | 280 | gp-medication-review | partially_fixed | Vital signs and adverse-effect examination were documentation-only. |
 | 281 | gp-medication-review | already_fixed_and_reproduced | Concepts were duplicated across sections. |
-| 282 | gp-medication-review | still_present | Exact follow-up interval was absent. |
+| 282 | gp-medication-review | partially_fixed | Exact follow-up interval was absent. |
 | 283 | gp-medication-review | partially_fixed | Complete pre-review medication list was unavailable. |
-| 284 | gp-medication-review | still_present | Current, changed and discontinued medicines were not separated. |
+| 284 | gp-medication-review | partially_fixed | Current, changed and discontinued medicines were not separated. |
 | 285 | gp-medication-review | still_present | Decisions survived only in clinician prose. |
 | 286 | gp-medication-review | still_present | OTC and prescription medicines were indistinguishable. |
 | 287 | gp-medication-review | partially_fixed | Adverse effects were not linked to the responsible agent. |
 | 288 | gp-medication-review | still_present | Renal, electrolyte, liver and glycaemic results were discarded. |
 | 289 | gp-medication-review | still_present | Vital signs and ankle-oedema findings were lost. |
 | 290 | gp-medication-review | already_fixed_and_reproduced | Medication review, adherence and side effects were repeated across SOAP. |
-| 291 | gp-medication-review | still_present | “Reconciliation completed” had no auditable table. |
+| 291 | gp-medication-review | partially_fixed | “Reconciliation completed” had no auditable table. |
 | 292 | gp-medication-review | partially_fixed | No before-versus-after medication regimen existed. |
 | 293 | cardio-ecg-result-review | still_present | Two active ECG workflows had unclear differentiation. |
 | 294 | cardio-ecg-result-review | still_present | Compiled ECG fields were not bound to the deployed editor. |
-| 295 | cardio-ecg-result-review | still_present | No dedicated ECG date or source field. |
+| 295 | cardio-ecg-result-review | partially_fixed | No dedicated ECG date or source field. |
 | 296 | cardio-ecg-result-review | partially_fixed | No structured rhythm, rate, PR, QRS, QT/QTc or axis fields. |
-| 297 | cardio-ecg-result-review | still_present | No ST, T-wave, Q-wave, hypertrophy or conduction controls. |
+| 297 | cardio-ecg-result-review | partially_fixed | No ST, T-wave, Q-wave, hypertrophy or conduction controls. |
 | 298 | cardio-ecg-result-review | still_present | No technical-quality field. |
-| 299 | cardio-ecg-result-review | still_present | Automated and clinician interpretation were not separated. |
+| 299 | cardio-ecg-result-review | partially_fixed | Automated and clinician interpretation were not separated. |
 | 300 | cardio-ecg-result-review | partially_fixed | Prior ECG comparison existed only in hidden compiled data. |
 | 301 | cardio-ecg-result-review | still_present | No normal-versus-abnormal ECG classification. |
-| 302 | cardio-ecg-result-review | still_present | No actual BP, pulse or cardiovascular examination fields. |
+| 302 | cardio-ecg-result-review | partially_fixed | No actual BP, pulse or cardiovascular examination fields. |
 | 303 | cardio-ecg-result-review | partially_fixed | Electrolyte and troponin values could not be stored. |
-| 304 | cardio-ecg-result-review | still_present | Repeat ECG, further testing and medication decisions were free text only. |
+| 304 | cardio-ecg-result-review | partially_fixed | Repeat ECG, further testing and medication decisions were free text only. |
 | 305 | cardio-ecg-result-review | partially_fixed | Smoking and alcohol displaced ECG-specific fields. |
-| 306 | cardio-ecg-result-review | still_present | Follow-up interval could not be structured. |
+| 306 | cardio-ecg-result-review | partially_fixed | Follow-up interval could not be structured. |
 | 307 | cardio-ecg-result-review | partially_fixed | ECG-result workflow could not store the actual ECG result. |
 | 308 | cardio-ecg-result-review | partially_fixed | Rhythm and ventricular rate survived only if repeated in Assessment. |
 | 309 | cardio-ecg-result-review | partially_fixed | PR, QRS, QT/QTc, axis and ST/T findings were discarded. |
@@ -336,23 +336,23 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 311 | cardio-ecg-result-review | partially_fixed | New atrial fibrillation could not be explicitly represented from result data. |
 | 312 | cardio-ecg-result-review | partially_fixed | Electrolytes and troponin collapsed into generic review statements. |
 | 313 | cardio-ecg-result-review | partially_fixed | Pulse rhythm and haemodynamic findings were discarded. |
-| 314 | cardio-ecg-result-review | still_present | ECG date/source became an administrative chip. |
+| 314 | cardio-ecg-result-review | partially_fixed | ECG date/source became an administrative chip. |
 | 315 | cardio-ecg-result-review | still_present | Generic red-flag categories did not identify the actual concern. |
-| 316 | cardio-ecg-result-review | still_present | Generated control ordering was unstable or clinically unintuitive. |
+| 316 | cardio-ecg-result-review | partially_fixed | Generated control ordering was unstable or clinically unintuitive. |
 | 317 | cardio-ecg-result-review | already_fixed_and_reproduced | Tests did not verify preservation of each ECG value and comparison. |
-| 318 | ed-pediatric-fever-documentation | still_present | Only active outpatient workflow was labelled follow-up rather than acute assessment. |
-| 319 | ed-pediatric-fever-documentation | still_present | Population metadata included unrelated adult, allergy, asthma, dermatitis and travel populations. |
+| 318 | ed-pediatric-fever-documentation | partially_fixed | Only active outpatient workflow was labelled follow-up rather than acute assessment. |
+| 319 | ed-pediatric-fever-documentation | partially_fixed | Population metadata included unrelated adult, allergy, asthma, dermatitis and travel populations. |
 | 320 | ed-pediatric-fever-documentation | partially_fixed | No age, age-unit or date-of-birth field. |
-| 321 | ed-pediatric-fever-documentation | still_present | No under-three-month fever logic. |
+| 321 | ed-pediatric-fever-documentation | partially_fixed | No under-three-month fever logic. |
 | 322 | ed-pediatric-fever-documentation | partially_fixed | No maximum temperature or temperature-method field. |
 | 323 | ed-pediatric-fever-documentation | partially_fixed | No actual HR, RR, oxygen saturation, weight or capillary-refill fields. |
 | 324 | ed-pediatric-fever-documentation | partially_fixed | Fluid intake, urine output and wet nappies lacked dedicated controls. |
-| 325 | ed-pediatric-fever-documentation | still_present | Activity, interaction, irritability, lethargy and consolability were not separate. |
+| 325 | ed-pediatric-fever-documentation | partially_fixed | Activity, interaction, irritability, lethargy and consolability were not separate. |
 | 326 | ed-pediatric-fever-documentation | partially_fixed | Non-blanching rash, seizure, neck stiffness and neurological controls were absent. |
 | 327 | ed-pediatric-fever-documentation | partially_fixed | Respiratory, throat, ear, abdominal, neurological and rash examinations were not detailed. |
-| 328 | ed-pediatric-fever-documentation | still_present | No paediatric traffic-light or severity classification. |
+| 328 | ed-pediatric-fever-documentation | partially_fixed | No paediatric traffic-light or severity classification. |
 | 329 | ed-pediatric-fever-documentation | still_present | No suspected source or sepsis-concern field. |
-| 330 | ed-pediatric-fever-documentation | still_present | Immunisation, chronic disease, medication and allergy fields were hidden. |
+| 330 | ed-pediatric-fever-documentation | partially_fixed | Immunisation, chronic disease, medication and allergy fields were hidden. |
 | 331 | ed-pediatric-fever-documentation | not_applicable_with_proof | Select fields rendered as unrestricted text inputs. |
 | 332 | ed-pediatric-fever-documentation | partially_fixed | Laboratory, urine, glucose and imaging values were unavailable. |
 | 333 | ed-pediatric-fever-documentation | still_present | Parent safety-netting was generic. |
@@ -368,8 +368,8 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 343 | ed-pediatric-fever-documentation | already_fixed_and_reproduced | Present and absent findings were mixed within a selected phrase. |
 | 344 | ed-pediatric-fever-documentation | partially_fixed | Tests did not verify age-triggered safety behavior. |
 | 345 | ed-pediatric-fever-documentation | partially_fixed | Objective output was insufficient to support emergency escalation. |
-| 346 | ed-observation-unit-review | still_present | No active general adult emergency-clerking workflow. |
-| 347 | ed-observation-unit-review | still_present | Closest active workflow was observation-unit review. |
+| 346 | ed-observation-unit-review | partially_fixed | No active general adult emergency-clerking workflow. |
+| 347 | ed-observation-unit-review | partially_fixed | Closest active workflow was observation-unit review. |
 | 348 | ed-observation-unit-review | partially_fixed | ED triage, admission, transfer, referral, handover and discharge workflows were inactive. |
 | 349 | ed-observation-unit-review | partially_fixed | Arrival mode, history source, presentation time and triage category were absent. |
 | 350 | ed-observation-unit-review | partially_fixed | No structured ABCDE assessment. |
@@ -380,28 +380,28 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | 355 | ed-observation-unit-review | still_present | Focused system examination fields were absent. |
 | 356 | ed-observation-unit-review | partially_fixed | ECG, blood, gas, urine, pregnancy and imaging results lacked value entry. |
 | 357 | ed-observation-unit-review | still_present | No sepsis screen or NEWS2 structure. |
-| 358 | ed-observation-unit-review | still_present | No structured immediate-treatment section. |
-| 359 | ed-observation-unit-review | still_present | Medication name, dose, route and administration time were absent. |
+| 358 | ed-observation-unit-review | partially_fixed | No structured immediate-treatment section. |
+| 359 | ed-observation-unit-review | partially_fixed | Medication name, dose, route and administration time were absent. |
 | 360 | ed-observation-unit-review | partially_fixed | Oxygen, IV access, fluids and monitoring were absent. |
-| 361 | ed-observation-unit-review | still_present | Repeat observations and response-to-treatment were absent. |
+| 361 | ed-observation-unit-review | partially_fixed | Repeat observations and response-to-treatment were absent. |
 | 362 | ed-observation-unit-review | partially_fixed | Admission, discharge, transfer, observation and destination controls were absent. |
-| 363 | ed-observation-unit-review | still_present | Escalation and disposition were combined inside a generic chip. |
-| 364 | ed-observation-unit-review | still_present | Referral information was outside SOAP despite being central to disposition. |
-| 365 | ed-observation-unit-review | still_present | Compiled emergency fields were not rendered directly. |
+| 363 | ed-observation-unit-review | partially_fixed | Escalation and disposition were combined inside a generic chip. |
+| 364 | ed-observation-unit-review | partially_fixed | Referral information was outside SOAP despite being central to disposition. |
+| 365 | ed-observation-unit-review | partially_fixed | Compiled emergency fields were not rendered directly. |
 | 366 | ed-observation-unit-review | partially_fixed | Objective could not document an actual ABCDE assessment. |
-| 367 | ed-observation-unit-review | still_present | Initial emergency observations were discarded. |
-| 368 | ed-observation-unit-review | still_present | Repeat observations survived only when repeated in Plan. |
-| 369 | ed-observation-unit-review | still_present | Investigation findings collapsed into generic statements. |
-| 370 | ed-observation-unit-review | still_present | Treatments, treatment response and disposition survived only as free text. |
-| PA-01 | surg-bariatric-pre-operative-documentation | still_present | No active broad adult pre-anaesthetic workflow. |
-| PA-02 | surg-bariatric-pre-operative-documentation | still_present | Actual pre-operative anaesthesia workflow inactive. |
+| 367 | ed-observation-unit-review | partially_fixed | Initial emergency observations were discarded. |
+| 368 | ed-observation-unit-review | partially_fixed | Repeat observations survived only when repeated in Plan. |
+| 369 | ed-observation-unit-review | partially_fixed | Investigation findings collapsed into generic statements. |
+| 370 | ed-observation-unit-review | partially_fixed | Treatments, treatment response and disposition survived only as free text. |
+| PA-01 | surg-bariatric-pre-operative-documentation | partially_fixed | No active broad adult pre-anaesthetic workflow. |
+| PA-02 | surg-bariatric-pre-operative-documentation | partially_fixed | Actual pre-operative anaesthesia workflow inactive. |
 | PA-03 | surg-bariatric-pre-operative-documentation | still_present | Bariatric General Surgery workflow used as substitute. |
-| PA-04 | surg-bariatric-pre-operative-documentation | still_present | Planned procedure and urgency not structured. |
+| PA-04 | surg-bariatric-pre-operative-documentation | partially_fixed | Planned procedure and urgency not structured. |
 | PA-05 | surg-bariatric-pre-operative-documentation | partially_fixed | Previous anaesthesia and complications not structured. |
 | PA-06 | surg-bariatric-pre-operative-documentation | partially_fixed | PONV survived only in Assessment. |
 | PA-07 | surg-bariatric-pre-operative-documentation | partially_fixed | Difficult intubation, awareness and malignant-hyperthermia history lost. |
 | PA-08 | surg-bariatric-pre-operative-documentation | partially_fixed | Baseline medication and allergy lists absent. |
-| PA-09 | surg-bariatric-pre-operative-documentation | still_present | Fasting status and last oral-intake times unavailable. |
+| PA-09 | surg-bariatric-pre-operative-documentation | partially_fixed | Fasting status and last oral-intake times unavailable. |
 | PA-10 | surg-bariatric-pre-operative-documentation | still_present | Airway findings discarded. |
 | PA-11 | surg-bariatric-pre-operative-documentation | partially_fixed | Height, weight, BMI and observations discarded. |
 | PA-12 | surg-bariatric-pre-operative-documentation | still_present | Cardiorespiratory examination replaced by generic statements. |
@@ -409,29 +409,29 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | PA-14 | surg-bariatric-pre-operative-documentation | still_present | ASA existed only as prose. |
 | PA-15 | surg-bariatric-pre-operative-documentation | partially_fixed | Anaesthetic technique and airway strategy lacked structured links. |
 | PA-16 | surg-bariatric-pre-operative-documentation | still_present | Analgesia and antiemetic plans lacked dedicated controls. |
-| PA-17 | surg-bariatric-pre-operative-documentation | still_present | Medication-withholding decisions were not tied to baseline medicines. |
-| PA-18 | surg-bariatric-pre-operative-documentation | still_present | Postoperative monitoring and destination were not structured. |
+| PA-17 | surg-bariatric-pre-operative-documentation | partially_fixed | Medication-withholding decisions were not tied to baseline medicines. |
+| PA-18 | surg-bariatric-pre-operative-documentation | partially_fixed | Postoperative monitoring and destination were not structured. |
 | PA-19 | surg-bariatric-pre-operative-documentation | partially_fixed | Irrelevant surgical-site prompts replaced anaesthetic fields. |
-| PA-20 | surg-bariatric-pre-operative-documentation | still_present | No active broad procedure-note workflow. |
-| PA-21 | surg-bariatric-pre-operative-documentation | still_present | Only active procedure archetype was stoma-appliance-specific. |
+| PA-20 | surg-bariatric-pre-operative-documentation | partially_fixed | No active broad procedure-note workflow. |
+| PA-21 | surg-bariatric-pre-operative-documentation | partially_fixed | Only active procedure archetype was stoma-appliance-specific. |
 | PA-22 | surg-bariatric-pre-operative-documentation | partially_fixed | ED, ICU and anaesthetic procedure-note workflows inactive. |
-| PA-23 | surg-bariatric-pre-operative-documentation | still_present | No separate procedure-note output. |
-| PA-24 | surg-bariatric-pre-operative-documentation | still_present | Procedure identity, date, time, location, operator and assistant not |
+| PA-23 | surg-bariatric-pre-operative-documentation | partially_fixed | No separate procedure-note output. |
+| PA-24 | surg-bariatric-pre-operative-documentation | partially_fixed | Procedure identity, date, time, location, operator and assistant not |
 | PA-25 | surg-bariatric-pre-operative-documentation | still_present | Identity, site, laterality and time-out not structured. |
-| PA-26 | surg-bariatric-pre-operative-documentation | still_present | Consent reduced to an administrative phrase. |
+| PA-26 | surg-bariatric-pre-operative-documentation | partially_fixed | Consent reduced to an administrative phrase. |
 | PA-27 | surg-bariatric-pre-operative-documentation | partially_fixed | Capacity, interpreter, allergy and anticoagulant review absent. |
 | PA-28 | surg-bariatric-pre-operative-documentation | still_present | Baseline observations unavailable. |
-| PA-29 | surg-bariatric-pre-operative-documentation | still_present | Equipment, sterile preparation and technique not structured. |
+| PA-29 | surg-bariatric-pre-operative-documentation | partially_fixed | Equipment, sterile preparation and technique not structured. |
 | PA-30 | surg-bariatric-pre-operative-documentation | partially_fixed | Local anaesthetic agent, concentration, volume, dose and route not structured. |
 | PA-31 | surg-bariatric-pre-operative-documentation | still_present | Attempts not structured. |
-| PA-32 | surg-bariatric-pre-operative-documentation | still_present | Specimen and destination not structured. |
-| PA-33 | surg-bariatric-pre-operative-documentation | still_present | Blood loss, complications and tolerance not structured. |
-| PA-34 | surg-bariatric-pre-operative-documentation | still_present | Post-procedure observations, haemostasis and dressing not structured. |
-| PA-35 | surg-bariatric-pre-operative-documentation | still_present | Medication administration and response not structured. |
-| PA-36 | surg-bariatric-pre-operative-documentation | still_present | Follow-up and removal/review plan not structured. |
-| PA-37 | surg-bariatric-pre-operative-documentation | still_present | Entire procedure note had to be entered in Plan. |
+| PA-32 | surg-bariatric-pre-operative-documentation | partially_fixed | Specimen and destination not structured. |
+| PA-33 | surg-bariatric-pre-operative-documentation | partially_fixed | Blood loss, complications and tolerance not structured. |
+| PA-34 | surg-bariatric-pre-operative-documentation | partially_fixed | Post-procedure observations, haemostasis and dressing not structured. |
+| PA-35 | surg-bariatric-pre-operative-documentation | partially_fixed | Medication administration and response not structured. |
+| PA-36 | surg-bariatric-pre-operative-documentation | partially_fixed | Follow-up and removal/review plan not structured. |
+| PA-37 | surg-bariatric-pre-operative-documentation | partially_fixed | Entire procedure note had to be entered in Plan. |
 | PA-38 | surg-bariatric-pre-operative-documentation | still_present | Baseline and local examination findings were discarded. |
-| PA-39 | surg-bariatric-pre-operative-documentation | still_present | Post-procedure observations were unstructured. |
+| PA-39 | surg-bariatric-pre-operative-documentation | partially_fixed | Post-procedure observations were unstructured. |
 | PA-40 | surg-bariatric-pre-operative-documentation | still_present | Unrelated stoma phrase entered Subjective. |
 | PA-41 | surg-bariatric-pre-operative-documentation | still_present | Tests did not detect workflow-to-scenario mismatch. |
 | PROC-01 | surg-stoma-appliance-issue-documentation | partially_fixed | No active broad procedure-note workflow. |
@@ -443,16 +443,16 @@ Defects with `still_present` remain truthful limitations of the current generic 
 | PROC-07 | surg-stoma-appliance-issue-documentation | partially_fixed | Consent reduced to an administrative phrase. |
 | PROC-08 | surg-stoma-appliance-issue-documentation | still_present | Capacity, interpreter, allergy and anticoagulant review absent. |
 | PROC-09 | surg-stoma-appliance-issue-documentation | still_present | Baseline observations unavailable. |
-| PROC-10 | surg-stoma-appliance-issue-documentation | still_present | Equipment, sterile preparation and technique not structured. |
-| PROC-11 | surg-stoma-appliance-issue-documentation | still_present | Local anaesthetic agent, concentration, volume, dose and route not structured. |
+| PROC-10 | surg-stoma-appliance-issue-documentation | partially_fixed | Equipment, sterile preparation and technique not structured. |
+| PROC-11 | surg-stoma-appliance-issue-documentation | partially_fixed | Local anaesthetic agent, concentration, volume, dose and route not structured. |
 | PROC-12 | surg-stoma-appliance-issue-documentation | still_present | Attempts not structured. |
 | PROC-13 | surg-stoma-appliance-issue-documentation | still_present | Specimen and destination not structured. |
 | PROC-14 | surg-stoma-appliance-issue-documentation | partially_fixed | Blood loss, complications and tolerance not structured. |
 | PROC-15 | surg-stoma-appliance-issue-documentation | partially_fixed | Post-procedure observations, haemostasis and dressing not structured. |
-| PROC-16 | surg-stoma-appliance-issue-documentation | still_present | Medication administration and response not structured. |
-| PROC-17 | surg-stoma-appliance-issue-documentation | still_present | Follow-up and removal/review plan not structured. |
+| PROC-16 | surg-stoma-appliance-issue-documentation | partially_fixed | Medication administration and response not structured. |
+| PROC-17 | surg-stoma-appliance-issue-documentation | partially_fixed | Follow-up and removal/review plan not structured. |
 | PROC-18 | surg-stoma-appliance-issue-documentation | partially_fixed | Entire procedure note had to be entered in Plan. |
-| PROC-19 | surg-stoma-appliance-issue-documentation | still_present | Baseline and local examination findings were discarded. |
+| PROC-19 | surg-stoma-appliance-issue-documentation | partially_fixed | Baseline and local examination findings were discarded. |
 | PROC-20 | surg-stoma-appliance-issue-documentation | partially_fixed | Post-procedure observations were unstructured. |
-| PROC-21 | surg-stoma-appliance-issue-documentation | still_present | Unrelated stoma phrase entered Subjective. |
+| PROC-21 | surg-stoma-appliance-issue-documentation | partially_fixed | Unrelated stoma phrase entered Subjective. |
 | PROC-22 | surg-stoma-appliance-issue-documentation | still_present | Tests did not detect workflow-to-scenario mismatch. |

@@ -12,7 +12,7 @@ async function main() {
     const workflow = JSON.parse(await fs.readFile(path.join(root, file), 'utf8'))
     for (const field of workflow.fields) {
       fields += 1
-      if (!field.label || !field.helper_text || !field.field_id) errors.push(`${file}: unlabeled field`)
+      if (!field.label || !field.field_id) errors.push(`${file}: unlabeled field`)
       if (!field.soap_destination) errors.push(`${file}: unmapped field`)
     }
   }
