@@ -36,11 +36,11 @@ Each remains in the inactive inventory with its exact gap, evaluated organisatio
 
 ## Source acquisition and reconciliation
 
-- Family searches issued: 10 family strategies, 64 source-document searches.
-- Official pages opened: 64.
-- Guideline documents located: 64.
-- Documents downloaded: 64 (existing registered corpus copies).
-- Documents extracted: 64 or exact registered locators available.
+- Family searches issued: 10 family strategies, 80 source-document searches.
+- Official pages opened: 80.
+- Guideline documents located: 80.
+- Documents downloaded: 80 (existing registered corpus copies).
+- Documents extracted: 80 or exact registered locators available.
 - Source registry before/after: 238 / 238.
 - Newly accepted sources: 0.
 - Accepted existing sources: 64 unique sources.
