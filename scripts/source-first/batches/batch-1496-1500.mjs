@@ -1,4 +1,5 @@
 import { evidenceWorkflow, noAuthoritativeWorkflow as baseNoAuthoritativeWorkflow } from './authoredBatchSupport.mjs'
+import { wave11SourceDefinitions } from '../wave11SourceDefinitions.mjs'
 const section = (section_id, heading, locator, evidence_summary) => ({ section_id, heading, locator, evidence_summary })
 const safetyGap = 'All item-level mappings remain unsupported pending separate clinician review and signed approval.'
 const reviewed = (source_id, source_section_id, relationship) => ({ source_id, source_section_id, relationship })
@@ -116,4 +117,4 @@ const wave5GapSources = [
     ],
   }),
 ]
-export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-1496-1500', description: 'Workflow-specific urology research and targeted Wave-5 gap-closing source expansion; research only.', sources: [targetedExpansionSource, targetedTaxonomySource, targetedNhsSource, ...wave5GapSources], workflows, interruption_reason: 'Source-first research reaches terminal status for all 1,500 workflows after workflow 1500; no next workflow exists.' }
+export default { source_metadata_manifest_ref: 'clinical-expansion-v2/schema/SOURCE_METADATA_REPLAY_MANIFEST.json', batch_id: 'source-first-1496-1500', description: 'Workflow-specific urology research, targeted Wave-5 gap-closing source expansion, and Wave-11 live-source proof sources.', sources: [targetedExpansionSource, targetedTaxonomySource, targetedNhsSource, ...wave5GapSources, ...wave11SourceDefinitions], workflows, interruption_reason: 'Source-first research reaches terminal status for all 1,500 workflows after workflow 1500; no next workflow exists.' }
