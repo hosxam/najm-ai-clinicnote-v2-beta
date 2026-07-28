@@ -3,15 +3,88 @@
   "status": "PASS",
   "pilot_targets": 10,
   "activated": 7,
+  "remaining_inactive": 3,
   "fields_added": 63,
   "selectable_controls_added": 1,
   "contradiction_groups_added": 1,
   "conditional_rules_added": 0,
-  "output_tests": {
-    "workflows": 10,
+  "source_engine": {
+    "test_cases": 4,
+    "capabilities": 10,
+    "real_html_fixture": true,
+    "real_pdf_fixture": true,
+    "passed": 10,
+    "failed": 0
+  },
+  "field_tests": {
+    "active_workflow_schemas": 7,
+    "fields": 63,
+    "unique_field_ids": true,
+    "flat_provenance_complete": true,
     "selected_option_tests": 1,
     "unselected_option_tests": 1,
-    "contradiction_tests": 1,
+    "contradiction_tests": 1
+  },
+  "state_tests": {
+    "pilot_target_fixtures": 10,
+    "active_fixtures": 7,
+    "inactive_fail_closed_fixtures": 3
+  },
+  "output_tests": {
+    "workflows": 10,
+    "soap_outputs": 7,
+    "emr_outputs": 7,
+    "clinician_review_outputs": 7,
     "errors": 0
+  },
+  "full_regression": {
+    "status": "PASS",
+    "commands": {
+      "validate:data": "PASS",
+      "validate:final-beta-manifest": "PASS",
+      "validate:interactive-workflows": "PASS",
+      "validate:advanced-workflow-modes": "PASS",
+      "validate:release-readiness": "PASS",
+      "verify:clinical-data-reproducibility": "PASS",
+      "audit:source-recency": "PASS",
+      "test:all-workflows": "PASS",
+      "test:interactive-soap-all": "PASS",
+      "test:manual-defect-closure-assertions": "PASS",
+      "test:resolution-selectable-controls": "PASS",
+      "test:resolution-contradictions": "PASS",
+      "test:resolution-structured-soap": "PASS",
+      "validate:merge-aliases": "PASS",
+      "validate:retirement": "PASS",
+      "validate:blocked-source": "PASS",
+      "validate:medication-safety": "PASS",
+      "test:source-engine": "PASS",
+      "test:deep-pilot": "PASS",
+      "test:wave9-schemas": "PASS",
+      "lint": "PASS",
+      "build": "PASS"
+    },
+    "baseline_active_workflows": 877,
+    "manual_defect_assertions": 433,
+    "selectable_controls": 127,
+    "contradiction_groups": 111
+  },
+  "lint": {
+    "status": "PASS",
+    "inventory_warnings_before": 223,
+    "inventory_warnings_after": 223,
+    "new_pilot_warnings": 0,
+    "current_raw_warning_count": 225,
+    "current_extra_warnings_are_preexisting": true
+  },
+  "browser_tests": {
+    "status": "PASS",
+    "active_routes": 7,
+    "inactive_routes_fail_closed": 3,
+    "quick_and_advanced": "PASS",
+    "evidence_panels": "PASS",
+    "responsive_desktop_tablet_mobile": "PASS",
+    "console_errors": 0,
+    "failed_requests": 0,
+    "local_filesystem_paths_exposed": false
   }
 }
