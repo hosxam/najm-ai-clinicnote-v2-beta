@@ -107,6 +107,19 @@ function candidateOnlyObject(propertyNames, node) {
     .has(statusProperty.initializer.text)
 }
 
+// Evidence records are derived metadata, not active mapping records.  Require
+// the complete evidence-record shape (pack + statement + record marker +
+// locator) before exempting them; source-free or partial identity objects
+// remain actionable findings.
+function evidenceRecordObject(propertyNames, node) {
+  if (!propertyNames.has('record_type') || !propertyNames.has('evidence_statement_id')
+    || !propertyNames.has('normalised_evidence_pack_id') || !propertyNames.has('source_id')
+    || !(propertyNames.has('exact_locator') || propertyNames.has('locator'))) return false
+  const recordType = node.properties.find((property) => staticPropertyName(property.name) === 'record_type')
+  return Boolean(recordType && ts.isPropertyAssignment(recordType)
+    && ts.isStringLiteralLike(recordType.initializer) && recordType.initializer.text === 'evidence')
+}
+
 export function scanNoCodeGeneratedMappingSource(fileName, sourceText, {
   rootDirectory = ROOT_DIR,
   forceProduction = false,
@@ -278,7 +291,8 @@ export function scanNoCodeGeneratedMappingSource(fileName, sourceText, {
       const names = new Set(node.properties.map((property) => staticPropertyName(property.name)).filter(Boolean))
       const identityCount = IDENTITY_GROUPS.filter((group) => [...group].some((name) => names.has(name))).length
       const supportCount = [...SUPPORT_FIELDS].filter((field) => names.has(field)).length
-      if (!candidateOnlyObject(names, node) && (identityCount >= 3 || (identityCount >= 1 && supportCount >= 2))) {
+      if (!candidateOnlyObject(names, node) && !evidenceRecordObject(names, node)
+        && (identityCount >= 3 || (identityCount >= 1 && supportCount >= 2))) {
         fail(node, 'mapping-shaped production object literal is prohibited; active support must originate in canonical JSON')
       }
       for (const property of node.properties) {

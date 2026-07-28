@@ -36,6 +36,12 @@ test('candidate exemption requires exact proposal schema and no support fields',
   assertGuardRejects(`const proposal={${identity},proposalRationale:'r',populationAssessment:'p',settingAssessment:'s',uaeAssessment:'u',proposalStatus:'candidate_pending_review',supportStatus:'exact_section_supported',origin:'legacy_exact'}`)
 })
 
+test('complete evidence-record metadata is not mistaken for an active mapping', () => {
+  const evidence = `const record={workflow_id:'w',item_id:'i',source_id:'s',normalised_evidence_pack_id:'pack',evidence_statement_id:'statement',record_type:'evidence',exact_locator:{source_id:'s',section_id:'section'}}`
+  assert.deepEqual(scanNoCodeGeneratedMappingSource('scripts/tools/evidence-record.mjs', evidence, { forceProduction: true }), [])
+  assertGuardRejects(`const record={workflow_id:'w',item_id:'i',source_id:'s',evidence_statement_id:'statement',record_type:'evidence'}`)
+})
+
 test('research completion cannot create support and candidate schema remains non-active', () => {
   assert.throws(() => validateResearchBatchMappingContract({ support_groups: [{ item_ids: ['item-a'] }] }), /historical-only/)
   assert.throws(() => validateResearchBatchMappingContract({ mappings: [] }), /mappings is prohibited/)
