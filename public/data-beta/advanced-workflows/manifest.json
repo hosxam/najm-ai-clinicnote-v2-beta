@@ -24,13 +24,13 @@
     "inactive_route_policy": "fail_closed"
   },
   "counts": {
-    "active_workflows": 884,
-    "quick_workflows": 884,
-    "advanced_workflows": 884,
-    "chips": 21531,
-    "advanced_options": 10768
+    "active_workflows": 901,
+    "quick_workflows": 901,
+    "advanced_workflows": 901,
+    "chips": 21525,
+    "advanced_options": 10767
   },
-  "source_manifest_fingerprint": "176c6edaa3fdf104478150e268003908e2c52c36acf928bb5be0ebe89486943f",
+  "source_manifest_fingerprint": "b4a627ea1782d052acdb2833e45830d5a9a42bfe1b86a154b4004f688bde4bd2",
   "workflows": [
     {
       "workflow_id": "anes-airway-plan-documentation-review",
@@ -8511,56 +8511,74 @@
       "schema": {
         "quick": {
           "fields": [
-            "cardio_syncope_follow_up__event_context",
-            "cardio_syncope_follow_up__prodrome",
-            "cardio_syncope_follow_up__injury",
-            "cardio_syncope_follow_up__family_history",
-            "cardio_syncope_follow_up__ecg_result",
-            "cardio_syncope_follow_up__cardiovascular_exam",
-            "cardio_syncope_follow_up__clinician_assessment",
-            "cardio_syncope_follow_up__referral"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 6,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
             "history",
+            "symptoms",
+            "relevant_negatives",
             "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
             "[Relevant negatives]"
           ],
-          "exam_groups": 1,
-          "exam_prompts": 1,
+          "exam_groups": 4,
+          "exam_prompts": 4,
           "investigation_groups": 1,
-          "investigation_options": 0,
+          "investigation_options": 3,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 2,
-          "plan_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -8573,19 +8591,26 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/cardio-syncope-follow-up.json",
-        "evidence_pack": "pilot-pack-cardio-syncope-follow-up"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
+        "chips": 22,
         "quick_fields": 8,
-        "advanced_sections": 4,
-        "advanced_options": 0
+        "advanced_sections": 10,
+        "advanced_options": 11
       }
     },
     {
@@ -12577,56 +12602,74 @@
       "schema": {
         "quick": {
           "fields": [
-            "derm_psoriasis_flare_documentation__flare_history",
-            "derm_psoriasis_flare_documentation__distribution",
-            "derm_psoriasis_flare_documentation__itch_pain",
-            "derm_psoriasis_flare_documentation__joint_symptoms",
-            "derm_psoriasis_flare_documentation__skin_exam",
-            "derm_psoriasis_flare_documentation__severity_assessment",
-            "derm_psoriasis_flare_documentation__management_plan",
-            "derm_psoriasis_flare_documentation__referral"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 6,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
             "history",
+            "symptoms",
+            "relevant_negatives",
             "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
-            "[Relevant negatives]"
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
           ],
-          "exam_groups": 1,
-          "exam_prompts": 1,
-          "investigation_groups": 0,
-          "investigation_options": 0,
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 3,
-          "plan_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -12639,19 +12682,26 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/derm-psoriasis-flare-documentation.json",
-        "evidence_pack": "pilot-pack-derm-psoriasis-flare-documentation"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
+        "chips": 20,
         "quick_fields": 8,
-        "advanced_sections": 4,
-        "advanced_options": 0
+        "advanced_sections": 10,
+        "advanced_options": 11
       }
     },
     {
@@ -15871,55 +15921,74 @@
       "schema": {
         "quick": {
           "fields": [
-            "ed_imaging_result_documentation__study",
-            "ed_imaging_result_documentation__result",
-            "ed_imaging_result_documentation__comparison",
-            "ed_imaging_result_documentation__critical_result",
-            "ed_imaging_result_documentation__clinician_interpretation",
-            "ed_imaging_result_documentation__communication",
-            "ed_imaging_result_documentation__follow_up"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 6,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
             "history",
+            "symptoms",
+            "relevant_negatives",
             "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
-            "[Relevant negatives]"
+            "[Additional history]",
+            "[Clinician interpretation documented]",
+            "[Clinician-entered plan if discussed]",
+            "[Patient questions/concerns]",
+            "[Reason for review]",
+            "[Result source/date]"
           ],
-          "exam_groups": 0,
-          "exam_prompts": 0,
+          "exam_groups": 4,
+          "exam_prompts": 4,
           "investigation_groups": 1,
-          "investigation_options": 0,
+          "investigation_options": 3,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 2,
-          "plan_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -15932,19 +16001,26 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/ed-imaging-result-documentation.json",
-        "evidence_pack": "pilot-pack-ed-imaging-result-documentation"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
-        "quick_fields": 7,
-        "advanced_sections": 4,
-        "advanced_options": 0
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
       }
     },
     {
@@ -17252,6 +17328,116 @@
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/ed-shortness-of-breath-documentation.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 22,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "title": "ED vomiting documentation",
+      "specialty": "Emergency Medicine",
+      "archetype": "emergency_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/ed-vomiting-documentation.json",
         "core_chips": "data/workflow_chips.json",
         "core_history": "data/v4_workflow_history_drafts.json",
         "core_exam": "data/v4_workflow_exam_details.json",
@@ -38547,56 +38733,77 @@
       "schema": {
         "quick": {
           "fields": [
-            "gp_hypertension_followup__blood_pressure",
-            "gp_hypertension_followup__home_monitoring",
-            "gp_hypertension_followup__medication_adherence",
-            "gp_hypertension_followup__adverse_effects",
-            "gp_hypertension_followup__cardiovascular_risk",
-            "gp_hypertension_followup__organ_damage",
-            "gp_hypertension_followup__clinician_assessment",
-            "gp_hypertension_followup__treatment_decision"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 6,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
-            "examination",
             "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
-            "[Relevant negatives]"
+            "[followup context]",
+            "[home bp context]",
+            "[adherence context]",
+            "[lifestyle context]",
+            "[symptoms or concerns]",
+            "[relevant negatives]",
+            "[additional history]"
           ],
-          "exam_groups": 0,
-          "exam_prompts": 0,
+          "exam_groups": 3,
+          "exam_prompts": 11,
           "investigation_groups": 1,
-          "investigation_options": 0,
+          "investigation_options": 4,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 2,
-          "plan_options": 0,
+          "plan_groups": 4,
+          "plan_options": 5,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -38609,19 +38816,26 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/gp-hypertension-followup.json",
-        "evidence_pack": "pilot-pack-gp-hypertension-followup"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
+        "chips": 34,
         "quick_fields": 8,
-        "advanced_sections": 4,
-        "advanced_options": 0
+        "advanced_sections": 10,
+        "advanced_options": 20
       }
     },
     {
@@ -66918,56 +67132,80 @@
       "schema": {
         "quick": {
           "fields": [
-            "peds_cough__age",
-            "peds_cough__cough_duration",
-            "peds_cough__associated_symptoms",
-            "peds_cough__breathing_red_flags",
-            "peds_cough__hydration",
-            "peds_cough__vital_signs",
-            "peds_cough__respiratory_exam",
-            "peds_cough__clinician_assessment"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "peds_cough__breathing_red_flags"
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 9,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
             "history",
+            "symptoms",
+            "relevant_negatives",
             "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "peds_cough__breathing_red_flags"
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
-            "[Relevant negatives]"
+            "[duration]",
+            "[cough character]",
+            "[fever context]",
+            "[breathing context]",
+            "[feeding activity context]",
+            "[parent guardian concern]",
+            "[relevant negatives]",
+            "[additional history]"
           ],
-          "exam_groups": 1,
-          "exam_prompts": 1,
-          "investigation_groups": 0,
-          "investigation_options": 2,
+          "exam_groups": 4,
+          "exam_prompts": 17,
+          "investigation_groups": 2,
+          "investigation_options": 4,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 2,
-          "plan_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -66980,19 +67218,26 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-cough.json",
-        "evidence_pack": "pilot-pack-peds-cough"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
+        "chips": 40,
         "quick_fields": 8,
-        "advanced_sections": 4,
-        "advanced_options": 2
+        "advanced_sections": 10,
+        "advanced_options": 25
       }
     },
     {
@@ -69650,63 +69895,81 @@
       }
     },
     {
-      "workflow_id": "peds-pediatric-asthma-review",
-      "title": "Pediatric asthma review",
-      "specialty": "Pediatrics",
-      "archetype": "paediatric_assessment",
+      "workflow_id": "peds-pediatric-abdominal-pain-follow-up",
+      "title": "Pediatric abdominal pain follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
       "schema": {
         "quick": {
           "fields": [
-            "peds_pediatric_asthma_review__age",
-            "peds_pediatric_asthma_review__symptom_control",
-            "peds_pediatric_asthma_review__exacerbations",
-            "peds_pediatric_asthma_review__adherence",
-            "peds_pediatric_asthma_review__triggers",
-            "peds_pediatric_asthma_review__peak_flow",
-            "peds_pediatric_asthma_review__respiratory_exam",
-            "peds_pediatric_asthma_review__clinician_assessment"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 6,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
             "history",
+            "symptoms",
+            "relevant_negatives",
             "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
             "[Relevant negatives]"
           ],
-          "exam_groups": 1,
-          "exam_prompts": 1,
+          "exam_groups": 4,
+          "exam_prompts": 4,
           "investigation_groups": 1,
-          "investigation_options": 0,
+          "investigation_options": 3,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 2,
-          "plan_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -69719,19 +69982,1786 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-abdominal-pain-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-allergic-rhinitis",
+      "title": "Pediatric allergic rhinitis",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-allergic-rhinitis.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 22,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-allergy-action-plan-documentation",
+      "title": "Pediatric allergy action plan documentation",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-allergy-action-plan-documentation.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 22,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-asthma-review",
+      "title": "Pediatric asthma review",
+      "specialty": "Pediatrics",
+      "archetype": "paediatric_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-asthma-review.json",
-        "evidence_pack": "pilot-pack-peds-pediatric-asthma-review"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
+        "chips": 23,
         "quick_fields": 8,
-        "advanced_sections": 4,
-        "advanced_options": 0
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-constipation",
+      "title": "Pediatric constipation",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-constipation.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 22,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-cough-follow-up",
+      "title": "Pediatric cough follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-cough-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-diarrhea-follow-up",
+      "title": "Pediatric diarrhea follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-diarrhea-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-dizziness",
+      "title": "Pediatric dizziness",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-dizziness.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 22,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-eczema-follow-up",
+      "title": "Pediatric eczema follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-eczema-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "title": "Pediatric headache follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-headache-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-injury-follow-up",
+      "title": "Pediatric injury follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-injury-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-medication-review",
+      "title": "Pediatric medication review",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-medication-review.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-rash-documentation",
+      "title": "Pediatric rash documentation",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Associated symptoms reviewed]",
+            "[Onset/duration]",
+            "[Patient concerns/goals]",
+            "[Relevant negatives]",
+            "[Symptom context]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-rash-documentation.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 22,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "title": "Pediatric result review",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Clinician interpretation documented]",
+            "[Clinician-entered plan if discussed]",
+            "[Patient questions/concerns]",
+            "[Reason for review]",
+            "[Result source/date]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-result-review.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 24,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-vomiting-follow-up",
+      "title": "Pediatric vomiting follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-vomiting-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-wheeze-follow-up",
+      "title": "Pediatric wheeze follow-up",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-wheeze-follow-up.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-wound-review",
+      "title": "Pediatric wound review",
+      "specialty": "Paediatrics",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "suggested_chip_count": 6,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "symptoms",
+            "relevant_negatives",
+            "examination",
+            "vitals",
+            "investigations",
+            "medications",
+            "assessment",
+            "plan",
+            "safety_netting"
+          ],
+          "chip_groups": [
+            "symptoms",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases"
+          ],
+          "history_placeholders": [
+            "[Additional history]",
+            "[Change since last review]",
+            "[Clinician-documented discussion]",
+            "[Current symptoms/concerns]",
+            "[Interval history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 4,
+          "exam_prompts": 4,
+          "investigation_groups": 1,
+          "investigation_options": 3,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 1,
+          "plan_options": 4,
+          "conditional_rules": [
+            {
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "exam groups",
+            "investigation groups",
+            "medication groups",
+            "plan groups"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "medications": "plan",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-wound-review.json",
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
+      },
+      "counts": {
+        "chips": 23,
+        "quick_fields": 8,
+        "advanced_sections": 10,
+        "advanced_options": 11
       }
     },
     {
@@ -93766,56 +95796,80 @@
       "schema": {
         "quick": {
           "fields": [
-            "urgent_wound_care_laceration__mechanism",
-            "urgent_wound_care_laceration__location",
-            "urgent_wound_care_laceration__bleeding_contamination",
-            "urgent_wound_care_laceration__neurovascular_exam",
-            "urgent_wound_care_laceration__wound_findings",
-            "urgent_wound_care_laceration__investigations",
-            "urgent_wound_care_laceration__clinician_assessment",
-            "urgent_wound_care_laceration__disposition"
+            "duration",
+            "additional_history",
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "plan_phrases",
+            "assessment",
+            "plan"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
           ],
-          "suggested_chip_count": 0,
+          "suggested_chip_count": 9,
           "confirmation_required": true,
           "preselected_facts": false
         },
         "advanced": {
           "fields": [
             "history",
+            "symptoms",
+            "relevant_negatives",
             "examination",
+            "vitals",
+            "investigations",
+            "medications",
             "assessment",
-            "plan"
+            "plan",
+            "safety_netting"
           ],
           "chip_groups": [
-            "clinician_confirmed_plan"
+            "symptoms",
+            "relevant_negatives",
+            "exam_findings",
+            "red_flags",
+            "investigations",
+            "plan_phrases",
+            "follow_up"
           ],
           "history_placeholders": [
-            "[Patient-specific history]",
-            "[Relevant negatives]"
+            "[mechanism]",
+            "[time of injury]",
+            "[wound location]",
+            "[wound description]",
+            "[contamination context]",
+            "[tetanus status]",
+            "[relevant negatives]",
+            "[additional context]"
           ],
           "exam_groups": 2,
-          "exam_prompts": 2,
-          "investigation_groups": 1,
-          "investigation_options": 0,
+          "exam_prompts": 6,
+          "investigation_groups": 2,
+          "investigation_options": 3,
           "medication_groups": 0,
           "medication_options": 0,
-          "plan_groups": 2,
-          "plan_options": 0,
+          "plan_groups": 3,
+          "plan_options": 5,
           "conditional_rules": [
             {
-              "when": "clinician-entered red flag or escalation detail",
-              "show": "escalation and disposition detail"
+              "when": "red_flags selected",
+              "show": "clinician-stated escalation detail"
             }
           ],
           "nested_entries": [
             "history fields",
-            "examination groups",
+            "exam groups",
             "investigation groups",
-            "assessment",
-            "plan"
+            "medication groups",
+            "plan groups"
           ],
           "confirmation_required": true,
           "preselected_facts": false
@@ -93828,19 +95882,26 @@
         "examination": "objective",
         "vitals": "objective",
         "investigations": "objective",
+        "medications": "plan",
         "assessment": "assessment",
         "plan": "plan",
         "safety_netting": "plan"
       },
       "provenance": {
         "interactive_workflow": "data-beta/interactive-workflows/workflows/urgent-wound-care-laceration.json",
-        "evidence_pack": "pilot-pack-urgent-wound-care-laceration"
+        "core_chips": "data/workflow_chips.json",
+        "core_history": "data/v4_workflow_history_drafts.json",
+        "core_exam": "data/v4_workflow_exam_details.json",
+        "core_investigations": "data/v4_investigation_options.json",
+        "core_plan": "data/v4_plan_options.json",
+        "core_medications": "data/v4_plan_medication_options.json",
+        "core_presets": "data/speed_presets.json"
       },
       "counts": {
-        "chips": 1,
+        "chips": 39,
         "quick_fields": 8,
-        "advanced_sections": 4,
-        "advanced_options": 0
+        "advanced_sections": 10,
+        "advanced_options": 14
       }
     },
     {
@@ -97610,5 +99671,5 @@
       }
     }
   ],
-  "fingerprint": "f858f8bce3acab128df3546dab7c9b8161b105e66a6b1aae75f979245aeea025"
+  "fingerprint": "8510cd2f861c581bb0de371f123bcf1a14daf6f143d9cb8b947e76dd28de50db"
 }

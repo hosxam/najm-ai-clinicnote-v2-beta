@@ -1,0 +1,561 @@
+{
+  "workflow_id": "ed-vomiting-documentation",
+  "title": "ED vomiting documentation",
+  "specialty": "Emergency Medicine",
+  "archetype": "emergency_assessment",
+  "population": [
+    "People with the documented presentation"
+  ],
+  "settings": [
+    "Clinical assessment"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave11-pack-ed-vomiting-documentation"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__presentation",
+      "label": "Vomiting presentation and course",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "history",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Vomiting presentation and course: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-001"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__presentation",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-assessment",
+              "heading": "5. Recommendation — virtual clinical assessment",
+              "locator": "pages 9–11",
+              "evidence_summary": "Specifies distinction between nausea, vomiting, retching, and regurgitation and records duration, frequency, associated symptoms, intake, and likely causes."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__red_flags",
+      "label": "Emergency red flags reviewed",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "None recorded",
+          "value": "none"
+        },
+        {
+          "label": "Shock or instability",
+          "value": "shock_or_instability"
+        },
+        {
+          "label": "Bilious vomiting",
+          "value": "bilious"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 2,
+      "section": "history",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [
+        [
+          "none",
+          "shock_or_instability",
+          "bilious"
+        ]
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Emergency red flags reviewed: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-002"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__red_flags",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__vital_signs",
+      "label": "Vital signs",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 3,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-003"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__vital_signs",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__focused_exam",
+      "label": "Focused examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Focused examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-004"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__focused_exam",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__investigation_result",
+      "label": "Investigation and actual result",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Investigation and actual result: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-005"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__investigation_result",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-investigations",
+              "heading": "7. Investigations",
+              "locator": "pages 12–13",
+              "evidence_summary": "States that testing is history-directed and lists glucose, blood count, inflammatory markers, electrolytes, stool culture, and urinalysis."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__clinician_assessment",
+      "label": "Clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "Clinician-entered assessment",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 6,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-006"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__clinician_assessment",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__disposition",
+      "label": "Disposition",
+      "field_type": "single_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "Discharge with follow-up",
+          "value": "discharge_follow_up"
+        },
+        {
+          "label": "Escalate or transfer",
+          "value": "escalate_transfer"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": true,
+      "display_order": 7,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [
+        {
+          "when": "ed_vomiting_documentation__red_flags",
+          "operator": "has_any",
+          "values": [
+            "urgent",
+            "shock_or_instability",
+            "bilious",
+            "consider_transfer"
+          ],
+          "action": "show"
+        }
+      ],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Disposition: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-007"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__disposition",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "ed-vomiting-documentation",
+      "field_id": "ed_vomiting_documentation__handover",
+      "label": "Handover or communication",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Handover or communication: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-ed-vomiting-documentation"
+        ],
+        "evidence_statement_ids": [
+          "wave11-ed-vomiting-documentation-statement-008"
+        ],
+        "workflow_id": "ed-vomiting-documentation",
+        "field_id": "ed_vomiting_documentation__handover",
+        "evidence_pack_id": "wave11-pack-ed-vomiting-documentation",
+        "source_ids": [
+          "dha-telehealth-nausea-vomiting-v2-2024"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+            "organisation": "Dubai Health Authority",
+            "document_title": "DHA Telehealth Clinical Guidelines for Virtual Management of Nausea and Vomiting – 08",
+            "exact_section": {
+              "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+              "heading": "2. Scope; 3. Purpose; 4. Applicability",
+              "locator": "page 8",
+              "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+            },
+            "population_qualifier": "People presenting with nausea or vomiting; no precise age range is stated in the applicability section.",
+            "setting_qualifier": "Telehealth services in DHA-licensed health facilities.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-001",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-assessment",
+        "heading": "5. Recommendation — virtual clinical assessment",
+        "locator": "pages 9–11",
+        "evidence_summary": "Specifies distinction between nausea, vomiting, retching, and regurgitation and records duration, frequency, associated symptoms, intake, and likely causes."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-002",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+        "heading": "2. Scope; 3. Purpose; 4. Applicability",
+        "locator": "page 8",
+        "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-003",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+        "heading": "2. Scope; 3. Purpose; 4. Applicability",
+        "locator": "page 8",
+        "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-004",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+        "heading": "2. Scope; 3. Purpose; 4. Applicability",
+        "locator": "page 8",
+        "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-005",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-investigations",
+        "heading": "7. Investigations",
+        "locator": "pages 12–13",
+        "evidence_summary": "States that testing is history-directed and lists glucose, blood count, inflammatory markers, electrolytes, stool culture, and urinalysis."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-006",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+        "heading": "2. Scope; 3. Purpose; 4. Applicability",
+        "locator": "page 8",
+        "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-007",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+        "heading": "2. Scope; 3. Purpose; 4. Applicability",
+        "locator": "page 8",
+        "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-ed-vomiting-documentation-statement-008",
+      "source_id": "dha-telehealth-nausea-vomiting-v2-2024",
+      "official_source_url": "https://dha.gov.ae/uploads/032024/08%20-%20DHA%20Telehealth%20Clinical%20Guidelines%20for%20Virtual%20Management%20of%20Nausea%20and%20Vomiting2024326373.pdf",
+      "locator": {
+        "section_id": "dha-nausea-vomiting-v2-scope-applicability",
+        "heading": "2. Scope; 3. Purpose; 4. Applicability",
+        "locator": "page 8",
+        "evidence_summary": "Defines DHA-licensed telehealth scope and emergency and controlled-medication exclusions."
+      }
+    }
+  ]
+}

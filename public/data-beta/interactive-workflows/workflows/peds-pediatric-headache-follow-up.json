@@ -1,0 +1,545 @@
+{
+  "workflow_id": "peds-pediatric-headache-follow-up",
+  "title": "Pediatric headache follow-up",
+  "specialty": "Paediatrics",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "People with the documented presentation"
+  ],
+  "settings": [
+    "Clinical assessment"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave11-pack-peds-pediatric-headache-follow-up"
+  ],
+  "evidence_statement_count": 8,
+  "fields": [
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__headache_history",
+      "label": "Headache pattern and associated symptoms",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "history",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Headache pattern and associated symptoms: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-001"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__headache_history",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-headache-assessment-red-flags",
+              "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+              "locator": "recommendations 1.1.1–1.1.4",
+              "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__red_flags",
+      "label": "Headache red flags reviewed",
+      "field_type": "multi_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "None recorded",
+          "value": "none"
+        },
+        {
+          "label": "Sudden or worst headache",
+          "value": "sudden_or_worst"
+        },
+        {
+          "label": "Neurological deficit",
+          "value": "neurological_deficit"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 2,
+      "section": "history",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [
+        [
+          "none",
+          "sudden_or_worst",
+          "neurological_deficit"
+        ]
+      ],
+      "soap_destination": "subjective",
+      "note_template": "Headache red flags reviewed: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-002"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__red_flags",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-headache-assessment-red-flags",
+              "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+              "locator": "recommendations 1.1.1–1.1.4",
+              "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__vital_signs",
+      "label": "Vital signs",
+      "field_type": "vital_sign",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 3,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Vital signs: {{value}}",
+      "value_formatter": "vital_sign",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-003"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__vital_signs",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-headache-assessment-red-flags",
+              "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+              "locator": "recommendations 1.1.1–1.1.4",
+              "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__neurological_exam",
+      "label": "Neurological examination findings",
+      "field_type": "examination_finding",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Neurological examination findings: {{value}}",
+      "value_formatter": "examination_finding",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-004"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__neurological_exam",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-headache-assessment-red-flags",
+              "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+              "locator": "recommendations 1.1.1–1.1.4",
+              "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__medication_history",
+      "label": "Analgesic and medication history",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 5,
+      "section": "history",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Analgesic and medication history: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-005"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__medication_history",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-headache-assessment-red-flags",
+              "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+              "locator": "recommendations 1.1.1–1.1.4",
+              "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__clinician_assessment",
+      "label": "Clinician assessment",
+      "field_type": "assessment_entry",
+      "placeholder": "Clinician-entered assessment",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 6,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician assessment: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-006"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__clinician_assessment",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-diary-referral-review",
+              "heading": "Recommendations 1.3.1–1.3.6 — diary, reassessment, referral, and information",
+              "locator": "recommendations 1.3.1–1.3.6",
+              "evidence_summary": "Supports recording headache frequency, duration, severity, intervention effectiveness, impact, and clinician-led further investigation or referral when red flags develop."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__plan",
+      "label": "Clinician plan",
+      "field_type": "plan_entry",
+      "placeholder": "Select or enter the clinician-confirmed plan",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Clinician plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-007"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__plan",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-diary-referral-review",
+              "heading": "Recommendations 1.3.1–1.3.6 — diary, reassessment, referral, and information",
+              "locator": "recommendations 1.3.1–1.3.6",
+              "evidence_summary": "Supports recording headache frequency, duration, severity, intervention effectiveness, impact, and clinician-led further investigation or referral when red flags develop."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-headache-follow-up",
+      "field_id": "peds_pediatric_headache_follow_up__safety_netting",
+      "label": "Safety-netting",
+      "field_type": "safety_netting_selection",
+      "placeholder": "Select or enter the clinician-confirmed plan",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "Earlier review advice documented",
+          "value": "earlier_review_advice_documented"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": true,
+      "display_order": 8,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Safety-netting: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-headache-follow-up"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-headache-follow-up-statement-008"
+        ],
+        "workflow_id": "peds-pediatric-headache-follow-up",
+        "field_id": "peds_pediatric_headache_follow_up__safety_netting",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-headache-follow-up",
+        "source_ids": [
+          "nice-headaches-cg150-2025"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "nice-headaches-cg150-2025",
+            "organisation": "National Institute for Health and Care Excellence",
+            "document_title": "Headaches in over 12s: diagnosis and management",
+            "exact_section": {
+              "section_id": "nice-cg150-headache-assessment-red-flags",
+              "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+              "locator": "recommendations 1.1.1–1.1.4",
+              "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+            },
+            "population_qualifier": "People aged 12 years and over with headache disorders, including migraine.",
+            "setting_qualifier": "Primary and specialist assessment and follow-up.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-001",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-headache-assessment-red-flags",
+        "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+        "locator": "recommendations 1.1.1–1.1.4",
+        "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-002",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-headache-assessment-red-flags",
+        "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+        "locator": "recommendations 1.1.1–1.1.4",
+        "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-003",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-headache-assessment-red-flags",
+        "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+        "locator": "recommendations 1.1.1–1.1.4",
+        "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-004",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-headache-assessment-red-flags",
+        "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+        "locator": "recommendations 1.1.1–1.1.4",
+        "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-005",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-headache-assessment-red-flags",
+        "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+        "locator": "recommendations 1.1.1–1.1.4",
+        "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-006",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-diary-referral-review",
+        "heading": "Recommendations 1.3.1–1.3.6 — diary, reassessment, referral, and information",
+        "locator": "recommendations 1.3.1–1.3.6",
+        "evidence_summary": "Supports recording headache frequency, duration, severity, intervention effectiveness, impact, and clinician-led further investigation or referral when red flags develop."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-007",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-diary-referral-review",
+        "heading": "Recommendations 1.3.1–1.3.6 — diary, reassessment, referral, and information",
+        "locator": "recommendations 1.3.1–1.3.6",
+        "evidence_summary": "Supports recording headache frequency, duration, severity, intervention effectiveness, impact, and clinician-led further investigation or referral when red flags develop."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-headache-follow-up-statement-008",
+      "source_id": "nice-headaches-cg150-2025",
+      "official_source_url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "locator": {
+        "section_id": "nice-cg150-headache-assessment-red-flags",
+        "heading": "Recommendations 1.1.1–1.1.4 — assessment, red flags, and headache diary",
+        "locator": "recommendations 1.1.1–1.1.4",
+        "evidence_summary": "Supports sudden onset, neurological deficit, fever, trauma, pattern change, unexplained vomiting, further investigation or referral, and structured headache-diary fields."
+      }
+    }
+  ]
+}

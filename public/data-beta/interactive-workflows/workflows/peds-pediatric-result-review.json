@@ -1,0 +1,468 @@
+{
+  "workflow_id": "peds-pediatric-result-review",
+  "title": "Pediatric result review",
+  "specialty": "Paediatrics",
+  "archetype": "acute_symptom_assessment",
+  "population": [
+    "People with the documented presentation"
+  ],
+  "settings": [
+    "Clinical assessment"
+  ],
+  "final_status": "activated_with_complete_authoritative_evidence",
+  "evidence_pack_ids": [
+    "wave11-pack-peds-pediatric-result-review"
+  ],
+  "evidence_statement_count": 7,
+  "fields": [
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__result_identity",
+      "label": "Investigation identity and date",
+      "field_type": "text",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 1,
+      "section": "history",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "subjective",
+      "note_template": "Investigation identity and date: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-001"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__result_identity",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-governance-record",
+              "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+              "locator": "PDF pages 2–3",
+              "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__result_values",
+      "label": "Actual result values and units",
+      "field_type": "investigation_result",
+      "placeholder": "Enter the actual result and units",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 2,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Actual result values and units: {{value}}",
+      "value_formatter": "investigation_result",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-002"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__result_values",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-governance-record",
+              "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+              "locator": "PDF pages 2–3",
+              "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__comparison",
+      "label": "Comparison with prior result",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 3,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Comparison with prior result: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-003"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__comparison",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-governance-record",
+              "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+              "locator": "PDF pages 2–3",
+              "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__critical_finding",
+      "label": "Critical or urgent finding",
+      "field_type": "single_select",
+      "placeholder": "",
+      "options": [
+        {
+          "label": "Not recorded",
+          "value": "not_recorded"
+        },
+        {
+          "label": "No critical finding recorded",
+          "value": "none"
+        },
+        {
+          "label": "Urgent finding recorded",
+          "value": "urgent"
+        }
+      ],
+      "free_text_allowed": false,
+      "required": false,
+      "display_order": 4,
+      "section": "objective",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "objective",
+      "note_template": "Critical or urgent finding: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-004"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__critical_finding",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-governance-record",
+              "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+              "locator": "PDF pages 2–3",
+              "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__clinician_interpretation",
+      "label": "Clinician interpretation",
+      "field_type": "assessment_entry",
+      "placeholder": "Clinician-entered assessment",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 5,
+      "section": "assessment",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "assessment",
+      "note_template": "Clinician interpretation: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-005"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__clinician_interpretation",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-review-action",
+              "heading": "Operational guidance — result review, patient communication, record and follow-up action",
+              "locator": "PDF pages 6–8",
+              "evidence_summary": "Supports documenting the specific test, reviewed result or report, communication and clinician-determined follow-up action."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__communication",
+      "label": "Patient or team communication",
+      "field_type": "textarea",
+      "placeholder": "",
+      "options": [],
+      "free_text_allowed": true,
+      "required": false,
+      "display_order": 6,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Patient or team communication: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-006"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__communication",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-review-action",
+              "heading": "Operational guidance — result review, patient communication, record and follow-up action",
+              "locator": "PDF pages 6–8",
+              "evidence_summary": "Supports documenting the specific test, reviewed result or report, communication and clinician-determined follow-up action."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-result-review",
+      "field_id": "peds_pediatric_result_review__plan",
+      "label": "Follow-up or escalation plan",
+      "field_type": "plan_entry",
+      "placeholder": "Select or enter the clinician-confirmed plan",
+      "options": [],
+      "free_text_allowed": true,
+      "required": true,
+      "display_order": 7,
+      "section": "plan",
+      "visibility": {
+        "type": "always"
+      },
+      "conditional_rules": [],
+      "contradictory_option_rules": [],
+      "soap_destination": "plan",
+      "note_template": "Follow-up or escalation plan: {{value}}",
+      "value_formatter": "trimmed_text",
+      "provenance": {
+        "evidence_pack_ids": [
+          "wave11-pack-peds-pediatric-result-review"
+        ],
+        "evidence_statement_ids": [
+          "wave11-peds-pediatric-result-review-statement-007"
+        ],
+        "workflow_id": "peds-pediatric-result-review",
+        "field_id": "peds_pediatric_result_review__plan",
+        "evidence_pack_id": "wave11-pack-peds-pediatric-result-review",
+        "source_ids": [
+          "rcem-investigation-results-ed-2023"
+        ],
+        "exact_source_references": [
+          {
+            "source_id": "rcem-investigation-results-ed-2023",
+            "organisation": "Royal College of Emergency Medicine",
+            "document_title": "Management of Investigation Results in the Emergency Department",
+            "exact_section": {
+              "section_id": "rcem-results-2023-review-action",
+              "heading": "Operational guidance — result review, patient communication, record and follow-up action",
+              "locator": "PDF pages 6–8",
+              "evidence_summary": "Supports documenting the specific test, reviewed result or report, communication and clinician-determined follow-up action."
+            },
+            "population_qualifier": "Adults and children whose pathology or radiology investigations were requested or reviewed by an emergency department.",
+            "setting_qualifier": "Emergency department result review, communication, handover and follow-up governance.",
+            "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+          }
+        ],
+        "transformation_explanation": "The control records clinician-entered facts or decisions limited to the cited official section; it does not infer a diagnosis or treatment."
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-001",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-governance-record",
+        "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+        "locator": "PDF pages 2–3",
+        "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-002",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-governance-record",
+        "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+        "locator": "PDF pages 2–3",
+        "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-003",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-governance-record",
+        "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+        "locator": "PDF pages 2–3",
+        "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-004",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-governance-record",
+        "heading": "Summary and pathology/radiology recommendations — traceable review and responsibility",
+        "locator": "PDF pages 2–3",
+        "evidence_summary": "Supports a traceable record of review, action, responsibility, referral and handover for pathology and radiology results."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-005",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-review-action",
+        "heading": "Operational guidance — result review, patient communication, record and follow-up action",
+        "locator": "PDF pages 6–8",
+        "evidence_summary": "Supports documenting the specific test, reviewed result or report, communication and clinician-determined follow-up action."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-006",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-review-action",
+        "heading": "Operational guidance — result review, patient communication, record and follow-up action",
+        "locator": "PDF pages 6–8",
+        "evidence_summary": "Supports documenting the specific test, reviewed result or report, communication and clinician-determined follow-up action."
+      }
+    },
+    {
+      "evidence_statement_id": "wave11-peds-pediatric-result-review-statement-007",
+      "source_id": "rcem-investigation-results-ed-2023",
+      "official_source_url": "https://rcem.ac.uk/wp-content/uploads/2023/02/Management_of_Investigation_Results_in_the_ED_Feb-2023.pdf",
+      "locator": {
+        "section_id": "rcem-results-2023-review-action",
+        "heading": "Operational guidance — result review, patient communication, record and follow-up action",
+        "locator": "PDF pages 6–8",
+        "evidence_summary": "Supports documenting the specific test, reviewed result or report, communication and clinician-determined follow-up action."
+      }
+    }
+  ]
+}
