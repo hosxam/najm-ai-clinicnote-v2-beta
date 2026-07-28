@@ -24,11 +24,11 @@
     "inactive_route_policy": "fail_closed"
   },
   "counts": {
-    "active_workflows": 877,
-    "quick_workflows": 877,
-    "advanced_workflows": 877,
-    "chips": 21524,
-    "advanced_options": 10766
+    "active_workflows": 884,
+    "quick_workflows": 884,
+    "advanced_workflows": 884,
+    "chips": 21531,
+    "advanced_options": 10768
   },
   "source_manifest_fingerprint": "176c6edaa3fdf104478150e268003908e2c52c36acf928bb5be0ebe89486943f",
   "workflows": [
@@ -8504,6 +8504,91 @@
       }
     },
     {
+      "workflow_id": "cardio-syncope-follow-up",
+      "title": "Syncope follow-up",
+      "specialty": "Cardiology outpatient",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "cardio_syncope_follow_up__event_context",
+            "cardio_syncope_follow_up__prodrome",
+            "cardio_syncope_follow_up__injury",
+            "cardio_syncope_follow_up__family_history",
+            "cardio_syncope_follow_up__ecg_result",
+            "cardio_syncope_follow_up__cardiovascular_exam",
+            "cardio_syncope_follow_up__clinician_assessment",
+            "cardio_syncope_follow_up__referral"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "examination",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 1,
+          "exam_prompts": 1,
+          "investigation_groups": 1,
+          "investigation_options": 0,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 2,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/cardio-syncope-follow-up.json",
+        "evidence_pack": "pilot-pack-cardio-syncope-follow-up"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 8,
+        "advanced_sections": 4,
+        "advanced_options": 0
+      }
+    },
+    {
       "workflow_id": "cardio-warfarin-inr-result-review",
       "title": "Warfarin/INR result review",
       "specialty": "Cardiology outpatient",
@@ -12485,6 +12570,91 @@
       }
     },
     {
+      "workflow_id": "derm-psoriasis-flare-documentation",
+      "title": "Psoriasis flare documentation",
+      "specialty": "Dermatology",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "derm_psoriasis_flare_documentation__flare_history",
+            "derm_psoriasis_flare_documentation__distribution",
+            "derm_psoriasis_flare_documentation__itch_pain",
+            "derm_psoriasis_flare_documentation__joint_symptoms",
+            "derm_psoriasis_flare_documentation__skin_exam",
+            "derm_psoriasis_flare_documentation__severity_assessment",
+            "derm_psoriasis_flare_documentation__management_plan",
+            "derm_psoriasis_flare_documentation__referral"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "examination",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 1,
+          "exam_prompts": 1,
+          "investigation_groups": 0,
+          "investigation_options": 0,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 3,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/derm-psoriasis-flare-documentation.json",
+        "evidence_pack": "pilot-pack-derm-psoriasis-flare-documentation"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 8,
+        "advanced_sections": 4,
+        "advanced_options": 0
+      }
+    },
+    {
       "workflow_id": "derm-rash",
       "title": "Rash",
       "specialty": "Dermatology",
@@ -15691,6 +15861,90 @@
         "quick_fields": 8,
         "advanced_sections": 10,
         "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "ed-imaging-result-documentation",
+      "title": "ED imaging result documentation",
+      "specialty": "Emergency Medicine documentation-only",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "ed_imaging_result_documentation__study",
+            "ed_imaging_result_documentation__result",
+            "ed_imaging_result_documentation__comparison",
+            "ed_imaging_result_documentation__critical_result",
+            "ed_imaging_result_documentation__clinician_interpretation",
+            "ed_imaging_result_documentation__communication",
+            "ed_imaging_result_documentation__follow_up"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "examination",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 0,
+          "exam_prompts": 0,
+          "investigation_groups": 1,
+          "investigation_options": 0,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 2,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/ed-imaging-result-documentation.json",
+        "evidence_pack": "pilot-pack-ed-imaging-result-documentation"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 7,
+        "advanced_sections": 4,
+        "advanced_options": 0
       }
     },
     {
@@ -38283,6 +38537,91 @@
         "quick_fields": 8,
         "advanced_sections": 10,
         "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "gp-hypertension-followup",
+      "title": "Hypertension follow-up",
+      "specialty": "General Medicine / GP",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "gp_hypertension_followup__blood_pressure",
+            "gp_hypertension_followup__home_monitoring",
+            "gp_hypertension_followup__medication_adherence",
+            "gp_hypertension_followup__adverse_effects",
+            "gp_hypertension_followup__cardiovascular_risk",
+            "gp_hypertension_followup__organ_damage",
+            "gp_hypertension_followup__clinician_assessment",
+            "gp_hypertension_followup__treatment_decision"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "examination",
+            "history",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 0,
+          "exam_prompts": 0,
+          "investigation_groups": 1,
+          "investigation_options": 0,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 2,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/gp-hypertension-followup.json",
+        "evidence_pack": "pilot-pack-gp-hypertension-followup"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 8,
+        "advanced_sections": 4,
+        "advanced_options": 0
       }
     },
     {
@@ -66572,6 +66911,91 @@
       }
     },
     {
+      "workflow_id": "peds-cough",
+      "title": "Cough / cold",
+      "specialty": "Pediatrics",
+      "archetype": "paediatric_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "peds_cough__age",
+            "peds_cough__cough_duration",
+            "peds_cough__associated_symptoms",
+            "peds_cough__breathing_red_flags",
+            "peds_cough__hydration",
+            "peds_cough__vital_signs",
+            "peds_cough__respiratory_exam",
+            "peds_cough__clinician_assessment"
+          ],
+          "chip_groups": [
+            "peds_cough__breathing_red_flags"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "examination",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "peds_cough__breathing_red_flags"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 1,
+          "exam_prompts": 1,
+          "investigation_groups": 0,
+          "investigation_options": 2,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 2,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-cough.json",
+        "evidence_pack": "pilot-pack-peds-cough"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 8,
+        "advanced_sections": 4,
+        "advanced_options": 2
+      }
+    },
+    {
       "workflow_id": "peds-development-concern",
       "title": "Developmental concern",
       "specialty": "Pediatrics",
@@ -69223,6 +69647,91 @@
         "quick_fields": 8,
         "advanced_sections": 10,
         "advanced_options": 11
+      }
+    },
+    {
+      "workflow_id": "peds-pediatric-asthma-review",
+      "title": "Pediatric asthma review",
+      "specialty": "Pediatrics",
+      "archetype": "paediatric_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "peds_pediatric_asthma_review__age",
+            "peds_pediatric_asthma_review__symptom_control",
+            "peds_pediatric_asthma_review__exacerbations",
+            "peds_pediatric_asthma_review__adherence",
+            "peds_pediatric_asthma_review__triggers",
+            "peds_pediatric_asthma_review__peak_flow",
+            "peds_pediatric_asthma_review__respiratory_exam",
+            "peds_pediatric_asthma_review__clinician_assessment"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "examination",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 1,
+          "exam_prompts": 1,
+          "investigation_groups": 1,
+          "investigation_options": 0,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 2,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/peds-pediatric-asthma-review.json",
+        "evidence_pack": "pilot-pack-peds-pediatric-asthma-review"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 8,
+        "advanced_sections": 4,
+        "advanced_options": 0
       }
     },
     {
@@ -93250,6 +93759,91 @@
       }
     },
     {
+      "workflow_id": "urgent-wound-care-laceration",
+      "title": "Wound care / laceration",
+      "specialty": "Emergency / Urgent Care",
+      "archetype": "acute_symptom_assessment",
+      "schema": {
+        "quick": {
+          "fields": [
+            "urgent_wound_care_laceration__mechanism",
+            "urgent_wound_care_laceration__location",
+            "urgent_wound_care_laceration__bleeding_contamination",
+            "urgent_wound_care_laceration__neurovascular_exam",
+            "urgent_wound_care_laceration__wound_findings",
+            "urgent_wound_care_laceration__investigations",
+            "urgent_wound_care_laceration__clinician_assessment",
+            "urgent_wound_care_laceration__disposition"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "suggested_chip_count": 0,
+          "confirmation_required": true,
+          "preselected_facts": false
+        },
+        "advanced": {
+          "fields": [
+            "history",
+            "examination",
+            "assessment",
+            "plan"
+          ],
+          "chip_groups": [
+            "clinician_confirmed_plan"
+          ],
+          "history_placeholders": [
+            "[Patient-specific history]",
+            "[Relevant negatives]"
+          ],
+          "exam_groups": 2,
+          "exam_prompts": 2,
+          "investigation_groups": 1,
+          "investigation_options": 0,
+          "medication_groups": 0,
+          "medication_options": 0,
+          "plan_groups": 2,
+          "plan_options": 0,
+          "conditional_rules": [
+            {
+              "when": "clinician-entered red flag or escalation detail",
+              "show": "escalation and disposition detail"
+            }
+          ],
+          "nested_entries": [
+            "history fields",
+            "examination groups",
+            "investigation groups",
+            "assessment",
+            "plan"
+          ],
+          "confirmation_required": true,
+          "preselected_facts": false
+        }
+      },
+      "soap_destinations": {
+        "history": "subjective",
+        "symptoms": "subjective",
+        "relevant_negatives": "subjective",
+        "examination": "objective",
+        "vitals": "objective",
+        "investigations": "objective",
+        "assessment": "assessment",
+        "plan": "plan",
+        "safety_netting": "plan"
+      },
+      "provenance": {
+        "interactive_workflow": "data-beta/interactive-workflows/workflows/urgent-wound-care-laceration.json",
+        "evidence_pack": "pilot-pack-urgent-wound-care-laceration"
+      },
+      "counts": {
+        "chips": 1,
+        "quick_fields": 8,
+        "advanced_sections": 4,
+        "advanced_options": 0
+      }
+    },
+    {
       "workflow_id": "uro-balanitis-follow-up",
       "title": "Balanitis follow-up",
       "specialty": "Urology",
@@ -97016,5 +97610,5 @@
       }
     }
   ],
-  "fingerprint": "4f622170c9dfb4df9027f85faf1bb8dc526e28cadc33d536719676909f1f40db"
+  "fingerprint": "f858f8bce3acab128df3546dab7c9b8161b105e66a6b1aae75f979245aeea025"
 }
