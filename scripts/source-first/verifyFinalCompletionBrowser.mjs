@@ -8,6 +8,8 @@ async (page) => {
   const loadHome = async () => { await page.goto(`${base}?final=${Date.now()}#/beta`, { waitUntil: 'networkidle' }); await page.waitForTimeout(700) }
   await loadHome()
   const initialText = await page.locator('body').innerText()
+  const expectedBuildSha = 'e6e540e'
+  const build_sha_matches = initialText.includes(`Build ${expectedBuildSha}`)
   const search = page.getByRole('textbox', { name: 'Search interactive workflows' })
   const status = page.getByRole('combobox', { name: 'Filter interactive status' })
   const specialty = page.getByRole('combobox', { name: 'Filter interactive specialty' })
@@ -48,7 +50,7 @@ async (page) => {
   const responsive = []
   for (const [name, width, height] of [['desktop', 1440, 900], ['tablet', 1024, 768], ['mobile', 390, 844]]) { await page.setViewportSize({ width, height }); await loadHome(); responsive.push({ name, loaded: /Interactive workflows/i.test(await page.locator('body').innerText()), scrollWidth: await page.evaluate(() => document.documentElement.scrollWidth), clientWidth: await page.evaluate(() => document.documentElement.clientWidth) }) }
   await page.evaluate(() => localStorage.clear())
-  const result = { status: errors.length || failed.length || !searchChecks.control_present || !Object.values(searchChecks).every(Boolean) || !activeRoute.opened || !activeRoute.quick || !activeRoute.advanced || !activeRoute.evidence || inactiveCount !== 565 || responsive.some((view) => !view.loaded || view.scrollWidth > view.clientWidth + 1) ? 'FAIL' : 'PASS', live_url: `${base}#/beta`, search_checks: searchChecks, active_route: activeRoute, inactive_count: inactiveCount, accessibility, responsive, console_errors: errors, failed_requests: failed, local_storage_cleared: true, local_filesystem_paths_exposed: /[A-Z]:\\|C:\\\\Users|file:\/\//i.test(initialText) }
+  const result = { status: errors.length || failed.length || !build_sha_matches || !searchChecks.control_present || !Object.values(searchChecks).every(Boolean) || !activeRoute.opened || !activeRoute.quick || !activeRoute.advanced || !activeRoute.evidence || inactiveCount !== 565 || responsive.some((view) => !view.loaded || view.scrollWidth > view.clientWidth + 1) ? 'FAIL' : 'PASS', live_url: `${base}#/beta`, expected_build_sha: expectedBuildSha, build_sha_matches, search_checks: searchChecks, active_route: activeRoute, inactive_count: inactiveCount, accessibility, responsive, console_errors: errors, failed_requests: failed, local_storage_cleared: true, local_filesystem_paths_exposed: /[A-Z]:\\|C:\\\\Users|file:\/\//i.test(initialText) }
   console.log(JSON.stringify(result, null, 2))
   if (result.status !== 'PASS') throw new Error(`Final completion browser verification failed: ${JSON.stringify(result)}`)
   return result
