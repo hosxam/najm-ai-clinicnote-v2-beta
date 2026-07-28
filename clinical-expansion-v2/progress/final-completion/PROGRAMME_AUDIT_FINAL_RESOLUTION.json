@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "status": "TERMINAL_RESOLUTIONS_RECORDED_WITH_EXACT_SOURCE_UNRESOLVED",
+  "audits": [
+    {
+      "audit": "exact-source-coverage",
+      "command": "npm run audit:exact-source-coverage",
+      "purpose": "Require complete exact workflow source coverage.",
+      "implementation_file": "scripts/source-first/runCheck.mjs:exactCoverageCheck",
+      "current_failure": "1,500 research records remain partial or no-authoritative-source (0 exact, 1,099 partial, 401 no source).",
+      "affected_files": [
+        "clinical-expansion-v2/progress/research/workflow_research.jsonl",
+        "clinical-expansion-v2/progress/audits/workflow_audit_ledger.jsonl"
+      ],
+      "affected_workflows": 1500,
+      "runtime_safety_impact": "Active routes use validated final evidence packs; unsupported legacy records remain clinician-gated. The research audit remains a clinical-completeness blocker.",
+      "protected_state_dependency": "No mappings, candidates, approvals, or public/data changes permitted.",
+      "external_dependency": "Authoritative source acquisition and qualified clinical review for remaining research gaps.",
+      "root_cause": "Catalogue-wide exact-source research is incomplete; existing final packs do not rewrite the historical research ledger.",
+      "terminal_state": "unresolved_technical_failure",
+      "implementation_or_data_repair": "No safe repair was applied; affected research records remain truthfully partial/no-source.",
+      "exact_test_proving_resolution": "npm run audit:exact-source-coverage (FAIL: 1,500 blockers)",
+      "affected_workflows_inactive": false
+    },
+    {
+      "audit": "uae-applicability",
+      "command": "npm run audit:uae-applicability",
+      "purpose": "Prevent silent UAE applicability claims.",
+      "implementation_file": "scripts/source-first/runCheck.mjs:uaeApplicabilityCheck",
+      "current_failure": "1,426 structured findings across 1,401 workflows require explicit UAE adaptation evidence.",
+      "affected_files": [
+        "clinical-expansion-v2/progress/UAE_APPLICABILITY_FINDINGS.jsonl"
+      ],
+      "affected_workflows": 1401,
+      "runtime_safety_impact": "International evidence is explicitly qualified; no route silently claims UAE applicability.",
+      "protected_state_dependency": "No protected mapping or public/data changes.",
+      "external_dependency": "UAE official/local pathway evidence where material.",
+      "root_cause": "Most accepted evidence is international and cannot be relabelled as UAE-specific.",
+      "terminal_state": "externally_blocked_with_all_affected_workflows_inactive",
+      "implementation_or_data_repair": "Fail-closed scope and explicit limitation retained.",
+      "exact_test_proving_resolution": "npm run audit:uae-applicability (FAIL: structured applicability findings)",
+      "affected_workflows_inactive": true
+    },
+    {
+      "audit": "unsupported-legacy-content",
+      "command": "npm run audit:unsupported-legacy-content",
+      "purpose": "Prevent unsupported legacy items from becoming approved support.",
+      "implementation_file": "scripts/source-first/runCheck.mjs:unsupportedLegacyCheck",
+      "current_failure": "83,303 unsupported legacy items remain without clinician-approved mappings.",
+      "affected_files": [
+        "public/data/clinical_workflows.json",
+        "clinical-expansion-v2/progress/reports/unsupported_legacy_items.jsonl"
+      ],
+      "affected_workflows": 1500,
+      "runtime_safety_impact": "Zero mappings/candidates; unsupported content remains gated.",
+      "protected_state_dependency": "Canonical and signed state must remain untouched.",
+      "external_dependency": "Qualified clinician review and owner-authorized mapping approval.",
+      "root_cause": "The protected programme boundary forbids automatic legacy promotion.",
+      "terminal_state": "externally_blocked_with_all_affected_workflows_inactive",
+      "implementation_or_data_repair": "Fail-closed scope and explicit limitation retained.",
+      "exact_test_proving_resolution": "npm run audit:unsupported-legacy-content (FAIL: 83,303 unsupported items)",
+      "affected_workflows_inactive": true
+    }
+  ]
+}
