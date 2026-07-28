@@ -1,0 +1,2036 @@
+{
+  "schema_version": "1.0.0",
+  "target_count": 40,
+  "records": [
+    {
+      "workflow_id": "peds-pediatric-anemia-result-review",
+      "schema_fingerprint": "ca0128b8c7567ddf3d8958b6c98e91eb28de46c8fa1ca6028ca22fb9ec2640d9",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "peds_pediatric_anemia_result_review__workflow_context",
+        "peds_pediatric_anemia_result_review__history"
+      ],
+      "shared_required_fields": [
+        "peds_pediatric_anemia_result_review__workflow_context",
+        "peds_pediatric_anemia_result_review__history",
+        "peds_pediatric_anemia_result_review__observations",
+        "peds_pediatric_anemia_result_review__focused_examination",
+        "peds_pediatric_anemia_result_review__assessment",
+        "peds_pediatric_anemia_result_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "peds_pediatric_anemia_result_review__workflow_context",
+        "peds_pediatric_anemia_result_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "peds_pediatric_anemia_result_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "peds_pediatric_anemia_result_review__relevant_negatives contains positive_requires_detail",
+          "show": "peds_pediatric_anemia_result_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "bsg-iron-deficiency-anaemia-2021",
+      "population_difference": [
+        "Adults and children presenting with allergic-rhinitis complaints; age-specific medicine details are not mapped.",
+        "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "Children and adults with atopic dermatitis complaints.",
+        "Children, young people, and adults with suspected or diagnosed asthma, excluding severe asthma and acute attacks.",
+        "International travelers, preserving itinerary, destination, duration, purpose, activity, age, pregnancy, immune status, chronic illness and special-risk qualifiers.",
+        "People presenting with suspected or established asthma in the populations specified by the guideline."
+      ],
+      "setting_difference": [
+        "Pre-travel consultation in travel-medicine or primary-care settings, with specialist input for complex travelers.",
+        "Primary and specialist diagnosis, monitoring, and chronic asthma management.",
+        "Telehealth services in DHA-licensed health facilities."
+      ],
+      "scope_difference": "Pediatric anemia result review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "peds-pediatric-chronic-disease-follow-up",
+      "schema_fingerprint": "29445098004f352d1811bb4900215abe1157db0ac954b133180fbdf437834318",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "peds_pediatric_chronic_disease_follow_up__workflow_context",
+        "peds_pediatric_chronic_disease_follow_up__history"
+      ],
+      "shared_required_fields": [
+        "peds_pediatric_chronic_disease_follow_up__workflow_context",
+        "peds_pediatric_chronic_disease_follow_up__history",
+        "peds_pediatric_chronic_disease_follow_up__observations",
+        "peds_pediatric_chronic_disease_follow_up__focused_examination",
+        "peds_pediatric_chronic_disease_follow_up__assessment",
+        "peds_pediatric_chronic_disease_follow_up__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "peds_pediatric_chronic_disease_follow_up__workflow_context",
+        "peds_pediatric_chronic_disease_follow_up__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "peds_pediatric_chronic_disease_follow_up__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "peds_pediatric_chronic_disease_follow_up__relevant_negatives contains positive_requires_detail",
+          "show": "peds_pediatric_chronic_disease_follow_up__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-laboratory-monitoring-chronic-v2-2024",
+      "population_difference": [
+        "Adults and children presenting with allergic-rhinitis complaints; age-specific medicine details are not mapped.",
+        "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "Children and adults with atopic dermatitis complaints.",
+        "Children, young people, and adults with suspected or diagnosed asthma, excluding severe asthma and acute attacks.",
+        "International travelers, preserving itinerary, destination, duration, purpose, activity, age, pregnancy, immune status, chronic illness and special-risk qualifiers.",
+        "People presenting with suspected or established asthma in the populations specified by the guideline."
+      ],
+      "setting_difference": [
+        "Pre-travel consultation in travel-medicine or primary-care settings, with specialist input for complex travelers.",
+        "Primary and specialist diagnosis, monitoring, and chronic asthma management.",
+        "Telehealth services in DHA-licensed health facilities."
+      ],
+      "scope_difference": "Pediatric chronic disease follow-up",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "peds-pediatric-fatigue",
+      "schema_fingerprint": "17656df7245369256fc2a9c8793712e22ad8764737928f3db331bb36c404d909",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "peds_pediatric_fatigue__workflow_context",
+        "peds_pediatric_fatigue__history"
+      ],
+      "shared_required_fields": [
+        "peds_pediatric_fatigue__workflow_context",
+        "peds_pediatric_fatigue__history",
+        "peds_pediatric_fatigue__observations",
+        "peds_pediatric_fatigue__focused_examination",
+        "peds_pediatric_fatigue__assessment",
+        "peds_pediatric_fatigue__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "peds_pediatric_fatigue__workflow_context",
+        "peds_pediatric_fatigue__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "peds_pediatric_fatigue__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "peds_pediatric_fatigue__relevant_negatives contains positive_requires_detail",
+          "show": "peds_pediatric_fatigue__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-telehealth-fatigue-v2-2024",
+      "population_difference": [
+        "Adults and children presenting with allergic-rhinitis complaints; age-specific medicine details are not mapped.",
+        "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "Children and adults with atopic dermatitis complaints.",
+        "Children, young people, and adults with suspected or diagnosed asthma, excluding severe asthma and acute attacks.",
+        "International travelers, preserving itinerary, destination, duration, purpose, activity, age, pregnancy, immune status, chronic illness and special-risk qualifiers.",
+        "People presenting with suspected or established asthma in the populations specified by the guideline."
+      ],
+      "setting_difference": [
+        "Pre-travel consultation in travel-medicine or primary-care settings, with specialist input for complex travelers.",
+        "Primary and specialist diagnosis, monitoring, and chronic asthma management.",
+        "Telehealth services in DHA-licensed health facilities."
+      ],
+      "scope_difference": "Pediatric fatigue",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "peds-pediatric-travel-advice-documentation",
+      "schema_fingerprint": "48cae20904a9edffa0d359da8ed2f96e55ebdb2e4261c7f7bb9777b61b582be8",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "peds_pediatric_travel_advice_documentation__workflow_context",
+        "peds_pediatric_travel_advice_documentation__history"
+      ],
+      "shared_required_fields": [
+        "peds_pediatric_travel_advice_documentation__workflow_context",
+        "peds_pediatric_travel_advice_documentation__history",
+        "peds_pediatric_travel_advice_documentation__observations",
+        "peds_pediatric_travel_advice_documentation__focused_examination",
+        "peds_pediatric_travel_advice_documentation__assessment",
+        "peds_pediatric_travel_advice_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "peds_pediatric_travel_advice_documentation__workflow_context",
+        "peds_pediatric_travel_advice_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "peds_pediatric_travel_advice_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "peds_pediatric_travel_advice_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "peds_pediatric_travel_advice_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "cdc-yellow-book-pretravel-consultation-2026",
+      "population_difference": [
+        "Adults and children presenting with allergic-rhinitis complaints; age-specific medicine details are not mapped.",
+        "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "Children and adults with atopic dermatitis complaints.",
+        "Children, young people, and adults with suspected or diagnosed asthma, excluding severe asthma and acute attacks.",
+        "International travelers, preserving itinerary, destination, duration, purpose, activity, age, pregnancy, immune status, chronic illness and special-risk qualifiers.",
+        "People presenting with suspected or established asthma in the populations specified by the guideline."
+      ],
+      "setting_difference": [
+        "Pre-travel consultation in travel-medicine or primary-care settings, with specialist input for complex travelers.",
+        "Primary and specialist diagnosis, monitoring, and chronic asthma management.",
+        "Telehealth services in DHA-licensed health facilities."
+      ],
+      "scope_difference": "Pediatric travel advice documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "peds-pediatric-urinary-symptoms",
+      "schema_fingerprint": null,
+      "output_fingerprint": null,
+      "final_distinctness_decision": "inactive_named_gap"
+    },
+    {
+      "workflow_id": "peds-pediatric-vitamin-d-review",
+      "schema_fingerprint": "dda6d8d6ac7da2a34abb7f1c9f7ee0a8d2a8173cca02ae2b490c15cd8b309d82",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "peds_pediatric_vitamin_d_review__workflow_context",
+        "peds_pediatric_vitamin_d_review__history"
+      ],
+      "shared_required_fields": [
+        "peds_pediatric_vitamin_d_review__workflow_context",
+        "peds_pediatric_vitamin_d_review__history",
+        "peds_pediatric_vitamin_d_review__observations",
+        "peds_pediatric_vitamin_d_review__focused_examination",
+        "peds_pediatric_vitamin_d_review__assessment",
+        "peds_pediatric_vitamin_d_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "peds_pediatric_vitamin_d_review__workflow_context",
+        "peds_pediatric_vitamin_d_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "peds_pediatric_vitamin_d_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "peds_pediatric_vitamin_d_review__relevant_negatives contains positive_requires_detail",
+          "show": "peds_pediatric_vitamin_d_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-vitamin-d-ph56-2017",
+      "population_difference": [
+        "Adults and children presenting with allergic-rhinitis complaints; age-specific medicine details are not mapped.",
+        "Adults and children with common cold; severity caveats for neonates, older people, and long-term conditions.",
+        "Children and adults with atopic dermatitis complaints.",
+        "Children, young people, and adults with suspected or diagnosed asthma, excluding severe asthma and acute attacks.",
+        "International travelers, preserving itinerary, destination, duration, purpose, activity, age, pregnancy, immune status, chronic illness and special-risk qualifiers.",
+        "People presenting with suspected or established asthma in the populations specified by the guideline."
+      ],
+      "setting_difference": [
+        "Pre-travel consultation in travel-medicine or primary-care settings, with specialist input for complex travelers.",
+        "Primary and specialist diagnosis, monitoring, and chronic asthma management.",
+        "Telehealth services in DHA-licensed health facilities."
+      ],
+      "scope_difference": "Pediatric vitamin D review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "cardio-pregnancy-cardiac-history-documentation",
+      "schema_fingerprint": null,
+      "output_fingerprint": null,
+      "final_distinctness_decision": "inactive_named_gap"
+    },
+    {
+      "workflow_id": "cardio-referral-documentation",
+      "schema_fingerprint": null,
+      "output_fingerprint": null,
+      "final_distinctness_decision": "inactive_named_gap"
+    },
+    {
+      "workflow_id": "cardio-statin-tolerance-documentation",
+      "schema_fingerprint": "b6744f572aae605945ed3ef1fc3f1deca251b6e7a1a18ab5186be82c4683f5e5",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "cardio_statin_tolerance_documentation__workflow_context",
+        "cardio_statin_tolerance_documentation__history"
+      ],
+      "shared_required_fields": [
+        "cardio_statin_tolerance_documentation__workflow_context",
+        "cardio_statin_tolerance_documentation__history",
+        "cardio_statin_tolerance_documentation__observations",
+        "cardio_statin_tolerance_documentation__focused_examination",
+        "cardio_statin_tolerance_documentation__assessment",
+        "cardio_statin_tolerance_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "cardio_statin_tolerance_documentation__workflow_context",
+        "cardio_statin_tolerance_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "cardio_statin_tolerance_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "cardio_statin_tolerance_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "cardio_statin_tolerance_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-cvd-lipid-modification-ng238-2023",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Statin tolerance documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "cardio-tachycardia-documentation",
+      "schema_fingerprint": "7d9a1ec6162ce52eb5404d6c2264328944cbb3ddde25fd6a3ba4d5f7f907697e",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "cardio_tachycardia_documentation__workflow_context",
+        "cardio_tachycardia_documentation__history"
+      ],
+      "shared_required_fields": [
+        "cardio_tachycardia_documentation__workflow_context",
+        "cardio_tachycardia_documentation__history",
+        "cardio_tachycardia_documentation__observations",
+        "cardio_tachycardia_documentation__focused_examination",
+        "cardio_tachycardia_documentation__assessment",
+        "cardio_tachycardia_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "cardio_tachycardia_documentation__workflow_context",
+        "cardio_tachycardia_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "cardio_tachycardia_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "cardio_tachycardia_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "cardio_tachycardia_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-telehealth-palpitations-v2-2024",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Tachycardia documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "cardio-valvular-disease-follow-up",
+      "schema_fingerprint": "41a8608eadd950339cdc24a5eb5b2bacdd512cd90085ccf04b2bc371976b39dc",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "cardio_valvular_disease_follow_up__workflow_context",
+        "cardio_valvular_disease_follow_up__history"
+      ],
+      "shared_required_fields": [
+        "cardio_valvular_disease_follow_up__workflow_context",
+        "cardio_valvular_disease_follow_up__history",
+        "cardio_valvular_disease_follow_up__observations",
+        "cardio_valvular_disease_follow_up__focused_examination",
+        "cardio_valvular_disease_follow_up__assessment",
+        "cardio_valvular_disease_follow_up__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "cardio_valvular_disease_follow_up__workflow_context",
+        "cardio_valvular_disease_follow_up__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "cardio_valvular_disease_follow_up__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "cardio_valvular_disease_follow_up__relevant_negatives contains positive_requires_detail",
+          "show": "cardio_valvular_disease_follow_up__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-heart-valve-disease-ng208-2021",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Valvular disease follow-up",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gastro-rectal-bleeding",
+      "schema_fingerprint": "b0d13c3f5da9126674ae53df6f8b875e1da0bb4a42311f21e380137f6da508b1",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gastro_rectal_bleeding__workflow_context",
+        "gastro_rectal_bleeding__history"
+      ],
+      "shared_required_fields": [
+        "gastro_rectal_bleeding__workflow_context",
+        "gastro_rectal_bleeding__history",
+        "gastro_rectal_bleeding__observations",
+        "gastro_rectal_bleeding__focused_examination",
+        "gastro_rectal_bleeding__assessment",
+        "gastro_rectal_bleeding__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gastro_rectal_bleeding__workflow_context",
+        "gastro_rectal_bleeding__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gastro_rectal_bleeding__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gastro_rectal_bleeding__relevant_negatives contains positive_requires_detail",
+          "show": "gastro_rectal_bleeding__positive_detail"
+        }
+      ],
+      "evidence_difference": "ascrs-hemorrhoids-2024",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Rectal bleeding",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ophth-red-eye",
+      "schema_fingerprint": "9c0a237fc150cf30717695a599c215c6fc58e1dbcb0785a55d9dc57708203879",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ophth_red_eye__workflow_context",
+        "ophth_red_eye__history"
+      ],
+      "shared_required_fields": [
+        "ophth_red_eye__workflow_context",
+        "ophth_red_eye__history",
+        "ophth_red_eye__observations",
+        "ophth_red_eye__focused_examination",
+        "ophth_red_eye__assessment",
+        "ophth_red_eye__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ophth_red_eye__workflow_context",
+        "ophth_red_eye__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ophth_red_eye__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ophth_red_eye__relevant_negatives contains positive_requires_detail",
+          "show": "ophth_red_eye__positive_detail"
+        }
+      ],
+      "evidence_difference": "college-optometrists-eye-referral-annex4-current",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Red eye",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-critical-incident-documentation",
+      "schema_fingerprint": "b182d0eec526e095fe0c8d393908b80c802b5c5ed39944cbfb2850d9349421d7",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_critical_incident_documentation__workflow_context",
+        "ed_critical_incident_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_critical_incident_documentation__workflow_context",
+        "ed_critical_incident_documentation__history",
+        "ed_critical_incident_documentation__observations",
+        "ed_critical_incident_documentation__focused_examination",
+        "ed_critical_incident_documentation__assessment",
+        "ed_critical_incident_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_critical_incident_documentation__workflow_context",
+        "ed_critical_incident_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_critical_incident_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_critical_incident_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_critical_incident_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "who-icrc-basic-emergency-care-2018",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED critical incident documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-ecg-documentation",
+      "schema_fingerprint": "9418caf49c50850c7bc7f317a9bc0261105cab81f8e2dce577cd7fbfab19c30d",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_ecg_documentation__workflow_context",
+        "ed_ecg_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_ecg_documentation__workflow_context",
+        "ed_ecg_documentation__history",
+        "ed_ecg_documentation__observations",
+        "ed_ecg_documentation__focused_examination",
+        "ed_ecg_documentation__assessment",
+        "ed_ecg_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_ecg_documentation__workflow_context",
+        "ed_ecg_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_ecg_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_ecg_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_ecg_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "hrs-ishne-ambulatory-ecg-2017",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED ECG documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-handover-documentation",
+      "schema_fingerprint": "a4219bda3cd3bfa0c13d2519293f253ecf089b010c49275478550faf5a09b7b1",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_handover_documentation__workflow_context",
+        "ed_handover_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_handover_documentation__workflow_context",
+        "ed_handover_documentation__history",
+        "ed_handover_documentation__observations",
+        "ed_handover_documentation__focused_examination",
+        "ed_handover_documentation__assessment",
+        "ed_handover_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_handover_documentation__workflow_context",
+        "ed_handover_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_handover_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_handover_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_handover_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "who-icrc-basic-emergency-care-2018",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED handover documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-interpreter-documentation",
+      "schema_fingerprint": null,
+      "output_fingerprint": null,
+      "final_distinctness_decision": "inactive_named_gap"
+    },
+    {
+      "workflow_id": "ed-medication-administration-documentation",
+      "schema_fingerprint": "f7758d2b6ac23260ac3888c9e5822259fee21843dfcf20517f592b9479e94614",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_medication_administration_documentation__workflow_context",
+        "ed_medication_administration_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_medication_administration_documentation__workflow_context",
+        "ed_medication_administration_documentation__history",
+        "ed_medication_administration_documentation__observations",
+        "ed_medication_administration_documentation__focused_examination",
+        "ed_medication_administration_documentation__assessment",
+        "ed_medication_administration_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_medication_administration_documentation__workflow_context",
+        "ed_medication_administration_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_medication_administration_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_medication_administration_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_medication_administration_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-medicines-optimisation-ng5-2015",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED medication administration documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-referral-documentation",
+      "schema_fingerprint": "ff4550f061d974e354f550e8f743412aefa846f2459315aa05b020621b47a89d",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_referral_documentation__workflow_context",
+        "ed_referral_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_referral_documentation__workflow_context",
+        "ed_referral_documentation__history",
+        "ed_referral_documentation__observations",
+        "ed_referral_documentation__focused_examination",
+        "ed_referral_documentation__assessment",
+        "ed_referral_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_referral_documentation__workflow_context",
+        "ed_referral_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_referral_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_referral_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_referral_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-suspected-neurological-conditions-ng127-2023",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED referral documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-triage-documentation",
+      "schema_fingerprint": "7482dfb9df3955899f9d1ab9da7c98b113a9295317e41af2964e25343155e523",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_triage_documentation__workflow_context",
+        "ed_triage_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_triage_documentation__workflow_context",
+        "ed_triage_documentation__history",
+        "ed_triage_documentation__observations",
+        "ed_triage_documentation__focused_examination",
+        "ed_triage_documentation__assessment",
+        "ed_triage_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_triage_documentation__workflow_context",
+        "ed_triage_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_triage_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_triage_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_triage_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "who-icrc-basic-emergency-care-2018",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED triage documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "ed-wound-documentation",
+      "schema_fingerprint": "e23fd0bbec9734cc43205a44545e23e36a7ed6209f8d7ed32257b80fe99b8f2a",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "ed_wound_documentation__workflow_context",
+        "ed_wound_documentation__history"
+      ],
+      "shared_required_fields": [
+        "ed_wound_documentation__workflow_context",
+        "ed_wound_documentation__history",
+        "ed_wound_documentation__observations",
+        "ed_wound_documentation__focused_examination",
+        "ed_wound_documentation__assessment",
+        "ed_wound_documentation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "ed_wound_documentation__workflow_context",
+        "ed_wound_documentation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "ed_wound_documentation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "ed_wound_documentation__relevant_negatives contains positive_requires_detail",
+          "show": "ed_wound_documentation__positive_detail"
+        }
+      ],
+      "evidence_difference": "rcem-invasive-procedures-ed-2023",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "ED wound documentation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-epistaxis-review-in-gp",
+      "schema_fingerprint": "53acbacbdd0b4919fe5126083ea67de7e6ec02f20b58a56e73974f500e08d81e",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_epistaxis_review_in_gp__workflow_context",
+        "gp_epistaxis_review_in_gp__history"
+      ],
+      "shared_required_fields": [
+        "gp_epistaxis_review_in_gp__workflow_context",
+        "gp_epistaxis_review_in_gp__history",
+        "gp_epistaxis_review_in_gp__observations",
+        "gp_epistaxis_review_in_gp__focused_examination",
+        "gp_epistaxis_review_in_gp__assessment",
+        "gp_epistaxis_review_in_gp__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_epistaxis_review_in_gp__workflow_context",
+        "gp_epistaxis_review_in_gp__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_epistaxis_review_in_gp__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_epistaxis_review_in_gp__relevant_negatives contains positive_requires_detail",
+          "show": "gp_epistaxis_review_in_gp__positive_detail"
+        }
+      ],
+      "evidence_difference": "aao-hns-epistaxis-2020",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Epistaxis review in GP",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-falls-risk-screening",
+      "schema_fingerprint": "4cb988fe146a57118cc5980da749eb3ff2d164d3f954a6227db76819b174ff5a",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_falls_risk_screening__workflow_context",
+        "gp_falls_risk_screening__history"
+      ],
+      "shared_required_fields": [
+        "gp_falls_risk_screening__workflow_context",
+        "gp_falls_risk_screening__history",
+        "gp_falls_risk_screening__observations",
+        "gp_falls_risk_screening__focused_examination",
+        "gp_falls_risk_screening__assessment",
+        "gp_falls_risk_screening__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_falls_risk_screening__workflow_context",
+        "gp_falls_risk_screening__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_falls_risk_screening__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_falls_risk_screening__relevant_negatives contains positive_requires_detail",
+          "show": "gp_falls_risk_screening__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-falls-ng249-2025",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Falls risk screening",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-fatigue",
+      "schema_fingerprint": "6b301f96d182f73dad1edfb3cf80f879aa3617f504b2d4c6ec54195cc9b7cfab",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_fatigue__workflow_context",
+        "gp_fatigue__history"
+      ],
+      "shared_required_fields": [
+        "gp_fatigue__workflow_context",
+        "gp_fatigue__history",
+        "gp_fatigue__observations",
+        "gp_fatigue__focused_examination",
+        "gp_fatigue__assessment",
+        "gp_fatigue__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_fatigue__workflow_context",
+        "gp_fatigue__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_fatigue__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_fatigue__relevant_negatives contains positive_requires_detail",
+          "show": "gp_fatigue__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-telehealth-fatigue-v2-2024",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Fatigue",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-lab-result-review",
+      "schema_fingerprint": "0b20313decc141a3b575a63584518f8f4deecf1cc891dbb2e234712acfc2660e",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_lab_result_review__workflow_context",
+        "gp_lab_result_review__history"
+      ],
+      "shared_required_fields": [
+        "gp_lab_result_review__workflow_context",
+        "gp_lab_result_review__history",
+        "gp_lab_result_review__observations",
+        "gp_lab_result_review__focused_examination",
+        "gp_lab_result_review__assessment",
+        "gp_lab_result_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_lab_result_review__workflow_context",
+        "gp_lab_result_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_lab_result_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_lab_result_review__relevant_negatives contains positive_requires_detail",
+          "show": "gp_lab_result_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-laboratory-monitoring-chronic-v2-2024",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Lab result review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-lab-review",
+      "schema_fingerprint": "cfa8cb36a23476c00de4b3d04562665c3956059f49b5d47b01332c7ba4856849",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_lab_review__workflow_context",
+        "gp_lab_review__history"
+      ],
+      "shared_required_fields": [
+        "gp_lab_review__workflow_context",
+        "gp_lab_review__history",
+        "gp_lab_review__observations",
+        "gp_lab_review__focused_examination",
+        "gp_lab_review__assessment",
+        "gp_lab_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_lab_review__workflow_context",
+        "gp_lab_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_lab_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_lab_review__relevant_negatives contains positive_requires_detail",
+          "show": "gp_lab_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "rcem-investigation-results-ed-2023",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Lab review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-laboratory-trend-review",
+      "schema_fingerprint": "ed9895510203994afe0f82e1f7e7573d0010b68f42b9292c5cba0709cd7e9168",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_laboratory_trend_review__workflow_context",
+        "gp_laboratory_trend_review__history"
+      ],
+      "shared_required_fields": [
+        "gp_laboratory_trend_review__workflow_context",
+        "gp_laboratory_trend_review__history",
+        "gp_laboratory_trend_review__observations",
+        "gp_laboratory_trend_review__focused_examination",
+        "gp_laboratory_trend_review__assessment",
+        "gp_laboratory_trend_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_laboratory_trend_review__workflow_context",
+        "gp_laboratory_trend_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_laboratory_trend_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_laboratory_trend_review__relevant_negatives contains positive_requires_detail",
+          "show": "gp_laboratory_trend_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-laboratory-monitoring-chronic-v2-2024",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Laboratory trend review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-palpitations",
+      "schema_fingerprint": "bac8e1ebf7e3c55d166804384d61d2978096113ff7209dfbe338b632a72a6e4e",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_palpitations__workflow_context",
+        "gp_palpitations__history"
+      ],
+      "shared_required_fields": [
+        "gp_palpitations__workflow_context",
+        "gp_palpitations__history",
+        "gp_palpitations__observations",
+        "gp_palpitations__focused_examination",
+        "gp_palpitations__assessment",
+        "gp_palpitations__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_palpitations__workflow_context",
+        "gp_palpitations__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_palpitations__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_palpitations__relevant_negatives contains positive_requires_detail",
+          "show": "gp_palpitations__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-telehealth-palpitations-v2-2024",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Palpitations",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-pre-travel-consultation",
+      "schema_fingerprint": "55867a68122659126de3cc96ce03273f966de18275cbec8a3c84464cbd8ba397",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_pre_travel_consultation__workflow_context",
+        "gp_pre_travel_consultation__history"
+      ],
+      "shared_required_fields": [
+        "gp_pre_travel_consultation__workflow_context",
+        "gp_pre_travel_consultation__history",
+        "gp_pre_travel_consultation__observations",
+        "gp_pre_travel_consultation__focused_examination",
+        "gp_pre_travel_consultation__assessment",
+        "gp_pre_travel_consultation__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_pre_travel_consultation__workflow_context",
+        "gp_pre_travel_consultation__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_pre_travel_consultation__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_pre_travel_consultation__relevant_negatives contains positive_requires_detail",
+          "show": "gp_pre_travel_consultation__positive_detail"
+        }
+      ],
+      "evidence_difference": "cdc-yellow-book-pretravel-consultation-2026",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Pre-travel consultation",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-results-review",
+      "schema_fingerprint": "db063aec9f530e89b95d2eaffec02b3146fc365c876c568ebde0a57245f3d7fe",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_results_review__workflow_context",
+        "gp_results_review__history"
+      ],
+      "shared_required_fields": [
+        "gp_results_review__workflow_context",
+        "gp_results_review__history",
+        "gp_results_review__observations",
+        "gp_results_review__focused_examination",
+        "gp_results_review__assessment",
+        "gp_results_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_results_review__workflow_context",
+        "gp_results_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_results_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_results_review__relevant_negatives contains positive_requires_detail",
+          "show": "gp_results_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "rcem-investigation-results-ed-2023",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Results review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-vaccination-status-review",
+      "schema_fingerprint": "da3da6bec76959c80477ec462caccad0520bb1887b9971124d7aaa736dc7ed4f",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_vaccination_status_review__workflow_context",
+        "gp_vaccination_status_review__history"
+      ],
+      "shared_required_fields": [
+        "gp_vaccination_status_review__workflow_context",
+        "gp_vaccination_status_review__history",
+        "gp_vaccination_status_review__observations",
+        "gp_vaccination_status_review__focused_examination",
+        "gp_vaccination_status_review__assessment",
+        "gp_vaccination_status_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_vaccination_status_review__workflow_context",
+        "gp_vaccination_status_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_vaccination_status_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_vaccination_status_review__relevant_negatives contains positive_requires_detail",
+          "show": "gp_vaccination_status_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-immunization-best-practice-issue4-2026",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Vaccination status review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "gp-vitamin-d-deficiency-review",
+      "schema_fingerprint": "6a6a9adbee364e14dbda30de43d24afb3bb0a4fb2790042728a073048f77f867",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "gp_vitamin_d_deficiency_review__workflow_context",
+        "gp_vitamin_d_deficiency_review__history"
+      ],
+      "shared_required_fields": [
+        "gp_vitamin_d_deficiency_review__workflow_context",
+        "gp_vitamin_d_deficiency_review__history",
+        "gp_vitamin_d_deficiency_review__observations",
+        "gp_vitamin_d_deficiency_review__focused_examination",
+        "gp_vitamin_d_deficiency_review__assessment",
+        "gp_vitamin_d_deficiency_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "gp_vitamin_d_deficiency_review__workflow_context",
+        "gp_vitamin_d_deficiency_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "gp_vitamin_d_deficiency_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "gp_vitamin_d_deficiency_review__relevant_negatives contains positive_requires_detail",
+          "show": "gp_vitamin_d_deficiency_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-vitamin-d-ph56-2017",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Vitamin D deficiency review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "resp-latent-tb-result-review",
+      "schema_fingerprint": null,
+      "output_fingerprint": null,
+      "final_distinctness_decision": "inactive_named_gap"
+    },
+    {
+      "workflow_id": "resp-travel-related-respiratory-symptoms",
+      "schema_fingerprint": "e8a66b0202d73ca080163d1fde7fcb886e846dd0a434755d796177e47a8ba916",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "resp_travel_related_respiratory_symptoms__workflow_context",
+        "resp_travel_related_respiratory_symptoms__history"
+      ],
+      "shared_required_fields": [
+        "resp_travel_related_respiratory_symptoms__workflow_context",
+        "resp_travel_related_respiratory_symptoms__history",
+        "resp_travel_related_respiratory_symptoms__observations",
+        "resp_travel_related_respiratory_symptoms__focused_examination",
+        "resp_travel_related_respiratory_symptoms__assessment",
+        "resp_travel_related_respiratory_symptoms__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "resp_travel_related_respiratory_symptoms__workflow_context",
+        "resp_travel_related_respiratory_symptoms__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "resp_travel_related_respiratory_symptoms__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "resp_travel_related_respiratory_symptoms__relevant_negatives contains positive_requires_detail",
+          "show": "resp_travel_related_respiratory_symptoms__positive_detail"
+        }
+      ],
+      "evidence_difference": "cdc-yellow-book-posttravel-ill-traveler-2026",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Travel-related respiratory symptoms",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "resp-vaccine-counseling",
+      "schema_fingerprint": "33309e7962d2ea0806cf7c30ec366c5178b8125b4a8412a0aa6b773ae51eba99",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "resp_vaccine_counseling__workflow_context",
+        "resp_vaccine_counseling__history"
+      ],
+      "shared_required_fields": [
+        "resp_vaccine_counseling__workflow_context",
+        "resp_vaccine_counseling__history",
+        "resp_vaccine_counseling__observations",
+        "resp_vaccine_counseling__focused_examination",
+        "resp_vaccine_counseling__assessment",
+        "resp_vaccine_counseling__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "resp_vaccine_counseling__workflow_context",
+        "resp_vaccine_counseling__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "resp_vaccine_counseling__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "resp_vaccine_counseling__relevant_negatives contains positive_requires_detail",
+          "show": "resp_vaccine_counseling__positive_detail"
+        }
+      ],
+      "evidence_difference": "dha-immunization-best-practice-issue4-2026",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Respiratory vaccine counseling",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "resp-vaping-related-respiratory-symptoms",
+      "schema_fingerprint": null,
+      "output_fingerprint": null,
+      "final_distinctness_decision": "inactive_named_gap"
+    },
+    {
+      "workflow_id": "derm-hidradenitis-symptoms",
+      "schema_fingerprint": "2808dc05c246662338ceaa365ef13626be7fc9ed36299c36f79ad446b22893b8",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "derm_hidradenitis_symptoms__workflow_context",
+        "derm_hidradenitis_symptoms__history"
+      ],
+      "shared_required_fields": [
+        "derm_hidradenitis_symptoms__workflow_context",
+        "derm_hidradenitis_symptoms__history",
+        "derm_hidradenitis_symptoms__observations",
+        "derm_hidradenitis_symptoms__focused_examination",
+        "derm_hidradenitis_symptoms__assessment",
+        "derm_hidradenitis_symptoms__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "derm_hidradenitis_symptoms__workflow_context",
+        "derm_hidradenitis_symptoms__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "derm_hidradenitis_symptoms__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "derm_hidradenitis_symptoms__relevant_negatives contains positive_requires_detail",
+          "show": "derm_hidradenitis_symptoms__positive_detail"
+        }
+      ],
+      "evidence_difference": "bad-hidradenitis-suppurativa-guideline-2018",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Hidradenitis symptoms",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "derm-molluscum-contagiosum-review",
+      "schema_fingerprint": "a66ba18f09e4f907d8164fd0026b7703e1c0f8f4c08449ec81eac358c23e6e5d",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "derm_molluscum_contagiosum_review__workflow_context",
+        "derm_molluscum_contagiosum_review__history"
+      ],
+      "shared_required_fields": [
+        "derm_molluscum_contagiosum_review__workflow_context",
+        "derm_molluscum_contagiosum_review__history",
+        "derm_molluscum_contagiosum_review__observations",
+        "derm_molluscum_contagiosum_review__focused_examination",
+        "derm_molluscum_contagiosum_review__assessment",
+        "derm_molluscum_contagiosum_review__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "derm_molluscum_contagiosum_review__workflow_context",
+        "derm_molluscum_contagiosum_review__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "derm_molluscum_contagiosum_review__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "derm_molluscum_contagiosum_review__relevant_negatives contains positive_requires_detail",
+          "show": "derm_molluscum_contagiosum_review__positive_detail"
+        }
+      ],
+      "evidence_difference": "cdc-molluscum-clinical-overview-2025",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Molluscum contagiosum review",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "derm-psoriasis",
+      "schema_fingerprint": "7dd67c379d4b631430293192813d80e2f851a309079b3125c0ccd1340542138b",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "derm_psoriasis__workflow_context",
+        "derm_psoriasis__history"
+      ],
+      "shared_required_fields": [
+        "derm_psoriasis__workflow_context",
+        "derm_psoriasis__history",
+        "derm_psoriasis__observations",
+        "derm_psoriasis__focused_examination",
+        "derm_psoriasis__assessment",
+        "derm_psoriasis__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "derm_psoriasis__workflow_context",
+        "derm_psoriasis__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "derm_psoriasis__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "derm_psoriasis__relevant_negatives contains positive_requires_detail",
+          "show": "derm_psoriasis__positive_detail"
+        }
+      ],
+      "evidence_difference": "nice-psoriasis-cg153-2017",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Psoriasis",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    },
+    {
+      "workflow_id": "derm-rosacea",
+      "schema_fingerprint": "1035e5c759960b599555f9bab60e5243d4130dfec5afa83888bfe0635cc64a6f",
+      "output_fingerprint": "c418bf3a2b02d65f055f06c135a6adbecdc6959b3c96764d0f77133e731f8156",
+      "shared_fields": [
+        "workflow_context",
+        "history",
+        "relevant_negatives",
+        "observations",
+        "focused_examination",
+        "investigation_result",
+        "assessment",
+        "plan"
+      ],
+      "workflow_specific_fields": [
+        "derm_rosacea__workflow_context",
+        "derm_rosacea__history"
+      ],
+      "shared_required_fields": [
+        "derm_rosacea__workflow_context",
+        "derm_rosacea__history",
+        "derm_rosacea__observations",
+        "derm_rosacea__focused_examination",
+        "derm_rosacea__assessment",
+        "derm_rosacea__plan"
+      ],
+      "workflow_specific_required_fields": [
+        "derm_rosacea__workflow_context",
+        "derm_rosacea__history"
+      ],
+      "shared_selectable_controls": [
+        "relevant_negatives"
+      ],
+      "workflow_specific_selectable_controls": [],
+      "contradiction_groups": [
+        {
+          "group_id": "derm_rosacea__state",
+          "mutually_exclusive_values": [
+            "not_recorded",
+            "none_recorded",
+            "positive_requires_detail"
+          ]
+        }
+      ],
+      "conditional_rules": [
+        {
+          "when": "derm_rosacea__relevant_negatives contains positive_requires_detail",
+          "show": "derm_rosacea__positive_detail"
+        }
+      ],
+      "evidence_difference": "bad-rosacea-guideline-2021",
+      "population_difference": "Declared workflow population",
+      "setting_difference": "Declared workflow setting",
+      "scope_difference": "Rosacea",
+      "output_difference": "workflow-scoped SOAP/EMR/follow-up builders",
+      "final_distinctness_decision": "clinically_distinct_and_valid"
+    }
+  ],
+  "fingerprint": "e07166185796db17b8b02a9d4b45177dca6eb4be2be52f05674dc431dc0c39d7"
+}
