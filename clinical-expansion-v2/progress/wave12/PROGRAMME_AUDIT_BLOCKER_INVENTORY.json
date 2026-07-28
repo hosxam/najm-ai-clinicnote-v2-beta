@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "generated_mapping_audit_repair": "This inventory was created after the scanner was repaired and the exact scan passed.",
+  "audits": [
+    {
+      "audit": "exact-source-coverage",
+      "command": "npm run audit:exact-source-coverage",
+      "implementation_file": "scripts/source-first/runCheck.mjs:exactCoverageCheck",
+      "purpose": "Require complete exact workflow source coverage.",
+      "quality_property": "No unsupported clinical scope is represented as exact evidence.",
+      "last_passed": "No passing run is recorded in committed Wave-10/Wave-11 reports.",
+      "current_result": "FAIL: 1,500 blockers (0 exact, 1,099 partial, 401 no-authoritative-source).",
+      "blocker_message": "1500 workflow(s) lack complete exact-source coverage.",
+      "affected_files": [
+        "clinical-expansion-v2/progress/audits/workflow_audit_ledger.jsonl",
+        "clinical-expansion-v2/progress/research/workflow_research.jsonl"
+      ],
+      "affected_workflows": 1500,
+      "predates_wave11": true,
+      "protected_state_preservation": false,
+      "external_access": false,
+      "incomplete_implementation": true,
+      "audit_implementation_defect": false,
+      "genuine_unresolved_clinical_risk": true,
+      "root_cause": "Catalogue-wide exact-source research remains incomplete by design; Wave 11 closed only 20 partial packs.",
+      "required_resolution": "Process remaining packs with exact authoritative evidence or keep routes fail-closed; do not relabel partial records as exact.",
+      "final_terminal_state": "unresolved_clinical_risk"
+    },
+    {
+      "audit": "uae-applicability",
+      "command": "npm run audit:uae-applicability",
+      "implementation_file": "scripts/source-first/runCheck.mjs:uaeApplicabilityCheck",
+      "purpose": "Surface partial or missing explicit UAE applicability evidence.",
+      "quality_property": "International guidance is never represented as UAE-specific without direct evidence.",
+      "last_passed": "No passing run is recorded; the audit intentionally reports every structured gap.",
+      "current_result": "FAIL: 1,426 structured findings across 1,401 workflows.",
+      "blocker_message": "Structured UAE applicability blockers are emitted for partial and missing-explicit-UAE findings.",
+      "affected_files": [
+        "clinical-expansion-v2/progress/UAE_APPLICABILITY_FINDINGS.jsonl"
+      ],
+      "affected_workflows": 1401,
+      "predates_wave11": true,
+      "protected_state_preservation": false,
+      "external_access": true,
+      "incomplete_implementation": false,
+      "audit_implementation_defect": false,
+      "genuine_unresolved_clinical_risk": true,
+      "root_cause": "Most evidence is international and requires explicit UAE adaptation; the audit correctly prevents silent local applicability.",
+      "required_resolution": "Retain explicit scope qualifiers and acquire direct UAE evidence where material; no automatic UAE claim.",
+      "final_terminal_state": "externally_blocked_with_no_runtime_risk"
+    },
+    {
+      "audit": "unsupported-legacy-content",
+      "command": "npm run audit:unsupported-legacy-content",
+      "implementation_file": "scripts/source-first/runCheck.mjs:unsupportedLegacyCheck",
+      "purpose": "Prevent unsupported legacy items from becoming source-derived support.",
+      "quality_property": "Unapproved legacy text cannot be silently promoted.",
+      "last_passed": "No passing run is recorded; mappings and clinician approvals remain zero.",
+      "current_result": "FAIL: 83,303 unsupported legacy items.",
+      "blocker_message": "83303 unsupported legacy clinical item(s) require source mapping and clinician review.",
+      "affected_files": [
+        "public/data/clinical_workflows.json",
+        "clinical-expansion-v2/progress/reports/unsupported_legacy_items.jsonl"
+      ],
+      "affected_workflows": 1500,
+      "predates_wave11": true,
+      "protected_state_preservation": true,
+      "external_access": true,
+      "incomplete_implementation": false,
+      "audit_implementation_defect": false,
+      "genuine_unresolved_clinical_risk": false,
+      "root_cause": "Protected programme boundary requires future exact mapping and qualified clinician review; no mappings or approvals are authorized in this wave.",
+      "required_resolution": "Keep all items unsupported and clinician-confirmation gated until independently mapped and approved.",
+      "final_terminal_state": "externally_blocked_with_no_runtime_risk"
+    }
+  ],
+  "reconstructed": true
+}
