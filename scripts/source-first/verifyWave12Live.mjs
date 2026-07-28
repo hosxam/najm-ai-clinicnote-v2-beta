@@ -1,7 +1,7 @@
 /* oxlint-disable no-unused-expressions */
 async (page) => {
   const base = 'https://hosxam.github.io/najm-ai-clinicnote-v2-beta/'
-  const expectedBuild = process.env.WAVE12_EXPECTED_BUILD || '2f61517'
+  const expectedBuild = '486204f'
   const activeIds = ['peds-pediatric-anemia-result-review','peds-pediatric-chronic-disease-follow-up','peds-pediatric-fatigue','peds-pediatric-travel-advice-documentation','peds-pediatric-vitamin-d-review','cardio-statin-tolerance-documentation','cardio-tachycardia-documentation','cardio-valvular-disease-follow-up','gastro-rectal-bleeding','ophth-red-eye','ed-critical-incident-documentation','ed-ecg-documentation','ed-handover-documentation','ed-medication-administration-documentation','ed-referral-documentation','ed-triage-documentation','gp-epistaxis-review-in-gp','gp-falls-risk-screening','gp-fatigue','gp-lab-result-review']
   const inactiveIds = ['peds-pediatric-urinary-symptoms','cardio-pregnancy-cardiac-history-documentation','cardio-referral-documentation','ed-interpreter-documentation','resp-latent-tb-result-review','resp-vaping-related-respiratory-symptoms']
   const errors = []; const failed = []; const requests = []
