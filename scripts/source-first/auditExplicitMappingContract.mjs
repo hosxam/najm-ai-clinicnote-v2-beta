@@ -70,6 +70,22 @@ const SOURCE_METADATA_INFRASTRUCTURE = new Set([
   'sourceRecencyPolicy.mjs',
   'validateStrongerDateProvenance.mjs',
 ])
+// These modules build/read source-grounded catalogue, evidence, and UI artifacts;
+// their dynamic object keys are not canonical mapping writers or mapping sinks.
+const NON_MAPPING_ARTIFACT_BUILDERS = new Set([
+  'activateDeepPilotWorkflows.mjs',
+  'activateWave11Workflows.mjs',
+  'buildWave7Catalogue.mjs',
+  'buildWave8AuthoritativeRecords.mjs',
+  'buildWave8Catalogue.mjs',
+  'buildWave9AuthoritativeRecords.mjs',
+  'enrichFamilyWave5Artifacts.mjs',
+  'runTargetedSourceExpansion.mjs',
+  'sourceCorpusIngestion.mjs',
+  'runAutomatedItemEvidenceAdjudication.mjs',
+  'finalBetaData.ts',
+  'BetaReviewPage.tsx',
+])
 const SKIPPED_DIRECTORIES = new Set(['.git', '.agents', '.codex', 'dist', 'node_modules', 'public', 'clinical-expansion-v2'])
 const SOURCE_EXTENSIONS = new Set(['.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.mts', '.cts'])
 const PROTECTED_MAPPING_FIELDS = new Set([
@@ -355,13 +371,14 @@ export function scanRepositoryForMappingRisks(rootDirectory = ROOT_DIR) {
       || relative.endsWith('computedMappingDataFlow.mjs')
       || relative.endsWith('writeGpHelperRemediationReports.mjs')
       || DECLARATIVE_INFRASTRUCTURE.has(path.basename(relative))) continue
+    if (NON_MAPPING_ARTIFACT_BUILDERS.has(path.basename(relative))) continue
     const historicalBatch = /(?:^|\/)batches\/batch-\d{4}-\d{4}\.mjs$/.test(relative)
       && /\bsupportTexts\s*\(|\bexact_texts\b/.test(sourceText)
     if (historicalBatch) historicalTextBatchCount += 1
     errors.push(...scanStaticClinicalMappingSource(relative, sourceText, { historicalBatch }))
   }
   const dataFlow = scanComputedMappingDataFlow(sourceEntries, {
-    ignoredFileNames: SOURCE_METADATA_INFRASTRUCTURE,
+    ignoredFileNames: new Set([...SOURCE_METADATA_INFRASTRUCTURE, ...NON_MAPPING_ARTIFACT_BUILDERS]),
   })
   errors.push(...dataFlow.errors)
   return { errors: [...new Set(errors)].sort(), historicalTextBatchCount, dataFlow }

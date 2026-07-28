@@ -6,6 +6,9 @@ const EXTERNAL_IMPORT_ALLOWLIST = new Set([
   'node:child_process',
   'node:crypto',
   'node:fs',
+  'node:fs/promises',
+  'node:assert/strict',
+  'node:os',
   'node:path',
   'node:url',
   'typescript',
@@ -559,7 +562,7 @@ export function scanComputedMappingDataFlow(sourceEntries, { ignoredFileNames = 
         }
       }
 
-      if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier)) {
+      if (ts.isImportDeclaration(node) && ts.isStringLiteralLike(node.moduleSpecifier) && !node.importClause?.isTypeOnly) {
         importRecords.push({ declaration: node, sourceFile, specifier: node.moduleSpecifier.text })
       }
 
@@ -638,6 +641,7 @@ export function scanComputedMappingDataFlow(sourceEntries, { ignoredFileNames = 
     const bindings = clause?.namedBindings
     if (bindings && ts.isNamedImports(bindings)) {
       for (const element of bindings.elements) {
+        if (element.isTypeOnly) continue
         const importedName = element.propertyName?.text ?? element.name.text
         if (targetExports.has(importedName)) {
           const localId = nodeId(element.name)

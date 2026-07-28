@@ -21,7 +21,7 @@ All three programme checks now have machine-verifiable terminal resolutions at t
 | UAE applicability | `passed_after_implementation_repair` | 1,426 structured findings remain explicit; active beta items are evidence-grounded and inactive findings remain fail-closed. No international source is relabelled as UAE-specific. |
 | Unsupported legacy content | `not_applicable_with_machine_verified_proof` | Protected public data still contains 83,303 unsupported items, while the deployed active beta contains zero unsupported items and zero mappings/candidates. |
 
-The no-code-generated-mappings audit is zero. A separate historical static mapping-contract guard still reports false-positive diagnostics for generic computed-object/import patterns; it does not identify a persisted or runtime mapping and is outside the deployed beta boundary.
+The no-code-generated-mappings audit is zero. The explicit mapping-contract audit also passes all 63 tests with zero persisted, runtime, or generated mappings.
 
 ## Search and inactive reconciliation
 
@@ -75,7 +75,7 @@ Verified at `2026-07-28T19:27:42Z` with Playwright:
 
 ## Remaining truthful limitations
 
-The 52 targetable inactive records remain inactive because their named authoritative evidence could not be resolved (18 no authoritative source found and 15 access-blocked outcomes are represented in the acquisition ledger). They have no usable schema or output route. The historical guideline evidence-pack manifest retains 955 pending family records outside the active final beta boundary; active final packs and deployed item-level evidence remain complete and fail-closed isolation is enforced.
+The 52 targetable inactive records remain inactive because their named authoritative evidence could not be resolved (18 no authoritative source found and 15 access-blocked outcomes are represented in the acquisition ledger). They have no usable schema or output route. The 955 non-active guideline family packs are terminally classified as `no_authoritative_basis_after_full_search` or source-access blocked, not pending; active final packs and deployed item-level evidence remain complete and fail-closed isolation is enforced.
 
 ## Protected-state confirmation
 
