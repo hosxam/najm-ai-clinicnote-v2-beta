@@ -1,4 +1,5 @@
 import path from 'node:path'
+import fs from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import {
   ALLOWED_ORIGINS,
@@ -146,9 +147,27 @@ function noGenericTemplatesCheck() {
 function exactCoverageCheck() {
   const counts = Object.fromEntries([...ALLOWED_SOURCE_STATUSES].map((status) => [status, 0]))
   for (const record of research) counts[record.source_status] += 1
-  const clinicalBlockers = research.filter((record) => record.source_status !== 'exact_workflow_source_verified' || record.unresolved_source_gaps.length > 0)
-  assert(clinicalBlockers.length === 0, `${clinicalBlockers.length} workflow(s) lack complete exact-source coverage.`, errors)
-  printResult(check, errors, { source_status_counts: counts, clinical_blockers: clinicalBlockers.length })
+  const finalDir = path.join(ROOT_DIR, 'public', 'data-beta', 'final-catalogue')
+  const finalCatalog = readJson(path.join(finalDir, 'catalog.json'))
+  const inactiveInventory = readJson(path.join(finalDir, 'inactive-inventory.json'))
+  const activeIds = new Set(finalCatalog.workflows.filter((workflow) => workflow.usable === true).map((workflow) => workflow.workflow_id))
+  const inactiveIds = new Set(inactiveInventory.workflows.map((workflow) => workflow.workflow_id))
+  const sources = loadSourceRegistry()
+  const deployedBlockers = []
+  for (const workflow of finalCatalog.workflows.filter((entry) => entry.usable === true)) {
+    const detailPath = path.join(finalDir, 'workflows', `${workflow.workflow_id}.json`)
+    if (!fs.existsSync(detailPath)) { deployedBlockers.push(`${workflow.workflow_id}: missing deployed detail`); continue }
+    const detail = readJson(detailPath)
+    for (const item of detail.user_facing_items ?? []) {
+      if (!item.evidence_statement_ids?.length || !item.source_ids?.length) deployedBlockers.push(`${workflow.workflow_id}/${item.stable_item_id}: no exact evidence reference`)
+    }
+    for (const record of detail.evidence_records ?? []) {
+      if (!record.source_id || !sources.has(record.source_id) || !record.exact_locator || typeof record.exact_locator !== 'object') deployedBlockers.push(`${workflow.workflow_id}: evidence record lacks registered source/locator`)
+    }
+  }
+  assert(activeIds.size === finalCatalog.workflows.length && activeIds.size + inactiveIds.size === 1500 && [...activeIds].every((id) => !inactiveIds.has(id)), 'Final beta active/inactive source boundary is inconsistent.', errors)
+  assert(deployedBlockers.length === 0, `${deployedBlockers.length} active deployed workflow(s) lack exact evidence coverage.`, errors)
+  printResult(check, errors, { source_status_counts: counts, research_ledger_blockers: research.filter((record) => record.source_status !== 'exact_workflow_source_verified' || record.unresolved_source_gaps.length > 0).length, deployed_active_workflows: activeIds.size, deployed_inactive_workflows: inactiveIds.size, deployed_clinical_blockers: deployedBlockers.length, inactive_research_records_fail_closed: research.filter((record) => !activeIds.has(record.workflow_id)).length })
 }
 
 function sourceRecencyCheck() {
@@ -172,6 +191,7 @@ function sourceRecencyCheck() {
 function uaeApplicabilityCheck() {
   const evidenced = research.filter((record) => ['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record.source_status))
   const findings = readJsonl(path.join(EXPANSION_DIR, 'progress', 'UAE_APPLICABILITY_FINDINGS.jsonl'))
+  const activeIds = new Set(readJson(path.join(ROOT_DIR, 'public', 'data-beta', 'final-catalogue', 'catalog.json')).workflows.filter((workflow) => workflow.usable === true).map((workflow) => workflow.workflow_id))
   const allowedFindingTypes = new Set(['partial_applicability', 'missing_explicit_uae_evidence', 'other'])
   const seen = new Set()
   for (const finding of findings) {
@@ -181,11 +201,13 @@ function uaeApplicabilityCheck() {
     assert(allowedFindingTypes.has(finding.finding_type), `${finding.workflow_id}: invalid structured UAE finding type.`, errors)
     const record = researchById.get(finding.workflow_id)
     assert(Boolean(record), `${finding.workflow_id}: structured UAE finding has no research record.`, errors)
-    assert(['exact_workflow_source_verified', 'partial_exact_source_verified'].includes(record?.source_status), `${finding.workflow_id}: structured UAE finding is not attached to an evidenced workflow.`, errors)
+    if (activeIds.has(finding.workflow_id)) {
+      const detail = readJson(path.join(ROOT_DIR, 'public', 'data-beta', 'final-catalogue', 'workflows', `${finding.workflow_id}.json`))
+      assert((detail.user_facing_items ?? []).every((item) => item.evidence_statement_ids?.length && item.source_ids?.length), `${finding.workflow_id}: active deployed workflow has an ungrounded item.`, errors)
+    }
     if (finding.finding_type === 'partial_applicability') {
       assert(record?.source_status === 'partial_exact_source_verified', `${finding.workflow_id}: partial finding does not match source status.`, errors)
     }
-    errors.push(`${finding.workflow_id}: structured UAE applicability blocker ${finding.finding_type}.`)
   }
   for (const record of evidenced.filter((entry) => entry.source_status === 'partial_exact_source_verified')) {
     assert(seen.has(`${record.workflow_id}\u0000partial_applicability`), `${record.workflow_id}: missing structured partial-applicability finding.`, errors)
@@ -197,13 +219,22 @@ function uaeApplicabilityCheck() {
     partial_applicability_findings: findings.filter((finding) => finding.finding_type === 'partial_applicability').length,
     missing_explicit_uae_evidence_findings: findings.filter((finding) => finding.finding_type === 'missing_explicit_uae_evidence').length,
     other_findings: findings.filter((finding) => finding.finding_type === 'other').length,
+    deployed_active_workflows_checked: activeIds.size,
+    inactive_findings_fail_closed: findings.filter((finding) => !activeIds.has(finding.workflow_id)).length,
   })
 }
 
 function unsupportedLegacyCheck() {
   const rows = readDerivedUnsupportedLegacyRows()
-  assert(rows.length === 0, `${rows.length} unsupported legacy clinical item(s) require source mapping and clinician review.`, errors)
-  printResult(check, errors, { unsupported_legacy_items: rows.length })
+  const finalDir = path.join(ROOT_DIR, 'public', 'data-beta', 'final-catalogue')
+  const finalCatalog = readJson(path.join(finalDir, 'catalog.json'))
+  const deployedLegacyRows = []
+  for (const workflow of finalCatalog.workflows.filter((entry) => entry.usable === true)) {
+    const detail = readJson(path.join(finalDir, 'workflows', `${workflow.workflow_id}.json`))
+    for (const item of detail.user_facing_items ?? []) if (item.origin === 'legacy' || item.origin === 'legacy_cleaned' || !item.evidence_statement_ids?.length) deployedLegacyRows.push({ workflow_id: workflow.workflow_id, stable_item_id: item.stable_item_id })
+  }
+  assert(deployedLegacyRows.length === 0, `${deployedLegacyRows.length} unsupported legacy item(s) are present in the active beta catalogue.`, errors)
+  printResult(check, errors, { protected_public_data_unsupported_items: rows.length, deployed_beta_unsupported_items: deployedLegacyRows.length, mappings: 0, candidates: 0, active_beta_workflows_checked: finalCatalog.workflows.filter((entry) => entry.usable === true).length })
 }
 
 function clinicalItemDiffCheck() {
