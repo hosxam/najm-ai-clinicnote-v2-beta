@@ -70,6 +70,16 @@ export type InteractiveWorkflowSummary = {
   aliases: string[]
 }
 
+export type InteractiveInactive = {
+  workflow_id: string
+  title: string
+  final_status: string
+  reason: string
+  specialty?: string
+  archetype?: string
+  aliases: string[]
+}
+
 type FinalCatalogueManifest = {
   counts?: {
     original_workflows?: number
@@ -93,8 +103,6 @@ export type InteractiveWorkflow = InteractiveWorkflowSummary & {
   transformation_audit: { additions_count: number; rewrites_count: number; removals_count: number }
 }
 
-export type InteractiveInactive = { workflow_id: string; title: string; final_status: string; reason: string }
-
 const base = 'data-beta/interactive-workflows/'
 const cache = new Map<string, Promise<unknown>>()
 function load<T>(relative: string) {
@@ -103,7 +111,7 @@ function load<T>(relative: string) {
   return cache.get(cacheKey) as Promise<T>
 }
 
-let datasetPromise: Promise<{ manifest: InteractiveManifest; workflows: InteractiveWorkflowSummary[]; finalCatalogueManifest: FinalCatalogueManifest }> | null = null
+let datasetPromise: Promise<{ manifest: InteractiveManifest; workflows: InteractiveWorkflowSummary[]; inactive: InteractiveInactive[]; finalCatalogueManifest: FinalCatalogueManifest }> | null = null
 export const interactiveWorkflowData = {
   loadDataset() {
     if (!datasetPromise) datasetPromise = Promise.all([
@@ -113,11 +121,15 @@ export const interactiveWorkflowData = {
         if (!response.ok) throw new Error(`Final catalogue manifest failed: ${response.status}`)
         return response.json() as Promise<FinalCatalogueManifest>
       }),
+      fetch(publicPath(`data-beta/final-catalogue/inactive-inventory.json?build=${encodeURIComponent(buildMarker)}`)).then(async (response) => {
+        if (!response.ok) throw new Error(`Inactive workflow inventory failed: ${response.status}`)
+        return response.json() as Promise<{ workflows: Array<Omit<InteractiveInactive, 'aliases'>> }>
+      }),
       fetch(publicPath(`data/diagnosis_index.json?build=${encodeURIComponent(buildMarker)}`)).then(async (response) => {
         if (!response.ok) throw new Error(`Diagnosis alias index failed: ${response.status}`)
         return response.json() as Promise<DiagnosisIndex>
       }),
-    ]).then(([manifest, catalog, finalCatalogueManifest, diagnosisIndex]) => {
+    ]).then(([manifest, catalog, finalCatalogueManifest, inactiveInventory, diagnosisIndex]) => {
       if (manifest.counts.workflows < 1 || finalCatalogueManifest.counts?.original_workflows !== 1500 || finalCatalogueManifest.counts?.active_workflows !== manifest.counts.workflows || finalCatalogueManifest.counts?.inactive_workflows == null) throw new Error('Interactive workflow count contract failed.')
       const aliasesByWorkflow = new Map<string, string[]>()
       for (const entry of diagnosisIndex.entries ?? []) {
@@ -125,7 +137,8 @@ export const interactiveWorkflowData = {
         for (const workflowId of entry.workflow_ids ?? []) aliasesByWorkflow.set(workflowId, [...(aliasesByWorkflow.get(workflowId) ?? []), ...aliases])
       }
       const workflows = catalog.workflows.map((workflow) => ({ ...workflow, aliases: [...new Set(aliasesByWorkflow.get(workflow.workflow_id) ?? [])] }))
-      return { manifest, workflows, finalCatalogueManifest }
+      const inactive = inactiveInventory.workflows.map((workflow) => ({ ...workflow, aliases: [...new Set(aliasesByWorkflow.get(workflow.workflow_id) ?? [])] }))
+      return { manifest, workflows, inactive, finalCatalogueManifest }
     })
     return datasetPromise
   },

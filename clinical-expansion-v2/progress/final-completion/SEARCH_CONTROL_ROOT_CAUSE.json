@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "observed_report": "Wave 12 browser proof reported no rendered search input.",
+  "root_cause": "browser_verifier_state_error_plus_catalogue_scope_gap",
+  "browser_verifier_defect": "The prior verifier queried for the search control after navigating to an inactive detail route, so it measured the detail page rather than the catalogue page.",
+  "implementation_gap": "The primary interactive chooser exposed active workflows only and had no status filter, inactive reason cards, or inactive-title search surface.",
+  "evidence": {
+    "source_file": "src/pages/InteractiveBetaPage.tsx",
+    "existing_search_before_repair": true,
+    "existing_alias_search_before_repair": true,
+    "existing_specialty_filter_before_repair": true,
+    "existing_archetype_filter_before_repair": true,
+    "inactive_inventory_loaded_before_repair": false
+  },
+  "protected_state_impact": "none",
+  "final_disposition": "repaired_catalogue_navigation_without_clinical_data_or_mapping_changes"
+}
